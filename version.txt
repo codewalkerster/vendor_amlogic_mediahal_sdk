@@ -5,31 +5,30 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 529107cd1c1ff665cd34e3006a25383231292a10
+commit b5a55e3e20a92e86dfa624e0a426c20494b87348
 Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Fri Jun 19 22:01:49 2020 +0800
+Date:   Wed Jun 24 16:15:25 2020 +0800
 
-    AmTsPlayer: Tsplayer need set blackout_policy 0 [1/1]
+    VideoDec: MediaInfo mutex need change name [1/1]
     
-    PD#SWPL-28129
+    PD#SWPL-28336
     
     Problem:
-    Changes in SWPL-25998 set bool type mSetVideoBlackout
-    to -1 cause mSetVideoBlackout = 0xFFFF. So set default
-    value 1 to blackout_policy
+    MediaInfo has a whole situation mutex name mutex
+    It will rename with other thread mutex.
     
     Solution:
-    mSetVideoBlackout set default value 0
+    Change mutex name to mMediaInfoMutex
     
     Verify:
     verify by U215
     
-    Change-Id: I39c36e1b8e334c68055e6acb84c8a85a42139d1f
+    Change-Id: Iffea009ef5a91de06234987445cd235e40e0b71b
     Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-06-19-22-12
+Release time: 2020-06-24-16-25
 
 ========================================
 
