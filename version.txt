@@ -5,30 +5,30 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit b5a55e3e20a92e86dfa624e0a426c20494b87348
+commit 884cb6cd1b6510fcb67a11469e13840e4fe5fe8c
 Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Wed Jun 24 16:15:25 2020 +0800
+Date:   Fri Jun 26 11:06:16 2020 +0800
 
-    VideoDec: MediaInfo mutex need change name [1/1]
+    VideoDec: Add check null in display thread call userdata [1/1]
     
-    PD#SWPL-28336
+    PD#SWPL-28149
     
     Problem:
-    MediaInfo has a whole situation mutex name mutex
-    It will rename with other thread mutex.
+    Displaythread of AmCodecVDA call userdata decinfo need check
+    if userdata object created.
     
     Solution:
-    Change mutex name to mMediaInfoMutex
+    Add check null in display thread call userdata
     
     Verify:
     verify by U215
     
-    Change-Id: Iffea009ef5a91de06234987445cd235e40e0b71b
+    Change-Id: Iff90d1ab98af97c8dea9ce8fdc244b31253155e9
     Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-06-24-16-25
+Release time: 2020-06-26-11-12
 
 ========================================
 
