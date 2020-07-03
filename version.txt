@@ -5,30 +5,31 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 884cb6cd1b6510fcb67a11469e13840e4fe5fe8c
+commit df56289bf62d5d01451ef24a98ca5f2e2e7a5c0c
 Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Fri Jun 26 11:06:16 2020 +0800
+Date:   Tue Jun 16 18:00:11 2020 +0800
 
-    VideoDec: Add check null in display thread call userdata [1/1]
+    AmTsPlayer: If video buffer no change write more data [1/1]
     
-    PD#SWPL-28149
+    PD#SWPL-27444
     
     Problem:
-    Displaythread of AmCodecVDA call userdata decinfo need check
-    if userdata object created.
+    Some Time video delay time more than 2S but video buffer
+    data not enough to decoder a frame.
     
     Solution:
-    Add check null in display thread call userdata
+    When delay time more than 2s but video buffer level no
+    change write a package again.
     
     Verify:
     verify by U215
     
-    Change-Id: Iff90d1ab98af97c8dea9ce8fdc244b31253155e9
+    Change-Id: I69a8b35275337e23bd1b8b24e770fec18a10b070
     Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-06-26-11-12
+Release time: 2020-07-03-19-50
 
 ========================================
 
