@@ -5,35 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 1a7759f68002ed016885a6a3dcea08b7c1d3b0f1
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jul 24 15:46:48 2020 +0800
+commit 50940f5226b70bedd0583d9fa7229cb0b9d63f39
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Fri Jul 3 18:22:31 2020 +0800
 
-    tsplayer: Modify to get the first frame of audio decoding event. [1/1]
+    av1: add av1 for mediahal [3/3]
     
-    PD#SWPL-30004
+    PD#SWPL-28843
     
     Problem:
-    In the case of audio only,
-    AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO event will not be thrown.
+    omx2 v4l2 do not support av1
     
     Solution:
-    Only in the case of audio,
-    Need to get the first frame event of audio decoding.
+    add av1 for omx2 support
     
     Verify:
-    U215
+    sc2
     
-    Change-Id: I5d6f2b1ec04d0c8d7fddbe99f9d3df0410de387a
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I485f2d20deb8dfc2fe73e3d8d4853d404ab513a5
+    Signed-off-by: Jian Wang <jian.wang@amlogic.com>
 
 ========================================
 
-Release time: 2020-07-31-17-00
+Release time: 2020-08-11-16-28
 
 ========================================
 
-Builder: yunmin.chen
+Builder: jian.wang
 
 ========================================
 Release file:
