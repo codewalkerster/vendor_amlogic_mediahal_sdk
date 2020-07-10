@@ -5,35 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 0363bc99e733d4da791d35e145277410a342691e
-Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Tue Jul 7 19:23:37 2020 +0800
+commit 24ca54fb4411863a10f44a7683033e2d1cb3ead8
+Author: Joy Rao <joy.rao@amlogic.com>
+Date:   Thu Jun 18 18:04:17 2020 +0800
 
-    vdec: displaythread need create after userdatathread create [1/1]
+    tsplayer: All the drmmode playback acquire resouce manager [1/1]
     
-    PD#SWPL-29120
+    PD#SWPL-28076
     
     Problem:
-    Displaythread will use mUserdata object and mUserdata object
-    create in userdatathread. So userdata thread need create
-    before displaythread.
+    secure pvr alloc tvp fail
     
     Solution:
-    displaythread create after userdatathread create
+    All the drmmode playback acquire resouce manager
     
     Verify:
-    verify by U215
+    U215
     
-    Change-Id: I4adf1644ab85d2ce9f1b62c1cd0154738393bdb3
-    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
+    Change-Id: I9c34b9df86c0730ac761b40e2fc03db77595623e
+    Signed-off-by: Joy Rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-07-07-19-40
+Release time: 2020-07-10-11-00
 
 ========================================
 
-Builder: alex.cao
+Builder: joy.rao
 
 ========================================
 Release file:
