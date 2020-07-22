@@ -5,33 +5,37 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit af7fb67afeb82da68e5be67f0b8e0ca61ede7784
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Jul 9 23:10:54 2020 +0800
+commit c6d6baee66a32bf3d4714a76ef761435dcc419c8
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Jul 17 11:08:21 2020 +0800
 
-    mediahal: add codec2 support [4/4]
+    tsplayer: Add functionality. [1/1]
     
-    PD#SWPL-22160
+    PD#SWPL-25613
     
     Problem:
-    need add codec2 support
+    1.Control of the speed of writing TS data.
+    2.Demod mode selection.
+    3.Set demux information to the tsync module.
     
     Solution:
-    add codec2 support with mediahal
+    1.Control the speed of writing TS data by buffer level.
+    2.Set the DEMOD mode through the drive interface.
+    3.Set demux information through the tsync driver interface.
     
     Verify:
-    verify by newton
+    verify by AH212_Sc2
     
-    Change-Id: Ifdcae9abb6abce5cbc211ef0f7b7554b81cd7803
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+    Change-Id: I0105e556991ab5b6699d12d79fecd80ec4cf6fae
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-07-28-14-10
+Release time: 2020-07-28-14-50
 
 ========================================
 
-Builder: shuanglong.wang
+Builder: yunmin.chen
 
 ========================================
 Release file:
