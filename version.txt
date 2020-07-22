@@ -5,33 +5,35 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 24ca54fb4411863a10f44a7683033e2d1cb3ead8
-Author: Joy Rao <joy.rao@amlogic.com>
-Date:   Thu Jun 18 18:04:17 2020 +0800
+commit 4405d149ffaa4912dc8bce8d7c0a3633f4d99b2c
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Jul 17 21:10:41 2020 +0800
 
-    tsplayer: All the drmmode playback acquire resouce manager [1/1]
+    tsplayer:  add userdata device on/off dynamicly [1/1]
     
-    PD#SWPL-28076
+    PD#SWPL-29397
     
     Problem:
-    secure pvr alloc tvp fail
+    Control with persist.vendor.tif.subtitleflg
     
     Solution:
-    All the drmmode playback acquire resouce manager
+    persist.vendor.tif.subtitleflg
+    >= 2 ：off
+    < 2  ：on
     
     Verify:
     U215
     
-    Change-Id: I9c34b9df86c0730ac761b40e2fc03db77595623e
-    Signed-off-by: Joy Rao <joy.rao@amlogic.com>
+    Change-Id: I0eb8c6d93175c1705a9e94f408d7fa1b5463eb24
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-07-10-11-00
+Release time: 2020-07-22-10-54
 
 ========================================
 
-Builder: joy.rao
+Builder: yunmin.chen
 
 ========================================
 Release file:
