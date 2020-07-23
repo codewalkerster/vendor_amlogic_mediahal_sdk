@@ -5,35 +5,36 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 4405d149ffaa4912dc8bce8d7c0a3633f4d99b2c
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jul 17 21:10:41 2020 +0800
+commit c2f6b6e73c6f55a87887b236fab942d0b5018601
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Thu Jul 23 19:36:12 2020 +0800
 
-    tsplayer:  add userdata device on/off dynamicly [1/1]
+    tsplayer: fix trick mode do not clear when exit [1/1]
     
-    PD#SWPL-29397
+    PD#SWPL-29794
     
     Problem:
-    Control with persist.vendor.tif.subtitleflg
+    when livetv pause trick mode be set to fffb, and when
+    it exit trick mode do not clear. And then to play tunnel
+    mode video trick mode status confuse duo to video can
+    not start to play.
     
     Solution:
-    persist.vendor.tif.subtitleflg
-    >= 2 ：off
-    < 2  ：on
+    clear  trick mode when exit play
     
     Verify:
-    U215
+    newton_hybrid
     
-    Change-Id: I0eb8c6d93175c1705a9e94f408d7fa1b5463eb24
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Ie8d5c79d524b2dd0eefbdca959ce4cbfabc65808
+    Signed-off-by: Jian Wang <jian.wang@amlogic.com>
 
 ========================================
 
-Release time: 2020-07-22-10-54
+Release time: 2020-07-23-19-46
 
 ========================================
 
-Builder: yunmin.chen
+Builder: jian.wang
 
 ========================================
 Release file:
