@@ -5,33 +5,31 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c6d6baee66a32bf3d4714a76ef761435dcc419c8
+commit 1a7759f68002ed016885a6a3dcea08b7c1d3b0f1
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jul 17 11:08:21 2020 +0800
+Date:   Fri Jul 24 15:46:48 2020 +0800
 
-    tsplayer: Add functionality. [1/1]
+    tsplayer: Modify to get the first frame of audio decoding event. [1/1]
     
-    PD#SWPL-25613
+    PD#SWPL-30004
     
     Problem:
-    1.Control of the speed of writing TS data.
-    2.Demod mode selection.
-    3.Set demux information to the tsync module.
+    In the case of audio only,
+    AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO event will not be thrown.
     
     Solution:
-    1.Control the speed of writing TS data by buffer level.
-    2.Set the DEMOD mode through the drive interface.
-    3.Set demux information through the tsync driver interface.
+    Only in the case of audio,
+    Need to get the first frame event of audio decoding.
     
     Verify:
-    verify by AH212_Sc2
+    U215
     
-    Change-Id: I0105e556991ab5b6699d12d79fecd80ec4cf6fae
+    Change-Id: I5d6f2b1ec04d0c8d7fddbe99f9d3df0410de387a
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-07-28-14-50
+Release time: 2020-07-31-17-00
 
 ========================================
 
