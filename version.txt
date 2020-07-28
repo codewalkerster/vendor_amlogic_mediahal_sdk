@@ -5,36 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c2f6b6e73c6f55a87887b236fab942d0b5018601
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Thu Jul 23 19:36:12 2020 +0800
+commit af7fb67afeb82da68e5be67f0b8e0ca61ede7784
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Jul 9 23:10:54 2020 +0800
 
-    tsplayer: fix trick mode do not clear when exit [1/1]
+    mediahal: add codec2 support [4/4]
     
-    PD#SWPL-29794
+    PD#SWPL-22160
     
     Problem:
-    when livetv pause trick mode be set to fffb, and when
-    it exit trick mode do not clear. And then to play tunnel
-    mode video trick mode status confuse duo to video can
-    not start to play.
+    need add codec2 support
     
     Solution:
-    clear  trick mode when exit play
+    add codec2 support with mediahal
     
     Verify:
-    newton_hybrid
+    verify by newton
     
-    Change-Id: Ie8d5c79d524b2dd0eefbdca959ce4cbfabc65808
-    Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+    Change-Id: Ifdcae9abb6abce5cbc211ef0f7b7554b81cd7803
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
 ========================================
 
-Release time: 2020-07-23-19-46
+Release time: 2020-07-28-14-10
 
 ========================================
 
-Builder: jian.wang
+Builder: shuanglong.wang
 
 ========================================
 Release file:
