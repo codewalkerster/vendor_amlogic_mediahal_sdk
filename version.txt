@@ -5,30 +5,39 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 5d2cad26fe7efd80a064ae33dd43abb25b77e680
+commit 15f8c99266502a57f20acd50421c446bd4f8f213
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jul 29 21:14:56 2020 +0800
+Date:   Wed Aug 12 16:58:45 2020 +0800
 
-    tsplayer: Audio Stereo Mode function modification. [1/1]
+    tsplayer: Regarding the modification of the SC2 platform. [1/1]
     
-    PD#OTT-11979
+    PD#SWPL-31378
     
     Problem:
-    Setting the audio channel has no effect.
+    1.Tsync needs demux related information.
+    2.Only audio will crash.
+    3.Add the player id parameter.
+    4.AudioHalWrapper added to get the status of
+     the first frame of audio decoding.
     
     Solution:
-    tsplayer sends SET_OUTPUT_MODE command to
-    audiohal to set the audio channel.
+    1.Set vpid, apid, pcrpid, demux_id, player_id to tsync.
+      Set PCR PID Filter.
+    2.Only audio will not start VDA.
+    3.Set the corresponding pes_type
+      of dmx through the player id.
+    4.When there is only audio, start the thread in
+      AudioHalWrapper to get the first frame of audio decoding.
     
     Verify:
-    verify by U215
+    AH212
     
-    Change-Id: I6de89942b656683fdb8943bf1b7b6089ebf5707c
+    Change-Id: Ic7481684e8d0b74e7d42e78c4e231c4e14ff67b6
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-08-21-11-25
+Release time: 2020-08-26-21-06
 
 ========================================
 
