@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020 Amlogic, Inc. All rights reserved.
+ *
+ * This source code is subject to the terms and conditions defined in the
+ * file 'LICENSE' which is part of this source code package.
+ *
+ * Description:
+ */
+
+
+
 #include <string>
 #include <vector>
 #include <atomic>
@@ -74,7 +85,7 @@ public:
     /* Implement callback */
     virtual void onOutputFormatChanged(uint32_t requestedNumOfBuffers,
         int32_t width, uint32_t height);
-    virtual void onOutputBufferDone(int32_t pictureBufferId, int32_t bitstreamId,
+    virtual void onOutputBufferDone(int32_t pictureBufferId, int64_t bitstreamId,
         uint32_t width, uint32_t height);
     virtual void onInputBufferDone(int32_t bitstream_buffer_id);
     virtual void onUpdateDecInfo(const uint8_t* info, uint32_t isize);
@@ -91,7 +102,7 @@ public:
                 int32_t width, uint32_t height) override {
             mThis->onOutputFormatChanged(requestedNumOfBuffers, width, height);
         }
-        virtual void onOutputBufferDone(int32_t pictureBufferId, int32_t bitstreamId,
+        virtual void onOutputBufferDone(int32_t pictureBufferId, int64_t bitstreamId,
                 uint32_t width, uint32_t height) override {
             mThis->onOutputBufferDone(pictureBufferId, bitstreamId, width, height);
         }
@@ -379,9 +390,9 @@ void vesplayer::onOutputFormatChanged(uint32_t requestedNumOfBuffers,
         requestedNumOfBuffers, width, height);
 }
 
-void vesplayer::onOutputBufferDone(int32_t pictureBufferId, int32_t bitstreamId,
+void vesplayer::onOutputBufferDone(int32_t pictureBufferId, int64_t bitstreamId,
                 uint32_t width, uint32_t height) {
-    printf("%s pictureBufferId:%d bitstreamId:%d width:%d height:%d\n", __func__,
+    printf("%s pictureBufferId:%d bitstreamId:%lld width:%d height:%d\n", __func__,
         pictureBufferId, bitstreamId, width, height);
 }
 void vesplayer::onInputBufferDone(int32_t bitstream_buffer_id) {

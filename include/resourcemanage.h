@@ -98,6 +98,7 @@ bool resman_resource_support(const char* resname);
 int resman_register(int fd, void (* handler)(void *),  void *opaque);
 void resman_unregister(int fd);
 void resman_stop_thread();
+int resman_estimate_size(int format, uint32_t width, uint32_t height);
 #ifdef  __cplusplus
 }
 #endif

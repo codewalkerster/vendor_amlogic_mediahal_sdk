@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020 Amlogic, Inc. All rights reserved.
+ *
+ * This source code is subject to the terms and conditions defined in the
+ * file 'LICENSE' which is part of this source code package.
+ *
+ * Description:
+ */
+
+
+
 #ifndef AMTSPLAYER_H
 #define AMTSPLAYER_H
 
@@ -96,8 +107,8 @@ typedef enum {
     AV_AUDIO_STEREO = 0,                   // Stereo mode
     AV_AUDIO_LEFT = 1,                     // Output left channel
     AV_AUDIO_RIGHT = 2,                    // Output right channel
-    AV_AUDIO_MONO = 3,                     // Mixed the left and right channels to one channel
-    AV_AUDIO_MULTICHANNEL = 4              // Mixed multi channels
+    AV_AUDIO_SWAP = 3,                     // Swap left and right channel
+    AV_AUDIO_LRMIX = 4                     // mix left and right channel
 } am_tsplayer_audio_stereo_mode;
 
 /*Audio Output mode*/

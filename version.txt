@@ -5,33 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 50940f5226b70bedd0583d9fa7229cb0b9d63f39
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Fri Jul 3 18:22:31 2020 +0800
+commit 5d2cad26fe7efd80a064ae33dd43abb25b77e680
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jul 29 21:14:56 2020 +0800
 
-    av1: add av1 for mediahal [3/3]
+    tsplayer: Audio Stereo Mode function modification. [1/1]
     
-    PD#SWPL-28843
+    PD#OTT-11979
     
     Problem:
-    omx2 v4l2 do not support av1
+    Setting the audio channel has no effect.
     
     Solution:
-    add av1 for omx2 support
+    tsplayer sends SET_OUTPUT_MODE command to
+    audiohal to set the audio channel.
     
     Verify:
-    sc2
+    verify by U215
     
-    Change-Id: I485f2d20deb8dfc2fe73e3d8d4853d404ab513a5
-    Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+    Change-Id: I6de89942b656683fdb8943bf1b7b6089ebf5707c
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-08-11-16-28
+Release time: 2020-08-21-11-25
 
 ========================================
 
-Builder: jian.wang
+Builder: yunmin.chen
 
 ========================================
 Release file:

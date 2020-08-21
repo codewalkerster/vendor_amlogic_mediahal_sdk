@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020 Amlogic, Inc. All rights reserved.
+ *
+ * This source code is subject to the terms and conditions defined in the
+ * file 'LICENSE' which is part of this source code package.
+ *
+ * Description:
+ */
+
+
+
 #ifndef AM_VIDEO_DEC_BASE_H
 #define AM_VIDEO_DEC_BASE_H
 
@@ -8,7 +19,7 @@ public:
     virtual ~AmVideoDecCallback() {};
     virtual void onOutputFormatChanged(uint32_t requested_num_of_buffers,
                 int32_t width, uint32_t height);
-    virtual void onOutputBufferDone(int32_t pictureBufferId, int32_t bitstreamId,
+    virtual void onOutputBufferDone(int32_t pictureBufferId, int64_t bitstreamId,
                 uint32_t width, uint32_t height);
     virtual void onInputBufferDone(int32_t bitstream_buffer_id);
     virtual void onUpdateDecInfo(const uint8_t* info, uint32_t isize);
