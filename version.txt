@@ -5,39 +5,32 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 15f8c99266502a57f20acd50421c446bd4f8f213
+commit a1f4bae8c97568060eaa92bfad5ebd15073168bb
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Aug 12 16:58:45 2020 +0800
+Date:   Fri Aug 28 11:05:20 2020 +0800
 
-    tsplayer: Regarding the modification of the SC2 platform. [1/1]
+    tsplayer: The playback in TimeShift mode is abnormal. [1/1]
     
-    PD#SWPL-31378
+    PD#SWPL-31836
     
     Problem:
-    1.Tsync needs demux related information.
-    2.Only audio will crash.
-    3.Add the player id parameter.
-    4.AudioHalWrapper added to get the status of
-     the first frame of audio decoding.
+    1.No ts data is injected into the demux module.
+    2.Buffer level calculation error.
     
     Solution:
-    1.Set vpid, apid, pcrpid, demux_id, player_id to tsync.
-      Set PCR PID Filter.
-    2.Only audio will not start VDA.
-    3.Set the corresponding pes_type
-      of dmx through the player id.
-    4.When there is only audio, start the thread in
-      AudioHalWrapper to get the first frame of audio decoding.
+    1.If the decoder rp address is not obtained, ts data is not injected.
+    2.When the VDA has been created, if you reset the video decoder,
+    need to reset the dmx buffer address to the decoder.
     
     Verify:
     AH212
     
-    Change-Id: Ic7481684e8d0b74e7d42e78c4e231c4e14ff67b6
+    Change-Id: I3e89ad92f6bd7e03f97fe47d0629e1e0d18df77f
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-08-26-21-06
+Release time: 2020-08-28-16-54
 
 ========================================
 
