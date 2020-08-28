@@ -5,32 +5,31 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit a1f4bae8c97568060eaa92bfad5ebd15073168bb
+commit a7839644bf9d68ff54cf1028afbbba48cb8396ec
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Aug 28 11:05:20 2020 +0800
+Date:   Fri Aug 28 21:33:14 2020 +0800
 
-    tsplayer: The playback in TimeShift mode is abnormal. [1/1]
+    tsplayer: SC2 PVR playback is abnormal. [1/1]
     
-    PD#SWPL-31836
+    PD#SWPL-31501
     
     Problem:
-    1.No ts data is injected into the demux module.
-    2.Buffer level calculation error.
+    The rp address of the video decoder
+    can be obtained after the ES data is decoded.
     
     Solution:
-    1.If the decoder rp address is not obtained, ts data is not injected.
-    2.When the VDA has been created, if you reset the video decoder,
-    need to reset the dmx buffer address to the decoder.
+    After the decoder is initialized,
+    the rp address of the video decoder can be obtained.
     
     Verify:
     AH212
     
-    Change-Id: I3e89ad92f6bd7e03f97fe47d0629e1e0d18df77f
+    Change-Id: Ia2c49eb89454bda19641e609c7eef1e380408896
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-08-28-16-54
+Release time: 2020-08-28-21-35
 
 ========================================
 
