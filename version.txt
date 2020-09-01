@@ -5,35 +5,35 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit a7839644bf9d68ff54cf1028afbbba48cb8396ec
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Aug 28 21:33:14 2020 +0800
+commit 579c80e1cc8c23228dd974ab6c895782e4dd5701
+Author: Joy Rao <joy.rao@amlogic.com>
+Date:   Thu Aug 20 15:34:19 2020 +0800
 
-    tsplayer: SC2 PVR playback is abnormal. [1/1]
+    tsplayer: reduce time interval to 10ms for Scambled event [1/1]
     
-    PD#SWPL-31501
+    PD#SWPL-31235
     
     Problem:
-    The rp address of the video decoder
-    can be obtained after the ES data is decoded.
+    when clear dvb ts stream played with weak signal, report "Scambled" with
+    error
     
     Solution:
-    After the decoder is initialized,
-    the rp address of the video decoder can be obtained.
+    reduce time interval to 50ms, keep checking 100 times scambled then
+    report "Scambled"
     
     Verify:
-    AH212
+    Android Q
     
-    Change-Id: Ia2c49eb89454bda19641e609c7eef1e380408896
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Id35f97ac57268c9aa608ef5c6a18327a2afae797
+    Signed-off-by: Joy Rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-08-28-21-35
+Release time: 2020-09-01-11-16
 
 ========================================
 
-Builder: yunmin.chen
+Builder: joy.rao
 
 ========================================
 Release file:
