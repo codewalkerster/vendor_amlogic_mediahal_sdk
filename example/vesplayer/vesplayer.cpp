@@ -40,28 +40,6 @@
 #define UNUSED(x) (void)(x)
 #endif
 
-typedef struct {
-     /* video */
-     uint32_t    vpid;
-     uint32_t    nVideoWidth;
-     uint32_t    nVideoHeight;
-     uint32_t    nFrameRate;
-     uint32_t   vFmt;
-     uint32_t    drmMode;
-     /* audio */
-     uint32_t    apid;
-     uint32_t    nChannels;
-     uint32_t    nSampleRate;
-     uint32_t   aFmt;
-     /* pcrid */
-     uint32_t    pcrid;
-     /* display */
-     uint32_t dispMode;
-     uint32_t    nSidebandType;
-     uint32_t    nSidebandId;
-     uint32_t    nAvsyncMode;
-} init_param_t;
-
 
 class vesplayer {
 public:
@@ -521,7 +499,8 @@ int main(int argc, char** argv) {
     /* video */     256, videowidth, videoheight, framerate, vFmt, 0,
     /* audio */     0, 2, 44100, 2,
     /*pcrid */		0,
-    /* display */   1, 0, 0, 0};
+    /* display */   1, 0, 0, 0,
+                    0, 0, 0, 0, 0, 0};
 
     gEsplayer = new vesplayer(&config);
     gEsplayer->play(iname);

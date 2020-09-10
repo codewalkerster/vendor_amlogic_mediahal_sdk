@@ -14,6 +14,35 @@
 
 #include <stdint.h>
 
+typedef struct {
+    /* video */
+    uint32_t    vpid;
+    uint32_t    nVideoWidth;
+    uint32_t    nVideoHeight;
+    uint32_t    nFrameRate;
+    uint32_t   vFmt;
+    uint32_t    drmMode;
+    /* audio */
+    uint32_t	apid;
+    uint32_t    nChannels;
+    uint32_t    nSampleRate;
+    uint32_t   aFmt;
+    /* pcrid */
+    uint32_t	pcrid;
+    /* display */
+    uint32_t dispMode;
+    uint32_t    nSidebandType;
+    uint32_t    nSidebandId;
+    uint32_t    nAvsyncMode;
+
+    int subtitleFlg;
+    int32_t  mDemuxType;
+    int32_t dmx_dev_id;
+    int32_t dmx_player_id;
+    unsigned int  stbuf_start;
+    unsigned int  stbuf_size;
+} init_param_t;
+
 class AmVideoDecCallback {
 public:
     virtual ~AmVideoDecCallback() {};

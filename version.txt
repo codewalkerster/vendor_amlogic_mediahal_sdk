@@ -5,35 +5,38 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 579c80e1cc8c23228dd974ab6c895782e4dd5701
-Author: Joy Rao <joy.rao@amlogic.com>
-Date:   Thu Aug 20 15:34:19 2020 +0800
+commit ec39aad9b7c6fdb45399b67ccf8e8ef8de85be00
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Aug 27 15:12:58 2020 +0800
 
-    tsplayer: reduce time interval to 10ms for Scambled event [1/1]
+    media_hal: fix amvideodec can't flush issue [1/1]
     
-    PD#SWPL-31235
+    PD#OTT-12758
     
     Problem:
-    when clear dvb ts stream played with weak signal, report "Scambled" with
-    error
+    AmCodecVDA hasn't flush all states and blocked for a long time.
+    memory leak as statistic information grows always.
     
     Solution:
-    reduce time interval to 50ms, keep checking 100 times scambled then
-    report "Scambled"
+    drop input buffers directly don't wait it to be decoded.
+    return output buffers to user quickly.
+    reset vl4video's input queue.
+    add get vdec id command.
+    don't record statistic information.
     
     Verify:
-    Android Q
+    verify by U212
     
-    Change-Id: Id35f97ac57268c9aa608ef5c6a18327a2afae797
-    Signed-off-by: Joy Rao <joy.rao@amlogic.com>
+    Change-Id: I0cc5c886e375b27ea24f648e2b2bbfb2a7078433
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
 ========================================
 
-Release time: 2020-09-01-11-16
+Release time: 2020-09-10-11-32
 
 ========================================
 
-Builder: joy.rao
+Builder: shuanglong.wang
 
 ========================================
 Release file:
