@@ -5,34 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit ec39aad9b7c6fdb45399b67ccf8e8ef8de85be00
+commit c30812b26688ba22d6c8b0d103570ed7292c16ca
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Aug 27 15:12:58 2020 +0800
+Date:   Thu Sep 10 19:53:35 2020 +0800
 
-    media_hal: fix amvideodec can't flush issue [1/1]
+    mediahal: input stream buffer contrl lead sc2 stuck [1/1]
     
-    PD#OTT-12758
+    PD#
     
     Problem:
-    AmCodecVDA hasn't flush all states and blocked for a long time.
-    memory leak as statistic information grows always.
+    input stream buffer contrl lead sc2 stuck
     
     Solution:
-    drop input buffers directly don't wait it to be decoded.
-    return output buffers to user quickly.
-    reset vl4video's input queue.
-    add get vdec id command.
-    don't record statistic information.
+    remove input stream buffer contrl in videodec
     
     Verify:
-    verify by U212
+    verify by sc2
     
-    Change-Id: I0cc5c886e375b27ea24f648e2b2bbfb2a7078433
+    Change-Id: I011ec0d90fb619e9a0912d5d96a0a6bdd20e9ca6
     Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
 ========================================
 
-Release time: 2020-09-10-11-32
+Release time: 2020-09-11-13-53
 
 ========================================
 
