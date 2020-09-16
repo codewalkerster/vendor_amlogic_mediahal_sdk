@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c7dbf5f25f93ff68a1462cb99c39e07f16d4dec8
-Author: Joy Rao <joy.rao@amlogic.com>
-Date:   Thu Sep 3 18:22:16 2020 +0800
+commit 6bbae1247ac70d46fe0b783e2808a7332985e18e
+Author: Zhizhong Zhang <zhizhong.zhang@amlogic.com>
+Date:   Wed Sep 16 19:24:04 2020 +0800
 
-    tsplayer: support cas playing. [1/1]
+    videocodec: move tsync related start/stop from v-stream to tsync [3/3]
     
-    PD#SWPL-31524
+    PD#SWPL-32957
     
     Problem:
-    support cas playing for sc2
+    zap to audio only channel,no audio output
     
     Solution:
-    process for secure playback for sc2
+    Call start when set dmx info, while stop when AmVideoDec destruct
     
     Verify:
-    AH212
+    AH212 patch-build
     
-    Change-Id: I23bc68b024fc4d74a94887c5fb51b65ab33b42dc
-    Signed-off-by: Joy Rao <joy.rao@amlogic.com>
+    Change-Id: If79fc0ec8c70f24157fb2fd290fa5000e7139cb7
+    Signed-off-by: Zhizhong Zhang <zhizhong.zhang@amlogic.com>
 
 ========================================
 
-Release time: 2020-09-17-13-18
+Release time: 2020-09-17-19-30
 
 ========================================
 
-Builder: joy.rao
+Builder: zhizhong.zhang
 
 ========================================
 Release file:
