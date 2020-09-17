@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c30812b26688ba22d6c8b0d103570ed7292c16ca
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Sep 10 19:53:35 2020 +0800
+commit c7dbf5f25f93ff68a1462cb99c39e07f16d4dec8
+Author: Joy Rao <joy.rao@amlogic.com>
+Date:   Thu Sep 3 18:22:16 2020 +0800
 
-    mediahal: input stream buffer contrl lead sc2 stuck [1/1]
+    tsplayer: support cas playing. [1/1]
     
-    PD#
+    PD#SWPL-31524
     
     Problem:
-    input stream buffer contrl lead sc2 stuck
+    support cas playing for sc2
     
     Solution:
-    remove input stream buffer contrl in videodec
+    process for secure playback for sc2
     
     Verify:
-    verify by sc2
+    AH212
     
-    Change-Id: I011ec0d90fb619e9a0912d5d96a0a6bdd20e9ca6
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+    Change-Id: I23bc68b024fc4d74a94887c5fb51b65ab33b42dc
+    Signed-off-by: Joy Rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-09-11-13-53
+Release time: 2020-09-17-13-18
 
 ========================================
 
-Builder: shuanglong.wang
+Builder: joy.rao
 
 ========================================
 Release file:
