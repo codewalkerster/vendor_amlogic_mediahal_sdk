@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 69b410e987873bbee0c835919c5a86cc97ddf0f1
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Thu Sep 17 17:27:04 2020 +0800
+commit 809cac4922c1b20b61fbb7b4d080f660a4825178
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Sep 25 13:59:00 2020 +0800
 
-    tsplayer: SC2 timeshift playback out of vsync. [1/1]
+    tsplayer: The PVR playback of SC2 is abnormal. [1/1]
     
-    PD#SWPL-32961
+    PD#SWPL-32984
     
     Problem:
-    when timeshift playback,too many ts data to send.
+    PVR cannot be played.
     
     Solution:
-    control the bufferlevel of ts data.
+    Restore the write_data function.
     
     Verify:
     AH212
     
-    Change-Id: Ibd928c9125b84d9bc423b2618dc17d051b988c5c
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: Ib1b910e736ae01fdb1a71babf8d5266cb5ffc197
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-09-23-16-39
+Release time: 2020-09-25-14-15
 
 ========================================
 
-Builder: shilong.yang
+Builder: yunmin.chen
 
 ========================================
 Release file:
