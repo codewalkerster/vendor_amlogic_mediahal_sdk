@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 6bbae1247ac70d46fe0b783e2808a7332985e18e
-Author: Zhizhong Zhang <zhizhong.zhang@amlogic.com>
-Date:   Wed Sep 16 19:24:04 2020 +0800
+commit 646c528f3dfd0886cdb34be8bf3a37f1be38edbc
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Sep 10 16:39:36 2020 +0800
 
-    videocodec: move tsync related start/stop from v-stream to tsync [3/3]
+    mediahal: vp9 and hevc use dw 3 when use v4lvideo [1/1]
     
-    PD#SWPL-32957
+    PD#OTT-13139
     
     Problem:
-    zap to audio only channel,no audio output
+    occur green screen
     
     Solution:
-    Call start when set dmx info, while stop when AmVideoDec destruct
+    vp9 and hevc use dw 3 when use v4lvideo
     
     Verify:
-    AH212 patch-build
+    verify by skb
     
-    Change-Id: If79fc0ec8c70f24157fb2fd290fa5000e7139cb7
-    Signed-off-by: Zhizhong Zhang <zhizhong.zhang@amlogic.com>
+    Change-Id: I429951c4f96efea7e9fc4f74de03f4bb76f1a345
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
 ========================================
 
-Release time: 2020-09-17-19-30
+Release time: 2020-09-21-13-34
 
 ========================================
 
-Builder: zhizhong.zhang
+Builder: shuanglong.wang
 
 ========================================
 Release file:
