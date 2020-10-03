@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 809cac4922c1b20b61fbb7b4d080f660a4825178
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Sep 25 13:59:00 2020 +0800
+commit 0331eecd75d33a8a2f95d7a36c8831c8d0af9ddd
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Fri Aug 7 16:04:18 2020 +0800
 
-    tsplayer: The PVR playback of SC2 is abnormal. [1/1]
+    tsplayer: update no tunnel mode code [1/5]
     
-    PD#SWPL-32984
+    PD#SWPL-25618
     
     Problem:
-    PVR cannot be played.
+    add non tunnel mode code for tsplayer
     
     Solution:
-    Restore the write_data function.
+    add non tunnel mode code for tsplayer
     
     Verify:
-    AH212
+    android Q
     
-    Change-Id: Ib1b910e736ae01fdb1a71babf8d5266cb5ffc197
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I3588ffbcdc550d4e1fa88f3df4d64395f3412bbc
+    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-09-25-14-15
+Release time: 2020-10-03-11-07
 
 ========================================
 
-Builder: yunmin.chen
+Builder: wanghao.li
 
 ========================================
 Release file:
@@ -42,6 +42,7 @@ AmVideoDecBase.h
 resourcemanage.h
 
 Library file:
+libmediahal_mediasync.so
 libmediahal_resman.so
 libmediahal_tsplayer.so
 libmediahal_videodec.so

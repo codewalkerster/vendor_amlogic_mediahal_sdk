@@ -30,21 +30,62 @@
 #include <getopt.h>
 #include <chrono>
 #include <AmTsPlayer.h>
-
+#ifdef SUPPORT_ANDROID
+#include <gui/IProducerListener.h>
+#include <gui/Surface.h>
+#include <gui/SurfaceComposerClient.h>
+#include <gui/ISurfaceComposer.h>
+#include <ui/DisplayInfo.h>
+using namespace android;
+#endif
 using namespace std;
 
-const int kRwSize = 188*1024;
+
+
+const int kRwSize = 188*300;
 const int kRwTimeout = 30000;
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
 #endif
+#ifdef SUPPORT_ANDROID
+android::sp<SurfaceComposerClient> mComposerClient;
+android::sp<IProducerListener> mProducerListener;
+android::sp<SurfaceControl> mControl;
+android::sp<Surface> mSurface;
+
+int setOutputToSurface(int x, int y, int w, int h) {
+    mComposerClient = new SurfaceComposerClient;
+    if (mComposerClient->initCheck() != 0)
+        return 0;
+    mProducerListener = new DummyProducerListener;
+    mControl = mComposerClient->createSurface(
+           String8("testSurface"),
+            w,
+            h,
+            HAL_PIXEL_FORMAT_IMPLEMENTATION_DEFINED);
+    if (mControl == NULL)
+        return 0;
+    if (!mControl->isValid())
+        return 0;
+    SurfaceComposerClient::Transaction{}
+            .setLayer(mControl, 0)
+            .show(mControl)
+            .setPosition(mControl, x, y)
+            .apply();
+    mSurface = mControl->getSurface();
+    if (mSurface == NULL)
+        return 0;
+    return 1;
+}
+#endif
+
 
 void video_callback(void *user_data, am_tsplayer_event *event)
 {
     UNUSED(user_data);
     printf("video_callback type %d\n", event? event->type : 0);
-	switch (event->type) {
+    switch (event->type) {
         case AM_TSPLAYER_EVENT_TYPE_VIDEO_CHANGED:
         {
             printf("[evt] AM_TSPLAYER_EVENT_TYPE_VIDEO_CHANGED: %d x %d @%d [%d]\n",
@@ -88,7 +129,7 @@ void video_callback(void *user_data, am_tsplayer_event *event)
         }
         default:
             break;
-	}
+    }
 }
 
 static int set_osd_blank(int blank)
@@ -96,22 +137,22 @@ static int set_osd_blank(int blank)
     const char *path1 = "/sys/class/graphics/fb0/blank";
     const char *path3 = "/sys/class/graphics/fb0/osd_display_debug";
     int fd;
-	char cmd[128] = {0};
+    char cmd[128] = {0};
 
-	fd = open(path3,O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (fd >= 0)
-	{
-       sprintf(cmd,"%d",1);
-	   write (fd,cmd,strlen(cmd));
-	   close(fd);
-	}
-	fd = open(path1,O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (fd >= 0)
-	{
-       sprintf(cmd,"%d",blank);
-	   write (fd,cmd,strlen(cmd));
-	   close(fd);
-	}
+    fd = open(path3,O_CREAT | O_RDWR | O_TRUNC, 0644);
+    if (fd >= 0)
+    {
+        sprintf(cmd,"%d",blank);
+        write (fd,cmd,strlen(cmd));
+        close(fd);
+    }
+    fd = open(path1,O_CREAT | O_RDWR | O_TRUNC, 0644);
+    if (fd >= 0)
+    {
+        sprintf(cmd,"%d",blank);
+        write (fd,cmd,strlen(cmd));
+        close(fd);
+    }
     return 0;
 }
 
@@ -189,7 +230,7 @@ int main(int argc, char **argv)
     am_tsplayer_avsync_mode avsyncMode= TS_SYNC_AMASTER;
     am_tsplayer_video_trick_mode vTrickMode = AV_VIDEO_TRICK_MODE_NONE;
     am_tsplayer_video_codec vCodec = AV_VIDEO_CODEC_H264;
-    am_tsplayer_audio_codec aCodec = AV_AUDIO_CODEC_AAC;
+    am_tsplayer_audio_codec aCodec = AV_AUDIO_CODEC_MP3;
     int32_t vPid = 0x100;
     int32_t aPid = 0x101;
 
@@ -232,7 +273,7 @@ int main(int argc, char **argv)
     signal(SIGINT, signHandler);
     set_osd_blank(1);
     char* buf = new char[kRwSize];
-	uint64_t fsize = 0;
+    uint64_t fsize = 0;
     ifstream file(inputTsName.c_str(), ifstream::binary);
 	if (tsType)	{
         set_dmx_source();
@@ -296,11 +337,17 @@ int main(int argc, char **argv)
                 break;
         } while(res || retry-- > 0);
     }
+    while (tsType == TS_DEMOD) {
+        usleep(1000000);
+    }
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     delete [](buf);
     if (file.is_open())
         file.close();
+    #ifdef SUPPORT_ANDROID
+    mComposerClient->dispose();
+    #endif
 
     set_osd_blank(0);
     AmTsPlayer_stopVideoDecoding(session);
