@@ -5,29 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 0331eecd75d33a8a2f95d7a36c8831c8d0af9ddd
+commit 382ebcdc1ba9cdf51e73d8ebf7c3b1873ba64dd2
 Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Fri Aug 7 16:04:18 2020 +0800
+Date:   Sun Oct 4 15:00:39 2020 +0800
 
-    tsplayer: update no tunnel mode code [1/5]
+    tsplayer: update drm info [1/1]
     
     PD#SWPL-25618
     
     Problem:
-    add non tunnel mode code for tsplayer
+    add drm info for non tunnel mode
     
     Solution:
-    add non tunnel mode code for tsplayer
+    add drm info for non tunnel mode
     
     Verify:
     android Q
     
-    Change-Id: I3588ffbcdc550d4e1fa88f3df4d64395f3412bbc
-    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
+    Change-Id: Ib86fea4bf9204c8263e8d952510277d4933d3b48
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-03-11-07
+Release time: 2020-10-04-15-57
 
 ========================================
 
