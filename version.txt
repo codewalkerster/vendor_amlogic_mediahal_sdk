@@ -5,33 +5,35 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 382ebcdc1ba9cdf51e73d8ebf7c3b1873ba64dd2
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Sun Oct 4 15:00:39 2020 +0800
+commit 1428ad1c5d9f9b02e41f9c0ebcdba480b3cda8d2
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Sat Oct 3 20:11:12 2020 +0800
 
-    tsplayer: update drm info [1/1]
+    tsplayer: Add newest pts in mem info. [1/2]
     
-    PD#SWPL-25618
+    PD#SWPL-33166
     
     Problem:
-    add drm info for non tunnel mode
+    progress bar error need
+    add newest pts in mem info.
     
     Solution:
-    add drm info for non tunnel mode
+    add newest pts in mem info,
+    recalculate cache time
     
     Verify:
-    android Q
+    AH212
     
-    Change-Id: Ib86fea4bf9204c8263e8d952510277d4933d3b48
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: I6b3344b6985b28b224ce384fea0f122eb5f138de
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-04-15-57
+Release time: 2020-10-10-15-13
 
 ========================================
 
-Builder: wanghao.li
+Builder: shilong.yang
 
 ========================================
 Release file:
