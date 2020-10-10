@@ -5,31 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 1428ad1c5d9f9b02e41f9c0ebcdba480b3cda8d2
+commit c0aac16c286f84a915130015c49aaf271abc4ede
 Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Sat Oct 3 20:11:12 2020 +0800
+Date:   Thu Oct 8 16:42:59 2020 +0800
 
-    tsplayer: Add newest pts in mem info. [1/2]
+    tsplayer: no sync when play pvr [1/1]
     
-    PD#SWPL-33166
+    PD#SWPL-32444
     
     Problem:
-    progress bar error need
-    add newest pts in mem info.
+    when play pvr out of sync.
     
     Solution:
-    add newest pts in mem info,
-    recalculate cache time
+    control the data to send.
     
     Verify:
     AH212
     
-    Change-Id: I6b3344b6985b28b224ce384fea0f122eb5f138de
+    Change-Id: Ie86893525bb032ee5109cee735e3c540dfb0f480
     Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-10-15-13
+Release time: 2020-10-15-16-33
 
 ========================================
 
