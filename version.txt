@@ -5,29 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c0aac16c286f84a915130015c49aaf271abc4ede
+commit 714e1b2fc6a1d533e4d88b989c55e5ea902dcfee
 Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Thu Oct 8 16:42:59 2020 +0800
+Date:   Thu Oct 15 21:31:41 2020 +0800
 
-    tsplayer: no sync when play pvr [1/1]
+    tsplayer: stuck when timeshift. [1/1]
     
-    PD#SWPL-32444
+    PD#SWPL-35037
     
     Problem:
-    when play pvr out of sync.
+    sometimes will be stuck when timeshift.
     
     Solution:
-    control the data to send.
+    send more data when stuck.
     
     Verify:
     AH212
     
-    Change-Id: Ie86893525bb032ee5109cee735e3c540dfb0f480
+    Change-Id: Icc2b5c9b825e11ab4d795f1f73c5b30cc62bd484
     Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-15-16-33
+Release time: 2020-10-17-22-46
 
 ========================================
 
