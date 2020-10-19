@@ -5,33 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 714e1b2fc6a1d533e4d88b989c55e5ea902dcfee
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Thu Oct 15 21:31:41 2020 +0800
+commit 2d486a96696281a6478416e01187f889da8cbf3b
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Tue Oct 13 14:36:36 2020 +0800
 
-    tsplayer: stuck when timeshift. [1/1]
+    tsplayer: need to support secure ts + hwdemux for SC2 [1/1]
     
-    PD#SWPL-35037
+    PD#RSP-1015
     
     Problem:
-    sometimes will be stuck when timeshift.
+    Sc2 vmx hls playback fail
     
     Solution:
-    send more data when stuck.
+    1. SC2 TVP hwdemux playback use INPUT_LOCAL_SEC
+    2. write phy addr start and end for INPUT_LOCAL_SEC mode
     
     Verify:
-    AH212
+    AH219
     
-    Change-Id: Icc2b5c9b825e11ab4d795f1f73c5b30cc62bd484
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: I5df4294819ed373c74513dbc41f32f0029719f45
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-17-22-46
+Release time: 2020-10-19-10-58
 
 ========================================
 
-Builder: shilong.yang
+Builder: joy.rao
 
 ========================================
 Release file:
