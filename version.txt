@@ -5,34 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 2d486a96696281a6478416e01187f889da8cbf3b
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Tue Oct 13 14:36:36 2020 +0800
+commit 04894bdd44460e0a6de93357c1fcb8ca66d8e682
+Author: Lifeng Cao <lifeng.cao@amlogic.com>
+Date:   Tue Oct 13 16:39:12 2020 +0800
 
-    tsplayer: need to support secure ts + hwdemux for SC2 [1/1]
+    TsPlayer: Move close audiohal to AudioDecoderStop [1/1]
     
-    PD#RSP-1015
+    PD#SWPL-33547
     
     Problem:
-    Sc2 vmx hls playback fail
+    We call close audiohal need in Audio Decoder Stop
+    and call open audiohal need in Audio Decoder Start
     
     Solution:
-    1. SC2 TVP hwdemux playback use INPUT_LOCAL_SEC
-    2. write phy addr start and end for INPUT_LOCAL_SEC mode
+    Move close audiohal to AudioDecoderStop
     
     Verify:
-    AH219
+    verify SC2
     
-    Change-Id: I5df4294819ed373c74513dbc41f32f0029719f45
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+    Change-Id: Idd59c9610b12633488563c6d3b1410831f6745d7
+    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-19-10-58
+Release time: 2020-10-19-19-39
 
 ========================================
 
-Builder: joy.rao
+Builder: alex.cao
 
 ========================================
 Release file:
