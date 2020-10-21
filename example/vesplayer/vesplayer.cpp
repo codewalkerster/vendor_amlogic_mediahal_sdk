@@ -483,7 +483,7 @@ int main(int argc, char** argv) {
     }
 
     if (iname == nullptr ||
-        vFmt == -1) {
+        vFmt == (uint32_t)-1) {
         usage();
         exit(-1);
     }

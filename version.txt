@@ -5,34 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 04894bdd44460e0a6de93357c1fcb8ca66d8e682
-Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Tue Oct 13 16:39:12 2020 +0800
+commit 24964db36a8b3cc95fbe41c5445e96ac10ea48cd
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Wed Sep 23 13:47:40 2020 +0800
 
-    TsPlayer: Move close audiohal to AudioDecoderStop [1/1]
+    tsplayer: bring up tsplayer for P. [1/1]
     
-    PD#SWPL-33547
+    PD#SWPL-32550
     
     Problem:
-    We call close audiohal need in Audio Decoder Stop
-    and call open audiohal need in Audio Decoder Start
+    need porting tsplayer for P.
     
     Solution:
-    Move close audiohal to AudioDecoderStop
+    porting code compatible with Q and P.
     
     Verify:
-    verify SC2
+    ac214
     
-    Change-Id: Idd59c9610b12633488563c6d3b1410831f6745d7
-    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
+    Change-Id: Ife126b742b103986df29ee429175c290f282bf73
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-19-19-39
+Release time: 2020-10-21-19-39
 
 ========================================
 
-Builder: alex.cao
+Builder: shilong.yang
 
 ========================================
 Release file:
