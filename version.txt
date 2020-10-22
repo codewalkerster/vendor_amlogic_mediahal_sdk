@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 24964db36a8b3cc95fbe41c5445e96ac10ea48cd
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Wed Sep 23 13:47:40 2020 +0800
+commit 6596524fdb1db6da33c22ee67ac7f4a6a39112c1
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Thu Oct 22 10:26:15 2020 +0800
 
-    tsplayer: bring up tsplayer for P. [1/1]
+    Tsplayer: 4K VMX HLS playback failed [1/1]
     
-    PD#SWPL-32550
+    PD#RSP-1144
     
     Problem:
-    need porting tsplayer for P.
+    not enough tvp pool for this 4k video
     
     Solution:
-    porting code compatible with Q and P.
+    use 4k tvp pool by default
     
     Verify:
-    ac214
+    AH219
     
-    Change-Id: Ife126b742b103986df29ee429175c290f282bf73
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: I4c5ae7923723d20e7b3a6bfadc621635ac3b6612
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-21-19-39
+Release time: 2020-10-22-10-38
 
 ========================================
 
-Builder: shilong.yang
+Builder: joy.rao
 
 ========================================
 Release file:
