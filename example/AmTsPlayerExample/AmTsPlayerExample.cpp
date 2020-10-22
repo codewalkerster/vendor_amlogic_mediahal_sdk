@@ -127,6 +127,16 @@ void video_callback(void *user_data, am_tsplayer_event *event)
             printf("[evt] AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE\n");
             break;
         }
+       case AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE:
+       {
+       //    printf("[evt] AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,%p\n",event->event.ptr);
+            break;
+       }
+       case AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE:
+       {
+       //    printf("[evt] AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE\n");
+            break;
+       }
         default:
             break;
     }
@@ -297,7 +307,6 @@ int main(int argc, char **argv)
     AmTsPlayer_getInstansNo(session, &instanceno);
     AmTsPlayer_setWorkMode(session, TS_PLAYER_MODE_NORMAL);
     AmTsPlayer_registerCb(session, video_callback, NULL);
-
     AmTsPlayer_setSyncMode(session, avsyncMode);
 
     am_tsplayer_video_params vparm;

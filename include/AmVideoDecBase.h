@@ -34,13 +34,13 @@ typedef struct {
     uint32_t    nSidebandType;
     uint32_t    nSidebandId;
     uint32_t    nAvsyncMode;
-
     int subtitleFlg;
     int32_t  mDemuxType;
     int32_t dmx_dev_id;
     int32_t dmx_player_id;
     unsigned int  stbuf_start;
     unsigned int  stbuf_size;
+    uint32_t    nDecType;
 } init_param_t;
 
 class AmVideoDecCallback {

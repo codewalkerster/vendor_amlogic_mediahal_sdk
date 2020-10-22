@@ -36,7 +36,9 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_STREAM_MODE_EOF, //endof stream mode
     AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_VIDEO, //The video decoder outputs the first frame.
     AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO, //The audio decoder outputs the first frame.
-    AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE //av sync done
+    AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE,     //av sync done
+    AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,  // input video buffer done
+    AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE  // input audio buffer done
 } am_tsplayer_event_type;
 
 /*Call back event mask*/
@@ -70,6 +72,7 @@ typedef enum
 {
     TS_DEMOD = 0,                          // TS Data input from demod
     TS_MEMORY = 1,                         // TS Data input from memory
+    ES_MEMORY = 2,                         // ES Data input from memory
 } am_tsplayer_input_source_type;
 
 /*Input buffer type*/
@@ -183,6 +186,15 @@ typedef struct {
     int32_t buf_size;                      // Input buffer size
 } am_tsplayer_input_buffer;
 
+/*AmTsPlayer input buffer type*/
+typedef struct {
+    am_tsplayer_input_buffer_type buf_type;// Input buffer type (secure/no secure)
+    void *buf_data;                        // Input buffer addr
+    int32_t buf_size;                      // Input buffer size
+    uint64_t pts;                          //frame pts,using only for frame mode
+    int32_t isvideo;
+} am_tsplayer_input_frame_buffer;
+
 /*AmTsPlayer video init parameters*/
 typedef struct {
     am_tsplayer_video_codec codectype;     // Video codec type
@@ -193,6 +205,7 @@ typedef struct {
 typedef struct {
     am_tsplayer_audio_codec codectype;     // Audio codec type
     int32_t pid;                           // Audio pid in ts
+    int32_t seclevel;                      // Audio security seclevel
 } am_tsplayer_audio_params;
 
 /*AmTsPlayer stream buffer status*/
@@ -274,12 +287,12 @@ typedef struct {
     uint32_t frame_height;
     uint32_t frame_rate;
     uint32_t frame_aspectratio;
-} video_format_t;
+} am_tsplayer_video_format_t;
 
 typedef struct {
     uint32_t sample_rate;
     uint32_t channels;
-} audio_format_t;
+} am_tsplayer_audio_format_t;
 
 typedef struct {
     am_tsplayer_stream_type stream_type;
@@ -301,15 +314,17 @@ typedef struct {
     am_tsplayer_event_type type;           // Call back event type
     union {
         /*If type is VIDEO_CHANGED send new video basic info*/
-        video_format_t video_format;
+        am_tsplayer_video_format_t video_format;
         /*If type is AUDIO_CHANGED send new video basic info*/
-        audio_format_t audio_format;
+        am_tsplayer_audio_format_t audio_format;
         /*Audio /Video/Subtitle pts after pes parser*/
         am_tsplayer_pts_t pts;
         /*User data send cc /afd /dvb subtitle to caller*/
         mpeg_user_data_t mpeg_user_data;
         /*Scrambling status changed send scramling info to caller*/
         scamling_t scramling;
+        /*callback audio/video input buffer ptr*/
+        void* bufptr;
     } event;
 }am_tsplayer_event;
 
@@ -360,6 +375,19 @@ am_tsplayer_result  AmTsPlayer_getCb(am_tsplayer_handle Hadl, event_callback *pf
  *\return:       The AmTsPlayer result.
  */
 am_tsplayer_result  AmTsPlayer_release(am_tsplayer_handle Hadl);
+/**
+ *\brief:        Write Frame data to specified AmTsPlayer instance.
+ *               It will only work when TS input's source type is TS_MEMORY.
+ *\inparam:      AmTsPlayer handle.
+ *\inparam:      Input buffer struct (1.Buffer type:secrue/no
+ *               2.secure buffer ptr 3.buffer len).
+ *\inparam:      Time out limit .
+ *\inparam:      AV_type(0 means audio, 1 means video)
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_writeFrameData(am_tsplayer_handle Hadl,
+                                                   am_tsplayer_input_frame_buffer *buf,
+                                                   uint64_t timeout_ms);
 /**
  *\brief:        Write data to specified AmTsPlayer instance.
  *               It will only work when TS input's source type is TS_MEMORY.

@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 6596524fdb1db6da33c22ee67ac7f4a6a39112c1
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Thu Oct 22 10:26:15 2020 +0800
+commit ae238dd5a7dc57222731eab8703ecd0649e764fd
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Tue Oct 13 15:27:07 2020 +0800
 
-    Tsplayer: 4K VMX HLS playback failed [1/1]
+    tsplayer: update code for frame mode [1/1]
     
-    PD#RSP-1144
+    PD#RSP-1080
     
     Problem:
-    not enough tvp pool for this 4k video
+    update code for frame mode
     
     Solution:
-    use 4k tvp pool by default
+    update code for frame mode
     
     Verify:
-    AH219
+    SC2
     
-    Change-Id: I4c5ae7923723d20e7b3a6bfadc621635ac3b6612
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+    Change-Id: I5351abd9038f96dd9231ec263d9c70434d75e9bb
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-22-10-38
+Release time: 2020-10-22-16-47
 
 ========================================
 
-Builder: joy.rao
+Builder: wanghao.li
 
 ========================================
 Release file:
