@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit ae238dd5a7dc57222731eab8703ecd0649e764fd
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Tue Oct 13 15:27:07 2020 +0800
+commit f6edded4f75ff4ffaf9107514135646189a7984e
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Mon Oct 26 18:25:02 2020 +0800
 
-    tsplayer: update code for frame mode [1/1]
+    Tsplayer: setup audio seclevel to audiohal [1/1]
     
-    PD#RSP-1080
+    PD#SWPL-35310
     
     Problem:
-    update code for frame mode
+    when playback is tvp, audio es need write to aucpu
     
     Solution:
-    update code for frame mode
+    add seclevel for tvp audio setup
     
     Verify:
-    SC2
+    AH219
     
-    Change-Id: I5351abd9038f96dd9231ec263d9c70434d75e9bb
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: Ie60e1291e31cda752122612964b2eaa96a7877db
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-22-16-47
+Release time: 2020-10-26-18-29
 
 ========================================
 
-Builder: wanghao.li
+Builder: joy.rao
 
 ========================================
 Release file:
