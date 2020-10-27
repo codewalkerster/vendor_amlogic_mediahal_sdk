@@ -5,33 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit f6edded4f75ff4ffaf9107514135646189a7984e
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Mon Oct 26 18:25:02 2020 +0800
+commit 75581969d719af943259707e53073a169bd12137
+Author: Lifeng Cao <lifeng.cao@amlogic.com>
+Date:   Tue Oct 27 17:49:22 2020 +0800
 
-    Tsplayer: setup audio seclevel to audiohal [1/1]
+    tsplayer: move the write lock to tsplayer class [1/1]
     
-    PD#SWPL-35310
+    PD#SWPL-35599
     
     Problem:
-    when playback is tvp, audio es need write to aucpu
+    write lock is global lock will cause diff instance
+    write block.
     
     Solution:
-    add seclevel for tvp audio setup
+    move the write lock to tsplayer class
     
     Verify:
-    AH219
+    ah212
     
-    Change-Id: Ie60e1291e31cda752122612964b2eaa96a7877db
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+    Change-Id: Ia9e3db64f961f743bee9add439104bccbda60506
+    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-26-18-29
+Release time: 2020-10-27-17-57
 
 ========================================
 
-Builder: joy.rao
+Builder: alex.cao
 
 ========================================
 Release file:
