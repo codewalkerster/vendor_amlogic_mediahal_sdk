@@ -5,34 +5,32 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 75581969d719af943259707e53073a169bd12137
-Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Tue Oct 27 17:49:22 2020 +0800
+commit 1ad6f6260e11ff8bd26fc67915d1457cde701b0f
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Fri Oct 30 19:48:49 2020 +0800
 
-    tsplayer: move the write lock to tsplayer class [1/1]
+    tsplayer: Block screen during playback, no sound output
     
-    PD#SWPL-35599
+    PD#SWPL-36001
     
     Problem:
-    write lock is global lock will cause diff instance
-    write block.
+    audio crash lead to the problem
     
     Solution:
-    move the write lock to tsplayer class
+    add lock to deal to the crash
     
     Verify:
-    ah212
+    SC2
     
-    Change-Id: Ia9e3db64f961f743bee9add439104bccbda60506
-    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
+    Change-Id: I4d87bcc3c1f7af642469f2276524d4a3c5480a96
 
 ========================================
 
-Release time: 2020-10-27-17-57
+Release time: 2020-10-30-20-58
 
 ========================================
 
-Builder: alex.cao
+Builder: wanghao.li
 
 ========================================
 Release file:
