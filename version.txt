@@ -5,32 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 1ad6f6260e11ff8bd26fc67915d1457cde701b0f
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Fri Oct 30 19:48:49 2020 +0800
+commit b640ad3d4032807d879a8f6e8e2c2a4aa2bff1d8
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Tue Nov 3 21:18:03 2020 +0800
 
-    tsplayer: Block screen during playback, no sound output
+    Tsplayer: out of av sync when FF/FB. [1/1]
     
-    PD#SWPL-36001
+    PD#SWPL-35760
     
     Problem:
-    audio crash lead to the problem
+    when  FF/FB,sometimes out of sync.
     
     Solution:
-    add lock to deal to the crash
+    add some control.
     
     Verify:
-    SC2
+    AH212
     
-    Change-Id: I4d87bcc3c1f7af642469f2276524d4a3c5480a96
+    Change-Id: I00fb5be3145f213576c6965a2f74d90cf92fad33
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-10-30-20-58
+Release time: 2020-11-05-20-14
 
 ========================================
 
-Builder: wanghao.li
+Builder: shilong.yang
 
 ========================================
 Release file:
