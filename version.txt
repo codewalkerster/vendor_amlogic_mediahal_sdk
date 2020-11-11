@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit b640ad3d4032807d879a8f6e8e2c2a4aa2bff1d8
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Tue Nov 3 21:18:03 2020 +0800
+commit d87681cb61a3b79960187ef37d76bd4ad3486034
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Nov 9 21:14:02 2020 +0800
 
-    Tsplayer: out of av sync when FF/FB. [1/1]
+    tsplayer: NonTunnel related modifications [1/1]
     
-    PD#SWPL-35760
+    PD#SWPL-35009
     
     Problem:
-    when  FF/FB,sometimes out of sync.
+    Compatible modification.
     
     Solution:
-    add some control.
+    Modify the start-up process.
     
     Verify:
-    AH212
+    SC2_AH212
     
-    Change-Id: I00fb5be3145f213576c6965a2f74d90cf92fad33
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: I02edd037a04102eb0e163335e82bc8f0573c6985
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-05-20-14
+Release time: 2020-11-11-13-50
 
 ========================================
 
-Builder: shilong.yang
+Builder: yunmin.chen
 
 ========================================
 Release file:

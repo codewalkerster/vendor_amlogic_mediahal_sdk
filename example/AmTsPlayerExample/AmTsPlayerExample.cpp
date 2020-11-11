@@ -30,6 +30,8 @@
 #include <getopt.h>
 #include <chrono>
 #include <AmTsPlayer.h>
+#include <termios.h>
+
 #ifdef SUPPORT_ANDROID
 #include <gui/IProducerListener.h>
 #include <gui/Surface.h>
@@ -215,6 +217,25 @@ static void usage(char **argv)
     printf("-h | --help         print this usage\n");
 }
 
+int _kbhit() {
+    static const int STDIN = 0;
+    static bool initialized = false;
+
+    if (!initialized) {
+        // Use termios to turn off line buffering
+        termios term;
+        tcgetattr(STDIN, &term);
+        term.c_lflag &= ~ICANON;
+        tcsetattr(STDIN, TCSANOW, &term);
+        setbuf(stdin, NULL);
+        initialized = true;
+    }
+
+    int bytesWaiting;
+    ioctl(STDIN, FIONREAD, &bytesWaiting);
+    return bytesWaiting;
+}
+
 int main(int argc, char **argv)
 {
     int optionChar = 0;
@@ -326,6 +347,7 @@ int main(int argc, char **argv)
 
     am_tsplayer_input_buffer ibuf = {TS_INPUT_BUFFER_TYPE_NORMAL, (char*)buf, 0};
     long pos = 0;
+    int ch = 0;
     while (tsType)
     {
         if (file.eof()) {
@@ -345,22 +367,39 @@ int main(int argc, char **argv)
             } else
                 break;
         } while(res || retry-- > 0);
+        if (_kbhit()) {
+            ch = getchar();
+            printf("----key input : %d quit:q\n",ch);
+            if (ch == 113) {
+                printf("----break\n");
+                break;
+            }
+        }
     }
     while (tsType == TS_DEMOD) {
         usleep(1000000);
     }
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+
+    if (ch != 113)
+        std::this_thread::sleep_for(std::chrono::seconds(10));
+
 
     delete [](buf);
+
     if (file.is_open())
         file.close();
-    #ifdef SUPPORT_ANDROID
-    mComposerClient->dispose();
-    #endif
+
+
+    //#ifdef SUPPORT_ANDROID
+    //mComposerClient->dispose();
+   // #endif
 
     set_osd_blank(0);
+
     AmTsPlayer_stopVideoDecoding(session);
+
     AmTsPlayer_stopAudioDecoding(session);
+
     AmTsPlayer_release(session);
     printf("exit\n");
     return 0;
