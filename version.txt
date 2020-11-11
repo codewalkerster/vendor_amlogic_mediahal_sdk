@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit d87681cb61a3b79960187ef37d76bd4ad3486034
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Nov 9 21:14:02 2020 +0800
+commit e3e35283876b4030e48b1b744e00206bc0527ecd
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Sat Nov 7 15:30:44 2020 +0800
 
-    tsplayer: NonTunnel related modifications [1/1]
+    Tsplayer: when timeshift,sometimes will be stuck. [1/1]
     
-    PD#SWPL-35009
+    PD#SWPL-34479
     
     Problem:
-    Compatible modification.
+    when timeshift, sometimes stuck happened.
     
     Solution:
-    Modify the start-up process.
+    add some protection and modify process control.
     
     Verify:
-    SC2_AH212
+    AH212
     
-    Change-Id: I02edd037a04102eb0e163335e82bc8f0573c6985
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I175a68590c9995a4df185dbd8241d96bee1f66ec
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-11-13-50
+Release time: 2020-11-11-20-11
 
 ========================================
 
-Builder: yunmin.chen
+Builder: shilong.yang
 
 ========================================
 Release file:
