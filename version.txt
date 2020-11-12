@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit e3e35283876b4030e48b1b744e00206bc0527ecd
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Sat Nov 7 15:30:44 2020 +0800
+commit fe8eec2a96d467cf8532869f39eaaa3708fd69a5
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Wed Nov 11 14:10:16 2020 +0800
 
-    Tsplayer: when timeshift,sometimes will be stuck. [1/1]
+    Tsplayer: Update the judgment for AmDemuxWrapperGetStates [1/1]
     
-    PD#SWPL-34479
+    PD#SWPL-34966
     
     Problem:
-    when timeshift, sometimes stuck happened.
+    Readfs demuxX_scramble fail.
     
     Solution:
-    add some protection and modify process control.
+    Update the judgment because the function has been modified.
     
     Verify:
     AH212
     
-    Change-Id: I175a68590c9995a4df185dbd8241d96bee1f66ec
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: Ia169b103e129a7a57fa795b2f9f4cc1dc41bd5b8
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-11-20-11
+Release time: 2020-11-12-16-20
 
 ========================================
 
-Builder: shilong.yang
+Builder: joy.rao
 
 ========================================
 Release file:
