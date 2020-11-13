@@ -52,7 +52,6 @@ const int kRwTimeout = 30000;
 #endif
 #ifdef SUPPORT_ANDROID
 android::sp<SurfaceComposerClient> mComposerClient;
-android::sp<IProducerListener> mProducerListener;
 android::sp<SurfaceControl> mControl;
 android::sp<Surface> mSurface;
 
@@ -60,7 +59,6 @@ int setOutputToSurface(int x, int y, int w, int h) {
     mComposerClient = new SurfaceComposerClient;
     if (mComposerClient->initCheck() != 0)
         return 0;
-    mProducerListener = new DummyProducerListener;
     mControl = mComposerClient->createSurface(
            String8("testSurface"),
             w,
@@ -306,22 +304,34 @@ int main(int argc, char **argv)
     char* buf = new char[kRwSize];
     uint64_t fsize = 0;
     ifstream file(inputTsName.c_str(), ifstream::binary);
-	if (tsType)	{
-        set_dmx_source();
-        file.seekg(0, file.end);
-        fsize = file.tellg();
-        if (fsize <= 0) {
-            printf("file %s size %lld return\n", inputTsName.c_str(), fsize);
-            return 0;
-        }
-        file.seekg(0, file.beg);
-	}
+    if (tsType) {
+       set_dmx_source();
+       file.seekg(0, file.end);
+       fsize = file.tellg();
+       if (fsize <= 0) {
+           printf("file %s size %lld return\n", inputTsName.c_str(), fsize);
+           return 0;
+       }
+       file.seekg(0, file.beg);
+    }
     printf("file name = %s, is_open %d, size %lld, tsType %d\n",
                 inputTsName.c_str(), file.is_open(), fsize, tsType);
 
     //am_tsplayer_handle session;
     am_tsplayer_init_params parm = {tsType, drmmode, 0, 0};
     AmTsPlayer_create(parm, &session);
+    #ifdef SUPPORT_ANDROID
+    if (mSurface == NULL) {
+        android::DisplayInfo info;
+        #if ANDROID_PLATFORM_SDK_VERSION >= 29
+        SurfaceComposerClient::getDisplayInfo(SurfaceComposerClient::getInternalDisplayToken(), &info);
+        #else
+        SurfaceComposerClient::getDisplayInfo(SurfaceComposerClient::getBuiltInDisplay(ISurfaceComposer::eDisplayIdMain), &info);
+        #endif
+        if (setOutputToSurface(0, 0, info.w, info.h) == 1)
+            AmTsPlayer_setSurface(session,mSurface.get());
+    }
+    #endif
     uint32_t versionM, versionL;
     AmTsPlayer_getVersion(&versionM, &versionL);
     uint32_t instanceno;
@@ -389,10 +399,16 @@ int main(int argc, char **argv)
     if (file.is_open())
         file.close();
 
-
-    //#ifdef SUPPORT_ANDROID
-    //mComposerClient->dispose();
-   // #endif
+    #ifdef SUPPORT_ANDROID
+    if (mSurface && mComposerClient && mControl) {
+        mSurface.clear();
+        mSurface = nullptr;
+        mControl.clear();
+        mControl = nullptr;
+        mComposerClient.clear();
+        mComposerClient = nullptr;
+    }
+    #endif
 
     set_osd_blank(0);
 

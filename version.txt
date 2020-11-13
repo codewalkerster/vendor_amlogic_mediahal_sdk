@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 879eff417c11512b35353004369c9ac10340c180
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Wed Nov 11 21:46:09 2020 +0800
+commit c436b9af0bfac096b2166496da4727e7d5bc0948
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Thu Nov 5 13:48:59 2020 +0800
 
-    Tsplayer: when timeshift,sometimes out of avsync. [1/1]
+    tsplayer: TsPlayer support FCC on SC2 [1/1]
     
-    PD#SWPL-35981
+    PD#SWPL-36599
     
     Problem:
-    sometimes out of avsync.
+     the code has not buffer manage load to some problem
     
     Solution:
-    control threshold of streambuffer when timeshift.
+     add buffer manage
     
     Verify:
-    AH212
+     SC2
     
-    Change-Id: I010a7f0d81f5800f8b76c2d12568b16f910f100f
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: Ibdc63d2cdd697b51ecfa611cf2f6f9634e6e4b40
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-17-20-29
+Release time: 2020-11-17-21-00
 
 ========================================
 
-Builder: shilong.yang
+Builder: wanghao.li
 
 ========================================
 Release file:
