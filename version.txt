@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit fe8eec2a96d467cf8532869f39eaaa3708fd69a5
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Wed Nov 11 14:10:16 2020 +0800
+commit 879eff417c11512b35353004369c9ac10340c180
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Wed Nov 11 21:46:09 2020 +0800
 
-    Tsplayer: Update the judgment for AmDemuxWrapperGetStates [1/1]
+    Tsplayer: when timeshift,sometimes out of avsync. [1/1]
     
-    PD#SWPL-34966
+    PD#SWPL-35981
     
     Problem:
-    Readfs demuxX_scramble fail.
+    sometimes out of avsync.
     
     Solution:
-    Update the judgment because the function has been modified.
+    control threshold of streambuffer when timeshift.
     
     Verify:
     AH212
     
-    Change-Id: Ia169b103e129a7a57fa795b2f9f4cc1dc41bd5b8
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+    Change-Id: I010a7f0d81f5800f8b76c2d12568b16f910f100f
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-12-16-20
+Release time: 2020-11-17-20-29
 
 ========================================
 
-Builder: joy.rao
+Builder: shilong.yang
 
 ========================================
 Release file:
