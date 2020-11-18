@@ -5,33 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 56cb0f2cdbd0c9feae3f2a459b6a2d075fe4e3f8
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Tue Nov 17 21:43:48 2020 +0800
+commit 8286f945ac7d1583d1fc0b34661ea490e7b099e2
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Nov 18 16:10:21 2020 +0800
 
-    Tsplayer: no AD audio output. [1/1]
+    tsplayer: NonTunnelMode PVR playback related modification. [1/1]
     
-    PD#SWPL-37053
+    PD#SWPL-35009
     
     Problem:
-    no AD audio output when open AD function.
+    NonTunnelMode PVR playback is abnormal.
     
     Solution:
-    init AD params and Mixlevel.
+    Add to control the speed of writing TS data.
+    Modify mediasync so that audio pts can anchor the time.
     
     Verify:
-    AH212
+    SC2_AH212
     
-    Change-Id: I9dc085a356a3e20c877f9cadf62d05e73254a031
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: Ia14b555d3772e8793b84e1585cd3a8682fa097c3
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-18-15-18
+Release time: 2020-11-18-21-27
 
 ========================================
 
-Builder: shilong.yang
+Builder: yunmin.chen
 
 ========================================
 Release file:
