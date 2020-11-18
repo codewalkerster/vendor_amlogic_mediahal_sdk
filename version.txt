@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c436b9af0bfac096b2166496da4727e7d5bc0948
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Thu Nov 5 13:48:59 2020 +0800
+commit 56cb0f2cdbd0c9feae3f2a459b6a2d075fe4e3f8
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Tue Nov 17 21:43:48 2020 +0800
 
-    tsplayer: TsPlayer support FCC on SC2 [1/1]
+    Tsplayer: no AD audio output. [1/1]
     
-    PD#SWPL-36599
+    PD#SWPL-37053
     
     Problem:
-     the code has not buffer manage load to some problem
+    no AD audio output when open AD function.
     
     Solution:
-     add buffer manage
+    init AD params and Mixlevel.
     
     Verify:
-     SC2
+    AH212
     
-    Change-Id: Ibdc63d2cdd697b51ecfa611cf2f6f9634e6e4b40
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: I9dc085a356a3e20c877f9cadf62d05e73254a031
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-17-21-00
+Release time: 2020-11-18-15-18
 
 ========================================
 
-Builder: wanghao.li
+Builder: shilong.yang
 
 ========================================
 Release file:
