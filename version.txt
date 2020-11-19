@@ -5,35 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c04d71a540e9c5298d8a108a9145de3176b6655d
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Mon Nov 16 17:36:14 2020 +0800
+commit 195debc0090ad204b96d35ce4cf7050afae49ec2
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Nov 19 20:47:42 2020 +0800
 
-    tsplayer: write data to demux when not set avpid. [1/1]
+    tsplayer: Improve the NonTunnelMode volume setting. [1/1]
     
-    PD#SWPL-37036
+    PD#SWPL-36591
     
     Problem:
-    need write data to demux when
-    avpid as 0x1FFF.
+    The NonTunnelMode volume setting is invalid.
     
     Solution:
-    add interface of write data to demux when
-    not set avpid.
+    Set the volume through AudioTrack.
     
     Verify:
-    AH212
+    SC2_AH212
     
-    Change-Id: I29ad810255d58e2e27ab31df2924223a48574776
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: I1a324305dcf2c27d14d7babdc2607a75dc51e52f
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-20-17-48
+Release time: 2020-11-25-16-36
 
 ========================================
 
-Builder: shilong.yang
+Builder: yunmin.chen
 
 ========================================
 Release file:
