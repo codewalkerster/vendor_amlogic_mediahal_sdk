@@ -5,34 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 8286f945ac7d1583d1fc0b34661ea490e7b099e2
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Nov 18 16:10:21 2020 +0800
+commit 957b4de69fe2c4e9bdeafa809945d46b9d67bf95
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Wed Nov 18 15:51:47 2020 +0800
 
-    tsplayer: NonTunnelMode PVR playback related modification. [1/1]
+    TsPlayer: pure audio or MHEG need another chance to do vdec initialize [1/1]
     
-    PD#SWPL-35009
+    PD#SWPL-33432
     
     Problem:
-    NonTunnelMode PVR playback is abnormal.
+    start audio then start video to display frame in the samll window crash
     
     Solution:
-    Add to control the speed of writing TS data.
-    Modify mediasync so that audio pts can anchor the time.
+    pure audio or MHEG need another chance to do vdec initialize
     
     Verify:
-    SC2_AH212
+    AH212
     
-    Change-Id: Ia14b555d3772e8793b84e1585cd3a8682fa097c3
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Id318205e0be3c06806e66b4b786d520772547303
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-18-21-27
+Release time: 2020-11-19-15-54
 
 ========================================
 
-Builder: yunmin.chen
+Builder: joy.rao
 
 ========================================
 Release file:
