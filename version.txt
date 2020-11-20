@@ -5,33 +5,35 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 957b4de69fe2c4e9bdeafa809945d46b9d67bf95
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Wed Nov 18 15:51:47 2020 +0800
+commit c04d71a540e9c5298d8a108a9145de3176b6655d
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Mon Nov 16 17:36:14 2020 +0800
 
-    TsPlayer: pure audio or MHEG need another chance to do vdec initialize [1/1]
+    tsplayer: write data to demux when not set avpid. [1/1]
     
-    PD#SWPL-33432
+    PD#SWPL-37036
     
     Problem:
-    start audio then start video to display frame in the samll window crash
+    need write data to demux when
+    avpid as 0x1FFF.
     
     Solution:
-    pure audio or MHEG need another chance to do vdec initialize
+    add interface of write data to demux when
+    not set avpid.
     
     Verify:
     AH212
     
-    Change-Id: Id318205e0be3c06806e66b4b786d520772547303
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+    Change-Id: I29ad810255d58e2e27ab31df2924223a48574776
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-19-15-54
+Release time: 2020-11-20-17-48
 
 ========================================
 
-Builder: joy.rao
+Builder: shilong.yang
 
 ========================================
 Release file:
