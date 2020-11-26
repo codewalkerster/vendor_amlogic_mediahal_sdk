@@ -5,29 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 797b265478ed7de8d929c914568d73173c07e00b
+commit 63bc38d5175306bddf9b271de1f603e2402e297a
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Dec 4 17:06:53 2020 +0800
+Date:   Thu Nov 26 22:55:27 2020 +0800
 
-    tsplayer: tsplayer default don't open userdata device [1/1]
+    tsplayer: PIP playback freezes.  [1/1]
     
-    PD#SWPL-38421
+    PD#SWPL-36639
     
     Problem:
-    tsplayer default don't open userdata device
+    Failed to set MEDIA_SYNC_PCRMASTER.
     
     Solution:
-    The default value of persist.vendor.tif.subtitleflg is set to 2.
+    Before starting playback, record the set mediesync mode.
     
     Verify:
-    U215
+    SC2_AH212
     
-    Change-Id: I3b11c0be0671bda58d3f262674083e2cd8b41688
+    Change-Id: Iac5fa454c7d2fa8a254f8c38cb6ce84fc85a790f
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-04-19-49
+Release time: 2020-12-08-15-21
 
 ========================================
 
