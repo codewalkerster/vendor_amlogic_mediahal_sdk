@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 195debc0090ad204b96d35ce4cf7050afae49ec2
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Nov 19 20:47:42 2020 +0800
+commit 8a17a5bbb02aae9d165b7fd612ae743ce44d33d9
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Fri Nov 27 17:48:12 2020 +0800
 
-    tsplayer: Improve the NonTunnelMode volume setting. [1/1]
+    tsplayer: progress bar error when FB. [1/1]
     
-    PD#SWPL-36591
+    PD#SWPL-37483
     
     Problem:
-    The NonTunnelMode volume setting is invalid.
+    progress bar error happened when FF/FB.
     
     Solution:
-    Set the volume through AudioTrack.
+    recalculate the delaytime when FB.
     
     Verify:
-    SC2_AH212
+    AH212
     
-    Change-Id: I1a324305dcf2c27d14d7babdc2607a75dc51e52f
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I947f24b40048e339369838664e98ef361456a2ca
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2020-11-25-16-36
+Release time: 2020-11-28-14-00
 
 ========================================
 
-Builder: yunmin.chen
+Builder: shilong.yang
 
 ========================================
 Release file:
@@ -39,12 +39,15 @@ Release file:
 Header file:
 AmTsPlayer.h
 AmVideoDecBase.h
+MediaSyncInterface.h
 resourcemanage.h
+VideoTunnelRendererBase.h
 
 Library file:
 libmediahal_mediasync.so
 libmediahal_resman.so
 libmediahal_tsplayer.so
+libmediahal_tunnelrenderer.so
 libmediahal_videodec.so
 
 Example file:
