@@ -5,33 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 2001902ac8e57980b5b9b4a00f082faeb4889193
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Wed Dec 2 22:04:22 2020 +0800
+commit 685188e73cb23850504850494a66ad4dc446324a
+Author: zihaoling <zihao.ling@amlogic.com>
+Date:   Thu Nov 26 20:18:00 2020 +0800
 
-    tsplayer: Tsplayer support FCC on SC2 [1/1]
+    mediahal: out of memory in machine test [1/1]
     
-    PD#SWPL-31479
+    PD#SWPL-38034
     
     Problem:
-    tsplayer support FCC
+    mTimeInfo saves time information according to vpts. there is no
+    place to release it, resulting in memory usage.
     
     Solution:
-    tsplayer support FCC
+    mTimeInfo is not used, delete it
     
     Verify:
-    SC2
+    S905X2
     
-    Change-Id: I4b17da3552f3c0db7f5b5e0d1062f09bacc08dd4
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: Iff763faa90e678bd93edb340467bb88336e8e168
+    Signed-off-by: zihaoling <zihao.ling@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-03-11-15
+Release time: 2020-12-03-21-15
 
 ========================================
 
-Builder: wanghao.li
+Builder: zihao.ling
 
 ========================================
 Release file:
