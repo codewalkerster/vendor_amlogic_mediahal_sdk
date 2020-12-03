@@ -5,29 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 3d84c9bbd970cd516e4bcadc479a01b46db8d39d
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Dec 1 22:45:18 2020 +0800
+commit 2001902ac8e57980b5b9b4a00f082faeb4889193
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Wed Dec 2 22:04:22 2020 +0800
 
-    tsplayer: FCC related modifications.  [1/1]
+    tsplayer: Tsplayer support FCC on SC2 [1/1]
     
     PD#SWPL-31479
     
     Problem:
-    Switch the channel, the image may get stuck.
+    tsplayer support FCC
     
     Solution:
-    Quickly write buffered data to the video decoder.
+    tsplayer support FCC
     
     Verify:
     SC2
     
-    Change-Id: I99c77a4d8f9bcec3797dd66a42e409b9c8c1be38
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I4b17da3552f3c0db7f5b5e0d1062f09bacc08dd4
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-02-13-52
+Release time: 2020-12-03-11-15
 
 ========================================
 
