@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 548e9b2d99d8ec43d004a43b898fa7871efa9340
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Fri Dec 4 19:01:43 2020 +0800
+commit 797b265478ed7de8d929c914568d73173c07e00b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Dec 4 17:06:53 2020 +0800
 
-    tsplayer: Tsplayer to support FCC [1/1]
+    tsplayer: tsplayer default don't open userdata device [1/1]
     
-    PD#SWPL-31479
+    PD#SWPL-38421
     
     Problem:
-    tsplayer support FCC
+    tsplayer default don't open userdata device
     
     Solution:
-    tsplayer support FCC
+    The default value of persist.vendor.tif.subtitleflg is set to 2.
     
     Verify:
-    SC2
+    U215
     
-    Change-Id: Ibd2cc18369dc6bb5c51a6dbe79c9a11f2af0cc35
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: I3b11c0be0671bda58d3f262674083e2cd8b41688
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-04-19-10
+Release time: 2020-12-04-19-49
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
