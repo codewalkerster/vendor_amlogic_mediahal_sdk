@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 6d4c81b6d16fd70215a06892232038228507face
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Tue Dec 15 15:48:32 2020 +0800
+commit 4030ca7a27302a472a75f671ffbf0ef96bb64006
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Dec 9 20:15:58 2020 +0800
 
-    tsplayer: Tsplayer to make displayer normal [1/1]
+    tsplayer: PVR playback is abnormal.  [1/1]
     
-    PD#SWPL-38343
+    PD#SWPL-38536
     
     Problem:
-    Play Demod stream, the video display abnormal
+    Surface is not disconnected after NonTunnelmode stop.
     
     Solution:
-    make sure the display normal
+    After NonTunnelmode stop, Surface releases the buffer and disconnects.
     
     Verify:
-    SC2
+    SC2_AH212
     
-    Change-Id: I6756aa0fdbcc4942e94c84e7be52e9e605bc8002
-    Signed-off-by: wanghao.li<wanghao.li@amlogic>
+    Change-Id: I23d9d879622b8e2c11068ee1e43efcd2613380b7
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-15-15-53
+Release time: 2020-12-16-19-28
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
