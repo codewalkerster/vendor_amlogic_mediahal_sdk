@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 63bc38d5175306bddf9b271de1f603e2402e297a
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Nov 26 22:55:27 2020 +0800
+commit 1125331777665909db688ca11e3d27aea446052e
+Author: Lifeng Cao <lifeng.cao@amlogic.com>
+Date:   Fri Dec 11 21:48:55 2020 +0800
 
-    tsplayer: PIP playback freezes.  [1/1]
+    tsplayer: tsplayer clear last frame for non tunnel mode [1/1]
     
-    PD#SWPL-36639
+    PD#SWPL-36615
     
     Problem:
-    Failed to set MEDIA_SYNC_PCRMASTER.
+    tsplayer keep last frame in non tunnel mode
     
     Solution:
-    Before starting playback, record the set mediesync mode.
+    Queue black rgb frame to surface when switch channel
     
     Verify:
-    SC2_AH212
+    AH212
     
-    Change-Id: Iac5fa454c7d2fa8a254f8c38cb6ce84fc85a790f
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I1c10da6e4e7d54cfaef97eb0a431a60dcfd10d86
+    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-08-15-21
+Release time: 2020-12-11-21-52
 
 ========================================
 
-Builder: yunmin.chen
+Builder: alex.cao
 
 ========================================
 Release file:

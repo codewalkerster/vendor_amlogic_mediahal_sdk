@@ -62,6 +62,7 @@ extern mediasync_result MediaSync_getMediaTime(void* handle, int64_t realUs,
                                                                 bool allowPastMaxTime);
 extern mediasync_result MediaSync_getRealTimeFor(void* handle, int64_t targetMediaUs, int64_t *outRealUs);
 extern mediasync_result MediaSync_getRealTimeForNextVsync(void* handle, int64_t *outRealUs);
+extern mediasync_result MediaSync_getTrackMediaTime(void* handle, int64_t *outMediaUs);
 extern mediasync_result MediaSync_reset(void* handle);
 extern void MediaSync_destroy(void* handle);
 
