@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 1125331777665909db688ca11e3d27aea446052e
-Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Fri Dec 11 21:48:55 2020 +0800
+commit 6d4c81b6d16fd70215a06892232038228507face
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Tue Dec 15 15:48:32 2020 +0800
 
-    tsplayer: tsplayer clear last frame for non tunnel mode [1/1]
+    tsplayer: Tsplayer to make displayer normal [1/1]
     
-    PD#SWPL-36615
+    PD#SWPL-38343
     
     Problem:
-    tsplayer keep last frame in non tunnel mode
+    Play Demod stream, the video display abnormal
     
     Solution:
-    Queue black rgb frame to surface when switch channel
+    make sure the display normal
     
     Verify:
-    AH212
+    SC2
     
-    Change-Id: I1c10da6e4e7d54cfaef97eb0a431a60dcfd10d86
-    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
+    Change-Id: I6756aa0fdbcc4942e94c84e7be52e9e605bc8002
+    Signed-off-by: wanghao.li<wanghao.li@amlogic>
 
 ========================================
 
-Release time: 2020-12-11-21-52
+Release time: 2020-12-15-15-53
 
 ========================================
 
-Builder: alex.cao
+Builder: wanghao.li
 
 ========================================
 Release file:
