@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 4030ca7a27302a472a75f671ffbf0ef96bb64006
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Dec 9 20:15:58 2020 +0800
+commit 176d64667a44769da026fcdbca29cb2566d84323
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Tue Dec 15 18:57:19 2020 +0800
 
-    tsplayer: PVR playback is abnormal.  [1/1]
+    tsplayer: fix the crash issue when exit timeshift multiple times. [1/1]
     
-    PD#SWPL-38536
+    PD#SWPL-38593
     
     Problem:
-    Surface is not disconnected after NonTunnelmode stop.
+    Crash when exit timeshift multiple times.
     
     Solution:
-    After NonTunnelmode stop, Surface releases the buffer and disconnects.
+    Fix the crash issue when exit timeshift multiple times.
     
     Verify:
-    SC2_AH212
+    S905X4-AH212
     
-    Change-Id: I23d9d879622b8e2c11068ee1e43efcd2613380b7
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Ib965d76a6d5ad9847d532f6169b3db81111f3599
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-16-19-28
+Release time: 2020-12-17-20-43
 
 ========================================
 
-Builder: yunmin.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:
