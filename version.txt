@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 176d64667a44769da026fcdbca29cb2566d84323
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Tue Dec 15 18:57:19 2020 +0800
+commit 95fcf9c43ed64530c01de33de62706ce2824dd61
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Dec 16 19:54:46 2020 +0800
 
-    tsplayer: fix the crash issue when exit timeshift multiple times. [1/1]
+    tsplayer: The pvr 2x speed playback is abnormal. [1/1]
     
-    PD#SWPL-38593
+    PD#SWPL-38266
     
     Problem:
-    Crash when exit timeshift multiple times.
+    Need to set the 2x speed parameter to TsPlayerRender.
     
     Solution:
-    Fix the crash issue when exit timeshift multiple times.
+    Add the function of double speed playback in TsPlayerRender.
     
     Verify:
-    S905X4-AH212
+    SC2_AH212
     
-    Change-Id: Ib965d76a6d5ad9847d532f6169b3db81111f3599
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: Ib346f228d2c3fd3d15894ec6a1ee942dbc005711
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-17-20-43
+Release time: 2020-12-17-21-30
 
 ========================================
 
-Builder: zhipeng.he
+Builder: yunmin.chen
 
 ========================================
 Release file:
