@@ -5,29 +5,32 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 95fcf9c43ed64530c01de33de62706ce2824dd61
+commit 751be54131aa293490d92c6656343e958688af78
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Dec 16 19:54:46 2020 +0800
+Date:   Fri Dec 18 13:41:50 2020 +0800
 
-    tsplayer: The pvr 2x speed playback is abnormal. [1/1]
+    tsplayer: Timeshif playback audio and video are out of sync [1/1]
     
-    PD#SWPL-38266
+    PD#SWPL-37880
     
     Problem:
-    Need to set the 2x speed parameter to TsPlayerRender.
+    Enter timeshif mode,
+    audio probabilistically does not anchor the timestamp.
     
     Solution:
-    Add the function of double speed playback in TsPlayerRender.
+    After entering the timeshif mode,
+    correctly calculate the PCM data written to the audio track
+    so that the audio can anchor the timestamp normally.
     
     Verify:
     SC2_AH212
     
-    Change-Id: Ib346f228d2c3fd3d15894ec6a1ee942dbc005711
+    Change-Id: I0fa302ba720f65b180264947d34d55a05cd9f788
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-17-21-30
+Release time: 2020-12-22-15-06
 
 ========================================
 
