@@ -5,32 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 751be54131aa293490d92c6656343e958688af78
+commit d1f1fa21fc6f1d2314b4b370b42187ba0ad1d114
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Dec 18 13:41:50 2020 +0800
+Date:   Tue Dec 29 17:34:34 2020 +0800
 
-    tsplayer: Timeshif playback audio and video are out of sync [1/1]
+    tsplayer: NonTunnel,There is no sound occasionally. [1/1]
     
-    PD#SWPL-37880
+    PD#SWPL-39509
     
     Problem:
-    Enter timeshif mode,
-    audio probabilistically does not anchor the timestamp.
+    No sound is output occasionally.
     
     Solution:
-    After entering the timeshif mode,
-    correctly calculate the PCM data written to the audio track
-    so that the audio can anchor the timestamp normally.
+    Get complete ES data from hard demux.
     
     Verify:
     SC2_AH212
     
-    Change-Id: I0fa302ba720f65b180264947d34d55a05cd9f788
+    Change-Id: If78e885b5e4793b0479306a751a7f7af7a5c13a1
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-22-15-06
+Release time: 2020-12-30-11-17
 
 ========================================
 

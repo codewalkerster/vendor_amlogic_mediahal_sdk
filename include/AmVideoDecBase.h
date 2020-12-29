@@ -70,8 +70,14 @@ public:
     virtual int32_t setQueueCount(uint32_t queueCount);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, int ashmemFd, off_t offset,
             uint32_t bytesUsed, uint64_t timestamp);
+    virtual int32_t queueInputBuffer(int32_t bitstreamId, int ashmemFd, off_t offset,
+            uint32_t bytesUsed, uint64_t timestamp,
+            uint8_t* hdrbuf, uint32_t hdrlen);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, uint8_t* pbuf,
             off_t offset, uint32_t bytesUsed, uint64_t timestamp);
+    virtual int32_t queueInputBuffer(int32_t bitstreamId, uint8_t* pbuf,
+            off_t offset, uint32_t bytesUsed, uint64_t timestamp,
+            uint8_t* hdrbuf, uint32_t hdrlen);
     virtual int32_t setupOutputBufferNum(uint32_t numOutputBuffers);
     virtual int32_t createOutputBuffer(uint32_t pictureBufferId,
                     int32_t dmabufFd, bool nv21 = 1, int32_t metaFd = -1);
