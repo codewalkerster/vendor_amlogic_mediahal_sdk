@@ -5,33 +5,35 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit d1f1fa21fc6f1d2314b4b370b42187ba0ad1d114
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Dec 29 17:34:34 2020 +0800
+commit bc110d05290943d8bea0260d023fb45331b411d7
+Author: Lifeng Cao <lifeng.cao@amlogic.com>
+Date:   Fri Dec 25 23:34:34 2020 +0800
 
-    tsplayer: NonTunnel,There is no sound occasionally. [1/1]
+    tsplayer: Update audio anthor time with nowUs [1/1]
     
-    PD#SWPL-39509
+    PD#SWPL-39181
     
     Problem:
-    No sound is output occasionally.
+    Update audio anthor time, the render system could not
+    use mediasync module system. Need get nowUs when get
+    Audio position.
     
     Solution:
-    Get complete ES data from hard demux.
+    Update audio anthor time with nowUs
     
     Verify:
-    SC2_AH212
+    AH212
     
-    Change-Id: If78e885b5e4793b0479306a751a7f7af7a5c13a1
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Ie0c0d8151192a4aae085dca30b74fc886f7e4ea2
+    Signed-off-by: Lifeng Cao <lifeng.cao@amlogic.com>
 
 ========================================
 
-Release time: 2020-12-30-11-17
+Release time: 2020-12-30-14-49
 
 ========================================
 
-Builder: yunmin.chen
+Builder: alex.cao
 
 ========================================
 Release file:
