@@ -5,29 +5,30 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit fde9b2e43e2a4da0a630ba18c9fd035fd855111e
+commit 440bf3934283c4b8343ddba4215f4854b8f1a88c
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jan 7 11:02:26 2021 +0800
+Date:   Thu Jan 7 16:08:17 2021 +0800
 
-    tsplayer: Video shake during pressure test. [1/1]
+    tsplayer: no freeze frame when fast forward [1/1]
     
-    PD#SWPL-39675
+    PD#SWPL-39782
     
     Problem:
-    PtsServ look up pts abnormal.
+    The NonTunnelMode trickmode setting is invalid.
     
     Solution:
-    The look up offset type is set to uint32_t.
+    After setting AV_VIDEO_TRICK_MODE_PAUSE_NEXT,
+    TsPlayerRender only displays the first frame.
     
     Verify:
     SC2_AH212
     
-    Change-Id: Ie91f1b42fcedfd145f9aa3830945e3bfa3c0c1cf
+    Change-Id: I9d1d752f0078e99c7c323ce2dc08abfc47c79ddc
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-08-17-42
+Release time: 2021-01-09-16-14
 
 ========================================
 
