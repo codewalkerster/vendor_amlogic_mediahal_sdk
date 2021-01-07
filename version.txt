@@ -5,16 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 7cca64c6ed2b5da01ae595d0e1e44f765ab56f42
-Merge: 572e3b8 af2c782
-Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Tue Jan 5 03:12:53 2021 -0800
+commit fde9b2e43e2a4da0a630ba18c9fd035fd855111e
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 7 11:02:26 2021 +0800
 
-    Merge "tsplayer: PVR, audio and video are out of sync. [1/1]"
+    tsplayer: Video shake during pressure test. [1/1]
+    
+    PD#SWPL-39675
+    
+    Problem:
+    PtsServ look up pts abnormal.
+    
+    Solution:
+    The look up offset type is set to uint32_t.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: Ie91f1b42fcedfd145f9aa3830945e3bfa3c0c1cf
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-05-19-23
+Release time: 2021-01-08-17-42
 
 ========================================
 
