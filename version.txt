@@ -5,30 +5,30 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 440bf3934283c4b8343ddba4215f4854b8f1a88c
+commit 074509256bd48ca35b5239d35bab8e6c83bf37bb
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jan 7 16:08:17 2021 +0800
+Date:   Wed Dec 30 16:56:24 2020 +0800
 
-    tsplayer: no freeze frame when fast forward [1/1]
+    tsplayer: NonTunnelMode,double free [1/1]
     
-    PD#SWPL-39782
+    PD#SWPL-40146
     
     Problem:
-    The NonTunnelMode trickmode setting is invalid.
+    AudioSoftWrapper double free.
     
     Solution:
-    After setting AV_VIDEO_TRICK_MODE_PAUSE_NEXT,
-    TsPlayerRender only displays the first frame.
+    When writing audio es data,
+    AudioSoftWrapper cannot be released.
     
     Verify:
     SC2_AH212
     
-    Change-Id: I9d1d752f0078e99c7c323ce2dc08abfc47c79ddc
+    Change-Id: I37a027a135ef8beb5cda39ecc41b846c6c7bfce9
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-09-16-14
+Release time: 2021-01-12-16-13
 
 ========================================
 
