@@ -5,34 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 074509256bd48ca35b5239d35bab8e6c83bf37bb
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Dec 30 16:56:24 2020 +0800
+commit c81fc4a4cb3a7bf0cfdee57f1a49491d9db38fe0
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Fri Jan 8 16:31:36 2021 +0800
 
-    tsplayer: NonTunnelMode,double free [1/1]
+    tsplayer: aac latm no output. [1/1]
     
-    PD#SWPL-40146
+    PD#SWPL-37326
     
     Problem:
-    AudioSoftWrapper double free.
+    aac latm no output.
     
     Solution:
-    When writing audio es data,
-    AudioSoftWrapper cannot be released.
+    use AV_CODEC_ID_AAC_LATM to set codec-id.
     
     Verify:
     SC2_AH212
     
-    Change-Id: I37a027a135ef8beb5cda39ecc41b846c6c7bfce9
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I43ee5c8f7b1777a8bd7b3892fdf9798d54d17a83
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-12-16-13
+Release time: 2021-01-13-15-58
 
 ========================================
 
-Builder: yunmin.chen
+Builder: shilong.yang
 
 ========================================
 Release file:
