@@ -5,35 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 5c85b457b52157d7e812fc8f94f0e7839d6f1e72
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Wed Jan 13 19:34:47 2021 +0800
+commit a37a8f21aca3a976777b3a08f44fdd791dc99893
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jan 13 14:38:11 2021 +0800
 
-    tsplayer: video no smoothly when play some channel. [1/1]
+    tsplayer: NonTunnelMode heap buffer overflow [1/1]
     
-    PD#SWPL-39552
+    PD#SWPL-41039
     
     Problem:
-    when play channel with dobly audio,sometimes
-    video no smoothly.
+    In non-sec Elementary Stream mode,
+    the buffer for reading es data is out of range.
     
     Solution:
-    recalculate audio audioouttimestamp and delayTimeUs
-    and add checkframe prop.
+    Set the buffer size correctly.
     
     Verify:
-    test on ohm
+    SC2_AH212
     
-    Change-Id: I90a986b4a77ce382ce642b9991968387db2de6c0
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: Ide7a601fc8cafca71e2e48050fd873a5753fb0ec
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-15-21-16
+Release time: 2021-01-18-11-28
 
 ========================================
 
-Builder: shilong.yang
+Builder: yunmin.chen
 
 ========================================
 Release file:
