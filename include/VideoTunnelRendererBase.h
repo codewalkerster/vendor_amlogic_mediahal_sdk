@@ -32,7 +32,7 @@ public:
     virtual bool sendVideoFrame(int metafd, int64_t timestampNs);
     virtual int regCallBack(int cb_id, callbackFunc funs, void* obj);
     virtual bool flush();
-
+    virtual bool setFrameRate(int32_t framerate);
 };
 
 extern "C" VideoTunnelRendererBase* VideoTunnelRenderer_create();

@@ -1,0 +1,124 @@
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_videodec",
+	vendor_available: true,
+    strip: {
+    none: true,
+    },
+
+    srcs: ["lib/vendor/libmediahal_videodec.so"],
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_videodec.system",
+    strip: {
+    none: true,
+    },    
+
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediahal_videodec.system.so"],
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_tsplayer",
+    vendor_available: true,
+    strip: {
+    none: true,
+    },
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediahal_tsplayer.so"],
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_tsplayer.system",
+    strip: {
+    none: true,
+    },
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediahal_tsplayer.system.so"],
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_mediasync",
+    vendor_available: true,
+    strip: {
+        none: true,
+    }, 
+    srcs: ["lib/vendor/libmediahal_mediasync.so"],
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_mediasync.system",
+    compile_multilib: "32",
+        strip: {
+    none: true,
+    },
+   srcs: ["lib/system/libmediahal_mediasync.system.so"],
+   check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_tunnelrenderer",
+    strip: {
+    none: true,
+    },
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediahal_tunnelrenderer.so"],
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_resman",
+	vendor_available: true,
+    compile_multilib: "32",
+
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediahal_resman.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_resman.system",
+    compile_multilib: "32",
+
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediahal_resman.system.so"],
+        },
+    },
+    export_include_dirs: ["include"],
+    check_elf_files: false,
+}
+
+cc_prebuilt_binary {
+    name: "vesplayer",
+
+    arch: {
+        arm: {
+            srcs: ["bin/vesplayer"],
+        },
+    },
+    check_elf_files: false,
+}
+

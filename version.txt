@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 81bf555049e4fde99dfc9bbda9f46c8cf2478474
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Tue Feb 2 22:05:48 2021 +0800
+commit be3b88e6f0150c654f98e05643ea4c0e5df33bb5
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Sat Feb 6 18:51:17 2021 +0800
 
-    tsplayer: switch channel,viseo shake [1/1]
+    tsplayer: mediasync getTrackMediaTime support. [1/1]
     
-    PD#SWPL-41701
+    PD#SWPL-40339
     
     Problem:
-    VDA has not flush when set work mode to 1
+    mediasync getTrackMediaTime not support.
     
     Solution:
-    flush VDA when set work mode to 1
+    mediasync getTrackMediaTime support.
     
     Verify:
-    SC2
+    S905X4-AH212
     
-    Change-Id: I6cb2c7bde51ab9e167aec1eecc7881f3cb5baaf6
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: Id059e0442c802f246a880e9a682ab4a62fd819c1
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
 ========================================
 
-Release time: 2021-02-05-14-40
+Release time: 2021-02-09-22-31
 
 ========================================
 
-Builder: wanghao.li
+Builder: zhipeng.he
 
 ========================================
 Release file:

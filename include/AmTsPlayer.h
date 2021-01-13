@@ -354,6 +354,16 @@ am_tsplayer_result  AmTsPlayer_getVersion(uint32_t *versionM,
  *\return:       The AmTsPlayer result.
  */
 am_tsplayer_result  AmTsPlayer_getInstansNo(am_tsplayer_handle Hadl, uint32_t *Numb);
+
+/**
+ *\brief:        Get the sync instance number of specified AmTsPlayer .
+ *\inparam:      AmTsPlayer handle.
+ *\outparam:     AmTsPlayer instance number.
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_getSyncInstansNo(am_tsplayer_handle Hadl,
+                                                                      int32_t *Numb);
+
 /**
  *\brief:        Register event callback to specified AmTsPlayer
  *\inparam:      AmTsPlayer handle.
