@@ -5,33 +5,35 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 9bf6d759139b36272cfce8d62a4defb2c9086944
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Mon Jan 18 14:08:25 2021 +0800
+commit f0939873142b04a2e7614dd09ca4324c3441d889
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 14 15:38:29 2021 +0800
 
-    tsplayer: VDA crash lead to change channel slow [1/1]
+    tsplayer: NonTunnelMode,PVR or timeshift, do FF/FB,picture freeze [1/1]
     
-    PD#SWPL-40292
+    PD#SWPL-39773
     
     Problem:
-    double release lead to crash
+    1.When DequeueBuffer from the surface, the fence timed out.
+    2.TsPlayerRender::onDrainAudioQueue() crash.
     
     Solution:
-    make show release once VDA info
+    1.If rendertime is less than nowtime, set rendertime to nowtime.
+    2.Get data from mAudioQueue plus lock.
     
     Verify:
-    SC2
+    SC2_AH212
     
-    Change-Id: I85f60066291c2d291121d95eba71c9f594265030
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: I1edd80820c24fa5d07d7e6bbbddfbe947938dae4
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-19-16-34
+Release time: 2021-01-19-17-02
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
