@@ -5,29 +5,31 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit c81fc4a4cb3a7bf0cfdee57f1a49491d9db38fe0
+commit 5c85b457b52157d7e812fc8f94f0e7839d6f1e72
 Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Fri Jan 8 16:31:36 2021 +0800
+Date:   Wed Jan 13 19:34:47 2021 +0800
 
-    tsplayer: aac latm no output. [1/1]
+    tsplayer: video no smoothly when play some channel. [1/1]
     
-    PD#SWPL-37326
+    PD#SWPL-39552
     
     Problem:
-    aac latm no output.
+    when play channel with dobly audio,sometimes
+    video no smoothly.
     
     Solution:
-    use AV_CODEC_ID_AAC_LATM to set codec-id.
+    recalculate audio audioouttimestamp and delayTimeUs
+    and add checkframe prop.
     
     Verify:
-    SC2_AH212
+    test on ohm
     
-    Change-Id: I43ee5c8f7b1777a8bd7b3892fdf9798d54d17a83
+    Change-Id: I90a986b4a77ce382ce642b9991968387db2de6c0
     Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-13-15-58
+Release time: 2021-01-15-21-16
 
 ========================================
 
