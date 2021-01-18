@@ -5,34 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit a37a8f21aca3a976777b3a08f44fdd791dc99893
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jan 13 14:38:11 2021 +0800
+commit 9bf6d759139b36272cfce8d62a4defb2c9086944
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Mon Jan 18 14:08:25 2021 +0800
 
-    tsplayer: NonTunnelMode heap buffer overflow [1/1]
+    tsplayer: VDA crash lead to change channel slow [1/1]
     
-    PD#SWPL-41039
+    PD#SWPL-40292
     
     Problem:
-    In non-sec Elementary Stream mode,
-    the buffer for reading es data is out of range.
+    double release lead to crash
     
     Solution:
-    Set the buffer size correctly.
+    make show release once VDA info
     
     Verify:
-    SC2_AH212
+    SC2
     
-    Change-Id: Ide7a601fc8cafca71e2e48050fd873a5753fb0ec
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I85f60066291c2d291121d95eba71c9f594265030
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-18-11-28
+Release time: 2021-01-19-16-34
 
 ========================================
 
-Builder: yunmin.chen
+Builder: wanghao.li
 
 ========================================
 Release file:
