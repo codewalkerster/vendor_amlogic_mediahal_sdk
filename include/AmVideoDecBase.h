@@ -43,6 +43,13 @@ typedef struct {
     uint32_t    nDecType;
 } init_param_t;
 
+enum PictureFlag {
+  PICTURE_FLAG_NONE = 0,
+  PICTURE_FLAG_KEYFRAME = 0x0001,
+  PICTURE_FLAG_PFRAME = 0x0002,
+  PICTURE_FLAG_BFRAME = 0x0004,
+};
+
 class AmVideoDecCallback {
 public:
     virtual ~AmVideoDecCallback() {};
@@ -50,6 +57,11 @@ public:
                 int32_t width, uint32_t height);
     virtual void onOutputBufferDone(int32_t pictureBufferId, int64_t bitstreamId,
                 uint32_t width, uint32_t height);
+    virtual void onOutputBufferDone(int32_t pictureBufferId, int64_t bitstreamId,
+                uint32_t width, uint32_t height, int32_t flags) {
+        (void)flags;
+        onOutputBufferDone(pictureBufferId, bitstreamId, width, height);
+    }
     virtual void onInputBufferDone(int32_t bitstream_buffer_id);
     virtual void onUpdateDecInfo(const uint8_t* info, uint32_t isize);
     virtual void onFlushDone();

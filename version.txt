@@ -5,35 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit f0939873142b04a2e7614dd09ca4324c3441d889
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jan 14 15:38:29 2021 +0800
+commit 651f8a5251a742b465edde2b3efc5cad36b71d9c
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Mon Jan 11 20:23:43 2021 +0800
 
-    tsplayer: NonTunnelMode,PVR or timeshift, do FF/FB,picture freeze [1/1]
+    amvideodec: add flag key frames [2/4]
     
-    PD#SWPL-39773
+    PD#SWPL-39084
     
     Problem:
-    1.When DequeueBuffer from the surface, the fence timed out.
-    2.TsPlayerRender::onDrainAudioQueue() crash.
+    V4l2 need support unstable pts
     
     Solution:
-    1.If rendertime is less than nowtime, set rendertime to nowtime.
-    2.Get data from mAudioQueue plus lock.
+    Add flags for key frame from v4l2 to omx2.
     
     Verify:
-    SC2_AH212
+    S905X2
     
-    Change-Id: I1edd80820c24fa5d07d7e6bbbddfbe947938dae4
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I37e93a550b7e89922ee75d350b247d8c5742789d
+    Signed-off-by: Jian Wang <jian.wang@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-19-17-02
+Release time: 2021-01-21-21-16
 
 ========================================
 
-Builder: yunmin.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:
