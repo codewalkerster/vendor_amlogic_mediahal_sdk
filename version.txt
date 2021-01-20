@@ -5,34 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 9e9cc1c1bff9f6124d56e65a5413f0b1876f7737
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Jan 5 21:43:56 2021 +0800
+commit 66199c5224bb87682a91f47b94235caad7f84bd7
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jan 20 22:05:22 2021 +0800
 
-    TsPlayer: system crash when set default vcodec or acodec type . [1/1]
+    tsplayer: PIP,full screen flashing [1/1]
     
-    PD#OTT-15969
+    PD#SWPL-41052
     
     Problem:
-    mime is NULL leading to crash
+    The displayed buffer sequence number has changed.
     
     Solution:
-    add check mime null protection
-    add check acodec type protection
+    Record the Sequence number when SetSurface.
     
     Verify:
-    verified on S905X4-AH212
+    SC2_AH212
     
-    Change-Id: I655f9183957537044a629839fa6535aeba3060be
-    Signed-off-by: Chen Chen <chen.chen1@amlogic.com>
+    Change-Id: I7dd94dd162b305ef9c3b3833f4e9fcec9319cd29
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-22-16-34
+Release time: 2021-01-23-14-51
 
 ========================================
 
-Builder: chen.chen1
+Builder: yunmin.chen
 
 ========================================
 Release file:
