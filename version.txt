@@ -5,29 +5,32 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 66199c5224bb87682a91f47b94235caad7f84bd7
+commit d889b0733fdd240fb8154d6d690b3a6225526779
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jan 20 22:05:22 2021 +0800
+Date:   Thu Jan 21 19:40:26 2021 +0800
 
-    tsplayer: PIP,full screen flashing [1/1]
+    tsplayer: NonTunnelMode,switch audio track,video not smooth [1/1]
     
-    PD#SWPL-41052
+    PD#SWPL-39829
     
     Problem:
-    The displayed buffer sequence number has changed.
+    After switching the audio track,
+    the audio timestamp is larger than the video timestamp.
+    Because of the synchronization logic, the video is fast forwarded.
     
     Solution:
-    Record the Sequence number when SetSurface.
+    After switching the audio track,
+    the audio timestamp needs to wait for the video timestamp.
     
     Verify:
     SC2_AH212
     
-    Change-Id: I7dd94dd162b305ef9c3b3833f4e9fcec9319cd29
+    Change-Id: I3e539eaf8d3f503d3abde500f66b7eb003a21241
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-23-14-51
+Release time: 2021-01-23-15-57
 
 ========================================
 
