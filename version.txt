@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 651f8a5251a742b465edde2b3efc5cad36b71d9c
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Mon Jan 11 20:23:43 2021 +0800
+commit 2fca7fc1577540575b3e6e2dcdb038027402e1c2
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 21 15:36:45 2021 +0800
 
-    amvideodec: add flag key frames [2/4]
+    tsplayer: NonTunnelMode,timeshift exited abnormally [1/1]
     
-    PD#SWPL-39084
+    PD#SWPL-41640
     
     Problem:
-    V4l2 need support unstable pts
+    TsPlayerRender::onDrainAudioQueue() crash.
     
     Solution:
-    Add flags for key frame from v4l2 to omx2.
+    Each time the loop gets data from the audio queue.
     
     Verify:
-    S905X2
+    SC2_AH212
     
-    Change-Id: I37e93a550b7e89922ee75d350b247d8c5742789d
-    Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+    Change-Id: I4b00b202ef8ad3d0c9eb3f2cf4be87365eaab09a
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-21-21-16
+Release time: 2021-01-22-10-56
 
 ========================================
 
-Builder: zhipeng.he
+Builder: yunmin.chen
 
 ========================================
 Release file:
