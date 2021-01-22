@@ -5,33 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 96cdf14d6bc30730fd381d08f17db0ca9326719d
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Thu Jan 21 14:02:40 2021 +0800
+commit 9e9cc1c1bff9f6124d56e65a5413f0b1876f7737
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Jan 5 21:43:56 2021 +0800
 
-    AmTsplayer: use SystemControlClient::getInstance to get instance [1/1]
+    TsPlayer: system crash when set default vcodec or acodec type . [1/1]
     
-    PD#SWPL-40640
+    PD#OTT-15969
     
     Problem:
-    SystemControlClient leak when switch channel with dtvkit
+    mime is NULL leading to crash
     
     Solution:
-    use SystemControlClient::getInstance instead new SystemControlClient()
+    add check mime null protection
+    add check acodec type protection
     
     Verify:
-    T5D
+    verified on S905X4-AH212
     
-    Change-Id: Iad478a03495bbedeeb9e6865d42430d1634a3316
-    Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
+    Change-Id: I655f9183957537044a629839fa6535aeba3060be
+    Signed-off-by: Chen Chen <chen.chen1@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-22-16-36
+Release time: 2021-01-22-16-34
 
 ========================================
 
-Builder: wenbiao.zhang
+Builder: chen.chen1
 
 ========================================
 Release file:
