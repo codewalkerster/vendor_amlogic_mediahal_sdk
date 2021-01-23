@@ -5,32 +5,32 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit d889b0733fdd240fb8154d6d690b3a6225526779
+commit 4df63c7db9a8c2b8512830cc0d05fb17cd5c4c1b
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jan 21 19:40:26 2021 +0800
+Date:   Sat Jan 23 17:17:32 2021 +0800
 
-    tsplayer: NonTunnelMode,switch audio track,video not smooth [1/1]
+    tsplayer: PVR and timeshif start-up process modification [1/1]
     
-    PD#SWPL-39829
+    PD#SWPL-40610
     
     Problem:
-    After switching the audio track,
-    the audio timestamp is larger than the video timestamp.
-    Because of the synchronization logic, the video is fast forwarded.
+    1.The starting speed of pvr is slow.
+    2.The video freezes when timeshif starts.
     
     Solution:
-    After switching the audio track,
-    the audio timestamp needs to wait for the video timestamp.
+    1.Before the video decodes the first frame, write more ts data.
+      Add thread to write es data in AudioSoftWrapper.
+    2.TsPlayerRender starts the audio and video synchronization in Resume().
     
     Verify:
     SC2_AH212
     
-    Change-Id: I3e539eaf8d3f503d3abde500f66b7eb003a21241
+    Change-Id: Ib6d6acbcbed796548612def14c3565495f6aef38
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-23-15-57
+Release time: 2021-01-27-11-23
 
 ========================================
 
