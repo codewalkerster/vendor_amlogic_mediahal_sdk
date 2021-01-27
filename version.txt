@@ -5,36 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 4df63c7db9a8c2b8512830cc0d05fb17cd5c4c1b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Jan 23 17:17:32 2021 +0800
+commit 467e2601e1a92ebf9322539023e0ed1d2628b43b
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Wed Jan 27 16:31:47 2021 +0800
 
-    tsplayer: PVR and timeshif start-up process modification [1/1]
+    tsplayer: fix the issue zap to audio only channel no audio output. [1/1]
     
-    PD#SWPL-40610
+    PD#SWPL-42167
     
     Problem:
-    1.The starting speed of pvr is slow.
-    2.The video freezes when timeshif starts.
+    zap to audio only channel no audio output.
     
     Solution:
-    1.Before the video decodes the first frame, write more ts data.
-      Add thread to write es data in AudioSoftWrapper.
-    2.TsPlayerRender starts the audio and video synchronization in Resume().
+    fix the issue zap to audio only channel no audio output.
     
     Verify:
-    SC2_AH212
+    S905X4-AH212
     
-    Change-Id: Ib6d6acbcbed796548612def14c3565495f6aef38
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I51ca07c6da70d41d84f7916b04578f3595a20be1
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-27-11-23
+Release time: 2021-01-28-21-10
 
 ========================================
 
-Builder: yunmin.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:
