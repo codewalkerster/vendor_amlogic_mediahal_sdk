@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 467e2601e1a92ebf9322539023e0ed1d2628b43b
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Wed Jan 27 16:31:47 2021 +0800
+commit 91175c7224e2972af6a14fe1a765fed27397159c
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 28 18:22:40 2021 +0800
 
-    tsplayer: fix the issue zap to audio only channel no audio output. [1/1]
+    tsplayer: AmTsPlayer_getVideoStat() Failure [1/1]
     
-    PD#SWPL-42167
+    PD#SWPL-41543
     
     Problem:
-    zap to audio only channel no audio output.
+    The userdata thread is closed and the decoder status cannot be obtained.
     
     Solution:
-    fix the issue zap to audio only channel no audio output.
+    Get the decoder status from the amstream device.
     
     Verify:
-    S905X4-AH212
+    SC2_AH212
     
-    Change-Id: I51ca07c6da70d41d84f7916b04578f3595a20be1
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: I5f67eb8896d22c36af5e517995a50a93b4847da2
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-28-21-10
+Release time: 2021-01-30-12-23
 
 ========================================
 
-Builder: zhipeng.he
+Builder: yunmin.chen
 
 ========================================
 Release file:
