@@ -5,29 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 91175c7224e2972af6a14fe1a765fed27397159c
+commit 56766f86ff359d4b938241166827eb48bb5d73c4
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jan 28 18:22:40 2021 +0800
+Date:   Tue Feb 2 19:12:30 2021 +0800
 
-    tsplayer: AmTsPlayer_getVideoStat() Failure [1/1]
+    tsplayer: NonTunnelMode,switch audio track,video stutter for a while [1/1]
     
-    PD#SWPL-41543
+    PD#SWPL-41788
     
     Problem:
-    The userdata thread is closed and the decoder status cannot be obtained.
+    1.After switching the audio track,
+    the queue still retains the data of the previous audio for a few frames.
+    2.When the audio starts, a few frames are discarded.
     
     Solution:
-    Get the decoder status from the amstream device.
+    1.After stopping the audio,
+    the audio data passed into TsPlayerRender will be discarded.
+    2.It is judged that the mediacodec has a buffer before the data is decoded.
     
     Verify:
     SC2_AH212
     
-    Change-Id: I5f67eb8896d22c36af5e517995a50a93b4847da2
+    Change-Id: I3eac6faaa5dedbcfc4a670a8511d450fb3f4c5b5
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-01-30-12-23
+Release time: 2021-02-03-16-08
 
 ========================================
 
