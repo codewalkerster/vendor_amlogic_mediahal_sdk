@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 4446f3b477e10b358f99753a4e7c495d892d54fc
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Feb 4 15:13:56 2021 +0800
+commit 81bf555049e4fde99dfc9bbda9f46c8cf2478474
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Tue Feb 2 22:05:48 2021 +0800
 
-    tsplayer: NonTunnelMode,Quitting playback takes time. [1/1]
+    tsplayer: switch channel,viseo shake [1/1]
     
-    PD#SWPL-39745
+    PD#SWPL-41701
     
     Problem:
-    Blocking is clearing the last frame.
+    VDA has not flush when set work mode to 1
     
     Solution:
-    Queue only one black rgb frame to surface when switch channel
+    flush VDA when set work mode to 1
     
     Verify:
-    SC2_AH212
+    SC2
     
-    Change-Id: I7f2f6de8c2691df9a883cc3c934be749203e4b6e
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I6cb2c7bde51ab9e167aec1eecc7881f3cb5baaf6
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2021-02-04-15-16
+Release time: 2021-02-05-14-40
 
 ========================================
 
-Builder: yunmin.chen
+Builder: wanghao.li
 
 ========================================
 Release file:
