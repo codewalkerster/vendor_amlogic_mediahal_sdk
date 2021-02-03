@@ -5,33 +5,35 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit aee26c4436c9678d077fa29f3415cf4d0c0068aa
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Wed Feb 3 15:39:54 2021 +0800
+commit 69f96a3baeca8f9f52f8e25f12737b88f8859840
+Author: shilong.yang <shilong.yang@amlogic.com>
+Date:   Wed Dec 23 21:13:01 2020 +0800
 
-    tsplayer: fixed pvr cannot sync after do FF/FB and switch audio track. [1/1]
+    tsplayer: report scramble when channel can not play. [1/1]
     
-    PD#SWPL-42623
+    PD#SWPL-40436
     
     Problem:
-    pvr cannot sync after do FF/FB and switch audio track.
+    libdvr need report the no data event when
+    the frame cannot be decoded.
     
     Solution:
-    fixed pvr cannot sync after do FF/FB and switch audio track.
+    add cmd and reserved on amstream,
+    and report the no data event.
     
     Verify:
-    S905X4-AH212
+    sc2
     
-    Change-Id: Ib4eeeace1a783b1659da2168f2f34d916dc7f70e
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: I1a4ae5587b547e68e95e36b84f08a3431f5b6702
+    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
 
 ========================================
 
-Release time: 2021-02-03-16-25
+Release time: 2021-02-03-21-58
 
 ========================================
 
-Builder: zhipeng.he
+Builder: shilong.yang
 
 ========================================
 Release file:
