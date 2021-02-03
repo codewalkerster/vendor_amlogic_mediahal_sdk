@@ -5,37 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 56766f86ff359d4b938241166827eb48bb5d73c4
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Feb 2 19:12:30 2021 +0800
+commit aee26c4436c9678d077fa29f3415cf4d0c0068aa
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Wed Feb 3 15:39:54 2021 +0800
 
-    tsplayer: NonTunnelMode,switch audio track,video stutter for a while [1/1]
+    tsplayer: fixed pvr cannot sync after do FF/FB and switch audio track. [1/1]
     
-    PD#SWPL-41788
+    PD#SWPL-42623
     
     Problem:
-    1.After switching the audio track,
-    the queue still retains the data of the previous audio for a few frames.
-    2.When the audio starts, a few frames are discarded.
+    pvr cannot sync after do FF/FB and switch audio track.
     
     Solution:
-    1.After stopping the audio,
-    the audio data passed into TsPlayerRender will be discarded.
-    2.It is judged that the mediacodec has a buffer before the data is decoded.
+    fixed pvr cannot sync after do FF/FB and switch audio track.
     
     Verify:
-    SC2_AH212
+    S905X4-AH212
     
-    Change-Id: I3eac6faaa5dedbcfc4a670a8511d450fb3f4c5b5
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Ib4eeeace1a783b1659da2168f2f34d916dc7f70e
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
 ========================================
 
-Release time: 2021-02-03-16-08
+Release time: 2021-02-03-16-25
 
 ========================================
 
-Builder: yunmin.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:
