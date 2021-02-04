@@ -5,35 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 69f96a3baeca8f9f52f8e25f12737b88f8859840
-Author: shilong.yang <shilong.yang@amlogic.com>
-Date:   Wed Dec 23 21:13:01 2020 +0800
+commit 4446f3b477e10b358f99753a4e7c495d892d54fc
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Feb 4 15:13:56 2021 +0800
 
-    tsplayer: report scramble when channel can not play. [1/1]
+    tsplayer: NonTunnelMode,Quitting playback takes time. [1/1]
     
-    PD#SWPL-40436
+    PD#SWPL-39745
     
     Problem:
-    libdvr need report the no data event when
-    the frame cannot be decoded.
+    Blocking is clearing the last frame.
     
     Solution:
-    add cmd and reserved on amstream,
-    and report the no data event.
+    Queue only one black rgb frame to surface when switch channel
     
     Verify:
-    sc2
+    SC2_AH212
     
-    Change-Id: I1a4ae5587b547e68e95e36b84f08a3431f5b6702
-    Signed-off-by: shilong.yang <shilong.yang@amlogic.com>
+    Change-Id: I7f2f6de8c2691df9a883cc3c934be749203e4b6e
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-02-03-21-58
+Release time: 2021-02-04-15-16
 
 ========================================
 
-Builder: shilong.yang
+Builder: yunmin.chen
 
 ========================================
 Release file:
