@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit be3b88e6f0150c654f98e05643ea4c0e5df33bb5
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Sat Feb 6 18:51:17 2021 +0800
+commit 843e7c3db2c9c74668d172e4241c9dff2cf8c6a4
+Author: shanshan.li <shanshan.li@amlogic.com>
+Date:   Tue Feb 9 13:49:57 2021 +0800
 
-    tsplayer: mediasync getTrackMediaTime support. [1/1]
+    videoTunnelRenderer: videoTunnelRenderer force updateAnchor. [1/2]
     
-    PD#SWPL-40339
+    PD#SWPL-43020
     
     Problem:
-    mediasync getTrackMediaTime not support.
+    pause-resume, video pts is smaller than, causing the stuck.
     
     Solution:
-    mediasync getTrackMediaTime support.
+    video force updateAnchor after pause.
     
     Verify:
-    S905X4-AH212
+    SC2_AH212
     
-    Change-Id: Id059e0442c802f246a880e9a682ab4a62fd819c1
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: Id0940e1e5e3cb2f03d8cd731c536790e3c7b23c1
+    Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
 
 ========================================
 
-Release time: 2021-02-09-22-31
+Release time: 2021-02-19-14-17
 
 ========================================
 
-Builder: zhipeng.he
+Builder: shanshan.li
 
 ========================================
 Release file:
