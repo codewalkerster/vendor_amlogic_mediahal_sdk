@@ -1,3 +1,8 @@
+cc_library_headers {
+    name: "libmediahal_headers",
+    vendor_available: true,
+    export_include_dirs: ["include"],
+}
 
 cc_prebuilt_library_shared {
     name: "libmediahal_videodec",
@@ -56,7 +61,13 @@ cc_prebuilt_library_shared {
     vendor_available: true,
     strip: {
         none: true,
-    }, 
+    },
+    header_libs: [
+        "libmediahal_headers",
+    ],
+    export_header_lib_headers: [
+        "libmediahal_headers",
+    ],
     srcs: ["lib/vendor/libmediahal_mediasync.so"],
     check_elf_files: false,
 }
