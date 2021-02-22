@@ -5,33 +5,34 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit e46fa9abd509c4f01a3135d25661169196d22b80
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Thu Feb 18 17:44:24 2021 +0800
+commit 706c42ce8c0b788b118bf56317a03edb8513f1f6
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Feb 12 23:52:23 2021 +0800
 
-    tsplay: add sideband when set surface in tunnel mode [1/1]
+    tsplayer: NonTunnelMode,bad malloc [1/1]
     
-    PD#OTT-17172
+    PD#SWPL-42668
     
     Problem:
-    [ZTE/Italy][Bug#3450][S905X2][10.0][Feedback][System]:setSurface interface does not take effect
+    Memory leak
     
     Solution:
-    add setSurface
+    1.After write es data fails, es data needs to be released.
+    2.AudioSoftWrapper,need to release AMediaFormat after FormatChanged.
     
     Verify:
-    SC2
+    SC2_AH212
     
-    Change-Id: I1a26a0c847c65b57f78ae4c06f649f797e2285f4
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: I400551d37d3071fb7f0db99d1d0ce20ba1ac9081
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-04-10-44
+Release time: 2021-03-04-17-45
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
