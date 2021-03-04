@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 843e7c3db2c9c74668d172e4241c9dff2cf8c6a4
-Author: shanshan.li <shanshan.li@amlogic.com>
-Date:   Tue Feb 9 13:49:57 2021 +0800
+commit e46fa9abd509c4f01a3135d25661169196d22b80
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Thu Feb 18 17:44:24 2021 +0800
 
-    videoTunnelRenderer: videoTunnelRenderer force updateAnchor. [1/2]
+    tsplay: add sideband when set surface in tunnel mode [1/1]
     
-    PD#SWPL-43020
+    PD#OTT-17172
     
     Problem:
-    pause-resume, video pts is smaller than, causing the stuck.
+    [ZTE/Italy][Bug#3450][S905X2][10.0][Feedback][System]:setSurface interface does not take effect
     
     Solution:
-    video force updateAnchor after pause.
+    add setSurface
     
     Verify:
-    SC2_AH212
+    SC2
     
-    Change-Id: Id0940e1e5e3cb2f03d8cd731c536790e3c7b23c1
-    Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
+    Change-Id: I1a26a0c847c65b57f78ae4c06f649f797e2285f4
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2021-02-19-14-17
+Release time: 2021-03-04-10-44
 
 ========================================
 
-Builder: shanshan.li
+Builder: wanghao.li
 
 ========================================
 Release file:
