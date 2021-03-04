@@ -13,6 +13,12 @@
 
 typedef int (*callbackFunc)(void*obj, void* args);
 
+struct renderTime
+{
+    int64_t mediaUs;
+    int64_t renderUs;
+};
+
 class VideoTunnelRendererBase
 {
 
@@ -20,6 +26,7 @@ public:
 
     enum {
         CB_FILLVIDEOFRAME,
+        CB_NODIFYRENDERTIME,
         CB_FUNS_MAX,
     };
 
