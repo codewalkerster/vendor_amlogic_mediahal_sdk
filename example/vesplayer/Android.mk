@@ -1,3 +1,4 @@
+ifeq (,$(wildcard media_hal))
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -16,3 +17,4 @@ LOCAL_SHARED_LIBRARIES := libdl
 LOCAL_VENDOR_MODULE := true
 
 include $(BUILD_EXECUTABLE)
+endif

@@ -1,3 +1,24 @@
+bootstrap_go_package {
+    name: "mediahal_sdk",
+    pkgPath: "android/soong/vendor/amlogic/mediahal_sdk",
+    deps: [
+        "blueprint",
+        "blueprint-pathtools",
+        "soong",
+        "soong-android",
+        "soong-cc",
+        "soong-genrule",
+    ],
+    srcs: [
+        "mediahal_sdk.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+mediahal_sdk_go_defaults {
+    name: "mediahal_sdk_go_defaults",
+}
+
 cc_library_headers {
     name: "libmediahal_headers",
     vendor_available: true,
@@ -6,7 +27,7 @@ cc_library_headers {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_videodec",
-	vendor_available: true,
+    vendor_available: true,
     strip: {
     none: true,
     },
@@ -19,8 +40,7 @@ cc_prebuilt_library_shared {
     name: "libmediahal_videodec.system",
     strip: {
     none: true,
-    },    
-
+    },
     arch: {
         arm: {
             srcs: ["lib/system/libmediahal_videodec.system.so"],
@@ -31,6 +51,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_tsplayer",
+    defaults: ["mediahal_sdk_go_defaults"],
     vendor_available: true,
     strip: {
     none: true,
@@ -45,6 +66,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_tsplayer.system",
+    defaults: ["mediahal_sdk_go_defaults"],
     strip: {
     none: true,
     },
@@ -84,6 +106,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_tunnelrenderer",
+    defaults: ["mediahal_sdk_go_defaults"],
     strip: {
     none: true,
     },
@@ -97,7 +120,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_resman",
-	vendor_available: true,
+    vendor_available: true,
     compile_multilib: "32",
 
     arch: {
@@ -124,6 +147,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_binary {
     name: "vesplayer",
+    defaults: ["mediahal_sdk_go_defaults"],
 
     arch: {
         arm: {

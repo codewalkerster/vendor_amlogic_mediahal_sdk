@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit a95ed8f462622c35c3da886a57756a1dc26d2d0e
-Author: nengwen.chen <nengwen.chen@amlogic.com>
-Date:   Tue Feb 23 11:39:31 2021 +0800
+commit 80d679018aa238843e5f461f1fdde6c4753e4133
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Mon Mar 8 20:55:25 2021 +0800
 
-    media_hal: add ADC_PLL resource manage [1/1]
+    tsplayer: Use AndroiBP file when it bigger than AndroidQ version. [1/1]
     
-    PD#SWPL-41808
+    PD#SWPL-28418
     
     Problem:
-    add ADC_PLL resource manage.
+    Android R need android.bp and make media_hal error.
     
     Solution:
-    1.add ADC_PLL resource manage.
+    Use AndroiBP file when it bigger than AndroidQ version.
     
     Verify:
-    Verified by t5d.
+    Common
     
-    Change-Id: Ib0d1d614f8aa7db10f644f9536285e7514901917
-    Signed-off-by: nengwen.chen <nengwen.chen@amlogic.com>
+    Change-Id: Ia23dcce10a7052e4f3c830f011d342b1f7ed5910
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-08-18-33
+Release time: 2021-03-09-14-16
 
 ========================================
 
-Builder: nengwen.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:
