@@ -36,7 +36,7 @@ public:
     virtual int getTunnelId();
     virtual bool start();
     virtual bool stop();
-    virtual bool sendVideoFrame(int metafd, int64_t timestampNs);
+    virtual bool sendVideoFrame(int metafd, int64_t timestampNs, bool renderAtonce);
     virtual int regCallBack(int cb_id, callbackFunc funs, void* obj);
     virtual bool flush();
     virtual bool setFrameRate(int32_t framerate);

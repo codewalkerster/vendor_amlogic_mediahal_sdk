@@ -5,65 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-<<<<<<< HEAD
-commit 706c42ce8c0b788b118bf56317a03edb8513f1f6
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Feb 12 23:52:23 2021 +0800
+commit a95ed8f462622c35c3da886a57756a1dc26d2d0e
+Author: nengwen.chen <nengwen.chen@amlogic.com>
+Date:   Tue Feb 23 11:39:31 2021 +0800
 
-    tsplayer: NonTunnelMode,bad malloc [1/1]
+    media_hal: add ADC_PLL resource manage [1/1]
     
-    PD#SWPL-42668
-    
-    Problem:
-    Memory leak
-    
-    Solution:
-    1.After write es data fails, es data needs to be released.
-    2.AudioSoftWrapper,need to release AMediaFormat after FormatChanged.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I400551d37d3071fb7f0db99d1d0ce20ba1ac9081
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-========================================
-
-Release time: 2021-03-04-17-45
-
-========================================
-
-Builder: yunmin.chen
-=======
-commit 13fb9346b80a85f2760b5e9265e10c08cd9d2ba4
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Tue Mar 2 17:14:01 2021 +0800
-
-    tunnel mode: modify tunnel mode notify render use mediahal [1/2]
-    
-    PD#SWPL-42455
+    PD#SWPL-41808
     
     Problem:
-    Omx2 Tunnel mode return render time use picture ready time
-    do not accurate
+    add ADC_PLL resource manage.
     
     Solution:
-    Omx2 use tunnelrender calculate realtime for render time.
+    1.add ADC_PLL resource manage.
     
     Verify:
-    Ohm
+    Verified by t5d.
     
-    Change-Id: Ia0db71337ac3a9678dc4b8ec744a2710a0c32beb
-    Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+    Change-Id: Ib0d1d614f8aa7db10f644f9536285e7514901917
+    Signed-off-by: nengwen.chen <nengwen.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-04-21-30
+Release time: 2021-03-08-18-33
 
 ========================================
 
-Builder: jian.wang
->>>>>>> 7b439ee... tunnel mode: modify tunnel mode notify render use mediahal [1/2]
+Builder: nengwen.chen
 
 ========================================
 Release file:
