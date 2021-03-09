@@ -5,33 +5,38 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 80d679018aa238843e5f461f1fdde6c4753e4133
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Mon Mar 8 20:55:25 2021 +0800
+commit a71fd0087a76b8a6040b69755dd507599587fc34
+Author: gan.zhang <gan.zhang@amlogic.com>
+Date:   Wed Nov 18 11:18:17 2020 +0800
 
-    tsplayer: Use AndroiBP file when it bigger than AndroidQ version. [1/1]
+    playerdemo: Add EsVideoDecPlayer base mediahal. [1/1]
     
-    PD#SWPL-28418
+    PD#SWPL-35245
     
     Problem:
-    Android R need android.bp and make media_hal error.
+    Add EsVideoDecPlayer base mediahal in Android.
     
     Solution:
-    Use AndroiBP file when it bigger than AndroidQ version.
+    1.Add es player demo.
+    2.Add dump yuv and calculate crc in player.
+    3.Multi-channel video playback.
+    
+    usage:
+    EsVideoDecPlayer -i h264.es -f 2 -s h264.fsz
     
     Verify:
-    Common
+    U212
     
-    Change-Id: Ia23dcce10a7052e4f3c830f011d342b1f7ed5910
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: Ie8f9dbb28a63ce2755389bb630dfc944b6fd9cb7
+    Signed-off-by: gan.zhang <gan.zhang@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-09-14-16
+Release time: 2021-03-09-17-09
 
 ========================================
 
-Builder: zhipeng.he
+Builder: gan.zhang
 
 ========================================
 Release file:
@@ -57,6 +62,7 @@ Android.mk
 Binary  file:
 AmTsPlayerExample
 AmTsPlayerTest
+EsVideoDecPlayer
 vesplayer
 videodecplayer
 

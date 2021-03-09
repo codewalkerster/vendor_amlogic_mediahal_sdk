@@ -157,3 +157,14 @@ cc_prebuilt_binary {
     check_elf_files: false,
 }
 
+cc_prebuilt_binary {
+    name: "EsVideoDecPlayer",
+    defaults: ["mediahal_sdk_go_defaults"],
+
+    arch: {
+        arm: {
+            srcs: ["bin/EsVideoDecPlayer"],
+        },
+    },
+    check_elf_files: false,
+}
