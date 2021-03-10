@@ -21,13 +21,13 @@ mediahal_sdk_go_defaults {
 
 cc_library_headers {
     name: "libmediahal_headers",
-    vendor_available: true,
+    vendor: true,
     export_include_dirs: ["include"],
 }
 
 cc_prebuilt_library_shared {
     name: "libmediahal_videodec",
-    vendor_available: true,
+    vendor: true,
     strip: {
     none: true,
     },
@@ -52,7 +52,7 @@ cc_prebuilt_library_shared {
 cc_prebuilt_library_shared {
     name: "libmediahal_tsplayer",
     defaults: ["mediahal_sdk_go_defaults"],
-    vendor_available: true,
+    vendor: true,
     strip: {
     none: true,
     },
@@ -80,7 +80,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_mediasync",
-    vendor_available: true,
+    vendor: true,
     strip: {
         none: true,
     },
@@ -107,6 +107,8 @@ cc_prebuilt_library_shared {
 cc_prebuilt_library_shared {
     name: "libmediahal_tunnelrenderer",
     defaults: ["mediahal_sdk_go_defaults"],
+    vendor: true,
+    compile_multilib: "32",
     strip: {
     none: true,
     },
@@ -120,7 +122,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_resman",
-    vendor_available: true,
+    vendor: true,
     compile_multilib: "32",
 
     arch: {
