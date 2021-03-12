@@ -5,38 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit a71fd0087a76b8a6040b69755dd507599587fc34
-Author: gan.zhang <gan.zhang@amlogic.com>
-Date:   Wed Nov 18 11:18:17 2020 +0800
+commit 17096124a29ded3f1c37e4ba2dcf4fd7959dd9f4
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Feb 27 18:26:43 2021 +0800
 
-    playerdemo: Add EsVideoDecPlayer base mediahal. [1/1]
+    tsplayer: buttjoint multi audio patch interface [1/1]
     
-    PD#SWPL-35245
+    PD#SWPL-43229
     
     Problem:
-    Add EsVideoDecPlayer base mediahal in Android.
+    Add tsplayer to support multi audio patch.
     
     Solution:
-    1.Add es player demo.
-    2.Add dump yuv and calculate crc in player.
-    3.Multi-channel video playback.
-    
-    usage:
-    EsVideoDecPlayer -i h264.es -f 2 -s h264.fsz
+    Add tsplayer to support multi audio patch.
     
     Verify:
-    U212
+    SC2_AH212
     
-    Change-Id: Ie8f9dbb28a63ce2755389bb630dfc944b6fd9cb7
-    Signed-off-by: gan.zhang <gan.zhang@amlogic.com>
+    Change-Id: I125daf5fdd824cd5e722f797227d3f5796d470a1
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-09-17-09
+Release time: 2021-03-17-19-32
 
 ========================================
 
-Builder: gan.zhang
+Builder: yunmin.chen
 
 ========================================
 Release file:
@@ -62,7 +57,6 @@ Android.mk
 Binary  file:
 AmTsPlayerExample
 AmTsPlayerTest
-EsVideoDecPlayer
 vesplayer
 videodecplayer
 
