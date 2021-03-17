@@ -19,6 +19,27 @@ mediahal_sdk_go_defaults {
     name: "mediahal_sdk_go_defaults",
 }
 
+bootstrap_go_package {
+    name: "mediahalvercheck",
+    pkgPath: "android/soong/mediahalvercheck",
+    deps: [
+        "blueprint",
+        "blueprint-pathtools",
+        "soong",
+        "soong-android",
+        "soong-cc",
+        "soong-genrule",
+    ],
+    srcs: [
+        "mediahalvercheck.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+mediahalvercheck_defaults {
+    name: "mediahalvercheck_defaults",
+}
+
 cc_library_headers {
     name: "libmediahal_headers",
     vendor: true,
@@ -38,12 +59,22 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_videodec.system",
+    defaults: ["mediahalvercheck_defaults"],
     strip: {
     none: true,
     },
     arch: {
         arm: {
             srcs: ["lib/system/libmediahal_videodec.system.so"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
         },
     },
     check_elf_files: false,
@@ -60,19 +91,37 @@ cc_prebuilt_library_shared {
         arm: {
             srcs: ["lib/vendor/libmediahal_tsplayer.so"],
         },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
     },
     check_elf_files: false,
 }
 
 cc_prebuilt_library_shared {
     name: "libmediahal_tsplayer.system",
-    defaults: ["mediahal_sdk_go_defaults"],
+    defaults: ["mediahal_sdk_go_defaults","mediahalvercheck_defaults"],
     strip: {
     none: true,
     },
     arch: {
         arm: {
             srcs: ["lib/system/libmediahal_tsplayer.system.so"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
         },
     },
     check_elf_files: false,
@@ -96,9 +145,10 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_mediasync.system",
+    defaults: ["mediahalvercheck_defaults"],
     compile_multilib: "32",
-        strip: {
-    none: true,
+    strip: {
+        none: true,
     },
    srcs: ["lib/system/libmediahal_mediasync.system.so"],
    check_elf_files: false,
@@ -116,6 +166,15 @@ cc_prebuilt_library_shared {
         arm: {
             srcs: ["lib/vendor/libmediahal_tunnelrenderer.so"],
         },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
     },
     check_elf_files: false,
 }
@@ -129,6 +188,15 @@ cc_prebuilt_library_shared {
         arm: {
             srcs: ["lib/vendor/libmediahal_resman.so"],
         },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
     },
     export_include_dirs: ["include"],
     check_elf_files: false,
@@ -136,11 +204,21 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_resman.system",
+    defaults: ["mediahalvercheck_defaults"],
     compile_multilib: "32",
 
     arch: {
         arm: {
             srcs: ["lib/system/libmediahal_resman.system.so"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
         },
     },
     export_include_dirs: ["include"],
@@ -155,6 +233,15 @@ cc_prebuilt_binary {
         arm: {
             srcs: ["bin/vesplayer"],
         },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
     },
     check_elf_files: false,
 }
@@ -166,6 +253,15 @@ cc_prebuilt_binary {
     arch: {
         arm: {
             srcs: ["bin/EsVideoDecPlayer"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
         },
     },
     check_elf_files: false,
