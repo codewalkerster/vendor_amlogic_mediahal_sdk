@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit a7a7ab74009c5b46b3a304c2b61b885a4a3a7abd
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Tue Mar 9 17:49:18 2021 +0800
+commit ceb403b2fd369ffc0589a5958dd406670dd18a52
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Mar 4 13:39:22 2021 +0800
 
-    tsplayer: tsplayer so need to copy to system ext [1/1]
+    tsplayer: Support Multi-channel CAS playback [1/1]
     
-    PD#SWPL-39046
+    PD#SWPL-43410
     
     Problem:
-    videotunnel replace surface
+    Android-R SC2 Tsplayer need support Multi-channel CAS playback
     
     Solution:
-    videotunnel replace surface
+    NonTunnelMode Add support Multi-channel CAS playback.
     
     Verify:
-    SC2
+    SC2_AH212
     
-    Change-Id: Iea73833e4428512e076733be2410081c5d8874a0
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: I50454d81ec02bf2eb98c4296e6934df6010946e0
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-17-20-20
+Release time: 2021-03-18-20-09
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
