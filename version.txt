@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit ceb403b2fd369ffc0589a5958dd406670dd18a52
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Mar 4 13:39:22 2021 +0800
+commit 58e64d42bef4e911a774a357491d6541f911a6fc
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Thu Mar 18 15:40:50 2021 +0800
 
-    tsplayer: Support Multi-channel CAS playback [1/1]
+    tsplayer: not display the last frame when timeshift and open pip. [1/1]
     
-    PD#SWPL-43410
+    PD#SWPL-42193
     
     Problem:
-    Android-R SC2 Tsplayer need support Multi-channel CAS playback
+    display the last frame when timeshift and open pip.
     
     Solution:
-    NonTunnelMode Add support Multi-channel CAS playback.
+    not display the last frame when timeshift and open pip.
     
     Verify:
-    SC2_AH212
+    S905X4-AH212
     
-    Change-Id: I50454d81ec02bf2eb98c4296e6934df6010946e0
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Iebe0048dde32ae463b864f4411e789dd898efd13
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-18-20-09
+Release time: 2021-03-19-17-07
 
 ========================================
 
-Builder: yunmin.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:

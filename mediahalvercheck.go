@@ -5,12 +5,18 @@ import (
     "android/soong/cc"
     "fmt"
     "github.com/google/blueprint/proptools"
+    "strconv"
 )
 
 func MediahalVerCheckDefaults(ctx android.LoadHookContext) {
-    sdkVersion := ctx.AConfig().PlatformSdkVersionInt()
-    fmt.Println("sdkVersion:", sdkVersion)
-    if sdkVersion >= 30 {
+    sdkVersion := ctx.DeviceConfig().VndkVersion()
+    sdkVersionInt,err := strconv.Atoi(sdkVersion)
+    if err != nil {
+        fmt.Printf("%v fail to convert", sdkVersionInt)
+    } else {
+        fmt.Println("sdkVersion:", sdkVersionInt)
+    }
+    if sdkVersionInt >= 30 {
         type props struct {
             System_ext_specific  *bool
         }
