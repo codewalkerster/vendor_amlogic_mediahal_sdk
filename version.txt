@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 58e64d42bef4e911a774a357491d6541f911a6fc
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Thu Mar 18 15:40:50 2021 +0800
+commit 710dea6a8ee3f42bfa51ade5699f58c7f2fc924c
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Tue Mar 2 19:47:54 2021 +0800
 
-    tsplayer: not display the last frame when timeshift and open pip. [1/1]
+    tsplay: TsPlayer need support 4 channels clear stream playback [1/1]
     
-    PD#SWPL-42193
+    PD#SWPL-43959
     
     Problem:
-    display the last frame when timeshift and open pip.
+    need support 4 channels playback
     
     Solution:
-    not display the last frame when timeshift and open pip.
+    support 4 channels playback
     
     Verify:
-    S905X4-AH212
+    SC2
     
-    Change-Id: Iebe0048dde32ae463b864f4411e789dd898efd13
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: I3897b30cd401150f21fb965d4fc281449d2bcc6e
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-19-17-07
+Release time: 2021-03-22-19-39
 
 ========================================
 
-Builder: zhipeng.he
+Builder: wanghao.li
 
 ========================================
 Release file:

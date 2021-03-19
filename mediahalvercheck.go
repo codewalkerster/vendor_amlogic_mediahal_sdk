@@ -9,7 +9,7 @@ import (
 )
 
 func MediahalVerCheckDefaults(ctx android.LoadHookContext) {
-    sdkVersion := ctx.DeviceConfig().VndkVersion()
+    sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
     sdkVersionInt,err := strconv.Atoi(sdkVersion)
     if err != nil {
         fmt.Printf("%v fail to convert", sdkVersionInt)
