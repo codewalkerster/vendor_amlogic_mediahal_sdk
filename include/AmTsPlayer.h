@@ -242,27 +242,27 @@ typedef struct {
     uint32_t decode_buffer;
 } am_tsplayer_video_qos;
 
-/*Video decoder real time information*/
+/*Video decoder real time information,https://wiki-china.amlogic.com/index.php?title=Media/%E5%A4%9A%E5%AE%9E%E4%BE%8B%E4%BF%A1%E6%81%AF%E4%B8%8A%E6%8A%A5%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E*/
 typedef struct {
     am_tsplayer_video_qos qos;
-    uint32_t  decode_time_cost;/*us*/
+    uint32_t  decode_time_cost;/*ns*/ //the time using to decode frame
     uint32_t frame_width;
     uint32_t frame_height;
     uint32_t frame_rate;
     uint32_t bit_depth_luma;//original bit_rate;
-    uint32_t frame_dur;
+    uint32_t frame_dur;// the display duration for frame to show
     uint32_t bit_depth_chroma;//original frame_data;
-    uint32_t error_count;
-    uint32_t status;
-    uint32_t frame_count;
-    uint32_t error_frame_count;
-    uint32_t drop_frame_count;
-    uint64_t total_data;
-    uint32_t double_write_mode;//original samp_cnt;
-    uint32_t offset;
-    uint32_t ratio_control;
-    uint32_t vf_type;
-    uint32_t signal_type;
+    uint32_t error_count;//the same as error_frame_count
+    uint32_t status;//dec status,maybe  PARSER_FATAL_ERROR (0x10<<16) or (DECODER_FATAL_ERROR_NO_MEM(0x400<<16)) in amstream.h
+    uint32_t frame_count;//the decoder output frame count
+    uint32_t error_frame_count;//the decoder check error frame count
+    uint32_t drop_frame_count;//the decoder drop frame count with such frame decoder can not decode out
+    uint64_t total_data;//decoder used and tsplayer not cale
+    uint32_t double_write_mode;//original samp_cnt;double_write number in 265/vp9/avs2
+    uint32_t offset;//decoder used and tsplayer not cale
+    uint32_t ratio_control;//表示aspecratio，crop等信息
+    uint32_t vf_type;// top/bot first,if vf_type is 0,then it is progressive
+    uint32_t signal_type;//HDR info
     uint32_t pts;
     uint64_t pts_us64;
 } am_tsplayer_vdec_stat;

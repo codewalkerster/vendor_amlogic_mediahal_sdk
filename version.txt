@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 03e36764ddd77891969ff3e08cf51c2c3ec48394
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Mar 23 20:46:11 2021 +0800
+commit 1cf661f0eb4e1c83a4b461b972776f099a94098e
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Thu Mar 25 16:51:24 2021 +0800
 
-    tsplayer: audio demux channle keeps increasing [1/1]
+    tsplayer: the player id from the dtvkit is not match the video id [1/1]
     
-    PD#SWPL-45476
+    PD#SWPL-43974
     
     Problem:
-    do timeshift,audio demux channle keeps increasing
+    tunnel mode has not send instance id to decoder
     
     Solution:
-    The SC2 platform changes the audio start process.
+    send instance id to decoder
     
     Verify:
-    SC2_AH212
+    SC2
     
-    Change-Id: Iab6a57d961e9d4562ee17d56640b22a95d2a912c
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I779510900c806aafb41f23e2d0bde9a713be9a08
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-26-21-14
+Release time: 2021-03-29-17-27
 
 ========================================
 
-Builder: yunmin.chen
+Builder: wanghao.li
 
 ========================================
 Release file:
