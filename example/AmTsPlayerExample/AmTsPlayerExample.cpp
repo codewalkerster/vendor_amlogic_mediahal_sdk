@@ -259,7 +259,7 @@ int main(int argc, char **argv)
     am_tsplayer_avsync_mode avsyncMode= TS_SYNC_AMASTER;
     am_tsplayer_video_trick_mode vTrickMode = AV_VIDEO_TRICK_MODE_NONE;
     am_tsplayer_video_codec vCodec = AV_VIDEO_CODEC_H264;
-    am_tsplayer_audio_codec aCodec = AV_AUDIO_CODEC_MP3;
+    am_tsplayer_audio_codec aCodec = AV_AUDIO_CODEC_AAC;
     int32_t vPid = 0x100;
     int32_t aPid = 0x101;
 
@@ -321,10 +321,33 @@ int main(int argc, char **argv)
     am_tsplayer_init_params parm = {tsType, drmmode, 0, 0};
     AmTsPlayer_create(parm, &session);
     #ifdef SUPPORT_ANDROID
-    if (mSurface == NULL) {
-        if (setOutputToSurface(0, 0, 960, 540) == 1)
-            AmTsPlayer_setSurface(session,mSurface.get());
-    }
+    int width = 1920;
+    int height = 1080;
+/*   #if ANDROID_PLATFORM_SDK_VERSION > 29
+       sp<IBinder> displayToken = SurfaceComposerClient::getInternalDisplayToken();
+       DisplayConfig displayConfig;
+       SurfaceComposerClient::getActiveDisplayConfig(displayToken, &displayConfig);
+       ui::DisplayState displayState;
+       SurfaceComposerClient::getDisplayState(displayToken, &displayState);
+       const ui::Size& resolution = displayConfig.resolution;
+       width = resolution.getWidth();;
+       height = resolution.getHeight();
+       #elif ANDROID_PLATFORM_SDK_VERSION == 29
+       android::DisplayInfo info;
+       SurfaceComposerClient::getDisplayInfo(SurfaceComposerClient::getInternalDisplayToken(), &info);
+       width = info.w;
+       height = info.h;
+       #elif ANDROID_PLATFORM_SDK_VERSION < 29
+        android::DisplayInfo info;
+        SurfaceComposerClient::getDisplayInfo(SurfaceComposerClient::getBuiltInDisplay(ISurfaceComposer::eDisplayIdMain), &info);
+        width = info.w;
+        height = info.h;
+       #endif*/
+     if (mSurface == NULL) {
+        if (setOutputToSurface(0, 0,width/2 , height/2) == 1) {
+                AmTsPlayer_setSurface(session,mSurface.get());
+        }
+     }
     #endif
     uint32_t versionM, versionL;
     AmTsPlayer_getVersion(&versionM, &versionL);

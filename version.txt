@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 710dea6a8ee3f42bfa51ade5699f58c7f2fc924c
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Tue Mar 2 19:47:54 2021 +0800
+commit 03e36764ddd77891969ff3e08cf51c2c3ec48394
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Mar 23 20:46:11 2021 +0800
 
-    tsplay: TsPlayer need support 4 channels clear stream playback [1/1]
+    tsplayer: audio demux channle keeps increasing [1/1]
     
-    PD#SWPL-43959
+    PD#SWPL-45476
     
     Problem:
-    need support 4 channels playback
+    do timeshift,audio demux channle keeps increasing
     
     Solution:
-    support 4 channels playback
+    The SC2 platform changes the audio start process.
     
     Verify:
-    SC2
+    SC2_AH212
     
-    Change-Id: I3897b30cd401150f21fb965d4fc281449d2bcc6e
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: Iab6a57d961e9d4562ee17d56640b22a95d2a912c
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-22-19-39
+Release time: 2021-03-26-21-14
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
