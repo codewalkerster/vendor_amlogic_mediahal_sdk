@@ -5,29 +5,29 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 1cf661f0eb4e1c83a4b461b972776f099a94098e
+commit 47bd03ec341b9a1a623f9a241e3c85cc0babe2cf
 Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Thu Mar 25 16:51:24 2021 +0800
+Date:   Fri Apr 2 13:37:36 2021 +0800
 
-    tsplayer: the player id from the dtvkit is not match the video id [1/1]
+    tsplayer: Stress test switch channel，tsplay library crash,once [1/1]
     
-    PD#SWPL-43974
+    PD#OTT-17980
     
     Problem:
-    tunnel mode has not send instance id to decoder
+    read data after stop lead to crash
     
     Solution:
-    send instance id to decoder
+    not to read data after stop
     
     Verify:
     SC2
     
-    Change-Id: I779510900c806aafb41f23e2d0bde9a713be9a08
+    Change-Id: If325ee16221a542985e3c445b285f29f0be5b6fb
     Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
 ========================================
 
-Release time: 2021-03-29-17-27
+Release time: 2021-04-03-18-03
 
 ========================================
 
