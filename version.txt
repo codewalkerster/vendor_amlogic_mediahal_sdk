@@ -5,33 +5,33 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 47bd03ec341b9a1a623f9a241e3c85cc0babe2cf
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Fri Apr 2 13:37:36 2021 +0800
+commit 246c92c485a1e8807cfa2101283f2934b35de564
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Apr 6 13:58:47 2021 +0800
 
-    tsplayer: Stress test switch channel，tsplay library crash,once [1/1]
+    tsplayer: switch to audio only channel,no audio output [1/1]
     
-    PD#OTT-17980
+    PD#SWPL-46094
     
     Problem:
-    read data after stop lead to crash
+    tunnelmode,switch to audio only channel,no audio output.
     
     Solution:
-    not to read data after stop
+    tunnelmode,Only audio needs to start VDA to set information to tsync.
     
     Verify:
-    SC2
+    SC2_AH212
     
-    Change-Id: If325ee16221a542985e3c445b285f29f0be5b6fb
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+    Change-Id: I28113ee9dde49529267c5a91e4552d82fc6d3a05
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-04-03-18-03
+Release time: 2021-04-07-18-15
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
