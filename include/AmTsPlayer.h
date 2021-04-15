@@ -163,6 +163,7 @@ typedef enum {
     AV_AUDIO_CODEC_AAC = 6,                // AAC
     AV_AUDIO_CODEC_LATM = 7,               // AAC LATM
     AV_AUDIO_CODEC_PCM = 8,                // PCM
+    AV_AUDIO_CODEC_AC4 = 9,                // AC4
 //    AV_AUDIO_CODEC_HEAAC = 8,            // HEAAC
 //    AV_AUDIO_CODEC_AAC_ADTS = 9,         // AAC_ADTS
 //    AV_AUDIO_CODEC_HEAACV2 = 10          // HEAAC VERSION2
