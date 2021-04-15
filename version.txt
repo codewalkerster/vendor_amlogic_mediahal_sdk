@@ -5,7 +5,68 @@ Version: v2.0
 ========================================
 
 Git commit:
-commit 8a78154c9feef83f0a3f7800708a25c546af5708
+commit 55276cdeca7309f2b07f115066b8f8485e4ed93c
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Wed Apr 7 13:48:59 2021 +0800
+
+    tsplayer: video tunnel dequeue buffer fail [1/1]
+    
+    PD#RSP-1670
+    
+    Problem:
+    dequeue buffer fail with videotunnel has not data
+    
+    Solution:
+    retry until dequeue buffer success
+    
+    Verify:
+    SC2
+    
+    Change-Id: Icbd50e9127ce152874b29030243bed850bd6d598
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+
+commit c43b0ce089f54189e542d150b54759124994308d
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Apr 12 15:07:21 2021 +0800
+
+    mediahal: not start video before audio set first pts for beginning playback [1/1]
+    
+    PD#SWPL-47036
+    
+    Problem:
+    video start bofore audio set first pts, then anchor time will
+    update again after audio set first pts
+    
+    Solution:
+    not start video before audio set first pts for beginning playback
+    
+    Verify:
+    ohm
+    
+    Change-Id: I05a8a8a65de1af0a2f16763ff1b34d1de3d06d1a
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 942316bbbe9d334643a154fc9dbc3e11a0e2cd6f
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Apr 15 18:05:32 2021 +0800
+
+    mediahal: mediahal_sdk/version.txt adds 10 commit messages. [1/1]
+    
+    PD#SWPL-45058
+    
+    Problem:
+    mediahal_sdk/version.txt adds 10 commit messages.
+    
+    Solution:
+    mediahal_sdk/version.txt adds 10 commit messages.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: I2ea3f1d421564348209f7b99191b6e4f32207e49
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 4eff4e9d610047d563e74a31b0e066c0505bef76
 Author: zhipeng.he <zhipeng.he@amlogic.com>
 Date:   Thu Apr 8 20:57:03 2021 +0800
 
@@ -25,13 +86,139 @@ Date:   Thu Apr 8 20:57:03 2021 +0800
     Change-Id: I277362978336ada1c4d8c6462ed534def44ad841
     Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
+commit e8feb96ba68bcfb0d4177821c6cf846402a5e66c
+Author: “sining.huang” <sining.huang@amlogic.com>
+Date:   Fri Apr 9 20:50:24 2021 +0800
+
+    amtsplayer: change getcurrenttime return [1/1]
+    
+    PD#SWPL-47040
+    
+    Problem:
+    getcurrenttime method return invalid value
+     when stopvideodecoding.
+    
+    Solution:
+    When stopvideocoding, VPTs does not perform
+    the VPTs / 90 operation.It directly assigns
+    CTime to - 1 and returns up.
+    After ZTE gets - 1, it does not need to
+    multiply 90 to calculate VPTs
+    
+    Verify:
+    S905X4
+    
+    Change-Id: Ib9c29281fbb6f74da5e42d65349f6a6de34ffeab
+    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
+
+commit add14d26ca2576d0be569e84541794ffd4166a20
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Apr 2 14:13:52 2021 +0800
+
+    tsplayer: switch channel stress test [1/1]
+    
+    PD#SWPL-46147
+    
+    Problem:
+    OnWriteVideoEs() crash.
+    
+    Solution:
+    At StopVideoFilter(),the vpid setting is invalidated at the end.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: I93f1ad44d3249a69346fc6ec359106464f6f1787
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit a6761e852d339eadffd1027610ce93c3a349ca87
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Sat Apr 3 16:31:16 2021 +0800
+
+    TsPlayer: R need use libamgralloc_ext [1/1]
+    
+    PD#RSP-1517
+    
+    Problem:
+    R need use libamgralloc_ext
+    
+    Solution:
+    use libamgralloc_ext for R
+    
+    Verify:
+    Y4
+    
+    Change-Id: I438519d514e89ebb586d235758d8d240db5bcb32
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit 34d9c523f372643954cb9a01c451dbd2affcf3b8
+Author: peter wang <peter.wang@amlogic.com>
+Date:   Fri Apr 9 20:03:11 2021 +0800
+
+    MediaHal: fix StagefrightTest#testStagefright_cve_2017_0728 case [1/1]
+    
+    PD#SWPL-45049
+    
+    Problem:
+    bellow cts case failed in CtsSecurityTestCases module:
+    android.security.cts.StagefrightTest#testStagefright_cve_2017_0728
+    
+    Solution:
+    report an error while the stream resolution too small
+    
+    Verify:
+    test on ohm
+    
+    Change-Id: I766091f17754f5edf997516dc40562acca4c134b
+    Signed-off-by: peter wang <peter.wang@amlogic.com>
+
+commit 1fabaa75a818d28a8a3d1c1f52623d2655162ad3
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Fri Apr 9 13:47:43 2021 +0800
+
+    tsplayer: change return type for DequeueBuffer [1/1]
+    
+    PD#SWPL-46990
+    
+    Problem:
+    queue to decoder error when video tunnel dequeue fail
+    
+    Solution:
+    make sure not to queue if dequeue buffer error
+    
+    Verify:
+    SC2
+    
+    Change-Id: I8e9554aa6036ded2450f68ff655eb94d644cdb75
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+
+commit 246c92c485a1e8807cfa2101283f2934b35de564
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Apr 6 13:58:47 2021 +0800
+
+    tsplayer: switch to audio only channel,no audio output [1/1]
+    
+    PD#SWPL-46094
+    
+    Problem:
+    tunnelmode,switch to audio only channel,no audio output.
+    
+    Solution:
+    tunnelmode,Only audio needs to start VDA to set information to tsync.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: I28113ee9dde49529267c5a91e4552d82fc6d3a05
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 ========================================
 
-Release time: 2021-04-15-16-51
+Release time: 2021-04-15-20-49
 
 ========================================
 
-Builder: zhipeng.he
+Builder: wanghao.li
 
 ========================================
 Release file:
