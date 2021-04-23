@@ -5,6 +5,27 @@ Version: v2.0
 ========================================
 
 Git commit:
+commit 55f150c66b6cab3c3bc99deadaa4d30fa7eb60d7
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Apr 13 11:11:14 2021 +0800
+
+    tsplayer: DASH cannot play [1/1]
+    
+    PD#RSP-1690
+    
+    Problem:
+    framemode: GetBufferStat() crash
+    
+    Solution:
+    According to the platform,
+    the method of obtaining the buffer status is distinguished.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: I0ecc10e7f1bef7beec4cb5ec2172c04007d67152
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit c53b1645b1c78ed120c98bd6c81cfbcafd19edd6
 Author: wenlong.yuan <wenlong.yuan@amlogic.com>
 Date:   Wed Apr 21 21:27:40 2021 +0800
@@ -192,33 +213,13 @@ Date:   Fri Apr 9 20:03:11 2021 +0800
     Change-Id: I766091f17754f5edf997516dc40562acca4c134b
     Signed-off-by: peter wang <peter.wang@amlogic.com>
 
-commit 1fabaa75a818d28a8a3d1c1f52623d2655162ad3
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Fri Apr 9 13:47:43 2021 +0800
+========================================
 
-    tsplayer: change return type for DequeueBuffer [1/1]
-    
-    PD#SWPL-46990
-    
-    Problem:
-    queue to decoder error when video tunnel dequeue fail
-    
-    Solution:
-    make sure not to queue if dequeue buffer error
-    
-    Verify:
-    SC2
-    
-    Change-Id: I8e9554aa6036ded2450f68ff655eb94d644cdb75
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+Release time: 2021-04-23-16-07
 
 ========================================
 
-Release time: 2021-04-23-14-32
-
-========================================
-
-Builder: wenlong.yuan
+Builder: yunmin.chen
 
 ========================================
 Release file:
