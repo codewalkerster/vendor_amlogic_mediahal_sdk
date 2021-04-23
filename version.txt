@@ -5,6 +5,26 @@ Version: v2.0
 ========================================
 
 Git commit:
+commit c53b1645b1c78ed120c98bd6c81cfbcafd19edd6
+Author: wenlong.yuan <wenlong.yuan@amlogic.com>
+Date:   Wed Apr 21 21:27:40 2021 +0800
+
+    tsplayer: trickmode need set to decoder [1/1]
+    
+    PD#SWPL-47175
+    
+    Problem:
+    set trickmode to decoder not right.
+    
+    Solution:
+    trickmode need set to decoder
+    
+    Verify:
+    S905X2-U212
+    
+    Change-Id: I38c58cda615c8a77c72792d3bcac44046deb4381
+    Signed-off-by: wenlong.yuan <wenlong.yuan@amlogic.com>
+
 commit 55276cdeca7309f2b07f115066b8f8485e4ed93c
 Author: wanghao.li <wanghao.li@amlogic.com>
 Date:   Wed Apr 7 13:48:59 2021 +0800
@@ -192,33 +212,13 @@ Date:   Fri Apr 9 13:47:43 2021 +0800
     Change-Id: I8e9554aa6036ded2450f68ff655eb94d644cdb75
     Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
 
-commit 246c92c485a1e8807cfa2101283f2934b35de564
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Apr 6 13:58:47 2021 +0800
+========================================
 
-    tsplayer: switch to audio only channel,no audio output [1/1]
-    
-    PD#SWPL-46094
-    
-    Problem:
-    tunnelmode,switch to audio only channel,no audio output.
-    
-    Solution:
-    tunnelmode,Only audio needs to start VDA to set information to tsync.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I28113ee9dde49529267c5a91e4552d82fc6d3a05
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+Release time: 2021-04-23-14-32
 
 ========================================
 
-Release time: 2021-04-15-20-49
-
-========================================
-
-Builder: wanghao.li
+Builder: wenlong.yuan
 
 ========================================
 Release file:
