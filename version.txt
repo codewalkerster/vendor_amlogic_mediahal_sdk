@@ -5,6 +5,28 @@ Version: v2.0
 ========================================
 
 Git commit:
+commit 1ed32c1a3ae4ad53b833c2a4ef7da8375ad64619
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Apr 26 16:38:46 2021 +0800
+
+    tsplayer:  switch channel dispaly last frame [1/1]
+    
+    PD#SWPL-45058
+    
+    Problem:
+    When exiting,VideoTunnelDisplay DequeueBuffer is blocked.
+    
+    Solution:
+    1.Increase the playback state,
+    and stop dequeue_buffer when exiting.
+    2.add debug info.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: Ie3ab91633ac1b70b9c72fb56258421e740a573c3
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 55f150c66b6cab3c3bc99deadaa4d30fa7eb60d7
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Apr 13 11:11:14 2021 +0800
@@ -192,30 +214,9 @@ Date:   Sat Apr 3 16:31:16 2021 +0800
     Change-Id: I438519d514e89ebb586d235758d8d240db5bcb32
     Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
-commit 34d9c523f372643954cb9a01c451dbd2affcf3b8
-Author: peter wang <peter.wang@amlogic.com>
-Date:   Fri Apr 9 20:03:11 2021 +0800
-
-    MediaHal: fix StagefrightTest#testStagefright_cve_2017_0728 case [1/1]
-    
-    PD#SWPL-45049
-    
-    Problem:
-    bellow cts case failed in CtsSecurityTestCases module:
-    android.security.cts.StagefrightTest#testStagefright_cve_2017_0728
-    
-    Solution:
-    report an error while the stream resolution too small
-    
-    Verify:
-    test on ohm
-    
-    Change-Id: I766091f17754f5edf997516dc40562acca4c134b
-    Signed-off-by: peter wang <peter.wang@amlogic.com>
-
 ========================================
 
-Release time: 2021-04-23-16-07
+Release time: 2021-04-27-21-01
 
 ========================================
 
