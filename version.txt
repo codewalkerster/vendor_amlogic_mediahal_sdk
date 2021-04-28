@@ -5,6 +5,26 @@ Version: v2.0
 ========================================
 
 Git commit:
+commit 287ed6794703d585c9d1a03347c9e06a051b689c
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Mon Apr 26 21:32:20 2021 +0800
+
+    tsplayer: TsPlayer support avs video type. [1/1]
+    
+    PD#SWPL-48260
+    
+    Problem:
+    TsPlayer not support avs video type.
+    
+    Solution:
+    TsPlayer support avs video type.
+    
+    Verify:
+    T982-X9
+    
+    Change-Id: I398e14c0d0ba4bf3d53afe1d9154a0f46fd3767a
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+
 commit 1ed32c1a3ae4ad53b833c2a4ef7da8375ad64619
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Apr 26 16:38:46 2021 +0800
@@ -194,33 +214,13 @@ Date:   Fri Apr 2 14:13:52 2021 +0800
     Change-Id: I93f1ad44d3249a69346fc6ec359106464f6f1787
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit a6761e852d339eadffd1027610ce93c3a349ca87
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Sat Apr 3 16:31:16 2021 +0800
+========================================
 
-    TsPlayer: R need use libamgralloc_ext [1/1]
-    
-    PD#RSP-1517
-    
-    Problem:
-    R need use libamgralloc_ext
-    
-    Solution:
-    use libamgralloc_ext for R
-    
-    Verify:
-    Y4
-    
-    Change-Id: I438519d514e89ebb586d235758d8d240db5bcb32
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+Release time: 2021-04-28-14-42
 
 ========================================
 
-Release time: 2021-04-27-21-01
-
-========================================
-
-Builder: yunmin.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:
