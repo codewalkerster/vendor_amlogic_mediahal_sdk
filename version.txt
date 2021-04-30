@@ -5,6 +5,26 @@ Version: v2.0
 ========================================
 
 Git commit:
+commit 50b044ecda8447cfe78fbe4e4212744dd7f76238
+Author: wanghao.li <wanghao.li@amlogic.com>
+Date:   Thu Apr 29 16:41:13 2021 +0800
+
+    tsplay:  for 4-channel multiview service [1/1]
+    
+    PD#OTT-17578
+    
+    Problem:
+    for 4-channel multiview service
+    
+    Solution:
+    for 4-channel multiview service
+    
+    Verify:
+    SC2
+    
+    Change-Id: I2226a649259c36d4499e3cc5d2a555c1d8991d95
+    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
+
 commit 287ed6794703d585c9d1a03347c9e06a051b689c
 Author: zhipeng.he <zhipeng.he@amlogic.com>
 Date:   Mon Apr 26 21:32:20 2021 +0800
@@ -194,33 +214,13 @@ Date:   Fri Apr 9 20:50:24 2021 +0800
     Change-Id: Ib9c29281fbb6f74da5e42d65349f6a6de34ffeab
     Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
 
-commit add14d26ca2576d0be569e84541794ffd4166a20
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Apr 2 14:13:52 2021 +0800
+========================================
 
-    tsplayer: switch channel stress test [1/1]
-    
-    PD#SWPL-46147
-    
-    Problem:
-    OnWriteVideoEs() crash.
-    
-    Solution:
-    At StopVideoFilter(),the vpid setting is invalidated at the end.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I93f1ad44d3249a69346fc6ec359106464f6f1787
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+Release time: 2021-04-30-13-50
 
 ========================================
 
-Release time: 2021-04-28-14-42
-
-========================================
-
-Builder: zhipeng.he
+Builder: wanghao.li
 
 ========================================
 Release file:
