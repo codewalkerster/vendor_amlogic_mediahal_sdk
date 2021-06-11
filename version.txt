@@ -1,226 +1,244 @@
 =========RELEALSE NOTE=================
 
-Version: v2.0
+Version: V3.0.20-Ibc2e4-6019fc
 
 ========================================
 
 Git commit:
-commit 50b044ecda8447cfe78fbe4e4212744dd7f76238
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Thu Apr 29 16:41:13 2021 +0800
-
-    tsplay:  for 4-channel multiview service [1/1]
-    
-    PD#OTT-17578
-    
-    Problem:
-    for 4-channel multiview service
-    
-    Solution:
-    for 4-channel multiview service
-    
-    Verify:
-    SC2
-    
-    Change-Id: I2226a649259c36d4499e3cc5d2a555c1d8991d95
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
-
-commit 287ed6794703d585c9d1a03347c9e06a051b689c
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Mon Apr 26 21:32:20 2021 +0800
-
-    tsplayer: TsPlayer support avs video type. [1/1]
-    
-    PD#SWPL-48260
-    
-    Problem:
-    TsPlayer not support avs video type.
-    
-    Solution:
-    TsPlayer support avs video type.
-    
-    Verify:
-    T982-X9
-    
-    Change-Id: I398e14c0d0ba4bf3d53afe1d9154a0f46fd3767a
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
-
-commit 1ed32c1a3ae4ad53b833c2a4ef7da8375ad64619
+commit 6019fc722cba67edff207ab73c55d687f372512a
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Apr 26 16:38:46 2021 +0800
+Date:   Mon Jun 7 19:54:32 2021 +0800
 
-    tsplayer:  switch channel dispaly last frame [1/1]
+    tsplayer: TsPlayer in android use android.bp to compile [1/1]
     
-    PD#SWPL-45058
+    PD#SWPL-52276
     
     Problem:
-    When exiting,VideoTunnelDisplay DequeueBuffer is blocked.
+    TsPlayer in android use android.bp to compile
     
     Solution:
-    1.Increase the playback state,
-    and stop dequeue_buffer when exiting.
-    2.add debug info.
+    TsPlayer in android use android.bp to compile
     
     Verify:
     SC2_AH212
     
-    Change-Id: Ie3ab91633ac1b70b9c72fb56258421e740a573c3
+    Change-Id: Ibc2e488dcbaa3590f186e622a247a86d29d44877
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 55f150c66b6cab3c3bc99deadaa4d30fa7eb60d7
+commit c20ea306e0ff6e24d1f047edabcbdffe078bc4da
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Apr 13 11:11:14 2021 +0800
+Date:   Fri Jun 4 21:17:46 2021 +0800
 
-    tsplayer: DASH cannot play [1/1]
+    tsplayer: switch channel to lock channel the audio can ouput [1/1]
     
-    PD#RSP-1690
+    PD#SWPL-50494
     
     Problem:
-    framemode: GetBufferStat() crash
+    The mute command was not sent to audiohal.
     
     Solution:
-    According to the platform,
-    the method of obtaining the buffer status is distinguished.
+    tunnelmode: Before there is an open audio decoder,
+    it is allowed to send mute commands to audiohal.
     
     Verify:
     SC2_AH212
     
-    Change-Id: I0ecc10e7f1bef7beec4cb5ec2172c04007d67152
+    Change-Id: I91f3339ba5b0d4670367729c8325f55bb4adce50
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit c53b1645b1c78ed120c98bd6c81cfbcafd19edd6
-Author: wenlong.yuan <wenlong.yuan@amlogic.com>
-Date:   Wed Apr 21 21:27:40 2021 +0800
+commit b0a3709d96ece11e7b396d3b43308e5deb56398d
+Author: chen.chen2 <chen.chen2@amlogic.com>
+Date:   Wed Jun 9 12:34:26 2021 +0800
 
-    tsplayer: trickmode need set to decoder [1/1]
+    mediahal: Fix VOD IONLY trickmode issue [1/1]
     
-    PD#SWPL-47175
+    PD#SWPL-52399
     
     Problem:
-    set trickmode to decoder not right.
+    1. Tsplayer kWhatStartVideo case always set the default value
+       for trickmode
+    2. TsPlayerRender syncQueuesDone_l() not include IONLY process,
+       this will lead IONLY mode no output to render.
+    3. VideoTunnelDisplay clearlastframe default value is true,
+       this will lead switch to IONLY trickmode the MesonHwc be released,
+       then dqbuf always report failed.
     
     Solution:
-    trickmode need set to decoder
+    1. Recover the trickmode in kWhatStartVideo case.
+    2. AV_VIDEO_TRICK_MODE_IONLY need send frame to render all the time,
+       so we add the case that when in AV_VIDEO_TRICK_MODE_IONLY always
+       call postDrainVideoQueue().
+    3. Change the clearlastframe value from true to fale in
+       VideodecNonTunnelWrapper and VideoTunnelDisplay.
     
     Verify:
-    S905X2-U212
+    AH212
     
-    Change-Id: I38c58cda615c8a77c72792d3bcac44046deb4381
-    Signed-off-by: wenlong.yuan <wenlong.yuan@amlogic.com>
+    Change-Id: I614e38e75e08b7cd0ec764028fba7405824481be
+    Signed-off-by: chen.chen2 <chen.chen2@amlogic.com>
 
-commit 55276cdeca7309f2b07f115066b8f8485e4ed93c
-Author: wanghao.li <wanghao.li@amlogic.com>
-Date:   Wed Apr 7 13:48:59 2021 +0800
-
-    tsplayer: video tunnel dequeue buffer fail [1/1]
-    
-    PD#RSP-1670
-    
-    Problem:
-    dequeue buffer fail with videotunnel has not data
-    
-    Solution:
-    retry until dequeue buffer success
-    
-    Verify:
-    SC2
-    
-    Change-Id: Icbd50e9127ce152874b29030243bed850bd6d598
-    Signed-off-by: wanghao.li<wanghao.li@amlogic.com>
-
-commit c43b0ce089f54189e542d150b54759124994308d
+commit 29e25cb4e1dc00311eff6a7bcc57a033c5e80d5b
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Apr 12 15:07:21 2021 +0800
+Date:   Tue Jun 1 10:57:28 2021 +0800
 
-    mediahal: not start video before audio set first pts for beginning playback [1/1]
+    mediahal: reset frac when pause-resume [1/1]
     
-    PD#SWPL-47036
+    PD#SWPL-51767
     
     Problem:
-    video start bofore audio set first pts, then anchor time will
-    update again after audio set first pts
+    pattern cannot detect after pause
     
     Solution:
-    not start video before audio set first pts for beginning playback
+    reset frac when pause-resume
     
     Verify:
     ohm
     
-    Change-Id: I05a8a8a65de1af0a2f16763ff1b34d1de3d06d1a
+    Change-Id: I0b795df79fab1bac970aabb2eb6fedc2d2463ca6
     Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 942316bbbe9d334643a154fc9dbc3e11a0e2cd6f
+commit 1ad7cb0a32932433444fc99f63595da559ce8903
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Apr 15 18:05:32 2021 +0800
+Date:   Thu Jun 3 16:06:13 2021 +0800
 
-    mediahal: mediahal_sdk/version.txt adds 10 commit messages. [1/1]
+    playerdemo: Add enhancement scheme in EsVideoDecPlayer. [1/1]
     
-    PD#SWPL-45058
+    PD#SWPL-35245
     
     Problem:
-    mediahal_sdk/version.txt adds 10 commit messages.
+    Mediahal_sdk compilation error.
     
     Solution:
-    mediahal_sdk/version.txt adds 10 commit messages.
+    Modify release_tool.sh and copy EsVideoDecPlayer to the bin directory.
+    
+    usage:
+    EsVideoDecPlayer -i h264.es -f 2 -s h264.fsz
+    
+    Verify:
+    U212
+    
+    Change-Id: I9d461f62bccae41536a93d9a9fd945d4a92d7a11
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 047a608ebfc191a9cd5894e9fdfadb75e0a86974
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jun 1 18:04:21 2021 +0800
+
+    tsplayer: pip swap bwteen ad and nonad stream ,ad info not mapped [1/1]
+    
+    PD#SWPL-51779
+    
+    Problem:
+    The set AD information does not correspond to the demux id.
+    
+    Solution:
+    Set the demux id in the constructor of Am_AudioHalWrapper.
     
     Verify:
     SC2_AH212
     
-    Change-Id: I2ea3f1d421564348209f7b99191b6e4f32207e49
+    Change-Id: I606302d77a6ba795561291abb302d3cbda497c09
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 4eff4e9d610047d563e74a31b0e066c0505bef76
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Thu Apr 8 20:57:03 2021 +0800
+commit 1b3c5506f03551cfa912d99da8413c9bdecd160c
+Author: xinguang.jiang <xinguang.jiang@amlogic.com>
+Date:   Wed Mar 10 16:43:57 2021 +0800
 
-    tsplayer: tunnelmode support ac4 audio format. [1/1]
+    playerdemo: Add enhancement scheme in EsVideoDecPlayer. [1/1]
     
-    PD#SWPL-46119
+    PD#SWPL-35245
     
     Problem:
-    tunnelmode not support ac4 audio format.
+    Add enhancement scheme in EsVideoDecPlayer.
     
     Solution:
-    tunnelmode support ac4 audio format.
+    Add enhancement scheme in EsVideoDecPlayer.
+    
+    usage:
+    EsVideoDecPlayer -i h264.es -f 2 -s h264.fsz
     
     Verify:
-    S905X4-AH212
+    U212
     
-    Change-Id: I277362978336ada1c4d8c6462ed534def44ad841
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: I4bba225bf796f36ef4348ca74c178010173baec6
+    Signed-off-by: xinguang.jiang <xinguang.jiang@amlogic.com>
 
-commit e8feb96ba68bcfb0d4177821c6cf846402a5e66c
-Author: “sining.huang” <sining.huang@amlogic.com>
-Date:   Fri Apr 9 20:50:24 2021 +0800
+commit 5b2c16538615675bfa28147388565b6c4ee91b85
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sun May 30 01:11:53 2021 +0800
 
-    amtsplayer: change getcurrenttime return [1/1]
+    tsplayer: do time shift,subtitle display after 10 seconds [1/1]
     
-    PD#SWPL-47040
+    PD#SWPL-51350
     
     Problem:
-    getcurrenttime method return invalid value
-     when stopvideodecoding.
+    1.The amount of data buffered is not controlled.
+    2.mediasync id alloc fail.
     
     Solution:
-    When stopvideocoding, VPTs does not perform
-    the VPTs / 90 operation.It directly assigns
-    CTime to - 1 and returns up.
-    After ZTE gets - 1, it does not need to
-    multiply 90 to calculate VPTs
+    1.1 Because mediasync pts is forcibly changed to 33bit,
+    the audio cache calculates incorrectly.
+    Audio pts need to be unified into 33bit.
+    1.2 When the data exceeds the threshold,
+    ts data can be written only when the video decoding data is not available.
+    2.Add the lock when new MediaSync and allocInstance.
     
     Verify:
-    S905X4
+    SC2_AH212
     
-    Change-Id: Ib9c29281fbb6f74da5e42d65349f6a6de34ffeab
-    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
+    Change-Id: Ie2cea3e704ab99426b46bbd979f1e48220665580
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 4ff815f743452f37253f7a275aed000fb1fea029
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu May 27 16:27:19 2021 +0800
+
+    mediahal: need exit wait audio update first pts when stop [1/1]
+    
+    PD#SWPL-50312
+    
+    Problem:
+    sometime occur always wait audio update first pts, loop not exit when stop
+    
+    Solution:
+    need exit wait audio update first pts when stop
+    
+    Verify:
+    ohm
+    
+    Change-Id: I3be490c762f99e14445bc18e9388d40bf3b8e5ec
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit dc6a46b38421fdeb9b7d9b6a833e1b8985e2e26d
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon May 24 14:16:14 2021 +0800
+
+    tsplayer: do time shift,TV black screen [1/1]
+    
+    PD#SWPL-50969
+    
+    Problem:
+    When TrickMode is PAUSE_NEXT mode,
+    the first frame after decoding is not displayed.
+    
+    Solution:
+    When TrickMode is in PAUSE_NEXT mode,
+    the first frame of video after decoding is sent directly to the display module
+    without audio and video synchronization.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: Iea3fa4cae6d22d1fdd80a6a2c14a24265b1ef768
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-04-30-13-50
+Release time: 2021-06-11-11-16
 
 ========================================
 
-Builder: wanghao.li
+Builder: yunmin.chen
 
 ========================================
 Release file:
@@ -241,11 +259,14 @@ libmediahal_videodec.so
 
 Example file:
 AmTsPlayerExample.cpp
-Android.mk
+Android.bp
 
 Binary  file:
 AmTsPlayerExample
+AmTsPlayerExampleSystem
 AmTsPlayerTest
+EsVideoDecPlayer
+EsVideoDecPlayerTest
 vesplayer
 videodecplayer
 

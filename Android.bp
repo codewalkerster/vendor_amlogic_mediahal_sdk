@@ -82,7 +82,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_tsplayer",
-    defaults: ["mediahal_sdk_go_defaults"],
+    //defaults: ["mediahal_sdk_go_defaults"],
     vendor: true,
     strip: {
     none: true,
@@ -106,7 +106,8 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libmediahal_tsplayer.system",
-    defaults: ["mediahal_sdk_go_defaults","mediahalvercheck_defaults"],
+    defaults: ["mediahalvercheck_defaults"],
+    //defaults: ["mediahal_sdk_go_defaults","mediahalvercheck_defaults"],
     strip: {
     none: true,
     },
@@ -253,6 +254,27 @@ cc_prebuilt_binary {
     arch: {
         arm: {
             srcs: ["bin/EsVideoDecPlayer"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_binary {
+    name: "EsVideoDecPlayerTest",
+    defaults: ["mediahal_sdk_go_defaults"],
+
+    arch: {
+        arm: {
+            srcs: ["bin/EsVideoDecPlayerTest"],
         },
         arm64: {
             enabled: false,

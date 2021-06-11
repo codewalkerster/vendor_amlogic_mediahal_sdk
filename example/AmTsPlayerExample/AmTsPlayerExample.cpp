@@ -42,6 +42,11 @@ using namespace android;
 #endif
 using namespace std;
 
+/*TS Playback Switch*/
+typedef enum {
+    TS_PLAYBACK_DISABLE = 0,    // Not playback when file eof
+    TS_PLAYBACK_ENABLE = 1,     // Playback when file eof
+} am_tsplayer_playback_type;
 
 
 const int kRwSize = 188*300;
@@ -212,6 +217,7 @@ static void usage(char **argv)
     printf("-a | --acodec       unknown:0, mp2:1, mp3:2, ac3:3, eac3:4, dts:5, aac:6[default], latm:7, pcm:8\n");
     printf("-V | --vpid         video pid, default 0x100\n");
     printf("-A | --apid         audio pid, default 0x101\n");
+    printf("-p | --playback     disable:0[default], enable:1\n");
     printf("-h | --help         print this usage\n");
 }
 
@@ -238,7 +244,7 @@ int main(int argc, char **argv)
 {
     int optionChar = 0;
     int optionIndex = 0;
-    const char *shortOptions = "i:t:b:y:c:v:a:V:A:h";
+    const char *shortOptions = "i:t:b:y:c:v:a:V:A:p:h";
     struct option longOptions[] = {
         { "in",             required_argument,  NULL, 'i' },
         { "tstype",         required_argument,  NULL, 't' },
@@ -249,6 +255,7 @@ int main(int argc, char **argv)
         { "acodec",         required_argument,  NULL, 'a' },
         { "vpid",           required_argument,  NULL, 'V' },
         { "apid",           required_argument,  NULL, 'A' },
+        { "playback",       required_argument,  NULL, 'p' },
         { "help",           no_argument,        NULL, 'h' },
         { NULL,             0,                  NULL,  0  },
     };
@@ -260,6 +267,7 @@ int main(int argc, char **argv)
     am_tsplayer_video_trick_mode vTrickMode = AV_VIDEO_TRICK_MODE_NONE;
     am_tsplayer_video_codec vCodec = AV_VIDEO_CODEC_H264;
     am_tsplayer_audio_codec aCodec = AV_AUDIO_CODEC_AAC;
+    am_tsplayer_playback_type emPlaybackType = TS_PLAYBACK_DISABLE;
     int32_t vPid = 0x100;
     int32_t aPid = 0x101;
 
@@ -290,6 +298,8 @@ int main(int argc, char **argv)
             case 'A':
                 aPid = atoi(optarg);
                 break;
+            case 'p':
+                emPlaybackType = static_cast<am_tsplayer_playback_type>(atoi(optarg));
                 break;
             case 'h':
                 usage(argv);
@@ -378,8 +388,14 @@ int main(int argc, char **argv)
     while (tsType)
     {
         if (file.eof()) {
-            printf("file read eof\n");
-            break;
+            if (emPlaybackType == TS_PLAYBACK_ENABLE) {
+                printf("file read eof will playback soon \n");
+                file.clear();
+                file.seekg(0, file.beg);
+            } else {
+                printf("file read eof will stop playing soon \n");
+                break;
+            }
         }
         file.read(buf, (int)kRwSize);
         ibuf.buf_size = kRwSize;

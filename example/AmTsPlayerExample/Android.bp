@@ -1,0 +1,38 @@
+cc_test {
+    name: "AmTsPlayerExample",
+    enabled: false,
+    vendor: true,
+    srcs: [
+        "AmTsPlayerExample.cpp",
+    ],
+    shared_libs: [
+        "libmediahal_tsplayer",
+    ],
+
+    include_dirs: [
+        "vendor/amlogic/common/mediahal_sdk/include",
+    ],
+}
+
+cc_test {
+    name: "AmTsPlayerExampleSystem",
+    enabled: false,
+    srcs: [
+        "AmTsPlayerExample.cpp",
+    ],
+    shared_libs: [
+        "libmediahal_tsplayer.system",
+        "libutils",
+        "libbase",
+        "libbinder",
+        "libcutils",
+        "libui",
+        "libgui"
+    ],
+    include_dirs: [
+        "vendor/amlogic/common/mediahal_sdk/include",
+    ],
+    cflags: [
+        "-DSUPPORT_ANDROID",
+    ],
+}

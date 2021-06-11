@@ -137,7 +137,15 @@ typedef enum {
     AV_VIDEO_MATCH_MODE_PAN_SCAN = 3,      // Pan scan match mode
     AV_VIDEO_MATCH_MODE_COMBINED = 4,      // Combined pan scan and letter box
     AV_VIDEO_MATCH_MODE_WIDTHFULL = 5,     // Strech the video width to the full window
-    AV_VIDEO_MATCH_MODE_HEIGHFULL = 6      // Strech the video height to the full window
+    AV_VIDEO_MATCH_MODE_HEIGHFULL = 6,      // Strech the video height to the full window
+    AV_VIDEO_WIDEOPTION_4_3_LETTER_BOX = 7,
+    AV_VIDEO_WIDEOPTION_4_3_PAN_SCAN = 8,
+    AV_VIDEO_WIDEOPTION_4_3_COMBINED = 9,
+    AV_VIDEO_WIDEOPTION_16_9_IGNORE = 10,
+    AV_VIDEO_WIDEOPTION_16_9_LETTER_BOX = 11,
+    AV_VIDEO_WIDEOPTION_16_9_PAN_SCAN = 12,
+    AV_VIDEO_WIDEOPTION_16_9_COMBINED = 13,
+    AV_VIDEO_WIDEOPTION_CUSTOM = 14
 } am_tsplayer_video_match_mode;
 
 /*Video decoder type*/
@@ -164,6 +172,8 @@ typedef enum {
     AV_AUDIO_CODEC_LATM = 7,               // AAC LATM
     AV_AUDIO_CODEC_PCM = 8,                // PCM
     AV_AUDIO_CODEC_AC4 = 9,                // AC4
+    AV_AUDIO_CODEC_DRA = 10,               // DRA
+    AV_AUDIO_CODEC_MAX,                    // max audio type
 //    AV_AUDIO_CODEC_HEAAC = 8,            // HEAAC
 //    AV_AUDIO_CODEC_AAC_ADTS = 9,         // AAC_ADTS
 //    AV_AUDIO_CODEC_HEAACV2 = 10          // HEAAC VERSION2
