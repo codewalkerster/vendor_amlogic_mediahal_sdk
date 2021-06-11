@@ -1,10 +1,120 @@
 =========RELEALSE NOTE=================
 
-Version: V3.0.20-Ibc2e4-6019fc
+Version: V3.0.25-Ia3b4f-c05345
 
 ========================================
 
 Git commit:
+commit c053458fdc13f5fb9fa875a53675a78439e91a9b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jun 15 17:43:14 2021 +0800
+
+    tsplayer: Modification of switch channel and do timeshift. [1/1]
+    
+    PD#SWPL-52728
+    
+    Problem:
+    1.switch channel,TV shows the frame of the previous channel
+    2.do timeshift,video stutter.
+    
+    Solution:
+    1.Turn on the function of clearing the last frame.
+    2.Resume TRICKMODE when stop video.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: Ia3b4f5b4a409f78c4684b8bc41af7e9077713ea7
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit fbbc4ab642bc0696acbe0b3228a4840dcaae218b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Jun 11 20:39:49 2021 +0800
+
+    tsplayer: open FCC switch channel，DUTblank screen [1/1]
+    
+    PD#SWPL-52642
+    
+    Problem:
+    SetSurface() crash.
+    
+    Solution:
+    void* pSurface needs to determine whether -1 is valid.
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: I0cbaa34fe112c605b5efaa6892e675637aa4e9c3
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 8d7a81faa899895b7cf153d9e3757a46391b7524
+Author: Yinli Xia <yinli.xia@amlogic.com>
+Date:   Wed Jun 16 11:03:15 2021 +0800
+
+    Mediasync: switch channel,audio is not smooth. [1/2]
+    
+    PD#SWPL-51497
+    
+    Problem:
+    switch channel,audio is not smooth
+    
+    Solution:
+    1.reduce adjust clock step
+    2.reduce adjust clock times
+    
+    Verify:
+    S905X4-AH212
+    
+    Change-Id: I687eeabf1d8152c804027f86629d346ca123c3a3
+    Signed-off-by: Yinli Xia <yinli.xia@amlogic.com>
+
+commit 906f4af22006d67ce0ccab5699b0974a519b0ddd
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Jun 1 21:12:38 2021 +0800
+
+    MediaSync: first video frame shows too late. [1/2]
+    
+    PD#SWPL-51838
+    
+    Problem:
+    first video frame need to do av sync firstly, then show;
+    
+    Solution:
+    show first frame no sync in pip case;
+    don't do av align in fcc case;
+    recovery video drop strategy;
+    optimize audio drop strategy;
+    move calling CheckSourceClockDiscontinue to processThreadLoop;
+    enlarge DTV_PTS_CORRECTION_THRESHOLD;
+    optimize doHandleInitState;
+    optimize code structure;
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: Ifa1bbce33d8d3e87a650cc04ec478204d0b84ec8
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit 9ea661e88ff79f3e76c2b57c8a85cae299ef3729
+Author: Rui Wang <rui.wang@amlogic.com>
+Date:   Tue Jun 8 17:56:08 2021 +0800
+
+    videodec: Set the value to videodec [1/2]
+    
+    PD#SWPL-49717
+    
+    Problem:
+    Always print abnormal info in SecureCRT
+    
+    Solution:
+    set pcrid to invalid when stop play
+    
+    Verify:
+    smith
+    
+    Change-Id: Icd596c9768297eee4b7f533103c06cd8b9098ed1
+    Signed-off-by: Rui Wang <rui.wang@amlogic.com>
+
 commit 6019fc722cba67edff207ab73c55d687f372512a
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Jun 7 19:54:32 2021 +0800
@@ -120,121 +230,9 @@ Date:   Thu Jun 3 16:06:13 2021 +0800
     Change-Id: I9d461f62bccae41536a93d9a9fd945d4a92d7a11
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 047a608ebfc191a9cd5894e9fdfadb75e0a86974
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jun 1 18:04:21 2021 +0800
-
-    tsplayer: pip swap bwteen ad and nonad stream ,ad info not mapped [1/1]
-    
-    PD#SWPL-51779
-    
-    Problem:
-    The set AD information does not correspond to the demux id.
-    
-    Solution:
-    Set the demux id in the constructor of Am_AudioHalWrapper.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I606302d77a6ba795561291abb302d3cbda497c09
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 1b3c5506f03551cfa912d99da8413c9bdecd160c
-Author: xinguang.jiang <xinguang.jiang@amlogic.com>
-Date:   Wed Mar 10 16:43:57 2021 +0800
-
-    playerdemo: Add enhancement scheme in EsVideoDecPlayer. [1/1]
-    
-    PD#SWPL-35245
-    
-    Problem:
-    Add enhancement scheme in EsVideoDecPlayer.
-    
-    Solution:
-    Add enhancement scheme in EsVideoDecPlayer.
-    
-    usage:
-    EsVideoDecPlayer -i h264.es -f 2 -s h264.fsz
-    
-    Verify:
-    U212
-    
-    Change-Id: I4bba225bf796f36ef4348ca74c178010173baec6
-    Signed-off-by: xinguang.jiang <xinguang.jiang@amlogic.com>
-
-commit 5b2c16538615675bfa28147388565b6c4ee91b85
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sun May 30 01:11:53 2021 +0800
-
-    tsplayer: do time shift,subtitle display after 10 seconds [1/1]
-    
-    PD#SWPL-51350
-    
-    Problem:
-    1.The amount of data buffered is not controlled.
-    2.mediasync id alloc fail.
-    
-    Solution:
-    1.1 Because mediasync pts is forcibly changed to 33bit,
-    the audio cache calculates incorrectly.
-    Audio pts need to be unified into 33bit.
-    1.2 When the data exceeds the threshold,
-    ts data can be written only when the video decoding data is not available.
-    2.Add the lock when new MediaSync and allocInstance.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: Ie2cea3e704ab99426b46bbd979f1e48220665580
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 4ff815f743452f37253f7a275aed000fb1fea029
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu May 27 16:27:19 2021 +0800
-
-    mediahal: need exit wait audio update first pts when stop [1/1]
-    
-    PD#SWPL-50312
-    
-    Problem:
-    sometime occur always wait audio update first pts, loop not exit when stop
-    
-    Solution:
-    need exit wait audio update first pts when stop
-    
-    Verify:
-    ohm
-    
-    Change-Id: I3be490c762f99e14445bc18e9388d40bf3b8e5ec
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit dc6a46b38421fdeb9b7d9b6a833e1b8985e2e26d
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon May 24 14:16:14 2021 +0800
-
-    tsplayer: do time shift,TV black screen [1/1]
-    
-    PD#SWPL-50969
-    
-    Problem:
-    When TrickMode is PAUSE_NEXT mode,
-    the first frame after decoding is not displayed.
-    
-    Solution:
-    When TrickMode is in PAUSE_NEXT mode,
-    the first frame of video after decoding is sent directly to the display module
-    without audio and video synchronization.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: Iea3fa4cae6d22d1fdd80a6a2c14a24265b1ef768
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2021-06-11-11-16
+Release time: 2021-06-16-21-24
 
 ========================================
 
