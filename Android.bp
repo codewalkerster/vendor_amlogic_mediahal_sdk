@@ -181,31 +181,6 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libmediahal_passthrough",
-    defaults: ["mediahal_sdk_go_defaults"],
-    vendor: true,
-    compile_multilib: "32",
-    strip: {
-    none: true,
-    },
-    arch: {
-        arm: {
-            srcs: ["lib/vendor/libmediahal_passthrough.so"],
-        },
-        arm64: {
-            enabled: false,
-        },
-        x86: {
-            enabled: false,
-        },
-        x86_64: {
-            enabled: false,
-        },
-    },
-    check_elf_files: false,
-}
-
-cc_prebuilt_library_shared {
     name: "libmediahal_resman",
     vendor: true,
     compile_multilib: "32",

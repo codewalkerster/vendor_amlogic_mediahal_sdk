@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.14-Ib55f9-785ff1
+Version: V3.2.16-If5007-1202a9
 
 ========================================
 
 Git commit:
+commit 1202a90d8933c92b116b2a3980b978da31bd54fe
+Author: houren.wang <houren.wang@amlogic.com>
+Date:   Mon Jul 12 10:15:49 2021 +0800
+
+    TsPlayer: CB1 TsPlayer cann't release resource if it create failed [1/1]
+    
+    PD#SWPL-54600
+    
+    Problem:
+    TsPlayer cann't release resource as it was registered in PlayerRoster.
+    refcount can't become zero.
+    
+    Solution:
+    register TsPlayer after can sure it has been create success.
+    
+    Verify:
+    AP222
+    
+    Change-Id: If5007ef80f2ba6c2f3c482b10a10ec516e98035c
+    Signed-off-by: houren.wang <houren.wang@amlogic.com>
+
+commit 499638e04c3755d73e4677f4c11dcfeb7ff72ad7
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Jul 6 16:55:47 2021 +0800
+
+    MediaSync: CF1 FCC switch channel, the speed is slow. [1/1]
+    
+    PD#SWPL-54343
+    
+    Problem:
+    switch channel, audio come too late;
+    
+    Solution:
+    no need to wait audio in FCC case;
+    optimization refclock offset set when GOP is big;
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: Ibd2ca14a06cde4fac4f697a545da60b8567c1432
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit 785ff145a0af07f3945c22663ff3d6fb78be086e
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Fri Jul 9 15:20:17 2021 +0800
@@ -171,53 +213,9 @@ Date:   Mon Jul 5 14:02:04 2021 +0800
     Change-Id: I7f7be93d586a6b91e9a50940c744e756b237b32f
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit da81a5500871de0ef27dc2a975e266db8df79fcb
-Author: Chengshun Wang <chengshun.wang@amlogic.com>
-Date:   Mon Jun 14 20:48:35 2021 +0800
-
-    videotunnel: fix av not sync [1/1]
-    
-    PD#SWPL-52705
-    
-    Problem:
-    1) video no drop, lead some frame late also output
-    2) VT dequeue happen wait over one vsync time, lead output late
-    
-    Solution:
-    increase queue buffer from 3+1 to 4+1 before first dequeue
-    
-    Verify:
-    AH212
-    
-    Change-Id: I9a0ae04644da031b4efd1822c37d9039ac830530
-    Signed-off-by: Chengshun Wang <chengshun.wang@amlogic.com>
-
-commit a2cbe993a5dc0709f085fdf1a232c5453c7ec550
-Author: Chengshun Wang <chengshun.wang@amlogic.com>
-Date:   Thu Jul 1 13:35:24 2021 +0800
-
-    mediasync: CF1 fix pip play stutter [1/2]
-    
-    PD#SWPL-53127
-    
-    Problem:
-    Pip no sound come, not wait audio, play video directly,
-    some streams video data gap over 500ms, lead video stutter
-    
-    Solution:
-    now start play threshold have increase to 300ms,
-    if audio is mute, and is inject data, just wait 50ms,
-    else wait 800ms
-    
-    Verify:
-    AH212
-    
-    Change-Id: I09787aaba428256132e2994447776c3f40ab70ab
-    Signed-off-by: Chengshun Wang <chengshun.wang@amlogic.com>
-
 ========================================
 
-Release time: 2021-07-14-12-20
+Release time: 2021-07-14-14-20
 
 ========================================
 
