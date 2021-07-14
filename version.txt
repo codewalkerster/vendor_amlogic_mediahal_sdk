@@ -1,238 +1,223 @@
 =========RELEALSE NOTE=================
 
-Version: V3.0.25-Ia3b4f-c05345
+Version: V3.2.14-Ib55f9-785ff1
 
 ========================================
 
 Git commit:
-commit c053458fdc13f5fb9fa875a53675a78439e91a9b
+commit 785ff145a0af07f3945c22663ff3d6fb78be086e
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jun 15 17:43:14 2021 +0800
+Date:   Fri Jul 9 15:20:17 2021 +0800
 
-    tsplayer: Modification of switch channel and do timeshift. [1/1]
+    TsPlayer: CB2 open PIP,press "Swap", amvideodec crash [1/1]
     
-    PD#SWPL-52728
+    PD#SWPL-53453
     
     Problem:
-    1.switch channel,TV shows the frame of the previous channel
-    2.do timeshift,video stutter.
+    AmVideoDec::queueInputBuffer() crash.
     
     Solution:
-    1.Turn on the function of clearing the last frame.
-    2.Resume TRICKMODE when stop video.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: Ia3b4f5b4a409f78c4684b8bc41af7e9077713ea7
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit fbbc4ab642bc0696acbe0b3228a4840dcaae218b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jun 11 20:39:49 2021 +0800
-
-    tsplayer: open FCC switch channel，DUTblank screen [1/1]
-    
-    PD#SWPL-52642
-    
-    Problem:
-    SetSurface() crash.
-    
-    Solution:
-    void* pSurface needs to determine whether -1 is valid.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I0cbaa34fe112c605b5efaa6892e675637aa4e9c3
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 8d7a81faa899895b7cf153d9e3757a46391b7524
-Author: Yinli Xia <yinli.xia@amlogic.com>
-Date:   Wed Jun 16 11:03:15 2021 +0800
-
-    Mediasync: switch channel,audio is not smooth. [1/2]
-    
-    PD#SWPL-51497
-    
-    Problem:
-    switch channel,audio is not smooth
-    
-    Solution:
-    1.reduce adjust clock step
-    2.reduce adjust clock times
-    
-    Verify:
-    S905X4-AH212
-    
-    Change-Id: I687eeabf1d8152c804027f86629d346ca123c3a3
-    Signed-off-by: Yinli Xia <yinli.xia@amlogic.com>
-
-commit 906f4af22006d67ce0ccab5699b0974a519b0ddd
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Jun 1 21:12:38 2021 +0800
-
-    MediaSync: first video frame shows too late. [1/2]
-    
-    PD#SWPL-51838
-    
-    Problem:
-    first video frame need to do av sync firstly, then show;
-    
-    Solution:
-    show first frame no sync in pip case;
-    don't do av align in fcc case;
-    recovery video drop strategy;
-    optimize audio drop strategy;
-    move calling CheckSourceClockDiscontinue to processThreadLoop;
-    enlarge DTV_PTS_CORRECTION_THRESHOLD;
-    optimize doHandleInitState;
-    optimize code structure;
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: Ifa1bbce33d8d3e87a650cc04ec478204d0b84ec8
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 9ea661e88ff79f3e76c2b57c8a85cae299ef3729
-Author: Rui Wang <rui.wang@amlogic.com>
-Date:   Tue Jun 8 17:56:08 2021 +0800
-
-    videodec: Set the value to videodec [1/2]
-    
-    PD#SWPL-49717
-    
-    Problem:
-    Always print abnormal info in SecureCRT
-    
-    Solution:
-    set pcrid to invalid when stop play
-    
-    Verify:
-    smith
-    
-    Change-Id: Icd596c9768297eee4b7f533103c06cd8b9098ed1
-    Signed-off-by: Rui Wang <rui.wang@amlogic.com>
-
-commit 6019fc722cba67edff207ab73c55d687f372512a
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Jun 7 19:54:32 2021 +0800
-
-    tsplayer: TsPlayer in android use android.bp to compile [1/1]
-    
-    PD#SWPL-52276
-    
-    Problem:
-    TsPlayer in android use android.bp to compile
-    
-    Solution:
-    TsPlayer in android use android.bp to compile
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: Ibc2e488dcbaa3590f186e622a247a86d29d44877
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit c20ea306e0ff6e24d1f047edabcbdffe078bc4da
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jun 4 21:17:46 2021 +0800
-
-    tsplayer: switch channel to lock channel the audio can ouput [1/1]
-    
-    PD#SWPL-50494
-    
-    Problem:
-    The mute command was not sent to audiohal.
-    
-    Solution:
-    tunnelmode: Before there is an open audio decoder,
-    it is allowed to send mute commands to audiohal.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I91f3339ba5b0d4670367729c8325f55bb4adce50
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit b0a3709d96ece11e7b396d3b43308e5deb56398d
-Author: chen.chen2 <chen.chen2@amlogic.com>
-Date:   Wed Jun 9 12:34:26 2021 +0800
-
-    mediahal: Fix VOD IONLY trickmode issue [1/1]
-    
-    PD#SWPL-52399
-    
-    Problem:
-    1. Tsplayer kWhatStartVideo case always set the default value
-       for trickmode
-    2. TsPlayerRender syncQueuesDone_l() not include IONLY process,
-       this will lead IONLY mode no output to render.
-    3. VideoTunnelDisplay clearlastframe default value is true,
-       this will lead switch to IONLY trickmode the MesonHwc be released,
-       then dqbuf always report failed.
-    
-    Solution:
-    1. Recover the trickmode in kWhatStartVideo case.
-    2. AV_VIDEO_TRICK_MODE_IONLY need send frame to render all the time,
-       so we add the case that when in AV_VIDEO_TRICK_MODE_IONLY always
-       call postDrainVideoQueue().
-    3. Change the clearlastframe value from true to fale in
-       VideodecNonTunnelWrapper and VideoTunnelDisplay.
+    Determine whether mVDAAdaptor is NULL.
     
     Verify:
     AH212
     
-    Change-Id: I614e38e75e08b7cd0ec764028fba7405824481be
+    Change-Id: Ib55f99514837b86d0f315cfe044889c3f3b1fb1b
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 8735871b83eb0a02e30582eef8ab46337a055477
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jul 6 15:45:48 2021 +0800
+
+    tsplayer: CF1 set setParams [1/1]
+    
+    PD#SWPL-52871
+    
+    Problem:
+    1.MS12 need add support for set Presentation ID
+    2.need setParams for video seclevel
+    
+    Solution:
+    1.support set Presentation ID
+    2.add AM_TSPLAYER_KEY_VIDEO_SECLEVEL for video seclevel
+    
+    Verify:
+    SC2_AH212
+    
+    Change-Id: Iad97bb2faf00db609489560ee88833646b7c17e7
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit d0b542bff3955f40b14010965e8ee5f1627c1533
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Jun 21 20:19:40 2021 +0800
+
+    tsplayer: CF1 android P T3 chip, DTV use video_tunnel to display [1/1]
+    
+    PD#SWPL-51812
+    
+    Problem:
+    use video_tunnel to display
+    
+    Solution:
+    use video_tunnel to display
+    
+    Verify:
+    smith_T3_AR321
+    
+    Change-Id: Ic587ee6b8a27c3319cba82e1a3f9a438ddc1e23a
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 5352e15f454655e464be1d91c36043401c90a787
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jun 30 14:57:06 2021 +0800
+
+    tsplayer: CB1 audio and video are out of sync after seek. [1/1]
+    
+    PD#SWPL-46427
+    
+    Problem:
+    timeshif,PVR, audio and video are out of sync after seek.
+    
+    Solution:
+    According to the number of video decoding changes,
+    determine whether more ts data needs to be sent to demux.
+    
+    Verify:
+    T950D4_AM301
+    
+    Change-Id: Id010016ad7fcc34a8e76986d3a5e487e8c8f5d48
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 92773aa7f5cc79d386da00778f823e9523e74022
+Author: chen.chen2 <chen.chen2@amlogic.com>
+Date:   Thu Jun 24 20:06:57 2021 +0800
+
+    MediaSync: CB1 Micro speed no effect issue [1/1]
+    
+    PD#SWPL-53550
+    
+    Problem:
+    When in micro speed case, audio resample policy not return
+    back to audio hal
+    
+    Solution:
+    Add return logic in audio resample policy
+    
+    Verify:
+    AH212
+    
+    Change-Id: Ib4ba56942d11fe8580aeb07546dcdc87bc7459b9
     Signed-off-by: chen.chen2 <chen.chen2@amlogic.com>
 
-commit 29e25cb4e1dc00311eff6a7bcc57a033c5e80d5b
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Jun 1 10:57:28 2021 +0800
+commit cd4f06f1310552aa6a4e68c6fa01ffee30cc2518
+Author: chen.chen2 <chen.chen2@amlogic.com>
+Date:   Mon Jun 28 21:55:08 2021 +0800
 
-    mediahal: reset frac when pause-resume [1/1]
+    MediaSync: CF2 complete pause and resume function [1/2]
     
-    PD#SWPL-51767
+    PD#SWPL-51207
     
     Problem:
-    pattern cannot detect after pause
+    When uplayer call MediaSync_setPause, need setPlaybackRate()
     
     Solution:
-    reset frac when pause-resume
+    Add setPlaybackRate() in setPause()
+    pause case: add setPlaybackRate(0)
+    resume case: add setPlaybackRate(LastPlaybackRate)
     
     Verify:
-    ohm
+    AH212
     
-    Change-Id: I0b795df79fab1bac970aabb2eb6fedc2d2463ca6
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+    Change-Id: I640ad25c1c5751e163de56e7926da3cc26e0f30a
+    Signed-off-by: chen.chen2 <chen.chen2@amlogic.com>
 
-commit 1ad7cb0a32932433444fc99f63595da559ce8903
+commit 60a232a3ea0926e6d89f4936958a28cc5af0b4d4
+Author: jianchuan.ping <jianchuan.ping@amlogic.com>
+Date:   Tue Jun 22 10:16:28 2021 +0800
+
+    MediaSync: Video and audio test have 100ms diff. [1/1]
+    
+    PD#SWPL-53109
+    
+    Problem:
+    Adjust audio clock not work.
+    
+    Solution:
+    Fix adjust clock work.
+    
+    Verify:
+    AH212
+    
+    Change-Id: I0dcca031bcbab0432a2c35008fed5c13ce4cfcd1
+    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
+
+commit dde4527d501c342577c1a62edb1ea2869f452ed8
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jun 3 16:06:13 2021 +0800
+Date:   Mon Jul 5 14:02:04 2021 +0800
 
-    playerdemo: Add enhancement scheme in EsVideoDecPlayer. [1/1]
+    tsplayer:  do timeshift,drag time progress bar,no AV output [1/1]
     
-    PD#SWPL-35245
+    PD#SWPL-54151
     
     Problem:
-    Mediahal_sdk compilation error.
+    4K H265 requires more data decoding to decode the first frame.
     
     Solution:
-    Modify release_tool.sh and copy EsVideoDecPlayer to the bin directory.
-    
-    usage:
-    EsVideoDecPlayer -i h264.es -f 2 -s h264.fsz
+    When the video cache is 0, write more data.
     
     Verify:
-    U212
+    SC2_AH212
     
-    Change-Id: I9d461f62bccae41536a93d9a9fd945d4a92d7a11
+    Change-Id: I7f7be93d586a6b91e9a50940c744e756b237b32f
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit da81a5500871de0ef27dc2a975e266db8df79fcb
+Author: Chengshun Wang <chengshun.wang@amlogic.com>
+Date:   Mon Jun 14 20:48:35 2021 +0800
+
+    videotunnel: fix av not sync [1/1]
+    
+    PD#SWPL-52705
+    
+    Problem:
+    1) video no drop, lead some frame late also output
+    2) VT dequeue happen wait over one vsync time, lead output late
+    
+    Solution:
+    increase queue buffer from 3+1 to 4+1 before first dequeue
+    
+    Verify:
+    AH212
+    
+    Change-Id: I9a0ae04644da031b4efd1822c37d9039ac830530
+    Signed-off-by: Chengshun Wang <chengshun.wang@amlogic.com>
+
+commit a2cbe993a5dc0709f085fdf1a232c5453c7ec550
+Author: Chengshun Wang <chengshun.wang@amlogic.com>
+Date:   Thu Jul 1 13:35:24 2021 +0800
+
+    mediasync: CF1 fix pip play stutter [1/2]
+    
+    PD#SWPL-53127
+    
+    Problem:
+    Pip no sound come, not wait audio, play video directly,
+    some streams video data gap over 500ms, lead video stutter
+    
+    Solution:
+    now start play threshold have increase to 300ms,
+    if audio is mute, and is inject data, just wait 50ms,
+    else wait 800ms
+    
+    Verify:
+    AH212
+    
+    Change-Id: I09787aaba428256132e2994447776c3f40ab70ab
+    Signed-off-by: Chengshun Wang <chengshun.wang@amlogic.com>
 
 ========================================
 
-Release time: 2021-06-16-21-24
+Release time: 2021-07-14-12-20
 
 ========================================
 
@@ -246,6 +231,7 @@ AmTsPlayer.h
 AmVideoDecBase.h
 MediaSyncInterface.h
 resourcemanage.h
+TunerPassthroughBase.h
 VideoTunnelRendererBase.h
 
 Library file:

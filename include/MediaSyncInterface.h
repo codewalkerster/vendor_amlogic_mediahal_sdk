@@ -45,6 +45,8 @@ typedef enum {
     MEDIASYNC_KEY_ISOMXTUNNELMODE,
     MEDIASYNC_KEY_AUDIOCACHE,
     MEDIASYNC_KEY_VIDEOWORKMODE,
+    MEDIASYNC_KEY_AUDIOMUTE,
+    MEDIASYNC_KEY_SOURCETYPE,
     MEDIASYNC_KEY_MAX = 255,
 } mediasync_parameter;
 
@@ -91,6 +93,7 @@ struct mediasync_audio_format{
     float samplerate;
     int datawidth;
     int channels;
+    int format;
 };
 
 typedef struct audioinfo{

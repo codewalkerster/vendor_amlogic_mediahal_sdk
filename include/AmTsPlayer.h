@@ -41,6 +41,24 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE  // input audio buffer done
 } am_tsplayer_event_type;
 
+
+typedef enum {
+    AM_TSPLAYER_KEY_AUDIO_PRESENTATION_ID = 0,
+    AM_TSPLAYER_KEY_VIDEO_SECLEVEL,
+} am_tsplayer_parameter;
+
+
+typedef enum {
+    AM_TSPLAYER_KEY_VIDEO_STATE = 0,
+} am_tsplayer_state_type;
+
+typedef struct {
+    uint8_t *data;
+    size_t data_len;
+    size_t actual_len;
+} am_tsplayer_state_t;
+
+
 /*Call back event mask*/
 #define AM_TSPLAYER_EVENT_TYPE_PTS_MASK            (1 << AM_TSPLAYER_EVENT_TYPE_PTS)
 #define AM_TSPLAYER_EVENT_TYPE_DTV_SUBTITLE_MASK   (1 << AM_TSPLAYER_EVENT_TYPE_DTV_SUBTITLE)
@@ -768,6 +786,28 @@ am_tsplayer_result  AmTsPlayer_getADStat(am_tsplayer_handle Hadl, am_tsplayer_ad
  *\return:       The AmTsPlayer result.
  */
 am_tsplayer_result  AmTsPlayer_setSubPid(am_tsplayer_handle Hadl, uint32_t pid);
+
+/**
+ *\brief:        get Params for specified AmTsPlayer instance .
+ *\inparam:      AmTsPlayer handle.
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_getParams(am_tsplayer_handle Hadl,am_tsplayer_parameter type, void* arg);
+
+/**
+ *\brief:        set Params for specified AmTsPlayer instance .
+ *\inparam:      AmTsPlayer handle.
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_setParams(am_tsplayer_handle Hadl,am_tsplayer_parameter type, void* arg);
+
+/**
+ *\brief:        get State for specified AmTsPlayer instance .
+ *\inparam:      AmTsPlayer handle.
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result AmTsPlayer_getState(am_tsplayer_handle Hadl,am_tsplayer_state_t* state);
+
 /**
  *\brief:        Start subtitle for specified AmTsPlayer instance .
  *\inparam:      AmTsPlayer handle.
