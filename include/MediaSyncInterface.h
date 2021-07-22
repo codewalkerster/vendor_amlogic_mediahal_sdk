@@ -101,6 +101,15 @@ typedef struct audioinfo{
     int cacheDuration;
 }mediasync_audioinfo;
 
+struct mediasync_audio_queue_info{
+    int64_t apts;
+    int size;
+    int duration;
+    mediasync_time_unit tunit;
+    bool isworkingchannel;
+    bool isneedupdate;
+};
+
 extern void* MediaSync_create();
 
 extern mediasync_result MediaSync_allocInstance(void* handle, int32_t DemuxId,
@@ -130,7 +139,7 @@ extern mediasync_result MediaSync_getTrackMediaTime(void* handle, int64_t *outMe
 
 extern mediasync_result mediasync_setParameter(void* handle, mediasync_parameter type, void* arg);
 extern mediasync_result mediasync_getParameter(void* handle, mediasync_parameter type, void* arg);
-extern mediasync_result MediaSync_queueAudioFrame(void* handle, int64_t apts, int size, int duration, mediasync_time_unit tunit);
+extern mediasync_result MediaSync_queueAudioFrame(void* handle, struct mediasync_audio_queue_info* info);
 extern mediasync_result MediaSync_queueVideoFrame(void* handle, int64_t vpts, int size, int duration, mediasync_time_unit tunit);
 extern mediasync_result MediaSync_AudioProcess(void* handle, int64_t apts, int64_t cur_apts, mediasync_time_unit tunit, struct mediasync_audio_policy* asyncPolicy);
 extern mediasync_result MediaSync_VideoProcess(void* handle, int64_t vpts, int64_t cur_vpts, mediasync_time_unit tunit, struct mediasync_video_policy* vsyncPolicy);

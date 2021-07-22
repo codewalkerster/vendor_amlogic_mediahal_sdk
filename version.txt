@@ -1,10 +1,115 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.16-If5007-1202a9
+Version: V3.2.21-I478c3-a5f2f8
 
 ========================================
 
 Git commit:
+commit a5f2f8cb1965f2b9d16f7b67c1ab5ec180592204
+Author: jiaming.huang <jiaming.huang@amlogic.com>
+Date:   Tue Jul 20 20:34:38 2021 +0800
+
+    TsPlayer: DTV Mosaic Notification [1/1]
+    
+    PD#TV-37020
+    
+    Problem:
+    Add a mosaic notification interface in tsplayer
+    
+    Solution:
+    Add error count detection in amcodecvda.cpp&
+    add callback message notification dtvkit in tsplayer.cp
+    
+    Verify:
+    AM30A2
+    
+    Change-Id: I478c3e6c396a8a7885ab9e0ee196d6463ac18978
+    Signed-off-by: jiaming.huang <jiaming.huang@amlogic.com>
+
+commit 96309b3781c5d51de15c4f81d0b26afa460c1781
+Author: yang liu1 <yang.liu1@amlogic.com>
+Date:   Tue Jul 20 14:43:47 2021 +0800
+
+    MediaHal: CF1 transfer decoder frame to omx. [2/2]
+    
+    PD#SWPL-54804
+    
+    Problem:
+    omx control flow error.
+    
+    Solution:
+    transfer decoder frame to omx.
+    
+    Verify:
+    T950X4
+    
+    Change-Id: Ia6cc1807fc90934794d84c50441ac9749aaabf2a
+    Signed-off-by: yang liu1 <yang.liu1@amlogic.com>
+
+commit 7932fe0047492719092f1a01bd61441181b6a489
+Author: Kai Song <kai.song@amlogic.com>
+Date:   Thu Jul 15 16:11:40 2021 +0800
+
+    videopassthrough: CF2 Support get video decoder buffer status [3/3]
+    
+    PD#SWPL-54846
+    
+    Problem:
+    Play local files incompletely with tuner framework passthrough mode
+    There is no video flow control for passthrough mode, we need feedback
+    the decoder buffer level to the apk layer to control dvr data write speed.
+    
+    Solution:
+    Support get video decoder buffer status and callback to omx component.
+    
+    Verify:
+    Android-R & OHM
+    
+    Change-Id: I30933c80572d13dede98c41be8d6d67c878e1a50
+    Signed-off-by: Kai Song <kai.song@amlogic.com>
+
+commit a54fed2033069055117eb1fcc99e52b8517bb7d0
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jul 15 14:22:46 2021 +0800
+
+    mediahal_sdk: CB0 Android Q failed to compile the firmware [1/1]
+    
+    PD#SWPL-55276
+    
+    Problem:
+    Android Q mediahal_sdk does not have libmediahal_passthrough.so,
+    causing firmware compilation failure.
+    
+    Solution:
+    Android Q mediahal_sdk does not need libmediahal_passthrough.so,
+    turn off libmediahal_passthrough module compilation.
+    
+    Verify:
+    AH212
+    
+    Change-Id: Ia57edf9a3a445f969a4114456dd9a95ef829be95
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit e0054d312f6f277f08911c180f00e03f509ff949
+Author: Yani Shi <yani.shi@amlogic.com>
+Date:   Mon Jul 5 19:28:28 2021 +0800
+
+    MediaSync: CF1 av is not sync when switch channel in multi-channel play. [2/2]
+    
+    PD#SWPL-50302
+    
+    Problem:
+    audio cache is too large.
+    
+    Solution:
+    clear audio cache
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I18ffd0446fa24018a7b6046ab49aeca056fb3652
+    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
+
 commit 1202a90d8933c92b116b2a3980b978da31bd54fe
 Author: houren.wang <houren.wang@amlogic.com>
 Date:   Mon Jul 12 10:15:49 2021 +0800
@@ -109,117 +214,13 @@ Date:   Mon Jun 21 20:19:40 2021 +0800
     Change-Id: Ic587ee6b8a27c3319cba82e1a3f9a438ddc1e23a
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 5352e15f454655e464be1d91c36043401c90a787
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jun 30 14:57:06 2021 +0800
+========================================
 
-    tsplayer: CB1 audio and video are out of sync after seek. [1/1]
-    
-    PD#SWPL-46427
-    
-    Problem:
-    timeshif,PVR, audio and video are out of sync after seek.
-    
-    Solution:
-    According to the number of video decoding changes,
-    determine whether more ts data needs to be sent to demux.
-    
-    Verify:
-    T950D4_AM301
-    
-    Change-Id: Id010016ad7fcc34a8e76986d3a5e487e8c8f5d48
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 92773aa7f5cc79d386da00778f823e9523e74022
-Author: chen.chen2 <chen.chen2@amlogic.com>
-Date:   Thu Jun 24 20:06:57 2021 +0800
-
-    MediaSync: CB1 Micro speed no effect issue [1/1]
-    
-    PD#SWPL-53550
-    
-    Problem:
-    When in micro speed case, audio resample policy not return
-    back to audio hal
-    
-    Solution:
-    Add return logic in audio resample policy
-    
-    Verify:
-    AH212
-    
-    Change-Id: Ib4ba56942d11fe8580aeb07546dcdc87bc7459b9
-    Signed-off-by: chen.chen2 <chen.chen2@amlogic.com>
-
-commit cd4f06f1310552aa6a4e68c6fa01ffee30cc2518
-Author: chen.chen2 <chen.chen2@amlogic.com>
-Date:   Mon Jun 28 21:55:08 2021 +0800
-
-    MediaSync: CF2 complete pause and resume function [1/2]
-    
-    PD#SWPL-51207
-    
-    Problem:
-    When uplayer call MediaSync_setPause, need setPlaybackRate()
-    
-    Solution:
-    Add setPlaybackRate() in setPause()
-    pause case: add setPlaybackRate(0)
-    resume case: add setPlaybackRate(LastPlaybackRate)
-    
-    Verify:
-    AH212
-    
-    Change-Id: I640ad25c1c5751e163de56e7926da3cc26e0f30a
-    Signed-off-by: chen.chen2 <chen.chen2@amlogic.com>
-
-commit 60a232a3ea0926e6d89f4936958a28cc5af0b4d4
-Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Tue Jun 22 10:16:28 2021 +0800
-
-    MediaSync: Video and audio test have 100ms diff. [1/1]
-    
-    PD#SWPL-53109
-    
-    Problem:
-    Adjust audio clock not work.
-    
-    Solution:
-    Fix adjust clock work.
-    
-    Verify:
-    AH212
-    
-    Change-Id: I0dcca031bcbab0432a2c35008fed5c13ce4cfcd1
-    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
-
-commit dde4527d501c342577c1a62edb1ea2869f452ed8
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Jul 5 14:02:04 2021 +0800
-
-    tsplayer:  do timeshift,drag time progress bar,no AV output [1/1]
-    
-    PD#SWPL-54151
-    
-    Problem:
-    4K H265 requires more data decoding to decode the first frame.
-    
-    Solution:
-    When the video cache is 0, write more data.
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I7f7be93d586a6b91e9a50940c744e756b237b32f
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+Release time: 2021-07-22-19-42
 
 ========================================
 
-Release time: 2021-07-14-14-20
-
-========================================
-
-Builder: yunmin.chen
+Builder: jiaming.huang
 
 ========================================
 Release file:
@@ -228,9 +229,9 @@ Header file:
 AmTsPlayer.h
 AmVideoDecBase.h
 MediaSyncInterface.h
-resourcemanage.h
 TunerPassthroughBase.h
 VideoTunnelRendererBase.h
+resourcemanage.h
 
 Library file:
 libmediahal_mediasync.so
