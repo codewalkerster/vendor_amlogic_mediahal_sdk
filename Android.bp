@@ -64,7 +64,7 @@ cc_prebuilt_library_shared {
     name: "libmediahal_videodec.system",
     defaults: ["mediahalvercheck_defaults"],
     strip: {
-    none: true,
+        none: true,
     },
     arch: {
         arm: {
@@ -112,7 +112,7 @@ cc_prebuilt_library_shared {
     defaults: ["mediahalvercheck_defaults"],
     //defaults: ["mediahal_sdk_go_defaults","mediahalvercheck_defaults"],
     strip: {
-    none: true,
+        none: true,
     },
     arch: {
         arm: {
@@ -189,7 +189,7 @@ cc_prebuilt_library_shared {
     vendor: true,
     compile_multilib: "32",
     strip: {
-    none: true,
+        none: true,
     },
     arch: {
         arm: {

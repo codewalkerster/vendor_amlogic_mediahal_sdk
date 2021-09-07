@@ -1,226 +1,226 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.21-I478c3-a5f2f8
+Version: V3.2.64-I7cbcc-a1aa90
 
 ========================================
 
 Git commit:
-commit a5f2f8cb1965f2b9d16f7b67c1ab5ec180592204
-Author: jiaming.huang <jiaming.huang@amlogic.com>
-Date:   Tue Jul 20 20:34:38 2021 +0800
-
-    TsPlayer: DTV Mosaic Notification [1/1]
-    
-    PD#TV-37020
-    
-    Problem:
-    Add a mosaic notification interface in tsplayer
-    
-    Solution:
-    Add error count detection in amcodecvda.cpp&
-    add callback message notification dtvkit in tsplayer.cp
-    
-    Verify:
-    AM30A2
-    
-    Change-Id: I478c3e6c396a8a7885ab9e0ee196d6463ac18978
-    Signed-off-by: jiaming.huang <jiaming.huang@amlogic.com>
-
-commit 96309b3781c5d51de15c4f81d0b26afa460c1781
-Author: yang liu1 <yang.liu1@amlogic.com>
-Date:   Tue Jul 20 14:43:47 2021 +0800
-
-    MediaHal: CF1 transfer decoder frame to omx. [2/2]
-    
-    PD#SWPL-54804
-    
-    Problem:
-    omx control flow error.
-    
-    Solution:
-    transfer decoder frame to omx.
-    
-    Verify:
-    T950X4
-    
-    Change-Id: Ia6cc1807fc90934794d84c50441ac9749aaabf2a
-    Signed-off-by: yang liu1 <yang.liu1@amlogic.com>
-
-commit 7932fe0047492719092f1a01bd61441181b6a489
-Author: Kai Song <kai.song@amlogic.com>
-Date:   Thu Jul 15 16:11:40 2021 +0800
-
-    videopassthrough: CF2 Support get video decoder buffer status [3/3]
-    
-    PD#SWPL-54846
-    
-    Problem:
-    Play local files incompletely with tuner framework passthrough mode
-    There is no video flow control for passthrough mode, we need feedback
-    the decoder buffer level to the apk layer to control dvr data write speed.
-    
-    Solution:
-    Support get video decoder buffer status and callback to omx component.
-    
-    Verify:
-    Android-R & OHM
-    
-    Change-Id: I30933c80572d13dede98c41be8d6d67c878e1a50
-    Signed-off-by: Kai Song <kai.song@amlogic.com>
-
-commit a54fed2033069055117eb1fcc99e52b8517bb7d0
+commit a1aa906cedaf7be2031d8f6f5f45ce10a93e9790
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jul 15 14:22:46 2021 +0800
+Date:   Fri Apr 23 15:05:10 2021 +0800
 
-    mediahal_sdk: CB0 Android Q failed to compile the firmware [1/1]
+    tsplayer: CB1 Modification of audio and video synchronization. [1/1]
     
-    PD#SWPL-55276
+    PD#OTT-18026
     
     Problem:
-    Android Q mediahal_sdk does not have libmediahal_passthrough.so,
-    causing firmware compilation failure.
+    audio and video synchronization index is less than ±20ms
     
     Solution:
-    Android Q mediahal_sdk does not need libmediahal_passthrough.so,
-    turn off libmediahal_passthrough module compilation.
-    
-    Verify:
-    AH212
-    
-    Change-Id: Ia57edf9a3a445f969a4114456dd9a95ef829be95
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit e0054d312f6f277f08911c180f00e03f509ff949
-Author: Yani Shi <yani.shi@amlogic.com>
-Date:   Mon Jul 5 19:28:28 2021 +0800
-
-    MediaSync: CF1 av is not sync when switch channel in multi-channel play. [2/2]
-    
-    PD#SWPL-50302
-    
-    Problem:
-    audio cache is too large.
-    
-    Solution:
-    clear audio cache
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I18ffd0446fa24018a7b6046ab49aeca056fb3652
-    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
-
-commit 1202a90d8933c92b116b2a3980b978da31bd54fe
-Author: houren.wang <houren.wang@amlogic.com>
-Date:   Mon Jul 12 10:15:49 2021 +0800
-
-    TsPlayer: CB1 TsPlayer cann't release resource if it create failed [1/1]
-    
-    PD#SWPL-54600
-    
-    Problem:
-    TsPlayer cann't release resource as it was registered in PlayerRoster.
-    refcount can't become zero.
-    
-    Solution:
-    register TsPlayer after can sure it has been create success.
-    
-    Verify:
-    AP222
-    
-    Change-Id: If5007ef80f2ba6c2f3c482b10a10ec516e98035c
-    Signed-off-by: houren.wang <houren.wang@amlogic.com>
-
-commit 499638e04c3755d73e4677f4c11dcfeb7ff72ad7
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Jul 6 16:55:47 2021 +0800
-
-    MediaSync: CF1 FCC switch channel, the speed is slow. [1/1]
-    
-    PD#SWPL-54343
-    
-    Problem:
-    switch channel, audio come too late;
-    
-    Solution:
-    no need to wait audio in FCC case;
-    optimization refclock offset set when GOP is big;
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: Ibd2ca14a06cde4fac4f697a545da60b8567c1432
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 785ff145a0af07f3945c22663ff3d6fb78be086e
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jul 9 15:20:17 2021 +0800
-
-    TsPlayer: CB2 open PIP,press "Swap", amvideodec crash [1/1]
-    
-    PD#SWPL-53453
-    
-    Problem:
-    AmVideoDec::queueInputBuffer() crash.
-    
-    Solution:
-    Determine whether mVDAAdaptor is NULL.
-    
-    Verify:
-    AH212
-    
-    Change-Id: Ib55f99514837b86d0f315cfe044889c3f3b1fb1b
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 8735871b83eb0a02e30582eef8ab46337a055477
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jul 6 15:45:48 2021 +0800
-
-    tsplayer: CF1 set setParams [1/1]
-    
-    PD#SWPL-52871
-    
-    Problem:
-    1.MS12 need add support for set Presentation ID
-    2.need setParams for video seclevel
-    
-    Solution:
-    1.support set Presentation ID
-    2.add AM_TSPLAYER_KEY_VIDEO_SECLEVEL for video seclevel
+    Add the audiodelay parameter.
     
     Verify:
     SC2_AH212
     
-    Change-Id: Iad97bb2faf00db609489560ee88833646b7c17e7
+    Change-Id: I7cbcc82346f72b6e5d9538ca15f14810f174f868
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit d0b542bff3955f40b14010965e8ee5f1627c1533
+commit f2c6f354b2cebf64bc3c349451dde8dbdd1146fa
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Jun 21 20:19:40 2021 +0800
+Date:   Fri Aug 27 17:11:58 2021 +0800
 
-    tsplayer: CF1 android P T3 chip, DTV use video_tunnel to display [1/1]
+    tsplayer: CB1 Memory leak [1/1]
     
-    PD#SWPL-51812
+    PD#SWPL-57961
     
     Problem:
-    use video_tunnel to display
+    1.Memory leak
+    2.Optimize log printing
     
     Solution:
-    use video_tunnel to display
+    1.If there is no surface setting,
+    do not queueVideoFrame to mediasync.
+    2.Optimize log printing
     
     Verify:
-    smith_T3_AR321
+    AH212
     
-    Change-Id: Ic587ee6b8a27c3319cba82e1a3f9a438ddc1e23a
+    Change-Id: I192e83d7e263e2e082e64044e672d983012121d4
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 236dff9c683f9061fec07aec593e6aeed79a9653
+Author: Kai Song <kai.song@amlogic.com>
+Date:   Mon Aug 30 17:34:21 2021 +0800
+
+    videopassthrough: CB1 Google CBS play black screen [3/3]
+    
+    PD#SWPL-58870
+    
+    Problem:
+    1.Need register mNodifyRenderTime callback for CBS application
+    2.Need add prop to enable/disable flow control for tuner passthrough
+    
+    Solution:
+    1.Register mNodifyRenderTime callback
+    2.Add prop to enable/disable flow control
+    
+    Verify:
+    Android-R & OHM
+    
+    Change-Id: I356cbe193513eb0498ec907d3bef3767bb6d5ccb
+    Signed-off-by: Kai Song <kai.song@amlogic.com>
+
+commit 2a1373d6fa54fe237dea413415108fbfbe9876bd
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Wed Sep 1 21:05:30 2021 +0800
+
+    MediaSync: CF2 reduce some logs. [1/1]
+    
+    PD#SWPL-58019
+    
+    Problem:
+    log is too much.
+    
+    Solution:
+    reduce some logs.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I033d384f236245c795b2f504d503c48c8bd6b2a5
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit 1a2c6032774cac14ccca1e6996a3918e36496fb7
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Sat Aug 21 23:46:46 2021 +0800
+
+    MediaSync: CB1 some dolby streams always drop frames. [1/2]
+    
+    PD#SWPL-57519
+    
+    Problem:
+    some dolby streams always drop frames.
+    
+    Solution:
+    1.enlarge cache for these streams.
+    2.add Audio Latency func.
+    3.optimize demuxpcr invalid check.
+    4.not print log default.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I6f44a282ffd9958e2e23cb69157f0a3fce43b034
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit 18fe19aeb49c1205a83c75e2aec3cbeeeae50005
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Aug 25 15:45:27 2021 +0800
+
+    mediaha: CF2 optimization mediahal trace for NTS [1/1]
+    
+    PD#SWPL-55285
+    
+    Problem:
+    optimization mediahal trace
+    
+    Solution:
+    optimization mediahal trace, fix Q compile err.
+    
+    Verify:
+    905Y4
+    
+    Change-Id: I2add8ae20ab3c185c45d3262854b13c57c59c822
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 6c382f5043d211f3a5f020ffbf7d81dc478a2929
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Aug 30 11:19:06 2021 +0800
+
+    tunnelrender: CB1 tunnel mode reset frac when audio resume playback [2/2]
+    
+    PD#SWPL-53311
+    
+    Problem:
+    pattern not check after audio underflow recovery
+    
+    Solution:
+    tunnel mode reset frac when audio resume playback
+    
+    Verify:
+    905Y4
+    
+    Change-Id: Iac21872e7da8a6fe473f63d9571a1d168fef2ea6
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit b7f70c916bfd9ec0c8cce0e94d121e5cfeca05d4
+Author: jianchuan.ping <jianchuan.ping@amlogic.com>
+Date:   Wed Aug 25 18:44:42 2021 +0800
+
+    MediaSync: CF1 Need dinamic control video latency. [1/1]
+    
+    PD#SWPL-58499
+    
+    Problem:
+    Video latency will not change by display frequency
+    
+    Solution:
+    Add dinamic fix to frequency
+    
+    Verify:
+    AH212
+    
+    Change-Id: Id07dd4df3a0af91be148da094202197b892af358
+    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
+
+commit 04625511384b49e0b47370614817665455890c41
+Author: Rui Wang <rui.wang@amlogic.com>
+Date:   Fri Aug 27 13:58:44 2021 +0800
+
+    tsplayer: CB1 Send decodec first audio under non tunnel [1/1]
+    
+    PD#SWPL-56129
+    
+    Problem:
+    No audio output in Radio program.
+    
+    Solution:
+    Add send first audio msg.
+    
+    Verify:
+    Smith
+    
+    Change-Id: I828417325def154c11ec2e0dbe60ff4e6325c826
+    Signed-off-by: Rui Wang <rui.wang@amlogic.com>
+
+commit 6bebf7a13bea028f043b79c3ab489031b59c86a0
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Aug 27 20:05:36 2021 +0800
+
+    tsplayer: CB1 It is abnormal after repeated setting of PCR PID  [1/1]
+    
+    PD#SWPL-58591
+    
+    Problem:
+    Apply for one more identical PCR filter from demux.
+    
+    Solution:
+    1. Add protection can not apply for the same pcr filter.
+    2. After the audio and video exit, close the pcr filter.
+    
+    Verify:
+    T3
+    
+    Change-Id: Iff78ee737006533455a90e7ddc1f1673bee4f4c5
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2021-07-22-19-42
+Release time: 2021-09-07-16-51
 
 ========================================
 
-Builder: jiaming.huang
+Builder: yunmin.chen
 
 ========================================
 Release file:
@@ -229,16 +229,22 @@ Header file:
 AmTsPlayer.h
 AmVideoDecBase.h
 MediaSyncInterface.h
+resourcemanage.h
 TunerPassthroughBase.h
 VideoTunnelRendererBase.h
-resourcemanage.h
 
-Library file:
+Vendor Library file:
 libmediahal_mediasync.so
 libmediahal_resman.so
 libmediahal_tsplayer.so
 libmediahal_tunnelrenderer.so
 libmediahal_videodec.so
+
+System Library file:
+libmediahal_mediasync.system.so
+libmediahal_resman.system.so
+libmediahal_tsplayer.system.so
+libmediahal_videodec.system.so
 
 Example file:
 AmTsPlayerExample.cpp

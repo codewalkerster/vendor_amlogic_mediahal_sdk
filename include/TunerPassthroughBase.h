@@ -13,17 +13,19 @@
 
 typedef int (*callbackFunc)(void*obj, void* args);
 
-typedef struct DECODERBUFFERSTATUS {
-    int64_t nFreePercentage;
-    int64_t nSystemTimeNs;
-} DECODERBUFSTATUS;
-
 struct TunerPassthroughBase
 {
 
 public:
+    struct renderTime
+    {
+        int64_t mediaUs;
+        int64_t renderUs;
+    };
+
     enum {
-        CB_NODIFYDECODERBUFFERSTATUS,
+        CB_FILLVIDEOFRAME,
+        CB_NODIFYRENDERTIME,
         CB_FUNS_MAX,
     };
 

@@ -46,8 +46,16 @@ typedef enum {
 typedef enum {
     AM_TSPLAYER_KEY_AUDIO_PRESENTATION_ID = 0,
     AM_TSPLAYER_KEY_VIDEO_SECLEVEL,
+    AM_TSPLAYER_KEY_SET_AUDIO_PATCH_MANAGE_MODE,
+    AM_TSPLAYER_KEY_AUDIO_SECLEVEL,
 } am_tsplayer_parameter;
 
+typedef enum
+{
+    AUDIO_PATCH_MANAGE_AUTO = -1,
+    AUDIO_PATCH_MANAGE_FORCE_DISABLE,
+    AUDIO_PATCH_MANAGE_FORCE_ENABLE,
+} am_tsplayer_audio_patch_manage_mode;
 
 typedef enum {
     AM_TSPLAYER_KEY_VIDEO_STATE = 0,
@@ -71,6 +79,15 @@ typedef struct {
 #define AM_TSPLAYER_EVENT_TYPE_DATA_RESUME_MASK    (1 << AM_TSPLAYER_EVENT_TYPE_DATA_RESUME)
 #define AM_TSPLAYER_EVENT_TYPE_SCRAMBLING_MASK     (1 << AM_TSPLAYER_EVENT_TYPE_SCRAMBLING)
 #define AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME_MASK    (1 << AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME)
+
+/*Secure level which should be consistent with definition of dmx.h*/
+#define AM_TSPLAYER_DMX_FILTER_SEC_LEVEL1   (1 << 10)
+#define AM_TSPLAYER_DMX_FILTER_SEC_LEVEL2   (2 << 10)
+#define AM_TSPLAYER_DMX_FITLER_SEC_LEVEL3   (3 << 10)
+#define AM_TSPLAYER_DMX_FILTER_SEC_LEVEL4   (4 << 10)
+#define AM_TSPLAYER_DMX_FILTER_SEC_LEVEL5   (5 << 10)
+#define AM_TSPLAYER_DMX_FITLER_SEC_LEVEL6   (6 << 10)
+#define AM_TSPLAYER_DMX_FITLER_SEC_LEVEL7   (7 << 10)
 
 /*Function return type*/
 typedef enum {

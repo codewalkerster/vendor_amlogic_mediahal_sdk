@@ -14,6 +14,9 @@
 
 #include <stdint.h>
 
+#define AM_VIDEO_DEC_INIT_FLAG_DEFAULT  0
+#define AM_VIDEO_DEC_INIT_FLAG_CODEC2   1
+
 typedef struct {
     /* video */
     uint32_t    vpid;
@@ -78,18 +81,18 @@ public:
     virtual ~AmVideoDecBase() {};
 
     virtual int32_t initialize(const char* mime, uint8_t* config, uint32_t configLen,
-            bool secureMode, bool useV4l2 = 1);
+            bool secureMode, bool useV4l2 = 1, int32_t flags = 0);
     virtual int32_t setQueueCount(uint32_t queueCount);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, int ashmemFd, off_t offset,
-            uint32_t bytesUsed, uint64_t timestamp);
+            uint32_t bytesUsed, uint64_t timestamp, int32_t flags = 0);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, int ashmemFd, off_t offset,
             uint32_t bytesUsed, uint64_t timestamp,
-            uint8_t* hdrbuf, uint32_t hdrlen);
+            uint8_t* hdrbuf, uint32_t hdrlen, int32_t flags = 0);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, uint8_t* pbuf,
-            off_t offset, uint32_t bytesUsed, uint64_t timestamp);
+            off_t offset, uint32_t bytesUsed, uint64_t timestamp, int32_t flags = 0);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, uint8_t* pbuf,
             off_t offset, uint32_t bytesUsed, uint64_t timestamp,
-            uint8_t* hdrbuf, uint32_t hdrlen);
+            uint8_t* hdrbuf, uint32_t hdrlen, int32_t flags = 0);
     virtual int32_t setupOutputBufferNum(uint32_t numOutputBuffers);
     virtual int32_t createOutputBuffer(uint32_t pictureBufferId,
                     int32_t dmabufFd, bool nv21 = 1, int32_t metaFd = -1);
