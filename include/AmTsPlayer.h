@@ -194,6 +194,7 @@ typedef enum {
     AV_VIDEO_CODEC_VP9 = 5,               // VP9
     AV_VIDEO_CODEC_AVS = 6,               // AVS
     AV_VIDEO_CODEC_MPEG4 = 7,              // MPEG4
+    AV_VIDEO_CODEC_AVS2 = 8,              // AVS2
 } am_tsplayer_video_codec;
 
 /*Audio decoder type*/
