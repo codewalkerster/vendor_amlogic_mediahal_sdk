@@ -53,6 +53,12 @@ enum PictureFlag {
   PICTURE_FLAG_BFRAME = 0x0004,
 };
 
+enum ResetFlag {
+  RESET_FLAG_NONE = 0,
+  RESET_FLAG_NOWAIT = 0x0001,
+};
+
+
 class AmVideoDecCallback {
 public:
     virtual ~AmVideoDecCallback() {};
@@ -100,7 +106,7 @@ public:
                     uint8_t* buf, size_t size, bool nv21 = 1);
     virtual int32_t queueOutputBuffer(int32_t pictureBufferId);
     virtual void flush();
-    virtual void reset();
+    virtual void reset(uint32_t flags = 0);
     virtual void destroy();
     virtual int32_t sendCommand(uint32_t index, void* param, uint32_t size);
     virtual bool getDecoderMessage(uint32_t type, void *data);

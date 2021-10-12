@@ -40,6 +40,7 @@ public:
     virtual int regCallBack(int cb_id, callbackFunc funs, void* obj);
     virtual bool flush();
     virtual bool setFrameRate(int32_t framerate);
+    virtual bool peekFirstFrame();
     virtual void onVideoSyncQueueVideoFrame(int64_t timestampUs);
 };
 

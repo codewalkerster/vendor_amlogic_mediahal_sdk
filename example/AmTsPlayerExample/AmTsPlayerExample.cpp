@@ -32,12 +32,21 @@
 #include <AmTsPlayer.h>
 #include <termios.h>
 
-#ifdef SUPPORT_ANDROID
+#ifdef SYSTEMLIB
+
+#if (ANDROID_PLATFORM_SDK_VERSION == 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
+#include <amlogic/am_gralloc_ext.h>
+#endif
+
 #include <gui/IProducerListener.h>
 #include <gui/Surface.h>
 #include <gui/SurfaceComposerClient.h>
 #include <gui/ISurfaceComposer.h>
+
+#if ANDROID_PLATFORM_SDK_VERSION <= 30
 #include <ui/DisplayInfo.h>
+#endif
+
 using namespace android;
 #endif
 using namespace std;
@@ -55,34 +64,127 @@ const int kRwTimeout = 30000;
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
 #endif
-#ifdef SUPPORT_ANDROID
-android::sp<SurfaceComposerClient> mComposerClient;
-android::sp<SurfaceControl> mControl;
-android::sp<Surface> mSurface;
 
-int setOutputToSurface(int x, int y, int w, int h) {
+/*
+ANDROID_PLATFORM_SDK_VERSION = 30 --> Android R
+ANDROID_PLATFORM_SDK_VERSION = 29 --> Android Q
+ANDROID_PLATFORM_SDK_VERSION = 28 --> Android P
+*/
+
+#ifdef SYSTEMLIB
+
+//system lib
+
+android::sp<SurfaceComposerClient> mComposerClient = NULL;
+android::sp<SurfaceControl> mControl = NULL;
+android::sp<Surface> mSurface = NULL;
+
+bool CreateSurface(void) {
+    int x = 0;
+    int y = 0;
+    int w = 1920 / 2;
+    int h = 1080 / 2;
     mComposerClient = new SurfaceComposerClient;
-    if (mComposerClient->initCheck() != 0)
-        return 0;
+    if (mComposerClient->initCheck() != 0) {
+        return false;
+    }
     mControl = mComposerClient->createSurface(
            String8("testSurface"),
             w,
             h,
             HAL_PIXEL_FORMAT_IMPLEMENTATION_DEFINED);
-    if (mControl == NULL)
-        return 0;
-    if (!mControl->isValid())
-        return 0;
+    if (mControl == NULL) {
+        return false;
+    }
+    if (!mControl->isValid()) {
+        return false;
+    }
     SurfaceComposerClient::Transaction{}
             .setLayer(mControl, 0)
             .show(mControl)
             .setPosition(mControl, x, y)
             .apply();
     mSurface = mControl->getSurface();
-    if (mSurface == NULL)
-        return 0;
-    return 1;
+    if (mSurface == NULL) {
+        return false;
+    }
+    return true;
 }
+
+#if (ANDROID_PLATFORM_SDK_VERSION == 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
+
+sp<IProducerListener> mProducerListener = NULL;
+sp<IGraphicBufferProducer> mProducer = NULL;
+sp<NativeHandle> mSourceHandle = NULL;
+native_handle_t * mNative_handle = NULL;
+
+bool CreateVideoTunnelId(int* id) {
+    int x = 0, y = 0, w = 0, h = 0;
+    int tunnelid = 0;
+    x = 0;
+    y = 0;
+    w = 960;
+    h = 540;
+
+    if (mSurface == NULL) {
+        mComposerClient = new SurfaceComposerClient;
+        if (mComposerClient->initCheck() != 0) {
+            //printf("mSurface == NULL in line 79");
+            return false;
+        }
+        mProducerListener = new DummyProducerListener;
+        char test[20];
+        sprintf(test,"testSurface_%d",tunnelid);
+        printf("CreateVideoTunnelId name:%s \n",test);
+        mControl = mComposerClient->createSurface(String8(test),
+                                                  w,
+                                                  h,
+                                                  HAL_PIXEL_FORMAT_IMPLEMENTATION_DEFINED);
+        if (mControl == NULL) {
+            printf("mControl == NULL");
+            return false;
+        }
+        if (!mControl->isValid()) {
+            printf("! mControl->isValid  no ");
+            return false;
+        }
+        SurfaceComposerClient::Transaction{}
+        .setLayer(mControl, 0)
+        .setFlags(mControl, android::layer_state_t::eLayerOpaque, android::layer_state_t::eLayerOpaque)
+        .show(mControl)
+        .setPosition(mControl, x, y)
+        .apply();
+        mSurface = mControl->getSurface();
+        if (mSurface == NULL) {
+            printf("mSurface == NULL");
+            return false;
+        }
+
+        mSurface->connect(NATIVE_WINDOW_API_CPU, mProducerListener);
+
+        if (mSurface) {
+            mProducer = mSurface->getIGraphicBufferProducer();
+            if (mNative_handle == NULL) {
+                mNative_handle = am_gralloc_create_sideband_handle(AM_FIXED_TUNNEL, tunnelid);
+                // printf("mNative_handle:%p\n",mNative_handle);
+            }
+            if (mNative_handle != NULL) {
+                mSourceHandle = NativeHandle::create(mNative_handle, false);
+            //  printf("mSourceHandle:%p\n",mSourceHandle);
+            }
+            if (mProducer != NULL && mSourceHandle != NULL) {
+                mProducer->setSidebandStream(mSourceHandle);
+                //printf("line:%d\n",__LINE__);
+            }
+            printf("----->tunnelid:%d\n",tunnelid);
+            *id = tunnelid;
+        }
+    }
+    return true;
+}
+
+#endif
+
 #endif
 
 
@@ -150,11 +252,20 @@ void video_callback(void *user_data, am_tsplayer_event *event)
 static int set_osd_blank(int blank)
 {
     const char *path1 = "/sys/class/graphics/fb0/blank";
-    const char *path3 = "/sys/class/graphics/fb0/osd_display_debug";
+#if (ANDROID_PLATFORM_SDK_VERSION < 30)
+    const char *path2 = "/sys/class/graphics/fb0/osd_display_debug";
+#endif
+
+#if (ANDROID_PLATFORM_SDK_VERSION >= 30)
+    const char *path2 = "/sys/kernel/debug/dri/0/vpu/blank";
+#endif
+
+    const char *path3 = " /sys/class/video/disable_video";
+    const char *path4 = "/sys/class/video/video_global_output";
     int fd;
     char cmd[128] = {0};
 
-    fd = open(path3,O_CREAT | O_RDWR | O_TRUNC, 0644);
+    fd = open(path2,O_CREAT | O_RDWR | O_TRUNC, 0644);
     if (fd >= 0)
     {
         sprintf(cmd,"%d",blank);
@@ -162,6 +273,26 @@ static int set_osd_blank(int blank)
         close(fd);
     }
     fd = open(path1,O_CREAT | O_RDWR | O_TRUNC, 0644);
+    if (fd >= 0)
+    {
+        sprintf(cmd,"%d",blank);
+        write (fd,cmd,strlen(cmd));
+        close(fd);
+    }
+
+    fd = open(path3,O_CREAT | O_RDWR | O_TRUNC, 0644);
+    if (fd >= 0)
+    {
+        if (blank == 1) {
+            sprintf(cmd,"2");
+        } else {
+            sprintf(cmd,"1");
+        }
+        write (fd,cmd,strlen(cmd));
+        close(fd);
+    }
+
+    fd = open(path4,O_CREAT | O_RDWR | O_TRUNC, 0644);
     if (fd >= 0)
     {
         sprintf(cmd,"%d",blank);
@@ -198,6 +329,7 @@ void signHandler(int iSignNo)
     AmTsPlayer_stopVideoDecoding(session);
     AmTsPlayer_stopAudioDecoding(session);
     AmTsPlayer_release(session);
+    //Turn on the osd layer.
     set_osd_blank(0);
     printf("signHandler:%d\n",iSignNo);
     signal(SIGINT, SIG_DFL);
@@ -310,7 +442,10 @@ int main(int argc, char **argv)
     }
 
     signal(SIGINT, signHandler);
+
+    //Turn off the osd layer.
     set_osd_blank(1);
+
     char* buf = new char[kRwSize];
     uint64_t fsize = 0;
     ifstream file(inputTsName.c_str(), ifstream::binary);
@@ -330,34 +465,63 @@ int main(int argc, char **argv)
     //am_tsplayer_handle session;
     am_tsplayer_init_params parm = {tsType, drmmode, 0, 0};
     AmTsPlayer_create(parm, &session);
-    #ifdef SUPPORT_ANDROID
-    int width = 1920;
-    int height = 1080;
-/*   #if ANDROID_PLATFORM_SDK_VERSION > 29
-       sp<IBinder> displayToken = SurfaceComposerClient::getInternalDisplayToken();
-       DisplayConfig displayConfig;
-       SurfaceComposerClient::getActiveDisplayConfig(displayToken, &displayConfig);
-       ui::DisplayState displayState;
-       SurfaceComposerClient::getDisplayState(displayToken, &displayState);
-       const ui::Size& resolution = displayConfig.resolution;
-       width = resolution.getWidth();;
-       height = resolution.getHeight();
-       #elif ANDROID_PLATFORM_SDK_VERSION == 29
-       android::DisplayInfo info;
-       SurfaceComposerClient::getDisplayInfo(SurfaceComposerClient::getInternalDisplayToken(), &info);
-       width = info.w;
-       height = info.h;
-       #elif ANDROID_PLATFORM_SDK_VERSION < 29
-        android::DisplayInfo info;
-        SurfaceComposerClient::getDisplayInfo(SurfaceComposerClient::getBuiltInDisplay(ISurfaceComposer::eDisplayIdMain), &info);
-        width = info.w;
-        height = info.h;
-       #endif*/
-     if (mSurface == NULL) {
-        if (setOutputToSurface(0, 0,width/2 , height/2) == 1) {
-                AmTsPlayer_setSurface(session,mSurface.get());
+    #ifdef SYSTEMLIB
+    //system lib
+    #if (ANDROID_PLATFORM_SDK_VERSION == 29)
+    //Android Q TsPlayer NonTunnelMode
+    //need set setprop vendor.amtsplayer.pipeline 1
+    printf("\n");
+    printf("\n");
+    printf("Android Q System TsPlayer NonTunnelMode\n");
+    printf("need to set:\n");
+    printf("setprop vendor.amtsplayer.pipeline 1 \n");
+    printf("\n");
+    printf("\n");
+    if (CreateSurface() == true) {
+        AmTsPlayer_setSurface(session,mSurface.get());
+    }
+    #endif
+
+    #if (ANDROID_PLATFORM_SDK_VERSION == 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
+    //android P android R
+    #if (ANDROID_PLATFORM_SDK_VERSION == 28)
+        printf("Android p system, platform demux:AmHwMultiDemux \n");
+        printf("Need to set:\n");
+        printf("setprop vendor.amtsplayer.pipeline 1\n");
+        printf("setprop vendor.dtv.audio.skipamadec true\n");
+    #endif
+
+    if (access("/sys/module/dvb_demux/",F_OK) == 0) {
+        //X4,Y4 need set VideoTunnelId
+        printf("Android R system, platform demux:AmHwMultiDemux \n");
+        printf("Set VideoTunnelId \n");
+        int VideoTunnelId = 0;
+        if (CreateVideoTunnelId(&VideoTunnelId) == true) {
+            AmTsPlayer_setSurface(session,(void*)&VideoTunnelId);
+        } else {
+            printf("CreateVideoTunnelId error \n");
+            return 0;
         }
-     }
+    }
+    #endif
+    #endif
+
+    #ifndef SYSTEMLIB
+    #if (ANDROID_PLATFORM_SDK_VERSION == 30)
+    if (access("/sys/module/dvb_demux/",F_OK) == 0) {
+        //X4,Y4 need set VideoTunnelId
+        printf("\n");
+        printf("\n");
+        printf("Android R vendor,platform X4(SC2) Y4 \n");
+        printf("Run the test example in Android R vendor,\nthe example does not have permission to create surface and convert videotunnel id.\n");
+        printf("If you need to test with AmTsPlayerExample,\n you can force the setting to use the tsync module for audio and video synchronization.\n");
+        printf("Need to set:\n");
+        printf("setprop vendor.amtsplayer.pipeline 0\n");
+        printf("setprop vendor.dtv.audio.skipamadec false\n");
+        printf("\n");
+        printf("\n");
+    }
+    #endif
     #endif
     uint32_t versionM, versionL;
     AmTsPlayer_getVersion(&versionM, &versionL);
@@ -378,6 +542,13 @@ int main(int argc, char **argv)
     aparm.pid = aPid;
     AmTsPlayer_setAudioParams(session, &aparm);
     AmTsPlayer_startAudioDecoding(session);
+
+
+    #if (ANDROID_PLATFORM_SDK_VERSION == 30)
+    //
+    am_tsplayer_audio_patch_manage_mode FORCE_ENABLE = AUDIO_PATCH_MANAGE_FORCE_ENABLE;
+    AmTsPlayer_setParams(session,AM_TSPLAYER_KEY_SET_AUDIO_PATCH_MANAGE_MODE,(void*)&FORCE_ENABLE);
+    #endif
 
     AmTsPlayer_showVideo(session);
     AmTsPlayer_setTrickMode(session, vTrickMode);
@@ -432,7 +603,7 @@ int main(int argc, char **argv)
     if (file.is_open())
         file.close();
 
-    #ifdef SUPPORT_ANDROID
+    #ifdef SYSTEMLIB
     if (mSurface && mComposerClient && mControl) {
         mSurface.clear();
         mSurface = nullptr;
@@ -443,6 +614,7 @@ int main(int argc, char **argv)
     }
     #endif
 
+    //Turn on the osd layer.
     set_osd_blank(0);
 
     AmTsPlayer_stopVideoDecoding(session);

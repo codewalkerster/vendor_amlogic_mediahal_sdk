@@ -1,221 +1,213 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.78-ge077f37
+Version: V3.2.97-g4dd5b48
 
 ========================================
 
 Git commit:
-commit e077f37468a45a4c1e7e230d59ff849ec7c371e0
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Jan 30 15:26:02 2021 +0800
+commit 4dd5b48f8e7f0671b49056d4b5e49aa3ecc599ed
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Sun Oct 3 14:25:52 2021 +0800
 
-    tsplayer: CB1 stress test,automated exit PIP [1/1]
+    mediahal: CB1 use vt interface get vsync and period [1/1]
     
-    PD#SWPL-59437
+    PD#TV-41388
     
     Problem:
-    android::AudioTrack::setVolume() crash.
+    when mediahal invoke interface getDisplayVsyncAndPeriod
+    to get vsync and period in libmeson_display_adapter_remote,
+    mediahal normal thread priority lead hwc binder become
+    normal priority from RT
     
     Solution:
-    AudioTrackOut::SetVolume() add a lock.
+    use vt interface get vsync and period first instand of
+    binder invoke to hwc
     
     Verify:
-    SC2_AH212
+    T5D
     
-    Change-Id: I12229288cb4052993e9e061d76e568a7b7540ff4
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I91941bb119a729d9cf6ab7de7d9e948729d0c113
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 73eed43cd9177fce768c56e58603a84876fe845d
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Sep 14 22:33:45 2021 +0800
+commit 8be0a99c05f9746060f5a62048e1d05d306b491c
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Fri Sep 17 14:24:01 2021 +0800
 
-    mediasync: CF2 consider cache when start play. [1/1]
+    tsplayer: CF2 audio format support flac. [1/1]
     
-    PD#SWPL-59743
+    PD#OTT-23023
     
     Problem:
-    consider cache when start play
+    audio format not support flac.
     
     Solution:
-    consider cache when start play
+    audio format support flac.
     
     Verify:
-    verified on S905X4-AH212
+    AP222
     
-    Change-Id: I9f0cd270d6dd4ab1a2b8e7acd376e67d730ae6a0
-    Signed-off-by: Chen Chen <chen.chen1@amlogic.com>
+    Change-Id: Iffed260875b0cfa614374b9a207066d945663c0e
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
-commit 00cbd746fadc25a48a5ccd36badce0b3a1cf0cfe
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Sep 15 16:26:19 2021 +0800
-
-    mediahal: CF1 Version management [1/1]
-    
-    PD#SWPL-48769
-    
-    Problem:
-    update Version management
-    
-    Solution:
-    update Version management
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: I3c1efe96d2e623b1f028742a80caf2ba9fb272c4
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit d2c2e95e362088bdc4a5fe6ff638b2eb67cb4c8b
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Mon Sep 13 18:33:28 2021 +0800
-
-    Tsplayer: query free buffer capacity for playback [1/1]
-    
-    PD#SWPL-58705
-    
-    Problem:
-    not enough buffer for playback
-    
-    Solution:
-    query free buffer capacity before playback for P
-    
-    Verify:
-    T3
-    
-    Change-Id: I2c0b20d88b621138eee3611e35adb58f0102b383
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit e6f5b73c496959ab7d76faeee5cc465928bd93df
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Aug 31 21:10:13 2021 +0800
-
-    mediahal: CF1 Version management [1/1]
-    
-    PD#SWPL-48769
-    
-    Problem:
-    update Version management
-    
-    Solution:
-    update Version management
-    
-    Verify:
-    SC2_AH212
-    
-    Change-Id: Id65ed198797ee8ca15fa55ded60b4d0b692de367
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 193fb0ef6be056506fcbcc91dd142e0847a33b4b
+commit 57fcba0ceaa1dd8a6313ef38dfd8c62dba90180a
 Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Thu Sep 9 20:28:02 2021 +0800
+Date:   Mon Sep 27 12:36:43 2021 +0800
 
-    videodec: CF1 integrate codec2 for media_hal videodec [1/1]
+    codec2 : CF1 gts GtsExoPlayerTestCases secure case failed [1/1]
     
-    PD#SWPL-52265
+    PD#SWPL-60225
     
     Problem:
-    integrate codec2 for media_hal videodec
+    GtsExoPlayerTestCases secure test case failed
     
     Solution:
-    1 integrate codec2 for media_hal
-    2 use vdec as the secmem pool
+    1. Test case report timestamp wrong, for secure the ouput
+    buffer'secure bit stream id is dequeued early than input,
+    codec2 won't reorder bit stream id.
     
     Verify:
-    ohm
+    ohm''
     
-    Change-Id: Ia92cc59b44dd3c0b6a567734f0e15728984bdaf0
+    Change-Id: I813e517d75473d86436801254de4027b3f322c53
     Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
-commit abc2884656dacc3bc699c7da60581bc12c1ac89d
-Author: yongchen li <yongchen.li@amlogic.com>
-Date:   Mon Sep 6 14:32:28 2021 +0800
+commit fed8304d58cf73a9267f8d3264aa99456b9c84e7
+Author: xiaoming sui <xiaoming.sui@amlogic.com>
+Date:   Wed Sep 29 17:30:30 2021 +0800
 
-    tsplayer: CF2 TsPlayer support avs2 video type. [1/2]
+    MediaSync: CB1 fix frequently drops audio issues [1/1]
     
-    PD#TV-38846
+    PD#SWPL-60381
     
     Problem:
-    TsPlayer not support avs2 video type.
+    long time playback for some specific streams, frequently drops audio;
     
     Solution:
-    TsPlayer support avs2 video type.
+    1, cache  2 mQueueAudioInterval audio data;
+    2, if diff is less a half mQueueAudioInterval, then don`t drop audio;
     
     Verify:
-    smith
+    T3-P
     
-    Change-Id: I014608c65364a1ec96978555849116bbdf8a6237
-    Signed-off-by: yongchen li <yongchen.li@amlogic.com>
+    Change-Id: I176f283cf64fe920899fe549f639aee5a1ee2eab
+    Signed-off-by: xiaoming sui <xiaoming.sui@amlogic.com>
 
-commit b8d0f35efca709b2283a02727ce900d4557d507c
+commit 3e1e7895dceafeb050309a9afa26c150e1757201
 Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Mon Sep 6 20:00:05 2021 +0800
+Date:   Fri Sep 24 20:49:55 2021 +0800
 
-    MediaSync: Not to normalize pts and pcr to 33bit. [1/1]
+    MediaSync: CB1 video cache can't calc correctly. [1/1]
     
-    PD#SWPL-57615
+    PD#SWPL-58081
     
     Problem:
-    PCR and pts not correct when 33bit change
+    Video cache not calc correctly when apts not get.
     
     Solution:
-    Not normalize ptc and pcr
+    Enlarge default cache, update quicker if can't get correct cache.
     
     Verify:
     AH212
     
-    Change-Id: Ifc92c6218b6a03d5fcb45c282124eba69469d770
+    Change-Id: I5c0154ba0ad27c14c927c14bdace132cc4b01966
     Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
 
-commit 7f8e7e72ac2f78a60cb31569ec499dae15a937fb
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Fri Sep 10 11:57:02 2021 +0800
+commit 1461d356af6964be3d81478b81f3843daded63d2
+Author: jianchuan.ping <jianchuan.ping@amlogic.com>
+Date:   Sun Sep 26 21:12:48 2021 +0800
 
-    MediaSync: CB1 av is not sync when pvr play. [1/2]
+    Media_Sync: CB1 FCC switch channel fast play. [1/1]
     
-    PD#SWPL-57743
+    PD#SWPL-58081
     
     Problem:
-    av is not sync when pvr play.
+    FCC now not out drop policy, lead to fast play.
     
     Solution:
-    1.pa-diff>discontinue threshold,need normal output to wait discontinue trigger
-    2.dorp threshold< pa-diff <discontinue threshold,apts should update refclock,
-      instead of dropping data or inserting 0 data.
-    3.pause and resume,refclock should update immediately.
+    Now will out drop policy when FCC enter play.
     
     Verify:
-    verified on S905X4-AH212
+    AH212
     
-    Change-Id: I655a9c9a57fdce9b8ae907e0c2c8c96e29eee322
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+    Change-Id: I04f51904b698123df21821b7edbb52b66bffaeda
+    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
 
-commit efa35686557fcd3816467d4f59674d39f73db817
-Author: shengxiang.lan <shengxiang.lan@amlogic.com>
-Date:   Thu Sep 2 19:48:46 2021 +0800
+commit 9650b6ef03691a875bf32ab9f45faa4c66324684
+Author: Lili Xu <lili.xu@amlogic.com>
+Date:   Fri Aug 6 13:17:07 2021 +0800
 
-    TsPlayer: CF1 TsPlayer set crop. [1/1]
+    mediahal: CB2 Cannot get PTS in 33-bit [1/2]
     
-    PD#SWPL-58631
+    PD#SWPL-57628
     
     Problem:
-    TsPlayer hasn't set crop.
+    Telecom Slovenia reported the PTS value in 33 bit
+    cannot be retrieved correctly
     
     Solution:
-    Add TsPlayer set crop.
+    1. Modified to checkinPtsUS64, Make the transfer of 64bit us data.
+    2. getVideoPts also takes 64bit us data.
     
     Verify:
-    SC2
+    AH212
     
-    Change-Id: Ida5eb35b29317f1fc9295eb94157fd3670d5dc3b
-    Signed-off-by: shengxiang.lan <shengxiang.lan@amlogic.com>
+    Change-Id: I2970c154ba459b5678bdcf0034ec2c5a4aee1b4e
+    Signed-off-by: Lili Xu <Lili.Xu@amlogic.com>
+
+commit b022e421723a68979d5fbfe0f7536a884dbd9a87
+Author: jianchuan.ping <jianchuan.ping@amlogic.com>
+Date:   Thu Sep 23 13:47:29 2021 +0800
+
+    MediaSync: CB1 Audio not insert data when discontinue end. [1/1]
+    
+    PD#SWPL-59922
+    
+    Problem:
+    Audio normal output when discontinue.
+    
+    Solution:
+    When discontinue, insert audio to avoid audio underrun.
+    
+    Verify:
+    AH212
+    
+    Change-Id: I67a9578cbd3464e3f6fe6edfa908f87ec5506748
+    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
+
+commit 3e95edc9ddcac3d30062d2c565dfc2f524ce3bab
+Merge: 2fdd4c8 0d15564
+Author: Lifeng Cao <lifeng.cao@amlogic.com>
+Date:   Sun Sep 26 23:43:49 2021 -0700
+
+    Merge "mediahal: CF1 Compile on the android S platform.  [1/1]"
+
+commit 2fdd4c8c0a0613e3b106e785cb1da7fb80aebdc8
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Sep 23 17:40:04 2021 +0800
+
+    TsPlayer: CF2 SetSPDIFProtection in tsplayer
+    
+    PD#TV-40263
+    
+    Problem:
+    add interface to call set SPIDF status to media hal
+    
+    Solution:
+    1.call media hal interface to set SPIDF status.
+    
+    Verify:
+    verified on T5D
+    
+    Change-Id: Ia81f9d9783658fb1aead758b621b52776ce0d6ca
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
 ========================================
 
-Release time: 2021-09-16-11-11
+Release time: 2021-10-12-13-19
 
 ========================================
 
-Builder: yunmin.chen
+Builder: zhipeng.he
 
 ========================================
 Release file:
@@ -244,6 +236,8 @@ libmediahal_videodec.system.so
 Example file:
 AmTsPlayerExample.cpp
 Android.bp
+androidversion.go
+systemlib.go
 
 Binary  file:
 AmTsPlayerExample
