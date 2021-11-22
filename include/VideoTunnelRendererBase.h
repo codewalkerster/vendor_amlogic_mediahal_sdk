@@ -19,6 +19,12 @@ struct renderTime
     int64_t renderUs;
 };
 
+struct fillVideoFrame2
+{
+   int fd;
+   bool rendered;
+};
+
 class VideoTunnelRendererBase
 {
 
@@ -27,6 +33,7 @@ public:
     enum {
         CB_FILLVIDEOFRAME,
         CB_NODIFYRENDERTIME,
+        CB_FILLVIDEOFRAME2,
         CB_FUNS_MAX,
     };
 

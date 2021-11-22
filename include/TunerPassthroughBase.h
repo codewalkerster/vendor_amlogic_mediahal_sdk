@@ -13,25 +13,23 @@
 
 typedef int (*callbackFunc)(void*obj, void* args);
 
+typedef struct PASSTHROUGH_INIT_PARAMS
+{
+    int32_t dmx_id;
+    int32_t video_pid;
+    int32_t hw_sync_id;
+    int32_t secure_mode;
+    const char* mime;
+    void* tunnel_renderer;
+} passthroughInitParams;
+
 struct TunerPassthroughBase
 {
-
 public:
-    struct renderTime
-    {
-        int64_t mediaUs;
-        int64_t renderUs;
-    };
-
-    enum {
-        CB_FILLVIDEOFRAME,
-        CB_NODIFYRENDERTIME,
-        CB_FUNS_MAX,
-    };
 
     TunerPassthroughBase() {};
     virtual ~TunerPassthroughBase() {};
-    virtual int Init(int dmx_id, int video_pid, const char* mime, int hw_sync_id, int secure_mode);
+    virtual int Init(passthroughInitParams* params);
     virtual int RegCallBack(int cb_id, callbackFunc funs, void* obj);
     virtual int GetSyncInstansNo(int *no);
     virtual int Start();

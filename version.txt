@@ -1,213 +1,230 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.97-g4dd5b48
+Version: V3.2.128-gf7c8887
 
 ========================================
 
 Git commit:
-commit 4dd5b48f8e7f0671b49056d4b5e49aa3ecc599ed
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Sun Oct 3 14:25:52 2021 +0800
+commit f7c8887cb0dde4455a6516143c26426b75f3f2b7
+Author: jianchuan.ping <jianchuan.ping@amlogic.com>
+Date:   Thu Oct 28 10:45:34 2021 +0800
 
-    mediahal: CB1 use vt interface get vsync and period [1/1]
+    Media_Sync: CF1 Add frame control to media_sync [1/1]
     
-    PD#TV-41388
+    PD#SWPL-60545
     
     Problem:
-    when mediahal invoke interface getDisplayVsyncAndPeriod
-    to get vsync and period in libmeson_display_adapter_remote,
-    mediahal normal thread priority lead hwc binder become
-    normal priority from RT
+    Need add frame control to media sync.
     
     Solution:
-    use vt interface get vsync and period first instand of
-    binder invoke to hwc
+    Add frame control to media sync.
+    
+    Verify:
+    AH212
+    
+    Change-Id: I23c7a27136c0fbe07cf44332296c252aa6a234ad
+    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
+
+commit 98d516542c7fff3c5dabea108175689283fff2f6
+Author: yibo.wu <yibo.wu@amlogic.com>
+Date:   Sat Oct 9 02:43:17 2021 +0000
+
+    MediaSync: CB2 pcm playback is not smooth at end [2/2]
+    
+    PD#SWPL-58637
+    
+    Problem:
+    The test stream is mute frame at the beginning.
+    there is noise when loopback the stream.
+    
+    Solution:
+    return discontinue insert case to audiohal
+    
+    Verify:
+    AH212-S905x4
+    
+    Change-Id: Ic66f27e0314c78c2d6b5dd2cac1357bb180d3c51
+    Signed-off-by: yibo.wu <yibo.wu@amlogic.com>
+
+commit 970dfc5fcc1e9c0a038086a4cb718c037f716de2
+Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
+Date:   Wed Nov 10 15:56:44 2021 +0800
+
+    tsplayer: CB1 fix compile error on AndroidS [1/1]
+    
+    PD#SWPL-64477
+    
+    Problem:
+    Compile error on AndroidS
+    
+    Solution:
+    include fcntl.h in AmAudioHalWrapper.cpp
+    
+    Verify:
+    SC2
+    
+    Change-Id: I211df1b5191f5287666e2b51190c115605fff33c
+    Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
+
+commit 5b39e632af539bda94ca6800a2efc4735205acff
+Author: Yani Shi <yani.shi@amlogic.com>
+Date:   Mon Nov 15 08:21:17 2021 +0000
+
+    Media_sync: CB2 Add case in checkStreamPtsValid and queueAudioFrame. [1/1]
+    
+    PD#SWPL-63348
+    
+    Problem:
+    switch channel by FCC,do timeshift,video is freeze.
+    
+    Solution:
+    1.add audio only case in queueAudioFrame
+    2.add a/v only and a/v late case in checkStreamPtsValid
+    
+    Verify:
+    AH212
+    
+    Change-Id: I0ae761d01f87093108c7099ad42d3cac08e1396e
+    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
+
+commit cdba5f7d7ee9bda24418e0e688542c56c637924c
+Author: lingrong.wu <lingrong.wu@amlogic.com>
+Date:   Mon Nov 15 15:44:58 2021 +0800
+
+    tsplayer: CB1 Video freeze when stress test by FCC [1/1]
+    
+    PD#SWPL-63431
+    
+    Problem:
+    Dead lock in onInputBufferDone if size larger than
+    kMaxEsBufSize in AmCodecVDA::decode
+    
+    Solution:
+    get mLock only when decode type is VIDEO_DECODER_FRAMEMODE
+    
+    Verify:
+    ohm_mxl258c
+    
+    Change-Id: Ie41a99f84f2ccf99d5ec2d825e2fc5ed3bdb653e
+    Signed-off-by: lingrong.wu@amlogic.com
+
+commit fab102f0b2a51c98cdad5d06b5a372541765bcba
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Nov 9 10:38:38 2021 +0800
+
+    TsPlayer: CB1 support mjpeg file [1/1]
+    
+    PD#OTT-24931
+    
+    Problem:
+    1.need to support mjpeg video fmt
+    
+    Solution:
+    1.need to support mjpeg video fmt
+    
+    Verify:
+    verified on sc2
+    
+    Change-Id: Ic03db4024131dd52eb05a1562d35731d3521e0d2
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 8c0d66960e9131a14eefe0e4ea1339495091effe
+Author: peter wang <peter.wang@amlogic.com>
+Date:   Mon Nov 8 20:32:49 2021 +0800
+
+    MediaHal: CB1 fix AdaptivePlaybackTest 1 hevc case fail [1/1]
+    
+    PD#SWPL-63852
+    
+    Problem:
+    bellow cts case failed in CtsMediaV2TestCases module:
+    android.mediav2.cts.AdaptivePlaybackTest#
+    testAdaptivePlayback[3(c2.amlogic.hevc.decoder_video/hevc)]
+    android.mediav2.cts.CodecDecoderSurfaceTest#
+    testFlushNative[10(c2.amlogic.hevc.decoder_video/hevc)]
+    
+    Solution:
+    do not set need_clear_csd_ to false to ensure the new csd can pass to decoder
+    enlarge MAX_CSD_LEN to 5k for larger csd frames
+    
+    Verify:
+    test on ohm
+    
+    Change-Id: Id2aa4c422e9bef6f460cccbd5232eb1514723587
+    Signed-off-by: peter wang <peter.wang@amlogic.com>
+
+commit b84abfbdc56a09806a9cbd8a14665a14c889e14f
+Author: fengchen.shen <fengchen.shen@amlogic.com>
+Date:   Fri Oct 29 06:53:15 2021 +0000
+
+    tsplayer: CB1 avoid tsplayer start/stop two times [1/1]
+    
+    PD#SWPL-59496
+    
+    Problem:
+    Sometimes tsplayer start/stop two times.
+    
+    Solution:
+    1. use aLock/vLock to avoid tsplayer start/stop two times at the same time.
+    2. If tsplayer start/stop already,return OK.
+    
+    Verify:
+    S905X4
+    
+    Change-Id: I302067afe72eb6c3b0d9f3c84805d0911e7b6a32
+    Signed-off-by: fengchen.shen <fengchen.shen@amlogic.com>
+
+commit 694957c19cb67b5197328034f235dd697769ebf0
+Author: Kai Song <kai.song@amlogic.com>
+Date:   Thu Nov 4 19:55:34 2021 +0800
+
+    MediaHal: CB1 Fix videoTunnelRenderer and PtsServ crash [1/2]
+    
+    PD#SWPL-63607
+    PD#SWPL-61730
+    
+    Problem:
+    videoTunnelRenderer will crash when destory as mVsyncFrac and
+    mdispAdapter are not inited
+    libmediahal_videodec crash when CheckoutPtsOffset
+    
+    Solution:
+    Init mVsyncFrac and mdispAdapter with NULL value
+    Set mPtsOffsetLink and node to NULL after free operation
+    
+    Verify:
+    Android-R OHM
+    
+    Change-Id: If3ea58bcf98e6849f6a98afde37c023770cd302e
+    Signed-off-by: Kai Song <kai.song@amlogic.com>
+
+commit edb75ffbdf8bda7cc1ae1fd2fc0a0d0bae99d6e6
+Author: shengxiang.lan <shengxiang.lan@amlogic.com>
+Date:   Thu Nov 4 17:52:54 2021 +0800
+
+    TsPlayer: CB1 Play radio the progress bar abnormally after pause. [1/1]
+    
+    PD#TV-42006
+    
+    Problem:
+    Get the audio delay time wrong.
+    
+    Solution:
+    Change the api of geting audio delay time.
     
     Verify:
     T5D
     
-    Change-Id: I91941bb119a729d9cf6ab7de7d9e948729d0c113
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 8be0a99c05f9746060f5a62048e1d05d306b491c
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Fri Sep 17 14:24:01 2021 +0800
-
-    tsplayer: CF2 audio format support flac. [1/1]
-    
-    PD#OTT-23023
-    
-    Problem:
-    audio format not support flac.
-    
-    Solution:
-    audio format support flac.
-    
-    Verify:
-    AP222
-    
-    Change-Id: Iffed260875b0cfa614374b9a207066d945663c0e
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
-
-commit 57fcba0ceaa1dd8a6313ef38dfd8c62dba90180a
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Mon Sep 27 12:36:43 2021 +0800
-
-    codec2 : CF1 gts GtsExoPlayerTestCases secure case failed [1/1]
-    
-    PD#SWPL-60225
-    
-    Problem:
-    GtsExoPlayerTestCases secure test case failed
-    
-    Solution:
-    1. Test case report timestamp wrong, for secure the ouput
-    buffer'secure bit stream id is dequeued early than input,
-    codec2 won't reorder bit stream id.
-    
-    Verify:
-    ohm''
-    
-    Change-Id: I813e517d75473d86436801254de4027b3f322c53
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit fed8304d58cf73a9267f8d3264aa99456b9c84e7
-Author: xiaoming sui <xiaoming.sui@amlogic.com>
-Date:   Wed Sep 29 17:30:30 2021 +0800
-
-    MediaSync: CB1 fix frequently drops audio issues [1/1]
-    
-    PD#SWPL-60381
-    
-    Problem:
-    long time playback for some specific streams, frequently drops audio;
-    
-    Solution:
-    1, cache  2 mQueueAudioInterval audio data;
-    2, if diff is less a half mQueueAudioInterval, then don`t drop audio;
-    
-    Verify:
-    T3-P
-    
-    Change-Id: I176f283cf64fe920899fe549f639aee5a1ee2eab
-    Signed-off-by: xiaoming sui <xiaoming.sui@amlogic.com>
-
-commit 3e1e7895dceafeb050309a9afa26c150e1757201
-Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Fri Sep 24 20:49:55 2021 +0800
-
-    MediaSync: CB1 video cache can't calc correctly. [1/1]
-    
-    PD#SWPL-58081
-    
-    Problem:
-    Video cache not calc correctly when apts not get.
-    
-    Solution:
-    Enlarge default cache, update quicker if can't get correct cache.
-    
-    Verify:
-    AH212
-    
-    Change-Id: I5c0154ba0ad27c14c927c14bdace132cc4b01966
-    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
-
-commit 1461d356af6964be3d81478b81f3843daded63d2
-Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Sun Sep 26 21:12:48 2021 +0800
-
-    Media_Sync: CB1 FCC switch channel fast play. [1/1]
-    
-    PD#SWPL-58081
-    
-    Problem:
-    FCC now not out drop policy, lead to fast play.
-    
-    Solution:
-    Now will out drop policy when FCC enter play.
-    
-    Verify:
-    AH212
-    
-    Change-Id: I04f51904b698123df21821b7edbb52b66bffaeda
-    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
-
-commit 9650b6ef03691a875bf32ab9f45faa4c66324684
-Author: Lili Xu <lili.xu@amlogic.com>
-Date:   Fri Aug 6 13:17:07 2021 +0800
-
-    mediahal: CB2 Cannot get PTS in 33-bit [1/2]
-    
-    PD#SWPL-57628
-    
-    Problem:
-    Telecom Slovenia reported the PTS value in 33 bit
-    cannot be retrieved correctly
-    
-    Solution:
-    1. Modified to checkinPtsUS64, Make the transfer of 64bit us data.
-    2. getVideoPts also takes 64bit us data.
-    
-    Verify:
-    AH212
-    
-    Change-Id: I2970c154ba459b5678bdcf0034ec2c5a4aee1b4e
-    Signed-off-by: Lili Xu <Lili.Xu@amlogic.com>
-
-commit b022e421723a68979d5fbfe0f7536a884dbd9a87
-Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Thu Sep 23 13:47:29 2021 +0800
-
-    MediaSync: CB1 Audio not insert data when discontinue end. [1/1]
-    
-    PD#SWPL-59922
-    
-    Problem:
-    Audio normal output when discontinue.
-    
-    Solution:
-    When discontinue, insert audio to avoid audio underrun.
-    
-    Verify:
-    AH212
-    
-    Change-Id: I67a9578cbd3464e3f6fe6edfa908f87ec5506748
-    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
-
-commit 3e95edc9ddcac3d30062d2c565dfc2f524ce3bab
-Merge: 2fdd4c8 0d15564
-Author: Lifeng Cao <lifeng.cao@amlogic.com>
-Date:   Sun Sep 26 23:43:49 2021 -0700
-
-    Merge "mediahal: CF1 Compile on the android S platform.  [1/1]"
-
-commit 2fdd4c8c0a0613e3b106e785cb1da7fb80aebdc8
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Sep 23 17:40:04 2021 +0800
-
-    TsPlayer: CF2 SetSPDIFProtection in tsplayer
-    
-    PD#TV-40263
-    
-    Problem:
-    add interface to call set SPIDF status to media hal
-    
-    Solution:
-    1.call media hal interface to set SPIDF status.
-    
-    Verify:
-    verified on T5D
-    
-    Change-Id: Ia81f9d9783658fb1aead758b621b52776ce0d6ca
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+    Change-Id: Ifa67404cd84037d992b2a9033613459d3e356651
+    Signed-off-by: shengxiang.lan <shengxiang.lan@amlogic.com>
 
 ========================================
 
-Release time: 2021-10-12-13-19
+Release time: 2021-11-22-13-27
 
 ========================================
 
-Builder: zhipeng.he
+Builder: jiabin.zhu
 
 ========================================
 Release file:
@@ -216,9 +233,9 @@ Header file:
 AmTsPlayer.h
 AmVideoDecBase.h
 MediaSyncInterface.h
-resourcemanage.h
 TunerPassthroughBase.h
 VideoTunnelRendererBase.h
+resourcemanage.h
 
 Vendor Library file:
 libmediahal_mediasync.so

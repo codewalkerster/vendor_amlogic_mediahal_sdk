@@ -39,7 +39,8 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE,     //av sync done
     AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,  // input video buffer done
     AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE,  // input audio buffer done
-    AM_TSPLAYER_EVENT_TYPE_DECODE_FRAME_ERROR_COUNT  // The video decoder frame.error
+    AM_TSPLAYER_EVENT_TYPE_DECODE_FRAME_ERROR_COUNT,  // The video decoder frame.error
+    AM_TSPLAYER_EVENT_TYPE_DECODE_VIDEO_UNSUPPORT // Video is not supported.
 } am_tsplayer_event_type;
 
 
@@ -193,20 +194,22 @@ typedef enum {
 
 /*Video decoder type*/
 typedef enum {
-    AV_VIDEO_CODEC_AUTO = 0,               // Unkown video type
+    AV_VIDEO_CODEC_AUTO = 0,               // Unkown video type (Unsupport)
     AV_VIDEO_CODEC_MPEG1 = 1,              // MPEG1
     AV_VIDEO_CODEC_MPEG2 = 2,              // MPEG2
     AV_VIDEO_CODEC_H264 = 3,               // H264
     AV_VIDEO_CODEC_H265 = 4,               // H265
-    AV_VIDEO_CODEC_VP9 = 5,               // VP9
-    AV_VIDEO_CODEC_AVS = 6,               // AVS
+    AV_VIDEO_CODEC_VP9 = 5,                // VP9
+    AV_VIDEO_CODEC_AVS = 6,                // AVS
     AV_VIDEO_CODEC_MPEG4 = 7,              // MPEG4
-    AV_VIDEO_CODEC_AVS2 = 8,              // AVS2
+    AV_VIDEO_CODEC_AVS2 = 8,               // AVS2
+    AV_VIDEO_CODEC_MJPEG = 9,              // MJPEG
+    AV_VIDEO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_video_codec;
 
 /*Audio decoder type*/
 typedef enum {
-    AV_AUDIO_CODEC_AUTO = 0,               // Unkown video type
+    AV_AUDIO_CODEC_AUTO = 0,               // Unkown audio type (Unsupport)
     AV_AUDIO_CODEC_MP2 = 1,                // MPEG audio
     AV_AUDIO_CODEC_MP3 = 2,                // MP3
     AV_AUDIO_CODEC_AC3 = 3,                // AC3
@@ -217,11 +220,10 @@ typedef enum {
     AV_AUDIO_CODEC_PCM = 8,                // PCM
     AV_AUDIO_CODEC_AC4 = 9,                // AC4
     AV_AUDIO_CODEC_DRA = 10,               // DRA
-    AV_AUDIO_CODEC_FLAC = 11,               // FLAC
-    AV_AUDIO_CODEC_MAX,                    // max audio type
-//    AV_AUDIO_CODEC_HEAAC = 8,            // HEAAC
-//    AV_AUDIO_CODEC_AAC_ADTS = 9,         // AAC_ADTS
-//    AV_AUDIO_CODEC_HEAACV2 = 10          // HEAAC VERSION2
+    AV_AUDIO_CODEC_FLAC = 11,              // FLAC
+    AV_AUDIO_CODEC_VORBIS = 12,            // VORBIS
+    AV_AUDIO_CODEC_OPUS = 13,              // OPUS
+    AV_AUDIO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_audio_codec;
 
 /*AmTsPlayer handle*/
