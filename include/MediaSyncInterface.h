@@ -124,8 +124,8 @@ extern mediasync_result MediaSync_allocInstance(void* handle, int32_t DemuxId,
 
 extern mediasync_result MediaSync_bindInstance(void* handle, uint32_t SyncInsId,
                                                              sync_stream_type streamtype);
+extern mediasync_result MediaSync_setPlayerInsNumber(void* handle, int32_t number);
 extern mediasync_result MediaSync_setSyncMode(void* handle, sync_mode mode);
-
 extern mediasync_result MediaSync_getSyncMode(void* handle, sync_mode *mode);
 extern mediasync_result MediaSync_setPause(void* handle, bool pause);
 extern mediasync_result MediaSync_getPause(void* handle, bool *pause);

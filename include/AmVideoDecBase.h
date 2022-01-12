@@ -110,6 +110,7 @@ public:
     virtual void destroy();
     virtual int32_t sendCommand(uint32_t index, void* param, uint32_t size);
     virtual bool getDecoderMessage(uint32_t type, void *data);
+    virtual bool sendMessagetoDecoder(uint32_t type, void *data);
 
     /* Ion output for non-bufferqueue */
     virtual int32_t allocIonBuffer(size_t size, void** mapaddr, int* fd = 0);

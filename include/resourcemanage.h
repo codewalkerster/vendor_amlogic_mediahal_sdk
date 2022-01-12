@@ -70,7 +70,8 @@ enum RESMAN_TYPE {
     RESMAN_TYPE_COUNTER = 1,
     RESMAN_TYPE_TOGGLE,
     RESMAN_TYPE_TVP,
-    RESMAN_TYPE_CODEC_MM
+    RESMAN_TYPE_CODEC_MM,
+    RESMAN_TYPE_CAPACITY_SIZE
 };
 
 enum RESMAN_APP {
@@ -97,7 +98,9 @@ int resman_close(int handle);
 int resman_setappinfo(int handle, struct app_info *appinfo);
 bool resman_acquire_para(int handle, int restype, const unsigned int time_out, int preempt, const char *arg);//Timeout unit: milliseconds
 bool resman_acquire(int handle, int restype);
+bool resman_acquire_para_ext(int handle, const char *resname, const unsigned int time_out, int preempt, const char *arg);
 int resman_release(int handle, int restype);
+int resman_release_ext(int handle, const char * resname);
 int resman_release_all(int handle);
 int resman_query(int handle, struct resman_para *res_status);
 bool resman_acquire_wait(int handle, int restype, const unsigned int time_out);//Timeout unit: milliseconds

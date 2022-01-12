@@ -48,7 +48,7 @@ public:
     virtual bool flush();
     virtual bool setFrameRate(int32_t framerate);
     virtual bool peekFirstFrame();
-    virtual void onVideoSyncQueueVideoFrame(int64_t timestampUs);
+    virtual void onVideoSyncQueueVideoFrame(int64_t timestampUs, uint32_t size);
 };
 
 extern "C" VideoTunnelRendererBase* VideoTunnelRenderer_create();

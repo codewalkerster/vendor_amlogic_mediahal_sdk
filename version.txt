@@ -1,230 +1,226 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.128-gf7c8887
+Version: V3.2.176-g15ccc1a
 
 ========================================
 
 Git commit:
-commit f7c8887cb0dde4455a6516143c26426b75f3f2b7
-Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Thu Oct 28 10:45:34 2021 +0800
+commit 15ccc1a60abaa119079d196de5db0cc5eb59135a
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jan 4 17:20:57 2022 +0800
 
-    Media_Sync: CF1 Add frame control to media_sync [1/1]
+    tsplayer: CB1 Add setting video crop interface. [1/3]
     
-    PD#SWPL-60545
+    PD#SWPL-65090
     
     Problem:
-    Need add frame control to media sync.
+    Add setting video crop interface.
     
     Solution:
-    Add frame control to media sync.
-    
-    Verify:
-    AH212
-    
-    Change-Id: I23c7a27136c0fbe07cf44332296c252aa6a234ad
-    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
-
-commit 98d516542c7fff3c5dabea108175689283fff2f6
-Author: yibo.wu <yibo.wu@amlogic.com>
-Date:   Sat Oct 9 02:43:17 2021 +0000
-
-    MediaSync: CB2 pcm playback is not smooth at end [2/2]
-    
-    PD#SWPL-58637
-    
-    Problem:
-    The test stream is mute frame at the beginning.
-    there is noise when loopback the stream.
-    
-    Solution:
-    return discontinue insert case to audiohal
-    
-    Verify:
-    AH212-S905x4
-    
-    Change-Id: Ic66f27e0314c78c2d6b5dd2cac1357bb180d3c51
-    Signed-off-by: yibo.wu <yibo.wu@amlogic.com>
-
-commit 970dfc5fcc1e9c0a038086a4cb718c037f716de2
-Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
-Date:   Wed Nov 10 15:56:44 2021 +0800
-
-    tsplayer: CB1 fix compile error on AndroidS [1/1]
-    
-    PD#SWPL-64477
-    
-    Problem:
-    Compile error on AndroidS
-    
-    Solution:
-    include fcntl.h in AmAudioHalWrapper.cpp
+    Add setting video crop interface.
     
     Verify:
     SC2
     
-    Change-Id: I211df1b5191f5287666e2b51190c115605fff33c
-    Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
+    Change-Id: Iabc9dc2292d1c6adef22181494aed4a3739e3a47
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 5b39e632af539bda94ca6800a2efc4735205acff
-Author: Yani Shi <yani.shi@amlogic.com>
-Date:   Mon Nov 15 08:21:17 2021 +0000
+commit fd9dc31a89871b2e5ac91514b871b5c3314310c3
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jan 4 20:08:53 2022 +0800
 
-    Media_sync: CB2 Add case in checkStreamPtsValid and queueAudioFrame. [1/1]
+    tsplayer: CB1 stress test,video freeze [1/1]
     
-    PD#SWPL-63348
+    PD#SWPL-65411
     
     Problem:
-    switch channel by FCC,do timeshift,video is freeze.
+    StartVideoRender() crash.
     
     Solution:
-    1.add audio only case in queueAudioFrame
-    2.add a/v only and a/v late case in checkStreamPtsValid
+    Add mVideoMediaSyncLock where
+    VideoMeidaSync objects are created and deleted.
     
     Verify:
-    AH212
+    T3
     
-    Change-Id: I0ae761d01f87093108c7099ad42d3cac08e1396e
-    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
+    Change-Id: I7dff8f46ca53854d7a303770e0e065ebc96d4398
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit cdba5f7d7ee9bda24418e0e688542c56c637924c
-Author: lingrong.wu <lingrong.wu@amlogic.com>
-Date:   Mon Nov 15 15:44:58 2021 +0800
+commit 652d33e3999fc8bfcd2ef47be24f3d361170cac5
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Jan 10 12:50:08 2022 +0800
 
-    tsplayer: CB1 Video freeze when stress test by FCC [1/1]
+    videodec: CB1 flush all pending pictureready when get last outbuffer [1/1]
     
-    PD#SWPL-63431
+    PD#SWPL-68841
     
     Problem:
-    Dead lock in onInputBufferDone if size larger than
-    kMaxEsBufSize in AmCodecVDA::decode
+    nts report MediaDecoder2VideoTunneled error
     
     Solution:
-    get mLock only when decode type is VIDEO_DECODER_FRAMEMODE
+    flush all pending pictureready when get last outbuffer
     
     Verify:
-    ohm_mxl258c
+    ohm
     
-    Change-Id: Ie41a99f84f2ccf99d5ec2d825e2fc5ed3bdb653e
-    Signed-off-by: lingrong.wu@amlogic.com
+    Change-Id: I8fb1b08124015ff56f13c69caae07074a93b48fc
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit fab102f0b2a51c98cdad5d06b5a372541765bcba
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Nov 9 10:38:38 2021 +0800
+commit b8649ad5007db1f1dc4f02d471a6f09e1a331e99
+Author: jiacheng.du <jiacheng.du@amlogic.com>
+Date:   Wed Jan 5 13:28:28 2022 +0800
 
-    TsPlayer: CB1 support mjpeg file [1/1]
+    MediaSync: CB1 fix Mediasync Crash issue [1/1]
     
-    PD#OTT-24931
+    PD#SWPL-69090
     
     Problem:
-    1.need to support mjpeg video fmt
+    Mediasync crash
     
     Solution:
-    1.need to support mjpeg video fmt
+    call pthread_mutex_destroy after destroy mThread
     
     Verify:
-    verified on sc2
+    S905x AH212 Android s
     
-    Change-Id: Ic03db4024131dd52eb05a1562d35731d3521e0d2
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+    Change-Id: I3669f10a2275e48366af79e0e923aeb22ed866f0
+    Signed-off-by: jiacheng.du <jiacheng.du@amlogic.com>
 
-commit 8c0d66960e9131a14eefe0e4ea1339495091effe
-Author: peter wang <peter.wang@amlogic.com>
-Date:   Mon Nov 8 20:32:49 2021 +0800
+commit 8fee7f361f675d05feed7c8cda2ed3c54a7f7c52
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Jan 6 19:21:21 2022 +0800
 
-    MediaHal: CB1 fix AdaptivePlaybackTest 1 hevc case fail [1/1]
+    tunnelrender: CB1 add more accurate control for underflow [1/1]
     
-    PD#SWPL-63852
+    PD#SWPL-69362
     
     Problem:
-    bellow cts case failed in CtsMediaV2TestCases module:
-    android.mediav2.cts.AdaptivePlaybackTest#
-    testAdaptivePlayback[3(c2.amlogic.hevc.decoder_video/hevc)]
-    android.mediav2.cts.CodecDecoderSurfaceTest#
-    testFlushNative[10(c2.amlogic.hevc.decoder_video/hevc)]
+    underflow case Expected media time is not right
     
     Solution:
-    do not set need_clear_csd_ to false to ensure the new csd can pass to decoder
-    enlarge MAX_CSD_LEN to 5k for larger csd frames
+    add more accurate control for underflow
     
     Verify:
-    test on ohm
+    ohm
     
-    Change-Id: Id2aa4c422e9bef6f460cccbd5232eb1514723587
-    Signed-off-by: peter wang <peter.wang@amlogic.com>
+    Change-Id: I9bc1b6b9e8855b24d6e79c4c488813bd7f6a5c6d
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit b84abfbdc56a09806a9cbd8a14665a14c889e14f
-Author: fengchen.shen <fengchen.shen@amlogic.com>
-Date:   Fri Oct 29 06:53:15 2021 +0000
+commit 75bdf1da23ed74de90ccec79d8c285078cf90100
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Dec 14 16:34:00 2021 +0800
 
-    tsplayer: CB1 avoid tsplayer start/stop two times [1/1]
+    tunnelmode: CB1 not do frame pull/hold for 50hz [1/1]
     
-    PD#SWPL-59496
+    PD#SWPL-66859
     
     Problem:
-    Sometimes tsplayer start/stop two times.
+    a lot of frame freeze when hdmi set to 50hz
     
     Solution:
-    1. use aLock/vLock to avoid tsplayer start/stop two times at the same time.
-    2. If tsplayer start/stop already,return OK.
+    not do frame pull/hold for 50hz
     
     Verify:
-    S905X4
+    805X2
     
-    Change-Id: I302067afe72eb6c3b0d9f3c84805d0911e7b6a32
-    Signed-off-by: fengchen.shen <fengchen.shen@amlogic.com>
+    Change-Id: Ic0d53db9403cc24622d130116c1e777ac07e7f68
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 694957c19cb67b5197328034f235dd697769ebf0
+commit 49226e053cd47696e8ce3edab6208cd961eb4405
 Author: Kai Song <kai.song@amlogic.com>
-Date:   Thu Nov 4 19:55:34 2021 +0800
+Date:   Mon Dec 13 12:59:15 2021 +0800
 
-    MediaHal: CB1 Fix videoTunnelRenderer and PtsServ crash [1/2]
+    videopassthrough: CF1 Support set decoder rp to demux [1/1]
     
-    PD#SWPL-63607
-    PD#SWPL-61730
+    PD#SWPL-62213
     
     Problem:
-    videoTunnelRenderer will crash when destory as mVsyncFrac and
-    mdispAdapter are not inited
-    libmediahal_videodec crash when CheckoutPtsOffset
+    There is no flow control for CBS PVR playback
     
     Solution:
-    Init mVsyncFrac and mdispAdapter with NULL value
-    Set mPtsOffsetLink and node to NULL after free operation
+    passthrough support set decoder rp to demux driver
     
     Verify:
     Android-R OHM
     
-    Change-Id: If3ea58bcf98e6849f6a98afde37c023770cd302e
+    Change-Id: I2ddd051ee6892dc35a338197b8594b3b15acbdf9
     Signed-off-by: Kai Song <kai.song@amlogic.com>
 
-commit edb75ffbdf8bda7cc1ae1fd2fc0a0d0bae99d6e6
-Author: shengxiang.lan <shengxiang.lan@amlogic.com>
-Date:   Thu Nov 4 17:52:54 2021 +0800
+commit 300097b81d8b03558fa071896badf27f5bb4410d
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Dec 4 15:32:45 2021 +0800
 
-    TsPlayer: CB1 Play radio the progress bar abnormally after pause. [1/1]
+    tsplayer: CF1 demux adds an interface for setting the rp address. [1/1]
     
-    PD#TV-42006
+    PD#SWPL-62213
     
     Problem:
-    Get the audio delay time wrong.
+    TunerFramework No Streaming Control Return Video RP to Demux.
     
     Solution:
-    Change the api of geting audio delay time.
+    AmHwMultiDemuxWrapper adds an interface for setting the rp address.
     
     Verify:
-    T5D
+    Android-R SC2
     
-    Change-Id: Ifa67404cd84037d992b2a9033613459d3e356651
-    Signed-off-by: shengxiang.lan <shengxiang.lan@amlogic.com>
+    Change-Id: I21406d1f536303cec3d48867099fa81462777e4b
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 16f3bf8e4c2aefcae124345d7242665783a4c354
+Author: shanshan.li <shanshan.li@amlogic.com>
+Date:   Fri Dec 31 20:02:08 2021 +0800
+
+    videodec: CB1 when play some streams the CPU usage is very high. [1/1]
+    
+    PD#OTT-25745
+    
+    Problem:
+    There are no B frames in the stream, and the buffers are all in the pipline.
+    V4L will report pollerr event, causing the thread to run all the time.
+    
+    Solution:
+    If there are too many buffers on the client side and poll returns pollerr,
+    add 1ms delay
+    
+    Verify:
+    ohm
+    
+    Change-Id: If73a9b3ed8944648fb3b1ac34f7b2c28c535814a
+    Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
+
+commit 41aedb1be166186a62c8f6ecc1877e39addf8f29
+Author: jiacheng.du <jiacheng.du@amlogic.com>
+Date:   Tue Dec 28 17:23:06 2021 +0800
+
+    MediaSync: CB1 fix no audio issue [1/1]
+    
+    PD#SWPL-66714
+    
+    Problem:
+    In fcc enable, sometimes no audio output
+    when switch channels between different
+    frequency points,Audio is always in drop
+    state.
+    
+    Solution:
+    If there is not enough audio data drop,
+    pull back the PCR and let the audio output
+    normally. At this time, the video will wait
+    for the audio to synchronize and then output.
+    
+    Verify:
+    S905x AH212 Android s
+    
+    Change-Id: I01ee2a75e1986cc4d14b32f872c69a8d273564d5
+    Signed-off-by: jiacheng.du <jiacheng.du@amlogic.com>
 
 ========================================
 
-Release time: 2021-11-22-13-27
+Release time: 2022-01-12-13-17
 
 ========================================
 
-Builder: jiabin.zhu
+Builder: yunmin.chen
 
 ========================================
 Release file:
@@ -262,6 +258,7 @@ AmTsPlayerExampleSystem
 AmTsPlayerTest
 EsVideoDecPlayer
 EsVideoDecPlayerTest
+getmmversion.sh
 vesplayer
 videodecplayer
 
