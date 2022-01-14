@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.176-g15ccc1a
+Version: V3.2.177-g060685c
 
 ========================================
 
 Git commit:
+commit 060685c656324d91535dd754455f9476794b8b0f
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 13 11:43:21 2022 +0800
+
+    tsplayer: CB1 switch audio track,audio output slowly  [1/1]
+    
+    PD#SWPL-70028
+    
+    Problem:
+    The writing of ts data is too fast,
+    and the buffering time is not controlled within 2 seconds.
+    
+    Solution:
+    The control buffer has about 2 seconds of audio and video data.
+    
+    Verify:
+    SC2
+    
+    Change-Id: Idf598bdbdff8db985d1bd45aa52565a8c7629762
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 15ccc1a60abaa119079d196de5db0cc5eb59135a
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Jan 4 17:20:57 2022 +0800
@@ -188,35 +209,9 @@ Date:   Fri Dec 31 20:02:08 2021 +0800
     Change-Id: If73a9b3ed8944648fb3b1ac34f7b2c28c535814a
     Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
 
-commit 41aedb1be166186a62c8f6ecc1877e39addf8f29
-Author: jiacheng.du <jiacheng.du@amlogic.com>
-Date:   Tue Dec 28 17:23:06 2021 +0800
-
-    MediaSync: CB1 fix no audio issue [1/1]
-    
-    PD#SWPL-66714
-    
-    Problem:
-    In fcc enable, sometimes no audio output
-    when switch channels between different
-    frequency points,Audio is always in drop
-    state.
-    
-    Solution:
-    If there is not enough audio data drop,
-    pull back the PCR and let the audio output
-    normally. At this time, the video will wait
-    for the audio to synchronize and then output.
-    
-    Verify:
-    S905x AH212 Android s
-    
-    Change-Id: I01ee2a75e1986cc4d14b32f872c69a8d273564d5
-    Signed-off-by: jiacheng.du <jiacheng.du@amlogic.com>
-
 ========================================
 
-Release time: 2022-01-12-13-17
+Release time: 2022-01-14-13-39
 
 ========================================
 
