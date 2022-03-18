@@ -48,6 +48,7 @@ struct resman_para {
 struct app_info {
     char appname[32];
     __u32  apptype;
+    int   prio ;
 };
 
 
@@ -63,6 +64,7 @@ enum RESMAN_ID {
     RESMAN_ID_DMX,
     RESMAN_ID_DI,
     RESMAN_ID_HWC,
+    RESMAN_ID_VDETE,
     RESMAN_ID_MAX,
 };
 
@@ -94,6 +96,7 @@ enum RESMAN_EVENT {
 
 bool resman_support(void);
 int resman_init(const char *appname, int type);
+int resman_init_ext(const char *appname, int type, int prio);
 int resman_close(int handle);
 int resman_setappinfo(int handle, struct app_info *appinfo);
 bool resman_acquire_para(int handle, int restype, const unsigned int time_out, int preempt, const char *arg);//Timeout unit: milliseconds

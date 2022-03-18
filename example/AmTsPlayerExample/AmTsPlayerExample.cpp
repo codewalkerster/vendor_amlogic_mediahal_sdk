@@ -31,6 +31,7 @@
 #include <chrono>
 #include <AmTsPlayer.h>
 #include <termios.h>
+#include <pthread.h>
 
 #ifdef SYSTEMLIB
 
@@ -57,9 +58,13 @@ typedef enum {
     TS_PLAYBACK_ENABLE = 1,     // Playback when file eof
 } am_tsplayer_playback_type;
 
-
+am_tsplayer_handle session;
 const int kRwSize = 188*300;
 const int kRwTimeout = 30000;
+
+#define DEBUG_FLAG 1
+#define TEST_FLOW 0
+bool enable_thread;
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
@@ -187,7 +192,6 @@ bool CreateVideoTunnelId(int* id) {
 
 #endif
 
-
 void video_callback(void *user_data, am_tsplayer_event *event)
 {
     UNUSED(user_data);
@@ -202,7 +206,19 @@ void video_callback(void *user_data, am_tsplayer_event *event)
                 event->event.video_format.frame_aspectratio);
             break;
         }
+        case AM_TSPLAYER_EVENT_TYPE_AUDIO_CHANGED:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_AUDIO_CHANGED: ch=%u ch_mask=%u samplerate=%u\n",
+                event->event.audio_format.channels ,
+                event->event.audio_format.channel_mask,
+                event->event.audio_format.sample_rate);
+            break;
+        }
         case AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD\n");
+            break;
+        }
         case AM_TSPLAYER_EVENT_TYPE_USERDATA_CC:
         {
             uint8_t* pbuf = event->event.mpeg_user_data.data;
@@ -234,14 +250,53 @@ void video_callback(void *user_data, am_tsplayer_event *event)
             printf("[evt] AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE\n");
             break;
         }
-       case AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE:
-       {
-       //    printf("[evt] AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,%p\n",event->event.ptr);
+        case AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE:
+        {
+        //    printf("[evt] AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,%p\n",event->event.ptr);
             break;
-       }
-       case AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE:
-       {
-       //    printf("[evt] AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE\n");
+        }
+        case AM_TSPLAYER_EVENT_TYPE_VIDEO_OVERFLOW:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_VIDEO_OVERFLOW video_overflow_num %u\n",
+                event->event.av_flow_cnt.video_overflow_num);
+            break;
+        }
+        case AM_TSPLAYER_EVENT_TYPE_VIDEO_UNDERFLOW:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_VIDEO_UNDERFLOW video_underflow_num %u\n",
+                event->event.av_flow_cnt.video_underflow_num);
+            break;
+        }
+        case AM_TSPLAYER_EVENT_TYPE_AUDIO_OVERFLOW:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_AUDIO_OVERFLOW audio_overflow_num %u\n",
+                event->event.av_flow_cnt.audio_overflow_num);
+            break;
+        }
+        case AM_TSPLAYER_EVENT_TYPE_AUDIO_UNDERFLOW:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_AUDIO_UNDERFLOW audio_underflow_num %u\n",
+                event->event.av_flow_cnt.audio_underflow_num);
+            break;
+        }
+        case AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_TIMESTAMP:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_TIMESTAMP\n");
+            break;
+        }
+        case AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_DATA:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_DATA\n");
+            break;
+        }
+        case AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_TIMESTAMP:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_TIMESTAMP\n");
+            break;
+        }
+        case AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_DATA:
+        {
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_DATA\n");
             break;
        }
         default:
@@ -321,11 +376,10 @@ static int set_dmx_source()
     return 0;
 }
 
-am_tsplayer_handle session;
-
 void signHandler(int iSignNo)
 {
     UNUSED(iSignNo);
+    enable_thread = false;
     AmTsPlayer_stopVideoDecoding(session);
     AmTsPlayer_stopAudioDecoding(session);
     AmTsPlayer_release(session);
@@ -347,10 +401,17 @@ static void usage(char **argv)
     printf("-c | --vtrick       none:0[default], pause:1, pause next:2, Ionly:3\n");
     printf("-v | --vcodec       unknown:0, mpeg1:1, mpeg2:2, h264:3[default], h265:4, vp9:5 avs:6 mpeg4:7\n");
     printf("-a | --acodec       unknown:0, mp2:1, mp3:2, ac3:3, eac3:4, dts:5, aac:6[default], latm:7, pcm:8\n");
-    printf("-V | --vpid         video pid, default 0x100\n");
-    printf("-A | --apid         audio pid, default 0x101\n");
+    printf("-V | --vpid         video pid,default:0x100\n");
+    printf("-A | --apid         audio pid,default:0x101\n");
     printf("-p | --playback     disable:0[default], enable:1\n");
     printf("-h | --help         print this usage\n");
+}
+
+int GetPid(char* pid) {
+    if (*pid == '0' && (*(pid + 1) == 'x' || *(pid + 1) == 'X')) {
+        return strtol(pid,NULL,16);
+    }
+    return strtol(pid,NULL,10);
 }
 
 int _kbhit() {
@@ -425,10 +486,10 @@ int main(int argc, char **argv)
                 aCodec = static_cast<am_tsplayer_audio_codec>(atoi(optarg));
                 break;
             case 'V':
-                vPid = atoi(optarg);
+                vPid = GetPid(optarg); //char* --> int
                 break;
             case 'A':
-                aPid = atoi(optarg);
+                aPid = GetPid(optarg); //char* --> int
                 break;
             case 'p':
                 emPlaybackType = static_cast<am_tsplayer_playback_type>(atoi(optarg));
@@ -543,7 +604,6 @@ int main(int argc, char **argv)
     AmTsPlayer_setAudioParams(session, &aparm);
     AmTsPlayer_startAudioDecoding(session);
 
-
     #if (ANDROID_PLATFORM_SDK_VERSION == 30)
     //
     am_tsplayer_audio_patch_manage_mode FORCE_ENABLE = AUDIO_PATCH_MANAGE_FORCE_ENABLE;
@@ -575,6 +635,11 @@ int main(int argc, char **argv)
         int retry = 100;
         am_tsplayer_result res;
         do {
+            if (pos > kRwSize * 10 && TEST_FLOW) {
+                printf ("pos =%ld sleep 10s for test underflow event\n",pos);
+                usleep(10000000);
+                pos = 0;
+            }
             res = AmTsPlayer_writeData(session, &ibuf, kRwTimeout);
             if (res == AM_TSPLAYER_ERROR_RETRY) {
                 usleep(50000);
@@ -587,6 +652,16 @@ int main(int argc, char **argv)
             if (ch == 113) {
                 printf("----break\n");
                 break;
+            }
+            if (ch == 10) {
+                am_tsplayer_state_t state;
+                state.data_len = 1024;
+                state.av_flag = AM_TSPLAYER_AV_INFO;
+                state.data = (uint8_t *)malloc(state.data_len);
+                memset(state.data, 0x0, state.data_len);
+                AmTsPlayer_getState(session, &state);
+                printf("----json[%d]:\n%s\n", state.actual_len, state.data);
+                free(state.data);
             }
         }
     }

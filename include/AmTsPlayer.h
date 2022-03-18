@@ -40,6 +40,14 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,  // input video buffer done
     AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE,  // input audio buffer done
     AM_TSPLAYER_EVENT_TYPE_DECODE_FRAME_ERROR_COUNT,  // The video decoder frame.error
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_OVERFLOW, //video amstream buffer overflow
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_UNDERFLOW, //video amstream buffer underflow
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_OVERFLOW, //audio amstream buffer overflow
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_UNDERFLOW, //audio amstream buffer underflow
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_TIMESTAMP, //video invalid timestamp
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_DATA, //video invalid data
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_TIMESTAMP, //audio invalid timestamp
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_DATA, //audio invalid data
     AM_TSPLAYER_EVENT_TYPE_DECODE_VIDEO_UNSUPPORT // Video is not supported.
 } am_tsplayer_event_type;
 
@@ -69,10 +77,17 @@ typedef enum {
     AM_TSPLAYER_KEY_SPDIF_MODE_ONCE  = 2,
 } am_tsplayer_spdif_mode;
 
+typedef enum {
+    AM_TSPLAYER_AV_INFO  = 0,     // Get audio and video information
+    AM_TSPLAYER_AUDIO_INFO = 1,   // Get audio information only
+    AM_TSPLAYER_VIDEO_INFO  = 2,  // Get video information only
+} am_tsplayer_av_info_state;
+
 typedef struct {
-    uint8_t *data;
-    size_t data_len;
-    size_t actual_len;
+    uint8_t *data;      // Call to provide buffer pointer
+    size_t data_len;    // The length of the buffer.
+    size_t actual_len;  // Copy the length of the actual json
+    am_tsplayer_av_info_state av_flag;  // Information acquisition flags for audio and video
 } am_tsplayer_state_t;
 
 
@@ -350,6 +365,7 @@ typedef struct {
 typedef struct {
     uint32_t sample_rate;
     uint32_t channels;
+    uint32_t channel_mask;
 } am_tsplayer_audio_format_t;
 
 typedef struct {
@@ -367,6 +383,13 @@ typedef struct {
     bool_t  scramling;
 } scamling_t;
 
+typedef struct {
+    uint32_t video_overflow_num;                        // video overflow num
+    uint32_t video_underflow_num;                       // video underflow num
+    uint32_t audio_overflow_num;                        // Audio overflow num
+    uint32_t audio_underflow_num;                       // Audio underflow num
+} av_flow_t;
+
 /*AmTsPlayer call back event*/
 typedef struct {
     am_tsplayer_event_type type;           // Call back event type
@@ -383,6 +406,8 @@ typedef struct {
         scamling_t scramling;
         /*callback audio/video input buffer ptr*/
         void* bufptr;
+        /*If Audio/Video overflow/underflow count the num*/
+        av_flow_t av_flow_cnt;
     } event;
 }am_tsplayer_event;
 
@@ -645,6 +670,7 @@ am_tsplayer_result  AmTsPlayer_getVideoInfo(am_tsplayer_handle Hadl, am_tsplayer
  *\return:       The AmTsPlayer result.
  */
 am_tsplayer_result  AmTsPlayer_getVideoStat(am_tsplayer_handle Hadl, am_tsplayer_vdec_stat *pStat);
+
 /**
  *\brief:        Start video decoding for specified AmTsPlayer instance .
  *\inparam:      AmTsPlayer handle.

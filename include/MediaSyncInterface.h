@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2020 Amlogic, Inc. All rights reserved.
+ *
+ * This source code is subject to the terms and conditions defined in the
+ * file 'LICENSE' which is part of this source code package.
+ *
+ * Description:
+ */
+
 #ifndef MEDIA_SYNC_INTERFACE_H_
 #define MEDIA_SYNC_INTERFACE_H_
 #include <stdint.h>
@@ -13,7 +22,8 @@ typedef enum {
     MEDIA_VIDEO = 0,
     MEDIA_AUDIO = 1,
     MEDIA_DMXPCR = 2,
-    MEDIA_OTHER = 3,
+    MEDIA_SUBTITLE = 3,
+    MEDIA_COMMON = 4,
     MEDIA_TYPE_MAX = 255,
 }sync_stream_type;
 
