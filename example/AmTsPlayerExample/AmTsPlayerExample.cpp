@@ -515,13 +515,13 @@ int main(int argc, char **argv)
        file.seekg(0, file.end);
        fsize = file.tellg();
        if (fsize <= 0) {
-           printf("file %s size %lld return\n", inputTsName.c_str(), fsize);
+           printf("file %s size %lld return\n", inputTsName.c_str(),(long long)fsize);
            return 0;
        }
        file.seekg(0, file.beg);
     }
     printf("file name = %s, is_open %d, size %lld, tsType %d\n",
-                inputTsName.c_str(), file.is_open(), fsize, tsType);
+                inputTsName.c_str(), file.is_open(),(long long) fsize, tsType);
 
     //am_tsplayer_handle session;
     am_tsplayer_init_params parm = {tsType, drmmode, 0, 0};
@@ -660,7 +660,7 @@ int main(int argc, char **argv)
                 state.data = (uint8_t *)malloc(state.data_len);
                 memset(state.data, 0x0, state.data_len);
                 AmTsPlayer_getState(session, &state);
-                printf("----json[%d]:\n%s\n", state.actual_len, state.data);
+                printf("----json[%d]:\n%s\n", (int)state.actual_len, state.data);
                 free(state.data);
             }
         }

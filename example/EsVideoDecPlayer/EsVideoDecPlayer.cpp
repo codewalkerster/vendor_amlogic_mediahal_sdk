@@ -33,9 +33,8 @@
 #include <getopt.h>
 #include <thread>
 #include <sys/mman.h>
-#include "crc32.h"
 #include "AmVideoDecBase.h"
-
+#include <inttypes.h>
 static uint32_t kDefaultQueueCount = 32;
 using namespace std::chrono_literals;
 #define MAX_INSTANCE_MUN  9
@@ -314,13 +313,14 @@ void VideoDecPlayerExample::dumpData(char* buf, uint32_t width, uint32_t height,
     if (mcFp) {
         /* save output crc data */
         int crc_y = 0,crc_uv = 0;
-
+        /*
         for (i = 0 ; i < (int)height; i++) {
             crc_y = crc32_le(crc_y, (unsigned char const *)(buf + i * mBufferWidth), width);
         }
         for (i = 0 ; i < (int)height / 2; i++) {
             crc_uv = crc32_le(crc_uv, (unsigned char const *)(buf + y_size + i * mBufferWidth), width);
         }
+        */
         fprintf(mcFp, "%08d: %08x %08x\n", mDumpNum, crc_y, crc_uv);
         fflush(mcFp);
         fsync(fileno(mcFp));
@@ -613,17 +613,17 @@ void VideoDecPlayerExample::onOutputFormatChanged(uint32_t requestedNumOfBuffers
     }
 #endif
 
-    printf("onOutputFormatChanged out timeUs %lld\n", getTimeUsFromStart());
+    printf("onOutputFormatChanged out timeUs %" PRId64 "\n", getTimeUsFromStart());
 }
 
 
 void VideoDecPlayerExample::onOutputBufferDone(int32_t pictureBufferId, int64_t bitstreamId,
                                                uint32_t width, uint32_t height) {
-    printf("onOutputBufferDone this %p, pictureBufferId %d, bitstreamId %lld, mInputWork.size %d, In %d, Out %d\n",
-                        this, pictureBufferId, bitstreamId, mInputWork.size(), mInputDoneCount, mOutputDoneCount);
+    printf("onOutputBufferDone this %p, pictureBufferId %d, bitstreamId %" PRId64 ", mInputWork.size %d, In %d, Out %d\n",
+                        this, pictureBufferId, bitstreamId, (int)mInputWork.size(), mInputDoneCount, mOutputDoneCount);
     std::lock_guard<std::mutex> lock(mOutputLock);
     int64_t timestamp = mInputWork[bitstreamId];
-    printf("onOutputBufferDone this %p, timestamp %lld, width %d, height %d\n",this, timestamp, width, height);
+    printf("onOutputBufferDone this %p, timestamp %" PRId64 ", width %d, height %d\n",this, timestamp, width, height);
 
     mDisplayWork.push({bitstreamId, timestamp, pictureBufferId, width, height});
     mInputWork.erase(bitstreamId);

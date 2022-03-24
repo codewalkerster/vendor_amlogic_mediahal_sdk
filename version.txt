@@ -1,10 +1,91 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.212-g74dce10
+Version: V3.2.216-g953bd52
 
 ========================================
 
 Git commit:
+commit 953bd525e0bbfd44795a97d30d5d22a898403d44
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Mar 24 15:39:19 2022 +0800
+
+    tunnelrender: CB1 fix P/Q compile error [1/1]
+    
+    PD#SWPL-74643
+    
+    Problem:
+    fix P/Q compile error
+    
+    Solution:
+    fix P/Q compile error
+    
+    Verify:
+    ohm
+    
+    Change-Id: I5d31cd7dbf81e81136fefbc35e430361af69d5f4
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 3abac0684ed4a33dc17752ae1e68ac9b3f650d56
+Author: Zhi Liu <zhi.liu@amlogic.com>
+Date:   Thu Feb 24 15:00:42 2022 +0800
+
+    mediahal: CB1 fix inputframe over-size when 4khevc [1/1]
+    
+    PD#OTT-27048
+    
+    Problem:
+    the 4khevc video play stutter,the max framesize is 6361331
+    over kInputBufferMaxSize(6291456)
+    
+    Solution:
+    change the inputbuffer maxsize
+    
+    Verify:
+    ohm
+    
+    Change-Id: I7cb1e7272eaa18f18451efd816d54e34483043ba
+    Signed-off-by: Zhi Liu <zhi.liu@amlogic.com>
+
+commit 1b2662f35c185c2101091d9fb78261153fe28b30
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Mar 23 14:21:01 2022 +0800
+
+    tunnelrender: CF2 tunnelrender code clean [1/1]
+    
+    PD#SWPL-74643
+    
+    Problem:
+    tunnelrender code need clean
+    
+    Solution:
+    tunnelrender code clean
+    
+    Verify:
+    ohm
+    
+    Change-Id: I2aa108b60a9305e2c5da8c175730f062a21917f2
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 4a61db8c8b8acf5cd047c081c7c1be1b98007401
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Mar 18 20:10:15 2022 +0800
+
+    mediahal: CF1 Compile the 64 bit library.  [1/1]
+    
+    PD#SWPL-75480
+    
+    Problem:
+    Compile the 64 bit library.
+    
+    Solution:
+    Compile the 64 bit library.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I929c5f837321db890022f02446c112665f8f9954
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 74dce10ccf37cb71aa4bc0e660de58368af9b86b
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Mar 15 00:44:38 2022 +0800
@@ -134,96 +215,13 @@ Date:   Fri Mar 11 13:23:16 2022 +0800
     Change-Id: I9f90dbb377ac5bd0b3cb18c50f7847ef70a9a766
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 26fd4247d6d1665a0d038d424e8985415331bf6a
-Author: zhewen.luo <zhewen.luo@amlogic.com>
-Date:   Wed Mar 9 11:05:12 2022 +0800
+========================================
 
-    tsplayer: CB1 support dts audio format [1/1]
-    
-    PD#SWPL-73975
-    
-    Problem:
-    not support dts to stuck video
-    
-    Solution:
-    Map the corresponding DTS type
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ia240f4d39427c7dbcaafdd213ad6ef9cdf9b83c1
-    Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
-
-commit 4dcbe0025081f548cfed3910c911416432f34d19
-Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Wed Mar 9 22:04:56 2022 +0800
-
-    TsPlayer: CB0 Clear media_sync id not correctly. [1/1]
-    
-    PD#SWPL-74115
-    
-    Problem:
-    Alloc two mediasync after video reset
-    
-    Solution:
-    Not clear mediasync id when audio is still exit
-    
-    Verify:
-    AP222
-    
-    Change-Id: I932778dfb0e2b5b64761a96d361a9f4fa89b38bb
-    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
-
-commit 6e05eee63ca70628261c1bc2ec68084698ffa51d
-Author: wenli.xu <wenli.xu@amlogic.com>
-Date:   Thu Jan 13 22:34:59 2022 +0800
-
-    meida_hal: CF1 add common report info [1/1]
-    
-    PD#SWPL-56884
-    
-    Problem:
-    Add common report info,include the modify of tr135,izzi project
-    
-    Solution:
-    1.implement the interface of AmTsPlayer_getAudioStat/AmTsPlayer_getAudioInfo
-    2.add and implement some event
-    3.AmTsPlayer_getState converts the decoded info into JSON format
-    
-    Verify:
-    S905x4
-    
-    Change-Id: Idcc1dc4bb4435bf379ebfc9a1059c17f2a947b95
-    Signed-off-by: wenli.xu <wenli.xu@amlogic.com>
-
-commit e8b02196ad4da9389e0a0ad4847056aa02f04b99
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Mar 3 23:48:31 2022 +0800
-
-    tsplayer: CB1 Video is not smooth.  [1/1]
-    
-    PD#SWPL-71466
-    
-    Problem:
-    Frame control is not supported in system_ext,
-    and realtime is set to 0.
-    
-    Solution:
-    Use realtime directly in system_ext.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I73743d6d96b9a9e4d96cdc0e5a90bcb2a060c09a
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+Release time: 2022-03-24-16-02
 
 ========================================
 
-Release time: 2022-03-18-10-32
-
-========================================
-
-Builder: drm.autobuild
+Builder: shuanglong.wang
 
 ========================================
 Release file:
@@ -238,7 +236,6 @@ VideoTunnelRendererBase.h
 
 Vendor Library file:
 libmediahal_mediasync.so
-libmediahal_passthrough.so
 libmediahal_resman.so
 libmediahal_tsplayer.so
 libmediahal_tunnelrenderer.so
@@ -253,13 +250,15 @@ libmediahal_videodec.system.so
 Example file:
 AmTsPlayerExample.cpp
 Android.bp
+androidversion.go
+systemlib.go
 
 Binary  file:
-AmTsPlayerExample
-AmTsPlayerExampleSystem
 AmTsPlayerTest
 EsVideoDecPlayer
 EsVideoDecPlayerTest
+getmmversion.sh
 vesplayer
+videodecplayer
 
 ========================================
