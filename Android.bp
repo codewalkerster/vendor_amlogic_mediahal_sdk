@@ -336,3 +336,24 @@ cc_prebuilt_binary {
     },
     check_elf_files: false,
 }
+
+cc_prebuilt_binary {
+    name: "resmanload",
+    defaults: ["mediahal_sdk_go_defaults"],
+    vendor: true,
+    arch: {
+        arm: {
+            srcs: ["bin/resmanload"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}

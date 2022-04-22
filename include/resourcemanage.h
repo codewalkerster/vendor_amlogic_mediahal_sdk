@@ -23,7 +23,10 @@ extern "C" {
 #define    RESMAN_IOC_SETAPPINFO         _IOW(RESMAN_IOC_MAGIC, 0x04, int)
 #define    RESMAN_IOC_SUPPORT_RES        _IOR(RESMAN_IOC_MAGIC, 0x05, int)
 #define    RESMAN_IOC_RELEASE_ALL        _IOR(RESMAN_IOC_MAGIC, 0x06, int)
+#define    RESMAN_IOC_LOAD_RES           _IOR(RESMAN_IOC_MAGIC, 0x07, int)
+
 #define    RESMAN_SUPPORT_PREEMPT        1
+#define    RESITEMSIZE             (32)
 
 struct resman_para {
     __u32 k;
@@ -51,6 +54,11 @@ struct app_info {
     int   prio ;
 };
 
+struct res_item {
+    char name[32];
+    __u32 type;
+    char arg[32];
+};
 
 enum RESMAN_ID {
     RESMAN_ID_VFM_DEFAULT,
@@ -106,12 +114,15 @@ int resman_release(int handle, int restype);
 int resman_release_ext(int handle, const char * resname);
 int resman_release_all(int handle);
 int resman_query(int handle, struct resman_para *res_status);
+int resman_query_ext(int handle, struct resman_para *res_status, const char * resname);
 bool resman_acquire_wait(int handle, int restype, const unsigned int time_out);//Timeout unit: milliseconds
 bool resman_resource_support(const char* resname);
 int resman_register(int fd, void (* handler)(void *),  void *opaque);
 void resman_unregister(int fd);
 void resman_stop_thread();
 int resman_estimate_size(int format, uint32_t width, uint32_t height);
+int resman_load_res(int handle, const char *name, __u32 type, const char *arg);
+
 #ifdef  __cplusplus
 }
 #endif

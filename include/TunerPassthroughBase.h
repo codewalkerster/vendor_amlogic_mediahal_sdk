@@ -23,6 +23,21 @@ typedef struct PASSTHROUGH_INIT_PARAMS
     void* tunnel_renderer;
 } passthroughInitParams;
 
+// enum TRICK_MODE {
+//     PASSTHROUGH_TRICKMODE_BASE = 0,
+//     PASSTHROUGH_TRICKMODE_SMOOTH, //based on the playback rate of the codec
+//     PASSTHROUGH_TRICKMODE_BY_SEEK, //playback speed is achieved by changing the play position
+//     PASSTHROUGH_TRICKMODE_MAX,
+// };
+
+/*Video decoder trick mode*/
+typedef enum {
+    AV_VIDEO_TRICK_MODE_NONE = 0,          // Disable trick mode
+    AV_VIDEO_TRICK_MODE_PAUSE = 1,         // Pause the video decoder
+    AV_VIDEO_TRICK_MODE_PAUSE_NEXT = 2,    // Pause the video decoder when a new frame dispalyed
+    AV_VIDEO_TRICK_MODE_IONLY = 3          // Decoding and Out I frame only
+} video_trick_mode;
+
 struct TunerPassthroughBase
 {
 public:
@@ -34,6 +49,9 @@ public:
     virtual int GetSyncInstansNo(int *no);
     virtual int Start();
     virtual int Stop();
+    virtual int Flush();
+    virtual int SetTrickMode(int mode);
+    virtual int SetTrickSpeed(float speed);
 
 };
 
