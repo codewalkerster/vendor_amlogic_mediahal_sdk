@@ -23,13 +23,6 @@ typedef struct PASSTHROUGH_INIT_PARAMS
     void* tunnel_renderer;
 } passthroughInitParams;
 
-// enum TRICK_MODE {
-//     PASSTHROUGH_TRICKMODE_BASE = 0,
-//     PASSTHROUGH_TRICKMODE_SMOOTH, //based on the playback rate of the codec
-//     PASSTHROUGH_TRICKMODE_BY_SEEK, //playback speed is achieved by changing the play position
-//     PASSTHROUGH_TRICKMODE_MAX,
-// };
-
 /*Video decoder trick mode*/
 typedef enum {
     AV_VIDEO_TRICK_MODE_NONE = 0,          // Disable trick mode

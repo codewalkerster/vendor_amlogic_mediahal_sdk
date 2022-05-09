@@ -1,232 +1,216 @@
 =========RELEALSE NOTE=================
 
-Version: V3.2.237-g1d6b704
+Version: V3.4.17-g5d70ceb
 
 ========================================
 
 Git commit:
-commit 1d6b704ee46e7df8646a2647bfe4b6e1b3300b11
+commit 5d70cebf122a321adf65d4d8da197b949bbf45e7
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Apr 22 11:29:42 2022 +0800
+Date:   Fri May 6 13:36:45 2022 +0800
 
-    mediasync: CB1 android p problem. [1/1]
+    videodec: CB1 fcc, fix AFD exceptions  [1/1]
     
-    PD#SWPL-79491
+    PD#SWPL-80527
     
     Problem:
-    1.android p compile error.
-    2.dvb playback, video freezes.
+    After the normal mode is switched to the cache mode,
+    the decoder will be reset,
+    and the instance id will not be set to the decoder.
     
     Solution:
-    1.Solve the android p compilation error.
-    2.If mediasync can't get vsynctime from the display,
-    use 60hz to calculate vsynctime.
+    After resetting the decoder,reset the instance id to the decoder.
     
     Verify:
-    T3
+    SC2
     
-    Change-Id: I79c7f284cf125b0a0818036439f27ebbb68d5c03
+    Change-Id: Iea2bfd5fbfbecf91f8b19312ce0fba80a37e269e
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 1218edd612342ae7fa903e22eac36be01bfbcd3a
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Jan 20 14:42:07 2022 +0800
+commit cad9422c536a0e72c19f9faa6ad76cfaf3e82c9d
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Apr 25 15:45:18 2022 +0800
 
-    videopassthrough: CF1 Support trick mode [1/1]
+    tsplayer: CB1 ad audio output abnormal [1/1]
+    
+    PD#TV-53853
+    
+    Problem:
+    StopAudioDecoding() did not clear the state of ad.
+    
+    Solution:
+    Clear the state of ad after StopAudioDecoding().
+    
+    Verify:
+    T5D
+    
+    Change-Id: If2171c146e74f22c9a00c96d4c1e3b23471c528c
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 1662f62c8832369002d94378b989546e97a48386
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon May 9 16:33:43 2022 +0800
+
+    mediahal: CB1 fix compiles errors in android 64bit  [1/1]
+    
+    PD#SWPL-80829
+    
+    Problem:
+    android 64bit compile error.
+    
+    Solution:
+    Solve the compilation error.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I8e7938aee2c892b9ee54dc66a19058e5cba21e0b
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 27423b9d89c1ffb7481a921d91651adf78d939ac
+Author: Zhi Liu <zhi.liu@amlogic.com>
+Date:   Sun Apr 24 10:13:59 2022 +0800
+
+    mediahal: CB1 fix inputframe over-size when 4kh264 [1/1]
+    
+    PD#SH-9131
+    
+    Problem:
+    the 4kh264 video play stutter,the max framesize is 6315532
+    over kInputBufferMaxSize(6291456)
+    
+    Solution:
+    change the inputbuffer maxsize
+    
+    Verify:
+    ohm
+    
+    Change-Id: I8a08791332c51589575e2a87447eca2a390c07d4
+    Signed-off-by: Zhi Liu <zhi.liu@amlogic.com>
+
+commit 9b22fe50564a62b0e1a60e4a4f33d462ecfa524d
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Apr 29 10:44:54 2022 +0800
+
+    tsplayer: CB1 tsplayer crash when Hadl is invalid [1/1]
+    
+    PD#SWPL-80000
+    
+    Problem:
+    Play PVR will crash on Franklin_hybrid androidS
+    
+    Solution:
+    add a judgment, Hadl == -1 will return error
+    
+    Verify:
+    Franklin_hybrid
+    
+    Change-Id: I31060a6ce8da7a9066955ceee3dda45a27d3d87a
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 0b822b78728551f150d9e2fa5d2a51a7f4476fe6
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Fri Apr 29 10:26:19 2022 +0800
+
+    resman: CB1 when resource doesn't register acquire always success  [1/1]
+    
+    PD#SWPL-80000
+    
+    Problem:
+    Andorid s + 4.9 acquire decoder fail
+    
+    Solution:
+    when resource doesn't register acquire always success
+    
+    Verify:
+    AH212
+    
+    Change-Id: I191c1cef0ccec3bff0370a7f8142a96d04fa461f
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit be5234607d6665c4e5c06912e7b41185da7788e4
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Apr 28 16:24:24 2022 +0800
+
+    passthrough: CF1 fix typo in TunerPassthroughBase.h [1/1]
     
     PD#SWPL-61541
     
     Problem:
-    Add trick mode in passthrough
+    fix typo in TunerPassthroughBase.h
     
     Solution:
-    Add trick mode in passhrough
+    fix typo in TunerPassthroughBase.h
     
     Verify:
     Android-R OHM
     
-    Change-Id: Iff265e49f5721de4f2a0ac1f6d5ed23190024fb8
+    Change-Id: I364bc61e1a6407d15f08e18cebec2828a41a3153
     Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit eb3b4eb67d92e63d0f8cc9dc2b96bc34315d67b9
+commit ac3b0928eafe25b104e14ff9cc559b3194ee6c85
 Author: joy.rao <joy.rao@amlogic.com>
-Date:   Fri Apr 15 11:10:46 2022 +0800
+Date:   Thu Apr 21 12:18:19 2022 +0800
 
-    resman: CB2 each time TsPlayer need check tunnelID [1/1]
+    resman: CB1 when FCC playback change mode need process vtux resource [1/1]
     
-    PD#SWPL-76456
+    PD#SWPL-79638
     
     Problem:
-    when tunnleID res avail is 1, playback  doesn't check tunnelID
+    FCC normal playback change to cache doesn't release vtux resource
     
     Solution:
-    Each time TsPlayer need check tunnelID
+    FCC playback change mode need process vtux resource
     
     Verify:
     AH212
     
-    Change-Id: I63b0f87c7152dcadc8bd2226f2b461a2a765fe5c
+    Change-Id: Ie15252e58f7d6ffc798b006cd274d19a566f1b7b
     Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
-commit b3a9f5ad44fb0f2604ae585305787de1ddebc88c
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Mon Apr 18 15:15:32 2022 +0800
+commit 7cee2056a5f7a31119792bd39ab5986a2f181f52
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Mon Apr 18 20:22:07 2022 +0800
 
-    Mediasync: CB1 audio cache calculate wrongly. [1/1]
+    tsplayer: CF2 add set/get ad volume function. [1/1]
     
-    PD#SWPL-78603
+    PD#SWPL-75725
     
     Problem:
-    audio cache calculate wrongly
+    has not set/get ad volume API.
     
     Solution:
-    output apts need update when drop audio
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I84b23a41558af52125186fcd0fd79120fc47c42a
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 5e13acd25ca2b80b65331534345d28175aff1638
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Apr 18 15:11:04 2022 +0800
-
-    videoTunnelRenderer: CB1 correct videotunnel typo errors [1/1]
-    
-    PD#SWPL-78984
-    
-    Problem:
-    correct videotunnel typo errors
-    
-    Solution:
-    correct videotunnel typo errors
-    
-    Verify:
-    SC2
-    
-    Change-Id: Ie7a3344cc0fa65518aa6906028b5e4049ac8e282
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit e9c75377273ca978505a4b910408336deb7033e3
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Wed Apr 13 10:48:26 2022 +0800
-
-    videodec: CB1 fixed the ion fd leak. [1/1]
-    
-    PD#SH-9678
-    
-    Problem:
-    The amount of fd owned by media.codec gets increased by 1 per playback.
-    ls -al /proc/$(pidof media.codec)/fd/ |wc -l. The ion fd is not closed
-    gracefully when ion allocation failed.
-    
-    Solution:
-    Close the ion fd for when ion allocation failed.
-    
-    Verify:
-    A311D2
-    
-    Change-Id: Ie973b436c6372e82a65a7af131c54e7a8872bd22
-    Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
-commit b664fa427ed7513881442c124889286672de09bf
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Tue Apr 12 15:55:48 2022 +0800
-
-    resman: CB2 when register resource error doesn't need acquire [1/1]
-    
-    PD#SWPL-78246
-    
-    Problem:
-    When register resource error, acquire resource may fail
-    
-    Solution:
-    Only when register resource successful then acqire resource
+    add set/get ad volume function.
     
     Verify:
     AH212
     
-    Change-Id: Ie368644b9cdeb3c9bd9f4e8de05a669892a272a3
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+    Change-Id: I056d2b4099ee332913ce529ccd99bebe0df69306
+    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
-commit 891745ed681e999e6db144d09378c587fba6b7ad
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Dec 13 15:20:41 2021 +0800
+commit b4f448847bf864f7cec7b7f44f0ef8f8937695a9
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Apr 27 15:52:27 2022 +0800
 
-    tsplayer: CB1 FCC, switching channel video freezes.  [1/1]
+    videodec: CB1 vda block when dynamic capture buffer playback exit [1/1]
     
-    PD#SWPL-64409
+    PD#SWPL-79824
     
     Problem:
-    1. Because the rend queue is not cleared in time,
-    in the current normal mode,
-    there is a certain probability that the slot of the
-    previous normal mode will be sent to the surface queue,
-    and the surface queue is abnormal, causing the video to freeze.
-    2. At the moment when VideodecNonTunnelWrapper is
-    still onOutputFormatChanged() applying for buffer allocation,
-    setworkmode (cache mode) is called.
-    At this time, when videodec is just allocated to
-    a part of the buffer in the queue,
-    because it is set to cache mode, the buffer just applied for is cleared again.
+    videodec not eixt normally when codec2 playback exit
     
     Solution:
-    1. The queue is uniformly time stamped,
-    and only the slot applied for in the current normal mode is used,
-    and if it is not, it is discarded.
-    2. The setworkmode and onOutputFormatChanged() of VideodecNonTunnelWrapper
-    are locked to prevent abnormal application buffer process.
+    fix dead loop when videodec exit when use dynamic capture playback
     
     Verify:
-    SC2
+    ohm
     
-    Change-Id: I38c60c64c504fcce970622caf7b1292739c83a4a
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 93c3230da94b1d8d36291e0422df8983a2eea5e1
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Mar 30 11:38:03 2022 +0800
-
-    videopassthrough: CB1 long run zap cause black screen [1/1]
-    
-    PD#SWPL-74097
-    
-    Problem:
-    Stop videodecoding took too long.
-    
-    Solution:
-    clean slot queue when release
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: Ic192c9e7c036ce199f52255087158d6acc808682
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit f9ba364d79194d2589535f7c2aa83329d6ed552b
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Sat Apr 2 14:54:48 2022 +0800
-
-    videotunnelrender: CB1 passthrought crush when swich test [1/1]
-    
-    PD#SWPL-76033
-    
-    Problem:
-    flush func dont lock.
-    
-    Solution:
-    lock flush func to avoid send buffer get NULL pointer.
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: Iea14564e40fccfeae22bcfda8d69ce7614cedb65
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+    Change-Id: Ib29c3590717c30b0e1f4d15973d82677fe5056c0
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
 ========================================
 
-Release time: 2022-04-22-16-15
+Release time: 2022-05-09-19-16
 
 ========================================
 

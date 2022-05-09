@@ -48,7 +48,8 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_DATA, //video invalid data
     AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_TIMESTAMP, //audio invalid timestamp
     AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_DATA, //audio invalid data
-    AM_TSPLAYER_EVENT_TYPE_DECODE_VIDEO_UNSUPPORT // Video is not supported.
+    AM_TSPLAYER_EVENT_TYPE_DECODE_VIDEO_UNSUPPORT, // Video is not supported.
+    AM_TSPLAYER_EVENT_TYPE_PREEMPTED  // instance was preempted, apk need release this instance
 } am_tsplayer_event_type;
 
 
@@ -712,6 +713,23 @@ am_tsplayer_result  AmTsPlayer_setAudioVolume(am_tsplayer_handle Hadl, int32_t v
  *\return:       The AmTsPlayer result.
  */
 am_tsplayer_result  AmTsPlayer_getAudioVolume(am_tsplayer_handle Hadl, int32_t *volume);
+
+/*Audio interface*/
+/**
+ *\brief:        Set AD volume to specified AmTsPlayer instance .
+ *\inparam:      AmTsPlayer handle.
+ *\inparam:      Volume value.
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_setADVolume(am_tsplayer_handle Hadl, int32_t volume);
+/**
+ *\brief:        Get AD volume value from specified AmTsPlayer instance .
+ *\inparam:      AmTsPlayer handle.
+ *\outparam:     Volume value.
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_getADVolume(am_tsplayer_handle Hadl, int32_t *volume);
+
 /**
  *\brief:        Set audio stereo mode to specified AmTsPlayer instance .
  *\inparam:      AmTsPlayer handle.
