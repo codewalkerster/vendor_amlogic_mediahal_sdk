@@ -59,6 +59,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_AUDIO_PATCH_MANAGE_MODE,
     AM_TSPLAYER_KEY_AUDIO_SECLEVEL,
     AM_TSPLAYER_KEY_SET_SPDIF_STATUS,
+    AM_TSPLAYER_KEY_SET_OSD,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -149,6 +150,23 @@ typedef enum {
     TS_STREAM_AD = 2,                      // Audio description
     TS_STREAM_SUB = 3,                     // Subtitle
 } am_tsplayer_stream_type;
+
+/*Ts media time type*/
+typedef enum {
+    TS_MEDIA_TIME_VIDEO = 0,                //Video
+    TS_MEDIA_TIME_AUDIO = 1,                //Audio
+    TS_MEDIA_TIME_PCR   = 2,                //PCR
+    TS_MEDIA_TIME_STC   = 3,                //System time clock
+    TS_MEDIA_TIME_MAX,
+} am_tsplayer_media_time_type;
+
+/*Ts time type*/
+typedef enum {
+    TS_UNIT_MS = 0,
+    TS_UNIT_US,
+    TS_UNIT_PTS,
+    TS_UNIT_MAX,
+} am_tsplayer_time_unit;
 
 /*Avsync mode*/
 typedef enum {
@@ -517,6 +535,15 @@ am_tsplayer_result  AmTsPlayer_getCurrentTime(am_tsplayer_handle Hadl, int64_t *
  *\return:       The AmTsPlayer result.
  */
 am_tsplayer_result  AmTsPlayer_getPts(am_tsplayer_handle Hadl, am_tsplayer_stream_type StrType, uint64_t *pts);
+
+/**
+ *\brief:        Get the time of specified AmTsPlayer instance.
+ *\inparam:      AmTsPlayer handle.
+ *\inparam:      stream type.
+ *\outparam:     pts.
+ *\return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_getMediaTime(am_tsplayer_handle Hadl, am_tsplayer_media_time_type mediaTimeType, am_tsplayer_time_unit tunit, uint64_t *time);
 
 /**
  *\brief:        Set the tsync mode for specified AmTsPlayer instance.
@@ -928,6 +955,3 @@ am_tsplayer_result  AmTsPlayer_getFirstPts(am_tsplayer_handle Hadl, am_tsplayer_
 #endif
 
 #endif
-
-
-\

@@ -61,6 +61,7 @@ typedef enum {
     MEDIASYNC_KEY_ALSAREADY,
     MEDIASYNC_KEY_VSYNC_INTERVAL_MS,
     MEDIASYNC_KEY_VIDEOFRAME,
+    MEDIASYNC_KEY_VIDEOTRICKMODE,
     MEDIASYNC_KEY_MAX = 255,
 } mediasync_parameter;
 
@@ -110,7 +111,13 @@ struct mediasync_audio_format {
     int format;
 };
 
-
+typedef enum {
+    MEDIA_VIDEO_TIME = 0,
+    MEDIA_AUDIO_TIME = 1,
+    MEDIA_DMXPCR_TIME = 2,
+    MEDIA_STC_TIME = 3,
+    MEDIA_TIME_TYPE_MAX = 255,
+} media_time_type;
 
 typedef struct audioinfo{
     int cacheSize;
@@ -161,9 +168,9 @@ extern mediasync_result MediaSync_queueAudioFrame(void* handle, struct mediasync
 extern mediasync_result MediaSync_queueVideoFrame(void* handle, int64_t vpts, int size, int duration, mediasync_time_unit tunit);
 extern mediasync_result MediaSync_AudioProcess(void* handle, int64_t apts, int64_t cur_apts, mediasync_time_unit tunit, struct mediasync_audio_policy* asyncPolicy);
 extern mediasync_result MediaSync_VideoProcess(void* handle, int64_t vpts, int64_t cur_vpts, mediasync_time_unit tunit, struct mediasync_video_policy* vsyncPolicy);
+extern mediasync_result MediaSync_GetMediaTimeByType(void* handle, media_time_type mediaTimeType,mediasync_time_unit tunit,int64_t* mediaTime);
 
 extern mediasync_result MediaSync_reset(void* handle);
 extern void MediaSync_destroy(void* handle);
-
 
 #endif  // MEDIA_CLOCK_H_

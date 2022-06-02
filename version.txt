@@ -1,216 +1,219 @@
 =========RELEALSE NOTE=================
 
-Version: V3.4.17-g5d70ceb
+Version: V3.6.19-g7b0d2ab
 
 ========================================
 
 Git commit:
-commit 5d70cebf122a321adf65d4d8da197b949bbf45e7
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri May 6 13:36:45 2022 +0800
+commit 7b0d2aba8ef30b9a8841e665b8702a46cbe61281
+Author: jianchuan.ping <jianchuan.ping@amlogic.com>
+Date:   Mon Mar 7 19:55:02 2022 +0800
 
-    videodec: CB1 fcc, fix AFD exceptions  [1/1]
+    mediasync: CF2 Add get PCR and STC interface. [1/2]
     
-    PD#SWPL-80527
+    PD#SWPL-75800
     
     Problem:
-    After the normal mode is switched to the cache mode,
-    the decoder will be reset,
-    and the instance id will not be set to the decoder.
+    Need api to get pcr and stc
     
     Solution:
-    After resetting the decoder,reset the instance id to the decoder.
+    Add needed interface
     
     Verify:
-    SC2
+    AP222
     
-    Change-Id: Iea2bfd5fbfbecf91f8b19312ce0fba80a37e269e
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: Ia695765a3a9cd3b57462d0f9851fde284c9bafbc
+    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
 
-commit cad9422c536a0e72c19f9faa6ad76cfaf3e82c9d
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Apr 25 15:45:18 2022 +0800
+commit ed6cc05083083f5e55aec54687feb19708fd74bd
+Author: wenli.xu <wenli.xu@amlogic.com>
+Date:   Fri May 27 15:15:40 2022 +0800
 
-    tsplayer: CB1 ad audio output abnormal [1/1]
+    tsplayer: CB2 fix getPts failed [1/1]
     
-    PD#TV-53853
+    PD#SWPL-83371
     
     Problem:
-    StopAudioDecoding() did not clear the state of ad.
+    Failed to get pts, but returned success
     
     Solution:
-    Clear the state of ad after StopAudioDecoding().
+    When the PTS cannot be obtained, it returns a failure
+    
+    Verify:
+    S905Y4
+    
+    Change-Id: I8b5b8189d6979910c7e81fd2c406da9c261df519
+    Signed-off-by: wenli.xu <wenli.xu@amlogic.com>
+
+commit 6a0a51840646408ab56ce50910e222984b816358
+Author: Lexi Zhao <lexi.zhao@amlogic.com>
+Date:   Thu May 26 09:52:23 2022 +0800
+
+    mediasync: CB2 adjust the function propGetInt and propGetFloat [1/1]
+    
+    PD#SWPL-82899
+    
+    Problem:
+    when property_get was fail, the default value was not set to property
+    
+    Solution:
+    add *variable = atoi(value) in property_get was fail
+    
+    Verify:
+    ohm
+    
+    Change-Id: Ie4b49910ae8000ef2984e2246933dadfad591ba4
+    Signed-off-by: Lexi Zhao <lexi.zhao@amlogic.com>
+
+commit 435d3f74cd2cbf383c4b54a0636b141e281d3b91
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed May 18 15:28:29 2022 +0800
+
+    tsplayer: CB2 black screen after switch test [1/1]
+    
+    PD#TV-55223
+    
+    Problem:
+    player status not right after double call startvideodecoding().
+    
+    Solution:
+    add vpid check in start process.
     
     Verify:
     T5D
     
-    Change-Id: If2171c146e74f22c9a00c96d4c1e3b23471c528c
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 1662f62c8832369002d94378b989546e97a48386
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon May 9 16:33:43 2022 +0800
-
-    mediahal: CB1 fix compiles errors in android 64bit  [1/1]
-    
-    PD#SWPL-80829
-    
-    Problem:
-    android 64bit compile error.
-    
-    Solution:
-    Solve the compilation error.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I8e7938aee2c892b9ee54dc66a19058e5cba21e0b
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 27423b9d89c1ffb7481a921d91651adf78d939ac
-Author: Zhi Liu <zhi.liu@amlogic.com>
-Date:   Sun Apr 24 10:13:59 2022 +0800
-
-    mediahal: CB1 fix inputframe over-size when 4kh264 [1/1]
-    
-    PD#SH-9131
-    
-    Problem:
-    the 4kh264 video play stutter,the max framesize is 6315532
-    over kInputBufferMaxSize(6291456)
-    
-    Solution:
-    change the inputbuffer maxsize
-    
-    Verify:
-    ohm
-    
-    Change-Id: I8a08791332c51589575e2a87447eca2a390c07d4
-    Signed-off-by: Zhi Liu <zhi.liu@amlogic.com>
-
-commit 9b22fe50564a62b0e1a60e4a4f33d462ecfa524d
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Apr 29 10:44:54 2022 +0800
-
-    tsplayer: CB1 tsplayer crash when Hadl is invalid [1/1]
-    
-    PD#SWPL-80000
-    
-    Problem:
-    Play PVR will crash on Franklin_hybrid androidS
-    
-    Solution:
-    add a judgment, Hadl == -1 will return error
-    
-    Verify:
-    Franklin_hybrid
-    
-    Change-Id: I31060a6ce8da7a9066955ceee3dda45a27d3d87a
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 0b822b78728551f150d9e2fa5d2a51a7f4476fe6
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Fri Apr 29 10:26:19 2022 +0800
-
-    resman: CB1 when resource doesn't register acquire always success  [1/1]
-    
-    PD#SWPL-80000
-    
-    Problem:
-    Andorid s + 4.9 acquire decoder fail
-    
-    Solution:
-    when resource doesn't register acquire always success
-    
-    Verify:
-    AH212
-    
-    Change-Id: I191c1cef0ccec3bff0370a7f8142a96d04fa461f
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit be5234607d6665c4e5c06912e7b41185da7788e4
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Apr 28 16:24:24 2022 +0800
-
-    passthrough: CF1 fix typo in TunerPassthroughBase.h [1/1]
-    
-    PD#SWPL-61541
-    
-    Problem:
-    fix typo in TunerPassthroughBase.h
-    
-    Solution:
-    fix typo in TunerPassthroughBase.h
-    
-    Verify:
-    Android-R OHM
-    
-    Change-Id: I364bc61e1a6407d15f08e18cebec2828a41a3153
+    Change-Id: I2f9bd8eaa3ac739f9995a72c97023d3dd9a0a742
     Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit ac3b0928eafe25b104e14ff9cc559b3194ee6c85
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Thu Apr 21 12:18:19 2022 +0800
+commit 4d92545232f9ac2744ce029e308c358579ee7ebd
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue May 17 14:55:04 2022 +0800
 
-    resman: CB1 when FCC playback change mode need process vtux resource [1/1]
+    videodec: CB2 update the userdataDevice to get AFD [1/1]
     
-    PD#SWPL-79638
+    PD#SWPL-80863
     
     Problem:
-    FCC normal playback change to cache doesn't release vtux resource
+    Play FD stream, some channels display abnormal
     
     Solution:
-    FCC playback change mode need process vtux resource
+    update the userdatDevice to get AFD
+    
+    Verify:
+    U215
+    
+    Change-Id: I2202f007d4ca1875ef00a35d9d78dce8a0067d6e
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit a90717b2aa4727304d8aebafbd8bb71d5b158678
+Author: “sining.huang” <sining.huang@amlogic.com>
+Date:   Wed May 11 17:47:44 2022 +0800
+
+    tsplayer: CB2 playing DVB-T program stuck if no enough data [1/1]
+    
+    PD#SWPL-81232
+    
+    Problem:
+    it cause stuck if there is no enough data to decode but
+    esdataqueue still have es data callback from demux
+    
+    Solution:
+    no need to delay start when startvideodecoding in
+    tunnelmode and demuxtype is AmHwMultiDemux
+    
+    Verify:
+    AH21AB-S905X4
+    
+    Change-Id: I3f83cd70a9f16d7c9a7c2985be92d8060a67cc01
+    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
+
+commit edbecc7957fb9d3381c8752fcbf578767622f115
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon May 23 14:43:15 2022 +0800
+
+    tsplayer: CF2 tsplayer nontunnel adds videoshow and videohide functions [1/1]
+    
+    PD#SWPL-82519
+    
+    Problem:
+    videoshow() and videohide() have no effect.
+    
+    Solution:
+    Use the videoshow() and videohide() functions added by the videotunnel module.
+    
+    Verify:
+    T3
+    
+    Change-Id: Ia3b14736c3764f8a96077d3b3acd050557e75063
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 57c10660b50e74fc8925c3d1b73ae7ac81ceb836
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Wed May 18 15:25:46 2022 +0800
+
+    resman: CB2 tvp occupied large waiting more time for pool release [1/1]
+    
+    PD#SWPL-79357
+    
+    Problem:
+    not enough mem for playback
+    
+    Solution:
+    previous playback is tvp and tvp pool held so many buffer
+    waiting more time for pool release
     
     Verify:
     AH212
     
-    Change-Id: Ie15252e58f7d6ffc798b006cd274d19a566f1b7b
+    Change-Id: I554747a542b95b29330009157b70e6c31b8d961b
     Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
-commit 7cee2056a5f7a31119792bd39ab5986a2f181f52
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Mon Apr 18 20:22:07 2022 +0800
+commit 2f1d5f2a13fe171febe9c2aecfcd30482c382cf8
+Author: Chao Yin <chao.yin@amlogic.com>
+Date:   Fri Apr 29 08:46:36 2022 +0000
 
-    tsplayer: CF2 add set/get ad volume function. [1/1]
+    tsplayer: CF2 suport 2x/4x/8x/16x speed playback [2/3]
     
-    PD#SWPL-75725
+    PD#SWPL-75249
     
     Problem:
-    has not set/get ad volume API.
+    2x/4x/8x/16x makes no difference in effect
     
     Solution:
-    add set/get ad volume function.
+    1.modify mediasync and tsplayerrender to control
+    playback speed when working in I-frame trick mode
+    2.add setspeed interface and initialize framecount
+    in audiosoftwrap to support audio resample in es mode
     
     Verify:
-    AH212
+    S905X4-AH212+AndroidS
     
-    Change-Id: I056d2b4099ee332913ce529ccd99bebe0df69306
-    Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+    Change-Id: Iba2786193adc510dadb067c0b4e3afbbd2295b83
+    Signed-off-by: Chao Yin <chao.yin@amlogic.com>
 
-commit b4f448847bf864f7cec7b7f44f0ef8f8937695a9
+commit 177607e97366a0d8175cb3fb3b9f2f52bf1d3f53
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Apr 27 15:52:27 2022 +0800
+Date:   Wed May 18 16:51:35 2022 +0800
 
-    videodec: CB1 vda block when dynamic capture buffer playback exit [1/1]
+    videodec: CF2 add reconfig feature [2/2]
     
-    PD#SWPL-79824
+    PD#SWPL-82295
     
     Problem:
-    videodec not eixt normally when codec2 playback exit
+    need support reconfig feature
     
     Solution:
-    fix dead loop when videodec exit when use dynamic capture playback
+    add reconfig feature
     
     Verify:
     ohm
     
-    Change-Id: Ib29c3590717c30b0e1f4d15973d82677fe5056c0
+    Change-Id: Ia3bd4cb3e3b259173bfbce76e96ba52591e024cf
     Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
 ========================================
 
-Release time: 2022-05-09-19-16
+Release time: 2022-06-02-13-41
 
 ========================================
 
