@@ -1,10 +1,36 @@
 =========RELEALSE NOTE=================
 
-Version: V3.6.19-g7b0d2ab
+Version: V3.6.20-gd59df89
 
 ========================================
 
 Git commit:
+commit d59df89e9fb084098072232efc085db639d5f493
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Mon May 23 17:34:42 2022 +0800
+
+    mediasync: CB2 tunnelhal mediasync no need to start thread. [1/1]
+    
+    PD#SWPL-82717
+    
+    Problem:
+    tunnelhal mediasync change state wrongly.
+    
+    Solution:
+    tunnelhal mediasync no need to start thread.
+    SWPL-82723:
+    problem: video comes too late, and play has catons;
+    solution:audio need wait longer in AUDIO_CLOCK or VIDEO_CLOCK case.
+    SWPL-81740:
+    problem: when dmxpcr loop before apts, leading to audio drop fail;
+    solution: audio drop need to consider the case in caching mode.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I61a4dd477d3ac26515ae8e1fe8af41510e8b402c
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit 7b0d2aba8ef30b9a8841e665b8702a46cbe61281
 Author: jianchuan.ping <jianchuan.ping@amlogic.com>
 Date:   Mon Mar 7 19:55:02 2022 +0800
@@ -191,29 +217,9 @@ Date:   Fri Apr 29 08:46:36 2022 +0000
     Change-Id: Iba2786193adc510dadb067c0b4e3afbbd2295b83
     Signed-off-by: Chao Yin <chao.yin@amlogic.com>
 
-commit 177607e97366a0d8175cb3fb3b9f2f52bf1d3f53
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed May 18 16:51:35 2022 +0800
-
-    videodec: CF2 add reconfig feature [2/2]
-    
-    PD#SWPL-82295
-    
-    Problem:
-    need support reconfig feature
-    
-    Solution:
-    add reconfig feature
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ia3bd4cb3e3b259173bfbce76e96ba52591e024cf
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2022-06-02-13-41
+Release time: 2022-06-03-17-16
 
 ========================================
 
