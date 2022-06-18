@@ -14,8 +14,10 @@
 
 #include <stdint.h>
 
-#define AM_VIDEO_DEC_INIT_FLAG_DEFAULT  0
-#define AM_VIDEO_DEC_INIT_FLAG_CODEC2   1
+#define AM_VIDEO_DEC_INIT_FLAG_DEFAULT        0
+#define AM_VIDEO_DEC_INIT_FLAG_CODEC2         1
+#define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE     2
+#define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE 4
 
 typedef struct {
     /* video */

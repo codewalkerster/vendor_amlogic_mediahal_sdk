@@ -1,225 +1,224 @@
 =========RELEALSE NOTE=================
 
-Version: V3.6.20-gd59df89
+Version: V3.8.11-ge67f61a
 
 ========================================
 
 Git commit:
-commit d59df89e9fb084098072232efc085db639d5f493
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Mon May 23 17:34:42 2022 +0800
+commit e67f61a392e2f36eba57a810dd68d23982eba225
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Jun 18 14:44:46 2022 +0800
 
-    mediasync: CB2 tunnelhal mediasync no need to start thread. [1/1]
+    mediahal: CB2 fix compile error on android p and android r 64bit [1/1]
     
-    PD#SWPL-82717
+    PD#SWPL-85617
     
     Problem:
-    tunnelhal mediasync change state wrongly.
+    fix compile error on android p and 64bit
     
     Solution:
-    tunnelhal mediasync no need to start thread.
-    SWPL-82723:
-    problem: video comes too late, and play has catons;
-    solution:audio need wait longer in AUDIO_CLOCK or VIDEO_CLOCK case.
-    SWPL-81740:
-    problem: when dmxpcr loop before apts, leading to audio drop fail;
-    solution: audio drop need to consider the case in caching mode.
+    fix compile error on android p and 64bit
     
     Verify:
-    verified on S905X4-AH212
+    SC2
     
-    Change-Id: I61a4dd477d3ac26515ae8e1fe8af41510e8b402c
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+    Change-Id: I91bc3061edac14103260ed02f9c73902022806ed
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 7b0d2aba8ef30b9a8841e665b8702a46cbe61281
-Author: jianchuan.ping <jianchuan.ping@amlogic.com>
-Date:   Mon Mar 7 19:55:02 2022 +0800
+commit 9ac256c8affe92338819fe00a58312228da79259
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed May 11 19:09:40 2022 +0800
 
-    mediasync: CF2 Add get PCR and STC interface. [1/2]
+    mediahal: CF2 fix typo err in mediahal [1/1]
     
-    PD#SWPL-75800
+    PD#SWPL-81877
     
     Problem:
-    Need api to get pcr and stc
+    fix typo in mediahal
     
     Solution:
-    Add needed interface
+    fix typo in mediahal
     
     Verify:
-    AP222
+    Android-R OHM
     
-    Change-Id: Ia695765a3a9cd3b57462d0f9851fde284c9bafbc
-    Signed-off-by: jianchuan.ping <jianchuan.ping@amlogic.com>
+    Change-Id: I8d99048d100e7a82e41d031154e42107d3ddd484
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit ed6cc05083083f5e55aec54687feb19708fd74bd
-Author: wenli.xu <wenli.xu@amlogic.com>
-Date:   Fri May 27 15:15:40 2022 +0800
+commit b925a2eaeb7e85a283baf4dd4f379a894e5863af
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Jun 15 14:26:41 2022 +0800
 
-    tsplayer: CB2 fix getPts failed [1/1]
+    mediasync: CB2 revert mediasync tunnel speed calculation [1/1]
     
-    PD#SWPL-83371
+    PD#SWPL-83225
     
     Problem:
-    Failed to get pts, but returned success
+    tunnel mode 1.0 speed realtime changed after speed calculation
     
     Solution:
-    When the PTS cannot be obtained, it returns a failure
-    
-    Verify:
-    S905Y4
-    
-    Change-Id: I8b5b8189d6979910c7e81fd2c406da9c261df519
-    Signed-off-by: wenli.xu <wenli.xu@amlogic.com>
-
-commit 6a0a51840646408ab56ce50910e222984b816358
-Author: Lexi Zhao <lexi.zhao@amlogic.com>
-Date:   Thu May 26 09:52:23 2022 +0800
-
-    mediasync: CB2 adjust the function propGetInt and propGetFloat [1/1]
-    
-    PD#SWPL-82899
-    
-    Problem:
-    when property_get was fail, the default value was not set to property
-    
-    Solution:
-    add *variable = atoi(value) in property_get was fail
+    revert mediasync tunnel speed calculation
     
     Verify:
     ohm
     
-    Change-Id: Ie4b49910ae8000ef2984e2246933dadfad591ba4
-    Signed-off-by: Lexi Zhao <lexi.zhao@amlogic.com>
+    Change-Id: I0d66497331d065f15a0adad3d680d0decb7c1dd8
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 435d3f74cd2cbf383c4b54a0636b141e281d3b91
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed May 18 15:28:29 2022 +0800
+commit 24ccca668a0a2ef4c0a231053d094d60df17e9a1
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Fri May 20 11:24:40 2022 +0800
 
-    tsplayer: CB2 black screen after switch test [1/1]
+    videodec: CF2 Mediahal VideoDec Support stream mode [1/1]
     
-    PD#TV-55223
+    PD#SWPL-75552
     
     Problem:
-    player status not right after double call startvideodecoding().
+    1. Mediahal VideoDec Support stream mode
+    2. For codec2 enforce use timestamp replace bitsteamid
     
     Solution:
-    add vpid check in start process.
+    Mediahal VideoDec Support stream mode
     
     Verify:
-    T5D
+    ohm
     
-    Change-Id: I2f9bd8eaa3ac739f9995a72c97023d3dd9a0a742
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+    Change-Id: I18e4142c9cd12bcf633c6abce8bf6e89af567005
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
-commit 4d92545232f9ac2744ce029e308c358579ee7ebd
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue May 17 14:55:04 2022 +0800
+commit 85f1914fc59b909a2e88d4f9920f114149ecbf64
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jun 7 18:31:06 2022 +0800
 
-    videodec: CB2 update the userdataDevice to get AFD [1/1]
+    mediasync: CB2 Fix audio-only channel no audio output [1/1]
     
-    PD#SWPL-80863
+    PD#SWPL-84294
     
     Problem:
-    Play FD stream, some channels display abnormal
+    1.fix pvr playback video freeze
+    After the audio mediasync is set to the AUDIO_ARRIVED state,
+    it is released, causing the video to wait.
+    2.fix audio only channel,no audio output.
+    only audio will not switch to running state.
     
     Solution:
-    update the userdatDevice to get AFD
+    1.After video mediasync detects that audio mediasync
+    has been released,it directly enters the playback process.
+    2.only audio switch the running state directly
+    without waiting for the video.
+    
+    Verify:
+    SC2
+    
+    Change-Id: If4beb1a09e7b89274508e97225267d96ab55afd3
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 55729a03e0e74b25060655e16a24f184d47df915
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Fri May 20 15:42:54 2022 +0800
+
+    resman: CB2 change pthread_cond_wait to  pthread_cond_timedwait [1/1]
+    
+    PD#TV-54816
+    
+    Problem:
+    pthread_cond_wait deadlock
+    
+    Solution:
+    pthread_cond_wait -> pthread_cond_timedwait
+    
+    Verify:
+    T982
+    
+    Change-Id: I31d8b333a8fd4dfb0d9c106882e0d63b71253280
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit 61d89ea608a435dd48b568152eee0f21b09e2866
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Jun 7 16:43:54 2022 +0800
+
+    tsplayer: CB2 fix videodecTunnel to sendcommand [1/1]
+    
+    PD#SWPL-83054
+    
+    Problem:
+    hotplug RF, it cannot switch channel,
+    because it is waiting the lock to sendcommand
+    while videodectunnel is Releasing.
+    
+    Solution:
+    fix videodecTunnel to sendcommand while releasing.
     
     Verify:
     U215
     
-    Change-Id: I2202f007d4ca1875ef00a35d9d78dce8a0067d6e
+    Change-Id: Idb82de3414e955d2f91ec7a75d0b8a96c2a39f20
     Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit a90717b2aa4727304d8aebafbd8bb71d5b158678
-Author: “sining.huang” <sining.huang@amlogic.com>
-Date:   Wed May 11 17:47:44 2022 +0800
+commit 347c40dbf37e067f2b052497241141211ee3719b
+Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
+Date:   Tue Jun 7 20:14:11 2022 +0800
 
-    tsplayer: CB2 playing DVB-T program stuck if no enough data [1/1]
+    videodec: CB2 set double_write to 3 by default [1/1]
     
-    PD#SWPL-81232
+    PD#SWPL-83577
     
     Problem:
-    it cause stuck if there is no enough data to decode but
-    esdataqueue still have es data callback from demux
+    4k H265 output resolution is low
     
     Solution:
-    no need to delay start when startvideodecoding in
-    tunnelmode and demuxtype is AmHwMultiDemux
+    set double_write to 3 by default
     
     Verify:
-    AH21AB-S905X4
+    AndroidS-S905Y4-AP222
     
-    Change-Id: I3f83cd70a9f16d7c9a7c2985be92d8060a67cc01
-    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
+    Change-Id: I91ec1b429f5ce53a6f864fc112b41b883da8624b
+    Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
 
-commit edbecc7957fb9d3381c8752fcbf578767622f115
+commit 2d0fa95a4446d6a0d3005edbc49690424bb52b29
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue May 31 19:35:54 2022 +0800
+
+    tsplayer: CB2 fix the speedWriting [1/1]
+    
+    PD#SWPL-82857
+    
+    Problem:
+    play PVR video while doing ff*2,
+    video playback is abnormal
+    
+    Solution:
+    fix tsplayer speedWriting to control
+    
+    Verify:
+    u215
+    
+    Change-Id: Iaefe0779cbd1301c1a8fc6344233c61bf293df6c
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 364bfc6f383f79aad3d59c12ca79145ba0308968
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon May 23 14:43:15 2022 +0800
+Date:   Sat May 21 18:01:04 2022 +0800
 
-    tsplayer: CF2 tsplayer nontunnel adds videoshow and videohide functions [1/1]
+    mediasync: CF1 mediasync architecture optimization [1/1]
     
-    PD#SWPL-82519
+    PD#SWPL-78999
     
     Problem:
-    videoshow() and videohide() have no effect.
+    mediasync architecture optimization.
     
     Solution:
-    Use the videoshow() and videohide() functions added by the videotunnel module.
+    mediasync architecture optimization.
     
     Verify:
-    T3
+    SC2
     
-    Change-Id: Ia3b14736c3764f8a96077d3b3acd050557e75063
+    Change-Id: Idb68626e2e2cbfed4c268f262da19ed4764d52d8
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 57c10660b50e74fc8925c3d1b73ae7ac81ceb836
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Wed May 18 15:25:46 2022 +0800
-
-    resman: CB2 tvp occupied large waiting more time for pool release [1/1]
-    
-    PD#SWPL-79357
-    
-    Problem:
-    not enough mem for playback
-    
-    Solution:
-    previous playback is tvp and tvp pool held so many buffer
-    waiting more time for pool release
-    
-    Verify:
-    AH212
-    
-    Change-Id: I554747a542b95b29330009157b70e6c31b8d961b
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 2f1d5f2a13fe171febe9c2aecfcd30482c382cf8
-Author: Chao Yin <chao.yin@amlogic.com>
-Date:   Fri Apr 29 08:46:36 2022 +0000
-
-    tsplayer: CF2 suport 2x/4x/8x/16x speed playback [2/3]
-    
-    PD#SWPL-75249
-    
-    Problem:
-    2x/4x/8x/16x makes no difference in effect
-    
-    Solution:
-    1.modify mediasync and tsplayerrender to control
-    playback speed when working in I-frame trick mode
-    2.add setspeed interface and initialize framecount
-    in audiosoftwrap to support audio resample in es mode
-    
-    Verify:
-    S905X4-AH212+AndroidS
-    
-    Change-Id: Iba2786193adc510dadb067c0b4e3afbbd2295b83
-    Signed-off-by: Chao Yin <chao.yin@amlogic.com>
 
 ========================================
 
-Release time: 2022-06-03-17-16
+Release time: 2022-06-18-16-08
 
 ========================================
 

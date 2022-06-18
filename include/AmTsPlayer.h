@@ -23,33 +23,33 @@ extern "C" {
 typedef uint8_t         bool_t;
 /*Call back event type*/
 typedef enum {
-    AM_TSPLAYER_EVENT_TYPE_PTS = 0,        // pts in for some stream
-    AM_TSPLAYER_EVENT_TYPE_DTV_SUBTITLE,   // external subtitle of dtv
-    AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD,   // user data (afd)
-    AM_TSPLAYER_EVENT_TYPE_USERDATA_CC,    // user data (cc)
-    AM_TSPLAYER_EVENT_TYPE_VIDEO_CHANGED,  // video format changed
-    AM_TSPLAYER_EVENT_TYPE_AUDIO_CHANGED,  // audio format changed
-    AM_TSPLAYER_EVENT_TYPE_DATA_LOSS,      // demod data loss
-    AM_TSPLAYER_EVENT_TYPE_DATA_RESUME,    // demod data resume
-    AM_TSPLAYER_EVENT_TYPE_SCRAMBLING,     // scrambling status changed
-    AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME,     // first video frame showed
-    AM_TSPLAYER_EVENT_TYPE_STREAM_MODE_EOF, //endof stream mode
-    AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_VIDEO, //The video decoder outputs the first frame.
-    AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO, //The audio decoder outputs the first frame.
-    AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE,     //av sync done
-    AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,  // input video buffer done
-    AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE,  // input audio buffer done
-    AM_TSPLAYER_EVENT_TYPE_DECODE_FRAME_ERROR_COUNT,  // The video decoder frame.error
-    AM_TSPLAYER_EVENT_TYPE_VIDEO_OVERFLOW, //video amstream buffer overflow
-    AM_TSPLAYER_EVENT_TYPE_VIDEO_UNDERFLOW, //video amstream buffer underflow
-    AM_TSPLAYER_EVENT_TYPE_AUDIO_OVERFLOW, //audio amstream buffer overflow
-    AM_TSPLAYER_EVENT_TYPE_AUDIO_UNDERFLOW, //audio amstream buffer underflow
-    AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_TIMESTAMP, //video invalid timestamp
-    AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_DATA, //video invalid data
-    AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_TIMESTAMP, //audio invalid timestamp
-    AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_DATA, //audio invalid data
-    AM_TSPLAYER_EVENT_TYPE_DECODE_VIDEO_UNSUPPORT, // Video is not supported.
-    AM_TSPLAYER_EVENT_TYPE_PREEMPTED  // instance was preempted, apk need release this instance
+    AM_TSPLAYER_EVENT_TYPE_PTS = 0,        // Pts in for some stream
+    AM_TSPLAYER_EVENT_TYPE_DTV_SUBTITLE,   // External subtitle of dtv
+    AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD,   // User data (afd)
+    AM_TSPLAYER_EVENT_TYPE_USERDATA_CC,    // User data (cc)
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_CHANGED,  // Video format changed
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_CHANGED,  // Audio format changed
+    AM_TSPLAYER_EVENT_TYPE_DATA_LOSS,      // Demod data loss
+    AM_TSPLAYER_EVENT_TYPE_DATA_RESUME,    // Demod data resume
+    AM_TSPLAYER_EVENT_TYPE_SCRAMBLING,     // Scrambling status changed
+    AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME,     // First video frame showed
+    AM_TSPLAYER_EVENT_TYPE_STREAM_MODE_EOF, //Endof stream mode
+    AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_VIDEO, //The video decoder outputs the first frame
+    AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO, //The audio decoder outputs the first frame
+    AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE,     //Av sync done
+    AM_TSPLAYER_EVENT_TYPE_INPUT_VIDEO_BUFFER_DONE,  // Input video buffer done
+    AM_TSPLAYER_EVENT_TYPE_INPUT_AUDIO_BUFFER_DONE,  // Input audio buffer done
+    AM_TSPLAYER_EVENT_TYPE_DECODE_FRAME_ERROR_COUNT,  // The video decoder frame error count
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_OVERFLOW, //Video amstream buffer overflow
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_UNDERFLOW, //Video amstream buffer underflow
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_OVERFLOW, //Audio amstream buffer overflow
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_UNDERFLOW, //Audio amstream buffer underflow
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_TIMESTAMP, //Video invalid timestamp
+    AM_TSPLAYER_EVENT_TYPE_VIDEO_INVALID_DATA, //Video invalid data
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_TIMESTAMP, //Audio invalid timestamp
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_DATA, //Audio invalid data
+    AM_TSPLAYER_EVENT_TYPE_DECODE_VIDEO_UNSUPPORT, // Video is not supported
+    AM_TSPLAYER_EVENT_TYPE_PREEMPTED  // Instance was preempted, apk need release this instance
 } am_tsplayer_event_type;
 
 
@@ -87,13 +87,13 @@ typedef enum {
 
 typedef struct {
     uint8_t *data;      // Call to provide buffer pointer
-    size_t data_len;    // The length of the buffer.
+    size_t data_len;    // The length of the buffer
     size_t actual_len;  // Copy the length of the actual json
     am_tsplayer_av_info_state av_flag;  // Information acquisition flags for audio and video
 } am_tsplayer_state_t;
 
 
-/*Call back event mask*/
+/*Callback event mask*/
 #define AM_TSPLAYER_EVENT_TYPE_PTS_MASK            (1 << AM_TSPLAYER_EVENT_TYPE_PTS)
 #define AM_TSPLAYER_EVENT_TYPE_DTV_SUBTITLE_MASK   (1 << AM_TSPLAYER_EVENT_TYPE_DTV_SUBTITLE)
 #define AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD_MASK   (1 << AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD)
@@ -140,7 +140,7 @@ typedef enum
 typedef enum {
     TS_INPUT_BUFFER_TYPE_NORMAL = 0,       // Input buffer is normal buffer
     TS_INPUT_BUFFER_TYPE_SECURE = 1,       // Input buffer is secure buffer
-    TS_INPUT_BUFFER_TYPE_TVP = 2           // Input buffer is normal but tvp enable
+    TS_INPUT_BUFFER_TYPE_TVP = 2           // Input buffer is normal but tvp enabled
 } am_tsplayer_input_buffer_type;
 
 /*Ts stream type*/
@@ -188,8 +188,8 @@ typedef enum {
     AV_AUDIO_STEREO = 0,                   // Stereo mode
     AV_AUDIO_LEFT = 1,                     // Output left channel
     AV_AUDIO_RIGHT = 2,                    // Output right channel
-    AV_AUDIO_SWAP = 3,                     // Swap left and right channel
-    AV_AUDIO_LRMIX = 4                     // mix left and right channel
+    AV_AUDIO_SWAP = 3,                     // Swap left and right channels
+    AV_AUDIO_LRMIX = 4                     // Mix left and right channels
 } am_tsplayer_audio_stereo_mode;
 
 /*Audio Output mode*/
@@ -203,8 +203,8 @@ typedef enum {
 typedef enum {
     AV_VIDEO_TRICK_MODE_NONE = 0,          // Disable trick mode
     AV_VIDEO_TRICK_MODE_PAUSE = 1,         // Pause the video decoder
-    AV_VIDEO_TRICK_MODE_PAUSE_NEXT = 2,    // Pause the video decoder when a new frame dispalyed
-    AV_VIDEO_TRICK_MODE_IONLY = 3          // Decoding and Out I frame only
+    AV_VIDEO_TRICK_MODE_PAUSE_NEXT = 2,    // Pause the video decoder when a new frame displayed
+    AV_VIDEO_TRICK_MODE_IONLY = 3          // Decode and out I frame only
 } am_tsplayer_video_trick_mode;
 
 /*Video display match mode*/
@@ -268,7 +268,7 @@ typedef struct {
     am_tsplayer_input_source_type source;  // Input source type
     am_tsplayer_input_buffer_type drmmode; // Input buffer type (normal, secure, tvp)
     int32_t dmx_dev_id;                    // Demux device id
-    int32_t event_mask;                    // Mask the event type need by caller
+    int32_t event_mask;                    // Mask the event type needed by caller
 } am_tsplayer_init_params;
 
 /*AmTsPlayer input buffer type*/
@@ -283,28 +283,28 @@ typedef struct {
     am_tsplayer_input_buffer_type buf_type;// Input buffer type (secure/no secure)
     void *buf_data;                        // Input buffer addr
     int32_t buf_size;                      // Input buffer size
-    uint64_t pts;                          //frame pts,using only for frame mode
+    uint64_t pts;                          //Frame pts,used only for frame mode
     int32_t isvideo;
 } am_tsplayer_input_frame_buffer;
 
 /*AmTsPlayer video init parameters*/
 typedef struct {
     am_tsplayer_video_codec codectype;     // Video codec type
-    int32_t pid;                           // Video pid in ts
+    int32_t pid;                           // Video pid in TS
 } am_tsplayer_video_params;
 
 /*AmTsPlayer audio init parameters*/
 typedef struct {
     am_tsplayer_audio_codec codectype;     // Audio codec type
     int32_t pid;                           // Audio pid in ts
-    int32_t seclevel;                      // Audio security seclevel
+    int32_t seclevel;                      // Audio security level
 } am_tsplayer_audio_params;
 
 /*AmTsPlayer stream buffer status*/
 typedef struct {
     int32_t size;                          // Buffer size
-    int32_t data_len;                      // The len of data in buffer
-    int32_t free_len;                      // The len of free in buffer
+    int32_t data_len;                      // The length of data in buffer
+    int32_t free_len;                      // The length of free in buffer
 } am_tsplayer_buffer_stat;
 
 /*Video basic information*/
@@ -312,7 +312,7 @@ typedef struct {
     uint32_t width;                        // Video frame width
     uint32_t height;                       // Video frame height
     uint32_t framerate;                    // Video frame rate
-    uint32_t bitrate;                      // Video bit rate
+    uint32_t bitrate;                      // Video bitrate
     uint64_t ratio64;                      // Video aspect ratio
 } am_tsplayer_video_info;
 
@@ -341,16 +341,16 @@ typedef struct {
     uint32_t frame_width;
     uint32_t frame_height;
     uint32_t frame_rate;
-    uint32_t bit_depth_luma;//original bit_rate;
+    uint32_t bit_depth_luma;//Original bit_rate;
     uint32_t frame_dur;
-    uint32_t bit_depth_chroma;//original frame_data;
+    uint32_t bit_depth_chroma;//Original frame_data;
     uint32_t error_count;
     uint32_t status;
     uint32_t frame_count;
     uint32_t error_frame_count;
     uint32_t drop_frame_count;
     uint64_t total_data;
-    uint32_t double_write_mode;//original samp_cnt;
+    uint32_t double_write_mode;//Original samp_cnt;
     uint32_t offset;
     uint32_t ratio_control;
     uint32_t vf_type;
@@ -364,7 +364,7 @@ typedef struct {
     uint32_t sample_rate;                  // Audio sample rate
     uint32_t channels;                     // Audio channels
     uint32_t channel_mask;                 // Audio channel mask
-    uint32_t bitrate;                      // Audio bit rate
+    uint32_t bitrate;                      // Audio bitrate
 } am_tsplayer_audio_info;
 
 /*Audio decoder real time information*/
@@ -403,8 +403,8 @@ typedef struct {
 } scamling_t;
 
 typedef struct {
-    uint32_t video_overflow_num;                        // video overflow num
-    uint32_t video_underflow_num;                       // video underflow num
+    uint32_t video_overflow_num;                        // Video overflow num
+    uint32_t video_underflow_num;                       // Video underflow num
     uint32_t audio_overflow_num;                        // Audio overflow num
     uint32_t audio_underflow_num;                       // Audio underflow num
 } av_flow_t;
@@ -417,20 +417,20 @@ typedef struct {
         am_tsplayer_video_format_t video_format;
         /*If type is AUDIO_CHANGED send new video basic info*/
         am_tsplayer_audio_format_t audio_format;
-        /*Audio /Video/Subtitle pts after pes parser*/
+        /*Audio/Video/Subtitle pts after pes parser*/
         am_tsplayer_pts_t pts;
         /*User data send cc /afd /dvb subtitle to caller*/
         mpeg_user_data_t mpeg_user_data;
         /*Scrambling status changed send scramling info to caller*/
         scamling_t scramling;
-        /*callback audio/video input buffer ptr*/
+        /*Callback audio/video input buffer ptr*/
         void* bufptr;
         /*If Audio/Video overflow/underflow count the num*/
         av_flow_t av_flow_cnt;
     } event;
 }am_tsplayer_event;
 
-/*Event call back function ptr*/
+/*Event callback function ptr*/
 typedef void (*event_callback) (void *user_data, am_tsplayer_event *event);
 
 
@@ -626,10 +626,10 @@ am_tsplayer_result  AmTsPlayer_setVideoWindow(am_tsplayer_handle Hadl,
 *\brief:        Set the video crop rect size for specified
 *               AmTsPlayer instance.
 *\inparam:      AmTsPlayer handle.
-*\inparam:      The video crop rect left..
-*\inparam:      The video crop rect top..
-*\inparam:      The video crop rect right..
-*\inparam:      The video crop rect bottom..
+*\inparam:      The video crop rect left.
+*\inparam:      The video crop rect top.
+*\inparam:      The video crop rect right.
+*\inparam:      The video crop rect bottom.
 *\return:       The AmTsPlayer result.
 */
 am_tsplayer_result  AmTsPlayer_setVideoCrop(am_tsplayer_handle Hadl,

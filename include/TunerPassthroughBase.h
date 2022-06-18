@@ -27,8 +27,8 @@ typedef struct PASSTHROUGH_INIT_PARAMS
 typedef enum {
     AV_VIDEO_TRICK_MODE_NONE = 0,          // Disable trick mode
     AV_VIDEO_TRICK_MODE_PAUSE = 1,         // Pause the video decoder
-    AV_VIDEO_TRICK_MODE_PAUSE_NEXT = 2,    // Pause the video decoder when a new frame dispalyed
-    AV_VIDEO_TRICK_MODE_IONLY = 3          // Decoding and Out I frame only
+    AV_VIDEO_TRICK_MODE_PAUSE_NEXT = 2,    // Pause the video decoder when a new frame displayed
+    AV_VIDEO_TRICK_MODE_IONLY = 3          // Decode and out I frame only
 } video_trick_mode;
 
 struct TunerPassthroughBase
