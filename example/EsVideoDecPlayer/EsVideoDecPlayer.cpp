@@ -253,7 +253,7 @@ int VideoDecPlayerExample::init(uint32_t vFmt, uint32_t width, uint32_t height, 
     /* audio */0, 2, 44100, 2,
     /*pcrid */ 0,
     /* display */1, 0, 0, 0,
-    2, 0, 0, 0, 0, 0, 0};
+    2, 0, 0, 0, 0, 0, 0, 1};
 
     mAmVideoDec->setQueueCount(kDefaultQueueCount);
     ret = mAmVideoDec->initialize(vformat_to_mime(vFmt), (uint8_t*)&config, sizeof(init_param_t), false, true);

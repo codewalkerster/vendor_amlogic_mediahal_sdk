@@ -1,224 +1,229 @@
 =========RELEALSE NOTE=================
 
-Version: V3.8.11-ge67f61a
+Version: V3.10.11-g7bdc3ce
 
 ========================================
 
 Git commit:
-commit e67f61a392e2f36eba57a810dd68d23982eba225
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Jun 18 14:44:46 2022 +0800
+commit 7bdc3cee03e3e929b5557d9a937022ccc0592101
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Thu Jun 23 17:15:26 2022 +0800
 
-    mediahal: CB2 fix compile error on android p and android r 64bit [1/1]
+    mediasync: CB2 logic of start playback has some problems. [1/1]
     
-    PD#SWPL-85617
+    PD#SWPL-86094
     
     Problem:
-    fix compile error on android p and 64bit
+    when video comes late, the logic of start playback has some problems;
     
     Solution:
-    fix compile error on android p and 64bit
+    correct the logic;
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I062904108a2b06943221ca8d5b792f0f8beeeaa1
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit eb48f8a09c35b8ace8ea39b731f0f82b28873714
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jun 29 00:23:25 2022 +0800
+
+    mediasync: CB2 Fix audio discontinue mechanism exception [1/1]
+    
+    PD#SWPL-86008
+    
+    Problem:
+    The first time pts discontinue,
+    the audio appears mute 2 seconds.
+    
+    Solution:
+    During the pts discontinue,
+    the audio mute is not started until the
+    audiohal does not use AudioProcess() for more than 200ms.
     
     Verify:
     SC2
     
-    Change-Id: I91bc3061edac14103260ed02f9c73902022806ed
+    Change-Id: Ic0146c38a2aaa6b7fcff366c10c40316cb7d215e
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 9ac256c8affe92338819fe00a58312228da79259
+commit 095d71b29f26d4b2b4b0a13a132d0c994f778733
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed May 11 19:09:40 2022 +0800
+Date:   Sat Jun 25 15:29:24 2022 +0800
 
-    mediahal: CF2 fix typo err in mediahal [1/1]
+    tsplayer: CB2 fix android s stress test TV is black screen [1/1]
     
-    PD#SWPL-81877
+    PD#SWPL-86199
     
     Problem:
-    fix typo in mediahal
+    VideodecNonTunnelWrapper dont protect mMedia NULL pointer.
     
     Solution:
-    fix typo in mediahal
+    1.add mMedia NULL pointer protect.
+    2.add lock to protect mEsdata.
     
     Verify:
-    Android-R OHM
+    SC2
     
-    Change-Id: I8d99048d100e7a82e41d031154e42107d3ddd484
+    Change-Id: I63782db970b30d839e04df1c3bdd9cb525a1fc88
     Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit b925a2eaeb7e85a283baf4dd4f379a894e5863af
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Jun 15 14:26:41 2022 +0800
-
-    mediasync: CB2 revert mediasync tunnel speed calculation [1/1]
-    
-    PD#SWPL-83225
-    
-    Problem:
-    tunnel mode 1.0 speed realtime changed after speed calculation
-    
-    Solution:
-    revert mediasync tunnel speed calculation
-    
-    Verify:
-    ohm
-    
-    Change-Id: I0d66497331d065f15a0adad3d680d0decb7c1dd8
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 24ccca668a0a2ef4c0a231053d094d60df17e9a1
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Fri May 20 11:24:40 2022 +0800
-
-    videodec: CF2 Mediahal VideoDec Support stream mode [1/1]
-    
-    PD#SWPL-75552
-    
-    Problem:
-    1. Mediahal VideoDec Support stream mode
-    2. For codec2 enforce use timestamp replace bitsteamid
-    
-    Solution:
-    Mediahal VideoDec Support stream mode
-    
-    Verify:
-    ohm
-    
-    Change-Id: I18e4142c9cd12bcf633c6abce8bf6e89af567005
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 85f1914fc59b909a2e88d4f9920f114149ecbf64
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jun 7 18:31:06 2022 +0800
-
-    mediasync: CB2 Fix audio-only channel no audio output [1/1]
-    
-    PD#SWPL-84294
-    
-    Problem:
-    1.fix pvr playback video freeze
-    After the audio mediasync is set to the AUDIO_ARRIVED state,
-    it is released, causing the video to wait.
-    2.fix audio only channel,no audio output.
-    only audio will not switch to running state.
-    
-    Solution:
-    1.After video mediasync detects that audio mediasync
-    has been released,it directly enters the playback process.
-    2.only audio switch the running state directly
-    without waiting for the video.
-    
-    Verify:
-    SC2
-    
-    Change-Id: If4beb1a09e7b89274508e97225267d96ab55afd3
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 55729a03e0e74b25060655e16a24f184d47df915
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Fri May 20 15:42:54 2022 +0800
-
-    resman: CB2 change pthread_cond_wait to  pthread_cond_timedwait [1/1]
-    
-    PD#TV-54816
-    
-    Problem:
-    pthread_cond_wait deadlock
-    
-    Solution:
-    pthread_cond_wait -> pthread_cond_timedwait
-    
-    Verify:
-    T982
-    
-    Change-Id: I31d8b333a8fd4dfb0d9c106882e0d63b71253280
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 61d89ea608a435dd48b568152eee0f21b09e2866
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Jun 7 16:43:54 2022 +0800
-
-    tsplayer: CB2 fix videodecTunnel to sendcommand [1/1]
-    
-    PD#SWPL-83054
-    
-    Problem:
-    hotplug RF, it cannot switch channel,
-    because it is waiting the lock to sendcommand
-    while videodectunnel is Releasing.
-    
-    Solution:
-    fix videodecTunnel to sendcommand while releasing.
-    
-    Verify:
-    U215
-    
-    Change-Id: Idb82de3414e955d2f91ec7a75d0b8a96c2a39f20
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 347c40dbf37e067f2b052497241141211ee3719b
+commit bd9a98284848357db4d955a82ca55736fe0de5c4
 Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
-Date:   Tue Jun 7 20:14:11 2022 +0800
+Date:   Fri Jun 24 20:16:24 2022 +0800
 
-    videodec: CB2 set double_write to 3 by default [1/1]
+    tsplayer: CB2 can not send close command to AudioSystemCmdService [1/1]
     
-    PD#SWPL-83577
+    PD#SWPL-85439
     
     Problem:
-    4k H265 output resolution is low
+    FileSystem_create has Multithreading security issues
     
     Solution:
-    set double_write to 3 by default
+    add mutex for FileSystem_create and FileSystem_release
     
     Verify:
     AndroidS-S905Y4-AP222
     
-    Change-Id: I91ec1b429f5ce53a6f864fc112b41b883da8624b
+    Change-Id: Id46aeae5045510ba560faa0c4fb1a4495380e011
     Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
 
-commit 2d0fa95a4446d6a0d3005edbc49690424bb52b29
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue May 31 19:35:54 2022 +0800
+commit 26935fe5926343e4ba01b81f95c8df4b55dbd856
+Author: “sining.huang” <sining.huang@amlogic.com>
+Date:   Tue Jun 21 16:38:47 2022 +0800
 
-    tsplayer: CB2 fix the speedWriting [1/1]
+    mediasync: CB2 Teletext cannot show after loading icon dismiss [1/2]
     
-    PD#SWPL-82857
+    PD#SWPL-85841
     
     Problem:
-    play PVR video while doing ff*2,
-    video playback is abnormal
+    open loading icon feature,Teletext cannot show after loading icon
+    dismiss,subtitle can't get first video frame event
     
     Solution:
-    fix tsplayer speedWriting to control
+    1.MediaSync: add getFirstVideoFrameInfo function to get first frame event
+    2.Subtitle: get first frame event by MediaSync_getFirstVideoFrameInfo
     
     Verify:
-    u215
+    AH23A3-S905C2
     
-    Change-Id: Iaefe0779cbd1301c1a8fc6344233c61bf293df6c
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+    Change-Id: Ida49bbc728e9ffdff5f6bd6e21af7ae421407e07
+    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
 
-commit 364bfc6f383f79aad3d59c12ca79145ba0308968
+commit ad1bc352d9be9a7de51a3bd20c24f772c9f13caf
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat May 21 18:01:04 2022 +0800
+Date:   Fri Jun 24 14:14:37 2022 +0800
 
-    mediasync: CF1 mediasync architecture optimization [1/1]
+    mediasync: CB2 Optimization of mediasync state mechanism  [1/2]
     
-    PD#SWPL-78999
+    PD#SWPL-85241
     
     Problem:
-    mediasync architecture optimization.
+    pip, switching the sound causes the screen to freeze.
+    fcc, switch channels, the video may freeze or fast forward.
     
     Solution:
-    mediasync architecture optimization.
+    Added audio and video losssync state mechanism for reset mediaysnc.
     
     Verify:
     SC2
     
-    Change-Id: Idb68626e2e2cbfed4c268f262da19ed4764d52d8
+    Change-Id: I27a1d3befeb81847db439aeb49704b49299f6927
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 1adb069250967c2edb3fa79496bf8d0511639ad6
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jun 8 16:58:20 2022 +0800
+
+    tsplayer: CB2 fix the crash of switching channel stress test [1/1]
+    
+    PD#SWPL-83360
+    
+    Problem:
+    QueueSurfaceBuffer() of VideodecNonTunnelWrapper crashes.
+    
+    Solution:
+    FCC, after setting the cache mode,
+    VideodecNonTunnelWrapper needs to
+    stop the interaction of the display buffer.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I3ae4c3e692fd4336f863a17669bc99dce7d2829a
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 840e63b07df720c681042efeee5bb40efe0ad55a
+Author: Chao Yin <chao.yin@amlogic.com>
+Date:   Thu Jun 16 11:20:24 2022 +0800
+
+    tsplayer: CB2 fix occasionally video stuck after resume [1/2]
+    
+    PD#SWPL-85148
+    
+    Problem:
+    when mulitspeed playback in puase next trickmode,
+    tsplayer render can not render first frame
+    if pause was called bofore, first frame can't
+    render even after resume.
+    
+    Solution:
+    reset mFirstPostDrainVideoQueue after the actual rendering,
+    to make sure the first frame can be rendered after resume
+    
+    Verify:
+    S905X4
+    
+    Change-Id: I1aa0d0725b8b15ce08af712c5f8a3901acd58ef6
+    Signed-off-by: Chao Yin <chao.yin@amlogic.com>
+
+commit e955b71e77c5e01a520317a57b80d25474eb376e
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Wed Jun 8 22:44:58 2022 +0800
+
+    mediasync: CB2 no audio output when switch channel in FCC. [1/2]
+    
+    PD#SWPL-83353
+    
+    Problem:
+    audio always drop leading to no audio output.
+    
+    Solution:
+    1.add protection to audio drop policy.
+    2.optimize non-working channel audio drop mechanism.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I433be9adaef53ad0cfb779acf0a9b0240f742090
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit a440e3c31f2664b44c2dc385d554bd2226aee308
+Author: qiuping.zhou <qiuping.zhou@amlogic.com>
+Date:   Thu Jun 9 10:32:48 2022 +0800
+
+    tsplayer: CF2 Add video recovery mode to decoder [1/1]
+    
+    PD#IPTV-15908
+    
+    Problem:
+    no command for decoder control error frame.
+    
+    Solution:
+    Add params for decoder control error frame.
+    cherry-pick from https://scgit.amlogic.com/#/c/202980/
+    author: zhipeng.he <zhipeng.he@amlogic.com>
+    
+    Verify:
+    S928X
+    
+    Change-Id: I737b306163fdd8f95460981cab78ca321bb028fc
+    Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
 
 ========================================
 
-Release time: 2022-06-18-16-08
+Release time: 2022-07-01-18-35
 
 ========================================
 

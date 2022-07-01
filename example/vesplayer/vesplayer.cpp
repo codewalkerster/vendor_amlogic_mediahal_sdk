@@ -500,7 +500,7 @@ int main(int argc, char** argv) {
     /* audio */     0, 2, 44100, 2,
     /*pcrid */		0,
     /* display */   1, 0, 0, 0,
-                    2, 0, 0, 0, 0, 0, 0};
+                    2, 0, 0, 0, 0, 0, 0, 1};
 
 
     gEsplayer = new vesplayer(&config);

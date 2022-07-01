@@ -46,6 +46,7 @@ typedef struct {
     unsigned int  stbuf_start;
     unsigned int  stbuf_size;
     uint32_t    nDecType;
+    int32_t nVideoRecoveryValue;
 } init_param_t;
 
 enum PictureFlag {
@@ -123,6 +124,10 @@ public:
     virtual int32_t allocUvmBuffer(uint32_t width, uint32_t height, void** mapaddr, unsigned int i,
         int* fd = 0);
     virtual int32_t freeUvmBuffers();
+
+    /* tunnel mode outbuffer */
+    virtual int32_t allocTunnelBuffer(int usage, uint32_t format, int stride, uint32_t width, uint32_t height, bool secure, int* fd);
+    virtual int32_t freeTunnelBuffer(int fd);
 };
 
 extern "C" AmVideoDecBase* AmVideoDec_create(AmVideoDecCallback* callback);

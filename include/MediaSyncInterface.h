@@ -133,6 +133,11 @@ struct mediasync_audio_queue_info{
     bool isneedupdate;
 };
 
+typedef struct frameinfo{
+    int64_t framePts;
+    int64_t frameSystemTime;
+}mediasync_frameinfo;
+
 extern void* MediaSync_create();
 
 extern mediasync_result MediaSync_allocInstance(void* handle, int32_t DemuxId,
@@ -169,7 +174,7 @@ extern mediasync_result MediaSync_queueVideoFrame(void* handle, int64_t vpts, in
 extern mediasync_result MediaSync_AudioProcess(void* handle, int64_t apts, int64_t cur_apts, mediasync_time_unit tunit, struct mediasync_audio_policy* asyncPolicy);
 extern mediasync_result MediaSync_VideoProcess(void* handle, int64_t vpts, int64_t cur_vpts, mediasync_time_unit tunit, struct mediasync_video_policy* vsyncPolicy);
 extern mediasync_result MediaSync_GetMediaTimeByType(void* handle, media_time_type mediaTimeType,mediasync_time_unit tunit,int64_t* mediaTime);
-
+extern mediasync_result MediaSync_getFirstVideoFrameInfo(void* handle, mediasync_frameinfo * arg);
 extern mediasync_result MediaSync_reset(void* handle);
 extern void MediaSync_destroy(void* handle);
 
