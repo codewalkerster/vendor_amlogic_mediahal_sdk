@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.11-g7bdc3ce
+Version: V3.10.12-g128d043
 
 ========================================
 
 Git commit:
+commit 128d04321ec0b2add8fcbca095c667e7f2ef8233
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Fri Jun 24 15:01:54 2022 +0800
+
+    videodec: CF2 Adaptive dmabuf_manager v3 implement flow control [1/1]
+    
+    PD#SWPL-84298
+    
+    Problem:
+    Adaptive dmabuf_manager v3 implement flow control
+    
+    Solution:
+    Adaptive dmabuf_manager v3 implement flow control
+    
+    Verify:
+    S905X4
+    
+    Change-Id: If6cb751ab883652ca8ca6e43619c6d040b077eac
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
 commit 7bdc3cee03e3e929b5557d9a937022ccc0592101
 Author: chen.chen1 <chen.chen1@amlogic.com>
 Date:   Thu Jun 23 17:15:26 2022 +0800
@@ -199,31 +219,9 @@ Date:   Wed Jun 8 22:44:58 2022 +0800
     Change-Id: I433be9adaef53ad0cfb779acf0a9b0240f742090
     Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit a440e3c31f2664b44c2dc385d554bd2226aee308
-Author: qiuping.zhou <qiuping.zhou@amlogic.com>
-Date:   Thu Jun 9 10:32:48 2022 +0800
-
-    tsplayer: CF2 Add video recovery mode to decoder [1/1]
-    
-    PD#IPTV-15908
-    
-    Problem:
-    no command for decoder control error frame.
-    
-    Solution:
-    Add params for decoder control error frame.
-    cherry-pick from https://scgit.amlogic.com/#/c/202980/
-    author: zhipeng.he <zhipeng.he@amlogic.com>
-    
-    Verify:
-    S928X
-    
-    Change-Id: I737b306163fdd8f95460981cab78ca321bb028fc
-    Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
-
 ========================================
 
-Release time: 2022-07-01-18-35
+Release time: 2022-07-05-10-27
 
 ========================================
 
