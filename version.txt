@@ -1,10 +1,93 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.12-g128d043
+Version: V3.10.16-ga1429fc
 
 ========================================
 
 Git commit:
+commit a1429fcb822f8754fa4b930daf37c1871894c0ff
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Jul 6 21:04:49 2022 +0800
+
+    videodec: CB2 reuse v4l2 buffers when flush outbuffer [1/1]
+    
+    PD#SWPL-85384
+    
+    Problem:
+    some v4l2 buffers not useable after flush outbuffer
+    
+    Solution:
+    reuse v4l2 buffers after flush outbuffer
+    
+    Verify:
+    ohm
+    
+    Change-Id: I2c9786ccda72e61441cee51eb32febfc7170d957
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 7654b719d7bcea0a706262f25a6f4afa28823ed6
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Jul 5 14:40:50 2022 +0800
+
+    videodec: CB2 armeabi-v7a CtsMediaV2TestCases 2409 failure [1/1]
+    
+    PD#SWPL-85210
+    
+    Problem:
+    armeabi-v7a CtsMediaV2TestCases 2409 failure
+    used old bit stream id when outputbuf done.
+    
+    Solution:
+    1.bit_timestamp_map_ need clear when flush is end.
+    used new bit stream id to notify c2.
+    
+    
+    Verify:
+    ohm
+    
+    Change-Id: I228ea47ab321b7052560a5136b58ff1ee26161a9
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 9b1e96b043d913b1d2b5102add1b989bb963d553
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Jun 24 12:16:29 2022 +0800
+
+    videodec: CB1 fix report error when c2 reschange [1/1]
+    
+    PD#SWPL-85384
+    
+    Problem:
+    report error when c2 resolution changes.
+    
+    Solution:
+    not import catpure buffer when resolution change
+    
+    Verify:
+    ohm
+    
+    Change-Id: Iec047d9a9987788ae9091e3cacfc86fc9bc53813
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 4ae087702b7540579b6fdb09955faaf1c5d4577a
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jun 22 11:18:07 2022 +0800
+
+    tsplayer: CB2 add event for scrambled only audio [1/1]
+    
+    PD#SWPL-61262
+    
+    Problem:
+    Scramble & Audio only  Channel prompt Audio only hint
+    
+    Solution:
+    Add data loss event for scrambled only audio
+    
+    Verify:
+    T5D
+    
+    Change-Id: I7f443be79737acb0f6633d601b66c3680080e9a9
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 128d04321ec0b2add8fcbca095c667e7f2ef8233
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Fri Jun 24 15:01:54 2022 +0800
@@ -131,97 +214,9 @@ Date:   Tue Jun 21 16:38:47 2022 +0800
     Change-Id: Ida49bbc728e9ffdff5f6bd6e21af7ae421407e07
     Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
 
-commit ad1bc352d9be9a7de51a3bd20c24f772c9f13caf
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jun 24 14:14:37 2022 +0800
-
-    mediasync: CB2 Optimization of mediasync state mechanism  [1/2]
-    
-    PD#SWPL-85241
-    
-    Problem:
-    pip, switching the sound causes the screen to freeze.
-    fcc, switch channels, the video may freeze or fast forward.
-    
-    Solution:
-    Added audio and video losssync state mechanism for reset mediaysnc.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I27a1d3befeb81847db439aeb49704b49299f6927
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 1adb069250967c2edb3fa79496bf8d0511639ad6
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jun 8 16:58:20 2022 +0800
-
-    tsplayer: CB2 fix the crash of switching channel stress test [1/1]
-    
-    PD#SWPL-83360
-    
-    Problem:
-    QueueSurfaceBuffer() of VideodecNonTunnelWrapper crashes.
-    
-    Solution:
-    FCC, after setting the cache mode,
-    VideodecNonTunnelWrapper needs to
-    stop the interaction of the display buffer.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I3ae4c3e692fd4336f863a17669bc99dce7d2829a
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 840e63b07df720c681042efeee5bb40efe0ad55a
-Author: Chao Yin <chao.yin@amlogic.com>
-Date:   Thu Jun 16 11:20:24 2022 +0800
-
-    tsplayer: CB2 fix occasionally video stuck after resume [1/2]
-    
-    PD#SWPL-85148
-    
-    Problem:
-    when mulitspeed playback in puase next trickmode,
-    tsplayer render can not render first frame
-    if pause was called bofore, first frame can't
-    render even after resume.
-    
-    Solution:
-    reset mFirstPostDrainVideoQueue after the actual rendering,
-    to make sure the first frame can be rendered after resume
-    
-    Verify:
-    S905X4
-    
-    Change-Id: I1aa0d0725b8b15ce08af712c5f8a3901acd58ef6
-    Signed-off-by: Chao Yin <chao.yin@amlogic.com>
-
-commit e955b71e77c5e01a520317a57b80d25474eb376e
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Wed Jun 8 22:44:58 2022 +0800
-
-    mediasync: CB2 no audio output when switch channel in FCC. [1/2]
-    
-    PD#SWPL-83353
-    
-    Problem:
-    audio always drop leading to no audio output.
-    
-    Solution:
-    1.add protection to audio drop policy.
-    2.optimize non-working channel audio drop mechanism.
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I433be9adaef53ad0cfb779acf0a9b0240f742090
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2022-07-05-10-27
+Release time: 2022-07-07-14-40
 
 ========================================
 
