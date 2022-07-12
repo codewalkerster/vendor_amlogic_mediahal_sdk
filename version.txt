@@ -1,10 +1,131 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.16-ga1429fc
+Version: V3.10.22-g50f8918
 
 ========================================
 
 Git commit:
+commit 50f8918e4486541d05bf49cc57e5f16e4859947c
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Jul 12 15:45:01 2022 +0800
+
+    videodec: CB2 fix videodec compile error [1/1]
+    
+    PD#SWPL-85384
+    
+    Problem:
+    videodec compile error
+    
+    Solution:
+    fix videodec compile error
+    
+    Verify:
+    ohm
+    
+    Change-Id: I6d71236faea4a511f38a6591b864b4829ca5dfd2
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 7fe471fba3b5f9f5c157c2776f7ada3f993169d0
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Jul 7 18:47:51 2022 +0800
+
+    videodec: CB2 code2 inputbuffer count change to 16 [1/1]
+    
+    PD#SWPL-85384
+    
+    Problem:
+    codec2 inputbuffer 3 is too small
+    
+    Solution:
+    code2 inputbuffer count change to 16
+    
+    Verify:
+    ohm
+    
+    Change-Id: Ic96e976e3ec811ab51633496f471f8019af24dcf
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 6981d64781c82d023ba48b06702dd1081929e8fc
+Author: peixing.mai <peixing.mai@amlogic.com>
+Date:   Mon Jun 20 20:51:41 2022 +0800
+
+    tsplayer: CB2 Audio Playback Caton [1/1]
+    
+    PD#SWPL-79771
+    
+    Problem:
+    The stream control writes too much video data
+    
+    Solution:
+    Multiple writes with audio cache unchanged, retry flag set to true
+    
+    Verify:
+    verified on T5
+    
+    Change-Id: Ia6bf97841a30c5292f5be3c84027a8d3c3441556
+    Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
+
+commit eae6a206bb191e04701185fd7f91589c1840dbaf
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Jul 4 20:26:36 2022 +0800
+
+    esvideodecplayer: CF2 fix the path to install [1/2]
+    
+    PD#SWPL-86787
+    
+    Problem:
+    AndroidR needs EsVideoDecPlayer to auto test
+    
+    Solution:
+    Add the EsVideoDecPlayer bin to install
+    
+    Verify:
+    ohm
+    
+    Change-Id: Iab1ce3fab5e798c0112d212cddff383b26b1dfaa
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 83c655bf9ff97fbcb41a00cbebffcbe673129b3b
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jun 22 15:47:11 2022 +0800
+
+    tsplayer: CB2 Fix hwdemux writing data speed [1/1]
+    
+    PD#SWPL-85583
+    
+    Problem:
+    Playing PVR files of a specific stream,
+    the sound output is not smoooth.
+    
+    Solution:
+    Fix hwdemux writing data speed
+    
+    Verify:
+    u215
+    
+    Change-Id: I9a4ed60345ccda8ab1b5bf1e8ea7285b6a0dc6c3
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit b8a3528cadcc7375d942f7a66fd319ff1ca89aca
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Fri Jul 1 20:55:11 2022 +0800
+
+    videodec: CB2 video stuck for a long time. [1/1]
+    
+    PD#SWPL-84676
+    
+    Problem:
+    first video frame lookup fail then set pts 0.
+    
+    Solution:
+    find the nearest offset if first frame lookup fail.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: Id75bf15b0d8c509463428c250ca9fa4986ebcee4
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit a1429fcb822f8754fa4b930daf37c1871894c0ff
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Jul 6 21:04:49 2022 +0800
@@ -88,135 +209,9 @@ Date:   Wed Jun 22 11:18:07 2022 +0800
     Change-Id: I7f443be79737acb0f6633d601b66c3680080e9a9
     Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 128d04321ec0b2add8fcbca095c667e7f2ef8233
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Fri Jun 24 15:01:54 2022 +0800
-
-    videodec: CF2 Adaptive dmabuf_manager v3 implement flow control [1/1]
-    
-    PD#SWPL-84298
-    
-    Problem:
-    Adaptive dmabuf_manager v3 implement flow control
-    
-    Solution:
-    Adaptive dmabuf_manager v3 implement flow control
-    
-    Verify:
-    S905X4
-    
-    Change-Id: If6cb751ab883652ca8ca6e43619c6d040b077eac
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 7bdc3cee03e3e929b5557d9a937022ccc0592101
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Thu Jun 23 17:15:26 2022 +0800
-
-    mediasync: CB2 logic of start playback has some problems. [1/1]
-    
-    PD#SWPL-86094
-    
-    Problem:
-    when video comes late, the logic of start playback has some problems;
-    
-    Solution:
-    correct the logic;
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I062904108a2b06943221ca8d5b792f0f8beeeaa1
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit eb48f8a09c35b8ace8ea39b731f0f82b28873714
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jun 29 00:23:25 2022 +0800
-
-    mediasync: CB2 Fix audio discontinue mechanism exception [1/1]
-    
-    PD#SWPL-86008
-    
-    Problem:
-    The first time pts discontinue,
-    the audio appears mute 2 seconds.
-    
-    Solution:
-    During the pts discontinue,
-    the audio mute is not started until the
-    audiohal does not use AudioProcess() for more than 200ms.
-    
-    Verify:
-    SC2
-    
-    Change-Id: Ic0146c38a2aaa6b7fcff366c10c40316cb7d215e
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 095d71b29f26d4b2b4b0a13a132d0c994f778733
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Sat Jun 25 15:29:24 2022 +0800
-
-    tsplayer: CB2 fix android s stress test TV is black screen [1/1]
-    
-    PD#SWPL-86199
-    
-    Problem:
-    VideodecNonTunnelWrapper dont protect mMedia NULL pointer.
-    
-    Solution:
-    1.add mMedia NULL pointer protect.
-    2.add lock to protect mEsdata.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I63782db970b30d839e04df1c3bdd9cb525a1fc88
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit bd9a98284848357db4d955a82ca55736fe0de5c4
-Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
-Date:   Fri Jun 24 20:16:24 2022 +0800
-
-    tsplayer: CB2 can not send close command to AudioSystemCmdService [1/1]
-    
-    PD#SWPL-85439
-    
-    Problem:
-    FileSystem_create has Multithreading security issues
-    
-    Solution:
-    add mutex for FileSystem_create and FileSystem_release
-    
-    Verify:
-    AndroidS-S905Y4-AP222
-    
-    Change-Id: Id46aeae5045510ba560faa0c4fb1a4495380e011
-    Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
-
-commit 26935fe5926343e4ba01b81f95c8df4b55dbd856
-Author: “sining.huang” <sining.huang@amlogic.com>
-Date:   Tue Jun 21 16:38:47 2022 +0800
-
-    mediasync: CB2 Teletext cannot show after loading icon dismiss [1/2]
-    
-    PD#SWPL-85841
-    
-    Problem:
-    open loading icon feature,Teletext cannot show after loading icon
-    dismiss,subtitle can't get first video frame event
-    
-    Solution:
-    1.MediaSync: add getFirstVideoFrameInfo function to get first frame event
-    2.Subtitle: get first frame event by MediaSync_getFirstVideoFrameInfo
-    
-    Verify:
-    AH23A3-S905C2
-    
-    Change-Id: Ida49bbc728e9ffdff5f6bd6e21af7ae421407e07
-    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
-
 ========================================
 
-Release time: 2022-07-07-14-40
+Release time: 2022-07-12-16-05
 
 ========================================
 
