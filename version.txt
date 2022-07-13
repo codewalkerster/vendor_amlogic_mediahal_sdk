@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.22-g50f8918
+Version: V3.10.23-g13f747c
 
 ========================================
 
 Git commit:
+commit 13f747c1b73131c3022a0ee0c86d7b916c979911
+Author: shihong.zheng <shihong.zheng@amlogic.com>
+Date:   Mon Jul 4 20:44:40 2022 +0800
+
+    example: CF2 add crc32 check for EsVideoDecPlayer. [1/1]
+    
+    PD#SWPL-84439
+    
+    Problem:
+    decoder auto test need crc32 check frames, add crc32
+    for EsVideoDecPlayer.
+    
+    Solution:
+    add crc32 calc for every frame in EsVideoDecPlayer.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I4b2da3ddd5b3f8cabfe8f7d7937769b54e308b3a
+    Signed-off-by: shihong.zheng <shihong.zheng@amlogic.com>
+
 commit 50f8918e4486541d05bf49cc57e5f16e4859947c
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Tue Jul 12 15:45:01 2022 +0800
@@ -189,29 +210,9 @@ Date:   Fri Jun 24 12:16:29 2022 +0800
     Change-Id: Iec047d9a9987788ae9091e3cacfc86fc9bc53813
     Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 4ae087702b7540579b6fdb09955faaf1c5d4577a
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jun 22 11:18:07 2022 +0800
-
-    tsplayer: CB2 add event for scrambled only audio [1/1]
-    
-    PD#SWPL-61262
-    
-    Problem:
-    Scramble & Audio only  Channel prompt Audio only hint
-    
-    Solution:
-    Add data loss event for scrambled only audio
-    
-    Verify:
-    T5D
-    
-    Change-Id: I7f443be79737acb0f6633d601b66c3680080e9a9
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2022-07-12-16-05
+Release time: 2022-07-13-11-23
 
 ========================================
 
