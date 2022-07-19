@@ -61,6 +61,11 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_SPDIF_STATUS,
     AM_TSPLAYER_KEY_SET_VIDEO_RECOVERY_MODE,
     AM_TSPLAYER_KEY_SET_OSD,
+    AM_TSPLAYER_KEY_SET_LOGGER_LEVEL,
+    AM_TSPLAYER_KEY_SET_WMA_DESCR,
+    AM_TSPLAYER_KEY_SET_ES_AUDIO_EXTRA_PARAM,
+    AM_TSPLAYER_KEY_SET_STREAM_EOF,
+    AM_TSPLAYER_KEY_BOOTPLAY_MODE,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -85,6 +90,10 @@ typedef enum {
     AM_TSPLAYER_AUDIO_INFO = 1,   // Get audio information only
     AM_TSPLAYER_VIDEO_INFO  = 2,  // Get video information only
 } am_tsplayer_av_info_state;
+
+typedef enum {
+    AM_TSPLAYER_EXTENDED_BOOTPLAY_MODE = 0,        //Bootplay uses videotunnel and software audio decoder lib
+} am_tsplayer_extended_setup;
 
 typedef struct {
     uint8_t *data;      // Call to provide buffer pointer
@@ -114,6 +123,9 @@ typedef struct {
 #define AM_TSPLAYER_DMX_FILTER_SEC_LEVEL5   (5 << 10)
 #define AM_TSPLAYER_DMX_FITLER_SEC_LEVEL6   (6 << 10)
 #define AM_TSPLAYER_DMX_FITLER_SEC_LEVEL7   (7 << 10)
+
+/*AmTsPlayer extended setup mask*/
+#define AM_TSPLAYER_EXTENDED_BOOTPLAY_MODE_MASK (1 << AM_TSPLAYER_EXTENDED_BOOTPLAY_MODE)
 
 /*Function return type*/
 typedef enum {

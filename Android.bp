@@ -357,3 +357,49 @@ cc_prebuilt_binary {
     },
     check_elf_files: false,
 }
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_dmabufmanage",
+    vendor: true,
+    compile_multilib: "both",
+
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediahal_dmabufmanage.so"],
+        },
+        arm64: {
+            srcs: ["arm64/vendor/libmediahal_dmabufmanage.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    export_include_dirs: ["include"],
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_dmabufmanage.system",
+    defaults: ["mediahalvercheck_defaults"],
+    compile_multilib: "both",
+
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediahal_dmabufmanage.system.so"],
+        },
+        arm64: {
+            srcs: ["arm64/system/libmediahal_dmabufmanage.system.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    export_include_dirs: ["include"],
+    check_elf_files: false,
+}
