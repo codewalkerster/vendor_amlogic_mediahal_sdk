@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.27-g06083e6
+Version: V3.10.29-g0ff07bc
 
 ========================================
 
 Git commit:
+commit 0ff07bc0b6a4c60581a839d1705b42f24cb260a2
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jun 22 21:37:32 2022 +0800
+
+    mediahal: CB2 disable 64bit library compilation [1/1]
+    
+    PD#SWPL-83263
+    
+    Problem:
+    S/T disable 64bit library compilation
+    
+    Solution:
+    S/T disable 64bit library compilation
+    
+    Verify:
+    SC2
+    
+    Change-Id: I1a1ee545496e335a278ea713926c78e5e811f9df
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 8e482e3850156ccb09d4b24d9e2ff1e66b66c257
+Author: yipeng huang <yipeng.huang@amlogic.com>
+Date:   Fri Jun 10 15:08:01 2022 +0800
+
+    tsplayer: CB2 black screen sometimes after stop and start videodecoding [1/1]
+    
+    PD#TV-56737
+    
+    Problem:
+    video can not enable before codec start
+    
+    Solution:
+    add video enable logic after codec start
+    
+    Verify:
+    T5D
+    
+    Change-Id: Iae6a3a53914e33915228ffaa7c663630fc2e61d3
+    Signed-off-by: yipeng huang <yipeng.huang@amlogic.com>
+
 commit 06083e6a223959d7cbc7f8a66d3659bbeb37a812
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Tue Apr 19 15:44:56 2022 +0800
@@ -169,50 +209,9 @@ Date:   Mon Jun 20 20:51:41 2022 +0800
     Change-Id: Ia6bf97841a30c5292f5be3c84027a8d3c3441556
     Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
 
-commit eae6a206bb191e04701185fd7f91589c1840dbaf
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Jul 4 20:26:36 2022 +0800
-
-    esvideodecplayer: CF2 fix the path to install [1/2]
-    
-    PD#SWPL-86787
-    
-    Problem:
-    AndroidR needs EsVideoDecPlayer to auto test
-    
-    Solution:
-    Add the EsVideoDecPlayer bin to install
-    
-    Verify:
-    ohm
-    
-    Change-Id: Iab1ce3fab5e798c0112d212cddff383b26b1dfaa
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 83c655bf9ff97fbcb41a00cbebffcbe673129b3b
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jun 22 15:47:11 2022 +0800
-
-    tsplayer: CB2 Fix hwdemux writing data speed [1/1]
-    
-    PD#SWPL-85583
-    
-    Problem:
-    Playing PVR files of a specific stream,
-    the sound output is not smoooth.
-    
-    Solution:
-    Fix hwdemux writing data speed
-    
-    Verify:
-    u215
-    
-    Change-Id: I9a4ed60345ccda8ab1b5bf1e8ea7285b6a0dc6c3
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2022-07-19-12-46
+Release time: 2022-07-21-13-59
 
 ========================================
 

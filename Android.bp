@@ -1,3 +1,23 @@
+// *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+//     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+//     DEPENDING ON IT IN YOUR PROJECT. ***
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "vendor_amlogic_common_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-FTL
+    //   SPDX-license-identifier-GPL
+    //   SPDX-license-identifier-GPL-2.0
+    //   SPDX-license-identifier-LGPL-2.1
+    //   SPDX-license-identifier-MIT
+    //   legacy_by_exception_only (by exception only)
+    //   legacy_notice
+    //   legacy_unencumbered
+    default_applicable_licenses: ["vendor_amlogic_common_license"],
+}
+
 bootstrap_go_package {
     name: "mediahal_sdk",
     pkgPath: "android/soong/vendor/amlogic/mediahal_sdk",
@@ -61,7 +81,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/vendor/libmediahal_videodec.so"],
         },
         arm64: {
-            srcs: ["arm64/vendor/libmediahal_videodec.so"],
+            enabled: false,
         },
     },
     check_elf_files: false,
@@ -78,7 +98,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/system/libmediahal_videodec.system.so"],
         },
         arm64: {
-            srcs: ["arm64/system/libmediahal_videodec.system.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -102,7 +122,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/vendor/libmediahal_tsplayer.so"],
         },
         arm64: {
-            srcs: ["arm64/vendor/libmediahal_tsplayer.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -126,7 +146,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/system/libmediahal_tsplayer.system.so"],
         },
         arm64: {
-            srcs: ["arm64/system/libmediahal_tsplayer.system.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -155,7 +175,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/vendor/libmediahal_mediasync.so"],
         },
         arm64: {
-            srcs: ["arm64/vendor/libmediahal_mediasync.so"],
+            enabled: false,
         },
     },
     check_elf_files: false,
@@ -173,7 +193,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/system/libmediahal_mediasync.system.so"],
         },
         arm64: {
-            srcs: ["arm64/system/libmediahal_mediasync.system.so"],
+            enabled: false,
         },
     },
    check_elf_files: false,
@@ -191,7 +211,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/vendor/libmediahal_tunnelrenderer.so"],
         },
         arm64: {
-            srcs: ["arm64/vendor/libmediahal_tunnelrenderer.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -216,7 +236,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/vendor/libmediahal_passthrough.so"],
         },
         arm64: {
-            srcs: ["arm64/vendor/libmediahal_passthrough.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -238,7 +258,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/vendor/libmediahal_resman.so"],
         },
         arm64: {
-            srcs: ["arm64/vendor/libmediahal_resman.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -261,7 +281,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/system/libmediahal_resman.system.so"],
         },
         arm64: {
-            srcs: ["arm64/system/libmediahal_resman.system.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -304,7 +324,7 @@ cc_prebuilt_binary {
             srcs: ["bin/EsVideoDecPlayer"],
         },
         arm64: {
-            srcs: ["arm64/bin/EsVideoDecPlayer"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -368,7 +388,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/vendor/libmediahal_dmabufmanage.so"],
         },
         arm64: {
-            srcs: ["arm64/vendor/libmediahal_dmabufmanage.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
@@ -391,7 +411,7 @@ cc_prebuilt_library_shared {
             srcs: ["lib/system/libmediahal_dmabufmanage.system.so"],
         },
         arm64: {
-            srcs: ["arm64/system/libmediahal_dmabufmanage.system.so"],
+            enabled: false,
         },
         x86: {
             enabled: false,
