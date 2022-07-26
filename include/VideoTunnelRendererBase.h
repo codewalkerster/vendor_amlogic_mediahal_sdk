@@ -25,6 +25,21 @@ struct fillVideoFrame2
    bool rendered;
 };
 
+struct videoframe
+{
+    int fd;
+    int64_t timestampUs;
+    int frameNum;
+    bool renderAtonce;
+};
+
+struct tunnelEventParam
+{
+    uint32_t type;
+    void* data;
+    uint32_t paramSize;
+};
+
 class VideoTunnelRendererBase
 {
 
@@ -34,6 +49,7 @@ public:
         CB_FILLVIDEOFRAME,
         CB_NODIFYRENDERTIME,
         CB_FILLVIDEOFRAME2,
+        CB_EVENT,
         CB_FUNS_MAX,
     };
 
@@ -46,9 +62,12 @@ public:
     virtual bool sendVideoFrame(int metafd, int64_t timestampNs, bool renderAtonce);
     virtual int regCallBack(int cb_id, callbackFunc funs, void* obj);
     virtual bool flush();
+    virtual bool flushSeekTrickMode();
     virtual bool setFrameRate(int32_t framerate);
     virtual bool peekFirstFrame();
     virtual void onVideoSyncQueueVideoFrame(int64_t timestampUs, uint32_t size);
+    virtual void setTrickMode(uint32_t trickmode);
+    virtual void startFast(float scale);
 };
 
 extern "C" VideoTunnelRendererBase* VideoTunnelRenderer_create();

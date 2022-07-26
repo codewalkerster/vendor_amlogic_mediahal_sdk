@@ -1,10 +1,70 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.29-g0ff07bc
+Version: V3.10.32-g7b5ec59
 
 ========================================
 
 Git commit:
+commit 7b5ec591f7df08239383bec61dc0040b77bb3c2d
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Jul 25 20:31:20 2022 +0800
+
+    videodec: CB2 close unused fds at once when not queued [1/2]
+    
+    PD#SWPL-87879
+    
+    Problem:
+    unused fds lead dma memory not free
+    
+    Solution:
+    close unused fds at once when not queued
+    
+    Verify:
+    ohm
+    
+    Change-Id: Ifae08763a6fc7061ce479b91728c2e7568259365
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 7b893f583c9956b52841d618c4f4bc0c58d3dd0f
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jul 21 21:38:07 2022 +0800
+
+    example: CB2  Fix android p compilation exception. [1/1]
+    
+    PD#TV-59559
+    
+    Problem:
+    android p AmTsPlayerExample cannot share the same bp file with android S.
+    
+    Solution:
+    android p AmTsPlayerExample creates an android bp file independently.
+    
+    Verify:
+    t3
+    
+    Change-Id: I87b896578b9d56b2015cf5a79444fe9140fddc3f
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 837abaa62a8cd29bc5aa9ef73336452da2d8edb0
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jul 14 21:30:57 2022 +0800
+
+    videodec: CB2 Optimize log printing  [1/1]
+    
+    PD#TV-59559
+    
+    Problem:
+    Optimize log printing.
+    
+    Solution:
+    Optimize log printing.
+    
+    Verify:
+    SC2
+    
+    Change-Id: Ia3591a01115e769b1a9a8c6818f9ad61770cb8c2
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 0ff07bc0b6a4c60581a839d1705b42f24cb260a2
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Jun 22 21:37:32 2022 +0800
@@ -149,69 +209,9 @@ Date:   Mon Jul 4 20:44:40 2022 +0800
     Change-Id: I4b2da3ddd5b3f8cabfe8f7d7937769b54e308b3a
     Signed-off-by: shihong.zheng <shihong.zheng@amlogic.com>
 
-commit 50f8918e4486541d05bf49cc57e5f16e4859947c
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Jul 12 15:45:01 2022 +0800
-
-    videodec: CB2 fix videodec compile error [1/1]
-    
-    PD#SWPL-85384
-    
-    Problem:
-    videodec compile error
-    
-    Solution:
-    fix videodec compile error
-    
-    Verify:
-    ohm
-    
-    Change-Id: I6d71236faea4a511f38a6591b864b4829ca5dfd2
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 7fe471fba3b5f9f5c157c2776f7ada3f993169d0
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Jul 7 18:47:51 2022 +0800
-
-    videodec: CB2 code2 inputbuffer count change to 16 [1/1]
-    
-    PD#SWPL-85384
-    
-    Problem:
-    codec2 inputbuffer 3 is too small
-    
-    Solution:
-    code2 inputbuffer count change to 16
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ic96e976e3ec811ab51633496f471f8019af24dcf
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 6981d64781c82d023ba48b06702dd1081929e8fc
-Author: peixing.mai <peixing.mai@amlogic.com>
-Date:   Mon Jun 20 20:51:41 2022 +0800
-
-    tsplayer: CB2 Audio Playback Caton [1/1]
-    
-    PD#SWPL-79771
-    
-    Problem:
-    The stream control writes too much video data
-    
-    Solution:
-    Multiple writes with audio cache unchanged, retry flag set to true
-    
-    Verify:
-    verified on T5
-    
-    Change-Id: Ia6bf97841a30c5292f5be3c84027a8d3c3441556
-    Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
-
 ========================================
 
-Release time: 2022-07-21-13-59
+Release time: 2022-07-26-15-57
 
 ========================================
 
