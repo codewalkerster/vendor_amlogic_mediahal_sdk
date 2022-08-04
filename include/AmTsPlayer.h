@@ -66,6 +66,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_ES_AUDIO_EXTRA_PARAM,
     AM_TSPLAYER_KEY_SET_STREAM_EOF,
     AM_TSPLAYER_KEY_BOOTPLAY_MODE,
+    AM_TSPLAYER_KEY_ENABLE_VFRAME_COUNTER,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -86,9 +87,10 @@ typedef enum {
 } am_tsplayer_spdif_mode;
 
 typedef enum {
-    AM_TSPLAYER_AV_INFO  = 0,     // Get audio and video information
-    AM_TSPLAYER_AUDIO_INFO = 1,   // Get audio information only
-    AM_TSPLAYER_VIDEO_INFO  = 2,  // Get video information only
+    AM_TSPLAYER_AV_INFO  = 0,              // Get audio and video information
+    AM_TSPLAYER_AUDIO_INFO = 1,            // Get audio information only
+    AM_TSPLAYER_VIDEO_INFO  = 2,           // Get video information only
+    AM_TSPLAYER_VFRAME_COUNTER_INFO  = 3,  // Get video frame counter info only
 } am_tsplayer_av_info_state;
 
 typedef enum {

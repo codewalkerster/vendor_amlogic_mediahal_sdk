@@ -1,10 +1,136 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.32-g7b5ec59
+Version: V3.10.38-g1acdbf3
 
 ========================================
 
 Git commit:
+commit 1acdbf32bcad85176f184a367c68a17007644e91
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Wed Aug 3 13:34:35 2022 +0800
+
+    videodec: CB2 Optimize codec2 secure flowcontrol proccess [1/1]
+    
+    PD#SWPL-84057
+    
+    Problem:
+    Optimize codec2 secure flowcontrol proccess
+    
+    Solution:
+    1. Optimize codec2 secure flowcontrol prevent decoded yuv pts
+    out-of-order
+    2. Reduce initial max-frame-size for secure make sure more buffer
+    can be rotate.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I97e5c88988e5919a7565d45bcf9c5a81f2e2f011
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit fba8ae6efd7005b516ba6cd9c498d863c5362206
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Aug 1 10:30:06 2022 +0800
+
+    videodec: CF2 surpport play audio after stop video with tunnelmode [1/1]
+    
+    PD#TV-58616
+    
+    Problem:
+    can not play audio after stop video with tunnelmode
+    
+    Solution:
+    do reset codec after stop video
+    
+    Verify:
+    AM30A8,T5D
+    
+    Change-Id: I6e9f28b942cf3afa7eec5212ce2101c1d549958f
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 8ae7d23d7e08fad385c3aedfd00dc650f2b9d292
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Aug 1 17:34:34 2022 +0800
+
+    tsplayer: CB2 fix compiling error [1/1]
+    
+    PD#SWPL-89589
+    
+    Problem:
+    tsplayer compiles error on androidp and androidr 64bit
+    
+    Solution:
+    fix compiling error
+    
+    Verify:
+    T5D
+    
+    Change-Id: I880361812e903e0991abf6c10cebdc719bffb113
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 14ecabdb2eceabba298680548b9fa4e454e633bb
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu Jul 14 18:47:39 2022 +0800
+
+    videodec: CB2 armeabi-v7a CtsMediaV2TestCases 2409 failure [1/2]
+    
+    PD#SWPL-85210
+    
+    Problem:
+    interlace stream flush case error.
+    
+    Solution:
+    1.save last bit stream id and last time.
+    if we not find bit stream id at map,used last
+    bit stream id and send pic to app.
+    2 change input buf count from 16 to 8.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I566c66c1b46a53c19e25d7b02da806ab77ec57bb
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 190fc7a8a8f7eec71a812b82776808d6dd9c0c49
+Author: qiuping.zhou <qiuping.zhou@amlogic.com>
+Date:   Tue Jun 21 16:00:18 2022 +0800
+
+    tsplayer: CF2 support get all frames qos info [1/1]
+    
+    PD#IPTV-15824
+    
+    Problem:
+    can't get all frames qos info.
+    
+    Solution:
+    add support for get all frames qos info
+    
+    Verify:
+    S928X
+    
+    Change-Id: I057e116d30c0e1378a02a1eaa3cca4a499fec61b
+    Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
+
+commit 2b71fb2b83106c06ce66134a5f1916d04d6af87b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Jul 18 20:49:06 2022 +0800
+
+    mediasync: CB2 fix audio and video are out of sync. [1/2]
+    
+    PD#SWPL-87845
+    
+    Problem:
+    The mediasync state mechanism is abnormal.
+    
+    Solution:
+    The running state is not set until the loss sync state exceeds 1 second.
+    
+    Verify:
+    sc2
+    
+    Change-Id: I471c646e2ea2b9e7703e66aae34b9d8b96354342
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 7b5ec591f7df08239383bec61dc0040b77bb3c2d
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Mon Jul 25 20:31:20 2022 +0800
@@ -85,133 +211,9 @@ Date:   Wed Jun 22 21:37:32 2022 +0800
     Change-Id: I1a1ee545496e335a278ea713926c78e5e811f9df
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 8e482e3850156ccb09d4b24d9e2ff1e66b66c257
-Author: yipeng huang <yipeng.huang@amlogic.com>
-Date:   Fri Jun 10 15:08:01 2022 +0800
-
-    tsplayer: CB2 black screen sometimes after stop and start videodecoding [1/1]
-    
-    PD#TV-56737
-    
-    Problem:
-    video can not enable before codec start
-    
-    Solution:
-    add video enable logic after codec start
-    
-    Verify:
-    T5D
-    
-    Change-Id: Iae6a3a53914e33915228ffaa7c663630fc2e61d3
-    Signed-off-by: yipeng huang <yipeng.huang@amlogic.com>
-
-commit 06083e6a223959d7cbc7f8a66d3659bbeb37a812
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Tue Apr 19 15:44:56 2022 +0800
-
-    damabufmanage: CF1 mediahal support damabufmanage [1/1]
-    
-    PD#SWPL-75553
-    
-    Problem:
-    1. mediahal support damabufmanage
-    2. reslove compile issue for p/q/r
-    
-    Solution:
-    mediahal support damabufmanage
-    
-    Verify:
-    S905X4-AH212
-    
-    Change-Id: I7ff0c18b1224fe74043be1728dcc3529bd1879e3
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 6e203ee4783faf6fa3ad972d5b9bd45dace3eb59
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Tue Jul 12 14:45:24 2022 +0800
-
-    tsplayer: CF1 notunnel mode with new audio mode for bootplayer [1/1]
-    
-    PD#TV-55319
-    
-    Problem:
-    need play notunnel mode audio without mediacodec
-    
-    Solution:
-    audio playback with sw libs and libtinyalsa
-    
-    Verify:
-    T982
-    
-    Change-Id: I52db55cd78d0b8d4a4879d5fb64cc6ca2a2887e3
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 4c6304f3f90791f6e2fe1a329704bf2233a87928
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jul 8 00:49:55 2022 +0800
-
-    tsplayer: CB2 Fix FCC stress test video freeze. [1/1]
-    
-    PD#SWPL-87139
-    
-    Problem:
-    OnWriteVideoEs() free(mEsdata->data) crash.
-    
-    Solution:
-    When the cache mode switches to normal mode,
-    mEsdata->data will be probabilistically passed to vda,
-    resulting in two releases of mEsdata->data.
-    
-    Verify:
-    SC2
-    
-    Change-Id: Ia5fbf176ff6b61b32c2ecd5cebd289928a7c3fe6
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 0af3e5817cd2c4a1a6c8a545036a4ee5734b415a
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Jun 1 18:43:35 2022 +0800
-
-    tunelrenderer: CB1 add tunnel notify event feature [1/2]
-    
-    PD#SWPL-83073
-    
-    Problem:
-    add tunnel notify event feature
-    
-    Solution:
-    add tunnel notify event feature
-    
-    Verify:
-    T3
-    
-    Change-Id: Ie1b150c8aaa8e4c87e298b384fcef1c7dc13b7a8
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 13f747c1b73131c3022a0ee0c86d7b916c979911
-Author: shihong.zheng <shihong.zheng@amlogic.com>
-Date:   Mon Jul 4 20:44:40 2022 +0800
-
-    example: CF2 add crc32 check for EsVideoDecPlayer. [1/1]
-    
-    PD#SWPL-84439
-    
-    Problem:
-    decoder auto test need crc32 check frames, add crc32
-    for EsVideoDecPlayer.
-    
-    Solution:
-    add crc32 calc for every frame in EsVideoDecPlayer.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I4b2da3ddd5b3f8cabfe8f7d7937769b54e308b3a
-    Signed-off-by: shihong.zheng <shihong.zheng@amlogic.com>
-
 ========================================
 
-Release time: 2022-07-26-15-57
+Release time: 2022-08-04-16-58
 
 ========================================
 

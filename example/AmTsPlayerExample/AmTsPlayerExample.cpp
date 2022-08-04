@@ -649,11 +649,23 @@ int main(int argc, char **argv)
         if (_kbhit()) {
             ch = getchar();
             printf("----key input : %d quit:q\n",ch);
-            if (ch == 113) {
+            if (ch == 'q') {
                 printf("----break\n");
                 break;
             }
-            if (ch == 10) {
+            if (ch == 'p') {
+                printf("====>stop video \n");
+                AmTsPlayer_stopVideoDecoding(session);
+            }
+            if (ch == 'r') {
+                am_tsplayer_video_params vparm;
+                vparm.codectype = vCodec;
+                vparm.pid = vPid;
+                printf("====>start video \n");
+                AmTsPlayer_setVideoParams(session, &vparm);
+                AmTsPlayer_startVideoDecoding(session);
+            }
+            if (ch == 'g') {
                 am_tsplayer_state_t state;
                 state.data_len = 1024;
                 state.av_flag = AM_TSPLAYER_AV_INFO;
