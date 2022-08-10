@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.38-g1acdbf3
+Version: V3.10.40-g99efa40
 
 ========================================
 
 Git commit:
+commit 99efa40d7b27554a3c26a8c033bcb6f214abcd41
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Aug 8 11:11:51 2022 +0800
+
+    videodec: CF2 framemode use bitstreaid instead of pts [1/1]
+    
+    PD#SWPL-90103
+    
+    Problem:
+    codec2 handle pts of interlace stream abnormal
+    
+    Solution:
+    framemode use bitstreaid instead of pts
+    
+    Verify:
+    ohm
+    
+    Change-Id: I10ce760c5a29177dc45cff484b38e19afb05c66b
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit b040b781a4ce2fe7077a4dc3d446918b02685f67
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Fri Aug 5 10:27:07 2022 +0800
+
+    videodec: CB2 Reslove 64bit compile issue [1/1]
+    
+    PD#SWPL-84057
+    
+    Problem:
+    Reslove 64bit compile issue
+    
+    Solution:
+    Reslove 64bit compile issue
+    
+    Verify:
+    ohm
+    
+    Change-Id: I70345f170699ec9eb1ee5669c796170a3d89e324
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
 commit 1acdbf32bcad85176f184a367c68a17007644e91
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Wed Aug 3 13:34:35 2022 +0800
@@ -171,49 +211,9 @@ Date:   Thu Jul 21 21:38:07 2022 +0800
     Change-Id: I87b896578b9d56b2015cf5a79444fe9140fddc3f
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 837abaa62a8cd29bc5aa9ef73336452da2d8edb0
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jul 14 21:30:57 2022 +0800
-
-    videodec: CB2 Optimize log printing  [1/1]
-    
-    PD#TV-59559
-    
-    Problem:
-    Optimize log printing.
-    
-    Solution:
-    Optimize log printing.
-    
-    Verify:
-    SC2
-    
-    Change-Id: Ia3591a01115e769b1a9a8c6818f9ad61770cb8c2
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 0ff07bc0b6a4c60581a839d1705b42f24cb260a2
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jun 22 21:37:32 2022 +0800
-
-    mediahal: CB2 disable 64bit library compilation [1/1]
-    
-    PD#SWPL-83263
-    
-    Problem:
-    S/T disable 64bit library compilation
-    
-    Solution:
-    S/T disable 64bit library compilation
-    
-    Verify:
-    SC2
-    
-    Change-Id: I1a1ee545496e335a278ea713926c78e5e811f9df
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-08-04-16-58
+Release time: 2022-08-10-20-29
 
 ========================================
 
