@@ -67,6 +67,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_STREAM_EOF,
     AM_TSPLAYER_KEY_BOOTPLAY_MODE,
     AM_TSPLAYER_KEY_ENABLE_VFRAME_COUNTER,
+    AM_TSPLAYER_KEY_SET_AUDIO_LANG,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -401,6 +402,12 @@ typedef struct {
     uint32_t channels;
     uint32_t channel_mask;
 } am_tsplayer_audio_format_t;
+
+typedef struct {
+    int32_t first_lang;
+    int32_t second_lang;
+} am_tsplayer_audio_lang;
+
 
 typedef struct {
     am_tsplayer_stream_type stream_type;

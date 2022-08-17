@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.40-g99efa40
+Version: V3.10.42-g71477aa
 
 ========================================
 
 Git commit:
+commit 71477aa75e1964cb962738190f63a8f4c791f53e
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Aug 1 17:11:22 2022 +0800
+
+    tsplayer: CF2 Added interface for audio language.  [1/1]
+    
+    PD#TV-60663
+    
+    Problem:
+    1.audiohal requires audio language information.
+    2.get ac4 active presentations id
+    
+    Solution:
+    1.Added interface for setting audio language.
+    2.Added interface to get AC4 active presentations id
+    
+    Verify:
+    T5D
+    
+    Change-Id: I5d00afc5f7d9fde3753ba9481881b10118c8198a
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit b79ad1ec9586651cfadf24a0264f6209f181d68a
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Mon Aug 15 07:28:07 2022 +0800
+
+    mediasync: CB2 dvb channel playing not smooth after stress test. [1/1]
+    
+    PD#SWPL-91234
+    
+    Problem:
+    uplayer set some abnormal cmd: pause/resume/stop/close/open/resume/start
+    during the starting stage,and will stop the buffering stage,lead to underrun.
+    
+    Solution:
+    apts/vpts should not update refclock during the starting stage.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I74aca0c31e2fa78137d8b6390ac278d41c5be368
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit 99efa40d7b27554a3c26a8c033bcb6f214abcd41
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Mon Aug 8 11:11:51 2022 +0800
@@ -171,49 +214,9 @@ Date:   Mon Jul 18 20:49:06 2022 +0800
     Change-Id: I471c646e2ea2b9e7703e66aae34b9d8b96354342
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 7b5ec591f7df08239383bec61dc0040b77bb3c2d
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Jul 25 20:31:20 2022 +0800
-
-    videodec: CB2 close unused fds at once when not queued [1/2]
-    
-    PD#SWPL-87879
-    
-    Problem:
-    unused fds lead dma memory not free
-    
-    Solution:
-    close unused fds at once when not queued
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ifae08763a6fc7061ce479b91728c2e7568259365
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 7b893f583c9956b52841d618c4f4bc0c58d3dd0f
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jul 21 21:38:07 2022 +0800
-
-    example: CB2  Fix android p compilation exception. [1/1]
-    
-    PD#TV-59559
-    
-    Problem:
-    android p AmTsPlayerExample cannot share the same bp file with android S.
-    
-    Solution:
-    android p AmTsPlayerExample creates an android bp file independently.
-    
-    Verify:
-    t3
-    
-    Change-Id: I87b896578b9d56b2015cf5a79444fe9140fddc3f
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-08-10-20-29
+Release time: 2022-08-17-16-37
 
 ========================================
 
