@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.42-g71477aa
+Version: V3.10.44-g4426655
 
 ========================================
 
 Git commit:
+commit 442665511d60586781eaaa3ecc92a0472f8c70a2
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Aug 17 15:52:50 2022 +0800
+
+    videodec: CB2 CtsMediaMiscTestCases 1 failure [1/1]
+    
+    PD#SWPL-87201
+    
+    Problem:
+    run android.media.misc.cts.ResourceManagerTest will
+    occur low mem and kill cts test process.
+    
+    Solution:
+    1.limit input buf number if instance num greater than 2.
+    2. add check "task_runner" is nullptr,"task_runner" is
+    nullptr sometimes when kernel version is 5.15.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I985f343a39b959af4cbc0a07f70f7c758892cbc2
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 581d913e4afb2513449b3b4cb733056eb90df8cd
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Aug 15 17:19:46 2022 +0800
+
+    videodec: CF2 codec2 clear input support 3 cached buffer [1/1]
+    
+    PD#SWPL-89583
+    
+    Problem:
+    codec2 clear input support 3 cached buffer
+    
+    Solution:
+    codec2 clear input support 3 cached buffer
+    
+    Verify:
+    ohm
+    
+    Change-Id: I8bfac96ffd90accafae1cb144e84bb42cf0c9e05
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 71477aa75e1964cb962738190f63a8f4c791f53e
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Aug 1 17:11:22 2022 +0800
@@ -174,49 +217,9 @@ Date:   Thu Jul 14 18:47:39 2022 +0800
     Change-Id: I566c66c1b46a53c19e25d7b02da806ab77ec57bb
     Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 190fc7a8a8f7eec71a812b82776808d6dd9c0c49
-Author: qiuping.zhou <qiuping.zhou@amlogic.com>
-Date:   Tue Jun 21 16:00:18 2022 +0800
-
-    tsplayer: CF2 support get all frames qos info [1/1]
-    
-    PD#IPTV-15824
-    
-    Problem:
-    can't get all frames qos info.
-    
-    Solution:
-    add support for get all frames qos info
-    
-    Verify:
-    S928X
-    
-    Change-Id: I057e116d30c0e1378a02a1eaa3cca4a499fec61b
-    Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
-
-commit 2b71fb2b83106c06ce66134a5f1916d04d6af87b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Jul 18 20:49:06 2022 +0800
-
-    mediasync: CB2 fix audio and video are out of sync. [1/2]
-    
-    PD#SWPL-87845
-    
-    Problem:
-    The mediasync state mechanism is abnormal.
-    
-    Solution:
-    The running state is not set until the loss sync state exceeds 1 second.
-    
-    Verify:
-    sc2
-    
-    Change-Id: I471c646e2ea2b9e7703e66aae34b9d8b96354342
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-08-17-16-37
+Release time: 2022-08-23-18-53
 
 ========================================
 
