@@ -1,10 +1,54 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.44-g4426655
+Version: V3.10.46-g5e6b6be
 
 ========================================
 
 Git commit:
+commit 5e6b6becb692908aa4542091c545d3cdeced0211
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Wed Aug 24 10:15:55 2022 +0800
+
+    videodec: CB2 Update codec2 secure flowcontrol mechanism [1/1]
+    
+    PD#SWPL-92173
+    
+    Problem:
+    Update codec2 secure flowcontrol mechanism
+    
+    Solution:
+    Use available frame number replace secure vdec pool free size
+    calculate can free frame number avoid memory framentization lead
+    alloc failed.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I2fa6bda05c7e2490ac706161098aefa363a04de5
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 5bf9c6fd615d2f6f086fd14bfc2a6fa7903df79d
+Author: Yani Shi <yani.shi@amlogic.com>
+Date:   Wed Aug 10 15:06:50 2022 +0800
+
+    mediasync: CB2 Optimize the start time of special stream. [1/1]
+    
+    PD#SWPL-92067
+    
+    Problem:
+    For some special stream, the first_frame_nosync
+    the first vpts is larger lot than the first apts
+    let the start time is too long
+    
+    Solution:
+    add the avdiff ladder to optimize the start time
+    
+    Verify:
+    S905X4
+    
+    Change-Id: I45b943f818f44f817d5a9e1c124c9714918280e5
+    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
+
 commit 442665511d60586781eaaa3ecc92a0472f8c70a2
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Wed Aug 17 15:52:50 2022 +0800
@@ -174,52 +218,9 @@ Date:   Mon Aug 1 10:30:06 2022 +0800
     Change-Id: I6e9f28b942cf3afa7eec5212ce2101c1d549958f
     Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 8ae7d23d7e08fad385c3aedfd00dc650f2b9d292
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Aug 1 17:34:34 2022 +0800
-
-    tsplayer: CB2 fix compiling error [1/1]
-    
-    PD#SWPL-89589
-    
-    Problem:
-    tsplayer compiles error on androidp and androidr 64bit
-    
-    Solution:
-    fix compiling error
-    
-    Verify:
-    T5D
-    
-    Change-Id: I880361812e903e0991abf6c10cebdc719bffb113
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 14ecabdb2eceabba298680548b9fa4e454e633bb
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Jul 14 18:47:39 2022 +0800
-
-    videodec: CB2 armeabi-v7a CtsMediaV2TestCases 2409 failure [1/2]
-    
-    PD#SWPL-85210
-    
-    Problem:
-    interlace stream flush case error.
-    
-    Solution:
-    1.save last bit stream id and last time.
-    if we not find bit stream id at map,used last
-    bit stream id and send pic to app.
-    2 change input buf count from 16 to 8.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I566c66c1b46a53c19e25d7b02da806ab77ec57bb
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-08-23-18-53
+Release time: 2022-08-24-15-09
 
 ========================================
 
