@@ -70,7 +70,7 @@ public:
     virtual void onFlushDone();
     virtual void onResetDone();
     virtual void onError(int32_t error);
-    virtual void onEvent(uint32_t event, void* param, uint32_t paramsize);
+    virtual void onEvent(uint32_t event, void* param, uint32_t paramSize);
 
     class playerCallback : public AmVideoDecCallback {
     public:
@@ -103,8 +103,8 @@ public:
         virtual void onError(int32_t error) override {
             mThis->onError(error);
         }
-        virtual void onEvent(uint32_t event, void* param, uint32_t paramsize) override {
-            mThis->onEvent(event, param, paramsize);
+        virtual void onEvent(uint32_t event, void* param, uint32_t paramSize) override {
+            mThis->onEvent(event, param, paramSize);
         }
 
     private:
@@ -117,7 +117,7 @@ public:
     std::mutex mInputLock;
     std::map<int32_t, uint8_t*> mInputBuffer;
     std::mutex mEofLock;
-    std::condition_variable mEofcv;
+    std::condition_variable mEofCondVariable;
     int mEof;
     FILE *mFp;
 };
@@ -126,12 +126,12 @@ public:
 static int axis[8] = {0};
 static vesplayer* gEsplayer = nullptr;
 
-static int sysfs_cmd_control(const char *path, const char *cmdstr)
+static int sysfs_cmd_control(const char *path, const char *cmdStr)
 {
     int fd = open(path, O_CREAT | O_RDWR | O_TRUNC, 0644);
 
     if (fd >= 0) {
-        write(fd, cmdstr, strlen(cmdstr));
+        write(fd, cmdStr, strlen(cmdStr));
         close(fd);
         return 0;
     }
@@ -355,7 +355,7 @@ void vesplayer::play(const char* iname) {
     if (end) {
         std::unique_lock <std::mutex> lock(mEofLock);
         while (!mEof)
-            mEofcv.wait(lock);
+            mEofCondVariable.wait(lock);
     }
     if (mFp)
         fclose(mFp);
@@ -398,29 +398,29 @@ void vesplayer::onError(int32_t error) {
     printf("%s error%d", __func__, error);
 }
 
-void vesplayer::onEvent(uint32_t event, void* param, uint32_t paramsize) {
+void vesplayer::onEvent(uint32_t event, void* param, uint32_t paramSize) {
     UNUSED(param);
-    UNUSED(paramsize);
-    //printf("%s event:%x, %s %d", __func__, event, (char*)param, paramsize);
+    UNUSED(paramSize);
+    //printf("%s event:%x, %s %d", __func__, event, (char*)param, paramSize);
     if (10 == event) {
         std::unique_lock <std::mutex> lock(mEofLock);
         mEof = 1;
-        mEofcv.notify_all();
+        mEofCondVariable.notify_all();
     }
 }
 
 static void usage(void)
 {
     printf("mediahal_esplayer\n");
-    printf("Usage: mediahal_esplayer -i <file> -f <format> [-r <framerate>] [-a <addhead>] [-w <width>] [-h <height>] [-y <help>]\n");
+    printf("Usage: mediahal_esplayer -i <file> -f <format> [-r <framerate>] [-a <addHead>] [-w <width>] [-h <height>] [-y <help>]\n");
     printf("\n");
-  printf(" -i, --ifileinput es file\n");
+  printf(" -i, --ifile input es file\n");
   printf(" -f, --formatvideo format\n");
   printf ("(0:mpeg12\t1:mpeg4\t\t2:h264\t\t3:mjpeg\n\
             5:jpeg\t\t6:vcl\t\t7:avs\t\t11:hevc\n\
             14:vp9\t\t15:avs2)\n");
     printf(" -r, --framerate framerate\n");
-    printf(" -a, --addhead add es header \n");
+    printf(" -a, --addHead add es header \n");
     printf(" -w, --width video width\n");
     printf(" -h, --height video height\n");
     printf(" -y, --help usage\n");
@@ -429,12 +429,12 @@ static void usage(void)
 int main(int argc, char** argv) {
     int optionChar = 0;
     int optionIndex = 0;
-    uint32_t videowidth = 1920;
-    uint32_t videoheight = 1080;
+    uint32_t videoWidth = 1920;
+    uint32_t videoHeight = 1080;
     uint32_t framerate = 24;
     uint32_t   vFmt = -1;
     char* iname = nullptr;
-    uint32_t addhead = 0;
+    uint32_t addHead = 0;
 
     if (argc < 2) {
         usage();
@@ -446,7 +446,7 @@ int main(int argc, char** argv) {
         { "ifile", required_argument, nullptr, 'i' },
         { "format", required_argument, nullptr, 'f' },
         { "framerate", required_argument, nullptr, 'r' },
-        { "addhead", required_argument, nullptr, 'a' },
+        { "addHead", required_argument, nullptr, 'a' },
         { "width", required_argument, nullptr, 'w' },
         { "height", required_argument, nullptr, 'h' },
         { "help", no_argument, nullptr,  'y'},
@@ -466,13 +466,13 @@ int main(int argc, char** argv) {
             framerate = atoi(optarg);
             break;
         case 'a':
-            addhead = atoi(optarg);
+            addHead = atoi(optarg);
             break;
         case 'w':
-            videowidth = atoi(optarg);
+            videoWidth = atoi(optarg);
             break;
         case 'h':
-            videoheight = atoi(optarg);
+            videoHeight = atoi(optarg);
             break;
         case 'y':
             usage();
@@ -496,7 +496,7 @@ int main(int argc, char** argv) {
     set_display_axis(0);
 
     init_param_t config = {
-    /* video */     256, videowidth, videoheight, framerate, vFmt, 0,
+    /* video */     256, videoWidth, videoHeight, framerate, vFmt, 0,
     /* audio */     0, 2, 44100, 2,
     /*pcrid */		0,
     /* display */   1, 0, 0, 0,

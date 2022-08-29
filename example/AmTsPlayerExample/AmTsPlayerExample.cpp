@@ -125,7 +125,7 @@ native_handle_t * mNative_handle = NULL;
 
 bool CreateVideoTunnelId(int* id) {
     int x = 0, y = 0, w = 0, h = 0;
-    int tunnelid = 0;
+    int tunnelId = 0;
     x = 0;
     y = 0;
     w = 960;
@@ -139,7 +139,7 @@ bool CreateVideoTunnelId(int* id) {
         }
         mProducerListener = new DummyProducerListener;
         char test[20];
-        sprintf(test,"testSurface_%d",tunnelid);
+        sprintf(test,"testSurface_%d",tunnelId);
         printf("CreateVideoTunnelId name:%s \n",test);
         mControl = mComposerClient->createSurface(String8(test),
                                                   w,
@@ -170,7 +170,7 @@ bool CreateVideoTunnelId(int* id) {
         if (mSurface) {
             mProducer = mSurface->getIGraphicBufferProducer();
             if (mNative_handle == NULL) {
-                mNative_handle = am_gralloc_create_sideband_handle(AM_FIXED_TUNNEL, tunnelid);
+                mNative_handle = am_gralloc_create_sideband_handle(AM_FIXED_TUNNEL, tunnelId);
                 // printf("mNative_handle:%p\n",mNative_handle);
             }
             if (mNative_handle != NULL) {
@@ -181,8 +181,8 @@ bool CreateVideoTunnelId(int* id) {
                 mProducer->setSidebandStream(mSourceHandle);
                 //printf("line:%d\n",__LINE__);
             }
-            printf("----->tunnelid:%d\n",tunnelid);
-            *id = tunnelid;
+            printf("----->tunnelId:%d\n",tunnelId);
+            *id = tunnelId;
         }
     }
     return true;
@@ -414,7 +414,7 @@ int GetPid(char* pid) {
     return strtol(pid,NULL,10);
 }
 
-int _kbhit() {
+int keyboardHit() {
     static const int STDIN = 0;
     static bool initialized = false;
 
@@ -574,7 +574,7 @@ int main(int argc, char **argv)
         printf("\n");
         printf("\n");
         printf("Android R vendor,platform X4(SC2) Y4 \n");
-        printf("Run the test example in Android R vendor,\nthe example does not have permission to create surface and convert videotunnel id.\n");
+        printf("Run the test example in Android R vendor,\n the example does not have permission to create surface and convert videotunnel id.\n");
         printf("If you need to test with AmTsPlayerExample,\n you can force the setting to use the tsync module for audio and video synchronization.\n");
         printf("Need to set:\n");
         printf("setprop vendor.amtsplayer.pipeline 0\n");
@@ -586,22 +586,22 @@ int main(int argc, char **argv)
     #endif
     uint32_t versionM, versionL;
     AmTsPlayer_getVersion(&versionM, &versionL);
-    uint32_t instanceno;
-    AmTsPlayer_getInstansNo(session, &instanceno);
+    uint32_t instanceNo;
+    AmTsPlayer_getInstansNo(session, &instanceNo);
     AmTsPlayer_setWorkMode(session, TS_PLAYER_MODE_NORMAL);
     AmTsPlayer_registerCb(session, video_callback, NULL);
     AmTsPlayer_setSyncMode(session, avsyncMode);
 
-    am_tsplayer_video_params vparm;
-    vparm.codectype = vCodec;
-    vparm.pid = vPid;
-    AmTsPlayer_setVideoParams(session, &vparm);
+    am_tsplayer_video_params vparam;
+    vparam.codectype = vCodec;
+    vparam.pid = vPid;
+    AmTsPlayer_setVideoParams(session, &vparam);
     AmTsPlayer_startVideoDecoding(session);
 
-    am_tsplayer_audio_params aparm;
-    aparm.codectype = aCodec;
-    aparm.pid = aPid;
-    AmTsPlayer_setAudioParams(session, &aparm);
+    am_tsplayer_audio_params aparam;
+    aparam.codectype = aCodec;
+    aparam.pid = aPid;
+    AmTsPlayer_setAudioParams(session, &aparam);
     AmTsPlayer_startAudioDecoding(session);
 
     #if (ANDROID_PLATFORM_SDK_VERSION == 30)
@@ -646,7 +646,7 @@ int main(int argc, char **argv)
             } else
                 break;
         } while(res || retry-- > 0);
-        if (_kbhit()) {
+        if (keyboardHit()) {
             ch = getchar();
             printf("----key input : %d quit:q\n",ch);
             if (ch == 'q') {
@@ -658,11 +658,11 @@ int main(int argc, char **argv)
                 AmTsPlayer_stopVideoDecoding(session);
             }
             if (ch == 'r') {
-                am_tsplayer_video_params vparm;
-                vparm.codectype = vCodec;
-                vparm.pid = vPid;
+                am_tsplayer_video_params vparam;
+                vparam.codectype = vCodec;
+                vparam.pid = vPid;
                 printf("====>start video \n");
-                AmTsPlayer_setVideoParams(session, &vparm);
+                AmTsPlayer_setVideoParams(session, &vparam);
                 AmTsPlayer_startVideoDecoding(session);
             }
             if (ch == 'g') {

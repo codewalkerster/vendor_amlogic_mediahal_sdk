@@ -20,13 +20,13 @@ func mediahal_sdk_go_DefaultsFactory() (android.Module) {
         p := &props{}
 
         mediahalSrcPath := "media_hal"
-        hardmediahalSrcPath := "hardware/amlogic/media_hal"
+        hardMediahalSrcPath := "hardware/amlogic/media_hal"
         if android.ExistentPathForSource(ctx, mediahalSrcPath).Valid() == true {
             p.Enabled = proptools.BoolPtr(false)
             fmt.Printf("mediahalSrcPath:%s exist, use medial source to build\n", mediahalSrcPath)
-        } else if android.ExistentPathForSource(ctx, hardmediahalSrcPath).Valid() == true {
+        } else if android.ExistentPathForSource(ctx, hardMediahalSrcPath).Valid() == true {
             p.Enabled = proptools.BoolPtr(false)
-            fmt.Printf("dvb:%s not exist, use hardwaremedial source to build\n", hardmediahalSrcPath)
+            fmt.Printf("dvb:%s not exist, use hardwaremedial source to build\n", hardMediahalSrcPath)
         }else {
             fmt.Println("mediahalSrcPath:%s not exist, use mediahal_sdk to build",mediahalSrcPath)
         }

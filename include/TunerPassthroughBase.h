@@ -38,7 +38,7 @@ public:
     TunerPassthroughBase() {};
     virtual ~TunerPassthroughBase() {};
     virtual int Init(passthroughInitParams* params);
-    virtual int RegCallBack(int cb_id, callbackFunc funs, void* obj);
+    virtual int RegCallBack(int cb_id, callbackFunc func, void* obj);
     virtual int GetSyncInstansNo(int *no);
     virtual int Start();
     virtual int Stop();

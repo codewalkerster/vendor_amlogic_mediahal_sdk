@@ -16,7 +16,7 @@
 
 #define AM_VIDEO_DEC_INIT_FLAG_DEFAULT        0
 #define AM_VIDEO_DEC_INIT_FLAG_CODEC2         1
-#define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE     2
+#define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE    2
 #define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE 4
 
 typedef struct {
@@ -80,7 +80,7 @@ public:
     virtual void onResetDone();
     virtual void onError(int32_t error);
     virtual void onUserdataReady(const uint8_t* userdata, uint32_t usize);
-    virtual void onEvent(uint32_t event, void* param, uint32_t paramsize);
+    virtual void onEvent(uint32_t event, void* param, uint32_t paramSize);
 };
 
 class AmVideoDecBase {
@@ -96,12 +96,12 @@ public:
             uint32_t bytesUsed, uint64_t timestamp, int32_t flags = 0);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, int ashmemFd, off_t offset,
             uint32_t bytesUsed, uint64_t timestamp,
-            uint8_t* hdrbuf, uint32_t hdrlen, int32_t flags = 0);
+            uint8_t* hdrBuf, uint32_t hdrlen, int32_t flags = 0);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, uint8_t* pbuf,
             off_t offset, uint32_t bytesUsed, uint64_t timestamp, int32_t flags = 0);
     virtual int32_t queueInputBuffer(int32_t bitstreamId, uint8_t* pbuf,
             off_t offset, uint32_t bytesUsed, uint64_t timestamp,
-            uint8_t* hdrbuf, uint32_t hdrlen, int32_t flags = 0);
+            uint8_t* hdrBuf, uint32_t hdrlen, int32_t flags = 0);
     virtual int32_t setupOutputBufferNum(uint32_t numOutputBuffers);
     virtual int32_t createOutputBuffer(uint32_t pictureBufferId,
                     int32_t dmabufFd, bool nv21 = 1, int32_t metaFd = -1);
@@ -115,13 +115,13 @@ public:
     virtual bool getDecoderMessage(uint32_t type, void *data);
     virtual bool sendMessagetoDecoder(uint32_t type, void *data);
 
-    /* Ion output for non-bufferqueue */
-    virtual int32_t allocIonBuffer(size_t size, void** mapaddr, int* fd = 0);
-    virtual int32_t freeIonBuffer(void* mapaddr);
+    /* Ion output for non-bufferQueue */
+    virtual int32_t allocIonBuffer(size_t size, void** mapAddress, int* fd = 0);
+    virtual int32_t freeIonBuffer(void* mapAddress);
     virtual int32_t freeAllIonBuffer();
 
-    /* uvm output for non-bufferqueue */
-    virtual int32_t allocUvmBuffer(uint32_t width, uint32_t height, void** mapaddr, unsigned int i,
+    /* uvm output for non-bufferQueue */
+    virtual int32_t allocUvmBuffer(uint32_t width, uint32_t height, void** mapAddress, unsigned int i,
         int* fd = 0);
     virtual int32_t freeUvmBuffers();
 
@@ -131,6 +131,6 @@ public:
 };
 
 extern "C" AmVideoDecBase* AmVideoDec_create(AmVideoDecCallback* callback);
-extern "C" uint32_t AmVideoDec_getVersion(uint32_t* versionM, uint32_t* verionL);
+extern "C" uint32_t AmVideoDec_getVersion(uint32_t* versionM, uint32_t* versionL);
 
 #endif  // AM_VIDEO_DEC_BASE_H

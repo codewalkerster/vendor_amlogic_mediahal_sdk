@@ -1,10 +1,94 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.46-g5e6b6be
+Version: V3.10.50-gb0ae311
 
 ========================================
 
 Git commit:
+commit b0ae311be9d357ad0f28210148b60d7050d74229
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu Aug 18 11:14:54 2022 +0800
+
+    mediahal: CB2 mediahal_sdk have typo error [1/1]
+    
+    PD#SWPL-90376
+    
+    Problem:
+    mediahal_sdk have typo error
+    
+    Solution:
+    rename the name to clear typo error
+    
+    Verify:
+    ohm
+    
+    Change-Id: I26273a219a9bdb46b6281f33d01bd4000f2dccf9
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit e8532c1cb666fc9946d629bbe12ca59cdb74a621
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Jul 16 14:54:46 2022 +0800
+
+    tsplayer: CB2 fix no sound when loop play. [1/1]
+    
+    PD#SWPL-92214
+    
+    Problem:
+    Before audio mediasync binds the id,
+    video mediasync has been released,
+    causing audio mediasync to fail to bind.
+    
+    Solution:
+    Before releasing the video mediasync,
+    judge whether the audio mediasync is successfully bound.
+    If not, the video mediasync will not be released.
+    
+    Verify:
+    SC2
+    
+    Change-Id: If60a70ac6024cbb79b6c2499cf78cde213d305c9
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit b88a2f406e17fcf2be86457e65f0a1a961fd86ca
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Thu Aug 25 12:57:06 2022 +0800
+
+    damabufmanage: CF1 support alloc cma memory [1/1]
+    
+    PD#SWPL-88808
+    
+    Problem:
+    1. Support alloc cma memory by dmabufmanager
+    
+    Solution:
+    support alloc cma memory by dmabufmanager
+    
+    Verify:
+    S905X4-AH212
+    
+    Change-Id: Ib77589c070acff3e81725f7064a4fe3466d7fb4d
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 5b98c2ca6b4ef76090012c13ef9e614d5b34cef1
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Aug 17 14:29:07 2022 +0800
+
+    tsplayer: CF2 support video pid change [1/1]
+    
+    PD#TV-58616
+    
+    Problem:
+    Private stream is not played after calling setPrivateStream
+    
+    Solution:
+    fix the videodectunnelwrapper initialize
+    
+    Verify:
+    T5D
+    
+    Change-Id: I5aed0ec35772b857c4f1d87a5315c4e2bd5f836d
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 5e6b6becb692908aa4542091c545d3cdeced0211
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Wed Aug 24 10:15:55 2022 +0800
@@ -135,92 +219,9 @@ Date:   Mon Aug 15 07:28:07 2022 +0800
     Change-Id: I74aca0c31e2fa78137d8b6390ac278d41c5be368
     Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit 99efa40d7b27554a3c26a8c033bcb6f214abcd41
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Aug 8 11:11:51 2022 +0800
-
-    videodec: CF2 framemode use bitstreaid instead of pts [1/1]
-    
-    PD#SWPL-90103
-    
-    Problem:
-    codec2 handle pts of interlace stream abnormal
-    
-    Solution:
-    framemode use bitstreaid instead of pts
-    
-    Verify:
-    ohm
-    
-    Change-Id: I10ce760c5a29177dc45cff484b38e19afb05c66b
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit b040b781a4ce2fe7077a4dc3d446918b02685f67
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Fri Aug 5 10:27:07 2022 +0800
-
-    videodec: CB2 Reslove 64bit compile issue [1/1]
-    
-    PD#SWPL-84057
-    
-    Problem:
-    Reslove 64bit compile issue
-    
-    Solution:
-    Reslove 64bit compile issue
-    
-    Verify:
-    ohm
-    
-    Change-Id: I70345f170699ec9eb1ee5669c796170a3d89e324
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 1acdbf32bcad85176f184a367c68a17007644e91
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Wed Aug 3 13:34:35 2022 +0800
-
-    videodec: CB2 Optimize codec2 secure flowcontrol proccess [1/1]
-    
-    PD#SWPL-84057
-    
-    Problem:
-    Optimize codec2 secure flowcontrol proccess
-    
-    Solution:
-    1. Optimize codec2 secure flowcontrol prevent decoded yuv pts
-    out-of-order
-    2. Reduce initial max-frame-size for secure make sure more buffer
-    can be rotate.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I97e5c88988e5919a7565d45bcf9c5a81f2e2f011
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit fba8ae6efd7005b516ba6cd9c498d863c5362206
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Aug 1 10:30:06 2022 +0800
-
-    videodec: CF2 surpport play audio after stop video with tunnelmode [1/1]
-    
-    PD#TV-58616
-    
-    Problem:
-    can not play audio after stop video with tunnelmode
-    
-    Solution:
-    do reset codec after stop video
-    
-    Verify:
-    AM30A8,T5D
-    
-    Change-Id: I6e9f28b942cf3afa7eec5212ce2101c1d549958f
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2022-08-24-15-09
+Release time: 2022-08-29-15-33
 
 ========================================
 

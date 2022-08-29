@@ -20,7 +20,7 @@ extern "C" {
 #define    RESMAN_IOC_QUERY_RES          _IOR(RESMAN_IOC_MAGIC, 0x01, int)
 #define    RESMAN_IOC_ACQUIRE_RES        _IOW(RESMAN_IOC_MAGIC, 0x02, int)
 #define    RESMAN_IOC_RELEASE_RES        _IOR(RESMAN_IOC_MAGIC, 0x03, int)
-#define    RESMAN_IOC_SETAPPINFO         _IOW(RESMAN_IOC_MAGIC, 0x04, int)
+#define    RESMAN_IOC_SET_APPINFO        _IOW(RESMAN_IOC_MAGIC, 0x04, int)
 #define    RESMAN_IOC_SUPPORT_RES        _IOR(RESMAN_IOC_MAGIC, 0x05, int)
 #define    RESMAN_IOC_RELEASE_ALL        _IOR(RESMAN_IOC_MAGIC, 0x06, int)
 #define    RESMAN_IOC_LOAD_RES           _IOR(RESMAN_IOC_MAGIC, 0x07, int)
@@ -63,7 +63,7 @@ struct res_item {
 enum RESMAN_ID {
     RESMAN_ID_VFM_DEFAULT,
     RESMAN_ID_AMVIDEO,
-    RESMAN_ID_PIPVIDEO,
+    RESMAN_ID_PIP_VIDEO,
     RESMAN_ID_SEC_TVP,
     RESMAN_ID_TSPARSER,
     RESMAN_ID_CODEC_MM,
@@ -107,16 +107,16 @@ int resman_init(const char *appname, int type);
 int resman_init_ext(const char *appname, int type, int prio);
 int resman_close(int handle);
 int resman_setappinfo(int handle, struct app_info *appinfo);
-bool resman_acquire_para(int handle, int restype, const unsigned int time_out, int preempt, const char *arg);//Timeout unit: milliseconds
-bool resman_acquire(int handle, int restype);
-bool resman_acquire_para_ext(int handle, const char *resname, const unsigned int time_out, int preempt, const char *arg);
-int resman_release(int handle, int restype);
-int resman_release_ext(int handle, const char * resname);
+bool resman_acquire_para(int handle, int resType, const unsigned int time_out, int preempt, const char *arg);//Timeout unit: milliseconds
+bool resman_acquire(int handle, int resType);
+bool resman_acquire_para_ext(int handle, const char *resName, const unsigned int time_out, int preempt, const char *arg);
+int resman_release(int handle, int resType);
+int resman_release_ext(int handle, const char * resName);
 int resman_release_all(int handle);
 int resman_query(int handle, struct resman_para *res_status);
-int resman_query_ext(int handle, struct resman_para *res_status, const char * resname);
-bool resman_acquire_wait(int handle, int restype, const unsigned int time_out);//Timeout unit: milliseconds
-bool resman_resource_support(const char* resname);
+int resman_query_ext(int handle, struct resman_para *res_status, const char * resName);
+bool resman_acquire_wait(int handle, int resType, const unsigned int time_out);//Timeout unit: milliseconds
+bool resman_resource_support(const char* resName);
 int resman_register(int fd, void (* handler)(void *),  void *opaque);
 void resman_unregister(int fd);
 void resman_stop_thread();

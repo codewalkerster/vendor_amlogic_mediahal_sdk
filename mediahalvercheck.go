@@ -26,13 +26,13 @@ func MediahalVerCheckDefaults(ctx android.LoadHookContext) {
     }
 }
 
-func MediahalVerCheckMediahalPasshroughDefaults(ctx android.LoadHookContext) {
+func MediahalVerCheckMediahalPassthroughDefaults(ctx android.LoadHookContext) {
     sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
     sdkVersionInt,err := strconv.Atoi(sdkVersion)
     if err != nil {
         fmt.Printf("%v fail to convert", sdkVersionInt)
     } else {
-        fmt.Println("PasshroughDefaults sdkVersion:", sdkVersionInt)
+        fmt.Println("PassthroughDefaults sdkVersion:", sdkVersionInt)
     }
     if sdkVersionInt < 30 {
         type props struct {
@@ -46,7 +46,7 @@ func MediahalVerCheckMediahalPasshroughDefaults(ctx android.LoadHookContext) {
 
 func init() {
     android.RegisterModuleType("mediahalvercheck_defaults", MediahalVerCheckDefaultsFactory)
-    android.RegisterModuleType("mediahalvercheck_mediahal_passthrough_defaults", MediahalVerCheckMediahalPasshroughDefaultsFactory)
+    android.RegisterModuleType("mediahalvercheck_mediahal_passthrough_defaults", MediahalVerCheckMediahalPassthroughDefaultsFactory)
 }
 
 func MediahalVerCheckDefaultsFactory() android.Module {
@@ -56,9 +56,9 @@ func MediahalVerCheckDefaultsFactory() android.Module {
     return module
 }
 
-func MediahalVerCheckMediahalPasshroughDefaultsFactory() android.Module {
+func MediahalVerCheckMediahalPassthroughDefaultsFactory() android.Module {
     module := cc.DefaultsFactory()
-    android.AddLoadHook(module, MediahalVerCheckMediahalPasshroughDefaults)
+    android.AddLoadHook(module, MediahalVerCheckMediahalPassthroughDefaults)
 
     return module
 }

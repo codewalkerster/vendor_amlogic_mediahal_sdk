@@ -26,10 +26,10 @@ func systemlibDefaults(ctx android.LoadHookContext) {
         sharedlib = append(sharedlib,"//hardware/amlogic:libamgralloc_ext")
         p.Shared_libs = sharedlib
 
-        var includedirs []string
-		includedirs = append(includedirs,"vendor/amlogic/common/frameworks/services/systemcontrol","vendor/amlogic/common/frameworks/services/systemcontrol/PQ/include","hardware/amlogic/gralloc")
-		p.Include_dirs = includedirs
-		
+        var includePath []string
+		includePath = append(includePath,"vendor/amlogic/common/frameworks/services/systemcontrol","vendor/amlogic/common/frameworks/services/systemcontrol/PQ/include","hardware/amlogic/gralloc")
+		p.Include_dirs = includePath
+
         ctx.AppendProperties(p)
     }
     if sdkVersionInt == 28 {
@@ -43,9 +43,9 @@ func systemlibDefaults(ctx android.LoadHookContext) {
         sharedlib = append(sharedlib,"//hardware/amlogic:libamgralloc_ext@2")
         p.Shared_libs = sharedlib
 
-        var includedirs []string
-        includedirs = append(includedirs,"hardware/amlogic/gralloc")
-        p.Include_dirs = includedirs
+        var includePath []string
+        includePath = append(includePath,"hardware/amlogic/gralloc")
+        p.Include_dirs = includePath
 
         ctx.AppendProperties(p)
     }
