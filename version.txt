@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.50-gb0ae311
+Version: V3.10.52-gbd34e1e
 
 ========================================
 
 Git commit:
+commit bd34e1ede841d762bb13f7104f82cc4c3b42cf59
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Aug 30 14:55:48 2022 +0800
+
+    mediasync: CB2 Fix compilation error for 64bit environment [1/1]
+    
+    PD#SWPL-92940
+    
+    Problem:
+    64bit environment compilation error.
+    
+    Solution:
+    64bit types print the value with %" PRId64 ".
+    
+    Verify:
+    SC2
+    
+    Change-Id: I61946342ce1e032e122da40d0f28943877696d15
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 2100688d54a1647637293427a126be3069b10e97
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Thu Aug 18 14:52:35 2022 +0800
+
+    mediasync: CB2 video realtime error，cause video glitch. [1/1]
+    
+    PD#SWPL-91716
+    
+    Problem:
+    Dividing by a floating point number will have an deviation.
+    
+    Solution:
+    Dividing by a int number.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: Ia78a247243aa7fd1bf791bac8eb5989364ecff64
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit b0ae311be9d357ad0f28210148b60d7050d74229
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Thu Aug 18 11:14:54 2022 +0800
@@ -176,52 +216,9 @@ Date:   Mon Aug 15 17:19:46 2022 +0800
     Change-Id: I8bfac96ffd90accafae1cb144e84bb42cf0c9e05
     Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 71477aa75e1964cb962738190f63a8f4c791f53e
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Aug 1 17:11:22 2022 +0800
-
-    tsplayer: CF2 Added interface for audio language.  [1/1]
-    
-    PD#TV-60663
-    
-    Problem:
-    1.audiohal requires audio language information.
-    2.get ac4 active presentations id
-    
-    Solution:
-    1.Added interface for setting audio language.
-    2.Added interface to get AC4 active presentations id
-    
-    Verify:
-    T5D
-    
-    Change-Id: I5d00afc5f7d9fde3753ba9481881b10118c8198a
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit b79ad1ec9586651cfadf24a0264f6209f181d68a
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Mon Aug 15 07:28:07 2022 +0800
-
-    mediasync: CB2 dvb channel playing not smooth after stress test. [1/1]
-    
-    PD#SWPL-91234
-    
-    Problem:
-    uplayer set some abnormal cmd: pause/resume/stop/close/open/resume/start
-    during the starting stage,and will stop the buffering stage,lead to underrun.
-    
-    Solution:
-    apts/vpts should not update refclock during the starting stage.
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I74aca0c31e2fa78137d8b6390ac278d41c5be368
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2022-08-29-15-33
+Release time: 2022-08-30-17-07
 
 ========================================
 
