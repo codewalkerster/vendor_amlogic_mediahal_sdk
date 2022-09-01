@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.10.52-gbd34e1e
+Version: V3.12.1-g6da6bc2
 
 ========================================
 
 Git commit:
+commit 6da6bc2fb672066c9636e556a05611e61e829478
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Thu Sep 1 15:00:40 2022 +0800
+
+    videodec: CB1 GtsExoPlayerTestCases Test report pts error [1/1]
+    
+    PD#SWPL-92613
+    
+    Problem:
+    GtsExoPlayerTestCases Test report pts error
+    
+    Solution:
+    GtsExoPlayerTestCases Test report pts error when flush or end
+    stream playback.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I3be7da914d527bf24dbed0841b18fb196a4806d2
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 52eb04e7dea46b3483fef99219a1c136f3bb4bf6
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Aug 2 21:55:06 2022 +0800
+
+    mediahal: CF2 mediahal release  [1/1]
+    
+    PD#SWPL-89490
+    
+    Problem:
+    mediahal release
+    
+    Solution:
+    release V3.10.52-gbd34e1e
+    
+    Verify:
+    SC2
+    
+    Change-Id: Ida870a86e4da26efdd4082dfef172ae1f8824c03
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit bd34e1ede841d762bb13f7104f82cc4c3b42cf59
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Aug 30 14:55:48 2022 +0800
@@ -173,52 +214,9 @@ Date:   Wed Aug 10 15:06:50 2022 +0800
     Change-Id: I45b943f818f44f817d5a9e1c124c9714918280e5
     Signed-off-by: Yani Shi <yani.shi@amlogic.com>
 
-commit 442665511d60586781eaaa3ecc92a0472f8c70a2
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Aug 17 15:52:50 2022 +0800
-
-    videodec: CB2 CtsMediaMiscTestCases 1 failure [1/1]
-    
-    PD#SWPL-87201
-    
-    Problem:
-    run android.media.misc.cts.ResourceManagerTest will
-    occur low mem and kill cts test process.
-    
-    Solution:
-    1.limit input buf number if instance num greater than 2.
-    2. add check "task_runner" is nullptr,"task_runner" is
-    nullptr sometimes when kernel version is 5.15.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I985f343a39b959af4cbc0a07f70f7c758892cbc2
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 581d913e4afb2513449b3b4cb733056eb90df8cd
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Aug 15 17:19:46 2022 +0800
-
-    videodec: CF2 codec2 clear input support 3 cached buffer [1/1]
-    
-    PD#SWPL-89583
-    
-    Problem:
-    codec2 clear input support 3 cached buffer
-    
-    Solution:
-    codec2 clear input support 3 cached buffer
-    
-    Verify:
-    ohm
-    
-    Change-Id: I8bfac96ffd90accafae1cb144e84bb42cf0c9e05
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2022-08-30-17-07
+Release time: 2022-09-01-16-13
 
 ========================================
 
