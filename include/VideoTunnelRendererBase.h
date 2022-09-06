@@ -55,12 +55,12 @@ public:
 
     VideoTunnelRendererBase() {};
     virtual ~VideoTunnelRendererBase() {};
-    virtual bool init(int hwsyncid);
+    virtual bool init(int hwSyncId);
     virtual int getTunnelId();
     virtual bool start();
     virtual bool stop();
-    virtual bool sendVideoFrame(int metafd, int64_t timestampNs, bool renderAtonce);
-    virtual int regCallBack(int cb_id, callbackFunc funs, void* obj);
+    virtual bool sendVideoFrame(int metaFd, int64_t timestampNs, bool renderAtonce);
+    virtual int regCallBack(int cb_id, callbackFunc func, void* obj);
     virtual bool flush();
     virtual bool flushSeekTrickMode();
     virtual bool setFrameRate(int32_t framerate);

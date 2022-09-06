@@ -1,10 +1,118 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.1-g6da6bc2
+Version: V3.12.6-gadfb586
 
 ========================================
 
 Git commit:
+commit adfb5867d28bf1402c0507e1c28d71221174de42
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Sep 2 14:53:10 2022 +0800
+
+    mediasync: CB2 fix audio and video are out of sync on android S. [1/1]
+    
+    PD#SWPL-91945
+    
+    Problem:
+    1.The mediasync state mechanism is abnormal.
+    2.start flag not init.
+    
+    Solution:
+    1.The mediasync state mechanism is abnormal.
+    2.start flag not init.
+    
+    Verify:
+    sc2
+    
+    Change-Id: I5ec61cc8a5887bda59dd04bd5553983c002fc344
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 3613c7e93960cff040868a152ee3226f4d62219a
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Aug 23 15:33:54 2022 +0800
+
+    tsplayer: CB2 Fixed CC subtitles not showing.  [1/1]
+    
+    PD#SWPL-92225
+    
+    Problem:
+    In tunnel mode, after resetting the video decoder,
+    the player id is not set for the video decoder.
+    
+    Solution:
+    After resetting the video decoder,
+    set the player id to the video decoder.
+    
+    Verify:
+    T5D
+    
+    Change-Id: Ice72568abf75c1cc55a2caac7dc56764438cb692
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 9e54cdac2089eb4122a3a36b665f0763de5fc721
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Sat Aug 27 13:51:39 2022 +0800
+
+    damabufmanage: CF1 Add codec2 clear es support [1/1]
+    
+    PD#SWPL-92587
+    
+    Problem:
+    1. Add codec2 es type support export private
+    meta data use pass hdr information
+    2. Change Dmabuf alloc return fd replace phyaddress
+    
+    Solution:
+    1. Add codec2 es type support export private
+    meta data use pass hdr information
+    2. Change Dmabuf alloc return fd replace phyaddress
+    
+    Verify:
+    S905X4-AH212
+    
+    Change-Id: Ie48f410d3d68e34ed09809d26b98047956e79a40
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 35e2a69f40bf8619dd8de2ddb4d029c2fd0444fb
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Aug 23 21:13:08 2022 +0800
+
+    videopassthrough: CB2 fix onInputBufferDone dead lock [1/1]
+    
+    PD#OTT-33858
+    
+    Problem:
+    When dmx data oversize,onInputBufferDone will cause dead lock.
+    
+    Solution:
+    fix onInputBufferDone dead lock.
+    
+    Verify:
+    SC2
+    
+    Change-Id: Iadcd655b50eabe31d1ef1934e1f5adb987436537
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit cb34316fbebe1646a9842eb975d353f54015a6ad
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Thu Aug 18 17:23:26 2022 +0800
+
+    mediasync: CB2 mediasync shouldn't use first output apts to adjust pcr. [2/2]
+    
+    PD#SWPL-91770
+    
+    Problem:
+    first output apts may be not incurrate.
+    
+    Solution:
+    use the first output apts after alsa ready to adjust.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I44e420c04a44fb2d5ff9fcbf675bac31ffacd138
+    Signed-off-by: Chen Chen <chen.chen1@amlogic.com>
+
 commit 6da6bc2fb672066c9636e556a05611e61e829478
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Thu Sep 1 15:00:40 2022 +0800
@@ -106,117 +214,9 @@ Date:   Thu Aug 18 11:14:54 2022 +0800
     Change-Id: I26273a219a9bdb46b6281f33d01bd4000f2dccf9
     Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit e8532c1cb666fc9946d629bbe12ca59cdb74a621
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Jul 16 14:54:46 2022 +0800
-
-    tsplayer: CB2 fix no sound when loop play. [1/1]
-    
-    PD#SWPL-92214
-    
-    Problem:
-    Before audio mediasync binds the id,
-    video mediasync has been released,
-    causing audio mediasync to fail to bind.
-    
-    Solution:
-    Before releasing the video mediasync,
-    judge whether the audio mediasync is successfully bound.
-    If not, the video mediasync will not be released.
-    
-    Verify:
-    SC2
-    
-    Change-Id: If60a70ac6024cbb79b6c2499cf78cde213d305c9
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit b88a2f406e17fcf2be86457e65f0a1a961fd86ca
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Thu Aug 25 12:57:06 2022 +0800
-
-    damabufmanage: CF1 support alloc cma memory [1/1]
-    
-    PD#SWPL-88808
-    
-    Problem:
-    1. Support alloc cma memory by dmabufmanager
-    
-    Solution:
-    support alloc cma memory by dmabufmanager
-    
-    Verify:
-    S905X4-AH212
-    
-    Change-Id: Ib77589c070acff3e81725f7064a4fe3466d7fb4d
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 5b98c2ca6b4ef76090012c13ef9e614d5b34cef1
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Aug 17 14:29:07 2022 +0800
-
-    tsplayer: CF2 support video pid change [1/1]
-    
-    PD#TV-58616
-    
-    Problem:
-    Private stream is not played after calling setPrivateStream
-    
-    Solution:
-    fix the videodectunnelwrapper initialize
-    
-    Verify:
-    T5D
-    
-    Change-Id: I5aed0ec35772b857c4f1d87a5315c4e2bd5f836d
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 5e6b6becb692908aa4542091c545d3cdeced0211
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Wed Aug 24 10:15:55 2022 +0800
-
-    videodec: CB2 Update codec2 secure flowcontrol mechanism [1/1]
-    
-    PD#SWPL-92173
-    
-    Problem:
-    Update codec2 secure flowcontrol mechanism
-    
-    Solution:
-    Use available frame number replace secure vdec pool free size
-    calculate can free frame number avoid memory framentization lead
-    alloc failed.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I2fa6bda05c7e2490ac706161098aefa363a04de5
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 5bf9c6fd615d2f6f086fd14bfc2a6fa7903df79d
-Author: Yani Shi <yani.shi@amlogic.com>
-Date:   Wed Aug 10 15:06:50 2022 +0800
-
-    mediasync: CB2 Optimize the start time of special stream. [1/1]
-    
-    PD#SWPL-92067
-    
-    Problem:
-    For some special stream, the first_frame_nosync
-    the first vpts is larger lot than the first apts
-    let the start time is too long
-    
-    Solution:
-    add the avdiff ladder to optimize the start time
-    
-    Verify:
-    S905X4
-    
-    Change-Id: I45b943f818f44f817d5a9e1c124c9714918280e5
-    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-01-16-13
+Release time: 2022-09-06-19-55
 
 ========================================
 
