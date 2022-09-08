@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.6-gadfb586
+Version: V3.12.7-gb9f133c
 
 ========================================
 
 Git commit:
+commit b9f133c65d8bd827d8fdeb2182e799db0b9048cc
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu Sep 1 15:44:53 2022 +0800
+
+    tsplayer: CB2 Hbbtv streaming video dtvkitserver crash [1/1]
+    
+    PD#SWPL-92479
+    
+    Problem:
+    Hbbtv streaming video dtvkitserver crash,
+    because videodecNonTunnel to sendCommand
+    while tsplayer stop video
+    
+    Solution:
+    fixed videodecNonTunnel to sendCommand while stop video
+    
+    Verify:
+    ohm
+    
+    Change-Id: I96a1e98c89578ec3a6005b66dd7103df066fe0f6
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit adfb5867d28bf1402c0507e1c28d71221174de42
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Fri Sep 2 14:53:10 2022 +0800
@@ -194,29 +216,9 @@ Date:   Thu Aug 18 14:52:35 2022 +0800
     Change-Id: Ia78a247243aa7fd1bf791bac8eb5989364ecff64
     Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit b0ae311be9d357ad0f28210148b60d7050d74229
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu Aug 18 11:14:54 2022 +0800
-
-    mediahal: CB2 mediahal_sdk have typo error [1/1]
-    
-    PD#SWPL-90376
-    
-    Problem:
-    mediahal_sdk have typo error
-    
-    Solution:
-    rename the name to clear typo error
-    
-    Verify:
-    ohm
-    
-    Change-Id: I26273a219a9bdb46b6281f33d01bd4000f2dccf9
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-06-19-55
+Release time: 2022-09-08-10-57
 
 ========================================
 
