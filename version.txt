@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.7-gb9f133c
+Version: V3.12.10-g3bdfbba
 
 ========================================
 
 Git commit:
+commit 3bdfbba6b2950ea916598efc13c1e9d366f171a6
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Aug 24 11:42:39 2022 +0800
+
+    videodec: CF1 add bufferpool to optimize clear input [1/1]
+    
+    PD#SWPL-87737
+    
+    Problem:
+    optimization clear input buffer
+    
+    Solution:
+    1.add bufferpool, alloc dma buffer
+    2.clear input buffer use dmafd
+    3.hdr10+ data store in dmafd
+    
+    Verify:
+    ohm
+    
+    Change-Id: I2c31dec4d0a1a4a28900fc9bab2b1eea459ac122
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 784fc0e5d0a50b1cbcf1e949cf5864c96941f367
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Sep 5 20:13:30 2022 +0800
+
+    tsplayer: CB2 fix the wrong event when playing only audio [1/1]
+    
+    PD#SWPL-92357
+    
+    Problem:
+    tsplayer sends event "DATA LOSS" when playing only audio.
+    
+    Solution:
+    use audioLastChecinPts to judge "DATA LOSS" event
+    
+    Verify:
+    ohm
+    
+    Change-Id: I44518713224788168ea1fef5d7991974fc45cc7a
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 13b22c01cd8a74a628e52d7783e50add2e949d9c
+Author: fengguang.yang <fengguang.yang@amlogic.com>
+Date:   Mon Jul 4 21:25:34 2022 +0800
+
+    mediasync: CF2 log head not flexible [1/1]
+    
+    PD#SWPL-87122
+    
+    Problem:
+    make log head more flexible
+    
+    Solution:
+    add mLogHead and update it when necessary
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I7577a363a815d52857a8f9a5ce2e901df75f7350
+    Signed-off-by: fengguang.yang <fengguang.yang@amlogic.com>
+
 commit b9f133c65d8bd827d8fdeb2182e799db0b9048cc
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Thu Sep 1 15:44:53 2022 +0800
@@ -156,69 +218,9 @@ Date:   Thu Sep 1 15:00:40 2022 +0800
     Change-Id: I3be7da914d527bf24dbed0841b18fb196a4806d2
     Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
-commit 52eb04e7dea46b3483fef99219a1c136f3bb4bf6
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Aug 2 21:55:06 2022 +0800
-
-    mediahal: CF2 mediahal release  [1/1]
-    
-    PD#SWPL-89490
-    
-    Problem:
-    mediahal release
-    
-    Solution:
-    release V3.10.52-gbd34e1e
-    
-    Verify:
-    SC2
-    
-    Change-Id: Ida870a86e4da26efdd4082dfef172ae1f8824c03
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit bd34e1ede841d762bb13f7104f82cc4c3b42cf59
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Aug 30 14:55:48 2022 +0800
-
-    mediasync: CB2 Fix compilation error for 64bit environment [1/1]
-    
-    PD#SWPL-92940
-    
-    Problem:
-    64bit environment compilation error.
-    
-    Solution:
-    64bit types print the value with %" PRId64 ".
-    
-    Verify:
-    SC2
-    
-    Change-Id: I61946342ce1e032e122da40d0f28943877696d15
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 2100688d54a1647637293427a126be3069b10e97
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Thu Aug 18 14:52:35 2022 +0800
-
-    mediasync: CB2 video realtime error，cause video glitch. [1/1]
-    
-    PD#SWPL-91716
-    
-    Problem:
-    Dividing by a floating point number will have an deviation.
-    
-    Solution:
-    Dividing by a int number.
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: Ia78a247243aa7fd1bf791bac8eb5989364ecff64
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-08-10-57
+Release time: 2022-09-09-10-20
 
 ========================================
 
