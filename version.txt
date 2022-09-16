@@ -1,10 +1,116 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.10-g3bdfbba
+Version: V3.12.15-g5ad577d
 
 ========================================
 
 Git commit:
+commit 5ad577dc306e79d9fce66030aeb5102073eb59ab
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Sep 15 19:31:11 2022 +0800
+
+    videodec: CB1 clear dmabuf input buffer add 16k padding [1/1]
+    
+    PD#SWPL-94322
+    
+    Problem:
+    youtobe playback av1 occur mosac
+    
+    Solution:
+    clear dmabuf input buffer add 16k padding
+    
+    Verify:
+    ohm
+    
+    Change-Id: I4c7ec86733cdf41fcd44d251b1c670c2dc56b3a1
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 5a4c011703fd38b28caa6f60f962f1ab372bce8e
+Author: Chao Yin <chao.yin@amlogic.com>
+Date:   Wed Sep 14 16:20:42 2022 +0800
+
+    mediasync: CB2 liveplay is out of sync occasionally. [1/1]
+    
+    PD#SWPL-94089
+    
+    Problem:
+    Udescrambled data was pushed into decoder,
+    the pts of first audio packet maybe calculate based on
+    wrong value. Mdiasync doesn't check first apts is valid,
+    and fist apts is used to calculate the offset.
+    Wrong offset cause av out of sync.
+    
+    Solution:
+    check first apts is valid
+    
+    Verify:
+    AndroidS+S905C3
+    
+    Change-Id: I5b3dd38e6f76e12b261b92c54ef4028defb1bfba
+    Signed-off-by: Chao Yin <chao.yin@amlogic.com>
+
+commit 5f5bfd4077db715325a3409ddffeea310d7176f5
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Sep 14 17:28:16 2022 +0800
+
+    videodec: CB1 use dlopen to access dmabufmanage [1/1]
+    
+    PD#SWPL-94504
+    
+    Problem:
+    Android R occur playback error due to link error
+    
+    Solution:
+    use dlopen to access dmabufmanage
+    
+    Verify:
+    ohm
+    
+    Change-Id: I45b9abac6fc37d134ceb5ea8528d16fc338b5b11
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 6f7647abae7550f0eda1c8356a2a8dcd4db1e000
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Sep 9 11:19:30 2022 +0800
+
+    videodec: CF2 support dump revc/codec/yuv data [1/1]
+    
+    PD#SWPL-80626
+    
+    Problem:
+    support dump revc/codec/yuv data
+    
+    Solution:
+    support dump revc/codec/yuv data
+    
+    Verify:
+    ohm
+    
+    Change-Id: I56d2836066cfcf4381d3874a7c6419579e9c83ae
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 73a7d80b898d5886963b1ef04ac732cfafcf5017
+Author: dong.liu <dong.liu@amlogic.com>
+Date:   Wed Aug 10 15:19:53 2022 +0800
+
+    tsplayer: CB2 solution seek Black screen [1/1]
+    
+    PD#OTT-33179
+    
+    Problem:
+    Blackout is set before start is completed
+    
+    Solution:
+    Tsplayer keeps the value of blackout.
+    If it is opposite to the default value,
+    set it again after start
+    
+    Verify:
+    S905X4
+    
+    Change-Id: I71f4286779183a6956b7a93a0c02d37db6a8b207
+    Signed-off-by: dong.liu <dong.liu@amlogic.com>
+
 commit 3bdfbba6b2950ea916598efc13c1e9d366f171a6
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Aug 24 11:42:39 2022 +0800
@@ -111,116 +217,9 @@ Date:   Fri Sep 2 14:53:10 2022 +0800
     Change-Id: I5ec61cc8a5887bda59dd04bd5553983c002fc344
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 3613c7e93960cff040868a152ee3226f4d62219a
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Aug 23 15:33:54 2022 +0800
-
-    tsplayer: CB2 Fixed CC subtitles not showing.  [1/1]
-    
-    PD#SWPL-92225
-    
-    Problem:
-    In tunnel mode, after resetting the video decoder,
-    the player id is not set for the video decoder.
-    
-    Solution:
-    After resetting the video decoder,
-    set the player id to the video decoder.
-    
-    Verify:
-    T5D
-    
-    Change-Id: Ice72568abf75c1cc55a2caac7dc56764438cb692
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 9e54cdac2089eb4122a3a36b665f0763de5fc721
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Sat Aug 27 13:51:39 2022 +0800
-
-    damabufmanage: CF1 Add codec2 clear es support [1/1]
-    
-    PD#SWPL-92587
-    
-    Problem:
-    1. Add codec2 es type support export private
-    meta data use pass hdr information
-    2. Change Dmabuf alloc return fd replace phyaddress
-    
-    Solution:
-    1. Add codec2 es type support export private
-    meta data use pass hdr information
-    2. Change Dmabuf alloc return fd replace phyaddress
-    
-    Verify:
-    S905X4-AH212
-    
-    Change-Id: Ie48f410d3d68e34ed09809d26b98047956e79a40
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 35e2a69f40bf8619dd8de2ddb4d029c2fd0444fb
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Aug 23 21:13:08 2022 +0800
-
-    videopassthrough: CB2 fix onInputBufferDone dead lock [1/1]
-    
-    PD#OTT-33858
-    
-    Problem:
-    When dmx data oversize,onInputBufferDone will cause dead lock.
-    
-    Solution:
-    fix onInputBufferDone dead lock.
-    
-    Verify:
-    SC2
-    
-    Change-Id: Iadcd655b50eabe31d1ef1934e1f5adb987436537
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit cb34316fbebe1646a9842eb975d353f54015a6ad
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Thu Aug 18 17:23:26 2022 +0800
-
-    mediasync: CB2 mediasync shouldn't use first output apts to adjust pcr. [2/2]
-    
-    PD#SWPL-91770
-    
-    Problem:
-    first output apts may be not incurrate.
-    
-    Solution:
-    use the first output apts after alsa ready to adjust.
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I44e420c04a44fb2d5ff9fcbf675bac31ffacd138
-    Signed-off-by: Chen Chen <chen.chen1@amlogic.com>
-
-commit 6da6bc2fb672066c9636e556a05611e61e829478
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Thu Sep 1 15:00:40 2022 +0800
-
-    videodec: CB1 GtsExoPlayerTestCases Test report pts error [1/1]
-    
-    PD#SWPL-92613
-    
-    Problem:
-    GtsExoPlayerTestCases Test report pts error
-    
-    Solution:
-    GtsExoPlayerTestCases Test report pts error when flush or end
-    stream playback.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I3be7da914d527bf24dbed0841b18fb196a4806d2
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-09-10-20
+Release time: 2022-09-16-15-50
 
 ========================================
 

@@ -154,12 +154,12 @@ const char* vformat_to_mime(uint32_t vformat) {
     }
 }
 
-static int sysfs_cmd_control(const char *path, const char *cmdstr)
+static int sysfs_cmd_control(const char *path, const char *cmdStr)
 {
     int fd = open(path, O_CREAT | O_RDWR | O_TRUNC, 0644);
 
     if (fd >= 0) {
-        write(fd, cmdstr, strlen(cmdstr));
+        write(fd, cmdStr, strlen(cmdStr));
         close(fd);
         return 0;
     }
@@ -173,8 +173,8 @@ public:
     virtual ~VideoDecPlayerExample();
     int init(uint32_t vFmt, uint32_t width = 1920, uint32_t height = 1080, uint32_t framerate = 24);
     void setQueueCount(int32_t queueCount);
-    void play(const char* iname, const char* sname,const char* oname, int num);
-    void outputBuffer(const char* oname, int num);
+    void play(const char* iname, const char* sname,const char* oName, int num);
+    void outputBuffer(const char* oName, int num);
     int inputBuffer(uint8_t* buf, uint32_t size, uint64_t timestamp = 0);
     void dumpData(char* buf, uint32_t width, uint32_t height, int32_t bitstreamId);
 
@@ -188,7 +188,7 @@ public:
     virtual void onFlushDone();
     virtual void onResetDone();
     virtual void onError(int32_t error);
-    virtual void onEvent(uint32_t event, void* param, uint32_t paramsize);
+    virtual void onEvent(uint32_t event, void* param, uint32_t paramSize);
 
     class playerCallback : public AmVideoDecCallback {
     public:
@@ -221,8 +221,8 @@ public:
         virtual void onError(int32_t error) override {
             mThis->onError(error);
         }
-        virtual void onEvent(uint32_t event, void* param, uint32_t paramsize) override {
-            mThis->onEvent(event, param, paramsize);
+        virtual void onEvent(uint32_t event, void* param, uint32_t paramSize) override {
+            mThis->onEvent(event, param, paramSize);
         }
 
         private:
@@ -234,7 +234,7 @@ public:
 
     std::mutex mFlushedLock;
     std::condition_variable mFlushedCondition;
-    bool mready;
+    bool mReady;
 
     bool out_flag;
 
@@ -251,7 +251,7 @@ public:
         uint32_t height;
     };
 
-    /*Ion output for non-bufferqueue*/
+    /*Ion output for non-bufferQueue*/
     struct mapInfo {
         void* map_addr;
         size_t size;
@@ -268,10 +268,10 @@ private:
 
     std::map<int32_t, uint8_t*> mInputBuffer;
 
-    /* Map: slot -> picturebufferId */
+    /* Map: slot -> pictureBufferId */
     std::map<int32_t, int32_t> mOutputBufferPictureId;
 
-    /* Queue: bistreamId -> struct dispwork */
+    /* Queue: bistreamId -> struct dispWork */
     std::queue<dispWork> mDisplayWork;
     /* output buffer mmap addr */
     std::vector<void*>mMmapAddr;
@@ -287,7 +287,7 @@ private:
     uint32_t mOutputBufferNum;
     uint32_t mDumpNum;
     uint64_t mStartTime;
-    uint32_t mbitstreamId;
+    uint32_t mBitStreamId;
     uint32_t mBufferWidth;
     uint32_t mBufferHeight;
 };
@@ -330,12 +330,12 @@ int VideoDecPlayerExample::inputBuffer(uint8_t* buf, uint32_t size, uint64_t tim
         return -1;
     }
 
-    mInputBuffer[mbitstreamId] = buf;
+    mInputBuffer[mBitStreamId] = buf;
 
     int retry = 500;
     int32_t err = 0;
     do {
-        err = mAmVideoDec->queueInputBuffer(mbitstreamId, mInputBuffer[mbitstreamId], 0, size, timestamp);
+        err = mAmVideoDec->queueInputBuffer(mBitStreamId, mInputBuffer[mBitStreamId], 0, size, timestamp);
         if (err == -EAGAIN) {
             usleep(10000);
         } else {
@@ -343,8 +343,8 @@ int VideoDecPlayerExample::inputBuffer(uint8_t* buf, uint32_t size, uint64_t tim
         }
     } while(err || retry-- > 0);
     std::lock_guard<std::mutex> lock(mInputLock);
-    mInputWork[mbitstreamId] = timestamp;
-    mbitstreamId++;
+    mInputWork[mBitStreamId] = timestamp;
+    mBitStreamId++;
 
     return 0;
 }
@@ -389,7 +389,7 @@ void VideoDecPlayerExample::dumpData(char* buf, uint32_t width, uint32_t height,
 }
 
 
-void VideoDecPlayerExample::outputBuffer(const char* oname, int num) {
+void VideoDecPlayerExample::outputBuffer(const char* oName, int num) {
     int32_t bitstreamId = 0;
     int64_t timestamp = 0;
     int32_t pictureBufferId = 0;
@@ -413,20 +413,20 @@ void VideoDecPlayerExample::outputBuffer(const char* oname, int num) {
     width = work->width;
     height = work->height;
 
-    if (oname != NULL && moFp == NULL && mcFp == NULL) {
-        char newoname[128];
-        char newcname[128];
+    if (oName != NULL && moFp == NULL && mcFp == NULL) {
+        char newOName[128];
+        char newCName[128];
 
-        sprintf(newoname, "%s_%d_%d_%d.yuv", oname, num, width, height);
-        sprintf(newcname, "%s_%d_%d_%d.crc", oname, num, width, height);
-        moFp = fopen(newoname, "wb");
+        sprintf(newOName, "%s_%d_%d_%d.yuv", oName, num, width, height);
+        sprintf(newCName, "%s_%d_%d_%d.crc", oName, num, width, height);
+        moFp = fopen(newOName, "wb");
         if (!moFp) {
             printf("Unable to open output YUV file\n");
             return;
         }
         setbuf(moFp,NULL);
 
-        mcFp = fopen(newcname, "w");
+        mcFp = fopen(newCName, "w");
         if (!mcFp) {
             printf("Unable to open output crc file\n");
             return;
@@ -480,9 +480,9 @@ VideoDecPlayerExample::VideoDecPlayerExample() {
     mOutputDoneCount = 0;
     mOutputBufferNum = 0;
     mDumpNum = 0;
-    mready = false;
+    mReady = false;
     out_flag = false;
-    mbitstreamId = 0;
+    mBitStreamId = 0;
     mCallback = new playerCallback(this);
     mAmVideoDec = getAmVideoDec(mCallback);
 }
@@ -514,7 +514,7 @@ VideoDecPlayerExample::~VideoDecPlayerExample() {
 }
 
 
-void VideoDecPlayerExample::play(const char* iname, const char* sname, const char* oname, int num) {
+void VideoDecPlayerExample::play(const char* iname, const char* sname, const char* oName, int num) {
     int end = 0;
     int ret = 0;
 
@@ -544,9 +544,9 @@ void VideoDecPlayerExample::play(const char* iname, const char* sname, const cha
     printf("file %s to be played\n", iname);
 
     std::atomic_bool running(true);
-    std::thread outputThread([this, &running, oname, num]() {
+    std::thread outputThread([this, &running, oName, num]() {
         while (running) {
-            outputBuffer(oname, num);
+            outputBuffer(oName, num);
         }
     });
 
@@ -605,7 +605,7 @@ void VideoDecPlayerExample::play(const char* iname, const char* sname, const cha
     mAmVideoDec->flush();
 
     std::unique_lock <std::mutex> l(mFlushedLock);
-    while (!mready) {
+    while (!mReady) {
         mFlushedCondition.wait(l);
     }
 
@@ -704,7 +704,7 @@ void VideoDecPlayerExample::onUpdateDecInfo(const uint8_t* info, uint32_t isize)
 void VideoDecPlayerExample::onFlushDone() {
     printf("onFlushDone\n");
     std::unique_lock <std::mutex> l(mFlushedLock);
-    mready = true;
+    mReady = true;
     mFlushedCondition.notify_all();
 }
 
@@ -716,10 +716,10 @@ void VideoDecPlayerExample::onError(int32_t error) {
     printf("%s error%d\n", __func__, error);
 }
 
-void VideoDecPlayerExample::onEvent(uint32_t event, void* param, uint32_t paramsize) {
+void VideoDecPlayerExample::onEvent(uint32_t event, void* param, uint32_t paramSize) {
     UNUSED(param);
-    UNUSED(paramsize);
-    printf("%s event:%x, %s %d\n", __func__, event, (char*)param, paramsize);
+    UNUSED(paramSize);
+    printf("%s event:%x, %s %d\n", __func__, event, (char*)param, paramSize);
 }
 
 static void usage(void)
@@ -745,7 +745,7 @@ int main(int argc, char** argv) {
     int32_t   vFmt = -1;
     char* iname = nullptr;
     char* sname = nullptr;
-    char* oname = nullptr;
+    char* oName = nullptr;
     int num = 1;
 
     if (argc < 7) {
@@ -779,7 +779,7 @@ int main(int argc, char** argv) {
                 num = atoi(optarg);
                 break;
             case 'o':
-                oname = optarg;
+                oName = optarg;
                 break;
             case 'h':
                 usage();
@@ -804,12 +804,12 @@ int main(int argc, char** argv) {
     std::vector<std::thread> threads;
 
     for (int i = 1 ; i <= num ; i++) {
-        threads.push_back(std::thread([iname, sname, oname, vFmt, i]() {
+        threads.push_back(std::thread([iname, sname, oName, vFmt, i]() {
             printf("start player %d\n", i);
             VideoDecPlayerExample player;
             player.init(vFmt);
             printf("iname %s,sname %s,vFmt = %d\n",iname,sname,vFmt);
-            player.play(iname,sname,oname,i);
+            player.play(iname,sname,oName,i);
         }));
     }
 
