@@ -13,6 +13,7 @@
 #define AM_VIDEO_DEC_BASE_H
 
 #include <stdint.h>
+#include "AmlMessageBase.h"
 
 #define AM_VIDEO_DEC_INIT_FLAG_DEFAULT        0
 #define AM_VIDEO_DEC_INIT_FLAG_CODEC2         1
@@ -128,9 +129,13 @@ public:
     /* tunnel mode outbuffer */
     virtual int32_t allocTunnelBuffer(int usage, uint32_t format, int stride, uint32_t width, uint32_t height, bool secure, int* fd);
     virtual int32_t freeTunnelBuffer(int fd);
+
+    /* post and reply message */
+    virtual bool postAndReplyMsg(AmlMessageBase *msg);
 };
 
 extern "C" AmVideoDecBase* AmVideoDec_create(AmVideoDecCallback* callback);
 extern "C" uint32_t AmVideoDec_getVersion(uint32_t* versionM, uint32_t* versionL);
+extern "C" AmlMessageBase* AmVideoDec_getAmlMessage();
 
 #endif  // AM_VIDEO_DEC_BASE_H

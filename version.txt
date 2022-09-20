@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.15-g5ad577d
+Version: V3.12.16-gee0196b
 
 ========================================
 
 Git commit:
+commit ee0196b8aca37a3b0fda7cc880fa243c33ee0592
+Author: yang liu1 <yang.liu1@amlogic.com>
+Date:   Wed Sep 7 20:16:21 2022 +0800
+
+    videodec: CF2 implementation post reply message interface. [1/2]
+    
+    PD#SWPL-93529
+    
+    Problem:
+    implementation post and reply message interface.
+    
+    Solution:
+    implementation post and reply  message interface.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I811ef5087564be98fbc1eabd10ed530bd3b3e53e
+    Signed-off-by: yang liu1 <yang.liu1@amlogic.com>
+
 commit 5ad577dc306e79d9fce66030aeb5102073eb59ab
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Thu Sep 15 19:31:11 2022 +0800
@@ -195,31 +215,9 @@ Date:   Thu Sep 1 15:44:53 2022 +0800
     Change-Id: I96a1e98c89578ec3a6005b66dd7103df066fe0f6
     Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit adfb5867d28bf1402c0507e1c28d71221174de42
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Sep 2 14:53:10 2022 +0800
-
-    mediasync: CB2 fix audio and video are out of sync on android S. [1/1]
-    
-    PD#SWPL-91945
-    
-    Problem:
-    1.The mediasync state mechanism is abnormal.
-    2.start flag not init.
-    
-    Solution:
-    1.The mediasync state mechanism is abnormal.
-    2.start flag not init.
-    
-    Verify:
-    sc2
-    
-    Change-Id: I5ec61cc8a5887bda59dd04bd5553983c002fc344
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-16-15-50
+Release time: 2022-09-20-14-04
 
 ========================================
 
