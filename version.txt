@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.16-gee0196b
+Version: V3.12.18-g32a8658
 
 ========================================
 
 Git commit:
+commit 32a8658d2e6c6b373d22237972728e14a828798b
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Sep 21 10:58:09 2022 +0800
+
+    videodec: CF1 5.15 use uses ext ctrl to configure parameter [2/2]
+    
+    PD#SWPL-92317
+    
+    Problem:
+    5.15 need use ext ctrl to configure parameter
+    
+    Solution:
+    5.15 use uses ext ctrl to configure parameter
+    
+    Verify:
+    ohm
+    
+    Change-Id: Ie453878ba0c04b695a54911094a4153f084f523b
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 357f99f035830ed531e2ec9e6cfcd95113ce7d2c
+Author: “sining.huang” <sining.huang@amlogic.com>
+Date:   Tue Sep 20 10:42:18 2022 +0800
+
+    tsplayer: CB2 still report audiochange event when call stopAudioDecoding [1/1]
+    
+    PD#SWPL-94992
+    
+    Problem:
+    after calling startAudioDecoding,call stopAudioDecoding immediately,it
+    cant break GetAudioStatus thread
+    
+    Solution:
+    dont report AUDIO_CHANGE event after calling stopAudioDecoding
+    
+    Verify:
+    U21BG-S905X2
+    
+    Change-Id: I647061bc9f958036cb2c19a89a8f97799f414e51
+    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
+
 commit ee0196b8aca37a3b0fda7cc880fa243c33ee0592
 Author: yang liu1 <yang.liu1@amlogic.com>
 Date:   Wed Sep 7 20:16:21 2022 +0800
@@ -173,51 +214,9 @@ Date:   Mon Sep 5 20:13:30 2022 +0800
     Change-Id: I44518713224788168ea1fef5d7991974fc45cc7a
     Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 13b22c01cd8a74a628e52d7783e50add2e949d9c
-Author: fengguang.yang <fengguang.yang@amlogic.com>
-Date:   Mon Jul 4 21:25:34 2022 +0800
-
-    mediasync: CF2 log head not flexible [1/1]
-    
-    PD#SWPL-87122
-    
-    Problem:
-    make log head more flexible
-    
-    Solution:
-    add mLogHead and update it when necessary
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I7577a363a815d52857a8f9a5ce2e901df75f7350
-    Signed-off-by: fengguang.yang <fengguang.yang@amlogic.com>
-
-commit b9f133c65d8bd827d8fdeb2182e799db0b9048cc
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu Sep 1 15:44:53 2022 +0800
-
-    tsplayer: CB2 Hbbtv streaming video dtvkitserver crash [1/1]
-    
-    PD#SWPL-92479
-    
-    Problem:
-    Hbbtv streaming video dtvkitserver crash,
-    because videodecNonTunnel to sendCommand
-    while tsplayer stop video
-    
-    Solution:
-    fixed videodecNonTunnel to sendCommand while stop video
-    
-    Verify:
-    ohm
-    
-    Change-Id: I96a1e98c89578ec3a6005b66dd7103df066fe0f6
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-20-14-04
+Release time: 2022-09-23-13-54
 
 ========================================
 
