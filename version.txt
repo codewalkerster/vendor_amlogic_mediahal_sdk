@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.18-g32a8658
+Version: V3.12.20-g07a9ca9
 
 ========================================
 
 Git commit:
+commit 07a9ca95007ccd6b5c44e922bd6b2da254a5a33d
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Sep 14 10:33:34 2022 +0800
+
+    tsplayer: CB2 android-T bringup crash after scan finished [1/1]
+    
+    PD#SWPL-93875
+    
+    Problem:
+    there is no picture or sound on the play page,
+    and the box crash restarts.
+    
+    Solution:
+    1.Fix the demux driver path
+    2.Fix path of demux0_source node
+    
+    Verify:
+    ohm
+    
+    Change-Id: Iba76643246e0f08aa41b33b393f19abce8cb6089
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit d2435c8e3c1ba83122646ed10514f7b0b5ed7efc
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Wed Sep 21 12:50:09 2022 +0800
+
+    videopassthrough: CB2 fixed kernel 5.14 multi demux api issue [1/1]
+    
+    PD#SWPL-94888
+    
+    Problem:
+    no cbs passthrough in android t
+    
+    Solution:
+    change multi demux api to adapt kernel 5.14
+    
+    Verify:
+    ohm
+    
+    Change-Id: I89abbb6f5b9449d4e61b88d9534ea8a58389fba6
+    Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
 commit 32a8658d2e6c6b373d22237972728e14a828798b
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Sep 21 10:58:09 2022 +0800
@@ -172,51 +214,9 @@ Date:   Wed Aug 10 15:19:53 2022 +0800
     Change-Id: I71f4286779183a6956b7a93a0c02d37db6a8b207
     Signed-off-by: dong.liu <dong.liu@amlogic.com>
 
-commit 3bdfbba6b2950ea916598efc13c1e9d366f171a6
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Aug 24 11:42:39 2022 +0800
-
-    videodec: CF1 add bufferpool to optimize clear input [1/1]
-    
-    PD#SWPL-87737
-    
-    Problem:
-    optimization clear input buffer
-    
-    Solution:
-    1.add bufferpool, alloc dma buffer
-    2.clear input buffer use dmafd
-    3.hdr10+ data store in dmafd
-    
-    Verify:
-    ohm
-    
-    Change-Id: I2c31dec4d0a1a4a28900fc9bab2b1eea459ac122
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 784fc0e5d0a50b1cbcf1e949cf5864c96941f367
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Sep 5 20:13:30 2022 +0800
-
-    tsplayer: CB2 fix the wrong event when playing only audio [1/1]
-    
-    PD#SWPL-92357
-    
-    Problem:
-    tsplayer sends event "DATA LOSS" when playing only audio.
-    
-    Solution:
-    use audioLastChecinPts to judge "DATA LOSS" event
-    
-    Verify:
-    ohm
-    
-    Change-Id: I44518713224788168ea1fef5d7991974fc45cc7a
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-23-13-54
+Release time: 2022-09-23-20-15
 
 ========================================
 
