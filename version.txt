@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.20-g07a9ca9
+Version: V3.12.22-g86518ed
 
 ========================================
 
 Git commit:
+commit 86518edec74d353b79b6c25715033dac6b632035
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Sat Sep 24 19:02:27 2022 +0800
+
+    videodec: CF2 optimization v4l2 videodec buffer monitor [1/1]
+    
+    PD#SWPL-80416
+    
+    Problem:
+    optimization v4l2 videodec buffer monitor
+    
+    Solution:
+    optimization v4l2 videodec buffer monitor
+    
+    Verify:
+    ohm
+    
+    Change-Id: I08eaf748b44e3f2fa51ef17594c6076efc40f69d
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit f610cd61ce3eada5269720f72230afcfcd0c59f4
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Sep 20 10:50:21 2022 +0800
+
+    mediasync: CB2 Fix the video freeze of 2x speed related operation of pvr [1/1]
+    
+    PD#SWPL-94348
+    
+    Problem:
+    When mediasync is destructed, the state of cur pts is not cleared.
+    
+    Solution:
+    When mediasync is destructed, it clears the state of cur pts.
+    
+    Verify:
+    sc2
+    
+    Change-Id: Icda78fe8f4708617808bd30fac12f2fc689b3ee6
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 07a9ca95007ccd6b5c44e922bd6b2da254a5a33d
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Wed Sep 14 10:33:34 2022 +0800
@@ -172,51 +212,9 @@ Date:   Wed Sep 14 17:28:16 2022 +0800
     Change-Id: I45b9abac6fc37d134ceb5ea8528d16fc338b5b11
     Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 6f7647abae7550f0eda1c8356a2a8dcd4db1e000
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Sep 9 11:19:30 2022 +0800
-
-    videodec: CF2 support dump revc/codec/yuv data [1/1]
-    
-    PD#SWPL-80626
-    
-    Problem:
-    support dump revc/codec/yuv data
-    
-    Solution:
-    support dump revc/codec/yuv data
-    
-    Verify:
-    ohm
-    
-    Change-Id: I56d2836066cfcf4381d3874a7c6419579e9c83ae
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 73a7d80b898d5886963b1ef04ac732cfafcf5017
-Author: dong.liu <dong.liu@amlogic.com>
-Date:   Wed Aug 10 15:19:53 2022 +0800
-
-    tsplayer: CB2 solution seek Black screen [1/1]
-    
-    PD#OTT-33179
-    
-    Problem:
-    Blackout is set before start is completed
-    
-    Solution:
-    Tsplayer keeps the value of blackout.
-    If it is opposite to the default value,
-    set it again after start
-    
-    Verify:
-    S905X4
-    
-    Change-Id: I71f4286779183a6956b7a93a0c02d37db6a8b207
-    Signed-off-by: dong.liu <dong.liu@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-23-20-15
+Release time: 2022-09-27-14-46
 
 ========================================
 
