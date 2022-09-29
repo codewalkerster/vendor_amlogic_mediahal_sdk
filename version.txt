@@ -1,10 +1,95 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.22-g86518ed
+Version: V3.12.26-ga4ded30
 
 ========================================
 
 Git commit:
+commit a4ded307af1253f6dd347d432483517a488d34f5
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Thu Sep 29 10:45:05 2022 +0800
+
+    tsplayer: CB2 android-T can not play 4k stream [1/1]
+    
+    PD#SWPL-95539
+    
+    Problem:
+    android-T can not play 4k stream
+    
+    Solution:
+    set video_buf_size of demux to 15M
+    
+    Verify:
+    ohm
+    
+    Change-Id: Ibd3a64a4d97565dbf568b5a464cdda5307f82d95
+    Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
+commit 9145e7b909c2696689d5b9377330185f8e80d718
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Tue Sep 13 14:50:45 2022 +0800
+
+    tsplayer: CB2 special aac file need wait enough data for adif  [1/1]
+    
+    PD#TV-62737
+    
+    Problem:
+    Failed to find the adif for a special aac file
+    
+    Solution:
+    Wait for enough data for adif
+    
+    Verify:
+    T982
+    
+    Change-Id: I88533cbeb91fb3108ecea8171b1792df1a6b4bc1
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit 39d560b6c838c4e86f9098065b5f0eaf8c3e520b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sun Sep 25 15:02:08 2022 +0800
+
+    mediasync: CB2 fix video is stutter when starting playback [1/1]
+    
+    PD#SWPL-94587
+    
+    Problem:
+    do timeshift,video is stutter when starting playback.
+    After entering the time shift,
+    it will pause. After a period of time, after the resume,
+    because the audio does not start, the RefClock is not updated.
+    The pcr is much larger than the pts, and the video will fast forward.
+    
+    Solution:
+    After resume, RefClock is updated if the difference between pcr
+    and first pts is greater than the cache threshold.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I7c64b1c5214dff1a7c662b89cfa73fd496fc899a
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 6f734ddb0416fc84bd927723658c51c2360ce914
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu May 12 14:49:56 2022 +0800
+
+    videodec: CF2 videodec Add AmVideoDec_getVersionString() interface  [1/1]
+    
+    PD#SWPL-81504
+    
+    Problem:
+    videodec Add AmVideoDec_getVersionString() interface
+    
+    Solution:
+    videodec Add AmVideoDec_getVersionString() interface
+    
+    Verify:
+    SC2
+    
+    Change-Id: Ic2eea7079f5d1894a0eef51da71e2283488accac
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 86518edec74d353b79b6c25715033dac6b632035
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Sat Sep 24 19:02:27 2022 +0800
@@ -128,93 +213,9 @@ Date:   Tue Sep 20 10:42:18 2022 +0800
     Change-Id: I647061bc9f958036cb2c19a89a8f97799f414e51
     Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
 
-commit ee0196b8aca37a3b0fda7cc880fa243c33ee0592
-Author: yang liu1 <yang.liu1@amlogic.com>
-Date:   Wed Sep 7 20:16:21 2022 +0800
-
-    videodec: CF2 implementation post reply message interface. [1/2]
-    
-    PD#SWPL-93529
-    
-    Problem:
-    implementation post and reply message interface.
-    
-    Solution:
-    implementation post and reply  message interface.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I811ef5087564be98fbc1eabd10ed530bd3b3e53e
-    Signed-off-by: yang liu1 <yang.liu1@amlogic.com>
-
-commit 5ad577dc306e79d9fce66030aeb5102073eb59ab
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Sep 15 19:31:11 2022 +0800
-
-    videodec: CB1 clear dmabuf input buffer add 16k padding [1/1]
-    
-    PD#SWPL-94322
-    
-    Problem:
-    youtobe playback av1 occur mosac
-    
-    Solution:
-    clear dmabuf input buffer add 16k padding
-    
-    Verify:
-    ohm
-    
-    Change-Id: I4c7ec86733cdf41fcd44d251b1c670c2dc56b3a1
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 5a4c011703fd38b28caa6f60f962f1ab372bce8e
-Author: Chao Yin <chao.yin@amlogic.com>
-Date:   Wed Sep 14 16:20:42 2022 +0800
-
-    mediasync: CB2 liveplay is out of sync occasionally. [1/1]
-    
-    PD#SWPL-94089
-    
-    Problem:
-    Udescrambled data was pushed into decoder,
-    the pts of first audio packet maybe calculate based on
-    wrong value. Mdiasync doesn't check first apts is valid,
-    and fist apts is used to calculate the offset.
-    Wrong offset cause av out of sync.
-    
-    Solution:
-    check first apts is valid
-    
-    Verify:
-    AndroidS+S905C3
-    
-    Change-Id: I5b3dd38e6f76e12b261b92c54ef4028defb1bfba
-    Signed-off-by: Chao Yin <chao.yin@amlogic.com>
-
-commit 5f5bfd4077db715325a3409ddffeea310d7176f5
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Sep 14 17:28:16 2022 +0800
-
-    videodec: CB1 use dlopen to access dmabufmanage [1/1]
-    
-    PD#SWPL-94504
-    
-    Problem:
-    Android R occur playback error due to link error
-    
-    Solution:
-    use dlopen to access dmabufmanage
-    
-    Verify:
-    ohm
-    
-    Change-Id: I45b9abac6fc37d134ceb5ea8528d16fc338b5b11
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-27-14-46
+Release time: 2022-09-29-15-26
 
 ========================================
 
