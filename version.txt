@@ -1,10 +1,141 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.26-ga4ded30
+Version: V3.12.32-g21ce2d9
 
 ========================================
 
 Git commit:
+commit 21ce2d960bd3a15c93f113d30a3cdd28c464d23c
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Sep 29 19:12:14 2022 +0800
+
+    mediahal: CB2 Modify the script used to release the sdk [1/1]
+    
+    PD#SWPL-95265
+    
+    Problem:
+    android t requires mediahal_sdk 64bit library.
+    
+    Solution:
+    Modify release_tool.sh, in the android t environment,
+    the 64bit library will be copied.
+    
+    Verify:
+    T3
+    
+    Change-Id: I08c56b68147338b6ad4caeb3bdc638745e8aebb2
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 7137e201f520a8a05b26d77dbe4ddd4dc9356dd6
+Merge: 532227f 9188bc3
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Sun Oct 9 01:57:29 2022 -0700
+
+    Merge "videodec: CB2 remove list.h reference in videodec bufferpool [1/1]"
+
+commit 9188bc374c56fdc7ee4cd0e4f82212840714cd1e
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Sun Oct 9 15:49:44 2022 +0800
+
+    videodec: CB2 remove list.h reference in videodec bufferpool [1/1]
+    
+    PD#SWPL-96662
+    
+    Problem:
+    remove list.h reference in videodec bufferpool
+    
+    Solution:
+    remove list.h reference in videodec bufferpool
+    
+    Verify:
+    ohm
+    
+    Change-Id: I619613d65a89dacf25ca0a6257bd2b76ece9b35b
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 532227f063972ece52723813910ab2f33a471efb
+Author: yang liu1 <yang.liu1@amlogic.com>
+Date:   Tue Sep 20 14:55:29 2022 +0800
+
+    videodec: CF2 support codec2 add reconfig feature. [1/2]
+    
+    PD#SWPL-92953
+    
+    Problem:
+    need support reconfig feature.
+    
+    Solution:
+    add reconfig feature.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I3dcf2c70ba7b6d69e24634d10096a7d4d33c29e4
+    Signed-off-by: yang liu1 <yang.liu1@amlogic.com>
+
+commit e5f6dfe94a5f479aa85433d4fcacab6153b4618f
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Wed Sep 28 14:27:30 2022 +0800
+
+    videodec: CB2 support avs/avs2 on android T. [2/4]
+    
+    PD#SWPL-79899
+    
+    Problem:
+    support avs/avs2 on android T.
+    
+    Solution:
+    support avs/avs2 on android T.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I96b00c293c741b097c52e4c5059c2978465e3e81
+    Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit f81b0354c014927339308e8f6bd4b56f16072519
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Sep 22 10:42:22 2022 +0800
+
+    tsplayer: CF2 support dves [1/1]
+    
+    PD#OTT-32881
+    
+    Problem:
+    support dves in tsplayer
+    
+    Solution:
+    support dves in tsplayer
+    
+    Verify:
+    ohm
+    
+    Change-Id: Id7948449e217b844d8be10fe212fa0051bf4ce02
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit e20ed4051980242b6cf99300da01f086d0fd9692
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Jul 19 16:40:38 2022 +0800
+
+    tsplayer: CB2 fix the writing speed for audio [1/1]
+    
+    PD#SWPL-86682
+    
+    Problem:
+    Do timeshift, switch audio track, the audio and video will
+    stuck for a while.
+    casue that audio state=0, then data will retry to write until state
+    change to 4.
+    
+    Solution:
+    fix the writing speed for audio
+    
+    Verify:
+    T5D
+    
+    Change-Id: Ic3086b7098e2bb7233d45db93d8c3435f7d85dd4
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit a4ded307af1253f6dd347d432483517a488d34f5
 Author: hui.lin <hui.lin@amlogic.com>
 Date:   Thu Sep 29 10:45:05 2022 +0800
@@ -70,152 +201,9 @@ Date:   Sun Sep 25 15:02:08 2022 +0800
     Change-Id: I7c64b1c5214dff1a7c662b89cfa73fd496fc899a
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 6f734ddb0416fc84bd927723658c51c2360ce914
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu May 12 14:49:56 2022 +0800
-
-    videodec: CF2 videodec Add AmVideoDec_getVersionString() interface  [1/1]
-    
-    PD#SWPL-81504
-    
-    Problem:
-    videodec Add AmVideoDec_getVersionString() interface
-    
-    Solution:
-    videodec Add AmVideoDec_getVersionString() interface
-    
-    Verify:
-    SC2
-    
-    Change-Id: Ic2eea7079f5d1894a0eef51da71e2283488accac
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 86518edec74d353b79b6c25715033dac6b632035
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Sat Sep 24 19:02:27 2022 +0800
-
-    videodec: CF2 optimization v4l2 videodec buffer monitor [1/1]
-    
-    PD#SWPL-80416
-    
-    Problem:
-    optimization v4l2 videodec buffer monitor
-    
-    Solution:
-    optimization v4l2 videodec buffer monitor
-    
-    Verify:
-    ohm
-    
-    Change-Id: I08eaf748b44e3f2fa51ef17594c6076efc40f69d
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit f610cd61ce3eada5269720f72230afcfcd0c59f4
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Sep 20 10:50:21 2022 +0800
-
-    mediasync: CB2 Fix the video freeze of 2x speed related operation of pvr [1/1]
-    
-    PD#SWPL-94348
-    
-    Problem:
-    When mediasync is destructed, the state of cur pts is not cleared.
-    
-    Solution:
-    When mediasync is destructed, it clears the state of cur pts.
-    
-    Verify:
-    sc2
-    
-    Change-Id: Icda78fe8f4708617808bd30fac12f2fc689b3ee6
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 07a9ca95007ccd6b5c44e922bd6b2da254a5a33d
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Sep 14 10:33:34 2022 +0800
-
-    tsplayer: CB2 android-T bringup crash after scan finished [1/1]
-    
-    PD#SWPL-93875
-    
-    Problem:
-    there is no picture or sound on the play page,
-    and the box crash restarts.
-    
-    Solution:
-    1.Fix the demux driver path
-    2.Fix path of demux0_source node
-    
-    Verify:
-    ohm
-    
-    Change-Id: Iba76643246e0f08aa41b33b393f19abce8cb6089
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit d2435c8e3c1ba83122646ed10514f7b0b5ed7efc
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Wed Sep 21 12:50:09 2022 +0800
-
-    videopassthrough: CB2 fixed kernel 5.14 multi demux api issue [1/1]
-    
-    PD#SWPL-94888
-    
-    Problem:
-    no cbs passthrough in android t
-    
-    Solution:
-    change multi demux api to adapt kernel 5.14
-    
-    Verify:
-    ohm
-    
-    Change-Id: I89abbb6f5b9449d4e61b88d9534ea8a58389fba6
-    Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
-commit 32a8658d2e6c6b373d22237972728e14a828798b
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Sep 21 10:58:09 2022 +0800
-
-    videodec: CF1 5.15 use uses ext ctrl to configure parameter [2/2]
-    
-    PD#SWPL-92317
-    
-    Problem:
-    5.15 need use ext ctrl to configure parameter
-    
-    Solution:
-    5.15 use uses ext ctrl to configure parameter
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ie453878ba0c04b695a54911094a4153f084f523b
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 357f99f035830ed531e2ec9e6cfcd95113ce7d2c
-Author: “sining.huang” <sining.huang@amlogic.com>
-Date:   Tue Sep 20 10:42:18 2022 +0800
-
-    tsplayer: CB2 still report audiochange event when call stopAudioDecoding [1/1]
-    
-    PD#SWPL-94992
-    
-    Problem:
-    after calling startAudioDecoding,call stopAudioDecoding immediately,it
-    cant break GetAudioStatus thread
-    
-    Solution:
-    dont report AUDIO_CHANGE event after calling stopAudioDecoding
-    
-    Verify:
-    U21BG-S905X2
-    
-    Change-Id: I647061bc9f958036cb2c19a89a8f97799f414e51
-    Signed-off-by: “sining.huang” <sining.huang@amlogic.com>
-
 ========================================
 
-Release time: 2022-09-29-15-26
+Release time: 2022-10-11-10-39
 
 ========================================
 
