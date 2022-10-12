@@ -324,7 +324,7 @@ cc_prebuilt_binary {
             srcs: ["bin/EsVideoDecPlayer"],
         },
         arm64: {
-            srcs: ["arm64/bin/EsVideoDecPlayer"],
+            enabled: false,
         },
         x86: {
             enabled: false,

@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.32-g21ce2d9
+Version: V3.12.35-g268327f
 
 ========================================
 
 Git commit:
+commit 268327fcb28acf6d69937f1529b0dbc8b75fa470
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Oct 12 19:13:09 2022 +0800
+
+    mediahal: CB2 fix android t's android.bp.in file [1/1]
+    
+    PD#SWPL-95265
+    
+    Problem:
+    The EsVideoDecPlayer file is missing in
+    the arm64 directory.
+    
+    Solution:
+    Modify android.bp.in file.
+    
+    Verify:
+    T3
+    
+    Change-Id: I893317fe1e5783ff6bc3ddad17cf30fa472b7950
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 8a6208994c5478255f0cbe49d0d657ac6d293756
+Author: Kai Song <kai.song@amlogic.com>
+Date:   Fri May 20 15:10:34 2022 +0800
+
+    tsplayer: CB2 tunerframework dvb live playback failed [1/1]
+    
+    PD#SWPL-97029
+    
+    Problem:
+    dmx hw source is set everytime alloc dmx filter
+    
+    Solution:
+    set dmx hw source when open dvr device
+    
+    Verify:
+    S905X4
+    
+    Change-Id: I880607075cdbaf5bbca4c970b4871b88f0c4a226
+    Signed-off-by: Kai Song <kai.song@amlogic.com>
+
+commit 3d77547941b68a80c18053f1b90adf1a22939ea2
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Wed Oct 12 14:29:12 2022 +0800
+
+    videodec: CB2 Disable tvp segment configurate in mediahal [1/1]
+    
+    PD#SWPL-95852
+    
+    Problem:
+    Disable tvp segment configurate in mediahal
+    
+    Solution:
+    1. Disable tvp segment configurate in mediahal
+    2. Remove secure debug information
+    
+    Verify:
+    ohm
+    
+    Change-Id: I3a60ad1726aa184cb2788064951e7fdace4b848d
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
 commit 21ce2d960bd3a15c93f113d30a3cdd28c464d23c
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Thu Sep 29 19:12:14 2022 +0800
@@ -136,78 +198,13 @@ Date:   Tue Jul 19 16:40:38 2022 +0800
     Change-Id: Ic3086b7098e2bb7233d45db93d8c3435f7d85dd4
     Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit a4ded307af1253f6dd347d432483517a488d34f5
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Thu Sep 29 10:45:05 2022 +0800
+========================================
 
-    tsplayer: CB2 android-T can not play 4k stream [1/1]
-    
-    PD#SWPL-95539
-    
-    Problem:
-    android-T can not play 4k stream
-    
-    Solution:
-    set video_buf_size of demux to 15M
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ibd3a64a4d97565dbf568b5a464cdda5307f82d95
-    Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
-commit 9145e7b909c2696689d5b9377330185f8e80d718
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Tue Sep 13 14:50:45 2022 +0800
-
-    tsplayer: CB2 special aac file need wait enough data for adif  [1/1]
-    
-    PD#TV-62737
-    
-    Problem:
-    Failed to find the adif for a special aac file
-    
-    Solution:
-    Wait for enough data for adif
-    
-    Verify:
-    T982
-    
-    Change-Id: I88533cbeb91fb3108ecea8171b1792df1a6b4bc1
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 39d560b6c838c4e86f9098065b5f0eaf8c3e520b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sun Sep 25 15:02:08 2022 +0800
-
-    mediasync: CB2 fix video is stutter when starting playback [1/1]
-    
-    PD#SWPL-94587
-    
-    Problem:
-    do timeshift,video is stutter when starting playback.
-    After entering the time shift,
-    it will pause. After a period of time, after the resume,
-    because the audio does not start, the RefClock is not updated.
-    The pcr is much larger than the pts, and the video will fast forward.
-    
-    Solution:
-    After resume, RefClock is updated if the difference between pcr
-    and first pts is greater than the cache threshold.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I7c64b1c5214dff1a7c662b89cfa73fd496fc899a
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+Release time: 2022-10-12-21-07
 
 ========================================
 
-Release time: 2022-10-11-10-39
-
-========================================
-
-Builder: drm.autobuild
+Builder: dehong.chen
 
 ========================================
 Release file:
@@ -216,11 +213,13 @@ Header file:
 AmTsPlayer.h
 AmVideoDecBase.h
 MediaSyncInterface.h
-resourcemanage.h
 TunerPassthroughBase.h
 VideoTunnelRendererBase.h
+dmabufmanage.h
+resourcemanage.h
 
 Vendor Library file:
+libmediahal_dmabufmanage.so
 libmediahal_mediasync.so
 libmediahal_passthrough.so
 libmediahal_resman.so
@@ -229,6 +228,7 @@ libmediahal_tunnelrenderer.so
 libmediahal_videodec.so
 
 System Library file:
+libmediahal_dmabufmanage.system.so
 libmediahal_mediasync.system.so
 libmediahal_resman.system.so
 libmediahal_tsplayer.system.so
@@ -237,14 +237,17 @@ libmediahal_videodec.system.so
 Example file:
 AmTsPlayerExample.cpp
 Android.bp
+androidversion.go
+systemlib.go
 
 Binary  file:
 AmTsPlayerExample
 AmTsPlayerExampleSystem
 AmTsPlayerTest
+BootTsPlayerExampleSystem
 EsVideoDecPlayer
 EsVideoDecPlayerTest
+getmmversion.sh
 vesplayer
-resmanload
 
 ========================================
