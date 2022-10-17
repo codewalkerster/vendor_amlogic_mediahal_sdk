@@ -35,7 +35,7 @@
 
 #ifdef SYSTEMLIB
 
-#if (ANDROID_PLATFORM_SDK_VERSION == 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
+#if (ANDROID_PLATFORM_SDK_VERSION >= 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
 #include <amlogic/am_gralloc_ext.h>
 #endif
 
@@ -116,7 +116,7 @@ bool CreateSurface(void) {
     return true;
 }
 
-#if (ANDROID_PLATFORM_SDK_VERSION == 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
+#if (ANDROID_PLATFORM_SDK_VERSION >= 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
 
 sp<IProducerListener> mProducerListener = NULL;
 sp<IGraphicBufferProducer> mProducer = NULL;
@@ -137,7 +137,11 @@ bool CreateVideoTunnelId(int* id) {
             //printf("mSurface == NULL in line 79");
             return false;
         }
-        mProducerListener = new DummyProducerListener;
+        #if (ANDROID_PLATFORM_SDK_VERSION >= 30)
+            mProducerListener = new StubProducerListener;
+        #elif
+            mProducerListener = new DummyProducerListener;
+        #endif
         char test[20];
         sprintf(test,"testSurface_%d",tunnelId);
         printf("CreateVideoTunnelId name:%s \n",test);
@@ -543,7 +547,7 @@ int main(int argc, char **argv)
     }
     #endif
 
-    #if (ANDROID_PLATFORM_SDK_VERSION == 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
+    #if (ANDROID_PLATFORM_SDK_VERSION >= 30) || (ANDROID_PLATFORM_SDK_VERSION == 28)
     //android P android R
     #if (ANDROID_PLATFORM_SDK_VERSION == 28)
         printf("Android p system, platform demux:AmHwMultiDemux \n");
@@ -552,7 +556,7 @@ int main(int argc, char **argv)
         printf("setprop vendor.dtv.audio.skipamadec true\n");
     #endif
 
-    if (access("/sys/module/dvb_demux/",F_OK) == 0) {
+    if (access("/sys/class/stb/demux0_source",F_OK) != 0) {
         //X4,Y4 need set VideoTunnelId
         printf("Android R system, platform demux:AmHwMultiDemux \n");
         printf("Set VideoTunnelId \n");

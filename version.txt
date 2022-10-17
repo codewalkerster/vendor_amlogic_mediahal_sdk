@@ -1,10 +1,82 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.35-g268327f
+Version: V3.12.39-ga4482ec
 
 ========================================
 
 Git commit:
+commit a4482ec4a43b7c5a61fc69dfe159c75cd3d87460
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Oct 14 18:19:55 2022 +0800
+
+    videodec: CB1 fix youtobe mosaic issue [1/1]
+    
+    PD#SWPL-97065
+    
+    Problem:
+    vp9 header not append when retry allocate input dmabuf
+    
+    Solution:
+    append header when retry allocate input dmabuf
+    
+    Verify:
+    ohm
+    
+    Change-Id: I98c477b6b36d64745f044c0c45fbf86e0a9a39f5
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 942487c620d5b2e659efec97f030d4758a67f826
+Author: Yani Shi <yani.shi@amlogic.com>
+Date:   Sun Oct 9 15:58:24 2022 +0800
+
+    mediasync: CB2 Add discontinue when dmxpcr invalid. [1/1]
+    
+    PD#SWPL-67100
+    
+    Problem:
+    For Scramble stream,when streamXpress set pts self-accumulation.
+    the dmxpcr will increase with systemtime but the a/vpts will jump
+    back when stream back.
+    cause the avsync issue.
+    
+    Solution:
+    add discontinue logic when demux pcr invalid
+    
+    Verify:
+    S905X4
+    
+    Change-Id: Idfed28173b7579b61550f4237d5e89f30bb5e075
+    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
+
+commit 76ff4593442a7cd9c07f36b6fefcf239ba6a374b
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Sep 26 17:46:36 2022 +0800
+
+    tsplayer: CB2 Bringup tsplayer basic on android T [1/1]
+    
+    PD#SWPL-87730
+    
+    Problem:
+    Compile Tsplayer lacks DummyProducerListener class
+    because StubProducerListener replaces DummyProducerListener
+    in sdk version greater than 30
+    
+    Solution:
+    add judgment condition that is compatible with both classes
+    
+    Verify:
+    ohm
+    
+    Change-Id: I57423610f90ad91d6ca9a55cce47934c03e78182
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 2fe8661a2ee149efd3a6547622b9d84fff9ebac6
+Merge: 268327f 9dc73b6
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Thu Oct 13 00:37:17 2022 -0700
+
+    Merge "videodec: CB2 video black when play mjpeg [1/1]"
+
 commit 268327fcb28acf6d69937f1529b0dbc8b75fa470
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Wed Oct 12 19:13:09 2022 +0800
@@ -67,6 +139,26 @@ Date:   Wed Oct 12 14:29:12 2022 +0800
     Change-Id: I3a60ad1726aa184cb2788064951e7fdace4b848d
     Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
+commit 9dc73b696cbd67d560427ccb9f5d541e2b5f6652
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu Sep 29 18:15:20 2022 +0800
+
+    videodec: CB2 video black when play mjpeg [1/1]
+    
+    PD#SWPL-95707
+    
+    Problem:
+    not add mjpeg frame head.
+    
+    Solution:
+    1.add mjpeg frame head when send es data to decoder.
+    
+    Verify:
+    ohm
+    
+    Change-Id: Iaa300151d1b90f456bb0977d18a0dc9a89788796
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 21ce2d960bd3a15c93f113d30a3cdd28c464d23c
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Thu Sep 29 19:12:14 2022 +0800
@@ -95,116 +187,13 @@ Date:   Sun Oct 9 01:57:29 2022 -0700
 
     Merge "videodec: CB2 remove list.h reference in videodec bufferpool [1/1]"
 
-commit 9188bc374c56fdc7ee4cd0e4f82212840714cd1e
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Sun Oct 9 15:49:44 2022 +0800
+========================================
 
-    videodec: CB2 remove list.h reference in videodec bufferpool [1/1]
-    
-    PD#SWPL-96662
-    
-    Problem:
-    remove list.h reference in videodec bufferpool
-    
-    Solution:
-    remove list.h reference in videodec bufferpool
-    
-    Verify:
-    ohm
-    
-    Change-Id: I619613d65a89dacf25ca0a6257bd2b76ece9b35b
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 532227f063972ece52723813910ab2f33a471efb
-Author: yang liu1 <yang.liu1@amlogic.com>
-Date:   Tue Sep 20 14:55:29 2022 +0800
-
-    videodec: CF2 support codec2 add reconfig feature. [1/2]
-    
-    PD#SWPL-92953
-    
-    Problem:
-    need support reconfig feature.
-    
-    Solution:
-    add reconfig feature.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I3dcf2c70ba7b6d69e24634d10096a7d4d33c29e4
-    Signed-off-by: yang liu1 <yang.liu1@amlogic.com>
-
-commit e5f6dfe94a5f479aa85433d4fcacab6153b4618f
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Wed Sep 28 14:27:30 2022 +0800
-
-    videodec: CB2 support avs/avs2 on android T. [2/4]
-    
-    PD#SWPL-79899
-    
-    Problem:
-    support avs/avs2 on android T.
-    
-    Solution:
-    support avs/avs2 on android T.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I96b00c293c741b097c52e4c5059c2978465e3e81
-    Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit f81b0354c014927339308e8f6bd4b56f16072519
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Sep 22 10:42:22 2022 +0800
-
-    tsplayer: CF2 support dves [1/1]
-    
-    PD#OTT-32881
-    
-    Problem:
-    support dves in tsplayer
-    
-    Solution:
-    support dves in tsplayer
-    
-    Verify:
-    ohm
-    
-    Change-Id: Id7948449e217b844d8be10fe212fa0051bf4ce02
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit e20ed4051980242b6cf99300da01f086d0fd9692
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Jul 19 16:40:38 2022 +0800
-
-    tsplayer: CB2 fix the writing speed for audio [1/1]
-    
-    PD#SWPL-86682
-    
-    Problem:
-    Do timeshift, switch audio track, the audio and video will
-    stuck for a while.
-    casue that audio state=0, then data will retry to write until state
-    change to 4.
-    
-    Solution:
-    fix the writing speed for audio
-    
-    Verify:
-    T5D
-    
-    Change-Id: Ic3086b7098e2bb7233d45db93d8c3435f7d85dd4
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+Release time: 2022-10-17-16-12
 
 ========================================
 
-Release time: 2022-10-12-21-07
-
-========================================
-
-Builder: dehong.chen
+Builder: drm.autobuild
 
 ========================================
 Release file:
@@ -213,13 +202,11 @@ Header file:
 AmTsPlayer.h
 AmVideoDecBase.h
 MediaSyncInterface.h
+resourcemanage.h
 TunerPassthroughBase.h
 VideoTunnelRendererBase.h
-dmabufmanage.h
-resourcemanage.h
 
 Vendor Library file:
-libmediahal_dmabufmanage.so
 libmediahal_mediasync.so
 libmediahal_passthrough.so
 libmediahal_resman.so
@@ -228,7 +215,6 @@ libmediahal_tunnelrenderer.so
 libmediahal_videodec.so
 
 System Library file:
-libmediahal_dmabufmanage.system.so
 libmediahal_mediasync.system.so
 libmediahal_resman.system.so
 libmediahal_tsplayer.system.so
@@ -237,17 +223,14 @@ libmediahal_videodec.system.so
 Example file:
 AmTsPlayerExample.cpp
 Android.bp
-androidversion.go
-systemlib.go
 
 Binary  file:
 AmTsPlayerExample
 AmTsPlayerExampleSystem
 AmTsPlayerTest
-BootTsPlayerExampleSystem
 EsVideoDecPlayer
 EsVideoDecPlayerTest
-getmmversion.sh
 vesplayer
+resmanload
 
 ========================================
