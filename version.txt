@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.39-ga4482ec
+Version: V3.12.41-g2ba9055
 
 ========================================
 
 Git commit:
+commit 2ba90550e90ad5d7817a0c61fe4fcdaf35e08e4f
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Tue Oct 11 14:35:40 2022 +0800
+
+    videodec: CB2 Report the timestamp of the error frame. [1/2]
+    
+    PD#SWPL-93212
+    
+    Problem:
+    The error stream appears blurry.
+    
+    Solution:
+    reports the timestamp of the error frame at the same time.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I063dbae3c2e10d49ee95c05e521e9a54475ddb72
+    Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit 989192ea8dab611ccd4279ce8777b6034a550164
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Oct 14 13:37:03 2022 +0800
+
+    tsplayer: CB2 fix AmTsplayerExample compilation failed on Android r [1/1]
+    
+    PD#SWPL-87730
+    
+    Problem:
+    AmTsplayerExample compilation failed
+    
+    Solution:
+    add judgment condition that is compatible with both classes
+    
+    Verify:
+    ohm
+    
+    Change-Id: I4d57ad04632c9ed40c633d371b578a8d007ea03b
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit a4482ec4a43b7c5a61fc69dfe159c75cd3d87460
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri Oct 14 18:19:55 2022 +0800
@@ -159,37 +199,9 @@ Date:   Thu Sep 29 18:15:20 2022 +0800
     Change-Id: Iaa300151d1b90f456bb0977d18a0dc9a89788796
     Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 21ce2d960bd3a15c93f113d30a3cdd28c464d23c
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Sep 29 19:12:14 2022 +0800
-
-    mediahal: CB2 Modify the script used to release the sdk [1/1]
-    
-    PD#SWPL-95265
-    
-    Problem:
-    android t requires mediahal_sdk 64bit library.
-    
-    Solution:
-    Modify release_tool.sh, in the android t environment,
-    the 64bit library will be copied.
-    
-    Verify:
-    T3
-    
-    Change-Id: I08c56b68147338b6ad4caeb3bdc638745e8aebb2
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 7137e201f520a8a05b26d77dbe4ddd4dc9356dd6
-Merge: 532227f 9188bc3
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Sun Oct 9 01:57:29 2022 -0700
-
-    Merge "videodec: CB2 remove list.h reference in videodec bufferpool [1/1]"
-
 ========================================
 
-Release time: 2022-10-17-16-12
+Release time: 2022-10-18-15-24
 
 ========================================
 

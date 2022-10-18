@@ -137,9 +137,9 @@ bool CreateVideoTunnelId(int* id) {
             //printf("mSurface == NULL in line 79");
             return false;
         }
-        #if (ANDROID_PLATFORM_SDK_VERSION >= 30)
+        #if (ANDROID_PLATFORM_SDK_VERSION > 30)
             mProducerListener = new StubProducerListener;
-        #elif
+        #else
             mProducerListener = new DummyProducerListener;
         #endif
         char test[20];
