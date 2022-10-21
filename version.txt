@@ -1,10 +1,54 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.41-g2ba9055
+Version: V3.12.43-gafe1c8d
 
 ========================================
 
 Git commit:
+commit afe1c8db433c9b3dd343f0feda43adc49b4715c8
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Thu Oct 20 21:40:21 2022 +0800
+
+    videodec: CB2 changing error frame error to warning log. [1/1]
+    
+    PD#SWPL-98263
+    
+    Problem:
+    subscription error frame report error causes playback failure.
+    
+    Solution:
+    changing error frame error to warning log.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I0ba86aceb0450bd81885c2aef5c0d12001dd82e4
+    Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit d197c5f24dc45dc8e77f5ff3b714aac0d60a834e
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Sep 20 15:12:37 2022 +0800
+
+    mediasync: CB2 add fault tolerance for wrong hasvideo value set. [1/2]
+    
+    PD#SWPL-95039
+    
+    Problem:
+    audiohal set the wrong hasvideo value to mediasync.
+    mediasync regard it as audio-only stream..
+    
+    Solution:
+    uplayer set hasvideo false, if video comes later,
+    shouldn't regard as audio-only stream
+    uplayer set hasaudio false, if audio comes later,
+    shouldn't regard as video-only stream
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: Icfe8c49f7133f05e377afe09cd7ebeca24360475
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit 2ba90550e90ad5d7817a0c61fe4fcdaf35e08e4f
 Author: yang.liu1 <yang.liu1@amlogic.com>
 Date:   Tue Oct 11 14:35:40 2022 +0800
@@ -158,50 +202,9 @@ Date:   Fri May 20 15:10:34 2022 +0800
     Change-Id: I880607075cdbaf5bbca4c970b4871b88f0c4a226
     Signed-off-by: Kai Song <kai.song@amlogic.com>
 
-commit 3d77547941b68a80c18053f1b90adf1a22939ea2
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Wed Oct 12 14:29:12 2022 +0800
-
-    videodec: CB2 Disable tvp segment configurate in mediahal [1/1]
-    
-    PD#SWPL-95852
-    
-    Problem:
-    Disable tvp segment configurate in mediahal
-    
-    Solution:
-    1. Disable tvp segment configurate in mediahal
-    2. Remove secure debug information
-    
-    Verify:
-    ohm
-    
-    Change-Id: I3a60ad1726aa184cb2788064951e7fdace4b848d
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 9dc73b696cbd67d560427ccb9f5d541e2b5f6652
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Sep 29 18:15:20 2022 +0800
-
-    videodec: CB2 video black when play mjpeg [1/1]
-    
-    PD#SWPL-95707
-    
-    Problem:
-    not add mjpeg frame head.
-    
-    Solution:
-    1.add mjpeg frame head when send es data to decoder.
-    
-    Verify:
-    ohm
-    
-    Change-Id: Iaa300151d1b90f456bb0977d18a0dc9a89788796
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-10-18-15-24
+Release time: 2022-10-21-13-34
 
 ========================================
 
