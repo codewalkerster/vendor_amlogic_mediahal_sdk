@@ -1,210 +1,205 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.43-gafe1c8d
+Version: V3.12.53-g5c015e9
 
 ========================================
 
 Git commit:
-commit afe1c8db433c9b3dd343f0feda43adc49b4715c8
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Thu Oct 20 21:40:21 2022 +0800
+commit 5c015e9bb16380309d538cae2db125dce911af80
+Author: liang.hou <liang.hou@amlogic.com>
+Date:   Fri Oct 28 10:07:58 2022 +0800
 
-    videodec: CB2 changing error frame error to warning log. [1/1]
+    videodec: CB1 The video is stuck after seek [1/1]
     
-    PD#SWPL-98263
+    PD#SWPL-94362
     
     Problem:
-    subscription error frame report error causes playback failure.
+    The video is stuck after seek
     
     Solution:
-    changing error frame error to warning log.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I0ba86aceb0450bd81885c2aef5c0d12001dd82e4
-    Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit d197c5f24dc45dc8e77f5ff3b714aac0d60a834e
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Sep 20 15:12:37 2022 +0800
-
-    mediasync: CB2 add fault tolerance for wrong hasvideo value set. [1/2]
-    
-    PD#SWPL-95039
-    
-    Problem:
-    audiohal set the wrong hasvideo value to mediasync.
-    mediasync regard it as audio-only stream..
-    
-    Solution:
-    uplayer set hasvideo false, if video comes later,
-    shouldn't regard as audio-only stream
-    uplayer set hasaudio false, if audio comes later,
-    shouldn't regard as video-only stream
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: Icfe8c49f7133f05e377afe09cd7ebeca24360475
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 2ba90550e90ad5d7817a0c61fe4fcdaf35e08e4f
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Tue Oct 11 14:35:40 2022 +0800
-
-    videodec: CB2 Report the timestamp of the error frame. [1/2]
-    
-    PD#SWPL-93212
-    
-    Problem:
-    The error stream appears blurry.
-    
-    Solution:
-    reports the timestamp of the error frame at the same time.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I063dbae3c2e10d49ee95c05e521e9a54475ddb72
-    Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit 989192ea8dab611ccd4279ce8777b6034a550164
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri Oct 14 13:37:03 2022 +0800
-
-    tsplayer: CB2 fix AmTsplayerExample compilation failed on Android r [1/1]
-    
-    PD#SWPL-87730
-    
-    Problem:
-    AmTsplayerExample compilation failed
-    
-    Solution:
-    add judgment condition that is compatible with both classes
-    
-    Verify:
-    ohm
-    
-    Change-Id: I4d57ad04632c9ed40c633d371b578a8d007ea03b
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit a4482ec4a43b7c5a61fc69dfe159c75cd3d87460
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Oct 14 18:19:55 2022 +0800
-
-    videodec: CB1 fix youtobe mosaic issue [1/1]
-    
-    PD#SWPL-97065
-    
-    Problem:
-    vp9 header not append when retry allocate input dmabuf
-    
-    Solution:
-    append header when retry allocate input dmabuf
-    
-    Verify:
-    ohm
-    
-    Change-Id: I98c477b6b36d64745f044c0c45fbf86e0a9a39f5
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 942487c620d5b2e659efec97f030d4758a67f826
-Author: Yani Shi <yani.shi@amlogic.com>
-Date:   Sun Oct 9 15:58:24 2022 +0800
-
-    mediasync: CB2 Add discontinue when dmxpcr invalid. [1/1]
-    
-    PD#SWPL-67100
-    
-    Problem:
-    For Scramble stream,when streamXpress set pts self-accumulation.
-    the dmxpcr will increase with systemtime but the a/vpts will jump
-    back when stream back.
-    cause the avsync issue.
-    
-    Solution:
-    add discontinue logic when demux pcr invalid
-    
-    Verify:
-    S905X4
-    
-    Change-Id: Idfed28173b7579b61550f4237d5e89f30bb5e075
-    Signed-off-by: Yani Shi <yani.shi@amlogic.com>
-
-commit 76ff4593442a7cd9c07f36b6fefcf239ba6a374b
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Sep 26 17:46:36 2022 +0800
-
-    tsplayer: CB2 Bringup tsplayer basic on android T [1/1]
-    
-    PD#SWPL-87730
-    
-    Problem:
-    Compile Tsplayer lacks DummyProducerListener class
-    because StubProducerListener replaces DummyProducerListener
-    in sdk version greater than 30
-    
-    Solution:
-    add judgment condition that is compatible with both classes
-    
-    Verify:
-    ohm
-    
-    Change-Id: I57423610f90ad91d6ca9a55cce47934c03e78182
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 2fe8661a2ee149efd3a6547622b9d84fff9ebac6
-Merge: 268327f 9dc73b6
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Thu Oct 13 00:37:17 2022 -0700
-
-    Merge "videodec: CB2 video black when play mjpeg [1/1]"
-
-commit 268327fcb28acf6d69937f1529b0dbc8b75fa470
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Oct 12 19:13:09 2022 +0800
-
-    mediahal: CB2 fix android t's android.bp.in file [1/1]
-    
-    PD#SWPL-95265
-    
-    Problem:
-    The EsVideoDecPlayer file is missing in
-    the arm64 directory.
-    
-    Solution:
-    Modify android.bp.in file.
+    Error in closing fd.
     
     Verify:
     T3
     
-    Change-Id: I893317fe1e5783ff6bc3ddad17cf30fa472b7950
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+    Change-Id: I2569b79e36755c8ecf341af9a0ce11874900bc97
+    Signed-off-by: liang.hou <liang.hou@amlogic.com>
 
-commit 8a6208994c5478255f0cbe49d0d657ac6d293756
-Author: Kai Song <kai.song@amlogic.com>
-Date:   Fri May 20 15:10:34 2022 +0800
+commit aaade428177be56870f49297e97ae467d00d1a6b
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Oct 27 16:26:56 2022 +0800
 
-    tsplayer: CB2 tunerframework dvb live playback failed [1/1]
+    tsplayer: CB2 add vdecId to trace [1/1]
     
-    PD#SWPL-97029
+    PD#SWPL-96311
     
     Problem:
-    dmx hw source is set everytime alloc dmx filter
+    Optimize the trace for multi-instance playback.
     
     Solution:
-    set dmx hw source when open dvr device
+    add vdecId to trace
     
     Verify:
-    S905X4
+    S5
     
-    Change-Id: I880607075cdbaf5bbca4c970b4871b88f0c4a226
-    Signed-off-by: Kai Song <kai.song@amlogic.com>
+    Change-Id: Ifb44d092f937fbef67478e6a76961ef6a2577cea
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit bded5826b2f37c75a41bbdc0a1a732e751a8fcfb
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Oct 4 17:32:37 2022 +0800
+
+    tsplayer: CB2 add trace [1/1]
+    
+    PD#SWPL-96311
+    
+    Problem:
+    Optimize the trace for multi-instance playback.
+    
+    Solution:
+    1. AmCodecVDA adds trace.
+    2.AmHwMultiDemuxWrapper adds trace.
+    3.VideoTunnelDisplay adds trace.
+    
+    Verify:
+    SC2
+    
+    Change-Id: Iaa546e8b18711407e8ef504a1ef36f5ac166da4c
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 344c1a183c977ea9a85552d60d48b8e200d83647
+Author: lingrong.wu <lingrong.wu@amlogic.com>
+Date:   Wed Oct 26 15:02:29 2022 +0800
+
+    tsplayer: CB2 fix frame drop issue if BootPlayer [1/1]
+    
+    PD#TV-62111
+    
+    Problem:
+    vpts jump when BootPlayer
+    
+    Solution:
+    Adjust BootTsPlayer test file, make mWorkQueueCount from 256 to 1023
+    
+    Verify:
+    AndroidR T982
+    
+    Change-Id: I7566f0f863d090c376358285567e69206619848e
+    Signed-off-by: lingrong.wu <lingrong.wu@amlogic.com>
+
+commit 31cf83c2485174ffa5329385669e74191382a5a4
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Apr 9 16:22:11 2022 +0800
+
+    tsplayer: CB2 optimize printing  [1/1]
+    
+    PD#SWPL-85965
+    
+    Problem:
+    optimize printing
+    
+    Solution:
+    optimize printing
+    
+    Verify:
+    SC2
+    
+    Change-Id: I3aad5c961cbd94d7dbe1f7b78070cc416618b2b4
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 4fe858a93501d0d52d824aa396c9090a70dacdc2
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Thu Oct 20 17:57:49 2022 +0800
+
+    mediasync: CB2 optimize discontiue process. [1/1]
+    
+    PD#SWPL-97507
+    
+    Problem:
+    there is glitch when discontinue
+    
+    Solution:
+    1. anchor frameSystemTime set not correct;
+    2. cache need sync witch start playback;
+    3. anchor set consider DiscontinueTimeOut;
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: Id8d4e97383b633326d2b51cc81728360edd0c2fd
+    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit f7353a3061cc0dc16f20d8d1d25d073833236a4a
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Sun Oct 2 13:34:33 2022 +0800
+
+    tsplayer: CF2 Add json parsing to the AmTsPlayerMultiExample [1/1]
+    
+    PD#SWPL-44837
+    
+    Problem:
+    Add json parsing to the AmTsPlayerMultiExample.
+    
+    Solution:
+    Add json parsing to the AmTsPlayerMultiExample.
+    
+    Verify:
+    S5
+    
+    Change-Id: Icb77be015f1ff8244cc3449b266e137d5da98329
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 6aeefdbb587628849605cd709506e2cc3069de59
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Mar 12 16:31:31 2021 +0800
+
+    tsplayer: CF2 Tsplayer PIP  function test example [1/1]
+    
+    PD#SWPL-44837
+    
+    Problem:
+    Tsplayer PIP function test example.
+    
+    Solution:
+    Tsplayer PIP function test example.
+    
+    Verify:
+    AH212
+    
+    Change-Id: Ie5906aa3170fb928cdda56c8f216e92e12c9b475
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 9ed86a951c41d8d85591f6ed02d9ebc00caa47f2
+Author: liang.hou <liang.hou@amlogic.com>
+Date:   Fri Oct 21 17:04:50 2022 +0800
+
+    videodec: CB1 codec_mm leak [1/1]
+    
+    PD#SWPL-94362
+    
+    Problem:
+    Play the video to the end,
+    and there will be codec_mm leak after exiting
+    
+    Solution:
+    All fds must be closed.
+    
+    Verify:
+    T3
+    
+    Change-Id: I9f69c25511634947744717fa380f15359e35b613
+    Signed-off-by: liang.hou <liang.hou@amlogic.com>
+
+commit 355b4e86b1ff3a53737ab4f65e8d9382cebaadb4
+Merge: afe1c8d 9a72c01
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Fri Oct 21 02:43:11 2022 -0700
+
+    Merge "mediahal: CB2 cts mediaV2 test 1 fail due reset timeout. [1/1]"
 
 ========================================
 
-Release time: 2022-10-21-13-34
+Release time: 2022-10-28-10-24
 
 ========================================
 
