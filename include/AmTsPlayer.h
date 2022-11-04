@@ -256,6 +256,7 @@ typedef enum {
     AV_VIDEO_CODEC_MJPEG = 9,              // MJPEG
     AV_VIDEO_CODEC_DVES_AVC = 10,          // DVES_AVC
     AV_VIDEO_CODEC_DVES_HEVC = 11,         // DVES_HEVC
+    AV_VIDEO_CODEC_AVS3 = 12,              // AVS3
     AV_VIDEO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_video_codec;
 
