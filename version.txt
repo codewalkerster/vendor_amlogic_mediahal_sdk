@@ -1,10 +1,70 @@
 =========RELEALSE NOTE=================
 
-Version: V3.12.57-g1d0a5f0
+Version: V3.14.2-gddaa5d7
 
 ========================================
 
 Git commit:
+commit ddaa5d71cae6288ba8e481b1aca467cd83422b1e
+Author: Zhao Yi <zhao.yi@amlogic.com>
+Date:   Sun Oct 9 21:31:37 2022 +0800
+
+    videodec: CF2 multi instance debug [1/1]
+    
+    PD#SWPL-96401
+    
+    Problem:
+    multi trace debug
+    
+    Solution:
+    multi trace debug
+    
+    Verify:
+    Android R
+    
+    Change-Id: I87b867363a096342b3643ee4f42197d37636e73d
+    Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
+
+commit 0d3a3f035c734f6bc751b629ef57c4ed03106a67
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Nov 2 11:03:06 2022 +0800
+
+    videodec: CB2 CtsMediaV2TestCases Surface test. [2/2]
+    
+    PD#SWPL-98377
+    
+    Problem:
+    flush done is not return.
+    
+    Solution:
+    1. if reset_pending_ is true, we need try reset.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I9551d1a415c2f5c3dcd32b337a1198d4c508c7dc
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 19e6001a71f8bebd2dd14e8adf93a867c9a3c574
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Oct 19 18:34:11 2022 +0800
+
+    mediahal: CF2 mediahal release  [1/1]
+    
+    PD#SWPL-97582
+    
+    Problem:
+    mediahal release
+    
+    Solution:
+    release V3.12.57-g1d0a5f0
+    
+    Verify:
+    SC2
+    
+    Change-Id: Ie6aa9c6b1295e3112254ed4b3d825f564b549526
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 1d0a5f083e60cc7e83ba2552319aa0c2ad3c2aeb
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Sun Oct 2 18:04:29 2022 +0800
@@ -151,71 +211,9 @@ Date:   Tue Oct 4 17:32:37 2022 +0800
     Change-Id: Iaa546e8b18711407e8ef504a1ef36f5ac166da4c
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 344c1a183c977ea9a85552d60d48b8e200d83647
-Author: lingrong.wu <lingrong.wu@amlogic.com>
-Date:   Wed Oct 26 15:02:29 2022 +0800
-
-    tsplayer: CB2 fix frame drop issue if BootPlayer [1/1]
-    
-    PD#TV-62111
-    
-    Problem:
-    vpts jump when BootPlayer
-    
-    Solution:
-    Adjust BootTsPlayer test file, make mWorkQueueCount from 256 to 1023
-    
-    Verify:
-    AndroidR T982
-    
-    Change-Id: I7566f0f863d090c376358285567e69206619848e
-    Signed-off-by: lingrong.wu <lingrong.wu@amlogic.com>
-
-commit 31cf83c2485174ffa5329385669e74191382a5a4
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Apr 9 16:22:11 2022 +0800
-
-    tsplayer: CB2 optimize printing  [1/1]
-    
-    PD#SWPL-85965
-    
-    Problem:
-    optimize printing
-    
-    Solution:
-    optimize printing
-    
-    Verify:
-    SC2
-    
-    Change-Id: I3aad5c961cbd94d7dbe1f7b78070cc416618b2b4
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 4fe858a93501d0d52d824aa396c9090a70dacdc2
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Thu Oct 20 17:57:49 2022 +0800
-
-    mediasync: CB2 optimize discontiue process. [1/1]
-    
-    PD#SWPL-97507
-    
-    Problem:
-    there is glitch when discontinue
-    
-    Solution:
-    1. anchor frameSystemTime set not correct;
-    2. cache need sync witch start playback;
-    3. anchor set consider DiscontinueTimeOut;
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: Id8d4e97383b633326d2b51cc81728360edd0c2fd
-    Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2022-11-04-11-42
+Release time: 2022-11-09-09-23
 
 ========================================
 
