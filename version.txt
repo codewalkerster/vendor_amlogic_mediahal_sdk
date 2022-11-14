@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.4-gac9f30f
+Version: V3.14.7-ga368d8b
 
 ========================================
 
 Git commit:
+commit a368d8b923e415dd73d7b7374252d28a6a177bfc
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Sep 27 16:59:34 2022 +0800
+
+    videodec: CB2 Implement PTS Manager to revise video PTS. [2/2]
+    
+    PD#SWPL-80393
+    
+    Problem:
+    [Improvement]Implement PTS Manager to revise video PTS.
+    
+    Solution:
+    1. add pts manage,adjust pts at mediahal.
+    2. the time is output with "onOutputBufferDone" api.
+    3. fixed 64bit build error.
+    
+    Verify:
+    ohm
+    
+    Change-Id: Iaefdb98b8d912c1438c2ec1afaa9820da9f113a1
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit db384eaa301932092bdd71b671bdca8236da0f74
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Mon Nov 14 11:12:58 2022 +0800
+
+    secmemwrapper: CB2 Reslove typo check error for destroy [2/2]
+    
+    PD#SWPL-100894
+    
+    Problem:
+    Reslove typo check error for destroy
+    
+    Solution:
+    Reslove typo check error for destroy
+    
+    Verify:
+    AH212
+    
+    Change-Id: I5cfdc083ce9d46770f59dcf99acf0f61f27756fa
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 0923880d06ebda7b228f3560903b169e2a32ea8d
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Nov 2 09:51:46 2022 +0800
+
+    videodec: CB2 optimization videodec v4l buffer monitor status [1/1]
+    
+    PD#SWPL-99957
+    
+    Problem:
+    videodec v4l buffer monitor status sometimes not accurate
+    
+    Solution:
+    optimization videodec v4l buffer monitor status
+    
+    Verify:
+    ohm
+    
+    Change-Id: I61e09013303fafbebd29708c29420e5936187a2d
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit ac9f30f5655a2906ddb054efbda9767cc0beacd6
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Oct 31 15:21:52 2022 +0800
@@ -149,73 +211,9 @@ Date:   Mon Oct 31 17:58:36 2022 +0800
     Change-Id: I4ce0f41546e1741139be8be940cd52f8e9ce6338
     Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
-commit a8b340b9e5b5b1b20dabaf322bd8e51328de33e1
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Nov 1 16:46:15 2022 +0800
-
-    tsplayer: CB2  fix onMessage() crash [1/1]
-    
-    PD#SWPL-99799
-    
-    Problem:
-    The trace buffer is not large enough.
-    
-    Solution:
-    Increase trace buffer.
-    
-    Verify:
-    t3
-    
-    Change-Id: Iccde15348caaff4e31fc3941677f27c464d7f614
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 9157f1b2dc25cc6f89ee27401f6ecef9fbd01efd
-Author: lingrong.wu <lingrong.wu@amlogic.com>
-Date:   Thu Oct 27 10:05:29 2022 +0800
-
-    tsplayer: CF2 Add volume prop for BootPlayer [1/1]
-    
-    PD#TV-66702
-    PD#TV-66989
-    
-    Problem:
-    Add volume db prop for BootPlayer
-    
-    Solution:
-    Add volume db prop for BootPlayer
-    
-    Other:
-    Modify BootTsPlayerExample Z order for TV-66989
-    
-    Verify:
-    Android R T982
-    
-    Change-Id: Iaeaf3bde2074b282d4d9403c12809e695d0b907e
-    Signed-off-by: lingrong.wu <lingrong.wu@amlogic.com>
-
-commit 3e0ce32cb4081793054683b42d6d5df0e36e0b25
-Author: liang.hou <liang.hou@amlogic.com>
-Date:   Fri Oct 28 10:07:58 2022 +0800
-
-    videodec: CB1 The video is stuck after seek [1/1]
-    
-    PD#SWPL-94362
-    
-    Problem:
-    The video is stuck after seek
-    
-    Solution:
-    Error in closing fd.
-    
-    Verify:
-    T3
-    
-    Change-Id: I2569b79e36755c8ecf341af9a0ce11874900bc97
-    Signed-off-by: liang.hou <liang.hou@amlogic.com>
-
 ========================================
 
-Release time: 2022-11-11-18-24
+Release time: 2022-11-14-13-19
 
 ========================================
 

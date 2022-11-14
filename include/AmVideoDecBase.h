@@ -62,6 +62,16 @@ enum ResetFlag {
   RESET_FLAG_NOWAIT = 0x0001,
 };
 
+typedef struct {
+  int32_t pictureBufferId;
+  int64_t bitstreamId;
+  uint32_t x;
+  uint32_t y;
+  uint32_t width;
+  uint32_t height;
+  int32_t flags;
+  uint64_t timestamp;
+} output_buf_param_t;
 
 class AmVideoDecCallback {
 public:
@@ -75,6 +85,10 @@ public:
         (void)flags;
         onOutputBufferDone(pictureBufferId, bitstreamId, width, height);
     }
+    virtual void onOutputBufferDone(output_buf_param_t* params) {
+       (void)params;
+    }
+
     virtual void onInputBufferDone(int32_t bitstream_buffer_id);
     virtual void onUpdateDecInfo(const uint8_t* info, uint32_t isize);
     virtual void onFlushDone();
