@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.7-ga368d8b
+Version: V3.14.9-gf2b2c75
 
 ========================================
 
 Git commit:
+commit f2b2c75503c6b11665b20c659ae03599b293318c
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Nov 16 11:30:20 2022 +0800
+
+    videodec: CB2 mediahal 64bit build error [1/1]
+    
+    PD#SWPL-101512
+    
+    Problem:
+    mediahal 64bit build error.
+    
+    Solution:
+    1.fixed 64bit print error.
+    
+    Verify:
+    t7
+    
+    Change-Id: Icea3cc6c6be06cea77d3fa1ea4447e1e3a09367e
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit b483a8149980fc2c1c7c6c54d6e91150443b0618
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Nov 14 13:24:27 2022 +0800
+
+    videodec: CF2 optimization log level and dump codec mm [1/1]
+    
+    PD#SWPL-100891
+    
+    Problem:
+    optimization log level and dump codec mm
+    
+    Solution:
+    optimization log level and dump codec mm
+    
+    Verify:
+    ohm
+    
+    Change-Id: I87bb6f1a3ef9adc6f2563d63ecb39585d46f7351
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit a368d8b923e415dd73d7b7374252d28a6a177bfc
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Tue Sep 27 16:59:34 2022 +0800
@@ -171,49 +211,9 @@ Date:   Wed Oct 19 18:34:11 2022 +0800
     Change-Id: Ie6aa9c6b1295e3112254ed4b3d825f564b549526
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 1d0a5f083e60cc7e83ba2552319aa0c2ad3c2aeb
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Sun Oct 2 18:04:29 2022 +0800
-
-    tsplayer: CF2 support avs3 format [1/1]
-    
-    PD#SWPL-96353
-    
-    Problem:
-    tsplayer need to play avs3 video.
-    
-    Solution:
-    add code to support avs3 format
-    
-    Verify:
-    S5
-    
-    Change-Id: Iadd153d9303172da7f648c18b663e9b0c59026e7
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 0f4283c80826a434b8755d11611f7dd5afdd44a6
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Mon Oct 31 17:58:36 2022 +0800
-
-    resman: CB2 AmTsPlayerExample demod need enable audio patch [1/1]
-    
-    PD#OTT-36160
-    
-    Problem:
-    AmTsPlayerExample demod on S playback without sound
-    
-    Solution:
-    AmTsPlayerExample demod need enable audio patch
-    
-    Verify:
-    AH212
-    
-    Change-Id: I4ce0f41546e1741139be8be940cd52f8e9ce6338
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
 ========================================
 
-Release time: 2022-11-14-13-19
+Release time: 2022-11-16-11-45
 
 ========================================
 
