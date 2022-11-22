@@ -49,7 +49,9 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_TIMESTAMP, //Audio invalid timestamp
     AM_TSPLAYER_EVENT_TYPE_AUDIO_INVALID_DATA, //Audio invalid data
     AM_TSPLAYER_EVENT_TYPE_DECODE_VIDEO_UNSUPPORT, // Video is not supported
-    AM_TSPLAYER_EVENT_TYPE_PREEMPTED  // Instance was preempted, apk need release this instance
+    AM_TSPLAYER_EVENT_TYPE_PREEMPTED,  // Instance was preempted, apk need release this instance
+    AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_LOSS,    //Decoder data loss
+    AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_RESUME,  //Decoder data resume
 } am_tsplayer_event_type;
 
 

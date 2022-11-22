@@ -1,219 +1,217 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.9-gf2b2c75
+Version: V3.14.19-g14ba33f
 
 ========================================
 
 Git commit:
-commit f2b2c75503c6b11665b20c659ae03599b293318c
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Nov 16 11:30:20 2022 +0800
-
-    videodec: CB2 mediahal 64bit build error [1/1]
-    
-    PD#SWPL-101512
-    
-    Problem:
-    mediahal 64bit build error.
-    
-    Solution:
-    1.fixed 64bit print error.
-    
-    Verify:
-    t7
-    
-    Change-Id: Icea3cc6c6be06cea77d3fa1ea4447e1e3a09367e
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit b483a8149980fc2c1c7c6c54d6e91150443b0618
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Nov 14 13:24:27 2022 +0800
-
-    videodec: CF2 optimization log level and dump codec mm [1/1]
-    
-    PD#SWPL-100891
-    
-    Problem:
-    optimization log level and dump codec mm
-    
-    Solution:
-    optimization log level and dump codec mm
-    
-    Verify:
-    ohm
-    
-    Change-Id: I87bb6f1a3ef9adc6f2563d63ecb39585d46f7351
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit a368d8b923e415dd73d7b7374252d28a6a177bfc
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Sep 27 16:59:34 2022 +0800
-
-    videodec: CB2 Implement PTS Manager to revise video PTS. [2/2]
-    
-    PD#SWPL-80393
-    
-    Problem:
-    [Improvement]Implement PTS Manager to revise video PTS.
-    
-    Solution:
-    1. add pts manage,adjust pts at mediahal.
-    2. the time is output with "onOutputBufferDone" api.
-    3. fixed 64bit build error.
-    
-    Verify:
-    ohm
-    
-    Change-Id: Iaefdb98b8d912c1438c2ec1afaa9820da9f113a1
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit db384eaa301932092bdd71b671bdca8236da0f74
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Mon Nov 14 11:12:58 2022 +0800
-
-    secmemwrapper: CB2 Reslove typo check error for destroy [2/2]
-    
-    PD#SWPL-100894
-    
-    Problem:
-    Reslove typo check error for destroy
-    
-    Solution:
-    Reslove typo check error for destroy
-    
-    Verify:
-    AH212
-    
-    Change-Id: I5cfdc083ce9d46770f59dcf99acf0f61f27756fa
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 0923880d06ebda7b228f3560903b169e2a32ea8d
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Nov 2 09:51:46 2022 +0800
-
-    videodec: CB2 optimization videodec v4l buffer monitor status [1/1]
-    
-    PD#SWPL-99957
-    
-    Problem:
-    videodec v4l buffer monitor status sometimes not accurate
-    
-    Solution:
-    optimization videodec v4l buffer monitor status
-    
-    Verify:
-    ohm
-    
-    Change-Id: I61e09013303fafbebd29708c29420e5936187a2d
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit ac9f30f5655a2906ddb054efbda9767cc0beacd6
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Oct 31 15:21:52 2022 +0800
-
-    tsplayer: CB2  fix FCC video stuck.  [1/1]
-    
-    PD#SWPL-99145
-    
-    Problem:
-    The mediasync id was released early.
-    
-    Solution:
-    Locking in TsRender ensures that
-    the start video is complete
-    before mediasync can be deleted.
-    
-    Verify:
-    SC2
-    
-    Change-Id: Iacf6f1e0dbec0f19482915f2d4844945ef58c833
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit bdee952319d7a9b538afda2f62a90526adb83c03
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Oct 18 16:57:48 2022 +0800
-
-    tsplayer: CB2  fix video is not smooth  [1/1]
-    
-    PD#SWPL-92745
-    
-    Problem:
-    At a refresh rate of 23.976Hz,
-    getting the buffer from the videotunnel slows down.
-    This affects how fast the buffer runs.
-    
-    Solution:
-    Added thread to get empty buffer from videotunnel separately.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I38dd66de389ad8726b6adeffb81e8673fc590283
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit ddaa5d71cae6288ba8e481b1aca467cd83422b1e
+commit 14ba33fde2a7e13e01c045fac40cec6babd41c2f
 Author: Zhao Yi <zhao.yi@amlogic.com>
-Date:   Sun Oct 9 21:31:37 2022 +0800
+Date:   Thu Nov 17 11:41:07 2022 +0800
 
-    videodec: CF2 multi instance debug [1/1]
+    videodec: CB2 v4l2 instance id was incorrect [2/2]
     
-    PD#SWPL-96401
+    PD#SWPL-101573
     
     Problem:
-    multi trace debug
+    instance id of v4l2 is a static var.
     
     Solution:
-    multi trace debug
+    1.remove static define
+    2.fix oom issue
     
     Verify:
-    Android R
+    AndroidR
     
-    Change-Id: I87b867363a096342b3643ee4f42197d37636e73d
+    Change-Id: Ifa6990891ae387857a88a571995182761a5b2620
     Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
 
-commit 0d3a3f035c734f6bc751b629ef57c4ed03106a67
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Nov 2 11:03:06 2022 +0800
+commit a786b464b75e23c15f076d10a0969014aabf66c1
+Author: wenlong.yuan <wenlong.yuan@amlogic.com>
+Date:   Tue Nov 8 15:05:20 2022 +0800
 
-    videodec: CB2 CtsMediaV2TestCases Surface test. [2/2]
+    tsplayer: CB2 av event should not report after stop [1/1]
     
-    PD#SWPL-98377
+    PD#SWPL-95763
     
     Problem:
-    flush done is not return.
+    av event reported after stop
     
     Solution:
-    1. if reset_pending_ is true, we need try reset.
+    av event should not report after stop
+    
+    Verify:
+    AndroidS-S905X4
+    
+    Change-Id: I7202acee076e87e30b81aafff31d1f6b8b6a39b5
+    Signed-off-by: wenlong.yuan <wenlong.yuan@amlogic.com>
+
+commit 9a6bb7ad438f82353334b29ad4c197db6780df95
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Nov 16 13:25:06 2022 +0800
+
+    tsplayer: CB2 fix h265 margin to optimize playing [1/1]
+    
+    PD#SWPL-98179
+    
+    Problem:
+    it will drop frames when playing h265 video by 4-way.
+    
+    Solution:
+    fix margin value
+    
+    Verify:
+    S5
+    
+    Change-Id: Ia5a08b1fb627de8a02081ddd6bbdc7e084e63313
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 03e00891b2f5ae908ca1c6cc8956434f07f8bf1d
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Oct 21 15:57:42 2022 +0800
+
+    mediasync: CB2 Fixed the issue that 4 instances were playing stuttering [1/1]
+    
+    PD#SWPL-98439
+    
+    Problem:
+    Only the video playback situation, will not enter the discontinue state.
+    
+    Solution:
+    Modified the discontinue mechanism when only video is played.
+    When there is a PTS transition,
+    the synchronization can enter the discontinue state and reset the anchor time.
+    
+    Verify:
+    S5
+    
+    Change-Id: I3cd787d5fe77468c67fe7f970a3a37347aa5635d
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 8783809421d68c3a53a47e8a08d68375b82652be
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Nov 3 15:59:51 2022 +0800
+
+    example: CB2 fix sequence for audio setting mute [1/1]
+    
+    PD#SWPL-96481
+    
+    Problem:
+    switch the audio from 4-way, it will be out of sync
+    
+    Solution:
+    fix sequence for audio setting mute
+    
+    Verify:
+    S5
+    
+    Change-Id: I7dd71fd84a3155007da53cab78d4c53aafb4d28c
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 979e02b8fdc559ea584f5c2d8e7c3ef1a833c3eb
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Nov 3 16:22:26 2022 +0800
+
+    example: CB2 fix crop for 4-way video [1/1]
+    
+    PD#SWPL-100139
+    
+    Problem:
+    it will show wrong frames when playing h264 video by 4-way
+    
+    Solution:
+    fix crop to set surface
+    
+    Verify:
+    S5
+    
+    Change-Id: I5434ca906401dfb441ab702bd8a80450df3ba883
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit b7e112bc3e1378a99cbf06524f6a91d8891ba82b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Nov 4 17:35:46 2022 +0800
+
+    tsplayer: CB2 Fix playback 8K freeze [1/1]
+    
+    PD#IPTV-18131
+    
+    Problem:
+    Flow rate control leads to insufficient ES data.
+    
+    Solution:
+    Increase the writing of TS data when playing 8K.
+    
+    Verify:
+    S5
+    
+    Change-Id: Id0c825c088fa14df44312b605b24765ac4d78f00
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit b7e47842d9accf606db63b8e8f7cd13c21af2103
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Nov 17 18:29:00 2022 +0800
+
+    videopassthrough: CB2 fix 64bit compile error [1/1]
+    
+    PD#SWPL-86695
+    
+    Problem:
+    fix 64bit compile error.
+    
+    Solution:
+    fix 64bit compile error.
     
     Verify:
     ohm
     
-    Change-Id: I9551d1a415c2f5c3dcd32b337a1198d4c508c7dc
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+    Change-Id: If0d67edbc2552d2957016de71f1c150dd39dfd54
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 19e6001a71f8bebd2dd14e8adf93a867c9a3c574
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Oct 19 18:34:11 2022 +0800
+commit 19d2b6f5c3a12284261781a8a3e1fe49836a95d1
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Nov 4 14:10:18 2022 +0800
 
-    mediahal: CF2 mediahal release  [1/1]
+    videopassthrough: CF1 add mediacodec render event callback [2/3]
     
-    PD#SWPL-97582
+    PD#SWPL-86695
     
     Problem:
-    mediahal release
+    CBS need to report aspect ratio info.
+    set framerate to mediasync.
     
     Solution:
-    release V3.12.57-g1d0a5f0
+    add vdec info callback to report aspect ratio.
     
     Verify:
-    SC2
+    ohm
     
-    Change-Id: Ie6aa9c6b1295e3112254ed4b3d825f564b549526
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+    Change-Id: I683e7bdb6e31eac36a77b47ba3c4cc507259883c
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 076c7968121228cc6a6c95b53f601dfb3c064516
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Nov 14 11:07:14 2022 +0800
+
+    tsplayer: CF2 support different events between no data and scramble [1/1]
+    
+    PD#SWPL-93324
+    
+    Problem:
+    can not distinguish the events between no data and scramble
+    
+    Solution:
+    support different events
+    
+    Verify:
+    ohm
+    
+    Change-Id: I87cfef5d8a8597fa56739b76ca5b45b1c33a5c89
+    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
 ========================================
 
-Release time: 2022-11-16-11-45
+Release time: 2022-11-22-14-17
 
 ========================================
 

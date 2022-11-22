@@ -45,7 +45,7 @@ public:
     virtual int Flush();
     virtual int SetTrickMode(int mode);
     virtual int SetTrickSpeed(float speed);
-
+    virtual int SetRenderCallBackEventFlag(int64_t eventflag);
 };
 
 extern "C" TunerPassthroughBase* TunerPassthroughBase_create();
