@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.19-g14ba33f
+Version: V3.14.21-g436bf49
 
 ========================================
 
 Git commit:
+commit 436bf49bdd1bdf423b4b704a82e9d452614368de
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Nov 21 07:48:33 2022 +0000
+
+    tsplayer: CB2 clear typo error [1/1]
+    
+    PD#SWPL-101232
+    
+    Problem:
+    macro definition name typo check is incorrect
+    
+    Solution:
+    fix Macro definition name
+    
+    Verify:
+    SC2
+    
+    Change-Id: I7228a126f3bcfdb6b1d174a0e64a99745e70a131
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit bf5d73b0712f9e5d7f7321f92b25ad8c3bf56c49
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu Nov 17 19:49:16 2022 +0800
+
+    videodec: CB2 pts calulate error [1/2]
+    
+    PD#SWPL-98454
+    
+    Problem:
+    video will be fastfoward when play the
+    specific h265 interlace stream.pts calute
+    error.
+    
+    Solution:
+    1. add slice num in one frame.
+    2. add calulte frame duration.
+    
+    Verify:
+    ohm
+    
+    Change-Id: Id3e01f724dad9210795b6d6ce4adabc5f8d3263f
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 14ba33fde2a7e13e01c045fac40cec6babd41c2f
 Author: Zhao Yi <zhao.yi@amlogic.com>
 Date:   Thu Nov 17 11:41:07 2022 +0800
@@ -168,50 +211,9 @@ Date:   Thu Nov 17 18:29:00 2022 +0800
     Change-Id: If0d67edbc2552d2957016de71f1c150dd39dfd54
     Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 19d2b6f5c3a12284261781a8a3e1fe49836a95d1
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Nov 4 14:10:18 2022 +0800
-
-    videopassthrough: CF1 add mediacodec render event callback [2/3]
-    
-    PD#SWPL-86695
-    
-    Problem:
-    CBS need to report aspect ratio info.
-    set framerate to mediasync.
-    
-    Solution:
-    add vdec info callback to report aspect ratio.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I683e7bdb6e31eac36a77b47ba3c4cc507259883c
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 076c7968121228cc6a6c95b53f601dfb3c064516
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Nov 14 11:07:14 2022 +0800
-
-    tsplayer: CF2 support different events between no data and scramble [1/1]
-    
-    PD#SWPL-93324
-    
-    Problem:
-    can not distinguish the events between no data and scramble
-    
-    Solution:
-    support different events
-    
-    Verify:
-    ohm
-    
-    Change-Id: I87cfef5d8a8597fa56739b76ca5b45b1c33a5c89
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2022-11-22-14-17
+Release time: 2022-11-23-16-26
 
 ========================================
 
