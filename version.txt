@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.21-g436bf49
+Version: V3.14.23-g3707de1
 
 ========================================
 
 Git commit:
+commit 3707de168af11c02adc4f4f581c3c0d0a753b702
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Mon Nov 21 14:06:56 2022 +0800
+
+    videodec: CB2 Reslove one frame stream without eos stuck issue [1/1]
+    
+    PD#SWPL-101756
+    
+    Problem:
+    Reslove one frame stream without eos stuck issue
+    
+    Solution:
+    Optimize Secure input buffer dynamic stream flow limit the output buffer
+    pending
+    in mediahal prevent stuck happen.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I912a97552e9b2fdec03a492c0ef9ca0275de9095
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit bb872e334ab49d62acbae728639a74a745fcb282
+Author: liang.hou <liang.hou@amlogic.com>
+Date:   Wed Nov 23 14:26:41 2022 +0800
+
+    videodec: CB2 Playback will fail when catching trace  [1/1]
+    
+    PD#SWPL-101276
+    
+    Problem:
+    Macro definition contains semicolon, more than one statement,
+    error in reference.
+    
+    Solution:
+    Remove the trace here.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I79de02f2e29d517d8e3ce129a86ca1f4923b46c9
+    Signed-off-by: liang.hou <liang.hou@amlogic.com>
+
 commit 436bf49bdd1bdf423b4b704a82e9d452614368de
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Mon Nov 21 07:48:33 2022 +0000
@@ -171,49 +214,9 @@ Date:   Thu Nov 3 16:22:26 2022 +0800
     Change-Id: I5434ca906401dfb441ab702bd8a80450df3ba883
     Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit b7e112bc3e1378a99cbf06524f6a91d8891ba82b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Nov 4 17:35:46 2022 +0800
-
-    tsplayer: CB2 Fix playback 8K freeze [1/1]
-    
-    PD#IPTV-18131
-    
-    Problem:
-    Flow rate control leads to insufficient ES data.
-    
-    Solution:
-    Increase the writing of TS data when playing 8K.
-    
-    Verify:
-    S5
-    
-    Change-Id: Id0c825c088fa14df44312b605b24765ac4d78f00
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit b7e47842d9accf606db63b8e8f7cd13c21af2103
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Nov 17 18:29:00 2022 +0800
-
-    videopassthrough: CB2 fix 64bit compile error [1/1]
-    
-    PD#SWPL-86695
-    
-    Problem:
-    fix 64bit compile error.
-    
-    Solution:
-    fix 64bit compile error.
-    
-    Verify:
-    ohm
-    
-    Change-Id: If0d67edbc2552d2957016de71f1c150dd39dfd54
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-11-23-16-26
+Release time: 2022-11-25-10-30
 
 ========================================
 
