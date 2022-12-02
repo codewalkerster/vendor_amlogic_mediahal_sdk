@@ -1,10 +1,112 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.23-g3707de1
+Version: V3.14.28-gcc19c48
 
 ========================================
 
 Git commit:
+commit cc19c48e57505840b10c269d80b8a94898e30992
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Tue Nov 29 17:47:19 2022 +0800
+
+    videodec: CB2 Report all es buffer when receive eos event [1/1]
+    
+    PD#SWPL-101357
+    
+    Problem:
+    Report all es buffer when receive eos event
+    
+    Solution:
+    When receive eos event report all es buffer to app prevent block
+    by es buffer in vda.
+    
+    Verify:
+    ohm
+    
+    Change-Id: Ia741c25fe2c346ac8c2a90fc6ca6328c6a49272d
+    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 947f4391614bd9195a92a6ea3b435000af9a12b9
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Nov 28 08:45:50 2022 +0000
+
+    tsplayer: CB2 onEvent not enter TYPE_VIDEO_CHANGED condition [1/1]
+    
+    PD#SWPL-100193
+    
+    Problem:
+    structural changes cause
+    onEvent not enter TYPE_VIDEO_CHANGED condition
+    
+    Solution:
+    modify judgment condition
+    
+    Verify:
+    SC2
+    
+    Change-Id: Id4d6e28f6388c83b189b2e30d416c12bd2fc073b
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 70529b9a66de3f9e5c13af279e47098968ab0b85
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Oct 27 13:46:35 2022 +0800
+
+    tsplayer: CB2 fix dmx provide incomplete package. [1/1]
+    
+    PD#OTT-35715
+    
+    Problem:
+    dmx will provide incomplete packages.
+    
+    Solution:
+    restore incomplete packages.
+    
+    Verify:
+    verified on S905X4-AH212
+    
+    Change-Id: I2961d61519966b5f6b467e44a05a930a681454df
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 14c3d95e12f1119687e83583f765f6aa688d971f
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Sun Oct 2 14:47:45 2022 +0800
+
+    resman: CB2 query application's name that acquired the resource [1/1]
+    
+    PD#TV-63665
+    
+    Problem:
+    need to know application's name that acquired the resource
+    
+    Solution:
+    resman_query to get the application's name that acquired the resource
+    
+    Verify:
+    T905D
+    
+    Change-Id: Icd94e455c4d458b0ea4ba08ca873e070b8f7e634
+    Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit 5714c967b40d35b1104da8c438f732ba455c79b2
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Nov 16 17:12:01 2022 +0800
+
+    tsplayer: CB2 mediahal crash after zapping channels [1/1]
+    
+    PD#TV-64793
+    
+    Problem:
+    tsplayer crash caused by null pointer dereference
+    
+    Solution:
+    add judge null points operation
+    
+    Verify:
+    SC2
+    
+    Change-Id: I9a26a5b3394c4e9d536ee58762ea1faecb87fbb0
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit 3707de168af11c02adc4f4f581c3c0d0a753b702
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Mon Nov 21 14:06:56 2022 +0800
@@ -112,111 +214,9 @@ Date:   Thu Nov 17 11:41:07 2022 +0800
     Change-Id: Ifa6990891ae387857a88a571995182761a5b2620
     Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
 
-commit a786b464b75e23c15f076d10a0969014aabf66c1
-Author: wenlong.yuan <wenlong.yuan@amlogic.com>
-Date:   Tue Nov 8 15:05:20 2022 +0800
-
-    tsplayer: CB2 av event should not report after stop [1/1]
-    
-    PD#SWPL-95763
-    
-    Problem:
-    av event reported after stop
-    
-    Solution:
-    av event should not report after stop
-    
-    Verify:
-    AndroidS-S905X4
-    
-    Change-Id: I7202acee076e87e30b81aafff31d1f6b8b6a39b5
-    Signed-off-by: wenlong.yuan <wenlong.yuan@amlogic.com>
-
-commit 9a6bb7ad438f82353334b29ad4c197db6780df95
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Nov 16 13:25:06 2022 +0800
-
-    tsplayer: CB2 fix h265 margin to optimize playing [1/1]
-    
-    PD#SWPL-98179
-    
-    Problem:
-    it will drop frames when playing h265 video by 4-way.
-    
-    Solution:
-    fix margin value
-    
-    Verify:
-    S5
-    
-    Change-Id: Ia5a08b1fb627de8a02081ddd6bbdc7e084e63313
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 03e00891b2f5ae908ca1c6cc8956434f07f8bf1d
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Oct 21 15:57:42 2022 +0800
-
-    mediasync: CB2 Fixed the issue that 4 instances were playing stuttering [1/1]
-    
-    PD#SWPL-98439
-    
-    Problem:
-    Only the video playback situation, will not enter the discontinue state.
-    
-    Solution:
-    Modified the discontinue mechanism when only video is played.
-    When there is a PTS transition,
-    the synchronization can enter the discontinue state and reset the anchor time.
-    
-    Verify:
-    S5
-    
-    Change-Id: I3cd787d5fe77468c67fe7f970a3a37347aa5635d
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 8783809421d68c3a53a47e8a08d68375b82652be
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Nov 3 15:59:51 2022 +0800
-
-    example: CB2 fix sequence for audio setting mute [1/1]
-    
-    PD#SWPL-96481
-    
-    Problem:
-    switch the audio from 4-way, it will be out of sync
-    
-    Solution:
-    fix sequence for audio setting mute
-    
-    Verify:
-    S5
-    
-    Change-Id: I7dd71fd84a3155007da53cab78d4c53aafb4d28c
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 979e02b8fdc559ea584f5c2d8e7c3ef1a833c3eb
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Nov 3 16:22:26 2022 +0800
-
-    example: CB2 fix crop for 4-way video [1/1]
-    
-    PD#SWPL-100139
-    
-    Problem:
-    it will show wrong frames when playing h264 video by 4-way
-    
-    Solution:
-    fix crop to set surface
-    
-    Verify:
-    S5
-    
-    Change-Id: I5434ca906401dfb441ab702bd8a80450df3ba883
-    Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2022-11-25-10-30
+Release time: 2022-12-02-10-58
 
 ========================================
 
