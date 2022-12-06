@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.28-gcc19c48
+Version: V3.14.31-gb8e60a4
 
 ========================================
 
 Git commit:
+commit b8e60a47e3f8da1ecd64b7ab28b4892321b1d2d6
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Dec 5 16:24:08 2022 +0800
+
+    videodec: CF1 set es dmabuf type to remove unused vdec input buffers [1/1]
+    
+    PD#SWPL-103882
+    
+    Problem:
+    waste vdec input buffers when clear use dmabuf
+    
+    Solution:
+    set es dmabuf type to remove unused vdec input buffers
+    
+    Verify:
+    ohm
+    
+    Change-Id: I2c00ebe77497bc3c09f824adf89c0881229bff4d
+    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 60bb2e214cd88979dbecf8b74420690f3b9cee6f
+Author: xiang.gao <xiang.gao@amlogic.com>
+Date:   Mon Nov 28 11:14:50 2022 +0000
+
+    videodec: CF2 supprot decoder info report. [1/1]
+    
+    PD#SWPL-102969
+    
+    Problem:
+    get video decoder info
+    
+    Solution:
+    get decoder info from aml_vcodec_dec
+    
+    Verify:
+    S905X4-AH212 OMX
+    
+    Change-Id: If540c246296442f812d39df73d4b5f7d4301caea
+    Signed-off-by: xiang.gao <xiang.gao@amlogic.com>
+
+commit a34b56c44c1269b4d1354719b14f365e325eb308
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Nov 23 18:37:31 2022 +0800
+
+    mediasync: CB2  Fixed multi-instance playback video fast forwarding.  [1/1]
+    
+    PD#IPTV-18266
+    
+    Problem:
+    Setting the output video pts error,
+    resulting in no discontinue mechanism.
+    
+    Solution:
+    Set the PTS of the output video correctly.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I891fcc0eb65a0cab69ab11c7e92de3ca7beed180
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit cc19c48e57505840b10c269d80b8a94898e30992
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Tue Nov 29 17:47:19 2022 +0800
@@ -150,73 +211,9 @@ Date:   Wed Nov 23 14:26:41 2022 +0800
     Change-Id: I79de02f2e29d517d8e3ce129a86ca1f4923b46c9
     Signed-off-by: liang.hou <liang.hou@amlogic.com>
 
-commit 436bf49bdd1bdf423b4b704a82e9d452614368de
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Nov 21 07:48:33 2022 +0000
-
-    tsplayer: CB2 clear typo error [1/1]
-    
-    PD#SWPL-101232
-    
-    Problem:
-    macro definition name typo check is incorrect
-    
-    Solution:
-    fix Macro definition name
-    
-    Verify:
-    SC2
-    
-    Change-Id: I7228a126f3bcfdb6b1d174a0e64a99745e70a131
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit bf5d73b0712f9e5d7f7321f92b25ad8c3bf56c49
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Nov 17 19:49:16 2022 +0800
-
-    videodec: CB2 pts calulate error [1/2]
-    
-    PD#SWPL-98454
-    
-    Problem:
-    video will be fastfoward when play the
-    specific h265 interlace stream.pts calute
-    error.
-    
-    Solution:
-    1. add slice num in one frame.
-    2. add calulte frame duration.
-    
-    Verify:
-    ohm
-    
-    Change-Id: Id3e01f724dad9210795b6d6ce4adabc5f8d3263f
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 14ba33fde2a7e13e01c045fac40cec6babd41c2f
-Author: Zhao Yi <zhao.yi@amlogic.com>
-Date:   Thu Nov 17 11:41:07 2022 +0800
-
-    videodec: CB2 v4l2 instance id was incorrect [2/2]
-    
-    PD#SWPL-101573
-    
-    Problem:
-    instance id of v4l2 is a static var.
-    
-    Solution:
-    1.remove static define
-    2.fix oom issue
-    
-    Verify:
-    AndroidR
-    
-    Change-Id: Ifa6990891ae387857a88a571995182761a5b2620
-    Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
-
 ========================================
 
-Release time: 2022-12-02-10-58
+Release time: 2022-12-06-13-53
 
 ========================================
 
