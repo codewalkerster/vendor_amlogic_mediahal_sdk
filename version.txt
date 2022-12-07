@@ -1,10 +1,35 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.31-gb8e60a4
+Version: V3.14.32-gff854ad
 
 ========================================
 
 Git commit:
+commit ff854ad3775f2357c642578e0d26a7160e25e245
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Mon Dec 5 16:33:53 2022 +0800
+
+    videodec: CB2 pts error when play interlace stream[1/1]
+    
+    PD#SWPL-104306
+    
+    Problem:
+    CtsMediaV2TestCases
+    android.mediav2.cts.CodecDecoderSurfaceTest
+    testFlushNative[31(c2.amlogic.mpeg2.decoder_video/mpeg2)]
+    test fail.
+    
+    
+    Solution:
+    1. input pts list need clear when flush.
+    
+    
+    Verify:
+    ohm
+    
+    Change-Id: I61c125e1c5d06d1abc5dd1c771e90bbfa07d2a69
+    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit b8e60a47e3f8da1ecd64b7ab28b4892321b1d2d6
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Mon Dec 5 16:24:08 2022 +0800
@@ -190,30 +215,9 @@ Date:   Mon Nov 21 14:06:56 2022 +0800
     Change-Id: I912a97552e9b2fdec03a492c0ef9ca0275de9095
     Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
-commit bb872e334ab49d62acbae728639a74a745fcb282
-Author: liang.hou <liang.hou@amlogic.com>
-Date:   Wed Nov 23 14:26:41 2022 +0800
-
-    videodec: CB2 Playback will fail when catching trace  [1/1]
-    
-    PD#SWPL-101276
-    
-    Problem:
-    Macro definition contains semicolon, more than one statement,
-    error in reference.
-    
-    Solution:
-    Remove the trace here.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I79de02f2e29d517d8e3ce129a86ca1f4923b46c9
-    Signed-off-by: liang.hou <liang.hou@amlogic.com>
-
 ========================================
 
-Release time: 2022-12-06-13-53
+Release time: 2022-12-07-10-37
 
 ========================================
 
