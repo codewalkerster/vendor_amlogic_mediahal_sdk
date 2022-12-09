@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.32-gff854ad
+Version: V3.14.33-g0ef1da2
 
 ========================================
 
 Git commit:
+commit 0ef1da293f0194df5ecc1133fcf70ac20dcc3392
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Dec 1 20:06:54 2022 +0800
+
+    videopassthrough: CB2 fix crash by dmx interface [1/1]
+    
+    PD#SWPL-100193
+    
+    Problem:
+    CBS crash caused by dmx new interface
+    
+    Solution:
+    check msg pointer NULL
+    
+    Verify:
+    SC2
+    
+    Change-Id: I9cd6ea1ae24febd76055ae77b7f20c110e9a27f6
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit ff854ad3775f2357c642578e0d26a7160e25e245
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Mon Dec 5 16:33:53 2022 +0800
@@ -193,31 +213,9 @@ Date:   Wed Nov 16 17:12:01 2022 +0800
     Change-Id: I9a26a5b3394c4e9d536ee58762ea1faecb87fbb0
     Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 3707de168af11c02adc4f4f581c3c0d0a753b702
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Mon Nov 21 14:06:56 2022 +0800
-
-    videodec: CB2 Reslove one frame stream without eos stuck issue [1/1]
-    
-    PD#SWPL-101756
-    
-    Problem:
-    Reslove one frame stream without eos stuck issue
-    
-    Solution:
-    Optimize Secure input buffer dynamic stream flow limit the output buffer
-    pending
-    in mediahal prevent stuck happen.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I912a97552e9b2fdec03a492c0ef9ca0275de9095
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
 ========================================
 
-Release time: 2022-12-07-10-37
+Release time: 2022-12-09-17-39
 
 ========================================
 
