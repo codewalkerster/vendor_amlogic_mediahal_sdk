@@ -62,6 +62,12 @@ typedef enum {
     MEDIASYNC_KEY_VSYNC_INTERVAL_MS,
     MEDIASYNC_KEY_VIDEOFRAME,
     MEDIASYNC_KEY_VIDEOTRICKMODE,
+    MEDIASYNC_KEY_VIDEO_FREERUN,
+    MEDIASYNC_KEY_AUDIO_FREERUN,
+    MEDIASYNC_KEY_VIDEO_SYNC_THRESHOLD,  //us
+    MEDIASYNC_KEY_AUDIO_SYNC_THRESHOLD,  //us
+    MEDIASYNC_KEY_VIDEO_DURING_SLOW_SYNC,
+    MEDIASYNC_KEY_VIDEO_FRAME_ADVANCE,
     MEDIASYNC_KEY_MAX = 255,
 } mediasync_parameter;
 
@@ -146,6 +152,8 @@ extern mediasync_result MediaSync_allocInstance(void* handle, int32_t DemuxId,
 
 extern mediasync_result MediaSync_bindInstance(void* handle, uint32_t SyncInsId,
                                                              sync_stream_type streamtype);
+extern mediasync_result MediaSync_bindStaticInstance(void* handle, uint32_t SyncInsId,
+                                                             sync_stream_type streamtype);
 extern mediasync_result MediaSync_setPlayerInsNumber(void* handle, int32_t number);
 extern mediasync_result MediaSync_setSyncMode(void* handle, sync_mode mode);
 extern mediasync_result MediaSync_getSyncMode(void* handle, sync_mode *mode);
@@ -173,8 +181,14 @@ extern mediasync_result MediaSync_queueAudioFrame(void* handle, struct mediasync
 extern mediasync_result MediaSync_queueVideoFrame(void* handle, int64_t vpts, int size, int duration, mediasync_time_unit tunit);
 extern mediasync_result MediaSync_AudioProcess(void* handle, int64_t apts, int64_t cur_apts, mediasync_time_unit tunit, struct mediasync_audio_policy* asyncPolicy);
 extern mediasync_result MediaSync_VideoProcess(void* handle, int64_t vpts, int64_t cur_vpts, mediasync_time_unit tunit, struct mediasync_video_policy* vsyncPolicy);
+extern mediasync_result MediaSync_getFirstAudioFrameInfo(void* handle, mediasync_frameinfo* info);
+extern mediasync_result MediaSync_getCurAudioFrameInfo(void* handle, mediasync_frameinfo* info);
 extern mediasync_result MediaSync_GetMediaTimeByType(void* handle, media_time_type mediaTimeType,mediasync_time_unit tunit,int64_t* mediaTime);
 extern mediasync_result MediaSync_getFirstVideoFrameInfo(void* handle, mediasync_frameinfo * arg);
+extern mediasync_result MediaSync_GetFirstQueueVideoInfo(void* handle, mediasync_frameinfo *info);
+extern mediasync_result MediaSync_GetQueueVideoInfo(void* handle, mediasync_frameinfo *info);
+extern mediasync_result MediaSync_GetFirstQueueAudioInfo(void* handle, mediasync_frameinfo *info);
+extern mediasync_result MediaSync_GetQueueAudioInfo(void* handle, mediasync_frameinfo *info);
 extern mediasync_result MediaSync_reset(void* handle);
 extern void MediaSync_destroy(void* handle);
 

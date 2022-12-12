@@ -1,10 +1,84 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.33-g0ef1da2
+Version: V3.14.36-g46ef4ec
 
 ========================================
 
 Git commit:
+commit 46ef4ec60ede87609148d6158915c93755968cdd
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Dec 5 20:49:44 2022 +0800
+
+    mediasync: CB2  Fix pip video stuttering. [1/1]
+    
+    PD#SWPL-102261
+    
+    Problem:
+    Switch the sound and the video will freeze.
+    
+    Solution:
+    After switching sounds, disable Audio pts reset refclock.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I5615b2ae63fee53676d575bfa419cf4be932788e
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 62267a3f3eeae84f7cfbf339ea93e10acde976b5
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Nov 17 14:18:52 2022 +0800
+
+    mediasync: CB2 Fixed slow start. [1/1]
+    
+    PD#IPTV-18118
+    
+    Problem:
+    Too much video data is buffered before playback starts.
+    
+    Solution:
+    Modify the buffering strategy to distinguish the buffer levels
+    of audio and video according to the
+    difference between the first frame of audio and video.
+    
+    Verify:
+    S5
+    
+    Change-Id: Ic034da46e277b20bdef2d52bf6170bc912feeb05
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 6167a164dbb8de5d84191b21fc6f4399acbd51ed
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Nov 30 17:34:44 2022 +0800
+
+    mediasync: CF2 Update modifications from the linux project. [1/1]
+    
+    PD#SWPL-97649
+    
+    Problem:
+    1.Optimize  mediasync.
+    2.Dynamic control video is not synchronized with STC.
+    3.The following controls need to be added:
+    V4L2_CID_EXT_VDEC_VSYNC_THRESHOLD
+    V4L2_CID_EXT_VDEC_DISPLAY_DELAY
+    V4L2_CID_EXT_VDEC_AV_SYNC
+    4.Added video frame advance function
+    
+    Solution:
+    1. Add the control interface of AV synchronization threshold.
+    2. Add VideoLatency.
+    3. Add stc synchronization control interface.
+    4.Set MEDIASYNC_KEY_VIDEO_FRAME_ADVANCE to enable the feature.
+    After the function is enabled,
+    the display time of each frame is
+    calculated according to the current system time.
+    
+    Verify:
+    SC2
+    
+    Change-Id: I7603576d9503eee14b8712357882caccbbafa36d
+    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 0ef1da293f0194df5ecc1133fcf70ac20dcc3392
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Thu Dec 1 20:06:54 2022 +0800
@@ -153,69 +227,9 @@ Date:   Mon Nov 28 08:45:50 2022 +0000
     Change-Id: Id4d6e28f6388c83b189b2e30d416c12bd2fc073b
     Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 70529b9a66de3f9e5c13af279e47098968ab0b85
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Oct 27 13:46:35 2022 +0800
-
-    tsplayer: CB2 fix dmx provide incomplete package. [1/1]
-    
-    PD#OTT-35715
-    
-    Problem:
-    dmx will provide incomplete packages.
-    
-    Solution:
-    restore incomplete packages.
-    
-    Verify:
-    verified on S905X4-AH212
-    
-    Change-Id: I2961d61519966b5f6b467e44a05a930a681454df
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 14c3d95e12f1119687e83583f765f6aa688d971f
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Sun Oct 2 14:47:45 2022 +0800
-
-    resman: CB2 query application's name that acquired the resource [1/1]
-    
-    PD#TV-63665
-    
-    Problem:
-    need to know application's name that acquired the resource
-    
-    Solution:
-    resman_query to get the application's name that acquired the resource
-    
-    Verify:
-    T905D
-    
-    Change-Id: Icd94e455c4d458b0ea4ba08ca873e070b8f7e634
-    Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 5714c967b40d35b1104da8c438f732ba455c79b2
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Nov 16 17:12:01 2022 +0800
-
-    tsplayer: CB2 mediahal crash after zapping channels [1/1]
-    
-    PD#TV-64793
-    
-    Problem:
-    tsplayer crash caused by null pointer dereference
-    
-    Solution:
-    add judge null points operation
-    
-    Verify:
-    SC2
-    
-    Change-Id: I9a26a5b3394c4e9d536ee58762ea1faecb87fbb0
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-12-09-17-39
+Release time: 2022-12-12-15-07
 
 ========================================
 
