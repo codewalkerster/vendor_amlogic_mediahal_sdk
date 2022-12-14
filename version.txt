@@ -1,10 +1,91 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.36-g46ef4ec
+Version: V3.14.40-ga4fd302
 
 ========================================
 
 Git commit:
+commit a4fd302fc64513e10e300b3b522016aa4eb688f8
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Dec 12 10:33:08 2022 +0000
+
+    tsplayer: CB2 add code-id config for C2. [1/1]
+    
+    PD#SWPL-104222
+    
+    Problem:
+    no sound when non-smp DASH plays.
+    
+    Solution:
+    add codec-id config of Codec2.
+    
+    Verify:
+    ohm
+    
+    Change-Id: Ifc071799effc760f30f810caebf9d8e3577f6b06
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 4182856602d8ac2455606f3c666398c0fda877d4
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Dec 9 14:44:38 2022 +0800
+
+    videopassthrough: CB2 fix mem leak in CBS long run test [1/1]
+    
+    PD#SWPL-103924
+    
+    Problem:
+    do not push back slots queue.
+    
+    Solution:
+    do not push back slots queue.
+    
+    Verify:
+    ohm
+    
+    Change-Id: I7764ed967e22a3e959fbe420eeb2d2d1b696ec50
+    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit eb2353a264ae4bcb415a677224e3ad776845d19b
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Dec 2 11:36:43 2022 +0000
+
+    tsplayer: CB2 scramble on the start play for a few seconds [1/1]
+    
+    PD#SWPL-101875
+    
+    Problem:
+    sync time is larger than the data loss detection time,
+    and the data loss event is thrown up.
+    
+    Solution:
+    add dqbufFailCount judgment
+    
+    Verify:
+    SC2
+    
+    Change-Id: Ibbcfe28bdc1dd5820dc1335f2980cea2c6621e1d
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit e7fc20a03dacd1ba8d995546f8cdb625cc6d5097
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Nov 14 20:48:07 2022 +0800
+
+    videopassthrough: CF2 add trace to count the KPI [1/1]
+    
+    PD#SWPL-100193
+    
+    Problem:
+    count the KPI for CBS channel switching
+    
+    Solution:
+    add trace
+    
+    Verify:
+    SC2
+    
+    Change-Id: I2ff15a6d658365e7dd4f94eff46ece38c07a3b68
+    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit 46ef4ec60ede87609148d6158915c93755968cdd
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Dec 5 20:49:44 2022 +0800
@@ -144,92 +225,9 @@ Date:   Mon Dec 5 16:24:08 2022 +0800
     Change-Id: I2c00ebe77497bc3c09f824adf89c0881229bff4d
     Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 60bb2e214cd88979dbecf8b74420690f3b9cee6f
-Author: xiang.gao <xiang.gao@amlogic.com>
-Date:   Mon Nov 28 11:14:50 2022 +0000
-
-    videodec: CF2 supprot decoder info report. [1/1]
-    
-    PD#SWPL-102969
-    
-    Problem:
-    get video decoder info
-    
-    Solution:
-    get decoder info from aml_vcodec_dec
-    
-    Verify:
-    S905X4-AH212 OMX
-    
-    Change-Id: If540c246296442f812d39df73d4b5f7d4301caea
-    Signed-off-by: xiang.gao <xiang.gao@amlogic.com>
-
-commit a34b56c44c1269b4d1354719b14f365e325eb308
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Nov 23 18:37:31 2022 +0800
-
-    mediasync: CB2  Fixed multi-instance playback video fast forwarding.  [1/1]
-    
-    PD#IPTV-18266
-    
-    Problem:
-    Setting the output video pts error,
-    resulting in no discontinue mechanism.
-    
-    Solution:
-    Set the PTS of the output video correctly.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I891fcc0eb65a0cab69ab11c7e92de3ca7beed180
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit cc19c48e57505840b10c269d80b8a94898e30992
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Tue Nov 29 17:47:19 2022 +0800
-
-    videodec: CB2 Report all es buffer when receive eos event [1/1]
-    
-    PD#SWPL-101357
-    
-    Problem:
-    Report all es buffer when receive eos event
-    
-    Solution:
-    When receive eos event report all es buffer to app prevent block
-    by es buffer in vda.
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ia741c25fe2c346ac8c2a90fc6ca6328c6a49272d
-    Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 947f4391614bd9195a92a6ea3b435000af9a12b9
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Nov 28 08:45:50 2022 +0000
-
-    tsplayer: CB2 onEvent not enter TYPE_VIDEO_CHANGED condition [1/1]
-    
-    PD#SWPL-100193
-    
-    Problem:
-    structural changes cause
-    onEvent not enter TYPE_VIDEO_CHANGED condition
-    
-    Solution:
-    modify judgment condition
-    
-    Verify:
-    SC2
-    
-    Change-Id: Id4d6e28f6388c83b189b2e30d416c12bd2fc073b
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-12-12-15-07
+Release time: 2022-12-14-10-26
 
 ========================================
 
