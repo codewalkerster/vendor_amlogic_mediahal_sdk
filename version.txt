@@ -1,233 +1,231 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.40-ga4fd302
+Version: V3.14.43-gbc5d386
 
 ========================================
 
 Git commit:
+commit bc5d3867f38c120eabeaa451f3ce41f708db1ffe
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Dec 19 06:08:07 2022 +0000
+
+media_hal: CB2 release version contains 4 spaces [1/1]
+
+PD#SWPL-105860
+
+Problem:
+media_hal release.sh git commit information
+in fact contains 4 spaces
+
+Solution:
+delete spaces
+
+Verify:
+ohm
+
+Change-Id: I3e9d723bc58fd78ef611d7523da16a11b731646b
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 7ba45c92441b100429459920d1cdea54ca2fc26d
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu Dec 8 04:32:14 2022 +0000
+
+tsplayer: CB2 stc acquired in the first 3 seconds is inaccurate [1/1]
+
+PD#TV-68491
+
+Problem:
+gets the vpts value unchanged
+during start play synchronization.
+
+Solution:
+get the pcrpts replacement vpts
+
+Verify:
+shine
+
+Change-Id: I8db673182defa1246475b4a45c666ac9352d7012
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 57bf4766ba01afa799a4c74274e5d2754e43bdb8
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Dec 19 14:20:33 2022 +0800
+
+mediasync: CB2 Fix pip video stuttering. [1/1]
+
+PD#IPTV-18920
+
+Problem:
+mStcParmUpdateCount is not initialized,
+resulting in mVideoLatency90K2Vsync not being calculated.
+
+Solution:
+The initial value of mStcParmUpdateCount is set to 0.
+
+Verify:
+S5
+
+Change-Id: I313bcdae134e9f45f2d7f4b502b1f380a29b1a1d
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit a4fd302fc64513e10e300b3b522016aa4eb688f8
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Mon Dec 12 10:33:08 2022 +0000
 
-    tsplayer: CB2 add code-id config for C2. [1/1]
-    
-    PD#SWPL-104222
-    
-    Problem:
-    no sound when non-smp DASH plays.
-    
-    Solution:
-    add codec-id config of Codec2.
-    
-    Verify:
-    ohm
-    
-    Change-Id: Ifc071799effc760f30f810caebf9d8e3577f6b06
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+tsplayer: CB2 add code-id config for C2. [1/1]
+
+PD#SWPL-104222
+
+Problem:
+no sound when non-smp DASH plays.
+
+Solution:
+add codec-id config of Codec2.
+
+Verify:
+ohm
+
+Change-Id: Ifc071799effc760f30f810caebf9d8e3577f6b06
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
 commit 4182856602d8ac2455606f3c666398c0fda877d4
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Fri Dec 9 14:44:38 2022 +0800
 
-    videopassthrough: CB2 fix mem leak in CBS long run test [1/1]
-    
-    PD#SWPL-103924
-    
-    Problem:
-    do not push back slots queue.
-    
-    Solution:
-    do not push back slots queue.
-    
-    Verify:
-    ohm
-    
-    Change-Id: I7764ed967e22a3e959fbe420eeb2d2d1b696ec50
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+videopassthrough: CB2 fix mem leak in CBS long run test [1/1]
+
+PD#SWPL-103924
+
+Problem:
+do not push back slots queue.
+
+Solution:
+do not push back slots queue.
+
+Verify:
+ohm
+
+Change-Id: I7764ed967e22a3e959fbe420eeb2d2d1b696ec50
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
 commit eb2353a264ae4bcb415a677224e3ad776845d19b
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Fri Dec 2 11:36:43 2022 +0000
 
-    tsplayer: CB2 scramble on the start play for a few seconds [1/1]
-    
-    PD#SWPL-101875
-    
-    Problem:
-    sync time is larger than the data loss detection time,
-    and the data loss event is thrown up.
-    
-    Solution:
-    add dqbufFailCount judgment
-    
-    Verify:
-    SC2
-    
-    Change-Id: Ibbcfe28bdc1dd5820dc1335f2980cea2c6621e1d
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+tsplayer: CB2 scramble on the start play for a few seconds [1/1]
+
+PD#SWPL-101875
+
+Problem:
+sync time is larger than the data loss detection time,
+and the data loss event is thrown up.
+
+Solution:
+add dqbufFailCount judgment
+
+Verify:
+SC2
+
+Change-Id: Ibbcfe28bdc1dd5820dc1335f2980cea2c6621e1d
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
 commit e7fc20a03dacd1ba8d995546f8cdb625cc6d5097
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Mon Nov 14 20:48:07 2022 +0800
 
-    videopassthrough: CF2 add trace to count the KPI [1/1]
-    
-    PD#SWPL-100193
-    
-    Problem:
-    count the KPI for CBS channel switching
-    
-    Solution:
-    add trace
-    
-    Verify:
-    SC2
-    
-    Change-Id: I2ff15a6d658365e7dd4f94eff46ece38c07a3b68
-    Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+videopassthrough: CF2 add trace to count the KPI [1/1]
+
+PD#SWPL-100193
+
+Problem:
+count the KPI for CBS channel switching
+
+Solution:
+add trace
+
+Verify:
+SC2
+
+Change-Id: I2ff15a6d658365e7dd4f94eff46ece38c07a3b68
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
 commit 46ef4ec60ede87609148d6158915c93755968cdd
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Dec 5 20:49:44 2022 +0800
 
-    mediasync: CB2  Fix pip video stuttering. [1/1]
-    
-    PD#SWPL-102261
-    
-    Problem:
-    Switch the sound and the video will freeze.
-    
-    Solution:
-    After switching sounds, disable Audio pts reset refclock.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I5615b2ae63fee53676d575bfa419cf4be932788e
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+mediasync: CB2  Fix pip video stuttering. [1/1]
+
+PD#SWPL-102261
+
+Problem:
+Switch the sound and the video will freeze.
+
+Solution:
+After switching sounds, disable Audio pts reset refclock.
+
+Verify:
+SC2
+
+Change-Id: I5615b2ae63fee53676d575bfa419cf4be932788e
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 commit 62267a3f3eeae84f7cfbf339ea93e10acde976b5
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Thu Nov 17 14:18:52 2022 +0800
 
-    mediasync: CB2 Fixed slow start. [1/1]
-    
-    PD#IPTV-18118
-    
-    Problem:
-    Too much video data is buffered before playback starts.
-    
-    Solution:
-    Modify the buffering strategy to distinguish the buffer levels
-    of audio and video according to the
-    difference between the first frame of audio and video.
-    
-    Verify:
-    S5
-    
-    Change-Id: Ic034da46e277b20bdef2d52bf6170bc912feeb05
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+mediasync: CB2 Fixed slow start. [1/1]
+
+PD#IPTV-18118
+
+Problem:
+Too much video data is buffered before playback starts.
+
+Solution:
+Modify the buffering strategy to distinguish the buffer levels
+of audio and video according to the
+difference between the first frame of audio and video.
+
+Verify:
+S5
+
+Change-Id: Ic034da46e277b20bdef2d52bf6170bc912feeb05
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 commit 6167a164dbb8de5d84191b21fc6f4399acbd51ed
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Nov 30 17:34:44 2022 +0800
 
-    mediasync: CF2 Update modifications from the linux project. [1/1]
-    
-    PD#SWPL-97649
-    
-    Problem:
-    1.Optimize  mediasync.
-    2.Dynamic control video is not synchronized with STC.
-    3.The following controls need to be added:
-    V4L2_CID_EXT_VDEC_VSYNC_THRESHOLD
-    V4L2_CID_EXT_VDEC_DISPLAY_DELAY
-    V4L2_CID_EXT_VDEC_AV_SYNC
-    4.Added video frame advance function
-    
-    Solution:
-    1. Add the control interface of AV synchronization threshold.
-    2. Add VideoLatency.
-    3. Add stc synchronization control interface.
-    4.Set MEDIASYNC_KEY_VIDEO_FRAME_ADVANCE to enable the feature.
-    After the function is enabled,
-    the display time of each frame is
-    calculated according to the current system time.
-    
-    Verify:
-    SC2
-    
-    Change-Id: I7603576d9503eee14b8712357882caccbbafa36d
-    Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+mediasync: CF2 Update modifications from the linux project. [1/1]
 
-commit 0ef1da293f0194df5ecc1133fcf70ac20dcc3392
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Dec 1 20:06:54 2022 +0800
+PD#SWPL-97649
 
-    videopassthrough: CB2 fix crash by dmx interface [1/1]
-    
-    PD#SWPL-100193
-    
-    Problem:
-    CBS crash caused by dmx new interface
-    
-    Solution:
-    check msg pointer NULL
-    
-    Verify:
-    SC2
-    
-    Change-Id: I9cd6ea1ae24febd76055ae77b7f20c110e9a27f6
-    Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+Problem:
+1.Optimize  mediasync.
+2.Dynamic control video is not synchronized with STC.
+3.The following controls need to be added:
+V4L2_CID_EXT_VDEC_VSYNC_THRESHOLD
+V4L2_CID_EXT_VDEC_DISPLAY_DELAY
+V4L2_CID_EXT_VDEC_AV_SYNC
+4.Added video frame advance function
 
-commit ff854ad3775f2357c642578e0d26a7160e25e245
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Dec 5 16:33:53 2022 +0800
+Solution:
+1. Add the control interface of AV synchronization threshold.
+2. Add VideoLatency.
+3. Add stc synchronization control interface.
+4.Set MEDIASYNC_KEY_VIDEO_FRAME_ADVANCE to enable the feature.
+After the function is enabled,
+the display time of each frame is
+calculated according to the current system time.
 
-    videodec: CB2 pts error when play interlace stream[1/1]
-    
-    PD#SWPL-104306
-    
-    Problem:
-    CtsMediaV2TestCases
-    android.mediav2.cts.CodecDecoderSurfaceTest
-    testFlushNative[31(c2.amlogic.mpeg2.decoder_video/mpeg2)]
-    test fail.
-    
-    
-    Solution:
-    1. input pts list need clear when flush.
-    
-    
-    Verify:
-    ohm
-    
-    Change-Id: I61c125e1c5d06d1abc5dd1c771e90bbfa07d2a69
-    Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+Verify:
+SC2
 
-commit b8e60a47e3f8da1ecd64b7ab28b4892321b1d2d6
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Dec 5 16:24:08 2022 +0800
-
-    videodec: CF1 set es dmabuf type to remove unused vdec input buffers [1/1]
-    
-    PD#SWPL-103882
-    
-    Problem:
-    waste vdec input buffers when clear use dmabuf
-    
-    Solution:
-    set es dmabuf type to remove unused vdec input buffers
-    
-    Verify:
-    ohm
-    
-    Change-Id: I2c00ebe77497bc3c09f824adf89c0881229bff4d
-    Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+Change-Id: I7603576d9503eee14b8712357882caccbbafa36d
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
 ========================================
 
-Release time: 2022-12-14-10-26
+Release time: 2022-12-19-09-25
 
 ========================================
 
