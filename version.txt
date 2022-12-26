@@ -1,10 +1,113 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.43-gbc5d386
+Version: V3.14.48-gdf738f2
 
 ========================================
 
 Git commit:
+commit df738f2445cc106eb777808dd26f1e96eac23647
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Mon Nov 28 14:58:49 2022 +0800
+
+videodec: CB2 pts error in tunerframework es mode play [1/1]
+
+PD#SWPL-102767
+
+Problem:
+pts error in tunerframework es mode play.
+pts value is loop.
+
+Solution:
+1. not to check input pts when input pts is < out pts.
+
+Verify:
+ohm
+
+Change-Id: I7a7d830ac970eb53687581b0d18fa8dfd419b341
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit c0624f6ec877f179689438139cfaea5265c5e9b3
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Sat Dec 3 22:21:55 2022 +0800
+
+videodec: CF2 dump VDA received es data in stream mode [1/1]
+
+PD#SWPL-104053
+
+Problem:
+can not dump es data in stream mode
+
+Solution:
+dump es data of dma buf
+
+Verify:
+ohm
+
+Change-Id: I4601d61348d1f7518a7910127d8a45631064ecdf
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
+commit 3b74a474be7becab4ff716d6747eab2113a5f5e2
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Dec 1 15:12:27 2022 +0800
+
+videodec: CB1 fix memleak when resolution change frequently [2/2]
+
+PD#SWPL-92674
+PD#SWPL-103832
+
+Problem:
+memory leak occur when catpture buffer cached in videodec and have not
+queued to decoder, but start resolution change
+
+Solution:
+when queue capture buffer and detect resolution change,then close fd
+
+Verify:
+ohm
+
+Change-Id: I29d62bff903398efc8c8a58883b6562e853b5626
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit fd301afa28d1b1f69be500f97937804fb62736d0
+Author: jin.yang <jin.yang@amlogic.com>
+Date:   Thu Dec 22 15:00:19 2022 +0800
+
+mediahal: CB2 Fixed mediahal compilation errors [1/1]
+
+PD#SWPL-98889
+
+Problem:
+mediahal compilation errors
+
+Solution:
+Comment out the relevant definitions
+
+Verify:
+Android T
+
+Change-Id: Ic34f3b0a8027249902ca7d4f4592edd28df98fb4
+Signed-off-by: jin.yang <jin.yang@amlogic.com>
+
+commit 77b826d512812394bc2f08026ef673fe7f9197ce
+Author: jin.yang <jin.yang@amlogic.com>
+Date:   Mon Dec 5 20:28:40 2022 +0800
+
+mediahal: CB2 Increase priority of threads in c2 [2/3]
+
+PD#SWPL-98889
+
+Problem:
+The priority is higher than that of audio and display.
+
+Solution:
+Start the VDA thread in normal mode
+
+Verify:
+Android T
+
+Change-Id: I35eddf3b5583e9fee3dc7b7eebc0ddc5021d716c
+Signed-off-by: jin.yang <jin.yang@amlogic.com>
+
 commit bc5d3867f38c120eabeaa451f3ce41f708db1ffe
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Mon Dec 19 06:08:07 2022 +0000
@@ -108,124 +211,9 @@ ohm
 Change-Id: I7764ed967e22a3e959fbe420eeb2d2d1b696ec50
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit eb2353a264ae4bcb415a677224e3ad776845d19b
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri Dec 2 11:36:43 2022 +0000
-
-tsplayer: CB2 scramble on the start play for a few seconds [1/1]
-
-PD#SWPL-101875
-
-Problem:
-sync time is larger than the data loss detection time,
-and the data loss event is thrown up.
-
-Solution:
-add dqbufFailCount judgment
-
-Verify:
-SC2
-
-Change-Id: Ibbcfe28bdc1dd5820dc1335f2980cea2c6621e1d
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit e7fc20a03dacd1ba8d995546f8cdb625cc6d5097
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Nov 14 20:48:07 2022 +0800
-
-videopassthrough: CF2 add trace to count the KPI [1/1]
-
-PD#SWPL-100193
-
-Problem:
-count the KPI for CBS channel switching
-
-Solution:
-add trace
-
-Verify:
-SC2
-
-Change-Id: I2ff15a6d658365e7dd4f94eff46ece38c07a3b68
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 46ef4ec60ede87609148d6158915c93755968cdd
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Dec 5 20:49:44 2022 +0800
-
-mediasync: CB2  Fix pip video stuttering. [1/1]
-
-PD#SWPL-102261
-
-Problem:
-Switch the sound and the video will freeze.
-
-Solution:
-After switching sounds, disable Audio pts reset refclock.
-
-Verify:
-SC2
-
-Change-Id: I5615b2ae63fee53676d575bfa419cf4be932788e
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 62267a3f3eeae84f7cfbf339ea93e10acde976b5
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Nov 17 14:18:52 2022 +0800
-
-mediasync: CB2 Fixed slow start. [1/1]
-
-PD#IPTV-18118
-
-Problem:
-Too much video data is buffered before playback starts.
-
-Solution:
-Modify the buffering strategy to distinguish the buffer levels
-of audio and video according to the
-difference between the first frame of audio and video.
-
-Verify:
-S5
-
-Change-Id: Ic034da46e277b20bdef2d52bf6170bc912feeb05
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 6167a164dbb8de5d84191b21fc6f4399acbd51ed
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Nov 30 17:34:44 2022 +0800
-
-mediasync: CF2 Update modifications from the linux project. [1/1]
-
-PD#SWPL-97649
-
-Problem:
-1.Optimize  mediasync.
-2.Dynamic control video is not synchronized with STC.
-3.The following controls need to be added:
-V4L2_CID_EXT_VDEC_VSYNC_THRESHOLD
-V4L2_CID_EXT_VDEC_DISPLAY_DELAY
-V4L2_CID_EXT_VDEC_AV_SYNC
-4.Added video frame advance function
-
-Solution:
-1. Add the control interface of AV synchronization threshold.
-2. Add VideoLatency.
-3. Add stc synchronization control interface.
-4.Set MEDIASYNC_KEY_VIDEO_FRAME_ADVANCE to enable the feature.
-After the function is enabled,
-the display time of each frame is
-calculated according to the current system time.
-
-Verify:
-SC2
-
-Change-Id: I7603576d9503eee14b8712357882caccbbafa36d
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2022-12-19-09-25
+Release time: 2022-12-26-15-04
 
 ========================================
 
