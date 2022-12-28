@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.48-gdf738f2
+Version: V3.14.49-g04254ed
 
 ========================================
 
 Git commit:
+commit 04254ede5a74b4acf3c5cc93bf2bc27c21e3738a
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Mon Dec 26 17:34:45 2022 +0800
+
+MediaHal: CB1 Fix 64bit mediahal crash  [1/1]
+
+PD#SWPL-104869
+
+Problem:
+BufferPoolAllocationRecord use type long to virAddr
+But 64bit type long is 32bit, so will have some error
+when use 32bit addr.
+
+Solution:
+Modify virAddr use void* for address.
+
+Verify:
+T7C
+
+Change-Id: If15d42b039b36b2254cee279fde12287a50df9b1
+Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+
 commit df738f2445cc106eb777808dd26f1e96eac23647
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Mon Nov 28 14:58:49 2022 +0800
@@ -191,29 +213,9 @@ ohm
 Change-Id: Ifc071799effc760f30f810caebf9d8e3577f6b06
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 4182856602d8ac2455606f3c666398c0fda877d4
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Dec 9 14:44:38 2022 +0800
-
-videopassthrough: CB2 fix mem leak in CBS long run test [1/1]
-
-PD#SWPL-103924
-
-Problem:
-do not push back slots queue.
-
-Solution:
-do not push back slots queue.
-
-Verify:
-ohm
-
-Change-Id: I7764ed967e22a3e959fbe420eeb2d2d1b696ec50
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2022-12-26-15-04
+Release time: 2022-12-28-12-16
 
 ========================================
 
