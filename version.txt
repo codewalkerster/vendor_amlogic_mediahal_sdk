@@ -1,10 +1,94 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.51-g906160e
+Version: V3.14.55-gddad536
 
 ========================================
 
 Git commit:
+commit ddad53643ce01588ee5d828c4c13cc29dca1aa47
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Jul 18 18:29:43 2022 +0800
+
+tsplayer: CF2 remove stop audio when mute.  [2/2]
+
+PD#OTT-31298
+
+Problem:
+remove stop audio when mute.
+
+Solution:
+remove stop audio when mute.
+
+Verify:
+sc2
+
+Change-Id: Ic82c9168101d0c4d1d6ad6627e7c93df2017caa3
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 2d9c18b55f0e2a6fbaa7f7fb6835438200865005
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Thu Jan 5 18:13:31 2023 +0800
+
+videodec: CB2 fixed compile error in 64bit arch. [1/1]
+
+PD#SWPL-107453
+
+Problem:
+commit 48f02244a839401d1a19ab822c84b593e4fd17ad
+compile error in 64 bit arch
+
+Solution:
+change print info about unsigned long
+
+Verify:
+ohm
+
+Change-Id: Ie2d930cc181357752d47b4372a4c8d2a23eeb59b
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
+commit 48f02244a839401d1a19ab822c84b593e4fd17ad
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Thu Jan 5 14:21:00 2023 +0800
+
+videodec: CB2 Report incomplete frame event. [1/1]
+
+PD#SWPL-107368
+
+Problem:
+after input error data to decoder,there
+is no available input buffer any more
+
+Solution:
+1. optimize pts map to bitstream id
+2.reports error/incomplete frame event from decoder
+to C2 when input invalid data to decoder
+
+Verify:
+ohm
+
+Change-Id: Idb14e687085439586d2268e94fa6788e1e57b65b
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
+commit 7da43ec464556f76d2db9f9605b2688d8e164fd8
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jan 4 10:58:40 2023 +0800
+
+mediasync: CB2 fix setRefClockInfo using the correct parameter [1/1]
+
+PD#IPTV-19238
+
+Problem:
+video will play fastly after discontinue time in the minor window.
+
+Solution:
+using the correct parameter to setRefClockinfo.
+
+Verify:
+S5
+
+Change-Id: Ic87c58b135ec049dc12c5197d663a842288a2998
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 906160e0233a85c0dcff1fdc5d5a5fa64bc3fa87
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Tue Dec 27 11:11:38 2022 +0800
@@ -138,91 +222,9 @@ ohm
 Change-Id: I29d62bff903398efc8c8a58883b6562e853b5626
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit fd301afa28d1b1f69be500f97937804fb62736d0
-Author: jin.yang <jin.yang@amlogic.com>
-Date:   Thu Dec 22 15:00:19 2022 +0800
-
-mediahal: CB2 Fixed mediahal compilation errors [1/1]
-
-PD#SWPL-98889
-
-Problem:
-mediahal compilation errors
-
-Solution:
-Comment out the relevant definitions
-
-Verify:
-Android T
-
-Change-Id: Ic34f3b0a8027249902ca7d4f4592edd28df98fb4
-Signed-off-by: jin.yang <jin.yang@amlogic.com>
-
-commit 77b826d512812394bc2f08026ef673fe7f9197ce
-Author: jin.yang <jin.yang@amlogic.com>
-Date:   Mon Dec 5 20:28:40 2022 +0800
-
-mediahal: CB2 Increase priority of threads in c2 [2/3]
-
-PD#SWPL-98889
-
-Problem:
-The priority is higher than that of audio and display.
-
-Solution:
-Start the VDA thread in normal mode
-
-Verify:
-Android T
-
-Change-Id: I35eddf3b5583e9fee3dc7b7eebc0ddc5021d716c
-Signed-off-by: jin.yang <jin.yang@amlogic.com>
-
-commit bc5d3867f38c120eabeaa451f3ce41f708db1ffe
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Dec 19 06:08:07 2022 +0000
-
-media_hal: CB2 release version contains 4 spaces [1/1]
-
-PD#SWPL-105860
-
-Problem:
-media_hal release.sh git commit information
-in fact contains 4 spaces
-
-Solution:
-delete spaces
-
-Verify:
-ohm
-
-Change-Id: I3e9d723bc58fd78ef611d7523da16a11b731646b
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 7ba45c92441b100429459920d1cdea54ca2fc26d
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu Dec 8 04:32:14 2022 +0000
-
-tsplayer: CB2 stc acquired in the first 3 seconds is inaccurate [1/1]
-
-PD#TV-68491
-
-Problem:
-gets the vpts value unchanged
-during start play synchronization.
-
-Solution:
-get the pcrpts replacement vpts
-
-Verify:
-shine
-
-Change-Id: I8db673182defa1246475b4a45c666ac9352d7012
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-03-10-51
+Release time: 2023-01-06-08-42
 
 ========================================
 
