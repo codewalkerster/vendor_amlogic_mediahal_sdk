@@ -61,7 +61,7 @@ mediahalvercheck_defaults {
 }
 
 mediahalvercheck_mediahal_passthrough_defaults {
-	name: "mediahalvercheck_mediahal_passthrough_defaults",
+    name: "mediahalvercheck_mediahal_passthrough_defaults",
 }
 cc_library_headers {
     name: "libmediahal_headers",
@@ -82,6 +82,12 @@ cc_prebuilt_library_shared {
         },
         arm64: {
             srcs: ["arm64/vendor/libmediahal_videodec.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
         },
     },
     check_elf_files: false,
@@ -177,6 +183,12 @@ cc_prebuilt_library_shared {
         arm64: {
             srcs: ["arm64/vendor/libmediahal_mediasync.so"],
         },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
     },
     check_elf_files: false,
 }
@@ -194,6 +206,12 @@ cc_prebuilt_library_shared {
         },
         arm64: {
             srcs: ["arm64/system/libmediahal_mediasync.system.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
         },
     },
    check_elf_files: false,

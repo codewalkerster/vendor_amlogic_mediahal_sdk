@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.55-gddad536
+Version: V3.14.57-g6497c93
 
 ========================================
 
 Git commit:
+commit 6497c935062ed2c38733c4fb13065d0cfbf34cb8
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Dec 13 17:41:47 2022 +0800
+
+mediasync: CB2 Fix out of sync. [2/2]
+
+PD#SWPL-106580
+
+Problem:
+1.The slope is not calculated.
+2.Enter the discontinue state early.
+
+Solution:
+1.Use the drive to calculate the slope.
+2.Add audio PTS and PCR judgment to enter the discontinue state.
+
+Verify:
+Sc2
+
+Change-Id: I573eff9ee133db67dd71e73c65d9a624d5e836be
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 249b1c2d1030350757086780eba9ee64e831e74a
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 5 19:55:56 2023 +0800
+
+mediahal: CB2 fix x86 compile fail [1/1]
+
+PD#SWPL-107460
+
+Problem:
+fix x86 compile fail.
+
+Solution:
+fix x86 compile fail.
+
+Verify:
+SC2
+
+Change-Id: If3e12995b9b93eeaa9e434658f13f5d7214fba71
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit ddad53643ce01588ee5d828c4c13cc29dca1aa47
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Jul 18 18:29:43 2022 +0800
@@ -180,51 +222,9 @@ ohm
 Change-Id: I7a7d830ac970eb53687581b0d18fa8dfd419b341
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit c0624f6ec877f179689438139cfaea5265c5e9b3
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Sat Dec 3 22:21:55 2022 +0800
-
-videodec: CF2 dump VDA received es data in stream mode [1/1]
-
-PD#SWPL-104053
-
-Problem:
-can not dump es data in stream mode
-
-Solution:
-dump es data of dma buf
-
-Verify:
-ohm
-
-Change-Id: I4601d61348d1f7518a7910127d8a45631064ecdf
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
-commit 3b74a474be7becab4ff716d6747eab2113a5f5e2
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Dec 1 15:12:27 2022 +0800
-
-videodec: CB1 fix memleak when resolution change frequently [2/2]
-
-PD#SWPL-92674
-PD#SWPL-103832
-
-Problem:
-memory leak occur when catpture buffer cached in videodec and have not
-queued to decoder, but start resolution change
-
-Solution:
-when queue capture buffer and detect resolution change,then close fd
-
-Verify:
-ohm
-
-Change-Id: I29d62bff903398efc8c8a58883b6562e853b5626
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-06-08-42
+Release time: 2023-01-06-21-35
 
 ========================================
 
