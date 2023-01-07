@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.57-g6497c93
+Version: V3.14.58-g3706b9d
 
 ========================================
 
 Git commit:
+commit 3706b9d057de978aad043d1cbf41eb3722e2a7cc
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Thu Dec 15 21:14:14 2022 +0800
+
+Mediasync: CB2 video realtime is not smooth. [1/2]
+
+PD#SWPL-103819
+
+Problem:
+1. video realtime is not smooth when switch between normal mode and freerun mode
+2. cache set is not reasonable in DiscontinueProcess
+
+Solution:
+1.add a video tune para to ensure video realtime smooth
+2.set reasonalbe cache
+
+Verify:
+verified on S905X4-AH212
+
+Change-Id: I7e89b2810c52018b215a208cd6ed50cfe163fc03
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit 6497c935062ed2c38733c4fb13065d0cfbf34cb8
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Dec 13 17:41:47 2022 +0800
@@ -201,30 +223,9 @@ T7C
 Change-Id: If15d42b039b36b2254cee279fde12287a50df9b1
 Signed-off-by: Jian Wang <jian.wang@amlogic.com>
 
-commit df738f2445cc106eb777808dd26f1e96eac23647
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Nov 28 14:58:49 2022 +0800
-
-videodec: CB2 pts error in tunerframework es mode play [1/1]
-
-PD#SWPL-102767
-
-Problem:
-pts error in tunerframework es mode play.
-pts value is loop.
-
-Solution:
-1. not to check input pts when input pts is < out pts.
-
-Verify:
-ohm
-
-Change-Id: I7a7d830ac970eb53687581b0d18fa8dfd419b341
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-06-21-35
+Release time: 2023-01-07-12-24
 
 ========================================
 
