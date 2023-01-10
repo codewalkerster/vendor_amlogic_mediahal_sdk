@@ -1,10 +1,34 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.58-g3706b9d
+Version: V3.14.59-gf550249
 
 ========================================
 
 Git commit:
+commit f550249129060133d0f1f324b564ca7cbc0a4d46
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Jan 3 15:12:50 2023 +0800
+
+videodec: CB2 video play stuck after 1:30 [1/1]
+
+PD#SWPL-100925
+
+Problem:
+The duration value which set by app is error.
+
+Solution:
+1. If the set duration value is twice as much as
+the duration caculate by input pts,as
+[duration * (3 4 5)/8] = iput pts dur,
+we think the duration need used input
+pts to caculate.
+
+Verify:
+ohm
+
+Change-Id: Ibc555421e79d4f9ef4ad71da2bdb5aaa4424c9b1
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 3706b9d057de978aad043d1cbf41eb3722e2a7cc
 Author: chen.chen1 <chen.chen1@amlogic.com>
 Date:   Thu Dec 15 21:14:14 2022 +0800
@@ -201,31 +225,9 @@ t7
 Change-Id: I11ea3f066b9847406bcf8e53ff5bb2ec3b96969c
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 04254ede5a74b4acf3c5cc93bf2bc27c21e3738a
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Mon Dec 26 17:34:45 2022 +0800
-
-MediaHal: CB1 Fix 64bit mediahal crash  [1/1]
-
-PD#SWPL-104869
-
-Problem:
-BufferPoolAllocationRecord use type long to virAddr
-But 64bit type long is 32bit, so will have some error
-when use 32bit addr.
-
-Solution:
-Modify virAddr use void* for address.
-
-Verify:
-T7C
-
-Change-Id: If15d42b039b36b2254cee279fde12287a50df9b1
-Signed-off-by: Jian Wang <jian.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-07-12-24
+Release time: 2023-01-10-03-11
 
 ========================================
 
