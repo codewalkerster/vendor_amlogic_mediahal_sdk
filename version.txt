@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.59-gf550249
+Version: V3.14.61-g45bf0e1
 
 ========================================
 
 Git commit:
+commit 45bf0e1d5f087d2c243e241e05c0642ef91c92ba
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Jan 11 14:15:20 2023 +0800
+
+tunelrenderer: CB2 fix mOnNotifyEvent not null lead crash issue [1/1]
+
+PD#SWPL-107993
+PD#SWPL-108119
+
+Problem:
+tunnelrenderer report event when checked underflow, but codec2 have
+not implement the method, also mOnNotifyEvent not init with null. As
+a result lead tunnelrender crash.
+
+Solution:
+fix mOnNotifyEvent not null lead crash issue
+
+Verify:
+805x2
+
+Change-Id: I5625c18a9d160430035216ecea370cc982ef92c7
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 5a2c9e2d64908965bb3b70b2c06a9f7922117d78
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Sun Dec 4 12:20:03 2022 +0800
+
+videodec: CF2 VDA support secure in stream mode [1/1]
+
+PD#SWPL-102805
+
+Problem:
+VDA can not play secure stream in stream mode
+
+Solution:
+support secure in stream mode
+
+Verify:
+ohm
+
+Change-Id: Idc8f84bb4d590d79dec05fa5f361bf159926931a
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
 commit f550249129060133d0f1f324b564ca7cbc0a4d46
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Tue Jan 3 15:12:50 2023 +0800
@@ -177,57 +220,9 @@ S5
 Change-Id: Ic87c58b135ec049dc12c5197d663a842288a2998
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 906160e0233a85c0dcff1fdc5d5a5fa64bc3fa87
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Dec 27 11:11:38 2022 +0800
-
-videodec: CB2 Amplayer will not repeat to play after seek to end [1/1]
-
-PD#SWPL-104405
-
-Problem:
-Amplayer will not repeat to play after seek to the end when
-play the specific h264 stream, the root cause is
-"decoder_decode_buffer_tasks_scheduled_" value not reduce when
-occur input bufferpool pending event.this will occur "DecodeBufferTask"
-can not to run again.
-
-Solution:
-1. we need reduce "decoder_decode_buffer_tasks_scheduled_" value if
-"DecodeBufferTask" is called.
-
-Verify:
-t7
-
-Change-Id: I10fdf9037564d651bd23608e94f5b6798e0fdf9d
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit ea8b4af13e0ee9fe370913e09d77173bfd3f24c0
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Dec 29 13:32:03 2022 +0800
-
-videodec: CB2 video will show fastfoward specific h264 stream [1/1]
-
-PD#SWPL-106243
-
-Problem:
-video will show fastfoward after 0:54 when play the specific h264stream,
-this stream pts jumped from 34001189 to 94741189;
-
-Solution:
-1. we used input pts if pts jumped (3-4s).
-2. we used input pts if pts junmped 2 duration when play
-Continuitycounter.ts
-
-Verify:
-t7
-
-Change-Id: I11ea3f066b9847406bcf8e53ff5bb2ec3b96969c
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-10-03-11
+Release time: 2023-01-12-11-17
 
 ========================================
 
