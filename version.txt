@@ -1,10 +1,54 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.61-g45bf0e1
+Version: V3.14.63-gca7a480
 
 ========================================
 
 Git commit:
+commit ca7a480d4ad50e33f3f757edeb9a3d108aaaf0bf
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Dec 21 14:51:36 2022 +0800
+
+mediasync: CB2  Optimize KPIs for starting playback. [1/1]
+
+PD#SWPL-107448
+
+Problem:
+Cache more data before starting playback
+
+Solution:
+1.Consider the difference between Audio PTS and Video PTS,
+adjust the cache for starting playback.
+2.The PTS gap between audio and video is more than 800ms,
+and slow synchronization is enabled.
+
+Verify:
+SC2
+
+Change-Id: I364d874193744718f805cfff1148d53728cf5148
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 624acd0b9b0874fc5d5c3b0952a2d99c9c403eab
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jan 10 17:35:08 2023 +0800
+
+tsplayer: CB2 fix no encryption prompt  [1/1]
+
+PD#SWPL-107779
+
+Problem:
+It is necessary to determine if the Demux output video es size is 0.
+
+Solution:
+When the demux output video es size is 0,
+it needs to notify the decoder data loss event.
+
+Verify:
+SC2
+
+Change-Id: I8f07445d525a1e71bd8bd1e953345c2d44bede12
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 45bf0e1d5f087d2c243e241e05c0642ef91c92ba
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Jan 11 14:15:20 2023 +0800
@@ -177,52 +221,9 @@ ohm
 Change-Id: Ie2d930cc181357752d47b4372a4c8d2a23eeb59b
 Signed-off-by: hui.lin <hui.lin@amlogic.com>
 
-commit 48f02244a839401d1a19ab822c84b593e4fd17ad
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Thu Jan 5 14:21:00 2023 +0800
-
-videodec: CB2 Report incomplete frame event. [1/1]
-
-PD#SWPL-107368
-
-Problem:
-after input error data to decoder,there
-is no available input buffer any more
-
-Solution:
-1. optimize pts map to bitstream id
-2.reports error/incomplete frame event from decoder
-to C2 when input invalid data to decoder
-
-Verify:
-ohm
-
-Change-Id: Idb14e687085439586d2268e94fa6788e1e57b65b
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
-commit 7da43ec464556f76d2db9f9605b2688d8e164fd8
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jan 4 10:58:40 2023 +0800
-
-mediasync: CB2 fix setRefClockInfo using the correct parameter [1/1]
-
-PD#IPTV-19238
-
-Problem:
-video will play fastly after discontinue time in the minor window.
-
-Solution:
-using the correct parameter to setRefClockinfo.
-
-Verify:
-S5
-
-Change-Id: Ic87c58b135ec049dc12c5197d663a842288a2998
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-12-11-17
+Release time: 2023-01-13-17-03
 
 ========================================
 
