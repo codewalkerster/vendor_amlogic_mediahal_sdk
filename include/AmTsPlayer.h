@@ -550,7 +550,7 @@ am_tsplayer_result  AmTsPlayer_writeData(am_tsplayer_handle Handle, am_tsplayer_
  *@param:        mode       The enum of work mode.
  *@return:       The AmTsPlayer result.
  */
-am_tsplayer_result  AmTsPlayer_setWorkMode (am_tsplayer_handle Handle, am_tsplayer_work_mode mode);
+am_tsplayer_result  AmTsPlayer_setWorkMode(am_tsplayer_handle Handle, am_tsplayer_work_mode mode);
 
 /*AV sync*/
 /**

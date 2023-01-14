@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.63-gca7a480
+Version: V3.14.66-g6222913
 
 ========================================
 
 Git commit:
+commit 6222913f0b99c52017453e6d496ad24620530e28
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jan 11 18:28:30 2023 +0800
+
+tsplayer: CB2  Fixed audio delay output after switching channels. [1/1]
+
+PD#SWPL-108039
+
+Problem:
+After opening the audiodecoder,
+the volume value is not passed to the audiohal.
+
+Solution:
+After opening the audiodecoder, pass the volume value to the audiohal.
+
+Verify:
+SC2
+
+Change-Id: I38331b53a40c7d1a8a3ba09bcf0b94b6ff64fceb
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 8424231576251c63dd2f61a7bf2b5137c9cd358b
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Aug 15 17:30:22 2022 +0800
+
+media_hal: CB2 refactor media_hal porperty [1/1]
+
+PD#SWPL-81899
+
+Problem:
+refactor media_hal property
+
+Solution:
+1.add property head file
+2.add property function
+
+Verify:
+ohm
+
+Change-Id: Ic74d716022daab716b2d9955fc45c7ac2698545c
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 909563c5372f51f2b91ba7bb25a8532be4039133
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Jan 13 16:56:12 2023 +0800
+
+mediasync: CB2 CBS fix seek-based trick mode stucked. [1/1]
+
+PD#SWPL-107157
+
+Problem:
+1.CBS seek-based trick mode stucked
+
+Solution:
+1.if no audio already set state to INIT
+
+Verify:
+SC2
+
+Change-Id: I891f0dabdcbeaadeecf0bf5088ef2adcbb6e6fdd
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit ca7a480d4ad50e33f3f757edeb9a3d108aaaf0bf
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Dec 21 14:51:36 2022 +0800
@@ -160,70 +222,9 @@ Sc2
 Change-Id: I573eff9ee133db67dd71e73c65d9a624d5e836be
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 249b1c2d1030350757086780eba9ee64e831e74a
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jan 5 19:55:56 2023 +0800
-
-mediahal: CB2 fix x86 compile fail [1/1]
-
-PD#SWPL-107460
-
-Problem:
-fix x86 compile fail.
-
-Solution:
-fix x86 compile fail.
-
-Verify:
-SC2
-
-Change-Id: If3e12995b9b93eeaa9e434658f13f5d7214fba71
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit ddad53643ce01588ee5d828c4c13cc29dca1aa47
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Jul 18 18:29:43 2022 +0800
-
-tsplayer: CF2 remove stop audio when mute.  [2/2]
-
-PD#OTT-31298
-
-Problem:
-remove stop audio when mute.
-
-Solution:
-remove stop audio when mute.
-
-Verify:
-sc2
-
-Change-Id: Ic82c9168101d0c4d1d6ad6627e7c93df2017caa3
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 2d9c18b55f0e2a6fbaa7f7fb6835438200865005
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Thu Jan 5 18:13:31 2023 +0800
-
-videodec: CB2 fixed compile error in 64bit arch. [1/1]
-
-PD#SWPL-107453
-
-Problem:
-commit 48f02244a839401d1a19ab822c84b593e4fd17ad
-compile error in 64 bit arch
-
-Solution:
-change print info about unsigned long
-
-Verify:
-ohm
-
-Change-Id: Ie2d930cc181357752d47b4372a4c8d2a23eeb59b
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-13-17-03
+Release time: 2023-01-14-21-22
 
 ========================================
 
