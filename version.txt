@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.66-g6222913
+Version: V3.14.68-ga035bac
 
 ========================================
 
 Git commit:
+commit a035bac4e0e035a5d96884b97bfc6045e27cea54
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Jan 4 14:38:29 2023 +0800
+
+videodec: CB2 pts calculate error in stream mode [1/1]
+
+PD#SWPL-107146
+
+Problem:
+Pts calculate error in stream mode
+
+Solution:
+1. Add calculate pts api for stream mode.
+
+Verify:
+ohm
+
+Change-Id: I75227e0cdec72e8e7a35bba848ac9d4f5bc1a81f
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 9dae5ec31204f7e4283cb41616a6989e7f2e2f64
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Fri Jan 6 17:21:52 2023 +0800
+
+videodec: CB2 set duration to decoder [1/1]
+
+PD#SWPL-107504
+
+Problem:
+decode need send uevent to notify systemcontrol frame rate.
+
+Solution:
+1. Add setduration api.
+
+Verify:
+ohm
+
+Change-Id: I0d10d1be26755509196eda35853ba1d8d367b8e2
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 6222913f0b99c52017453e6d496ad24620530e28
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Jan 11 18:28:30 2023 +0800
@@ -178,53 +218,9 @@ ohm
 Change-Id: Ibc555421e79d4f9ef4ad71da2bdb5aaa4424c9b1
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 3706b9d057de978aad043d1cbf41eb3722e2a7cc
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Thu Dec 15 21:14:14 2022 +0800
-
-Mediasync: CB2 video realtime is not smooth. [1/2]
-
-PD#SWPL-103819
-
-Problem:
-1. video realtime is not smooth when switch between normal mode and freerun mode
-2. cache set is not reasonable in DiscontinueProcess
-
-Solution:
-1.add a video tune para to ensure video realtime smooth
-2.set reasonalbe cache
-
-Verify:
-verified on S905X4-AH212
-
-Change-Id: I7e89b2810c52018b215a208cd6ed50cfe163fc03
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 6497c935062ed2c38733c4fb13065d0cfbf34cb8
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Dec 13 17:41:47 2022 +0800
-
-mediasync: CB2 Fix out of sync. [2/2]
-
-PD#SWPL-106580
-
-Problem:
-1.The slope is not calculated.
-2.Enter the discontinue state early.
-
-Solution:
-1.Use the drive to calculate the slope.
-2.Add audio PTS and PCR judgment to enter the discontinue state.
-
-Verify:
-Sc2
-
-Change-Id: I573eff9ee133db67dd71e73c65d9a624d5e836be
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-14-21-22
+Release time: 2023-01-29-15-14
 
 ========================================
 
