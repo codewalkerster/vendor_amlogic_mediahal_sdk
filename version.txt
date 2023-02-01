@@ -1,10 +1,78 @@
 =========RELEALSE NOTE=================
 
-Version: V3.14.68-ga035bac
+Version: V3.16.2-g699600f
 
 ========================================
 
 Git commit:
+commit 699600f2a7f0c0a497b6463be073fdd2fc376d2b
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Sun Jan 29 11:40:52 2023 +0800
+
+mediasync: CB2 video seek 1s at the beginning [1/1]
+
+PD#SWPL-108999
+
+Problem:
+startpts set wrong leading to drop video frame
+
+Solution:
+set startpts the right value
+
+Verify:
+verified on S905X4-AH212
+
+Change-Id: I66ce779a5ed381deb69f7e260dc6a7ea7aec16c2
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit 83a153195197cf0130439dd44097e497cbbead22
+Merge: 8e757d1 afbda54
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Tue Jan 31 02:39:30 2023 -0800
+
+Merge "videodec: CF2 VDA queue input buffer in FIFO order [1/1]"
+
+commit afbda54236290020ab6a3cd20f3027fd069e0205
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Mon Jan 30 17:22:00 2023 +0800
+
+videodec: CF2 VDA queue input buffer in FIFO order [1/1]
+
+PD#SWPL-108316
+
+Problem:
+VDA queue input buffer not follow the dqueue order
+
+Solution:
+use std queue to keep free input buffer index
+to ensure queue input buffer in FIFO order.
+
+Verify:
+ohm
+
+Change-Id: I621ee174e31de1fd19aa2ebd70d23803288e07b2
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
+commit 8e757d19f150273637f5b6b28b5bd7f2fc5e2de7
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Jan 28 17:15:26 2023 +0800
+
+mediahal: CF2 mediahal release  [1/1]
+
+PD#SWPL-109344
+
+Problem:
+mediahal release
+
+Solution:
+release V3.14.68-ga035bac
+
+Verify:
+SC2
+
+Change-Id: I65cf887ea9d2fcd77ea81e161ca449b1f6d1296f
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit a035bac4e0e035a5d96884b97bfc6045e27cea54
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Wed Jan 4 14:38:29 2023 +0800
@@ -130,97 +198,9 @@ SC2
 Change-Id: I364d874193744718f805cfff1148d53728cf5148
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 624acd0b9b0874fc5d5c3b0952a2d99c9c403eab
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jan 10 17:35:08 2023 +0800
-
-tsplayer: CB2 fix no encryption prompt  [1/1]
-
-PD#SWPL-107779
-
-Problem:
-It is necessary to determine if the Demux output video es size is 0.
-
-Solution:
-When the demux output video es size is 0,
-it needs to notify the decoder data loss event.
-
-Verify:
-SC2
-
-Change-Id: I8f07445d525a1e71bd8bd1e953345c2d44bede12
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 45bf0e1d5f087d2c243e241e05c0642ef91c92ba
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Jan 11 14:15:20 2023 +0800
-
-tunelrenderer: CB2 fix mOnNotifyEvent not null lead crash issue [1/1]
-
-PD#SWPL-107993
-PD#SWPL-108119
-
-Problem:
-tunnelrenderer report event when checked underflow, but codec2 have
-not implement the method, also mOnNotifyEvent not init with null. As
-a result lead tunnelrender crash.
-
-Solution:
-fix mOnNotifyEvent not null lead crash issue
-
-Verify:
-805x2
-
-Change-Id: I5625c18a9d160430035216ecea370cc982ef92c7
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 5a2c9e2d64908965bb3b70b2c06a9f7922117d78
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Sun Dec 4 12:20:03 2022 +0800
-
-videodec: CF2 VDA support secure in stream mode [1/1]
-
-PD#SWPL-102805
-
-Problem:
-VDA can not play secure stream in stream mode
-
-Solution:
-support secure in stream mode
-
-Verify:
-ohm
-
-Change-Id: Idc8f84bb4d590d79dec05fa5f361bf159926931a
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
-commit f550249129060133d0f1f324b564ca7cbc0a4d46
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Jan 3 15:12:50 2023 +0800
-
-videodec: CB2 video play stuck after 1:30 [1/1]
-
-PD#SWPL-100925
-
-Problem:
-The duration value which set by app is error.
-
-Solution:
-1. If the set duration value is twice as much as
-the duration caculate by input pts,as
-[duration * (3 4 5)/8] = iput pts dur,
-we think the duration need used input
-pts to caculate.
-
-Verify:
-ohm
-
-Change-Id: Ibc555421e79d4f9ef4ad71da2bdb5aaa4424c9b1
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-01-29-15-14
+Release time: 2023-02-01-12-55
 
 ========================================
 
