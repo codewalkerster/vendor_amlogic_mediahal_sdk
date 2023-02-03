@@ -1,11 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.2-g699600f
+Version: V3.16.3-gf800779
 
 ========================================
 
 Git commit:
-commit 699600f2a7f0c0a497b6463be073fdd2fc376d2b
+commit f800779ef04d359d2265bb2e26887a7aecc4bc9c
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu Feb 2 06:11:19 2023 +0000
+
+media_hal: CB2 media_hal property setting failure [1/1]
+
+PD#SWPL-81899
+
+Problem:
+Unable to enter the old property judgment condition
+
+Solution:
+fixed judgment logic
+
+Verify:
+ohm
+
+Change-Id: I7d2ec14657b345412dca4e8a681985dde8f5e951
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 5583e7b637a05b3f19d66c663553a917b176b49c
 Author: chen.chen1 <chen.chen1@amlogic.com>
 Date:   Sun Jan 29 11:40:52 2023 +0800
 
@@ -175,32 +195,9 @@ SC2
 Change-Id: I891f0dabdcbeaadeecf0bf5088ef2adcbb6e6fdd
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit ca7a480d4ad50e33f3f757edeb9a3d108aaaf0bf
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Dec 21 14:51:36 2022 +0800
-
-mediasync: CB2  Optimize KPIs for starting playback. [1/1]
-
-PD#SWPL-107448
-
-Problem:
-Cache more data before starting playback
-
-Solution:
-1.Consider the difference between Audio PTS and Video PTS,
-adjust the cache for starting playback.
-2.The PTS gap between audio and video is more than 800ms,
-and slow synchronization is enabled.
-
-Verify:
-SC2
-
-Change-Id: I364d874193744718f805cfff1148d53728cf5148
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-02-01-12-55
+Release time: 2023-02-03-13-47
 
 ========================================
 
