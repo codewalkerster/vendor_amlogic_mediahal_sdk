@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.3-gf800779
+Version: V3.16.5-gc753a8e
 
 ========================================
 
 Git commit:
+commit c753a8e4e8aa4a6dc4d22d0f726b8e2973b01eb9
+Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
+Date:   Mon Aug 29 18:47:36 2022 +0800
+
+tsplayer: CB2 add trace log for AUT [1/1]
+
+PD#SWPL-109745
+
+Problem:
+AUT need some logs for detect stuck
+
+Solution:
+add trace log for AUT
+
+Verify:
+ohm
+
+Change-Id: I8137187db66e94efdce98ad7e70f5201ef6ee3a4
+Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
+
+commit 4cea5622c1fe13d216f6ae98502e593856334df9
+Author: dong.liu <dong.liu@amlogic.com>
+Date:   Wed Feb 1 02:47:54 2023 +0000
+
+videoTunnelRenderer: CB2 Tunnel mode probability switching is slow [1/1]
+
+PD#OTT-37881
+
+Problem:
+After flush, the videorender set the wrong vpts equal to 0,
+and the audio synchronization caused an exception
+
+Solution:
+After flush, if the pts used for synchronization is 0,
+set the current vpts as the synchronization anchor
+
+Verify:
+ohm
+
+Change-Id: Ia9ff5102de703e38012167cc0f4d84479c755b99
+Signed-off-by: dong.liu <dong.liu@amlogic.com>
+
 commit f800779ef04d359d2265bb2e26887a7aecc4bc9c
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Thu Feb 2 06:11:19 2023 +0000
@@ -154,50 +196,9 @@ SC2
 Change-Id: I38331b53a40c7d1a8a3ba09bcf0b94b6ff64fceb
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 8424231576251c63dd2f61a7bf2b5137c9cd358b
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Aug 15 17:30:22 2022 +0800
-
-media_hal: CB2 refactor media_hal porperty [1/1]
-
-PD#SWPL-81899
-
-Problem:
-refactor media_hal property
-
-Solution:
-1.add property head file
-2.add property function
-
-Verify:
-ohm
-
-Change-Id: Ic74d716022daab716b2d9955fc45c7ac2698545c
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 909563c5372f51f2b91ba7bb25a8532be4039133
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Jan 13 16:56:12 2023 +0800
-
-mediasync: CB2 CBS fix seek-based trick mode stucked. [1/1]
-
-PD#SWPL-107157
-
-Problem:
-1.CBS seek-based trick mode stucked
-
-Solution:
-1.if no audio already set state to INIT
-
-Verify:
-SC2
-
-Change-Id: I891f0dabdcbeaadeecf0bf5088ef2adcbb6e6fdd
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-02-03-13-47
+Release time: 2023-02-10-11-45
 
 ========================================
 
