@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.5-gc753a8e
+Version: V3.16.7-g7106042
 
 ========================================
 
 Git commit:
+commit 710604208fed27f9e7ba78560a51e2fba829326a
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Tue Feb 14 16:25:49 2023 +0800
+
+resman: CB2 check more time and let tvp pool release [1/1]
+
+PD#SWPL-110228
+
+Problem:
+di-multi alloc fail for dtv playback
+
+Solution:
+check codec mm free size more time and wait tvp pool to release
+
+Verify:
+AH212
+
+Change-Id: I2a9ec3eb7caa948188f385ed6c70f3aa22332d3a
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit 7a2e77e17f9bde105077b90c42e42d819c5f04b7
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Feb 8 20:46:19 2023 +0800
+
+mediasync: CB2 video is stutter when start playing [1/1]
+
+PD#IPTV-19597
+
+Problem:
+audio leastcache calculation error caused pcr adjustment
+
+Solution:
+fixe leastcache calculation.
+
+Verify:
+S5
+
+Change-Id: I4a705c36912e760f3028688f507e77b987ba8b3f
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit c753a8e4e8aa4a6dc4d22d0f726b8e2973b01eb9
 Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
 Date:   Mon Aug 29 18:47:36 2022 +0800
@@ -155,50 +195,9 @@ ohm
 Change-Id: I75227e0cdec72e8e7a35bba848ac9d4f5bc1a81f
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 9dae5ec31204f7e4283cb41616a6989e7f2e2f64
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Fri Jan 6 17:21:52 2023 +0800
-
-videodec: CB2 set duration to decoder [1/1]
-
-PD#SWPL-107504
-
-Problem:
-decode need send uevent to notify systemcontrol frame rate.
-
-Solution:
-1. Add setduration api.
-
-Verify:
-ohm
-
-Change-Id: I0d10d1be26755509196eda35853ba1d8d367b8e2
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 6222913f0b99c52017453e6d496ad24620530e28
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jan 11 18:28:30 2023 +0800
-
-tsplayer: CB2  Fixed audio delay output after switching channels. [1/1]
-
-PD#SWPL-108039
-
-Problem:
-After opening the audiodecoder,
-the volume value is not passed to the audiohal.
-
-Solution:
-After opening the audiodecoder, pass the volume value to the audiohal.
-
-Verify:
-SC2
-
-Change-Id: I38331b53a40c7d1a8a3ba09bcf0b94b6ff64fceb
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-02-10-11-45
+Release time: 2023-02-16-16-30
 
 ========================================
 
