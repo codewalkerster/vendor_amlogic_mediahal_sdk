@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.7-g7106042
+Version: V3.16.8-g8ae7bfa
 
 ========================================
 
 Git commit:
+commit 8ae7bfa408740e56b807a9576c200d410f776edd
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Feb 6 11:40:00 2023 +0000
+
+mediasync: CB2 video is stutter when start playing [1/1]
+
+PD#SWPL-109740
+
+Problem:
+audio leastcache calculation error
+caused pcr adjustment
+
+Solution:
+1.fixed leastcache calculation
+2.close slowsync if start strategy is avligned
+
+Verify:
+SC2
+
+Change-Id: I82b8d377a8734017e1d0859462a420fbfd64989d
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit 710604208fed27f9e7ba78560a51e2fba829326a
 Author: joy.rao <joy.rao@amlogic.com>
 Date:   Tue Feb 14 16:25:49 2023 +0800
@@ -175,29 +197,9 @@ SC2
 Change-Id: I65cf887ea9d2fcd77ea81e161ca449b1f6d1296f
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit a035bac4e0e035a5d96884b97bfc6045e27cea54
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Jan 4 14:38:29 2023 +0800
-
-videodec: CB2 pts calculate error in stream mode [1/1]
-
-PD#SWPL-107146
-
-Problem:
-Pts calculate error in stream mode
-
-Solution:
-1. Add calculate pts api for stream mode.
-
-Verify:
-ohm
-
-Change-Id: I75227e0cdec72e8e7a35bba848ac9d4f5bc1a81f
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-02-17-03-03
+Release time: 2023-02-20-10-03
 
 ========================================
 
