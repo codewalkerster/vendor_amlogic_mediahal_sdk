@@ -1,7 +1,7 @@
 package mediahal_sdk
 
 import (
-    "fmt"
+    //"fmt"
     "android/soong/android"
     "android/soong/cc"
     "github.com/google/blueprint/proptools"
@@ -23,12 +23,12 @@ func mediahal_sdk_go_DefaultsFactory() (android.Module) {
         hardMediahalSrcPath := "hardware/amlogic/media_hal"
         if android.ExistentPathForSource(ctx, mediahalSrcPath).Valid() == true {
             p.Enabled = proptools.BoolPtr(false)
-            fmt.Printf("mediahalSrcPath:%s exist, use medial source to build\n", mediahalSrcPath)
+            //fmt.Printf("mediahalSrcPath:%s exist, use medial source to build\n", mediahalSrcPath)
         } else if android.ExistentPathForSource(ctx, hardMediahalSrcPath).Valid() == true {
             p.Enabled = proptools.BoolPtr(false)
-            fmt.Printf("dvb:%s not exist, use hardwaremedial source to build\n", hardMediahalSrcPath)
+            //fmt.Printf("dvb:%s not exist, use hardwaremedial source to build\n", hardMediahalSrcPath)
         }else {
-            fmt.Println("mediahalSrcPath:%s not exist, use mediahal_sdk to build",mediahalSrcPath)
+            //fmt.Println("mediahalSrcPath:%s not exist, use mediahal_sdk to build",mediahalSrcPath)
         }
         ctx.AppendProperties(p)
     })

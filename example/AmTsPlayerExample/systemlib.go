@@ -3,7 +3,7 @@ package systemCheck
 import (
     "android/soong/android"
     "android/soong/cc"
-    "fmt"
+    //"fmt"
     "strconv"
 )
 
@@ -11,9 +11,9 @@ func systemlibDefaults(ctx android.LoadHookContext) {
     sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
     sdkVersionInt,err := strconv.Atoi(sdkVersion)
     if err != nil {
-        fmt.Printf("---------------------------->%v fail to convert", sdkVersionInt)
+        //fmt.Printf("---------------------------->%v fail to convert", sdkVersionInt)
     } else {
-        fmt.Println("sdkVersion:", sdkVersionInt)
+        //fmt.Println("sdkVersion:", sdkVersionInt)
     }
     if sdkVersionInt == 30 {
         type props struct {

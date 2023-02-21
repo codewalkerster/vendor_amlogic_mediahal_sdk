@@ -3,7 +3,7 @@ package mediahalvercheck
 import (
     "android/soong/android"
     "android/soong/cc"
-    "fmt"
+    //"fmt"
     "github.com/google/blueprint/proptools"
     "strconv"
 )
@@ -12,9 +12,9 @@ func MediahalVerCheckDefaults(ctx android.LoadHookContext) {
     sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
     sdkVersionInt,err := strconv.Atoi(sdkVersion)
     if err != nil {
-        fmt.Printf("%v fail to convert", sdkVersionInt)
+        //fmt.Printf("%v fail to convert", sdkVersionInt)
     } else {
-        fmt.Println("CheckDefaults sdkVersion:", sdkVersionInt)
+        //fmt.Println("CheckDefaults sdkVersion:", sdkVersionInt)
     }
     if sdkVersionInt >= 30 {
         type props struct {
@@ -30,9 +30,9 @@ func MediahalVerCheckMediahalPassthroughDefaults(ctx android.LoadHookContext) {
     sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
     sdkVersionInt,err := strconv.Atoi(sdkVersion)
     if err != nil {
-        fmt.Printf("%v fail to convert", sdkVersionInt)
+        //fmt.Printf("%v fail to convert", sdkVersionInt)
     } else {
-        fmt.Println("PassthroughDefaults sdkVersion:", sdkVersionInt)
+        //fmt.Println("PassthroughDefaults sdkVersion:", sdkVersionInt)
     }
     if sdkVersionInt < 30 {
         type props struct {

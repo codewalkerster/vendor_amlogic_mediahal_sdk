@@ -3,7 +3,7 @@ package sharelibAndGitInfo
 import (
     "android/soong/android"
     "android/soong/cc"
-    "fmt"
+    //"fmt"
 )
 
 func androidversionDefaults(ctx android.LoadHookContext) {
@@ -23,7 +23,7 @@ func setversion(ctx android.BaseContext) ([]string) {
     sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
 
     ver10 := "-DANDROID_PLATFORM_SDK_VERSION=" + sdkVersion
-    fmt.Println(string(ver10))
+    //fmt.Println(string(ver10))
     cppflags = append(cppflags, ver10)
 
     return cppflags
