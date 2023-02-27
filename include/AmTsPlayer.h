@@ -70,6 +70,7 @@ typedef enum {
     AM_TSPLAYER_KEY_BOOTPLAY_MODE,
     AM_TSPLAYER_KEY_ENABLE_VFRAME_COUNTER,
     AM_TSPLAYER_KEY_SET_AUDIO_LANG,
+    AM_TSPLAYER_KEY_SET_MULTI_VIDEO_SYNC_MODE,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -152,6 +153,7 @@ typedef enum
     TS_DEMOD = 0,                          // TS Data input from demod
     TS_MEMORY = 1,                         // TS Data input from memory
     ES_MEMORY = 2,                         // ES Data input from memory
+    TS_USB_CAMCARD = 3,                    // TS Data input from usb camcard
 } am_tsplayer_input_source_type;
 
 /*Input buffer type*/

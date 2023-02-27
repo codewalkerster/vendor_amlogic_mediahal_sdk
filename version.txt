@@ -1,10 +1,112 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.9-gaedfd59
+Version: V3.16.14-g2fe7d89
 
 ========================================
 
 Git commit:
+commit 2fe7d898ff2af16f78168ec1e9de7de3d57a3e42
+Author: Kai Song <kai.song@amlogic.com>
+Date:   Tue Jan 31 14:53:15 2023 +0800
+
+videopassthrough: CB2 enable tvp for C2 passthrough cas playback [1/1]
+
+PD#SWPL-106744
+
+Problem:
+tvp is not enabled for C2 passthrough cas playback
+codec mm will force enable tvp
+
+Solution:
+enable tvp for C2 passthrough cas playback
+
+Verify:
+Android T & S905X4
+
+Change-Id: I8087744abba517bfab0007f724847d2d68d15339
+Signed-off-by: Kai Song <kai.song@amlogic.com>
+
+commit 6e7c56f7832d0686c31da00d4674eb1032b674c0
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Feb 10 16:50:07 2023 +0800
+
+tsplayer: CF1 mutil video sync [1/1]
+
+PD#IPTV-19784
+
+Problem:
+Multiple videos are displayed simultaneously.
+
+Solution:
+Multiple tsplayers use one mediasync synchronization.
+
+Verify:
+SC2
+
+Change-Id: If04108db6a1f1283a099a1cdd7b5181ed371f166
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 81922e7e82f33be63ddf47f5c5244e7763d8cc1a
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Feb 21 14:18:14 2023 +0800
+
+videopassthrough: CB2 flush interface block in switch test [1/1]
+
+PD#OTT-38181
+
+Problem:
+flush interface occur thread lock timeout issue.
+
+Solution:
+Resolve the time interval for waiting for locks.
+
+Verify:
+ohm
+
+Change-Id: I093006f3188539d74bbb23f2d5e06005a40b72a8
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit b74b504055ead5f3d2eb056c03bdc9f54ba3c969
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Feb 20 19:15:24 2023 +0800
+
+tsplayer: CB2 stuck for a while as starting to play some videos [1/1]
+
+PD#IPTV-19877
+
+Problem:
+audio initialized slowly after video dislaying as audio has not enough
+data.
+
+Solution:
+fix audio writting speed to get enough data.
+
+Verify:
+s5
+
+Change-Id: I6de6f692126efee411f7261c6fd95ec4e1a11a4b
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit bff61e4b57926a20aff77f6f73014a0b41333336
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Nov 15 12:17:05 2022 +0800
+
+tsplayer: CF2 add input source mode [1/1]
+
+PD#SWPL-99015
+
+Problem:
+add input source mode to support usb camcard
+
+Solution:
+add input source mode
+
+Verify:
+SC2
+
+Change-Id: I3479eb48fa9b9abb39c7f1b43444fd84e8c501f0
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit aedfd5968a4b9532b74673797c9961564570d803
 Author: peixing.mai <peixing.mai@amlogic.com>
 Date:   Tue Feb 14 07:15:35 2023 +0000
@@ -111,99 +213,9 @@ ohm
 Change-Id: I8137187db66e94efdce98ad7e70f5201ef6ee3a4
 Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
 
-commit 4cea5622c1fe13d216f6ae98502e593856334df9
-Author: dong.liu <dong.liu@amlogic.com>
-Date:   Wed Feb 1 02:47:54 2023 +0000
-
-videoTunnelRenderer: CB2 Tunnel mode probability switching is slow [1/1]
-
-PD#OTT-37881
-
-Problem:
-After flush, the videorender set the wrong vpts equal to 0,
-and the audio synchronization caused an exception
-
-Solution:
-After flush, if the pts used for synchronization is 0,
-set the current vpts as the synchronization anchor
-
-Verify:
-ohm
-
-Change-Id: Ia9ff5102de703e38012167cc0f4d84479c755b99
-Signed-off-by: dong.liu <dong.liu@amlogic.com>
-
-commit f800779ef04d359d2265bb2e26887a7aecc4bc9c
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu Feb 2 06:11:19 2023 +0000
-
-media_hal: CB2 media_hal property setting failure [1/1]
-
-PD#SWPL-81899
-
-Problem:
-Unable to enter the old property judgment condition
-
-Solution:
-fixed judgment logic
-
-Verify:
-ohm
-
-Change-Id: I7d2ec14657b345412dca4e8a681985dde8f5e951
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 5583e7b637a05b3f19d66c663553a917b176b49c
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Sun Jan 29 11:40:52 2023 +0800
-
-mediasync: CB2 video seek 1s at the beginning [1/1]
-
-PD#SWPL-108999
-
-Problem:
-startpts set wrong leading to drop video frame
-
-Solution:
-set startpts the right value
-
-Verify:
-verified on S905X4-AH212
-
-Change-Id: I66ce779a5ed381deb69f7e260dc6a7ea7aec16c2
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 83a153195197cf0130439dd44097e497cbbead22
-Merge: 8e757d1 afbda54
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Tue Jan 31 02:39:30 2023 -0800
-
-Merge "videodec: CF2 VDA queue input buffer in FIFO order [1/1]"
-
-commit afbda54236290020ab6a3cd20f3027fd069e0205
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Mon Jan 30 17:22:00 2023 +0800
-
-videodec: CF2 VDA queue input buffer in FIFO order [1/1]
-
-PD#SWPL-108316
-
-Problem:
-VDA queue input buffer not follow the dqueue order
-
-Solution:
-use std queue to keep free input buffer index
-to ensure queue input buffer in FIFO order.
-
-Verify:
-ohm
-
-Change-Id: I621ee174e31de1fd19aa2ebd70d23803288e07b2
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
 ========================================
 
-Release time: 2023-02-20-13-18
+Release time: 2023-02-27-02-29
 
 ========================================
 
