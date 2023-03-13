@@ -1,221 +1,224 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.14-g2fe7d89
+Version: V3.16.28-g74b6858
 
 ========================================
 
 Git commit:
-commit 2fe7d898ff2af16f78168ec1e9de7de3d57a3e42
-Author: Kai Song <kai.song@amlogic.com>
-Date:   Tue Jan 31 14:53:15 2023 +0800
+commit 74b68586d269361955b4938fb51e1f667ea74e1e
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Feb 28 11:19:50 2023 +0800
 
-videopassthrough: CB2 enable tvp for C2 passthrough cas playback [1/1]
+mediasync: CB2 switch AD audio track, TV has silent output [1/1]
 
-PD#SWPL-106744
-
-Problem:
-tvp is not enabled for C2 passthrough cas playback
-codec mm will force enable tvp
-
-Solution:
-enable tvp for C2 passthrough cas playback
-
-Verify:
-Android T & S905X4
-
-Change-Id: I8087744abba517bfab0007f724847d2d68d15339
-Signed-off-by: Kai Song <kai.song@amlogic.com>
-
-commit 6e7c56f7832d0686c31da00d4674eb1032b674c0
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Feb 10 16:50:07 2023 +0800
-
-tsplayer: CF1 mutil video sync [1/1]
-
-PD#IPTV-19784
+PD#SWPL-105604
 
 Problem:
-Multiple videos are displayed simultaneously.
+A long time holded by audio causes silent output
 
 Solution:
-Multiple tsplayers use one mediasync synchronization.
-
-Verify:
-SC2
-
-Change-Id: If04108db6a1f1283a099a1cdd7b5181ed371f166
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 81922e7e82f33be63ddf47f5c5244e7763d8cc1a
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Feb 21 14:18:14 2023 +0800
-
-videopassthrough: CB2 flush interface block in switch test [1/1]
-
-PD#OTT-38181
-
-Problem:
-flush interface occur thread lock timeout issue.
-
-Solution:
-Resolve the time interval for waiting for locks.
+adjust the time to hold when getting an abnormal value
 
 Verify:
 ohm
 
-Change-Id: I093006f3188539d74bbb23f2d5e06005a40b72a8
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+Change-Id: I04d99fb85b00ac798a1a6d959564ea2e20f90c13
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit b74b504055ead5f3d2eb056c03bdc9f54ba3c969
+commit 4c706f15d7dfb404780816fab8c32b81f68849fc
 Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Feb 20 19:15:24 2023 +0800
+Date:   Fri Mar 3 13:21:53 2023 +0800
 
-tsplayer: CB2 stuck for a while as starting to play some videos [1/1]
+tsplayer: CB2 it will play stuck when using ES_MEMORY mode [1/1]
 
-PD#IPTV-19877
+PD#IPTV-20147
 
 Problem:
-audio initialized slowly after video dislaying as audio has not enough
-data.
+it will play stuck when using ES_MEMORY mode,
+because the buffer will change to 0 before send to decoder.
 
 Solution:
-fix audio writting speed to get enough data.
+the function "write" return ok until Inputbufferdone.
 
 Verify:
 s5
 
-Change-Id: I6de6f692126efee411f7261c6fd95ec4e1a11a4b
+Change-Id: Iadda939375fd9ea9799de575b0a329fd86a50207
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit bff61e4b57926a20aff77f6f73014a0b41333336
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Nov 15 12:17:05 2022 +0800
+commit d395a652e466858d6ce7cd1c761346c9f4f06a29
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Mar 7 20:42:44 2023 +0800
 
-tsplayer: CF2 add input source mode [1/1]
+mediasync: CB2 dolby MAT/DDP/Passthrough output target fail. [1/3]
 
-PD#SWPL-99015
-
-Problem:
-add input source mode to support usb camcard
-
-Solution:
-add input source mode
-
-Verify:
-SC2
-
-Change-Id: I3479eb48fa9b9abb39c7f1b43444fd84e8c501f0
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit aedfd5968a4b9532b74673797c9961564570d803
-Author: peixing.mai <peixing.mai@amlogic.com>
-Date:   Tue Feb 14 07:15:35 2023 +0000
-
-mediasync: CB2 AVsync test is failed [1/1]
-
-PD#SWPL-109277
+PD#SWPL-114129
 
 Problem:
-1.Enable slow_sync of start playback,
-resulting in A/V out of sync.
-2.There is a problem with the logic of
-checking that the stream pts is valid
+dolby MAT/DDP/Passthrough output target fail
 
 Solution:
-1.Add the maximum threshold of slowsync
-2.Optimize the logic of check stream pts valid
+1. slowsync enable flag need to sync to driver
+2. framerate need to re-calculate for interlaced or forced-interlaced stream
+3. special frame size stream need to enlarge cache
 
 Verify:
-T5W
+verified on S905X4-AH212
 
-Change-Id: I68add135f1f36e24ee1cdc1d80d20ed77f43fc4c
-Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
+Change-Id: I6b2f33f9cbb9b93b87b34b02b7bb22c01a09091a
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit 8ae7bfa408740e56b807a9576c200d410f776edd
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Feb 6 11:40:00 2023 +0000
-
-mediasync: CB2 video is stutter when start playing [1/1]
-
-PD#SWPL-109740
-
-Problem:
-audio leastcache calculation error
-caused pcr adjustment
-
-Solution:
-1.fixed leastcache calculation
-2.close slowsync if start strategy is avligned
-
-Verify:
-SC2
-
-Change-Id: I82b8d377a8734017e1d0859462a420fbfd64989d
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 710604208fed27f9e7ba78560a51e2fba829326a
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Tue Feb 14 16:25:49 2023 +0800
-
-resman: CB2 check more time and let tvp pool release [1/1]
-
-PD#SWPL-110228
-
-Problem:
-di-multi alloc fail for dtv playback
-
-Solution:
-check codec mm free size more time and wait tvp pool to release
-
-Verify:
-AH212
-
-Change-Id: I2a9ec3eb7caa948188f385ed6c70f3aa22332d3a
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 7a2e77e17f9bde105077b90c42e42d819c5f04b7
+commit 2baaae7ffdbe97144935ef0f86ade4cbcf215f87
 Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Feb 8 20:46:19 2023 +0800
+Date:   Mon Jan 30 16:35:08 2023 +0800
 
-mediasync: CB2 video is stutter when start playing [1/1]
+tsplayer: CB2 fix the COUNTER_ENABLED command setting [1/1]
 
-PD#IPTV-19597
+PD#IPTV-19575
 
 Problem:
-audio leastcache calculation error caused pcr adjustment
+it cannot work when sending COUNTER_ENABLED command.
 
 Solution:
-fixe leastcache calculation.
+fix the command setting after vda init
 
 Verify:
 S5
 
-Change-Id: I4a705c36912e760f3028688f507e77b987ba8b3f
+Change-Id: I563518433231a9470ad2ef37c444b2b8fde60c25
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit c753a8e4e8aa4a6dc4d22d0f726b8e2973b01eb9
-Author: Mingshan Cheng <mingshan.cheng@amlogic.com>
-Date:   Mon Aug 29 18:47:36 2022 +0800
+commit d81255fb2d52493bd71d45996d4c49b22c77769a
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Dec 20 12:47:20 2022 +0000
 
-tsplayer: CB2 add trace log for AUT [1/1]
+tsplayer: CB2 av no sync when play special ts [1/1]
 
-PD#SWPL-109745
+PD#SWPL-112169
 
 Problem:
-AUT need some logs for detect stuck
+decoder is stuck for some time,
+resulting in buffer explosion,
+the ptsserver look up abnormally
 
 Solution:
-add trace log for AUT
+add reset mechanism
+
+Verify:
+SC2
+
+Change-Id: Iaf7138062d72c4638bae858ae817d20d8ade3a68
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit af34a78ff7bdb144c5e01368c57ee9e5c4358d93
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Mar 8 12:35:19 2023 +0800
+
+videopassthrough: CB2 fix X64 compile error [1/1]
+
+PD#SWPL-105113
+
+Problem:
+fix X64 compile error
+
+Solution:
+fix X64 compile error
 
 Verify:
 ohm
 
-Change-Id: I8137187db66e94efdce98ad7e70f5201ef6ee3a4
-Signed-off-by: Mingshan Cheng <mingshan.cheng@amlogic.com>
+Change-Id: Ifc6230e9d9a175c8c2b15eb2cf2ae5bd806b2cff
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit ca719a6cd070f4d71945bb7c460d827e4b43974f
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Mar 2 22:22:08 2023 +0800
+
+tsplayer: CB2 Fix event exception [1/1]
+
+PD#SWPL-113877
+
+Problem:
+Get invalid ES data status exception,
+resulting in the decoder data loss event exception.
+
+Solution:
+When playing encrypted data,
+get the status of ES data from the demux module is invalid.
+
+Verify:
+t5w
+
+Change-Id: I9617b102bec31d94c141eca9d8cf3ecdbee3ae8e
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 5b2161a2c53e71de177583ee924c9d8009fb5fd0
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Feb 22 09:03:26 2023 +0000
+
+tsplayer: CB2 not scramble event after CI card is removed [1/1]
+
+PD#SWPL-113381
+
+Problem:
+AmCodecVDA first executes EVENT_TYPE_FIRST_FRAME
+causing the mScrambleEvent not to be set to false
+
+Solution:
+set mScrambleEvent status
+in AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME
+
+Verify:
+t3
+
+Change-Id: If8cb6e4557666091afc7a4bed6a3705c5251ff85
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit c3f3c94f48a8feb64393d15a759c9c607c0947e1
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Feb 28 20:50:20 2023 +0800
+
+videopassthrough: CB2 fix 2x rewind slow [1/1]
+
+PD#SWPL-105113
+
+Problem:
+if realtime pts not right it will block by
+omx framework.
+
+Solution:
+Call video mediasync in seek-based trickmode.
+
+Verify:
+ohm
+
+Change-Id: I0a872cc17d2c5b29118481cde088b465635d9a8f
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit b29feccafc7e12366df599c6f9c3e07eef773f4e
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Mon Mar 6 15:22:04 2023 +0800
+
+tunnelrenderer: CB2 Optimization video flush sync when seek [1/1]
+
+PD#SWPL-114240
+
+Problem:
+seek duration less than 10s
+video stuck for a few seconds and then play.
+
+Solution:
+reset video sync and set to init state when seek flush
+
+Verify:
+S905X4
+
+Change-Id: If7402713e6a20d369b60d8c8bfd786c63fe2598b
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
 
 ========================================
 
-Release time: 2023-02-27-02-29
+Release time: 2023-03-13-11-53
 
 ========================================
 
