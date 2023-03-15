@@ -1,10 +1,36 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.28-g74b6858
+Version: V3.16.29-g374873c
 
 ========================================
 
 Git commit:
+commit 374873cc4f5e75946c8d905ca6b88ab1bb801bda
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Mar 14 19:09:17 2023 +0800
+
+videodec: CB2 CtsMediaV2TestCases module 1 fail [3/3]
+
+PD#SWPL-115262
+
+Problem:
+run cts -m CtsMediaV2TestCases -t
+android.mediav2.cts.CodecDecoderSurfaceTest#
+testSimpleDecodeToSurface
+[19(OMX.amlogic.mpeg2.decoder.awesome2_video/mpeg2)] fail.
+
+
+
+Solution:
+add set di slt node api
+
+
+Verify:
+T5M
+
+Change-Id: I180696aa8748035a17e533b37cf4f73918af2cc9
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 74b68586d269361955b4938fb51e1f667ea74e1e
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Feb 28 11:19:50 2023 +0800
@@ -195,30 +221,9 @@ ohm
 Change-Id: I0a872cc17d2c5b29118481cde088b465635d9a8f
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit b29feccafc7e12366df599c6f9c3e07eef773f4e
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Mon Mar 6 15:22:04 2023 +0800
-
-tunnelrenderer: CB2 Optimization video flush sync when seek [1/1]
-
-PD#SWPL-114240
-
-Problem:
-seek duration less than 10s
-video stuck for a few seconds and then play.
-
-Solution:
-reset video sync and set to init state when seek flush
-
-Verify:
-S905X4
-
-Change-Id: If7402713e6a20d369b60d8c8bfd786c63fe2598b
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-13-11-53
+Release time: 2023-03-15-15-35
 
 ========================================
 
