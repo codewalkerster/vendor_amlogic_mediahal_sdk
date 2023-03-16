@@ -1,10 +1,96 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.29-g374873c
+Version: V3.16.33-g61a3d0c
 
 ========================================
 
 Git commit:
+commit 61a3d0c136bc93c8158a180ae80fec6aed24db0c
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Mar 3 19:54:07 2023 +0800
+
+tsplayer: CB2 Fix video stuttering  [1/2]
+
+PD#SWPL-111759
+
+Problem:
+Video has invalid PTS.
+
+Solution:
+Invalid PTS is calculated with durtion.
+
+Verify:
+T5M
+
+Change-Id: I58bfed19086bff3f62263ff82ff90a1edbcbf25f
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 653a3e8db7b52623d07da56b9c6d76e428a835b1
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Mar 7 20:32:22 2023 +0800
+
+mediasync: CB2 fix video freeze when entering timeshif. [1/1]
+
+PD#SWPL-112673
+
+Problem:
+During AV alignment, it entered the pause state,
+and did not continue alignment after resume,
+and directly played with Audio PTS as an anchor,
+so the video stuttered.
+
+Solution:
+After resume, resume after AV alignment at the start of playback.
+
+Verify:
+SC2
+
+Change-Id: I1511463f3eb734383395ff32a7e3d3efc1cae5be
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit a2db6d0a43239bc24c9738a1b66e7e3e4afa8e6d
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Mar 13 06:37:02 2023 +0000
+
+mediasync: CB2 switch AD audio tracks, av not sync [1/1]
+
+PD#SWPL-114073
+
+Problem:
+switch AD audio track, av not sync
+
+Solution:
+add hasaudio judgment in checkVideoFreeRun.
+
+Verify:
+t5w
+
+Change-Id: I6fafc41de6ff01724873b856c8341a4bc98bd5eb
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit bf02e41631c0c839b08019b357109898c73775e7
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Feb 22 17:51:24 2023 +0800
+
+videodec: CB2 Fix video stuttering  [1/1]
+
+PD#IPTV-19821
+
+Problem:
+PTS error of the video.
+
+Solution:
+When the pts out of demux increase regularly
+and the video has B frames,
+then only the pts of I frames are used,
+and the other frames are calculated with durtion.
+
+Verify:
+SC2
+
+Change-Id: Ic678ff416c10438543ef85134cf79942155f57cb
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 374873cc4f5e75946c8d905ca6b88ab1bb801bda
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Tue Mar 14 19:09:17 2023 +0800
@@ -136,94 +222,9 @@ SC2
 Change-Id: Iaf7138062d72c4638bae858ae817d20d8ade3a68
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit af34a78ff7bdb144c5e01368c57ee9e5c4358d93
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Mar 8 12:35:19 2023 +0800
-
-videopassthrough: CB2 fix X64 compile error [1/1]
-
-PD#SWPL-105113
-
-Problem:
-fix X64 compile error
-
-Solution:
-fix X64 compile error
-
-Verify:
-ohm
-
-Change-Id: Ifc6230e9d9a175c8c2b15eb2cf2ae5bd806b2cff
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit ca719a6cd070f4d71945bb7c460d827e4b43974f
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Mar 2 22:22:08 2023 +0800
-
-tsplayer: CB2 Fix event exception [1/1]
-
-PD#SWPL-113877
-
-Problem:
-Get invalid ES data status exception,
-resulting in the decoder data loss event exception.
-
-Solution:
-When playing encrypted data,
-get the status of ES data from the demux module is invalid.
-
-Verify:
-t5w
-
-Change-Id: I9617b102bec31d94c141eca9d8cf3ecdbee3ae8e
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 5b2161a2c53e71de177583ee924c9d8009fb5fd0
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Feb 22 09:03:26 2023 +0000
-
-tsplayer: CB2 not scramble event after CI card is removed [1/1]
-
-PD#SWPL-113381
-
-Problem:
-AmCodecVDA first executes EVENT_TYPE_FIRST_FRAME
-causing the mScrambleEvent not to be set to false
-
-Solution:
-set mScrambleEvent status
-in AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME
-
-Verify:
-t3
-
-Change-Id: If8cb6e4557666091afc7a4bed6a3705c5251ff85
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit c3f3c94f48a8feb64393d15a759c9c607c0947e1
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Feb 28 20:50:20 2023 +0800
-
-videopassthrough: CB2 fix 2x rewind slow [1/1]
-
-PD#SWPL-105113
-
-Problem:
-if realtime pts not right it will block by
-omx framework.
-
-Solution:
-Call video mediasync in seek-based trickmode.
-
-Verify:
-ohm
-
-Change-Id: I0a872cc17d2c5b29118481cde088b465635d9a8f
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-15-15-35
+Release time: 2023-03-16-10-50
 
 ========================================
 
