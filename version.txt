@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.33-g61a3d0c
+Version: V3.16.34-g99196d6
 
 ========================================
 
 Git commit:
+commit 99196d669694a7f73d72dc04d898b6dea53cefb3
+Author: fengguang.yang <fengguang.yang@amlogic.com>
+Date:   Fri Dec 30 17:58:53 2022 +0800
+
+mediasync: CF1 add adjust pcr slope by video cache [3/4]
+
+PD#SWPL-98182
+
+Problem:
+add adjust pcr slope by video cache,
+make feature added in OTT-33833 back to trunk
+
+Solution:
+add adjust pcr slope by video cache in MediaSync.cpp
+
+Verify:
+verified on S905X4-AH212
+
+Change-Id: I779af8759b8ce832b477c38bcde0b610a2441641
+Signed-off-by: fengguang.yang <fengguang.yang@amlogic.com>
+
 commit 61a3d0c136bc93c8158a180ae80fec6aed24db0c
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Fri Mar 3 19:54:07 2023 +0800
@@ -200,31 +221,9 @@ S5
 Change-Id: I563518433231a9470ad2ef37c444b2b8fde60c25
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit d81255fb2d52493bd71d45996d4c49b22c77769a
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Dec 20 12:47:20 2022 +0000
-
-tsplayer: CB2 av no sync when play special ts [1/1]
-
-PD#SWPL-112169
-
-Problem:
-decoder is stuck for some time,
-resulting in buffer explosion,
-the ptsserver look up abnormally
-
-Solution:
-add reset mechanism
-
-Verify:
-SC2
-
-Change-Id: Iaf7138062d72c4638bae858ae817d20d8ade3a68
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-16-10-50
+Release time: 2023-03-17-22-19
 
 ========================================
 
