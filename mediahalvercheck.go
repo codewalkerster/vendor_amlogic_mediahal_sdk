@@ -34,12 +34,12 @@ func MediahalVerCheckMediahalPassthroughDefaults(ctx android.LoadHookContext) {
     } else {
         //fmt.Println("PassthroughDefaults sdkVersion:", sdkVersionInt)
     }
-    if sdkVersionInt < 30 {
+    if sdkVersionInt >= 30 {
         type props struct {
             Enabled  *bool
         }
         p := &props{}
-        p.Enabled = proptools.BoolPtr(false)
+        p.Enabled = proptools.BoolPtr(true)
         ctx.AppendProperties(p)
     }
 }

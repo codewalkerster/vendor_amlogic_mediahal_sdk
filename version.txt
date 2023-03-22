@@ -1,10 +1,137 @@
 =========RELEALSE NOTE=================
 
-Version: V3.16.34-g99196d6
+Version: V3.18.5-gaefa995
 
 ========================================
 
 Git commit:
+commit aefa99532537ae0568cfb94ea6abd485457ae26c
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Mar 16 20:04:40 2023 +0800
+
+mediasync: CB2 Fix audio stuttering. [1/1]
+
+PD#SWPL-109236
+
+Problem:
+Audio data underflow.
+
+Solution:
+Increase the buffer data when playback starts.
+Live streaming starts slow synchronization.
+
+Verify:
+T5W
+
+Change-Id: Ice6f29b92cc124575b298c4a8eae0723b1be43f5
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 446ed084683b90666afd785ce5de9ec4b19abf9e
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Mar 9 14:51:35 2023 +0800
+
+tsplayer: CB2 android U can`t build passthrough [1/1]
+
+PD#SWPL-114700
+
+Problem:
+android U can`t build passthrough lib.
+
+Solution:
+fix mediahalvercheck.go file
+
+Verify:
+ohm
+
+Change-Id: I33a66e6b341c76a1c0a0f0b036bc6df53db4facb
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit a72d0d2de7db94697c0c120886801492074ec2d7
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Mar 22 07:46:18 2023 +0000
+
+tsplayer: CB2 mCallback not delete when release [1/1]
+
+PD#TV-75217
+
+Problem:
+mCallback not delete when release
+
+Solution:
+mCallback need delete when release
+
+Verify:
+AM301
+
+Change-Id: I9e89b5d6e4fd54a8307432a4278be21ebb850c46
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 4707fe2ac5fd5951f2f7b607e5137ebbe4fbb638
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Mar 17 22:52:36 2023 +0800
+
+videodec: CB2 Fix video stuttering [1/1]
+
+PD#SWPL-111759
+
+Problem:
+The decoded video pts exception.
+
+Solution:
+Through the frame rate interval,
+the limit enters the logic of calculating PTS
+using only I frames.
+
+Verify:
+T5M
+
+Change-Id: I080b0b151ec2c1d5705d18f53390524e7e11e2dd
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 45d58ff4ccdd76a670f996fb77f9369edd56bc14
+Author: jin.yang <jin.yang@amlogic.com>
+Date:   Fri Mar 17 21:14:59 2023 +0800
+
+mediahal: CB2 To solve the c2 crash issue [2/2]
+
+PD#SWPL-109318
+
+Problem:
+Memory access out of bounds.
+The value of param.paramSize is too small.
+Since the data stored in tunnelEventParam's
+data member is 4 bytes, allocating only 1 byte
+of space is obviously insufficient.
+
+Solution:
+Updating the value of paramSize.
+
+Verify:
+Android T
+
+Change-Id: I137f66e4ff853f89a4f52c7acd241108fc608a32
+Signed-off-by: jin.yang <jin.yang@amlogic.com>
+
+commit 63ac414c214d9beb57c3f0ba63910b981d09fc84
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sun Mar 19 14:53:36 2023 +0800
+
+mediahal: CF2 mediahal release  [1/1]
+
+PD#SWPL-115857
+
+Problem:
+mediahal release
+
+Solution:
+release V3.16.34-g99196d6
+
+Verify:
+SC2
+
+Change-Id: I180d3424a0fb474072aa340bc259552cf2a3055c
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 99196d669694a7f73d72dc04d898b6dea53cefb3
 Author: fengguang.yang <fengguang.yang@amlogic.com>
 Date:   Fri Dec 30 17:58:53 2022 +0800
@@ -89,141 +216,9 @@ t5w
 Change-Id: I6fafc41de6ff01724873b856c8341a4bc98bd5eb
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit bf02e41631c0c839b08019b357109898c73775e7
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Feb 22 17:51:24 2023 +0800
-
-videodec: CB2 Fix video stuttering  [1/1]
-
-PD#IPTV-19821
-
-Problem:
-PTS error of the video.
-
-Solution:
-When the pts out of demux increase regularly
-and the video has B frames,
-then only the pts of I frames are used,
-and the other frames are calculated with durtion.
-
-Verify:
-SC2
-
-Change-Id: Ic678ff416c10438543ef85134cf79942155f57cb
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 374873cc4f5e75946c8d905ca6b88ab1bb801bda
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Mar 14 19:09:17 2023 +0800
-
-videodec: CB2 CtsMediaV2TestCases module 1 fail [3/3]
-
-PD#SWPL-115262
-
-Problem:
-run cts -m CtsMediaV2TestCases -t
-android.mediav2.cts.CodecDecoderSurfaceTest#
-testSimpleDecodeToSurface
-[19(OMX.amlogic.mpeg2.decoder.awesome2_video/mpeg2)] fail.
-
-
-
-Solution:
-add set di slt node api
-
-
-Verify:
-T5M
-
-Change-Id: I180696aa8748035a17e533b37cf4f73918af2cc9
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 74b68586d269361955b4938fb51e1f667ea74e1e
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Feb 28 11:19:50 2023 +0800
-
-mediasync: CB2 switch AD audio track, TV has silent output [1/1]
-
-PD#SWPL-105604
-
-Problem:
-A long time holded by audio causes silent output
-
-Solution:
-adjust the time to hold when getting an abnormal value
-
-Verify:
-ohm
-
-Change-Id: I04d99fb85b00ac798a1a6d959564ea2e20f90c13
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 4c706f15d7dfb404780816fab8c32b81f68849fc
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Mar 3 13:21:53 2023 +0800
-
-tsplayer: CB2 it will play stuck when using ES_MEMORY mode [1/1]
-
-PD#IPTV-20147
-
-Problem:
-it will play stuck when using ES_MEMORY mode,
-because the buffer will change to 0 before send to decoder.
-
-Solution:
-the function "write" return ok until Inputbufferdone.
-
-Verify:
-s5
-
-Change-Id: Iadda939375fd9ea9799de575b0a329fd86a50207
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit d395a652e466858d6ce7cd1c761346c9f4f06a29
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Mar 7 20:42:44 2023 +0800
-
-mediasync: CB2 dolby MAT/DDP/Passthrough output target fail. [1/3]
-
-PD#SWPL-114129
-
-Problem:
-dolby MAT/DDP/Passthrough output target fail
-
-Solution:
-1. slowsync enable flag need to sync to driver
-2. framerate need to re-calculate for interlaced or forced-interlaced stream
-3. special frame size stream need to enlarge cache
-
-Verify:
-verified on S905X4-AH212
-
-Change-Id: I6b2f33f9cbb9b93b87b34b02b7bb22c01a09091a
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 2baaae7ffdbe97144935ef0f86ade4cbcf215f87
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Jan 30 16:35:08 2023 +0800
-
-tsplayer: CB2 fix the COUNTER_ENABLED command setting [1/1]
-
-PD#IPTV-19575
-
-Problem:
-it cannot work when sending COUNTER_ENABLED command.
-
-Solution:
-fix the command setting after vda init
-
-Verify:
-S5
-
-Change-Id: I563518433231a9470ad2ef37c444b2b8fde60c25
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-17-22-19
+Release time: 2023-03-22-20-45
 
 ========================================
 
