@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.5-gaefa995
+Version: V3.18.6-g9984b6e
 
 ========================================
 
 Git commit:
+commit 9984b6ee14b4e3bb34d6a9471231ff4a51898966
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Mon Feb 20 16:17:26 2023 +0800
+
+resman: CF1 add resman in mediahal videodec [1/2]
+
+PD#SWPL-97785
+
+Problem:
+need add resman process in videodec
+
+Solution:
+add resman in mediahal videodec
+
+Verify:
+AH212
+
+Change-Id: I9638e054cfed59e9ed6ba82ccbecd749e8df0d19
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit aefa99532537ae0568cfb94ea6abd485457ae26c
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Thu Mar 16 20:04:40 2023 +0800
@@ -196,29 +216,9 @@ SC2
 Change-Id: I1511463f3eb734383395ff32a7e3d3efc1cae5be
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit a2db6d0a43239bc24c9738a1b66e7e3e4afa8e6d
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Mar 13 06:37:02 2023 +0000
-
-mediasync: CB2 switch AD audio tracks, av not sync [1/1]
-
-PD#SWPL-114073
-
-Problem:
-switch AD audio track, av not sync
-
-Solution:
-add hasaudio judgment in checkVideoFreeRun.
-
-Verify:
-t5w
-
-Change-Id: I6fafc41de6ff01724873b856c8341a4bc98bd5eb
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-22-20-45
+Release time: 2023-03-23-02-11
 
 ========================================
 

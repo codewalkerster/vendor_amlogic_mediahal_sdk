@@ -19,6 +19,7 @@
 #define AM_VIDEO_DEC_INIT_FLAG_CODEC2         1
 #define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE    2
 #define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE 4
+#define AM_VIDEO_DEC_INIT_FLAG_TSPLAYER 8
 
 typedef struct {
     /* video */
@@ -26,17 +27,17 @@ typedef struct {
     uint32_t    nVideoWidth;
     uint32_t    nVideoHeight;
     uint32_t    nFrameRate;
-    uint32_t   vFmt;
+    uint32_t    vFmt;
     uint32_t    drmMode;
     /* audio */
     uint32_t	apid;
     uint32_t    nChannels;
     uint32_t    nSampleRate;
-    uint32_t   aFmt;
+    uint32_t    aFmt;
     /* pcrid */
     uint32_t	pcrid;
     /* display */
-    uint32_t dispMode;
+    uint32_t    dispMode;
     uint32_t    nSidebandType;
     uint32_t    nSidebandId;
     uint32_t    nAvsyncMode;
@@ -49,6 +50,27 @@ typedef struct {
     uint32_t    nDecType;
     int32_t nVideoRecoveryValue;
 } init_param_t;
+
+typedef struct {
+    /*inherit old interface*/
+    char mime[64];
+    uint8_t* config;
+    uint32_t configLen;
+    bool secureMode;
+    bool useV4l2;
+    bool isTunnelMode;
+    int32_t flags;
+    /*decode info*/
+    int32_t dispMode;
+    int32_t pipelineMode;
+    int32_t extDecInfo;//reserved
+    int32_t resInfo1;
+    int32_t resInfo2;
+    /*resource manage info*/
+    char resAppName[64];
+    void (* resCallback)(void * resOpaque);
+    void* resOpaque;
+}video_dec_init_params;
 
 enum PictureFlag {
   PICTURE_FLAG_NONE = 0,
@@ -146,6 +168,9 @@ public:
 
     /* post and reply message */
     virtual bool postAndReplyMsg(AmlMessageBase *msg);
+
+    /*new interface for resman*/
+    virtual int32_t initialize(video_dec_init_params* initParams);
 };
 
 extern "C" AmVideoDecBase* AmVideoDec_create(AmVideoDecCallback* callback);
