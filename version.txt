@@ -1,10 +1,100 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.6-g9984b6e
+Version: V3.18.10-g2f2b69c
 
 ========================================
 
 Git commit:
+commit 2f2b69c5eb88c8f3328c111c37e1ce54674f3fb0
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Mar 17 14:29:02 2023 +0800
+
+videodec: CB2 not queue capture buffer at once after receive eos [2/2]
+
+PD#SWPL-114729
+
+Problem:
+output stream on after receive eos
+
+Solution:
+not queue capture buffer at once after receive eos
+
+Verify:
+ohm
+
+Change-Id: Ibcb277dec7281258204c0b259025377c0154302e
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 28ed10ee2b02a3a166e790f565c397fa1e49a3c4
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Mar 22 12:33:22 2023 +0800
+
+videodec: CB2 CtsMediaV2TestCases module 2 fail [1/1]
+
+PD#SWPL-116034
+
+Problem:
+Pts calculate error when flush done.
+interlace flag is not got.
+
+Solution:
+1. Get interlace flag when out count is 0 or 1.
+
+Verify:
+ohm
+
+Change-Id: I1715d0df1adf69e11a51b32d9daa0962fd6e9fc7
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 23624a8ab6dbee7e2fca772a2da6da42f9673092
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Mar 24 14:56:34 2023 +0800
+
+videodec: CB2 fix videodec buffer status not accurate issue [1/1]
+
+PD#SWPL-116713
+
+Problem:
+videodec buffer status not accurate due to not init
+
+Solution:
+fix videodec buffer status not accurate issue
+
+Verify:
+ohm
+
+Change-Id: I490bda8fe7f69ac4b87cdb2f208e6fd93982031e
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 4bd5f939cf79e3f94e57818a23b9a2f08819b6d1
+Merge: 9984b6e 95ba640
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Mon Mar 27 01:22:24 2023 -0700
+
+Merge "videodec: CB2 VDA use last bitstreamid specific stream [1/1]"
+
+commit 95ba640ce1719ee65e43eac7e6a0be92ef18007b
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Tue Mar 21 17:46:34 2023 +0800
+
+videodec: CB2 VDA use last bitstreamid specific stream [1/1]
+
+PD#SWPL-116208
+
+Problem:
+can not find bitstreamid when play some specific stream
+there are many frames in one packet
+
+Solution:
+use VDA use last bitstreamid in stream of many frames
+in one packet es data
+
+Verify:
+ohm
+
+Change-Id: Iae3d2a5f21c4e91e370c98ba6e71311879322dec
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
 commit 9984b6ee14b4e3bb34d6a9471231ff4a51898966
 Author: joy.rao <joy.rao@amlogic.com>
 Date:   Mon Feb 20 16:17:26 2023 +0800
@@ -108,117 +198,9 @@ T5M
 Change-Id: I080b0b151ec2c1d5705d18f53390524e7e11e2dd
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 45d58ff4ccdd76a670f996fb77f9369edd56bc14
-Author: jin.yang <jin.yang@amlogic.com>
-Date:   Fri Mar 17 21:14:59 2023 +0800
-
-mediahal: CB2 To solve the c2 crash issue [2/2]
-
-PD#SWPL-109318
-
-Problem:
-Memory access out of bounds.
-The value of param.paramSize is too small.
-Since the data stored in tunnelEventParam's
-data member is 4 bytes, allocating only 1 byte
-of space is obviously insufficient.
-
-Solution:
-Updating the value of paramSize.
-
-Verify:
-Android T
-
-Change-Id: I137f66e4ff853f89a4f52c7acd241108fc608a32
-Signed-off-by: jin.yang <jin.yang@amlogic.com>
-
-commit 63ac414c214d9beb57c3f0ba63910b981d09fc84
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sun Mar 19 14:53:36 2023 +0800
-
-mediahal: CF2 mediahal release  [1/1]
-
-PD#SWPL-115857
-
-Problem:
-mediahal release
-
-Solution:
-release V3.16.34-g99196d6
-
-Verify:
-SC2
-
-Change-Id: I180d3424a0fb474072aa340bc259552cf2a3055c
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 99196d669694a7f73d72dc04d898b6dea53cefb3
-Author: fengguang.yang <fengguang.yang@amlogic.com>
-Date:   Fri Dec 30 17:58:53 2022 +0800
-
-mediasync: CF1 add adjust pcr slope by video cache [3/4]
-
-PD#SWPL-98182
-
-Problem:
-add adjust pcr slope by video cache,
-make feature added in OTT-33833 back to trunk
-
-Solution:
-add adjust pcr slope by video cache in MediaSync.cpp
-
-Verify:
-verified on S905X4-AH212
-
-Change-Id: I779af8759b8ce832b477c38bcde0b610a2441641
-Signed-off-by: fengguang.yang <fengguang.yang@amlogic.com>
-
-commit 61a3d0c136bc93c8158a180ae80fec6aed24db0c
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Mar 3 19:54:07 2023 +0800
-
-tsplayer: CB2 Fix video stuttering  [1/2]
-
-PD#SWPL-111759
-
-Problem:
-Video has invalid PTS.
-
-Solution:
-Invalid PTS is calculated with durtion.
-
-Verify:
-T5M
-
-Change-Id: I58bfed19086bff3f62263ff82ff90a1edbcbf25f
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 653a3e8db7b52623d07da56b9c6d76e428a835b1
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Mar 7 20:32:22 2023 +0800
-
-mediasync: CB2 fix video freeze when entering timeshif. [1/1]
-
-PD#SWPL-112673
-
-Problem:
-During AV alignment, it entered the pause state,
-and did not continue alignment after resume,
-and directly played with Audio PTS as an anchor,
-so the video stuttered.
-
-Solution:
-After resume, resume after AV alignment at the start of playback.
-
-Verify:
-SC2
-
-Change-Id: I1511463f3eb734383395ff32a7e3d3efc1cae5be
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-23-02-11
+Release time: 2023-03-29-03-03
 
 ========================================
 
