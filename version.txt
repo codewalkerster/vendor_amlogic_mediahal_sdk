@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.10-g2f2b69c
+Version: V3.18.11-g2e85330
 
 ========================================
 
 Git commit:
+commit 2e853305fec07cc4e9ba0f7b388a9bc72365ea7a
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Mar 22 21:40:48 2023 +0800
+
+mediasync: CB1 fix playback is not smooth [1/2]
+
+PD#SWPL-112429
+
+Problem:
+The discontinue mechanism fails.
+
+Solution:
+Before resampling the audio output strategy,
+determine whether to discontinue.
+
+Verify:
+t5m
+
+Change-Id: I8b3ade4c588159777dbfaead48eacacea81e9910
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 2f2b69c5eb88c8f3328c111c37e1ce54674f3fb0
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri Mar 17 14:29:02 2023 +0800
@@ -176,31 +197,9 @@ AM301
 Change-Id: I9e89b5d6e4fd54a8307432a4278be21ebb850c46
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 4707fe2ac5fd5951f2f7b607e5137ebbe4fbb638
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Mar 17 22:52:36 2023 +0800
-
-videodec: CB2 Fix video stuttering [1/1]
-
-PD#SWPL-111759
-
-Problem:
-The decoded video pts exception.
-
-Solution:
-Through the frame rate interval,
-the limit enters the logic of calculating PTS
-using only I frames.
-
-Verify:
-T5M
-
-Change-Id: I080b0b151ec2c1d5705d18f53390524e7e11e2dd
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-29-03-03
+Release time: 2023-03-30-11-45
 
 ========================================
 
