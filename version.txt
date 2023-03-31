@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.11-g2e85330
+Version: V3.18.14-g7ccdebd
 
 ========================================
 
 Git commit:
+commit 7ccdebd6878048b8f1c074566f630f2783378cac
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu Mar 30 03:02:21 2023 +0000
+
+mediasync: CB2 eARC output is not smooth [2/2]
+
+PD#SWPL-113222
+
+Problem:
+audio adjust clock threshold is too low
+
+Solution:
+Increase the audio adjust clock threshold.
+
+Verify:
+t5m
+
+Change-Id: Ibd25382307efbe4821816c2c32f2d912661065fb
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit bf4449c0481d1c522f1c31a76bb95085831b33cb
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Mar 27 20:24:14 2023 +0800
+
+videopassthrough: CB2 fix DC off/on cause av not sync [1/1]
+
+PD#SWPL-114083
+
+Problem:
+OMX first dlopen libmediahal_passthrough.so cost much time
+
+Solution:
+strip videopassthrough lib
+
+Verify:
+ohm
+
+Change-Id: Ifba0050638f2e969956fcf0e42006adb6d0ddc36
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 98be78172db6d9de2f44efab9894b2159ee7025e
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Mar 21 20:16:03 2023 +0800
+
+videopassthrough: CB2 video with no sar info report wrong [2/2]
+
+PD#SWPL-114431
+
+Problem:
+some stream has no video sar info,report wrong
+video info.
+
+Solution:
+if video info is not right,not report.
+
+Verify:
+ohm
+
+Change-Id: Ic3478afa59831fcda333bac1a04b55bb5467644b
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 2e853305fec07cc4e9ba0f7b388a9bc72365ea7a
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Mar 22 21:40:48 2023 +0800
@@ -136,70 +197,9 @@ AH212
 Change-Id: I9638e054cfed59e9ed6ba82ccbecd749e8df0d19
 Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
-commit aefa99532537ae0568cfb94ea6abd485457ae26c
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Mar 16 20:04:40 2023 +0800
-
-mediasync: CB2 Fix audio stuttering. [1/1]
-
-PD#SWPL-109236
-
-Problem:
-Audio data underflow.
-
-Solution:
-Increase the buffer data when playback starts.
-Live streaming starts slow synchronization.
-
-Verify:
-T5W
-
-Change-Id: Ice6f29b92cc124575b298c4a8eae0723b1be43f5
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 446ed084683b90666afd785ce5de9ec4b19abf9e
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Mar 9 14:51:35 2023 +0800
-
-tsplayer: CB2 android U can`t build passthrough [1/1]
-
-PD#SWPL-114700
-
-Problem:
-android U can`t build passthrough lib.
-
-Solution:
-fix mediahalvercheck.go file
-
-Verify:
-ohm
-
-Change-Id: I33a66e6b341c76a1c0a0f0b036bc6df53db4facb
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit a72d0d2de7db94697c0c120886801492074ec2d7
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Mar 22 07:46:18 2023 +0000
-
-tsplayer: CB2 mCallback not delete when release [1/1]
-
-PD#TV-75217
-
-Problem:
-mCallback not delete when release
-
-Solution:
-mCallback need delete when release
-
-Verify:
-AM301
-
-Change-Id: I9e89b5d6e4fd54a8307432a4278be21ebb850c46
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-30-11-45
+Release time: 2023-03-31-15-55
 
 ========================================
 

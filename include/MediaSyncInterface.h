@@ -68,6 +68,7 @@ typedef enum {
     MEDIASYNC_KEY_AUDIO_SYNC_THRESHOLD,  //us
     MEDIASYNC_KEY_VIDEO_DURING_SLOW_SYNC,
     MEDIASYNC_KEY_VIDEO_FRAME_ADVANCE,
+    MEDIASYNC_KEY_AUDIO_EQUIPMENT,
     MEDIASYNC_KEY_MAX = 255,
 } mediasync_parameter;
 
@@ -129,6 +130,30 @@ typedef struct audioinfo{
     int cacheSize;
     int cacheDuration;
 }mediasync_audioinfo;
+
+typedef enum {
+    MEDIA_OUTPORT_SPEAKER = 0,
+    MEDIA_OUTPORT_HDMI_ARC = 1,
+    MEDIA_OUTPORT_HDMI = 2,
+    MEDIA_OUTPORT_SPDIF = 3,
+    MEDIA_OUTPORT_AUX_LINE = 4,
+    MEDIA_OUTPORT_HEADPHONE = 5,
+    MEDIA_OUTPORT_REMOTE_SUBMIX = 6,
+    MEDIA_OUTPORT_A2DP = 7,
+    MEDIA_OUTPORT_BT_SCO = 8,
+    MEDIA_OUTPORT_BT_SCO_HEADSET = 9,
+    MEDIA_OUTPORT_USB_HEADSET = 10,
+    MEDIA_OUTPORT_EARPIECE = 11,
+    MEDIA_OUTPORT_ANLG_DOCK_HEADSET = 12,
+    /*if the audio_hal_primary unsupport the output devices, we need to route to OUTPUT_NULL*/
+    MEDIA_OUTPORT_NULL = 254,
+    MEDIA_OUTPORT_MAX = 255,
+} audio_out_port;
+
+struct media_out_portinfo {
+    audio_out_port output_port;
+    int port_status;
+};
 
 struct mediasync_audio_queue_info{
     int64_t apts;
