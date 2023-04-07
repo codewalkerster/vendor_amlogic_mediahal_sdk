@@ -21,6 +21,23 @@
 #define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE 4
 #define AM_VIDEO_DEC_INIT_FLAG_TSPLAYER 8
 
+enum class InputCodec {
+  H264,
+  H265,
+  VP9,
+  AV1,
+  DVHE,
+  DVAV,
+  DVAV1,
+  MP2V,
+  MP4V,
+  MJPG,
+  AVS3,
+  AVS2,
+  AVS,
+  UNKNOWN = 0xff,
+};
+
 typedef struct {
     /* video */
     uint32_t    vpid;

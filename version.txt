@@ -1,10 +1,139 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.14-g7ccdebd
+Version: V3.18.20-g696e9ff
 
 ========================================
 
 Git commit:
+commit 696e9ffb003484bbb87c73d792e23dcaeff46d89
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Tue Apr 4 21:07:18 2023 +0800
+
+videodec: CF2 codec2 support avs3. [3/4]
+
+PD#SWPL-80360
+
+Problem:
+codec2 support avs3.
+
+Solution:
+codec2 support avs3.
+
+Verify:
+anemon
+
+Change-Id: I17dfc1b006a5ffbf5be3e026a36d8158cfee40ee
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit 3f7515e5948fe2f095ed81138c8336aa10f0f0c7
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Mon Apr 3 14:32:46 2023 +0800
+
+videodec: CB2 input buffer too small to playback 8k stream. [1/1]
+
+PD#SWPL-117370
+
+Problem:
+input buffer size is small for 8k stream.
+
+Solution:
+use 9M input buffer for 8k stream.
+
+Verify:
+ohm
+
+Change-Id: Ieaf342f8e67b40019309fe83115eb517d9d41064
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit 6f0922bf87c3f387dd87c8954112461f3436ac74
+Merge: 1b79438 ea4da90
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Tue Apr 4 02:48:41 2023 -0700
+
+Merge "videodec: CB2 VDA update valid bitstreamid and timestamp [1/1]"
+
+commit ea4da903babf067811513cb42762288ae4a95638
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Wed Mar 29 19:37:05 2023 +0800
+
+videodec: CB2 VDA update valid bitstreamid and timestamp [1/1]
+
+PD#SWPL-117571
+
+Problem:
+some erro out put pts will be dequeue
+
+Solution:
+1.only update valid lastbitstreamid and last timestamp
+2.use lastbitstreamid if dequeue invalid pts
+
+Verify:
+ohm
+
+Change-Id: I35d117ce3f9d640bdcfe7e89862e7c29f435e494
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
+commit 1b79438c37c9fdd38624f0e09127b41e04d4e411
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Thu Mar 30 22:18:42 2023 +0800
+
+mediasync: CB2 playback has lag. [1/1]
+
+PD#SWPL-116828
+
+Problem:
+audio commes too late, video start directly
+
+Solution:
+1.enlarge waiting time
+2.add statistic QueueinPts function
+
+Verify:
+verified on S905X4-AH212
+
+Change-Id: Ie363059f20321d789f571a463dd99cf22bedc1f7
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit ac765e95728686babdd5493f185d0134112ab660
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Fri Mar 31 17:56:03 2023 +0800
+
+secmemwrapper: CB2 Remove unnecessary tvp configuration [1/1]
+
+PD#SWPL-103836
+
+Problem:
+Remove unnecessary tvp configuration
+
+Solution:
+Remove unnecessary tvp configuration
+
+Verify:
+SC2
+
+Change-Id: Id4d635883f57a07034c9bcee2ba494fd2d3f4bbf
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 543c8cb516fc81520f63124458c18dcfe2040d2a
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Mar 22 11:08:49 2023 +0800
+
+mediasync: CB2 fix video bind too slow. [1/1]
+
+PD#SWPL-114231
+
+Problem:
+video bind too slow even after first audio frame comes.
+
+Solution:
+need add wait time after audio bind mediaysnc to wait.
+
+Verify:
+SC2
+
+Change-Id: I12badc164fe8aaa791dd4f2a22d86b40b8204c80
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 7ccdebd6878048b8f1c074566f630f2783378cac
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Thu Mar 30 03:02:21 2023 +0000
@@ -66,140 +195,9 @@ ohm
 Change-Id: Ic3478afa59831fcda333bac1a04b55bb5467644b
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 2e853305fec07cc4e9ba0f7b388a9bc72365ea7a
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Mar 22 21:40:48 2023 +0800
-
-mediasync: CB1 fix playback is not smooth [1/2]
-
-PD#SWPL-112429
-
-Problem:
-The discontinue mechanism fails.
-
-Solution:
-Before resampling the audio output strategy,
-determine whether to discontinue.
-
-Verify:
-t5m
-
-Change-Id: I8b3ade4c588159777dbfaead48eacacea81e9910
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 2f2b69c5eb88c8f3328c111c37e1ce54674f3fb0
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Mar 17 14:29:02 2023 +0800
-
-videodec: CB2 not queue capture buffer at once after receive eos [2/2]
-
-PD#SWPL-114729
-
-Problem:
-output stream on after receive eos
-
-Solution:
-not queue capture buffer at once after receive eos
-
-Verify:
-ohm
-
-Change-Id: Ibcb277dec7281258204c0b259025377c0154302e
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 28ed10ee2b02a3a166e790f565c397fa1e49a3c4
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Mar 22 12:33:22 2023 +0800
-
-videodec: CB2 CtsMediaV2TestCases module 2 fail [1/1]
-
-PD#SWPL-116034
-
-Problem:
-Pts calculate error when flush done.
-interlace flag is not got.
-
-Solution:
-1. Get interlace flag when out count is 0 or 1.
-
-Verify:
-ohm
-
-Change-Id: I1715d0df1adf69e11a51b32d9daa0962fd6e9fc7
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 23624a8ab6dbee7e2fca772a2da6da42f9673092
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Mar 24 14:56:34 2023 +0800
-
-videodec: CB2 fix videodec buffer status not accurate issue [1/1]
-
-PD#SWPL-116713
-
-Problem:
-videodec buffer status not accurate due to not init
-
-Solution:
-fix videodec buffer status not accurate issue
-
-Verify:
-ohm
-
-Change-Id: I490bda8fe7f69ac4b87cdb2f208e6fd93982031e
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 4bd5f939cf79e3f94e57818a23b9a2f08819b6d1
-Merge: 9984b6e 95ba640
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Mon Mar 27 01:22:24 2023 -0700
-
-Merge "videodec: CB2 VDA use last bitstreamid specific stream [1/1]"
-
-commit 95ba640ce1719ee65e43eac7e6a0be92ef18007b
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Tue Mar 21 17:46:34 2023 +0800
-
-videodec: CB2 VDA use last bitstreamid specific stream [1/1]
-
-PD#SWPL-116208
-
-Problem:
-can not find bitstreamid when play some specific stream
-there are many frames in one packet
-
-Solution:
-use VDA use last bitstreamid in stream of many frames
-in one packet es data
-
-Verify:
-ohm
-
-Change-Id: Iae3d2a5f21c4e91e370c98ba6e71311879322dec
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
-commit 9984b6ee14b4e3bb34d6a9471231ff4a51898966
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Mon Feb 20 16:17:26 2023 +0800
-
-resman: CF1 add resman in mediahal videodec [1/2]
-
-PD#SWPL-97785
-
-Problem:
-need add resman process in videodec
-
-Solution:
-add resman in mediahal videodec
-
-Verify:
-AH212
-
-Change-Id: I9638e054cfed59e9ed6ba82ccbecd749e8df0d19
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
 ========================================
 
-Release time: 2023-03-31-15-55
+Release time: 2023-04-07-15-15
 
 ========================================
 
