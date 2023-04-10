@@ -98,10 +98,11 @@ enum RESMAN_APP {
 };
 
 enum RESMAN_EVENT {
-    RESMAN_EVENT_REGISTER       = 0x1000,
-    RESMAN_EVENT_UNREGISTER,
-    RESMAN_EVENT_PREEMPT,
-    RESMAN_EVENT_STOP
+    RESMAN_EVENT_REGISTER		= 0x1000,
+    RESMAN_EVENT_UNREGISTER		= 0x1001,
+    RESMAN_EVENT_PREEMPT		= 0x1002,
+    RESMAN_EVENT_STOP			= 0x1003,
+    RESMAN_EVENT_RESREPORT		= 0x1004
 };
 
 bool resman_support(void);
@@ -109,17 +110,23 @@ int resman_init(const char *appname, int type);
 int resman_init_ext(const char *appname, int type, int prio);
 int resman_close(int handle);
 int resman_setappinfo(int handle, struct app_info *appinfo);
-bool resman_acquire_para(int handle, int resType, const unsigned int time_out, int preempt, const char *arg);//Timeout unit: milliseconds
+bool resman_acquire_para(int handle, int resType, const unsigned int time_out,
+    int preempt, const char *arg);//Timeout unit: milliseconds
 bool resman_acquire(int handle, int resType);
-bool resman_acquire_para_ext(int handle, const char *resName, const unsigned int time_out, int preempt, const char *arg);
+bool resman_acquire_para_ext(int handle, const char *resName,
+    const unsigned int time_out, int preempt, const char *arg);
 int resman_release(int handle, int resType);
 int resman_release_ext(int handle, const char * resName);
 int resman_release_all(int handle);
 int resman_query(int handle, struct resman_para *res_status);
-int resman_query_ext(int handle, struct resman_para *res_status, const char * resName);
-bool resman_acquire_wait(int handle, int resType, const unsigned int time_out);//Timeout unit: milliseconds
+int resman_query_ext(int handle, struct resman_para *res_status,
+    const char * resName);
+bool resman_acquire_wait(int handle, int resType,
+    const unsigned int time_out);//Timeout unit: milliseconds
 bool resman_resource_support(const char* resName);
-int resman_register(int fd, void (* handler)(void *),  void *opaque);
+int resman_register(int fd, void (* handler)(void *), void *opaque);
+int resman_add_handler_and_resreports(int fd, void (* handler)(void *),
+    void (* report)(void *), void *opaque);
 void resman_unregister(int fd);
 void resman_stop_thread();
 int resman_estimate_size(int format, uint32_t width, uint32_t height);

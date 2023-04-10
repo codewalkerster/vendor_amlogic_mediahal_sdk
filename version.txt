@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.20-g696e9ff
+Version: V3.18.21-g91a0978
 
 ========================================
 
 Git commit:
+commit 91a09789e3632da9e573be09a13ab61be96168cc
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Fri Dec 23 16:33:32 2022 +0800
+
+resman: CF2 add media resource event support [1/1]
+
+PD#SWPL-117920
+
+Problem:
+add media resource event support
+
+Solution:
+1. add media resource event support.
+
+Verify:
+SC2
+
+Change-Id: If3c956ae9754fb9b85133466c77c2264772dfb25
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
 commit 696e9ffb003484bbb87c73d792e23dcaeff46d89
 Author: yang.liu1 <yang.liu1@amlogic.com>
 Date:   Tue Apr 4 21:07:18 2023 +0800
@@ -174,30 +194,9 @@ ohm
 Change-Id: Ifba0050638f2e969956fcf0e42006adb6d0ddc36
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 98be78172db6d9de2f44efab9894b2159ee7025e
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Mar 21 20:16:03 2023 +0800
-
-videopassthrough: CB2 video with no sar info report wrong [2/2]
-
-PD#SWPL-114431
-
-Problem:
-some stream has no video sar info,report wrong
-video info.
-
-Solution:
-if video info is not right,not report.
-
-Verify:
-ohm
-
-Change-Id: Ic3478afa59831fcda333bac1a04b55bb5467644b
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-10-10-42
+Release time: 2023-04-10-19-35
 
 ========================================
 
