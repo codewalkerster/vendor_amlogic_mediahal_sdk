@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.21-g91a0978
+Version: V3.18.22-g6a5a648
 
 ========================================
 
 Git commit:
+commit 6a5a648f3af5eb384b2d5bb748c62986ed45ee00
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Apr 10 19:59:47 2023 +0800
+
+videodec: CB2 AVS2/AVS3 clear dmabuf add 0xff padding [1/1]
+
+PD#SWPL-118883
+
+Problem:
+AVS2/AVS3 clear dmabuf add 0xff padding
+
+Solution:
+AVS2/AVS3 clear dmabuf add 0xff padding
+
+Verify:
+S5
+
+Change-Id: Ifb3c723aecd642c6afc2e46018caa605aed25007
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 91a09789e3632da9e573be09a13ab61be96168cc
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Fri Dec 23 16:33:32 2022 +0800
@@ -174,29 +194,9 @@ t5m
 Change-Id: Ibd25382307efbe4821816c2c32f2d912661065fb
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit bf4449c0481d1c522f1c31a76bb95085831b33cb
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Mar 27 20:24:14 2023 +0800
-
-videopassthrough: CB2 fix DC off/on cause av not sync [1/1]
-
-PD#SWPL-114083
-
-Problem:
-OMX first dlopen libmediahal_passthrough.so cost much time
-
-Solution:
-strip videopassthrough lib
-
-Verify:
-ohm
-
-Change-Id: Ifba0050638f2e969956fcf0e42006adb6d0ddc36
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-10-19-35
+Release time: 2023-04-12-14-22
 
 ========================================
 
