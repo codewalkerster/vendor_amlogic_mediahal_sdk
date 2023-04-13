@@ -1,10 +1,58 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.22-g6a5a648
+Version: V3.18.24-g7fde905
 
 ========================================
 
 Git commit:
+commit 7fde905d964fb21e6bebb1db15c07038c73f9499
+Merge: ee09044 eabe0aa
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Thu Apr 13 05:53:46 2023 -0700
+
+Merge "videodec: CB1 adjust videodec thread priority for codec2 [1/1]"
+
+commit eabe0aa70bad9b9b024269cdf0a82479f6ce08f9
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Apr 11 15:55:49 2023 +0800
+
+videodec: CB1 adjust videodec thread priority for codec2 [1/1]
+
+PD#SWPL-118961
+
+Problem:
+NTS EP cases drop & freeze
+
+Solution:
+adjust videodec/tunnelrenderer thread priority for codec2
+
+Verify:
+Y4D
+
+Change-Id: Ie727e859e895db11d3d9985245101b0a3d997d43
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit ee09044c901ce2044ece8ecd864bb132c02b2d05
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Feb 20 14:46:27 2023 +0800
+
+mediasync: CB2 fix onlyaudio caching in fcc mode [1/1]
+
+PD#SWPL-112058
+
+Problem:
+it will display "weak signal" for a moment
+when changing to only audio channel.
+
+Solution:
+using pcr time to adjust audio es updating.
+
+Verify:
+ohm
+
+Change-Id: I6e27dbf93cc31f06ffae354df8a980ede277fd32
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 6a5a648f3af5eb384b2d5bb748c62986ed45ee00
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Mon Apr 10 19:59:47 2023 +0800
@@ -134,69 +182,9 @@ verified on S905X4-AH212
 Change-Id: Ie363059f20321d789f571a463dd99cf22bedc1f7
 Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit ac765e95728686babdd5493f185d0134112ab660
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Fri Mar 31 17:56:03 2023 +0800
-
-secmemwrapper: CB2 Remove unnecessary tvp configuration [1/1]
-
-PD#SWPL-103836
-
-Problem:
-Remove unnecessary tvp configuration
-
-Solution:
-Remove unnecessary tvp configuration
-
-Verify:
-SC2
-
-Change-Id: Id4d635883f57a07034c9bcee2ba494fd2d3f4bbf
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 543c8cb516fc81520f63124458c18dcfe2040d2a
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Mar 22 11:08:49 2023 +0800
-
-mediasync: CB2 fix video bind too slow. [1/1]
-
-PD#SWPL-114231
-
-Problem:
-video bind too slow even after first audio frame comes.
-
-Solution:
-need add wait time after audio bind mediaysnc to wait.
-
-Verify:
-SC2
-
-Change-Id: I12badc164fe8aaa791dd4f2a22d86b40b8204c80
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 7ccdebd6878048b8f1c074566f630f2783378cac
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu Mar 30 03:02:21 2023 +0000
-
-mediasync: CB2 eARC output is not smooth [2/2]
-
-PD#SWPL-113222
-
-Problem:
-audio adjust clock threshold is too low
-
-Solution:
-Increase the audio adjust clock threshold.
-
-Verify:
-t5m
-
-Change-Id: Ibd25382307efbe4821816c2c32f2d912661065fb
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-12-14-22
+Release time: 2023-04-13-21-19
 
 ========================================
 
