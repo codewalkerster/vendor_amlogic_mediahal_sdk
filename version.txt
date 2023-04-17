@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.24-g7fde905
+Version: V3.18.25-g91150bd
 
 ========================================
 
 Git commit:
+commit 91150bde6d3a3e0d572f528d1c53f2d4accf33da
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Thu Apr 13 09:22:27 2023 +0000
+
+videodec: CB2 Secure Playback Block in videodec flush [1/1]
+
+PD#SWPL-118969
+
+Problem:
+Secure Playback Block in videodec flush
+
+Solution:
+Adjust secure stream input flow chart prevent stream out block
+when dequeued from decoder.
+
+Verify:
+ohm
+
+Change-Id: I8139959b06d5c10a2637eaffd34c79b5867c79d3
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
 commit 7fde905d964fb21e6bebb1db15c07038c73f9499
 Merge: ee09044 eabe0aa
 Author: Jian Wang <jian.wang@amlogic.com>
@@ -161,30 +182,9 @@ ohm
 Change-Id: I35d117ce3f9d640bdcfe7e89862e7c29f435e494
 Signed-off-by: hui.lin <hui.lin@amlogic.com>
 
-commit 1b79438c37c9fdd38624f0e09127b41e04d4e411
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Thu Mar 30 22:18:42 2023 +0800
-
-mediasync: CB2 playback has lag. [1/1]
-
-PD#SWPL-116828
-
-Problem:
-audio commes too late, video start directly
-
-Solution:
-1.enlarge waiting time
-2.add statistic QueueinPts function
-
-Verify:
-verified on S905X4-AH212
-
-Change-Id: Ie363059f20321d789f571a463dd99cf22bedc1f7
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-13-21-19
+Release time: 2023-04-17-12-09
 
 ========================================
 
