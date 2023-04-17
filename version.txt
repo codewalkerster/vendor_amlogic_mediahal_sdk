@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.25-g91150bd
+Version: V3.18.26-gb3eed2d
 
 ========================================
 
 Git commit:
+commit b3eed2df55b7d8850cd07a74e50bfcfbf7b2b15c
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Apr 14 17:04:17 2023 +0800
+
+videodec: CB2 clean pending outbuffer when reset [2/2]
+
+PD#SWPL-114729
+
+Problem:
+videodec send unused buffer which just pending in videodec and
+have not reused by omx, then omx get an untracked picture buffer
+
+Solution:
+clean pending outbuffer when reset
+
+Verify:
+T5D
+
+Change-Id: Idf2fc893cbebf956ff87112ee441b6dfda5492ce
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 91150bde6d3a3e0d572f528d1c53f2d4accf33da
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Thu Apr 13 09:22:27 2023 +0000
@@ -161,30 +182,9 @@ Date:   Tue Apr 4 02:48:41 2023 -0700
 
 Merge "videodec: CB2 VDA update valid bitstreamid and timestamp [1/1]"
 
-commit ea4da903babf067811513cb42762288ae4a95638
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Wed Mar 29 19:37:05 2023 +0800
-
-videodec: CB2 VDA update valid bitstreamid and timestamp [1/1]
-
-PD#SWPL-117571
-
-Problem:
-some erro out put pts will be dequeue
-
-Solution:
-1.only update valid lastbitstreamid and last timestamp
-2.use lastbitstreamid if dequeue invalid pts
-
-Verify:
-ohm
-
-Change-Id: I35d117ce3f9d640bdcfe7e89862e7c29f435e494
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-17-12-09
+Release time: 2023-04-17-17-15
 
 ========================================
 
