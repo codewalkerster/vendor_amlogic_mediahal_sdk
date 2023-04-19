@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.26-gb3eed2d
+Version: V3.18.27-gc90fadb
 
 ========================================
 
 Git commit:
+commit c90fadb007d9b52ad3712a6c7fe46229b5ca2ff0
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Apr 3 06:01:46 2023 +0000
+
+mediasync: CB2 mediasync crash. [1/1]
+
+PD#SWPL-119480
+
+Problem:
+Call mediasync pointers that have been released.
+
+Solution:
+Adds pointer protection
+
+Verify:
+SC2
+
+Change-Id: I164892b6e12170c186b75f20155194006c808600
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit b3eed2df55b7d8850cd07a74e50bfcfbf7b2b15c
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri Apr 14 17:04:17 2023 +0800
@@ -175,16 +195,9 @@ ohm
 Change-Id: Ieaf342f8e67b40019309fe83115eb517d9d41064
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit 6f0922bf87c3f387dd87c8954112461f3436ac74
-Merge: 1b79438 ea4da90
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Tue Apr 4 02:48:41 2023 -0700
-
-Merge "videodec: CB2 VDA update valid bitstreamid and timestamp [1/1]"
-
 ========================================
 
-Release time: 2023-04-17-17-15
+Release time: 2023-04-19-07-33
 
 ========================================
 
