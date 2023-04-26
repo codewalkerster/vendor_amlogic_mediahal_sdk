@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.27-gc90fadb
+Version: V3.18.28-gb890904
 
 ========================================
 
 Git commit:
+commit b89090426ba0ccb2decae243e8f3d87ecf1b4eb5
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Thu Apr 20 17:34:01 2023 +0800
+
+videodec: CF2 amuvm get metadata failed [2/2]
+
+PD#SWPL-119103
+
+Problem:
+kernel uvm update META_DATA_SIZE from 256 to 512, cause
+UVM_IOC_GET_METADATA magic changed, codec2 call ioctl
+UVM_IOC_GET_METADATA failed.
+
+Solution:
+try amuvm_getmetadata_v2 if error code is -1.
+
+Verify:
+Android T
+
+Change-Id: I4f260a6d9739bb82f0b401f8d47079c6ee53f87e
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit c90fadb007d9b52ad3712a6c7fe46229b5ca2ff0
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Mon Apr 3 06:01:46 2023 +0000
@@ -175,29 +197,9 @@ anemon
 Change-Id: I17dfc1b006a5ffbf5be3e026a36d8158cfee40ee
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit 3f7515e5948fe2f095ed81138c8336aa10f0f0c7
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Mon Apr 3 14:32:46 2023 +0800
-
-videodec: CB2 input buffer too small to playback 8k stream. [1/1]
-
-PD#SWPL-117370
-
-Problem:
-input buffer size is small for 8k stream.
-
-Solution:
-use 9M input buffer for 8k stream.
-
-Verify:
-ohm
-
-Change-Id: Ieaf342f8e67b40019309fe83115eb517d9d41064
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-19-07-33
+Release time: 2023-04-26-12-15
 
 ========================================
 
