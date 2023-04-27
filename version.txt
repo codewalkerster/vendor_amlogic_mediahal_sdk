@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.28-gb890904
+Version: V3.18.31-g7c510db
 
 ========================================
 
 Git commit:
+commit 7c510dbbeafdcbf5b1e580b804194631d75fa50f
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Mon Apr 24 10:27:48 2023 +0800
+
+videodec: CB1 CtsMediaV2TestCases 1 failure [1/2]
+
+PD#SWPL-120462
+
+Problem:
+1 android.mediav2.cts.CodecDecoderSurfaceTest
+test error.
+
+Solution:
+1. Not clear "pending_output_buffer_" value,this buf need send to
+decoder again when flush end.
+
+Verify:
+ohm
+
+Change-Id: I50ac000919975e0100e12ae03659f2dee4ab70b0
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 4a92c891a53e87653712d14bac6d0667d51a5468
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Tue Apr 25 18:46:07 2023 +0800
+
+videodec: CB2 input buffer too small to playback 8k stream. [1/1]
+
+PD#OTT-41186
+
+Problem:
+input buffer size is small for 8k stream.
+
+Solution:
+use 9M input buffer for 8k stream on android R.
+
+Verify:
+R
+
+Change-Id: I65f15883498ce7ddd8ed6f59030fbf0df933b4ec
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit f7c58814df417cbe3ba713d5432a0204b9eb54ef
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Wed Apr 26 07:48:33 2023 +0000
+
+videodec: CB2 fix get uvm metadata failed [1/1]
+
+PD#SWPL-119103
+
+Problem:
+get uvm data return value is error.
+
+Solution:
+return default return value if get data failed.
+
+Verify:
+Android T
+
+Change-Id: I3393561a87f55554c8ac97b28bd373a33ff43aee
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit b89090426ba0ccb2decae243e8f3d87ecf1b4eb5
 Author: yang.liu1 <yang.liu1@amlogic.com>
 Date:   Thu Apr 20 17:34:01 2023 +0800
@@ -137,69 +199,9 @@ ohm
 Change-Id: I6e27dbf93cc31f06ffae354df8a980ede277fd32
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 6a5a648f3af5eb384b2d5bb748c62986ed45ee00
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Apr 10 19:59:47 2023 +0800
-
-videodec: CB2 AVS2/AVS3 clear dmabuf add 0xff padding [1/1]
-
-PD#SWPL-118883
-
-Problem:
-AVS2/AVS3 clear dmabuf add 0xff padding
-
-Solution:
-AVS2/AVS3 clear dmabuf add 0xff padding
-
-Verify:
-S5
-
-Change-Id: Ifb3c723aecd642c6afc2e46018caa605aed25007
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 91a09789e3632da9e573be09a13ab61be96168cc
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Fri Dec 23 16:33:32 2022 +0800
-
-resman: CF2 add media resource event support [1/1]
-
-PD#SWPL-117920
-
-Problem:
-add media resource event support
-
-Solution:
-1. add media resource event support.
-
-Verify:
-SC2
-
-Change-Id: If3c956ae9754fb9b85133466c77c2264772dfb25
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 696e9ffb003484bbb87c73d792e23dcaeff46d89
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Tue Apr 4 21:07:18 2023 +0800
-
-videodec: CF2 codec2 support avs3. [3/4]
-
-PD#SWPL-80360
-
-Problem:
-codec2 support avs3.
-
-Solution:
-codec2 support avs3.
-
-Verify:
-anemon
-
-Change-Id: I17dfc1b006a5ffbf5be3e026a36d8158cfee40ee
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-26-12-15
+Release time: 2023-04-27-15-32
 
 ========================================
 
