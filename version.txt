@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.32-g3327f34
+Version: V3.18.34-gfbc9adf
 
 ========================================
 
 Git commit:
+commit fbc9adf2fbd9128ab0e1f51758410d5d1efda6e3
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu May 4 07:31:21 2023 +0000
+
+tsplayer: CB2 aspect ratio is fail [1/1]
+
+PD#SWPL-121563
+
+Problem:
+no aspect ratio value
+
+Solution:
+callback aspect ratio value
+
+Verify:
+t5d
+
+Change-Id: I96f6c8340bb0d88129ba6c2d04b5fd02817d775c
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 1dde1a5019a501f162e9a52718fc858dc954d388
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Apr 26 13:42:59 2023 +0800
+
+mediasync: CB2 reset not update status correctly. [1/2]
+
+PD#SWPL-120458
+
+Problem:
+reset not update status correctly.
+
+Solution:
+1.Audio MediaSync gets the latest pause state
+from the bottom layer after a restart.
+2.update hasaudio everytime call reset inferface.
+
+Verify:
+SC2
+
+Change-Id: I382e1a5e3dc52e7605998af35f492a9069b27230
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 3327f343dc01b04aeb38f759cd56f260124ff87e
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Sat Apr 15 11:25:46 2023 +0000
@@ -171,36 +213,9 @@ ohm
 Change-Id: I8139959b06d5c10a2637eaffd34c79b5867c79d3
 Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
-commit 7fde905d964fb21e6bebb1db15c07038c73f9499
-Merge: ee09044 eabe0aa
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Thu Apr 13 05:53:46 2023 -0700
-
-Merge "videodec: CB1 adjust videodec thread priority for codec2 [1/1]"
-
-commit eabe0aa70bad9b9b024269cdf0a82479f6ce08f9
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Apr 11 15:55:49 2023 +0800
-
-videodec: CB1 adjust videodec thread priority for codec2 [1/1]
-
-PD#SWPL-118961
-
-Problem:
-NTS EP cases drop & freeze
-
-Solution:
-adjust videodec/tunnelrenderer thread priority for codec2
-
-Verify:
-Y4D
-
-Change-Id: Ie727e859e895db11d3d9985245101b0a3d997d43
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-04-27-10-10
+Release time: 2023-05-08-16-23
 
 ========================================
 
