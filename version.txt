@@ -1,10 +1,80 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.34-gfbc9adf
+Version: V3.18.37-gc82d0de
 
 ========================================
 
 Git commit:
+commit c82d0dedac4339ee5432db8b530612f089359cb7
+Merge: 353d7e0 1c861f6
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Mon May 8 02:15:16 2023 -0700
+
+Merge "videodec: CB2 fix get uvm allocate display buffer failed. [1/1]"
+
+commit 353d7e0284d583219fda6d6bf8fac1cf760a904f
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Apr 12 14:12:01 2023 +0800
+
+mediasync: CB2 video plays stuck periodically [1/1]
+
+PD#IPTV-19975
+PD#IPTV-20836
+
+Problem:
+video will be stuck for a while
+when video is discontinue but audio is not.
+
+Solution:
+audio sets to discontinue when jumps back.
+
+Verify:
+s5
+
+Change-Id: I5ab6b13227f19552f3fe4031870a9c37c7f6f944
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 42e8c7745639726f266dfdc1f94609cc43c7e55c
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Apr 12 14:03:32 2023 +0800
+
+videodec: CB2 add set_trick_mode for i_only frame to calculate pts [1/2]
+
+PD#IPTV-20881
+
+Problem:
+can not get pts for some videos because the frame's offset is too big
+
+Solution:
+add set_trick_mode for i_only in ptsserver to get pts,
+if it can not get pts, it will choose the smallest offset.
+
+Verify:
+s5
+
+Change-Id: I93470c0534ccd1f28a772a9c2207fd1255b1003a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 1c861f64c9b8545de33694e7e34eb34df4dce221
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Mon May 8 06:30:39 2023 +0000
+
+videodec: CB2 fix get uvm allocate display buffer failed. [1/1]
+
+PD#SWPL-122262
+
+Problem:
+get uvm allocate display buffer failed.
+
+Solution:
+the uvm allocate buffer param error.
+
+Verify:
+Android T
+
+Change-Id: I54ed0e7c5c2e9ed94b5cf333f29a27a383b00b45
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit fbc9adf2fbd9128ab0e1f51758410d5d1efda6e3
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Thu May 4 07:31:21 2023 +0000
@@ -129,93 +199,9 @@ Android T
 Change-Id: I3393561a87f55554c8ac97b28bd373a33ff43aee
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit b89090426ba0ccb2decae243e8f3d87ecf1b4eb5
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Thu Apr 20 17:34:01 2023 +0800
-
-videodec: CF2 amuvm get metadata failed [2/2]
-
-PD#SWPL-119103
-
-Problem:
-kernel uvm update META_DATA_SIZE from 256 to 512, cause
-UVM_IOC_GET_METADATA magic changed, codec2 call ioctl
-UVM_IOC_GET_METADATA failed.
-
-Solution:
-try amuvm_getmetadata_v2 if error code is -1.
-
-Verify:
-Android T
-
-Change-Id: I4f260a6d9739bb82f0b401f8d47079c6ee53f87e
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit c90fadb007d9b52ad3712a6c7fe46229b5ca2ff0
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Apr 3 06:01:46 2023 +0000
-
-mediasync: CB2 mediasync crash. [1/1]
-
-PD#SWPL-119480
-
-Problem:
-Call mediasync pointers that have been released.
-
-Solution:
-Adds pointer protection
-
-Verify:
-SC2
-
-Change-Id: I164892b6e12170c186b75f20155194006c808600
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit b3eed2df55b7d8850cd07a74e50bfcfbf7b2b15c
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Apr 14 17:04:17 2023 +0800
-
-videodec: CB2 clean pending outbuffer when reset [2/2]
-
-PD#SWPL-114729
-
-Problem:
-videodec send unused buffer which just pending in videodec and
-have not reused by omx, then omx get an untracked picture buffer
-
-Solution:
-clean pending outbuffer when reset
-
-Verify:
-T5D
-
-Change-Id: Idf2fc893cbebf956ff87112ee441b6dfda5492ce
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 91150bde6d3a3e0d572f528d1c53f2d4accf33da
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Thu Apr 13 09:22:27 2023 +0000
-
-videodec: CB2 Secure Playback Block in videodec flush [1/1]
-
-PD#SWPL-118969
-
-Problem:
-Secure Playback Block in videodec flush
-
-Solution:
-Adjust secure stream input flow chart prevent stream out block
-when dequeued from decoder.
-
-Verify:
-ohm
-
-Change-Id: I8139959b06d5c10a2637eaffd34c79b5867c79d3
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
 ========================================
 
-Release time: 2023-05-08-16-23
+Release time: 2023-05-09-10-46
 
 ========================================
 
