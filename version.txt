@@ -1,10 +1,94 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.37-gc82d0de
+Version: V3.18.41-gb74eed9
 
 ========================================
 
 Git commit:
+commit b74eed9bb0141587f9db5212a2df90bae729351a
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri May 5 17:23:24 2023 +0800
+
+mediasync: CB2 av not sync when cpu loading too high. [1/2]
+
+PD#SWPL-120265
+
+Problem:
+when cpu loading is high, mediacodec create and configure
+too slow.
+
+Solution:
+1.add a v wait time from 800ms to 2000ms
+2.init tunnelrenderer ahead of videopassthrough create
+
+Verify:
+SC2
+
+Change-Id: I36f4917497b1c295e00b3c2e1181e1a76a899fa1
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit c9740d0048f9399dc13428ed6831921099f19565
+Author: peter wang <peter.wang@amlogic.com>
+Date:   Tue Apr 25 11:23:54 2023 +0800
+
+TunnelRenderer: CF1 change VideoTunnelRenderer sync logic [2/2]
+
+PD#SWPL-117976
+
+Problem:
+VideoTunnelRenderer will show frame slowly if audio apts stoped
+
+Solution:
+check the frame realtime by MediaSync each time while process it
+
+Verify:
+test on T5D
+
+Change-Id: I715086fe543bc17a6d5cf55c0c42b8af1ec3a3bd
+Signed-off-by: peter wang <peter.wang@amlogic.com>
+
+commit 23d57b5bbaa5c5fd1ce78fad01b990ded5db949a
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Sat May 6 11:38:14 2023 +0800
+
+tsplayer: CB2 android q build passthrough error [1/1]
+
+PD#SWPL-114700
+
+Problem:
+android q build passthrough error.
+
+Solution:
+fix mediahalvercheck.go file.
+
+Verify:
+ohm
+
+Change-Id: Id0024b28d35a7eaad9d90437cce421ca1aafe68a
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 6269f5a5ca985cd9a8deed178bbe02d9a985cf2f
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Wed May 10 14:50:09 2023 +0800
+
+resman: CB2 fix invalid parameter for resman   [1/1]
+
+PD#SH-13367
+
+Problem:
+Parameter may have unreasonable risks and bring in pthread_mutex_lock or
+pthread_cond_signal crash
+
+Solution:
+There is a risk of resman_start_thread finishing before resman_thread
+are executed. Fix this.
+
+Verify:
+AN400
+
+Change-Id: I70ce7a5788de2a3377189bd889d73bcd68f1bb25
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit c82d0dedac4339ee5432db8b530612f089359cb7
 Merge: 353d7e0 1c861f6
 Author: Jian Wang <jian.wang@amlogic.com>
@@ -117,91 +201,9 @@ SC2
 Change-Id: I382e1a5e3dc52e7605998af35f492a9069b27230
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 3327f343dc01b04aeb38f759cd56f260124ff87e
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Sat Apr 15 11:25:46 2023 +0000
-
-videodec: CF2 Support secure stream in dynamic free [1/1]
-
-PD#SWPL-103836
-
-Problem:
-Support secure stream in dynamic free
-
-Solution:
-1.Support secure stream in dynamic free
-
-Verify:
-S905X4
-
-Change-Id: I7302f3c699df0fb1015544ddaa201eb3b8ddd020
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 7c510dbbeafdcbf5b1e580b804194631d75fa50f
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Apr 24 10:27:48 2023 +0800
-
-videodec: CB1 CtsMediaV2TestCases 1 failure [1/2]
-
-PD#SWPL-120462
-
-Problem:
-1 android.mediav2.cts.CodecDecoderSurfaceTest
-test error.
-
-Solution:
-1. Not clear "pending_output_buffer_" value,this buf need send to
-decoder again when flush end.
-
-Verify:
-ohm
-
-Change-Id: I50ac000919975e0100e12ae03659f2dee4ab70b0
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 4a92c891a53e87653712d14bac6d0667d51a5468
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Tue Apr 25 18:46:07 2023 +0800
-
-videodec: CB2 input buffer too small to playback 8k stream. [1/1]
-
-PD#OTT-41186
-
-Problem:
-input buffer size is small for 8k stream.
-
-Solution:
-use 9M input buffer for 8k stream on android R.
-
-Verify:
-R
-
-Change-Id: I65f15883498ce7ddd8ed6f59030fbf0df933b4ec
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit f7c58814df417cbe3ba713d5432a0204b9eb54ef
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Wed Apr 26 07:48:33 2023 +0000
-
-videodec: CB2 fix get uvm metadata failed [1/1]
-
-PD#SWPL-119103
-
-Problem:
-get uvm data return value is error.
-
-Solution:
-return default return value if get data failed.
-
-Verify:
-Android T
-
-Change-Id: I3393561a87f55554c8ac97b28bd373a33ff43aee
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2023-05-09-10-46
+Release time: 2023-05-16-13-48
 
 ========================================
 
