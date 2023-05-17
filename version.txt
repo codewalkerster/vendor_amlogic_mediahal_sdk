@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.41-gb74eed9
+Version: V3.18.43-gea34cf8
 
 ========================================
 
 Git commit:
+commit ea34cf80c7037d0f2924d503a4a9a382e5e7946f
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri May 12 18:16:14 2023 +0800
+
+tunnelrenderer: CB2 fix avc tunnel seek initial peek fail [1/1]
+
+PD#SWPL-123058
+
+Problem:
+android.media.decoder.cts.DecodeOnlyTest#
+testTunneledPerfectSeekInitialPeekOnAvc fails
+
+Solution:
+optimization android peek feature
+
+Verify:
+adt4
+
+Change-Id: Ieb0db92234140a23b9423cb17cc925e83e52e328
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 9cae8cff8cf9875cf4a1b28f5be0969b0fffee5d
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Thu May 4 09:45:09 2023 +0800
+
+resman: CF2 Add Diagnostics upon resource event  [1/1]
+
+PD#SWPL-107219
+
+Problem:
+Add Diagnostics upon resource event
+
+Solution:
+1. Add RESMAN_APP_DIAGNOSTICS = 101.
+2. Fixed the resreport callback lost issue in resman_remove_fd()
+
+Verify:
+SC2
+
+Change-Id: Ib629369007385685363c27082acd460986bcc285
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
 commit b74eed9bb0141587f9db5212a2df90bae729351a
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Fri May 5 17:23:24 2023 +0800
@@ -159,51 +201,9 @@ Android T
 Change-Id: I54ed0e7c5c2e9ed94b5cf333f29a27a383b00b45
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit fbc9adf2fbd9128ab0e1f51758410d5d1efda6e3
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu May 4 07:31:21 2023 +0000
-
-tsplayer: CB2 aspect ratio is fail [1/1]
-
-PD#SWPL-121563
-
-Problem:
-no aspect ratio value
-
-Solution:
-callback aspect ratio value
-
-Verify:
-t5d
-
-Change-Id: I96f6c8340bb0d88129ba6c2d04b5fd02817d775c
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 1dde1a5019a501f162e9a52718fc858dc954d388
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Apr 26 13:42:59 2023 +0800
-
-mediasync: CB2 reset not update status correctly. [1/2]
-
-PD#SWPL-120458
-
-Problem:
-reset not update status correctly.
-
-Solution:
-1.Audio MediaSync gets the latest pause state
-from the bottom layer after a restart.
-2.update hasaudio everytime call reset inferface.
-
-Verify:
-SC2
-
-Change-Id: I382e1a5e3dc52e7605998af35f492a9069b27230
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-05-16-13-48
+Release time: 2023-05-17-11-43
 
 ========================================
 
