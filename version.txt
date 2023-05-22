@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.43-gea34cf8
+Version: V3.18.45-gbc44ae1
 
 ========================================
 
 Git commit:
+commit bc44ae1f99a44c16b3c0cbeaf12f8bf9eed87267
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue May 16 02:15:29 2023 +0000
+
+tsplayer: CB2 update license declarations [1/1]
+
+PD#SWPL-121314
+
+Problem:
+need clear license.
+
+Solution:
+clear license declarations.
+
+Verify:
+AH212
+
+Change-Id: I64b0279be43886ef23904b35657f5b463c5374a2
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit ad359137ea6c40dcf81c0b67742bec1c78829969
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Thu May 18 03:34:56 2023 +0000
+
+videodec: CB2 Secure playback wrong condition lead stream in block [1/1]
+
+PD#SWPL-123961
+
+Problem:
+Fast Playback case fail Frequency
+
+Solution:
+Correct wrong condition for secure stream in flow control lead playback
+maybe block or frame drop.
+
+Verify:
+t5m
+
+Change-Id: I0eb7de03b8a6ec557843c7f50f740761390465de
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
 commit ea34cf80c7037d0f2924d503a4a9a382e5e7946f
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri May 12 18:16:14 2023 +0800
@@ -160,50 +201,9 @@ s5
 Change-Id: I5ab6b13227f19552f3fe4031870a9c37c7f6f944
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 42e8c7745639726f266dfdc1f94609cc43c7e55c
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Apr 12 14:03:32 2023 +0800
-
-videodec: CB2 add set_trick_mode for i_only frame to calculate pts [1/2]
-
-PD#IPTV-20881
-
-Problem:
-can not get pts for some videos because the frame's offset is too big
-
-Solution:
-add set_trick_mode for i_only in ptsserver to get pts,
-if it can not get pts, it will choose the smallest offset.
-
-Verify:
-s5
-
-Change-Id: I93470c0534ccd1f28a772a9c2207fd1255b1003a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 1c861f64c9b8545de33694e7e34eb34df4dce221
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Mon May 8 06:30:39 2023 +0000
-
-videodec: CB2 fix get uvm allocate display buffer failed. [1/1]
-
-PD#SWPL-122262
-
-Problem:
-get uvm allocate display buffer failed.
-
-Solution:
-the uvm allocate buffer param error.
-
-Verify:
-Android T
-
-Change-Id: I54ed0e7c5c2e9ed94b5cf333f29a27a383b00b45
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2023-05-17-11-43
+Release time: 2023-05-22-14-05
 
 ========================================
 

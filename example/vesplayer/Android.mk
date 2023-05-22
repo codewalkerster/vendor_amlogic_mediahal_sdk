@@ -16,7 +16,7 @@ LOCAL_SHARED_LIBRARIES := libdl
 
 LOCAL_VENDOR_MODULE := true
 
-LOCAL_LICENSE_KINDS := SPDX-license-identifier-GPL SPDX-license-identifier-GPL-2.0 legacy_unencumbered legacy_proprietary
+LOCAL_LICENSE_KINDS := legacy_unencumbered legacy_proprietary
 
 LOCAL_LICENSE_CONDITIONS := restricted unencumbered proprietary by_exception_only
 LOCAL_NOTICE_FILE := $(LOCAL_PATH)/../../LICENSE

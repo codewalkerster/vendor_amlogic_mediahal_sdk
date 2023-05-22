@@ -1,8 +1,10 @@
 /*
- * resourcemanage.h
+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
  *
- * Copyright (C) 2019 Amlogic, Inc. All rights reserved.
+ * This source code is subject to the terms and conditions defined in the
+ * file 'LICENSE' which is part of this source code package.
  *
+ * Description:
  */
 
 #ifndef _RESOURCE_MANAGE_H_
