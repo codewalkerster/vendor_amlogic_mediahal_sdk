@@ -1,10 +1,57 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.45-gbc44ae1
+Version: V3.18.47-gc70ad75
 
 ========================================
 
 Git commit:
+commit c70ad7545e40660ac4a9a3e0ea0c498291b8ff88
+Merge: 211b01a 6aff9cf
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Mon May 22 02:18:06 2023 -0700
+
+Merge "videodec: CB2 adjust priority to optimization cpu loading [1/1]"
+
+commit 6aff9cf8394643abad81ab18c17990d8fd748e99
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Apr 19 14:52:03 2023 +0800
+
+videodec: CB2 adjust priority to optimization cpu loading [1/1]
+
+PD#SWPL-124220
+
+Problem:
+adjust videodec and tunnelrender priority
+
+Solution:
+adjust videodec and tunnelrender priority
+
+Verify:
+ohm
+
+Change-Id: Ia369997cc93c0ca7134ebd85072f82dcbf101fef
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 211b01aa9ae5e100fa35d59bf249b25e6ebfd832
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed May 17 01:32:32 2023 +0800
+
+mediahal: CB2 fix android U mediahal compile err [1/1]
+
+PD#SWPL-123645
+
+Problem:
+android U check compile error more strict
+
+Solution:
+fix all compile error
+
+Verify:
+SC2
+
+Change-Id: Icb993c90b6f5787a31e6e41946977f5caee566fb
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit bc44ae1f99a44c16b3c0cbeaf12f8bf9eed87267
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Tue May 16 02:15:29 2023 +0000
@@ -14,10 +61,10 @@ tsplayer: CB2 update license declarations [1/1]
 PD#SWPL-121314
 
 Problem:
-need clear license.
+need clear GPL license.
 
 Solution:
-clear license declarations.
+clear GPL license declarations.
 
 Verify:
 AH212
@@ -150,60 +197,9 @@ ohm
 Change-Id: Id0024b28d35a7eaad9d90437cce421ca1aafe68a
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 6269f5a5ca985cd9a8deed178bbe02d9a985cf2f
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Wed May 10 14:50:09 2023 +0800
-
-resman: CB2 fix invalid parameter for resman   [1/1]
-
-PD#SH-13367
-
-Problem:
-Parameter may have unreasonable risks and bring in pthread_mutex_lock or
-pthread_cond_signal crash
-
-Solution:
-There is a risk of resman_start_thread finishing before resman_thread
-are executed. Fix this.
-
-Verify:
-AN400
-
-Change-Id: I70ce7a5788de2a3377189bd889d73bcd68f1bb25
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit c82d0dedac4339ee5432db8b530612f089359cb7
-Merge: 353d7e0 1c861f6
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Mon May 8 02:15:16 2023 -0700
-
-Merge "videodec: CB2 fix get uvm allocate display buffer failed. [1/1]"
-
-commit 353d7e0284d583219fda6d6bf8fac1cf760a904f
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Apr 12 14:12:01 2023 +0800
-
-mediasync: CB2 video plays stuck periodically [1/1]
-
-PD#IPTV-19975
-PD#IPTV-20836
-
-Problem:
-video will be stuck for a while
-when video is discontinue but audio is not.
-
-Solution:
-audio sets to discontinue when jumps back.
-
-Verify:
-s5
-
-Change-Id: I5ab6b13227f19552f3fe4031870a9c37c7f6f944
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-05-22-14-05
+Release time: 2023-05-23-02-25
 
 ========================================
 
