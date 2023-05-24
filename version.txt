@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.47-gc70ad75
+Version: V3.18.48-gc3fe627
 
 ========================================
 
 Git commit:
+commit c3fe6278d577676d68b37d4233580af009d61460
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon May 22 16:01:28 2023 +0800
+
+videopassthrough: CB2 CBS set omx2tunnelmode to false [1/1]
+
+PD#SWPL-123078
+
+Problem:
+hotplug the signal line,audio and video out of sync
+
+Solution:
+set omx2tunnelmode to false
+
+Verify:
+SC2
+
+Change-Id: Ib8c5372e1f9e37f7854169e2ac924616fb11ed31
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit c70ad7545e40660ac4a9a3e0ea0c498291b8ff88
 Merge: 211b01a 6aff9cf
 Author: Jian Wang <jian.wang@amlogic.com>
@@ -177,29 +197,9 @@ test on T5D
 Change-Id: I715086fe543bc17a6d5cf55c0c42b8af1ec3a3bd
 Signed-off-by: peter wang <peter.wang@amlogic.com>
 
-commit 23d57b5bbaa5c5fd1ce78fad01b990ded5db949a
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Sat May 6 11:38:14 2023 +0800
-
-tsplayer: CB2 android q build passthrough error [1/1]
-
-PD#SWPL-114700
-
-Problem:
-android q build passthrough error.
-
-Solution:
-fix mediahalvercheck.go file.
-
-Verify:
-ohm
-
-Change-Id: Id0024b28d35a7eaad9d90437cce421ca1aafe68a
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-05-23-02-25
+Release time: 2023-05-24-07-40
 
 ========================================
 
