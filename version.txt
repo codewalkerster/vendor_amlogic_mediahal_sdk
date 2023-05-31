@@ -1,10 +1,94 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.48-gc3fe627
+Version: V3.18.52-g942339c
 
 ========================================
 
 Git commit:
+commit 942339ca2b3197a7a50865ad7b542318101a55b8
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed May 24 15:27:55 2023 +0800
+
+videodec: CB1 Fixed the seek exception after PVR pause.  [1/1]
+
+PD#SWPL-123859
+
+Problem:
+trick mode:PAUSE_NEXT and PAUSE
+set i only mode to decoder.
+
+Solution:
+trick mode :PAUSE_NEX and PAUSE do not need to
+set i only to decoder.
+
+Verify:
+SC2
+
+Change-Id: I20bbc167d6f75d915317651164fe77430b69a9f5
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 19b8035c6a1577494a9961683a14146b59b9329f
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon May 22 20:36:31 2023 +0800
+
+videodec: CB1 Fixed the stress test out of sync.  [1/1]
+
+PD#SWPL-124238
+
+Problem:
+ptsserver enters logic using I-frame pts.
+
+Solution:
+Dynamically determine whether the PTS output of Demux is invalid.
+
+Verify:
+SC2
+
+Change-Id: Ie852612399857ca59ca68b7d4125eeaddf5bce08
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit f3452a3bd165b62340cc499c14b4bec8714ac47a
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Wed May 17 07:40:27 2023 +0000
+
+securevdec: CB2 Enable tvp async for multi tvp range platform [1/1]
+
+PD#SWPL-119005
+
+Problem:
+Enable tvp async for support multi tvp range platform
+
+Solution:
+Enable tvp async for support multi tvp range platform avoid
+tvp enable lead cma memory change block codec2 function call.
+
+Verify:
+ohm
+
+Change-Id: I79ffe74b4a1489d977b77bb3c0636fb26fe70c98
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 2377ca4aaf441dec6dc035bdf591ab4996f25a12
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Apr 13 16:33:59 2023 +0800
+
+tsplayer: CB2 fix the long time for audio stoping [1/1]
+
+PD#OTT-38864
+PD#SWPL-121099
+
+Problem:
+In PVR scenarios, it will takes a long time to seek continually
+
+Solution:
+reduce the sleep time in thread
+
+Verify:
+ohm
+
+Change-Id: Ic0c10c7ed02b8445d48e67ba1754eec0cb0be99b
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit c3fe6278d577676d68b37d4233580af009d61460
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Mon May 22 16:01:28 2023 +0800
@@ -113,93 +197,9 @@ t5m
 Change-Id: I0eb7de03b8a6ec557843c7f50f740761390465de
 Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
-commit ea34cf80c7037d0f2924d503a4a9a382e5e7946f
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri May 12 18:16:14 2023 +0800
-
-tunnelrenderer: CB2 fix avc tunnel seek initial peek fail [1/1]
-
-PD#SWPL-123058
-
-Problem:
-android.media.decoder.cts.DecodeOnlyTest#
-testTunneledPerfectSeekInitialPeekOnAvc fails
-
-Solution:
-optimization android peek feature
-
-Verify:
-adt4
-
-Change-Id: Ieb0db92234140a23b9423cb17cc925e83e52e328
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 9cae8cff8cf9875cf4a1b28f5be0969b0fffee5d
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Thu May 4 09:45:09 2023 +0800
-
-resman: CF2 Add Diagnostics upon resource event  [1/1]
-
-PD#SWPL-107219
-
-Problem:
-Add Diagnostics upon resource event
-
-Solution:
-1. Add RESMAN_APP_DIAGNOSTICS = 101.
-2. Fixed the resreport callback lost issue in resman_remove_fd()
-
-Verify:
-SC2
-
-Change-Id: Ib629369007385685363c27082acd460986bcc285
-Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
-commit b74eed9bb0141587f9db5212a2df90bae729351a
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri May 5 17:23:24 2023 +0800
-
-mediasync: CB2 av not sync when cpu loading too high. [1/2]
-
-PD#SWPL-120265
-
-Problem:
-when cpu loading is high, mediacodec create and configure
-too slow.
-
-Solution:
-1.add a v wait time from 800ms to 2000ms
-2.init tunnelrenderer ahead of videopassthrough create
-
-Verify:
-SC2
-
-Change-Id: I36f4917497b1c295e00b3c2e1181e1a76a899fa1
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit c9740d0048f9399dc13428ed6831921099f19565
-Author: peter wang <peter.wang@amlogic.com>
-Date:   Tue Apr 25 11:23:54 2023 +0800
-
-TunnelRenderer: CF1 change VideoTunnelRenderer sync logic [2/2]
-
-PD#SWPL-117976
-
-Problem:
-VideoTunnelRenderer will show frame slowly if audio apts stoped
-
-Solution:
-check the frame realtime by MediaSync each time while process it
-
-Verify:
-test on T5D
-
-Change-Id: I715086fe543bc17a6d5cf55c0c42b8af1ec3a3bd
-Signed-off-by: peter wang <peter.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-05-24-07-40
+Release time: 2023-05-31-02-15
 
 ========================================
 
