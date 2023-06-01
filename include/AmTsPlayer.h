@@ -108,6 +108,12 @@ typedef struct {
     am_tsplayer_av_info_state av_flag;  // Information acquisition flags for audio and video
 } am_tsplayer_state_t;
 
+typedef struct {
+    bool_t useOsd;
+    uint32_t width;
+    uint32_t height;
+    int32_t  reserved[2];
+}am_tsplayer_osd_info;
 
 /*Callback event mask*/
 #define AM_TSPLAYER_EVENT_TYPE_PTS_MASK            (1 << AM_TSPLAYER_EVENT_TYPE_PTS)
