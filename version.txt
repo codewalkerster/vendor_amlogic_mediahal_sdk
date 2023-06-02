@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.56-g6f01071
+Version: V3.18.58-gc43e07b
 
 ========================================
 
 Git commit:
+commit c43e07b98a0d19c74a6f6f80e249f4fc38ce19fe
+Author: peter wang <peter.wang@amlogic.com>
+Date:   Thu Jun 1 10:12:17 2023 +0000
+
+videodec: CB1 fix native crash at videodec after seek [1/1]
+
+PD#SWPL-125338
+
+Problem:
+native crash at libmediahal_videodec.so after seek
+
+Solution:
+clear mFrameQueueInfo when reset
+
+Verify:
+test on ar301
+
+Change-Id: I3829c3f0104a3c5dd356e7009246a7a060a19918
+Signed-off-by: peter wang <peter.wang@amlogic.com>
+
+commit 1b9bfa2de9d2c6344e9a5641be148ac22040e414
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu May 18 10:28:14 2023 +0800
+
+mediasync: CB2 fix audioclock aligned value [1/1]
+
+PD#IPTV-21634
+
+Problem:
+video will hold for a while when switching channel.
+
+Solution:
+fix audioclock aligned value for audio_arrived status.
+
+Verify:
+s5
+
+Change-Id: Ibb23553d8ac1e9dffb54195c980ddf74d045f9af
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 6f01071e04d20d98575a6649e6a6e4851bdcf2f5
 Author: joy.rao <joy.rao@amlogic.com>
 Date:   Thu Apr 20 13:39:37 2023 +0800
@@ -169,36 +209,9 @@ ohm
 Change-Id: Ic0c10c7ed02b8445d48e67ba1754eec0cb0be99b
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit c3fe6278d577676d68b37d4233580af009d61460
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon May 22 16:01:28 2023 +0800
-
-videopassthrough: CB2 CBS set omx2tunnelmode to false [1/1]
-
-PD#SWPL-123078
-
-Problem:
-hotplug the signal line,audio and video out of sync
-
-Solution:
-set omx2tunnelmode to false
-
-Verify:
-SC2
-
-Change-Id: Ib8c5372e1f9e37f7854169e2ac924616fb11ed31
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit c70ad7545e40660ac4a9a3e0ea0c498291b8ff88
-Merge: 211b01a 6aff9cf
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Mon May 22 02:18:06 2023 -0700
-
-Merge "videodec: CB2 adjust priority to optimization cpu loading [1/1]"
-
 ========================================
 
-Release time: 2023-06-01-16-07
+Release time: 2023-06-02-10-39
 
 ========================================
 
