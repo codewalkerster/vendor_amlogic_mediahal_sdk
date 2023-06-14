@@ -1,217 +1,195 @@
 =========RELEALSE NOTE=================
 
-Version: V3.18.58-gc43e07b
+Version: V3.20.8-g04b337c
 
 ========================================
 
 Git commit:
-commit c43e07b98a0d19c74a6f6f80e249f4fc38ce19fe
-Author: peter wang <peter.wang@amlogic.com>
-Date:   Thu Jun 1 10:12:17 2023 +0000
+commit 04b337c6743edf7a2b071fa26c4c861dd11cde2d
+Merge: bd80047 82f0693
+Author: peng wu <peng.wu@amlogic.com>
+Date:   Wed Jun 14 01:08:01 2023 -0700
 
-videodec: CB1 fix native crash at videodec after seek [1/1]
+Merge "tunnelrender: CB1 fix tunnel mode cannot check pattern issue [1/1]"
 
-PD#SWPL-125338
+commit 82f0693c54633909790a6d176c913a5e7c77b6ad
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Jun 14 14:50:33 2023 +0800
 
-Problem:
-native crash at libmediahal_videodec.so after seek
+tunnelrender: CB1 fix tunnel mode cannot check pattern issue [1/1]
 
-Solution:
-clear mFrameQueueInfo when reset
-
-Verify:
-test on ar301
-
-Change-Id: I3829c3f0104a3c5dd356e7009246a7a060a19918
-Signed-off-by: peter wang <peter.wang@amlogic.com>
-
-commit 1b9bfa2de9d2c6344e9a5641be148ac22040e414
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu May 18 10:28:14 2023 +0800
-
-mediasync: CB2 fix audioclock aligned value [1/1]
-
-PD#IPTV-21634
+PD#SWPL-128272
 
 Problem:
-video will hold for a while when switching channel.
+tunnel mode cannot check pattern
 
 Solution:
-fix audioclock aligned value for audio_arrived status.
+fix tunnel mode cannot check pattern issue
 
 Verify:
-s5
+T5M
 
-Change-Id: Ibb23553d8ac1e9dffb54195c980ddf74d045f9af
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+Change-Id: I1776519d7d44b93ded209534eaff6825a81176f3
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 6f01071e04d20d98575a6649e6a6e4851bdcf2f5
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Thu Apr 20 13:39:37 2023 +0800
+commit bd80047ea449d4bf99cdee68e35ef0bfe7e73c45
+Author: peixing.mai <peixing.mai@amlogic.com>
+Date:   Thu Jun 1 12:45:28 2023 +0000
 
-resman: CB2 set a reasonable initial value for fd [1/1]
+tsplayer: CB2 Quickly switch the sound track,the sound is not smooth [1/1]
 
-PD#OTT-39086
+PD#SWPL-108287
 
 Problem:
-wrong initial values lead to confusion in pipeline management
+1.Rapid switching of audio tracks leads to abnormal stream control
+and video caching with too much data
 
 Solution:
-Set -1 for fd array initial value
+1.Increase the maximum limit for cached data.
 
 Verify:
-S905X2
+T5D
 
-Change-Id: If89a413ca6d870639b4e72b5b3b2d2155875473d
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
+Change-Id: Ice5b1850df07e45b37ef949cc501b27b0998f61d
+Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
 
-commit fcdb3579c385c5e73a96d4f0d3521ee867f82550
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Jun 1 12:25:27 2023 +0800
+commit e0b56633bec853565fc6ddd27a873768c77ff1c0
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Sat May 6 08:50:34 2023 +0000
 
-tsplayer: CB2 fix compiling error [1/1]
+videodec: CF1 codec2 support triple write mode. [2/2]
 
-PD#IPTV-21074
+PD#SWPL-118193
 
 Problem:
-compile fail in AndroidS
+support hardware P010.
 
 Solution:
-fix comiling error
+1.add perporty ro.vendor.platform.support.hardware.p010.
+2.set triple write mode if the tream is P010.
 
 Verify:
-s5
+T3x
 
-Change-Id: I9b2480685a4c2bbea8d56a09602846602f61f8c5
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+Change-Id: Ifa9fc4ec3567f4b378900c6fc8d6ee4088c85c0a
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit 7c9d00652bc5fb467337bf47eccd0dbd35cada42
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Thu Dec 8 11:22:36 2022 +0800
+commit 6a59a2da3fda8f0d78381c8a9e5713fdf9e75268
+Author: qiuping.zhou <qiuping.zhou@amlogic.com>
+Date:   Fri May 12 14:55:14 2023 +0800
 
-videodec: CF1 fix cloud game latency [1/4]
+tsplayer: CF1 support audio vivid [1/1]
 
-PD#SWPL-119588
+PD#IPTV-21631
 
 Problem:
-cloud game decoder test fail, latency too large
+support audio vivid
 
 Solution:
-force SendPicture when receive output, not check inputbuffer done
+support audio vivid
 
 Verify:
-T7C
+S5
 
-Change-Id: I64d53fee79a252da768254153f791bd5ffaf251e
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
+Change-Id: I3b1f87ff1c112837cb226c26307ba9a7c18c136a
+Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
 
-commit 211e69f229dd683bd66bd4e3cbaff4fb4f119f2b
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon May 8 16:33:17 2023 +0800
+commit c0aec4c47660ab71df4d0df7ebe522d544f1d7ce
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Thu May 25 14:56:23 2023 +0800
 
-videodec: CB2 video shows not clear using osd [1/1]
+mediasync: CB2 video playback lags after multiple loops. [1/1]
 
-PD#IPTV-21074
+PD#SWPL-124745
 
 Problem:
-VR video shows not clear using osd
+DiscontinueProcess don't consider the gap between
+audioframeInfo.frameSystemTime and curSystime..
+Accumulation of the gap from every loop playback leads to lag.
 
 Solution:
-use a big size to set buffer for ionvideo
+1. consider the gap between audioframeInfo.frameSystemTime and curSystime.
+2. enable framecontrol.
 
 Verify:
-s5
+verified on S905Y4-AH222
 
-Change-Id: I8618e7ef8b44db1f2affb3d86d66df412b91d973
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+Change-Id: I694b5f5fe12c075c082e28f20e1a48925b70fa56
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit 942339ca2b3197a7a50865ad7b542318101a55b8
+commit 483163428a59db0888bf548da1915630261d53f8
 Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed May 24 15:27:55 2023 +0800
+Date:   Wed Jan 4 14:05:33 2023 +0800
 
-videodec: CB1 Fixed the seek exception after PVR pause.  [1/1]
+tsplayer: CB2  Fixed PVR playback abnormality.  [1/1]
 
-PD#SWPL-123859
+PD#SWPL-126235
 
 Problem:
-trick mode:PAUSE_NEXT and PAUSE
-set i only mode to decoder.
+Demux may not throw ES data in a timely manner.
 
 Solution:
-trick mode :PAUSE_NEX and PAUSE do not need to
-set i only to decoder.
+If DEMUX has updated New PTS when playback starts,
+more than 4s cache, do not inject TS data temporarily,
+and wait for DEMUX to throw ES data.
 
 Verify:
 SC2
 
-Change-Id: I20bbc167d6f75d915317651164fe77430b69a9f5
+Change-Id: I2dd2359391031621fb32d35edadec7471a02cb8c
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 19b8035c6a1577494a9961683a14146b59b9329f
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon May 22 20:36:31 2023 +0800
+commit d1ba7a794bf24085d733ea4f94572a3dc3240237
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Jun 5 02:16:01 2023 +0000
 
-videodec: CB1 Fixed the stress test out of sync.  [1/1]
+tsplayer: CB2 not enough mem for dmx. [1/1]
 
-PD#SWPL-124238
-
-Problem:
-ptsserver enters logic using I-frame pts.
-
-Solution:
-Dynamically determine whether the PTS output of Demux is invalid.
-
-Verify:
-SC2
-
-Change-Id: Ie852612399857ca59ca68b7d4125eeaddf5bce08
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit f3452a3bd165b62340cc499c14b4bec8714ac47a
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Wed May 17 07:40:27 2023 +0000
-
-securevdec: CB2 Enable tvp async for multi tvp range platform [1/1]
-
-PD#SWPL-119005
+PD#OTT-41438
 
 Problem:
-Enable tvp async for support multi tvp range platform
+not enough mem for dmx size
 
 Solution:
-Enable tvp async for support multi tvp range platform avoid
-tvp enable lead cma memory change block codec2 function call.
+when flush VideoTunnelDisplay, not qbuf v4lvideo
 
 Verify:
-ohm
+x4-r
 
-Change-Id: I79ffe74b4a1489d977b77bb3c0636fb26fe70c98
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+Change-Id: I38ab32ed86ab955b118d71cc7280c6d679683c5f
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 2377ca4aaf441dec6dc035bdf591ab4996f25a12
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Apr 13 16:33:59 2023 +0800
+commit df64285c40ddb27ec2fd29757bd05570e6b05ef1
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Jun 6 16:51:22 2023 +0800
 
-tsplayer: CB2 fix the long time for audio stoping [1/1]
+videodec: CB2 close frameinfo staticis default [1/1]
 
-PD#OTT-38864
-PD#SWPL-121099
+PD#SWPL-127136
 
 Problem:
-In PVR scenarios, it will takes a long time to seek continually
+omx crash when test  CtsMediaTestCases
+android.media.cts.MediaRandomTest
 
 Solution:
-reduce the sleep time in thread
+close frameinfo staticis default
 
 Verify:
-ohm
+T5M
 
-Change-Id: Ic0c10c7ed02b8445d48e67ba1754eec0cb0be99b
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+Change-Id: I4adbbe557cff3ad4462b71ebf74f61795d3227af
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 8d803ebddaeabba30496c2d6adb4c6f0ee8d12d2
+Merge: 4a364c7 68333ea
+Author: peng wu <peng.wu@amlogic.com>
+Date:   Mon Jun 5 04:35:52 2023 -0700
+
+Merge "videodec: CB2 update correct pending outbuffer status [1/1]"
 
 ========================================
 
-Release time: 2023-06-02-10-39
+Release time: 2023-06-14-16-29
 
 ========================================
 
