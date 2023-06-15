@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.8-g04b337c
+Version: V3.20.9-g61c39fc
 
 ========================================
 
 Git commit:
+commit 61c39fccb76e0fece4e9f8f0174d0459266ed9ab
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Apr 17 17:45:45 2023 +0800
+
+tsplayer: CB1 add es splice feature. [2/3]
+
+PD#SWPL-94559
+
+Problem:
+in splice es buffer mode,playback will not sync.
+
+Solution:
+send all es buffer to decoder.
+
+Verify:
+SC2
+
+Change-Id: Idc326f3fd6e1731f43c6a8dcd53486e993f85eec
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 04b337c6743edf7a2b071fa26c4c861dd11cde2d
 Merge: bd80047 82f0693
 Author: peng wu <peng.wu@amlogic.com>
@@ -180,16 +200,9 @@ T5M
 Change-Id: I4adbbe557cff3ad4462b71ebf74f61795d3227af
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 8d803ebddaeabba30496c2d6adb4c6f0ee8d12d2
-Merge: 4a364c7 68333ea
-Author: peng wu <peng.wu@amlogic.com>
-Date:   Mon Jun 5 04:35:52 2023 -0700
-
-Merge "videodec: CB2 update correct pending outbuffer status [1/1]"
-
 ========================================
 
-Release time: 2023-06-14-16-29
+Release time: 2023-06-15-20-47
 
 ========================================
 
