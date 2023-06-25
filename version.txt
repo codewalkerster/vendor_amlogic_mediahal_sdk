@@ -1,10 +1,76 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.9-g61c39fc
+Version: V3.20.12-gb9ab58d
 
 ========================================
 
 Git commit:
+commit b9ab58d9577590b2cfba38a53e40321193e1ae6b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jun 20 15:53:34 2023 +0800
+
+mediasync: CB2  Fixed leaking sound in trick mode. [1/1]
+
+PD#SWPL-128394
+
+Problem:
+After setting trick mode (PAUSE_NEXT),
+libdvr has a certain probability of using
+the pause() function slows down.
+Causes sound leakage.
+
+Solution:
+After trick mode (PAUSE_NEXT),
+audio outputs the hold strategy.
+
+Verify:
+T5M
+
+Change-Id: I808b1191d30b8e1ae7d65b6a927aae768390b934
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 045d2483c93fda648a462c38eb8738306fa693d7
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jun 13 20:25:06 2023 +0800
+
+mediasync: CB2 Fixed only video not smooth. [1/1]
+
+PD#SWPL-127743
+
+Problem:
+The pts discontinue time out exception occurs only
+when the video is played.
+
+Solution:
+Only when the video is playing,
+the vpts will be re-anchored after the discontinue.
+
+Verify:
+T5M
+
+Change-Id: Icff808e8e21946069ca9dcd1cac851593e090155
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 0e4987861dbcb08a92f2232a72b5c17ab8d22563
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon May 22 20:09:33 2023 +0800
+
+videodec: CB2 update ins/outs status when resolution change [1/1]
+
+PD#SWPL-128366
+
+Problem:
+buffer status not accurate when resolution change
+
+Solution:
+update correct ins/outs status when resolution change
+
+Verify:
+ohm
+
+Change-Id: I39456ed530989124385a41446a14dd1c533bd692
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 61c39fccb76e0fece4e9f8f0174d0459266ed9ab
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Mon Apr 17 17:45:45 2023 +0800
@@ -137,72 +203,9 @@ verified on S905Y4-AH222
 Change-Id: I694b5f5fe12c075c082e28f20e1a48925b70fa56
 Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit 483163428a59db0888bf548da1915630261d53f8
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jan 4 14:05:33 2023 +0800
-
-tsplayer: CB2  Fixed PVR playback abnormality.  [1/1]
-
-PD#SWPL-126235
-
-Problem:
-Demux may not throw ES data in a timely manner.
-
-Solution:
-If DEMUX has updated New PTS when playback starts,
-more than 4s cache, do not inject TS data temporarily,
-and wait for DEMUX to throw ES data.
-
-Verify:
-SC2
-
-Change-Id: I2dd2359391031621fb32d35edadec7471a02cb8c
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit d1ba7a794bf24085d733ea4f94572a3dc3240237
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Jun 5 02:16:01 2023 +0000
-
-tsplayer: CB2 not enough mem for dmx. [1/1]
-
-PD#OTT-41438
-
-Problem:
-not enough mem for dmx size
-
-Solution:
-when flush VideoTunnelDisplay, not qbuf v4lvideo
-
-Verify:
-x4-r
-
-Change-Id: I38ab32ed86ab955b118d71cc7280c6d679683c5f
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit df64285c40ddb27ec2fd29757bd05570e6b05ef1
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Jun 6 16:51:22 2023 +0800
-
-videodec: CB2 close frameinfo staticis default [1/1]
-
-PD#SWPL-127136
-
-Problem:
-omx crash when test  CtsMediaTestCases
-android.media.cts.MediaRandomTest
-
-Solution:
-close frameinfo staticis default
-
-Verify:
-T5M
-
-Change-Id: I4adbbe557cff3ad4462b71ebf74f61795d3227af
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-06-15-20-47
+Release time: 2023-06-25-02-46
 
 ========================================
 
