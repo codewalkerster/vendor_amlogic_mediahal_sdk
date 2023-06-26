@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.12-gb9ab58d
+Version: V3.20.13-g042ed24
 
 ========================================
 
 Git commit:
+commit 042ed24b9c87ad3f53550b058876d30b6201158d
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Jun 20 20:46:01 2023 +0800
+
+mediasync: CB2 av not sync after weak signal. [1/1]
+
+PD#SWPL-127042
+
+Problem:
+not check vpts(-1) invalid leading to wrong set startpts in recontinue.
+
+Solution:
+need optimize checkStreamPtsValid and should check the invalid pts when pts<0.
+
+Verify:
+verified on S905X4-AH212
+
+Change-Id: I4b70551d0c7017cd1fa14e15a51c6cf103328bd2
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit b9ab58d9577590b2cfba38a53e40321193e1ae6b
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Jun 20 15:53:34 2023 +0800
@@ -180,32 +200,9 @@ S5
 Change-Id: I3b1f87ff1c112837cb226c26307ba9a7c18c136a
 Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
 
-commit c0aec4c47660ab71df4d0df7ebe522d544f1d7ce
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Thu May 25 14:56:23 2023 +0800
-
-mediasync: CB2 video playback lags after multiple loops. [1/1]
-
-PD#SWPL-124745
-
-Problem:
-DiscontinueProcess don't consider the gap between
-audioframeInfo.frameSystemTime and curSystime..
-Accumulation of the gap from every loop playback leads to lag.
-
-Solution:
-1. consider the gap between audioframeInfo.frameSystemTime and curSystime.
-2. enable framecontrol.
-
-Verify:
-verified on S905Y4-AH222
-
-Change-Id: I694b5f5fe12c075c082e28f20e1a48925b70fa56
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2023-06-25-02-46
+Release time: 2023-06-26-12-45
 
 ========================================
 
