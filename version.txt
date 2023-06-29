@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.13-g042ed24
+Version: V3.20.14-gc28f800
 
 ========================================
 
 Git commit:
+commit c28f8006eddf38f1b89c77cc7ec8a37e99147ea2
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sun Jun 25 16:02:57 2023 +0800
+
+tsplayer: CB2 Fix PVR,Timeshif switching audio track abnormality. [1/1]
+
+PD#SWPL-128292
+
+Problem:
+Switching audio continuously will inject too much TS data.
+
+Solution:
+During the switch to audio,
+only the video cache is used to control the stream speed.
+
+Verify:
+T5M
+
+Change-Id: Ib36f5fc1f3cee32d568a58fb27f74631e72be5a0
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 042ed24b9c87ad3f53550b058876d30b6201158d
 Author: chen.chen1 <chen.chen1@amlogic.com>
 Date:   Tue Jun 20 20:46:01 2023 +0800
@@ -180,29 +201,9 @@ T3x
 Change-Id: Ifa9fc4ec3567f4b378900c6fc8d6ee4088c85c0a
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit 6a59a2da3fda8f0d78381c8a9e5713fdf9e75268
-Author: qiuping.zhou <qiuping.zhou@amlogic.com>
-Date:   Fri May 12 14:55:14 2023 +0800
-
-tsplayer: CF1 support audio vivid [1/1]
-
-PD#IPTV-21631
-
-Problem:
-support audio vivid
-
-Solution:
-support audio vivid
-
-Verify:
-S5
-
-Change-Id: I3b1f87ff1c112837cb226c26307ba9a7c18c136a
-Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
-
 ========================================
 
-Release time: 2023-06-26-12-45
+Release time: 2023-06-29-02-46
 
 ========================================
 
