@@ -1,10 +1,79 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.14-gc28f800
+Version: V3.20.17-g269ad7c
 
 ========================================
 
 Git commit:
+commit 269ad7cabf18bafa978cab993e8f3c757a13ca45
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Jun 27 16:31:54 2023 +0800
+
+tsplayer: CB2 fix only audio cache abnormal [1/1]
+
+PD#SWPL-128827
+
+Problem:
+Audio's PTS appears discontinue, calculating a cache error.
+
+Solution:
+After the pts of audio appear discontinue,
+the pts before and after discontinue
+are used to calculate the cache separately.
+
+Verify:
+t5m
+
+Change-Id: I5cd9f4d138da1f0d755d9fc715ab88819185f168
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 0f85c6939300fb4b4a4bbfe7c3e8b96efa6d2298
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Wed Jun 14 22:11:40 2023 +0800
+
+mediasync: CB2 audio stuck. [1/1]
+
+PD#AUT-1969
+
+Problem:
+wrong aligne flag leading to set wrong startpts.
+
+Solution:
+set right align flag.
+
+Verify:
+sc2
+
+Change-Id: I1b4ad72104b4c81fdfd1f87e80b6a30ee7b70759
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit 602dd42390e33f47ea65cec81cf4a343d5d557b2
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Jun 27 17:48:08 2023 +0800
+
+videodec: CB1 GtsExoPlayerTestCases 1 failure [2/2]
+
+PD#SWPL-127346
+
+Problem:
+1 com.google.android.exoplayer.gts.DashStreamingTest#
+widevineH264AdaptiveWithSeekingV18
+we get resolution event when flushing,but this event not send to codec2,
+we get resolution event again when we send input buf,this will occur
+'resoultion_change_count' value is not eq 0,because we only send one
+event to codec2, so we will send resolution event if flush again and not
+send flush done event, so we need skip this resolution event when input
+total count is 0.
+
+Solution:
+1. skip resolution event when input total count is 0.
+
+Verify:
+atd4
+
+Change-Id: I7bcef22ffb722edb998f762bdbb7723cd89c9d66
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit c28f8006eddf38f1b89c77cc7ec8a37e99147ea2
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Sun Jun 25 16:02:57 2023 +0800
@@ -139,71 +208,9 @@ Date:   Wed Jun 14 01:08:01 2023 -0700
 
 Merge "tunnelrender: CB1 fix tunnel mode cannot check pattern issue [1/1]"
 
-commit 82f0693c54633909790a6d176c913a5e7c77b6ad
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Jun 14 14:50:33 2023 +0800
-
-tunnelrender: CB1 fix tunnel mode cannot check pattern issue [1/1]
-
-PD#SWPL-128272
-
-Problem:
-tunnel mode cannot check pattern
-
-Solution:
-fix tunnel mode cannot check pattern issue
-
-Verify:
-T5M
-
-Change-Id: I1776519d7d44b93ded209534eaff6825a81176f3
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit bd80047ea449d4bf99cdee68e35ef0bfe7e73c45
-Author: peixing.mai <peixing.mai@amlogic.com>
-Date:   Thu Jun 1 12:45:28 2023 +0000
-
-tsplayer: CB2 Quickly switch the sound track,the sound is not smooth [1/1]
-
-PD#SWPL-108287
-
-Problem:
-1.Rapid switching of audio tracks leads to abnormal stream control
-and video caching with too much data
-
-Solution:
-1.Increase the maximum limit for cached data.
-
-Verify:
-T5D
-
-Change-Id: Ice5b1850df07e45b37ef949cc501b27b0998f61d
-Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
-
-commit e0b56633bec853565fc6ddd27a873768c77ff1c0
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Sat May 6 08:50:34 2023 +0000
-
-videodec: CF1 codec2 support triple write mode. [2/2]
-
-PD#SWPL-118193
-
-Problem:
-support hardware P010.
-
-Solution:
-1.add perporty ro.vendor.platform.support.hardware.p010.
-2.set triple write mode if the tream is P010.
-
-Verify:
-T3x
-
-Change-Id: Ifa9fc4ec3567f4b378900c6fc8d6ee4088c85c0a
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2023-06-29-02-46
+Release time: 2023-07-05-16-59
 
 ========================================
 
