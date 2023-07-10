@@ -1,52 +1,10 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.19-gf7ac5f8
+Version: V3.20.17-g269ad7c
 
 ========================================
 
 Git commit:
-commit f7ac5f890dfcd9dff21f33fde18ea1658d511bbf
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Jul 4 16:41:23 2023 +0800
-
-mediahal: CB2 add fcc function refactor [1/1]
-
-PD#SWPL-86001
-
-Problem:
-CBS and other project need fcc func.
-optimize fcc process.
-
-Solution:
-1.move cache data drop in videodec.
-2.refactor tsplayer and passthrough data read.
-
-Verify:
-SC2
-
-Change-Id: Id596606e0bbed32fdc46288bb6dc1757967e79c7
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit c9dbd23e1cf30c7450ee7889a11fddb3fc9c1f6c
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Fri Jul 7 14:14:22 2023 +0800
-
-tsplayer: CB2 crop the pcr_filter_size. [1/1]
-
-PD#SWPL-129851
-
-Problem:
-need to crop the pcr_filter_size
-
-Solution:
-pcr_filter_size set to 1.
-
-Verify:
-common
-
-Change-Id: I238b29ca9dbb0d3405881bec3e5c362a1c0ceb5d
-Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
-
 commit 269ad7cabf18bafa978cab993e8f3c757a13ca45
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Jun 27 16:31:54 2023 +0800
@@ -223,9 +181,36 @@ ohm
 Change-Id: I39456ed530989124385a41446a14dd1c533bd692
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
+commit 61c39fccb76e0fece4e9f8f0174d0459266ed9ab
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Apr 17 17:45:45 2023 +0800
+
+tsplayer: CB1 add es splice feature. [2/3]
+
+PD#SWPL-94559
+
+Problem:
+in splice es buffer mode,playback will not sync.
+
+Solution:
+send all es buffer to decoder.
+
+Verify:
+SC2
+
+Change-Id: Idc326f3fd6e1731f43c6a8dcd53486e993f85eec
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 04b337c6743edf7a2b071fa26c4c861dd11cde2d
+Merge: bd80047 82f0693
+Author: peng wu <peng.wu@amlogic.com>
+Date:   Wed Jun 14 01:08:01 2023 -0700
+
+Merge "tunnelrender: CB1 fix tunnel mode cannot check pattern issue [1/1]"
+
 ========================================
 
-Release time: 2023-07-07-09-20
+Release time: 2023-07-05-16-59
 
 ========================================
 

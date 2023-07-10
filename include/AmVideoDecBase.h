@@ -129,12 +129,6 @@ public:
     }
 
     virtual void onInputBufferDone(int32_t bitstream_buffer_id);
-    virtual void onInputBufferInfo(int32_t bitstream_buffer_id, uint32_t bytesUsed,
-                        uint64_t timestamp) {
-        (void)bitstream_buffer_id;
-        (void)bytesUsed;
-        (void)timestamp;
-    }
     virtual void onUpdateDecInfo(const uint8_t* info, uint32_t isize);
     virtual void onFlushDone();
     virtual void onResetDone();
@@ -194,9 +188,6 @@ public:
 
     /*new interface for resman*/
     virtual int32_t initialize(video_dec_init_params* initParams);
-    virtual int32_t GetWorkMode();
-    virtual int32_t SetWorkMode(uint32_t mode);
-    virtual void setSyncPlayerInstanceNo(int32_t syncPlayerInstanceNo);
 };
 
 extern "C" AmVideoDecBase* AmVideoDec_create(AmVideoDecCallback* callback);
