@@ -1,10 +1,93 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.17-g269ad7c
+Version: V3.20.21-g0b0a474
 
 ========================================
 
 Git commit:
+commit 0b0a47469958d5048cd32e24d21f78ad29195b29
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri May 26 10:26:20 2023 +0800
+
+tsplayer: CB2 some 8k videos will stuck for a while [1/1]
+
+PD#IPTV-21654
+
+Problem:
+some 8k videos will stuck for a while
+because video data is too much while audio data is too little
+
+Solution:
+inccrease the buffer for dmx when it is 8k video
+
+Verify:
+s5
+
+Change-Id: I7834b3b851e1a56c96ccd72a43b475d946de7c2e
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit bffcac7e7409ee1841d5eaae71f1412ec21274da
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Jul 10 16:47:41 2023 +0800
+
+mediahal: CB2 fix V4l2 path not work [1/1]
+
+PD#SWPL-131265
+
+Problem:
+FCC refactor cause v4l2 path not work.
+
+Solution:
+Distinguish the V4L2 pathway.
+
+Verify:
+SC2
+
+Change-Id: I42ac0b14858e63e5e460494871718aa6287b12ce
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit f7ac5f890dfcd9dff21f33fde18ea1658d511bbf
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Jul 4 16:41:23 2023 +0800
+
+mediahal: CB2 add fcc function refactor [1/1]
+
+PD#SWPL-86001
+
+Problem:
+CBS and other project need fcc func.
+optimize fcc process.
+
+Solution:
+1.move cache data drop in videodec.
+2.refactor tsplayer and passthrough data read.
+
+Verify:
+SC2
+
+Change-Id: Id596606e0bbed32fdc46288bb6dc1757967e79c7
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit c9dbd23e1cf30c7450ee7889a11fddb3fc9c1f6c
+Author: zhipeng.he <zhipeng.he@amlogic.com>
+Date:   Fri Jul 7 14:14:22 2023 +0800
+
+tsplayer: CB2 crop the pcr_filter_size. [1/1]
+
+PD#SWPL-129851
+
+Problem:
+need to crop the pcr_filter_size
+
+Solution:
+pcr_filter_size set to 1.
+
+Verify:
+common
+
+Change-Id: I238b29ca9dbb0d3405881bec3e5c362a1c0ceb5d
+Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
+
 commit 269ad7cabf18bafa978cab993e8f3c757a13ca45
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Jun 27 16:31:54 2023 +0800
@@ -60,7 +143,7 @@ Problem:
 widevineH264AdaptiveWithSeekingV18
 we get resolution event when flushing,but this event not send to codec2,
 we get resolution event again when we send input buf,this will occur
-'resoultion_change_count' value is not eq 0,because we only send one
+'resolution_change_count' value is not eq 0,because we only send one
 event to codec2, so we will send resolution event if flush again and not
 send flush done event, so we need skip this resolution event when input
 total count is 0.
@@ -139,78 +222,9 @@ T5M
 Change-Id: I808b1191d30b8e1ae7d65b6a927aae768390b934
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 045d2483c93fda648a462c38eb8738306fa693d7
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jun 13 20:25:06 2023 +0800
-
-mediasync: CB2 Fixed only video not smooth. [1/1]
-
-PD#SWPL-127743
-
-Problem:
-The pts discontinue time out exception occurs only
-when the video is played.
-
-Solution:
-Only when the video is playing,
-the vpts will be re-anchored after the discontinue.
-
-Verify:
-T5M
-
-Change-Id: Icff808e8e21946069ca9dcd1cac851593e090155
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 0e4987861dbcb08a92f2232a72b5c17ab8d22563
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon May 22 20:09:33 2023 +0800
-
-videodec: CB2 update ins/outs status when resolution change [1/1]
-
-PD#SWPL-128366
-
-Problem:
-buffer status not accurate when resolution change
-
-Solution:
-update correct ins/outs status when resolution change
-
-Verify:
-ohm
-
-Change-Id: I39456ed530989124385a41446a14dd1c533bd692
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 61c39fccb76e0fece4e9f8f0174d0459266ed9ab
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Apr 17 17:45:45 2023 +0800
-
-tsplayer: CB1 add es splice feature. [2/3]
-
-PD#SWPL-94559
-
-Problem:
-in splice es buffer mode,playback will not sync.
-
-Solution:
-send all es buffer to decoder.
-
-Verify:
-SC2
-
-Change-Id: Idc326f3fd6e1731f43c6a8dcd53486e993f85eec
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 04b337c6743edf7a2b071fa26c4c861dd11cde2d
-Merge: bd80047 82f0693
-Author: peng wu <peng.wu@amlogic.com>
-Date:   Wed Jun 14 01:08:01 2023 -0700
-
-Merge "tunnelrender: CB1 fix tunnel mode cannot check pattern issue [1/1]"
-
 ========================================
 
-Release time: 2023-07-05-16-59
+Release time: 2023-07-11-13-54
 
 ========================================
 

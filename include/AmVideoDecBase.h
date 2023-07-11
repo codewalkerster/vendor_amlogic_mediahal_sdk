@@ -135,6 +135,12 @@ public:
     virtual void onError(int32_t error);
     virtual void onUserdataReady(const uint8_t* userdata, uint32_t usize);
     virtual void onEvent(uint32_t event, void* param, uint32_t paramSize);
+    virtual void onInputBufferInfo(int32_t bitstream_buffer_id, uint32_t bytesUsed,
+                        uint64_t timestamp) {
+        (void)bitstream_buffer_id;
+        (void)bytesUsed;
+        (void)timestamp;
+    }
 };
 
 class AmVideoDecBase {
@@ -188,6 +194,9 @@ public:
 
     /*new interface for resman*/
     virtual int32_t initialize(video_dec_init_params* initParams);
+    virtual int32_t getWorkMode();
+    virtual int32_t setWorkMode(uint32_t mode);
+    virtual void setSyncPlayerInstanceNo(int32_t syncPlayerInstanceNo);
 };
 
 extern "C" AmVideoDecBase* AmVideoDec_create(AmVideoDecCallback* callback);
