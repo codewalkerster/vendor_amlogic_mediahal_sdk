@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.21-g0b0a474
+Version: V3.20.23-gfe74503
 
 ========================================
 
 Git commit:
+commit fe745034d5c22a501fc0e07db6c775d820b8bb2e
+Author: zhewen.luo <zhewen.luo@amlogic.com>
+Date:   Wed Jul 5 19:40:46 2023 +0800
+
+videodec: CB2 fix h264AdaptiveWithSeeking fail [1/1]
+
+PD#SWPL-130772
+
+Problem:
+Handle the simultaneous occurrence of resolution
+switching events and seek events.
+
+Solution:
+resolution change don't check the size and resolution
+is the same as before.
+
+Verify:
+ohm
+
+Change-Id: If4230d3a49d98ce3399dfbc8db1d63b61196eb1a
+Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
+
+commit b1d4b8922afc9d767b39e54c074c4d0ff7a7ce2a
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Jul 11 15:46:05 2023 +0800
+
+mediasync: CB2 av is not sync in FCC situation. [1/1]
+
+PD#SWPL-130053
+
+Problem:
+audio drop abnormal in non-working channel because of different unit
+between audioDmxCache and DEFAULT_AUDIO_FCC_CACHE_MAX.
+
+Solution:
+use the same unit for audioDmxCache and DEFAULT_AUDIO_FCC_CACHE_MAX.
+
+Verify:
+verified on S905X4-AH212
+
+Change-Id: I01eaff96292bdab3bf395dc34106397d9d01531b
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit 0b0a47469958d5048cd32e24d21f78ad29195b29
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Fri May 26 10:26:20 2023 +0800
@@ -143,7 +186,7 @@ Problem:
 widevineH264AdaptiveWithSeekingV18
 we get resolution event when flushing,but this event not send to codec2,
 we get resolution event again when we send input buf,this will occur
-'resolution_change_count' value is not eq 0,because we only send one
+'resoultion_change_count' value is not eq 0,because we only send one
 event to codec2, so we will send resolution event if flush again and not
 send flush done event, so we need skip this resolution event when input
 total count is 0.
@@ -178,53 +221,9 @@ T5M
 Change-Id: Ib36f5fc1f3cee32d568a58fb27f74631e72be5a0
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 042ed24b9c87ad3f53550b058876d30b6201158d
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Jun 20 20:46:01 2023 +0800
-
-mediasync: CB2 av not sync after weak signal. [1/1]
-
-PD#SWPL-127042
-
-Problem:
-not check vpts(-1) invalid leading to wrong set startpts in recontinue.
-
-Solution:
-need optimize checkStreamPtsValid and should check the invalid pts when pts<0.
-
-Verify:
-verified on S905X4-AH212
-
-Change-Id: I4b70551d0c7017cd1fa14e15a51c6cf103328bd2
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit b9ab58d9577590b2cfba38a53e40321193e1ae6b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jun 20 15:53:34 2023 +0800
-
-mediasync: CB2  Fixed leaking sound in trick mode. [1/1]
-
-PD#SWPL-128394
-
-Problem:
-After setting trick mode (PAUSE_NEXT),
-libdvr has a certain probability of using
-the pause() function slows down.
-Causes sound leakage.
-
-Solution:
-After trick mode (PAUSE_NEXT),
-audio outputs the hold strategy.
-
-Verify:
-T5M
-
-Change-Id: I808b1191d30b8e1ae7d65b6a927aae768390b934
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-07-11-13-54
+Release time: 2023-07-12-10-09
 
 ========================================
 
