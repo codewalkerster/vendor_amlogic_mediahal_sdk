@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.23-gfe74503
+Version: V3.20.25-ge897b6e
 
 ========================================
 
 Git commit:
+commit e897b6e2da5ad586317c30ab48caa5f04181d1d4
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Sun Jun 25 13:05:03 2023 +0000
+
+secure_vdec: CF0 support secure vdec pool v3 [1/1]
+
+PD#SWPL-129785
+
+Problem:
+support secure vdec pool v3
+
+Solution:
+support secure vdec pool v3 use semem v2 implement
+secure vdec dmabufheap.
+
+Verify:
+sc2
+
+Change-Id: I25acd4f4950b91e41d7c98152fa41e3a47163b04
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 298e8a22d28ccb6bf4eca76cbb3a826107e1fc4f
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Mon Jun 12 03:36:06 2023 +0000
+
+videodec: CB2 fix crash caused by input data size too small for h264/hvec [1/1]
+
+PD#TV-83211
+
+Problem:
+the current input data is smaller than the size of a header,
+breaking the header may cause crash.
+
+Solution:
+before using input data , check the input data size.
+
+Verify:
+T5M
+
+Change-Id: I01193d57c9a529efab5311c95ae919dd8d7e7144
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit fe745034d5c22a501fc0e07db6c775d820b8bb2e
 Author: zhewen.luo <zhewen.luo@amlogic.com>
 Date:   Wed Jul 5 19:40:46 2023 +0800
@@ -173,57 +215,9 @@ sc2
 Change-Id: I1b4ad72104b4c81fdfd1f87e80b6a30ee7b70759
 Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit 602dd42390e33f47ea65cec81cf4a343d5d557b2
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Jun 27 17:48:08 2023 +0800
-
-videodec: CB1 GtsExoPlayerTestCases 1 failure [2/2]
-
-PD#SWPL-127346
-
-Problem:
-1 com.google.android.exoplayer.gts.DashStreamingTest#
-widevineH264AdaptiveWithSeekingV18
-we get resolution event when flushing,but this event not send to codec2,
-we get resolution event again when we send input buf,this will occur
-'resoultion_change_count' value is not eq 0,because we only send one
-event to codec2, so we will send resolution event if flush again and not
-send flush done event, so we need skip this resolution event when input
-total count is 0.
-
-Solution:
-1. skip resolution event when input total count is 0.
-
-Verify:
-atd4
-
-Change-Id: I7bcef22ffb722edb998f762bdbb7723cd89c9d66
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit c28f8006eddf38f1b89c77cc7ec8a37e99147ea2
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sun Jun 25 16:02:57 2023 +0800
-
-tsplayer: CB2 Fix PVR,Timeshif switching audio track abnormality. [1/1]
-
-PD#SWPL-128292
-
-Problem:
-Switching audio continuously will inject too much TS data.
-
-Solution:
-During the switch to audio,
-only the video cache is used to control the stream speed.
-
-Verify:
-T5M
-
-Change-Id: Ib36f5fc1f3cee32d568a58fb27f74631e72be5a0
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-07-12-10-09
+Release time: 2023-07-19-02-30
 
 ========================================
 
