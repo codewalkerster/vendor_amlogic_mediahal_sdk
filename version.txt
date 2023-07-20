@@ -1,10 +1,33 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.26-g69d15bc
+Version: V3.20.27-g23a912c
 
 ========================================
 
 Git commit:
+commit 23a912c9c9ad548b117b73a89baf24e6870fe1db
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Jul 19 14:56:19 2023 +0800
+
+tunnelrender: CB1 tunnel use static bind when bind error first [1/1]
+
+PD#TV-86353
+
+Problem:
+when netflix playback config syncid 1, tunnelrender bind inst 1, fail,
+then dynamic alloc inst, get inst 0, bind. At same time, audio bind
+inst also 1 fail, then dynamic alloc inst, get inst 1. As audio and
+video use different mediasync inst, cannot do a/v sync.
+
+Solution:
+tunnel use static bind when bind error first
+
+Verify:
+T5W
+
+Change-Id: I13f6decf8426903590c2c7c12d31fe9ff2e75387
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 69d15bcb2b3e5ae2ab21300e3e076527b9aa4719
 Author: zhewen.luo <zhewen.luo@amlogic.com>
 Date:   Tue Jul 18 13:28:29 2023 +0800
@@ -194,31 +217,9 @@ common
 Change-Id: I238b29ca9dbb0d3405881bec3e5c362a1c0ceb5d
 Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
 
-commit 269ad7cabf18bafa978cab993e8f3c757a13ca45
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Jun 27 16:31:54 2023 +0800
-
-tsplayer: CB2 fix only audio cache abnormal [1/1]
-
-PD#SWPL-128827
-
-Problem:
-Audio's PTS appears discontinue, calculating a cache error.
-
-Solution:
-After the pts of audio appear discontinue,
-the pts before and after discontinue
-are used to calculate the cache separately.
-
-Verify:
-t5m
-
-Change-Id: I5cd9f4d138da1f0d755d9fc715ab88819185f168
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-07-20-13-48
+Release time: 2023-07-20-08-44
 
 ========================================
 
