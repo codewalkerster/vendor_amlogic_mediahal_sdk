@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.25-ge897b6e
+Version: V3.20.26-g69d15bc
 
 ========================================
 
 Git commit:
+commit 69d15bcb2b3e5ae2ab21300e3e076527b9aa4719
+Author: zhewen.luo <zhewen.luo@amlogic.com>
+Date:   Tue Jul 18 13:28:29 2023 +0800
+
+videodec: CB2 fix testFlush case fail in cts. [1/1]
+
+PD#SWPL-131999
+
+Problem:
+The reset action is pending before the first resolution
+change event comes up after starting playback.
+
+Solution:
+No judgment is made on the first resolution switch event.
+
+Verify:
+ohm
+
+Change-Id: I06a821805e358881eb28e93ae963dc6a5655a919
+Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
+
 commit e897b6e2da5ad586317c30ab48caa5f04181d1d4
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Sun Jun 25 13:05:03 2023 +0000
@@ -195,29 +216,9 @@ t5m
 Change-Id: I5cd9f4d138da1f0d755d9fc715ab88819185f168
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 0f85c6939300fb4b4a4bbfe7c3e8b96efa6d2298
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Wed Jun 14 22:11:40 2023 +0800
-
-mediasync: CB2 audio stuck. [1/1]
-
-PD#AUT-1969
-
-Problem:
-wrong aligne flag leading to set wrong startpts.
-
-Solution:
-set right align flag.
-
-Verify:
-sc2
-
-Change-Id: I1b4ad72104b4c81fdfd1f87e80b6a30ee7b70759
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2023-07-19-02-30
+Release time: 2023-07-20-13-48
 
 ========================================
 
