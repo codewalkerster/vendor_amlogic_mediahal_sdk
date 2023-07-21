@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.27-g23a912c
+Version: V3.20.29-g2f10089
 
 ========================================
 
 Git commit:
+commit 2f10089f444ca348f6a8631cc5a54c56f9dd7143
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Thu Jul 20 02:43:05 2023 +0000
+
+secure_vdec: CF0 Reslove media video decoder 64bit compile issue [1/1]
+
+PD#SWPL-129785
+
+Problem:
+Reslove media video decoder 64bit compile issue
+
+Solution:
+Reslove media video decoder 64bit compile issue
+
+Verify:
+sc2
+
+Change-Id: If88f6bd8d26416c295b4065d20616839e081b861
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit bd556a72b4936fe7add90b13907065344324e9d8
+Author: liang.hou <liang.hou@amlogic.com>
+Date:   Wed Jul 19 16:08:02 2023 +0800
+
+videodec: CB2 video will freeze after switch audiotracks [1/1]
+
+PD#SWPL-124005
+
+Problem:
+Every few frames, Out PTS will appear as 0.
+
+Solution:
+When In PTS is not 0, set it to Out PTS.
+
+Verify:
+S905X4
+
+Change-Id: If822c22b28a2ca2f4b5b6cc3028b3e437b463cdd
+Signed-off-by: liang.hou <liang.hou@amlogic.com>
+
 commit 23a912c9c9ad548b117b73a89baf24e6870fe1db
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Jul 19 14:56:19 2023 +0800
@@ -175,51 +215,9 @@ SC2
 Change-Id: I42ac0b14858e63e5e460494871718aa6287b12ce
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit f7ac5f890dfcd9dff21f33fde18ea1658d511bbf
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Jul 4 16:41:23 2023 +0800
-
-mediahal: CB2 add fcc function refactor [1/1]
-
-PD#SWPL-86001
-
-Problem:
-CBS and other project need fcc func.
-optimize fcc process.
-
-Solution:
-1.move cache data drop in videodec.
-2.refactor tsplayer and passthrough data read.
-
-Verify:
-SC2
-
-Change-Id: Id596606e0bbed32fdc46288bb6dc1757967e79c7
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit c9dbd23e1cf30c7450ee7889a11fddb3fc9c1f6c
-Author: zhipeng.he <zhipeng.he@amlogic.com>
-Date:   Fri Jul 7 14:14:22 2023 +0800
-
-tsplayer: CB2 crop the pcr_filter_size. [1/1]
-
-PD#SWPL-129851
-
-Problem:
-need to crop the pcr_filter_size
-
-Solution:
-pcr_filter_size set to 1.
-
-Verify:
-common
-
-Change-Id: I238b29ca9dbb0d3405881bec3e5c362a1c0ceb5d
-Signed-off-by: zhipeng.he <zhipeng.he@amlogic.com>
-
 ========================================
 
-Release time: 2023-07-20-08-44
+Release time: 2023-07-21-18-35
 
 ========================================
 
