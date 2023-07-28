@@ -1,10 +1,187 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.29-g2f10089
+Version: V3.20.37-g5a795e5
 
 ========================================
 
 Git commit:
+commit 5a795e543e056a3cfb7af1ad4090bcfe64017702
+Merge: 7ee6664 f265e24
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Thu Jul 27 04:37:08 2023 -0700
+
+Merge "videodec: CB2 fix h264AdaptiveWithSeeking with omx2 fail [1/1]"
+
+commit 7ee666493d9a90f4f8c1446b5774df39d8fc74ca
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Aug 11 19:07:22 2022 +0800
+
+videopassthrough: CB2 add fcc function [1/2]
+
+PD#SWPL-86001
+
+Problem:
+enable fcc function.
+
+Solution:
+enable fcc function.
+
+Verify:
+SC2
+
+Change-Id: I31a5aba1b2edb06d5ba8cbe831dc9cc632bd00d8
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 2a9f5a3414eb166fda8c4621da294546ebe4006c
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Wed Jul 26 12:16:01 2023 +0000
+
+videodec: CB2 fix out buffer nv12 fomat error. [2/2]
+
+PD#SWPL-133540
+
+Problem:
+the initialization of the buffer format is nv21,
+but the format of the buffer is nv12.
+
+Solution:
+reset out buffer format before
+setting the number of outbuffers.
+
+Verify:
+t5m
+
+Change-Id: I9b24bc11b7ee91bac643cf491b2c68d2e7fdf5a9
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit f265e24e4d0bb118ac0ec4002fff72fc066a8bf8
+Author: zhewen.luo <zhewen.luo@amlogic.com>
+Date:   Wed Jul 26 10:49:33 2023 +0800
+
+videodec: CB2 fix h264AdaptiveWithSeeking with omx2 fail [1/1]
+
+PD#SWPL-131479
+
+Problem:
+Omx2 will also provide input data to mediahal during flush,
+so reset action will not be pending.
+
+Solution:
+resolution change don't check the size and resolution
+is the same as before with omx2.
+
+Verify:
+ohm
+
+Change-Id: I853d8f072e926c5d6abf71640da7345ff9d44323
+Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
+
+commit ce0ae365fae9106b5daedb1b2969fa83c0655517
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Jul 25 16:45:38 2023 +0800
+
+tsplayer: CB2 64bit compile error [1/1]
+
+PD#IPTV-22204
+
+Problem:
+fix 64 bit compile error
+
+Solution:
+fix 64 bit compile error
+
+Verify:
+s5
+
+Change-Id: Ic148a3a96e86c98ebf9747415903907fd0a7b79d
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 1992637efb03f2e9f3a053564d04f0c00030fe84
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Jul 19 17:30:32 2023 +0800
+
+tsplayer: CB2 fix pvr playback seek stuck in special case [1/1]
+
+PD#SWPL-131872
+
+Problem:
+es data not flush when dmx lock not release
+a/v cache not right when pts jump front
+
+Solution:
+flush dmx buffer when stop video decoding.
+culculate cache correctly.
+
+Verify:
+SC2
+
+Change-Id: I63e6d5a6bc3ff7fdeefe984d3252a01db82ed8c5
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 7f553c0ea4aab2b5b9cb0962e2265699538a2582
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Jul 12 16:09:30 2023 +0800
+
+tsplayer: CB2 fix pvr playback video stuck  [1/1]
+
+PD#SWPL-131403
+
+Problem:
+In the initialization stage,
+only refer to the video cache for flow control.
+
+Solution:
+In the initialization stage,
+use both video cache and audio cache
+as references to do flow control.
+
+Verify:
+SC2
+
+Change-Id: Ifc197f319dcbe0f9b5c99012b8572b094b274e18
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 16a578a7c66daa875fdb898a7850756fa0122774
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Jul 4 13:50:46 2023 +0800
+
+tsplayer: CB2 some videos plays not smoothly using es mode [1/2]
+
+PD#IPTV-22204
+
+Problem:
+some videos plays not smoothly using es mode,
+because audio es stream is stuck.
+
+Solution:
+add a cache for audio es stream to write
+
+Verify:
+s5
+
+Change-Id: If25ca8e9480970390301f1e42d82488d2b238385
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 5680af66860f3dddb69b34802fcf308e6b1383d6
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Jul 17 21:08:17 2023 +0800
+
+videopassthrough: CB2 CBS not support data loss msg [1/1]
+
+PD#TV-86746
+
+Problem:
+videopassthrough mode not support data loss msg
+
+Solution:
+check data loss msg NULL pointer
+
+Verify:
+SC2
+
+Change-Id: I457a6833c18f08c885ad79141084dc49d3bfe0a2
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 2f10089f444ca348f6a8631cc5a54c56f9dd7143
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Thu Jul 20 02:43:05 2023 +0000
@@ -25,199 +202,9 @@ sc2
 Change-Id: If88f6bd8d26416c295b4065d20616839e081b861
 Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
 
-commit bd556a72b4936fe7add90b13907065344324e9d8
-Author: liang.hou <liang.hou@amlogic.com>
-Date:   Wed Jul 19 16:08:02 2023 +0800
-
-videodec: CB2 video will freeze after switch audiotracks [1/1]
-
-PD#SWPL-124005
-
-Problem:
-Every few frames, Out PTS will appear as 0.
-
-Solution:
-When In PTS is not 0, set it to Out PTS.
-
-Verify:
-S905X4
-
-Change-Id: If822c22b28a2ca2f4b5b6cc3028b3e437b463cdd
-Signed-off-by: liang.hou <liang.hou@amlogic.com>
-
-commit 23a912c9c9ad548b117b73a89baf24e6870fe1db
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Jul 19 14:56:19 2023 +0800
-
-tunnelrender: CB1 tunnel use static bind when bind error first [1/1]
-
-PD#TV-86353
-
-Problem:
-when netflix playback config syncid 1, tunnelrender bind inst 1, fail,
-then dynamic alloc inst, get inst 0, bind. At same time, audio bind
-inst also 1 fail, then dynamic alloc inst, get inst 1. As audio and
-video use different mediasync inst, cannot do a/v sync.
-
-Solution:
-tunnel use static bind when bind error first
-
-Verify:
-T5W
-
-Change-Id: I13f6decf8426903590c2c7c12d31fe9ff2e75387
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 69d15bcb2b3e5ae2ab21300e3e076527b9aa4719
-Author: zhewen.luo <zhewen.luo@amlogic.com>
-Date:   Tue Jul 18 13:28:29 2023 +0800
-
-videodec: CB2 fix testFlush case fail in cts. [1/1]
-
-PD#SWPL-131999
-
-Problem:
-The reset action is pending before the first resolution
-change event comes up after starting playback.
-
-Solution:
-No judgment is made on the first resolution switch event.
-
-Verify:
-ohm
-
-Change-Id: I06a821805e358881eb28e93ae963dc6a5655a919
-Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
-
-commit e897b6e2da5ad586317c30ab48caa5f04181d1d4
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Sun Jun 25 13:05:03 2023 +0000
-
-secure_vdec: CF0 support secure vdec pool v3 [1/1]
-
-PD#SWPL-129785
-
-Problem:
-support secure vdec pool v3
-
-Solution:
-support secure vdec pool v3 use semem v2 implement
-secure vdec dmabufheap.
-
-Verify:
-sc2
-
-Change-Id: I25acd4f4950b91e41d7c98152fa41e3a47163b04
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 298e8a22d28ccb6bf4eca76cbb3a826107e1fc4f
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Mon Jun 12 03:36:06 2023 +0000
-
-videodec: CB2 fix crash caused by input data size too small for h264/hvec [1/1]
-
-PD#TV-83211
-
-Problem:
-the current input data is smaller than the size of a header,
-breaking the header may cause crash.
-
-Solution:
-before using input data , check the input data size.
-
-Verify:
-T5M
-
-Change-Id: I01193d57c9a529efab5311c95ae919dd8d7e7144
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit fe745034d5c22a501fc0e07db6c775d820b8bb2e
-Author: zhewen.luo <zhewen.luo@amlogic.com>
-Date:   Wed Jul 5 19:40:46 2023 +0800
-
-videodec: CB2 fix h264AdaptiveWithSeeking fail [1/1]
-
-PD#SWPL-130772
-
-Problem:
-Handle the simultaneous occurrence of resolution
-switching events and seek events.
-
-Solution:
-resolution change don't check the size and resolution
-is the same as before.
-
-Verify:
-ohm
-
-Change-Id: If4230d3a49d98ce3399dfbc8db1d63b61196eb1a
-Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
-
-commit b1d4b8922afc9d767b39e54c074c4d0ff7a7ce2a
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Jul 11 15:46:05 2023 +0800
-
-mediasync: CB2 av is not sync in FCC situation. [1/1]
-
-PD#SWPL-130053
-
-Problem:
-audio drop abnormal in non-working channel because of different unit
-between audioDmxCache and DEFAULT_AUDIO_FCC_CACHE_MAX.
-
-Solution:
-use the same unit for audioDmxCache and DEFAULT_AUDIO_FCC_CACHE_MAX.
-
-Verify:
-verified on S905X4-AH212
-
-Change-Id: I01eaff96292bdab3bf395dc34106397d9d01531b
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 0b0a47469958d5048cd32e24d21f78ad29195b29
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri May 26 10:26:20 2023 +0800
-
-tsplayer: CB2 some 8k videos will stuck for a while [1/1]
-
-PD#IPTV-21654
-
-Problem:
-some 8k videos will stuck for a while
-because video data is too much while audio data is too little
-
-Solution:
-inccrease the buffer for dmx when it is 8k video
-
-Verify:
-s5
-
-Change-Id: I7834b3b851e1a56c96ccd72a43b475d946de7c2e
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit bffcac7e7409ee1841d5eaae71f1412ec21274da
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Jul 10 16:47:41 2023 +0800
-
-mediahal: CB2 fix V4l2 path not work [1/1]
-
-PD#SWPL-131265
-
-Problem:
-FCC refactor cause v4l2 path not work.
-
-Solution:
-Distinguish the V4L2 pathway.
-
-Verify:
-SC2
-
-Change-Id: I42ac0b14858e63e5e460494871718aa6287b12ce
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-07-21-18-35
+Release time: 2023-07-28-14-14
 
 ========================================
 
