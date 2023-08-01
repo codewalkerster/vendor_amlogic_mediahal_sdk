@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.37-g5a795e5
+Version: V3.20.38-gffaca1f
 
 ========================================
 
 Git commit:
+commit ffaca1f5e5242bf2ea0631a577719a1cf5ef71c2
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Tue Jul 4 16:35:43 2023 +0800
+
+resman: CB2 fix code scan issue [1/1]
+
+PD#SWPL-130875
+
+Problem:
+there are some code scan warning
+
+Solution:
+fix code scan issue
+
+Verify:
+sc2
+
+Change-Id: I0f4eb721ce1eaf22839f5e219a6c19ad717c4ae5
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit 5a795e543e056a3cfb7af1ad4090bcfe64017702
 Merge: 7ee6664 f265e24
 Author: Jian Wang <jian.wang@amlogic.com>
@@ -182,29 +202,9 @@ SC2
 Change-Id: I457a6833c18f08c885ad79141084dc49d3bfe0a2
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 2f10089f444ca348f6a8631cc5a54c56f9dd7143
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Thu Jul 20 02:43:05 2023 +0000
-
-secure_vdec: CF0 Reslove media video decoder 64bit compile issue [1/1]
-
-PD#SWPL-129785
-
-Problem:
-Reslove media video decoder 64bit compile issue
-
-Solution:
-Reslove media video decoder 64bit compile issue
-
-Verify:
-sc2
-
-Change-Id: If88f6bd8d26416c295b4065d20616839e081b861
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
 ========================================
 
-Release time: 2023-07-28-14-14
+Release time: 2023-08-01-03-58
 
 ========================================
 
