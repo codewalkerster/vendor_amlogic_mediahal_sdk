@@ -1,10 +1,38 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.38-gffaca1f
+Version: V3.20.39-g4dba8d4
 
 ========================================
 
 Git commit:
+commit 4dba8d4fdc3c0b9d975aa5218e4812a4d8ef7efb
+Merge: ffaca1f 344fe08
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Tue Aug 1 02:10:00 2023 -0700
+
+Merge "videodec: CB1 CtsMediaV2TestCases. [1/1]"
+
+commit 344fe08e9d9d74a63f3d32ea51fbcc82d23f81ff
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Aug 1 15:57:25 2023 +0800
+
+videodec: CB1 CtsMediaV2TestCases. [1/1]
+
+PD#SWPL-134310
+
+Problem:
+1 ResolutionChange event will occur not got eos event.
+
+Solution:
+1. Do not send ResolutionChange event when size and dpb is not change.
+2. this change revert fe745034d5c22a501fc0e07db6c775d820b8bb2e.
+
+Verify:
+ohm
+
+Change-Id: Icbb7ad91c275b90344b76f36575330be10005c6e
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit ffaca1f5e5242bf2ea0631a577719a1cf5ef71c2
 Author: joy.rao <joy.rao@amlogic.com>
 Date:   Tue Jul 4 16:35:43 2023 +0800
@@ -161,50 +189,9 @@ SC2
 Change-Id: Ifc197f319dcbe0f9b5c99012b8572b094b274e18
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 16a578a7c66daa875fdb898a7850756fa0122774
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Jul 4 13:50:46 2023 +0800
-
-tsplayer: CB2 some videos plays not smoothly using es mode [1/2]
-
-PD#IPTV-22204
-
-Problem:
-some videos plays not smoothly using es mode,
-because audio es stream is stuck.
-
-Solution:
-add a cache for audio es stream to write
-
-Verify:
-s5
-
-Change-Id: If25ca8e9480970390301f1e42d82488d2b238385
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 5680af66860f3dddb69b34802fcf308e6b1383d6
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Jul 17 21:08:17 2023 +0800
-
-videopassthrough: CB2 CBS not support data loss msg [1/1]
-
-PD#TV-86746
-
-Problem:
-videopassthrough mode not support data loss msg
-
-Solution:
-check data loss msg NULL pointer
-
-Verify:
-SC2
-
-Change-Id: I457a6833c18f08c885ad79141084dc49d3bfe0a2
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-01-03-58
+Release time: 2023-08-02-11-35
 
 ========================================
 
