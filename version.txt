@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.39-g4dba8d4
+Version: V3.20.40-gd17e4ac
 
 ========================================
 
 Git commit:
+commit d17e4ac9ed4f538ff77fcb43b0f3174e8689115b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Aug 2 21:26:17 2023 +0800
+
+videodec: CB2 android p compilation exception. [1/1]
+
+PD#SWPL-134210
+
+Problem:
+Android p compilation exception.
+
+Solution:
+Fix the wrong type.
+
+Verify:
+SC2
+
+Change-Id: I6dfb297e3fc3534f6d30d8821a2f2fcefff970e5
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 4dba8d4fdc3c0b9d975aa5218e4812a4d8ef7efb
 Merge: ffaca1f 344fe08
 Author: Jian Wang <jian.wang@amlogic.com>
@@ -166,32 +186,9 @@ SC2
 Change-Id: I63e6d5a6bc3ff7fdeefe984d3252a01db82ed8c5
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 7f553c0ea4aab2b5b9cb0962e2265699538a2582
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Jul 12 16:09:30 2023 +0800
-
-tsplayer: CB2 fix pvr playback video stuck  [1/1]
-
-PD#SWPL-131403
-
-Problem:
-In the initialization stage,
-only refer to the video cache for flow control.
-
-Solution:
-In the initialization stage,
-use both video cache and audio cache
-as references to do flow control.
-
-Verify:
-SC2
-
-Change-Id: Ifc197f319dcbe0f9b5c99012b8572b094b274e18
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-02-11-35
+Release time: 2023-08-03-16-17
 
 ========================================
 
