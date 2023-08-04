@@ -1,10 +1,59 @@
 =========RELEALSE NOTE=================
 
-Version: V3.20.40-gd17e4ac
+Version: V3.22.0-g340407a
 
 ========================================
 
 Git commit:
+commit 340407a89c2f4ce802c5e473f1cb258049ea5741
+Merge: 77a79af 19fa594
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Fri Aug 4 00:19:54 2023 -0700
+
+Merge "videodec: CB1 Three field stream support. [2/2]"
+
+commit 77a79af8c96833a946206679bcc7d603ca0281e3
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Aug 1 14:14:26 2023 +0800
+
+mediahal: CF2 mediahal release V3.20 [1/1]
+
+PD#SWPL-134210
+
+Problem:
+mediahal release
+
+Solution:
+release V3.20.41-gd17e4ac
+
+Verify:
+SC2
+
+Change-Id: I7ba14a375c8119c177fd7f30ab45da5149ae5a26
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 19fa5941521f793fd9faf2fe7789021f78a5a0d9
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Fri Jul 21 10:24:07 2023 +0800
+
+videodec: CB1 Three field stream support. [2/2]
+
+PD#SWPL-132869
+
+Problem:
+1 interlace stream frame need 42 buf,but the outputbuf
+max count is 32.
+
+Solution:
+1. we need change outputbuf max count to 64.
+
+Verify:
+ohm
+
+
+Change-Id: I50b0b467d60dfef79964d65d931b3ebdb66032e4
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit d17e4ac9ed4f538ff77fcb43b0f3174e8689115b
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Aug 2 21:26:17 2023 +0800
@@ -122,73 +171,9 @@ t5m
 Change-Id: I9b24bc11b7ee91bac643cf491b2c68d2e7fdf5a9
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit f265e24e4d0bb118ac0ec4002fff72fc066a8bf8
-Author: zhewen.luo <zhewen.luo@amlogic.com>
-Date:   Wed Jul 26 10:49:33 2023 +0800
-
-videodec: CB2 fix h264AdaptiveWithSeeking with omx2 fail [1/1]
-
-PD#SWPL-131479
-
-Problem:
-Omx2 will also provide input data to mediahal during flush,
-so reset action will not be pending.
-
-Solution:
-resolution change don't check the size and resolution
-is the same as before with omx2.
-
-Verify:
-ohm
-
-Change-Id: I853d8f072e926c5d6abf71640da7345ff9d44323
-Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
-
-commit ce0ae365fae9106b5daedb1b2969fa83c0655517
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Jul 25 16:45:38 2023 +0800
-
-tsplayer: CB2 64bit compile error [1/1]
-
-PD#IPTV-22204
-
-Problem:
-fix 64 bit compile error
-
-Solution:
-fix 64 bit compile error
-
-Verify:
-s5
-
-Change-Id: Ic148a3a96e86c98ebf9747415903907fd0a7b79d
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 1992637efb03f2e9f3a053564d04f0c00030fe84
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Jul 19 17:30:32 2023 +0800
-
-tsplayer: CB2 fix pvr playback seek stuck in special case [1/1]
-
-PD#SWPL-131872
-
-Problem:
-es data not flush when dmx lock not release
-a/v cache not right when pts jump front
-
-Solution:
-flush dmx buffer when stop video decoding.
-culculate cache correctly.
-
-Verify:
-SC2
-
-Change-Id: I63e6d5a6bc3ff7fdeefe984d3252a01db82ed8c5
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-03-16-17
+Release time: 2023-08-04-15-33
 
 ========================================
 
