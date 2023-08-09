@@ -17,10 +17,17 @@
 
 #define AM_VIDEO_DEC_INIT_FLAG_DEFAULT        0
 #define AM_VIDEO_DEC_INIT_FLAG_CODEC2         1
-#define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE    2
-#define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE 4
-#define AM_VIDEO_DEC_INIT_FLAG_TSPLAYER 8
+#define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE     (1ul << 1)
+#define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE (1ul << 2)
+#define AM_VIDEO_DEC_INIT_FLAG_TSPLAYER       (1ul << 3)
 
+#define AM_VIDEO_DEC_INIT_FLAG_USE_INPUT_BUFFER_POOL (1ul << 4)
+#define AM_VIDEO_DEC_INIT_FLAG_USE_DYNAMIC_CAPTURE_BUFFER (1ul << 5)
+#define AM_VIDEO_DEC_INIT_FLAG_USE_UVM               (1ul << 6)
+#define AM_VIDEO_DEC_INIT_FLAG_USE_PTS_CALCULATOR    (1ul << 7)
+#define AM_VIDEO_DEC_INIT_FLAG_USE_SECURE_VDEC_HAL   (1ul << 8)
+#define AM_VIDEO_DEC_INIT_FLAG_USE_HI_PRIO           (1ul << 9)
+#define AM_VIDEO_DEC_INIT_FLAG_USE_LOW_LATENCY_MODE  (1ul << 10)
 enum class InputCodec {
   H264,
   H265,
@@ -66,6 +73,7 @@ typedef struct {
     unsigned int  stbuf_size;
     uint32_t    nDecType;
     int32_t nVideoRecoveryValue;
+    int32_t unStablePts;
 } init_param_t;
 
 typedef struct {

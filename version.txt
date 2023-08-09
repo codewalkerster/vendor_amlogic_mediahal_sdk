@@ -1,10 +1,90 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.0-g340407a
+Version: V3.22.4-gfe23cba
 
 ========================================
 
 Git commit:
+commit fe23cbab504683fffea53626f82c5fc1214a21ea
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Sat Jul 22 22:41:56 2023 +0800
+
+videodec: CF1 Android 14/Ninja10 Low-Latency Video Support. [2/2]
+
+PD#SWPL-132947
+
+Problem:
+Codec2 for Android 14 can NOT support Ninja10 Low-Latency Video.
+
+Solution:
+1. Use ES buffer cache for Low-Latency playback.
+
+Verify:
+Android T Ohm
+
+Change-Id: I57fab3f9d62b3caa389304733656f38bec13cce4
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
+commit 61983f3c7208e9f039a58f42e10242ee3e718176
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Aug 2 20:25:46 2023 +0800
+
+tsplayer: CB2 VR will be crash when seek [1/1]
+
+PD#IPTV-22912
+
+Problem:
+VR will be crash when seek
+
+Solution:
+fix surface buffer to dequeue
+
+Verify:
+s5
+
+Change-Id: I71361e3ee7c5604c29981f120d8dcec3a55b659f
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit d3b91ac42a13685dca8eede78bba07e152385abf
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Jul 25 14:42:40 2023 +0800
+
+tsplayer: CB2 it cannot play smoothly when playing vr video [1/1]
+
+PD#IPTV-22498
+
+Problem:
+it cannot play smoothly when playing vr video as the wrong pts.
+
+Solution:
+write the right pts to decoder.
+
+Verify:
+s5
+
+Change-Id: I2e3d4f994ad3fa136357875e1b06f75c8a8c984a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 109e47c559fdebb53cb7afc0bf68b6dd1c626626
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Jul 6 14:36:53 2023 +0800
+
+tsplayer: CF2 support setting unstablepts flag [1/1]
+
+PD#IPTV-22435
+
+Problem:
+the pts is not right when using es mode for some mp4 video.
+
+Solution:
+support setting unstablepts flag
+
+Verify:
+s5
+
+Change-Id: Ib434c6f160e680465665d86da08757250e4f01c0
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 340407a89c2f4ce802c5e473f1cb258049ea5741
 Merge: 77a79af 19fa594
 Author: Jian Wang <jian.wang@amlogic.com>
@@ -102,78 +182,9 @@ ohm
 Change-Id: Icbb7ad91c275b90344b76f36575330be10005c6e
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit ffaca1f5e5242bf2ea0631a577719a1cf5ef71c2
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Tue Jul 4 16:35:43 2023 +0800
-
-resman: CB2 fix code scan issue [1/1]
-
-PD#SWPL-130875
-
-Problem:
-there are some code scan warning
-
-Solution:
-fix code scan issue
-
-Verify:
-sc2
-
-Change-Id: I0f4eb721ce1eaf22839f5e219a6c19ad717c4ae5
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 5a795e543e056a3cfb7af1ad4090bcfe64017702
-Merge: 7ee6664 f265e24
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Thu Jul 27 04:37:08 2023 -0700
-
-Merge "videodec: CB2 fix h264AdaptiveWithSeeking with omx2 fail [1/1]"
-
-commit 7ee666493d9a90f4f8c1446b5774df39d8fc74ca
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Aug 11 19:07:22 2022 +0800
-
-videopassthrough: CB2 add fcc function [1/2]
-
-PD#SWPL-86001
-
-Problem:
-enable fcc function.
-
-Solution:
-enable fcc function.
-
-Verify:
-SC2
-
-Change-Id: I31a5aba1b2edb06d5ba8cbe831dc9cc632bd00d8
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 2a9f5a3414eb166fda8c4621da294546ebe4006c
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Wed Jul 26 12:16:01 2023 +0000
-
-videodec: CB2 fix out buffer nv12 fomat error. [2/2]
-
-PD#SWPL-133540
-
-Problem:
-the initialization of the buffer format is nv21,
-but the format of the buffer is nv12.
-
-Solution:
-reset out buffer format before
-setting the number of outbuffers.
-
-Verify:
-t5m
-
-Change-Id: I9b24bc11b7ee91bac643cf491b2c68d2e7fdf5a9
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-04-15-33
+Release time: 2023-08-09-06-46
 
 ========================================
 
