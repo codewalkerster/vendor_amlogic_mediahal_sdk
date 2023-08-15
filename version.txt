@@ -1,10 +1,124 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.4-gfe23cba
+Version: V3.22.10-g8849a4d
 
 ========================================
 
 Git commit:
+commit 8849a4d83a5076602c9719c44d7f64dca1740ac2
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Jun 6 16:30:38 2023 +0800
+
+mediasync: CB2 audio will output before video when playing round back [1/1]
+
+PD#SWPL-126259
+
+Problem:
+audio will output before video when playing round back，as av not sync.
+
+Solution:
+audio should hold until video come when playing round back.
+
+Verify:
+t5m
+
+Change-Id: I5f8a7b63d4057ae58d1ba99acf1354945fea5e33
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit bc4b87bd6ce4eb4fcccc7a67df03259a9ec40076
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Aug 9 21:13:20 2023 +0800
+
+tsplayer: CB1 resolve many fcc issue. [1/1]
+
+PD#SWPL-130935
+
+Problem:
+1 FCC audio not cache enough cache.
+2.sestWorkMode interface need locked to protect.
+3.resume and pause tsPlayer interface need lock.
+
+Solution:
+1. cache audio data correctly.
+2. add thread lock to protect setWorkMode.
+3.add thread lock to protect pause and resume.
+
+Verify:
+ohm
+
+Change-Id: I55986dd312627d8bb52aff44987c9dad2085801d
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 5313b23eda2a7fc1c62d940b856b84324a82b8ca
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Aug 9 02:11:13 2023 +0000
+
+tsplayer: CB2 no notification when playing encrypted program [1/1]
+
+PD#TV-87043
+
+Problem:
+no sent scramble event.
+
+Solution:
+add the pts_dts_flag 0x4 of judgment conditions.
+
+Verify:
+T5w
+
+Change-Id: I5a2e16e9a17c50cf56e23006f2cf3ffd8134271a
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit dd2103fa69436e0243f6e6020f330208ae311a4d
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Aug 8 17:44:45 2023 +0800
+
+tsplayer: CB2  Fixed the PVR playback multi-speed abnormality. [1/1]
+
+PD#SWPL-134908
+
+Problem:
+Frequent seek, after video pts discontinue,
+uses the parameters of the last playback,
+resulting in flow control exceptions.
+
+Solution:
+After each stop, clear the status of the record's discontinue.
+
+Verify:
+SC2
+
+Change-Id: Ic8ab298285c7309561e289234c739aefbd53ed2d
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 7f342a31bf905096fd6efc0144696bb6550025f2
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Mon Jul 31 21:32:04 2023 +0800
+
+mediasync: CB2 discontinue always triggered. [1/1]
+
+PD#OTT-46700
+
+Problem:
+discontinue always triggered
+
+Solution:
+1. use refPcr instead of mCurPcr to compare with demux pts
+2. av-diff should use queue in pts to calculate
+
+Verify:
+sc2
+
+Change-Id: I5631becf42dc2f68a90ff69740e53d80c14769f3
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
+commit 62d0e6382e5ff9d59ae08e0722b65eba79670c29
+Merge: fe23cba b9f0be3
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Wed Aug 9 02:54:46 2023 -0700
+
+Merge "videodec: CF2 Add dump YUV in dw 3 mode. [1/1]"
+
 commit fe23cbab504683fffea53626f82c5fc1214a21ea
 Author: peng.wu <peng.wu@amlogic.com>
 Date:   Sat Jul 22 22:41:56 2023 +0800
@@ -45,6 +159,39 @@ s5
 Change-Id: I71361e3ee7c5604c29981f120d8dcec3a55b659f
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
+commit b9f0be3c144564a8ba1c82273a459423e92e1f1b
+Author: jin.yang <jin.yang@amlogic.com>
+Date:   Fri Jul 28 10:12:42 2023 +0800
+
+videodec: CF2 Add dump YUV in dw 3 mode. [1/1]
+
+PD#SWPL-134504
+
+Problem:
+Dumping YUV was not supported in DW 3 mode previously.
+
+Solution:
+Setprop: setprop vendor.media.mediahal.videodec.dump_yuv "0 0 5"
+The first value is the dump ID, with a default value of 0.
+The second value is the starting frame for dumping, with a default value of 0.
+The third value is the total number of frames to be dumped,
+with a default value of 5.
+
+Functionalities provided:
+
+Dumping YUV in DW3 mode.
+Specifying which channel requires YUV data dumping (supports multi channel).
+Specifying the start frame and the total number of frames to be dumped.
+The dumped file name includes the aligned width and height, eliminating the
+need for additional alignment calculations when viewing the YUV data,
+providing convenience and clarity.
+
+Verify:
+Android U + ohm
+
+Change-Id: I6dc4f9fcde8e7758494f1d9d00d7a24431e9a83f
+Signed-off-by: jin.yang <jin.yang@amlogic.com>
+
 commit d3b91ac42a13685dca8eede78bba07e152385abf
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Jul 25 14:42:40 2023 +0800
@@ -65,126 +212,9 @@ s5
 Change-Id: I2e3d4f994ad3fa136357875e1b06f75c8a8c984a
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 109e47c559fdebb53cb7afc0bf68b6dd1c626626
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Jul 6 14:36:53 2023 +0800
-
-tsplayer: CF2 support setting unstablepts flag [1/1]
-
-PD#IPTV-22435
-
-Problem:
-the pts is not right when using es mode for some mp4 video.
-
-Solution:
-support setting unstablepts flag
-
-Verify:
-s5
-
-Change-Id: Ib434c6f160e680465665d86da08757250e4f01c0
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 340407a89c2f4ce802c5e473f1cb258049ea5741
-Merge: 77a79af 19fa594
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Fri Aug 4 00:19:54 2023 -0700
-
-Merge "videodec: CB1 Three field stream support. [2/2]"
-
-commit 77a79af8c96833a946206679bcc7d603ca0281e3
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Aug 1 14:14:26 2023 +0800
-
-mediahal: CF2 mediahal release V3.20 [1/1]
-
-PD#SWPL-134210
-
-Problem:
-mediahal release
-
-Solution:
-release V3.20.41-gd17e4ac
-
-Verify:
-SC2
-
-Change-Id: I7ba14a375c8119c177fd7f30ab45da5149ae5a26
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 19fa5941521f793fd9faf2fe7789021f78a5a0d9
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Fri Jul 21 10:24:07 2023 +0800
-
-videodec: CB1 Three field stream support. [2/2]
-
-PD#SWPL-132869
-
-Problem:
-1 interlace stream frame need 42 buf,but the outputbuf
-max count is 32.
-
-Solution:
-1. we need change outputbuf max count to 64.
-
-Verify:
-ohm
-
-
-Change-Id: I50b0b467d60dfef79964d65d931b3ebdb66032e4
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit d17e4ac9ed4f538ff77fcb43b0f3174e8689115b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Aug 2 21:26:17 2023 +0800
-
-videodec: CB2 android p compilation exception. [1/1]
-
-PD#SWPL-134210
-
-Problem:
-Android p compilation exception.
-
-Solution:
-Fix the wrong type.
-
-Verify:
-SC2
-
-Change-Id: I6dfb297e3fc3534f6d30d8821a2f2fcefff970e5
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 4dba8d4fdc3c0b9d975aa5218e4812a4d8ef7efb
-Merge: ffaca1f 344fe08
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Tue Aug 1 02:10:00 2023 -0700
-
-Merge "videodec: CB1 CtsMediaV2TestCases. [1/1]"
-
-commit 344fe08e9d9d74a63f3d32ea51fbcc82d23f81ff
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Aug 1 15:57:25 2023 +0800
-
-videodec: CB1 CtsMediaV2TestCases. [1/1]
-
-PD#SWPL-134310
-
-Problem:
-1 ResolutionChange event will occur not got eos event.
-
-Solution:
-1. Do not send ResolutionChange event when size and dpb is not change.
-2. this change revert fe745034d5c22a501fc0e07db6c775d820b8bb2e.
-
-Verify:
-ohm
-
-Change-Id: Icbb7ad91c275b90344b76f36575330be10005c6e
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-09-06-46
+Release time: 2023-08-15-10-09
 
 ========================================
 
