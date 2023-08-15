@@ -1,10 +1,42 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.10-g8849a4d
+Version: V3.22.12-g8dd7b2c
 
 ========================================
 
 Git commit:
+commit 8dd7b2cec191a5ed3518f0b1128d29de044da7f5
+Merge: 7830147 70d4bc9
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Tue Aug 15 05:27:14 2023 -0700
+
+Merge "videodec: CF2 videodec logcat & trace use sessionid#decoderid distinguish [2/2]"
+
+commit 78301478ca11d8ee4e1769235be499099f3a2f44
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Sat Aug 12 11:53:05 2023 +0800
+
+videodec: CF1 Improved latency by using input buffer cache [1/1]
+
+PD#SWPL-134995
+
+Problem:
+inputbuffer_cached_ is still 0, which cause more latency.
+
+Solution:
+Changed sequence to make inputbuffer_cached_ as the 1st priority:
+1. Setting inputbuffer_cached_ if use_low_latency_mode_, and then
+2. Resetting input_use_bufferpool_ if !inputbuffer_cached_
+
+Feature:
+Low Latency Playback
+
+Verify:
+Android U Ohm
+
+Change-Id: Ieb4e10bda8b7a6a10d48d4fbba1dc6014fb4ef3b
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
 commit 8849a4d83a5076602c9719c44d7f64dca1740ac2
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Jun 6 16:30:38 2023 +0800
@@ -48,6 +80,28 @@ ohm
 
 Change-Id: I55986dd312627d8bb52aff44987c9dad2085801d
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 70d4bc99db5a23a87ce88b4a8dfc2abfbb57d3d9
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Aug 10 10:51:32 2023 +0800
+
+videodec: CF2 videodec logcat & trace use sessionid#decoderid distinguish [2/2]
+
+PD#SWPL-132832
+
+Problem:
+logcat and trace cannot distinguish every playback clear
+
+Solution:
+1.logcat & trace use sessionid#decoderid distinguish playback.
+logtrace, such as 1#67-enqCntV4l
+2.add queue and dequeue index for capture buffer
+
+Verify:
+ohm
+
+Change-Id: I1cab562f27bda5f7896ad30d42035deaacb848b6
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
 commit 5313b23eda2a7fc1c62d940b856b84324a82b8ca
 Author: dehong.chen <dehong.chen@amlogic.com>
@@ -139,82 +193,9 @@ Android T Ohm
 Change-Id: I57fab3f9d62b3caa389304733656f38bec13cce4
 Signed-off-by: peng.wu <peng.wu@amlogic.com>
 
-commit 61983f3c7208e9f039a58f42e10242ee3e718176
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Aug 2 20:25:46 2023 +0800
-
-tsplayer: CB2 VR will be crash when seek [1/1]
-
-PD#IPTV-22912
-
-Problem:
-VR will be crash when seek
-
-Solution:
-fix surface buffer to dequeue
-
-Verify:
-s5
-
-Change-Id: I71361e3ee7c5604c29981f120d8dcec3a55b659f
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit b9f0be3c144564a8ba1c82273a459423e92e1f1b
-Author: jin.yang <jin.yang@amlogic.com>
-Date:   Fri Jul 28 10:12:42 2023 +0800
-
-videodec: CF2 Add dump YUV in dw 3 mode. [1/1]
-
-PD#SWPL-134504
-
-Problem:
-Dumping YUV was not supported in DW 3 mode previously.
-
-Solution:
-Setprop: setprop vendor.media.mediahal.videodec.dump_yuv "0 0 5"
-The first value is the dump ID, with a default value of 0.
-The second value is the starting frame for dumping, with a default value of 0.
-The third value is the total number of frames to be dumped,
-with a default value of 5.
-
-Functionalities provided:
-
-Dumping YUV in DW3 mode.
-Specifying which channel requires YUV data dumping (supports multi channel).
-Specifying the start frame and the total number of frames to be dumped.
-The dumped file name includes the aligned width and height, eliminating the
-need for additional alignment calculations when viewing the YUV data,
-providing convenience and clarity.
-
-Verify:
-Android U + ohm
-
-Change-Id: I6dc4f9fcde8e7758494f1d9d00d7a24431e9a83f
-Signed-off-by: jin.yang <jin.yang@amlogic.com>
-
-commit d3b91ac42a13685dca8eede78bba07e152385abf
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Jul 25 14:42:40 2023 +0800
-
-tsplayer: CB2 it cannot play smoothly when playing vr video [1/1]
-
-PD#IPTV-22498
-
-Problem:
-it cannot play smoothly when playing vr video as the wrong pts.
-
-Solution:
-write the right pts to decoder.
-
-Verify:
-s5
-
-Change-Id: I2e3d4f994ad3fa136357875e1b06f75c8a8c984a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-15-10-09
+Release time: 2023-08-15-20-42
 
 ========================================
 
