@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.12-g8dd7b2c
+Version: V3.22.13-gcdaaf55
 
 ========================================
 
 Git commit:
+commit cdaaf55c12f34dfe886b15bee0b068ee67972cbf
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Aug 4 21:45:59 2023 +0800
+
+videodec: CB2 Fixed PVR playback abnormality.  [1/1]
+
+PD#SWPL-134945
+
+Problem:
+V4lVideo Buffer management is not managed sequentially.
+
+Solution:
+tsplayer needs to adapt to buffer fd rotation out of order.
+
+Verify:
+SC2
+
+Change-Id: I45df9051f3078fdef6879b8da056b376ff470be4
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 8dd7b2cec191a5ed3518f0b1128d29de044da7f5
 Merge: 7830147 70d4bc9
 Author: Jian Wang <jian.wang@amlogic.com>
@@ -173,29 +193,9 @@ Date:   Wed Aug 9 02:54:46 2023 -0700
 
 Merge "videodec: CF2 Add dump YUV in dw 3 mode. [1/1]"
 
-commit fe23cbab504683fffea53626f82c5fc1214a21ea
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Sat Jul 22 22:41:56 2023 +0800
-
-videodec: CF1 Android 14/Ninja10 Low-Latency Video Support. [2/2]
-
-PD#SWPL-132947
-
-Problem:
-Codec2 for Android 14 can NOT support Ninja10 Low-Latency Video.
-
-Solution:
-1. Use ES buffer cache for Low-Latency playback.
-
-Verify:
-Android T Ohm
-
-Change-Id: I57fab3f9d62b3caa389304733656f38bec13cce4
-Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-15-20-42
+Release time: 2023-08-16-11-41
 
 ========================================
 
