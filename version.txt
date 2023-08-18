@@ -1,10 +1,98 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.13-gcdaaf55
+Version: V3.22.17-g406cf61
 
 ========================================
 
 Git commit:
+commit 406cf61393381e7935d6e7f7cc38cd3b3ebba112
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Jul 6 13:39:39 2023 +0800
+
+tsplayer: CB2 fix tsplayer crash code [1/1]
+
+PD#IPTV-22187
+
+Problem:
+the codes may casuse some crash
+
+Solution:
+fix the codes
+
+Verify:
+s5
+
+Change-Id: I44d8c8913f653fcd4ac51d1bd78058d2a9d5ed19
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 00af64b8e8525fb55a9ee50d0bc347a371824e32
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Aug 8 14:33:13 2023 +0800
+
+videodec: CB2 the video of avs2 case6.ts plays stuck [1/1]
+
+PD#IPTV-20892
+PD#IPTV-21472
+PD#IPTV-23057
+
+Problem:
+the video of avs2 case6.ts plays stuck for pts jump back.
+
+Solution:
+fix the pts to calculate
+
+Verify:
+s5
+
+Change-Id: Idc9e1cc103810db1df4bd9374d026bd68c7ce863
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 1d5506de18fa60565a99576f11828abc37068542
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jul 26 20:32:11 2023 +0800
+
+tsplayer: CB2 av is not sync when use not 1.0 speed in es mode [1/2]
+
+PD#IPTV-22582
+
+Problem:
+av is not sync when use not 1.0 speed in es mode.
+
+Solution:
+use amaster when setting speed.
+
+Verify:
+s5
+
+Change-Id: I9136ef37f9d21bde29edae0db1afcf951270722d
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 712632b6ea9963e17aa327f1c7c09dbcb4b0aa14
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Thu Aug 17 10:35:13 2023 +0800
+
+Videodec: CB0 fix crash after add trace init [1/1]
+
+PD#SWPL-136644
+
+Problem:
+when test CtsMediaDecoderTestCases have crash "Scudo ERROR" in
+/vendor/lib/libmediahal_videodec.so
+(media::V4L2VideoDecodeAccelerator::InitializeTask()+478)
+or
+(media::V4L2VideoDecodeAccelerator::TraceInit()+716)
+TraceInit and InitializeTask will be call at same time, will
+have resource conflict.
+
+Solution:
+Do not add trace name in TraceInit
+
+Verify:
+ohm
+
+Change-Id: Ifc9c8e93f2674c23cf83f19675b1edfa024e6185
+Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+
 commit cdaaf55c12f34dfe886b15bee0b068ee67972cbf
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Fri Aug 4 21:45:59 2023 +0800
@@ -123,79 +211,9 @@ ohm
 Change-Id: I1cab562f27bda5f7896ad30d42035deaacb848b6
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 5313b23eda2a7fc1c62d940b856b84324a82b8ca
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Aug 9 02:11:13 2023 +0000
-
-tsplayer: CB2 no notification when playing encrypted program [1/1]
-
-PD#TV-87043
-
-Problem:
-no sent scramble event.
-
-Solution:
-add the pts_dts_flag 0x4 of judgment conditions.
-
-Verify:
-T5w
-
-Change-Id: I5a2e16e9a17c50cf56e23006f2cf3ffd8134271a
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit dd2103fa69436e0243f6e6020f330208ae311a4d
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Aug 8 17:44:45 2023 +0800
-
-tsplayer: CB2  Fixed the PVR playback multi-speed abnormality. [1/1]
-
-PD#SWPL-134908
-
-Problem:
-Frequent seek, after video pts discontinue,
-uses the parameters of the last playback,
-resulting in flow control exceptions.
-
-Solution:
-After each stop, clear the status of the record's discontinue.
-
-Verify:
-SC2
-
-Change-Id: Ic8ab298285c7309561e289234c739aefbd53ed2d
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 7f342a31bf905096fd6efc0144696bb6550025f2
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Mon Jul 31 21:32:04 2023 +0800
-
-mediasync: CB2 discontinue always triggered. [1/1]
-
-PD#OTT-46700
-
-Problem:
-discontinue always triggered
-
-Solution:
-1. use refPcr instead of mCurPcr to compare with demux pts
-2. av-diff should use queue in pts to calculate
-
-Verify:
-sc2
-
-Change-Id: I5631becf42dc2f68a90ff69740e53d80c14769f3
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
-commit 62d0e6382e5ff9d59ae08e0722b65eba79670c29
-Merge: fe23cba b9f0be3
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Wed Aug 9 02:54:46 2023 -0700
-
-Merge "videodec: CF2 Add dump YUV in dw 3 mode. [1/1]"
-
 ========================================
 
-Release time: 2023-08-16-11-41
+Release time: 2023-08-18-13-41
 
 ========================================
 
