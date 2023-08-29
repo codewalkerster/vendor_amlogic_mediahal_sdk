@@ -1,10 +1,70 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.17-g406cf61
+Version: V3.22.20-g8eb6576
 
 ========================================
 
 Git commit:
+commit 8eb6576a1db8d0e8a833395b3a8af9cd7c3a8796
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Aug 18 11:12:36 2023 +0800
+
+tsplayer: CB2 increase es buffer size to fit dmx splice [1/1]
+
+PD#SWPL-137659
+
+Problem:
+dmx splice make es size more,increase it.
+
+Solution:
+increase es list size.
+
+Verify:
+ohm
+
+Change-Id: Icebbe4d660855a8c0177e115d8f43731420ab0f6
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit ece04dab920bbd8e8a6ecf9d7ddc0e04923cab64
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Aug 9 20:36:23 2023 +0800
+
+tsplayer: CF2 add param to set mediasync cache [1/1]
+
+PD#IPTV-22355
+
+Problem:
+add param to set mediasync cache
+
+Solution:
+add param to set mediasycn cache
+
+Verify:
+s5
+
+Change-Id: Ia02607b556b4e734e628779f29a3f5370f395e88
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 7306f098db274b1e1326e097bef4359644ccb1f4
+Author: hui.lin <hui.lin@amlogic.com>
+Date:   Thu Aug 10 13:25:11 2023 +0800
+
+videodec: CB1 report incomplete frame event to C2 [1/1]
+
+PD#SWPL-134870
+
+Problem:
+video play stuck when stream with data error
+
+Solution:
+report FIELD_FRAME_INCOMPLETE event to C2 when pipeline full.
+
+Verify:
+Android T Ohm
+
+Change-Id: Id71a3e9e3414f2e63e4c3ada26178158ae8b21f6
+Signed-off-by: hui.lin <hui.lin@amlogic.com>
+
 commit 406cf61393381e7935d6e7f7cc38cd3b3ebba112
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Thu Jul 6 13:39:39 2023 +0800
@@ -145,75 +205,9 @@ Android U Ohm
 Change-Id: Ieb4e10bda8b7a6a10d48d4fbba1dc6014fb4ef3b
 Signed-off-by: peng.wu <peng.wu@amlogic.com>
 
-commit 8849a4d83a5076602c9719c44d7f64dca1740ac2
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Jun 6 16:30:38 2023 +0800
-
-mediasync: CB2 audio will output before video when playing round back [1/1]
-
-PD#SWPL-126259
-
-Problem:
-audio will output before video when playing round back，as av not sync.
-
-Solution:
-audio should hold until video come when playing round back.
-
-Verify:
-t5m
-
-Change-Id: I5f8a7b63d4057ae58d1ba99acf1354945fea5e33
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit bc4b87bd6ce4eb4fcccc7a67df03259a9ec40076
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Aug 9 21:13:20 2023 +0800
-
-tsplayer: CB1 resolve many fcc issue. [1/1]
-
-PD#SWPL-130935
-
-Problem:
-1 FCC audio not cache enough cache.
-2.sestWorkMode interface need locked to protect.
-3.resume and pause tsPlayer interface need lock.
-
-Solution:
-1. cache audio data correctly.
-2. add thread lock to protect setWorkMode.
-3.add thread lock to protect pause and resume.
-
-Verify:
-ohm
-
-Change-Id: I55986dd312627d8bb52aff44987c9dad2085801d
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 70d4bc99db5a23a87ce88b4a8dfc2abfbb57d3d9
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Aug 10 10:51:32 2023 +0800
-
-videodec: CF2 videodec logcat & trace use sessionid#decoderid distinguish [2/2]
-
-PD#SWPL-132832
-
-Problem:
-logcat and trace cannot distinguish every playback clear
-
-Solution:
-1.logcat & trace use sessionid#decoderid distinguish playback.
-logtrace, such as 1#67-enqCntV4l
-2.add queue and dequeue index for capture buffer
-
-Verify:
-ohm
-
-Change-Id: I1cab562f27bda5f7896ad30d42035deaacb848b6
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-18-13-41
+Release time: 2023-08-29-06-54
 
 ========================================
 
