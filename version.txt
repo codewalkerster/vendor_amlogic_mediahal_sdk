@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.20-g8eb6576
+Version: V3.22.21-gba5c663
 
 ========================================
 
 Git commit:
+commit ba5c663ca3f38faa97fa644586eb4c2448152e17
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Aug 11 20:59:13 2023 +0800
+
+mediasync: CB2 fix video free_run when avdiff too large [1/2]
+
+PD#SWPL-127740
+
+Problem:
+it will play not smoothly when avdiff too large.
+
+Solution:
+fix video free_run when avdiff too large.
+
+Verify:
+t5m
+
+Change-Id: I3438687c3f64913fda3a3d1ecedc023d18450c07
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 8eb6576a1db8d0e8a833395b3a8af9cd7c3a8796
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Fri Aug 18 11:12:36 2023 +0800
@@ -180,34 +200,9 @@ Date:   Tue Aug 15 05:27:14 2023 -0700
 
 Merge "videodec: CF2 videodec logcat & trace use sessionid#decoderid distinguish [2/2]"
 
-commit 78301478ca11d8ee4e1769235be499099f3a2f44
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Sat Aug 12 11:53:05 2023 +0800
-
-videodec: CF1 Improved latency by using input buffer cache [1/1]
-
-PD#SWPL-134995
-
-Problem:
-inputbuffer_cached_ is still 0, which cause more latency.
-
-Solution:
-Changed sequence to make inputbuffer_cached_ as the 1st priority:
-1. Setting inputbuffer_cached_ if use_low_latency_mode_, and then
-2. Resetting input_use_bufferpool_ if !inputbuffer_cached_
-
-Feature:
-Low Latency Playback
-
-Verify:
-Android U Ohm
-
-Change-Id: Ieb4e10bda8b7a6a10d48d4fbba1dc6014fb4ef3b
-Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
 ========================================
 
-Release time: 2023-08-29-06-54
+Release time: 2023-08-31-19-06
 
 ========================================
 
