@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.21-gba5c663
+Version: V3.22.22-g02e1688
 
 ========================================
 
 Git commit:
+commit 02e16881196fd3e99d179380882ceff7cce2fb74
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Aug 30 21:09:51 2023 +0800
+
+mediasync: CB2 Fix pvr seek out of sync. [1/1]
+
+PD#SWPL-138280
+
+Problem:
+hasaudio status is abnormal.
+
+Solution:
+Audio MediaSync Reset does not reset the HASAudio state.
+
+Verify:
+SC2
+
+Change-Id: Ib9fb4318a6850b0a3a1dbb15d06c65af5b81ee7b
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit ba5c663ca3f38faa97fa644586eb4c2448152e17
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Fri Aug 11 20:59:13 2023 +0800
@@ -193,16 +213,9 @@ SC2
 Change-Id: I45df9051f3078fdef6879b8da056b376ff470be4
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 8dd7b2cec191a5ed3518f0b1128d29de044da7f5
-Merge: 7830147 70d4bc9
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Tue Aug 15 05:27:14 2023 -0700
-
-Merge "videodec: CF2 videodec logcat & trace use sessionid#decoderid distinguish [2/2]"
-
 ========================================
 
-Release time: 2023-08-31-19-06
+Release time: 2023-09-04-19-53
 
 ========================================
 
