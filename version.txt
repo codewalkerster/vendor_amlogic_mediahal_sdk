@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.22-g02e1688
+Version: V3.22.25-ge1d6098
 
 ========================================
 
 Git commit:
+commit e1d6098139980fb7a904c170ef7c42b67c7e2d53
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Sep 5 19:48:37 2023 +0800
+
+tsplayer: CB2 when playing clear stream, the audio plays stuckly [1/1]
+
+PD#SWPL-138675
+
+Problem:
+the audio plays stuckly in clear stream
+
+Solution:
+fix audio es cache mode
+
+Verify:
+ohm
+
+Change-Id: I3890a98efabaa19b50da98f07e33653c77b4e30a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 05b188718db7cec4998b272f9cd91306203546a0
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Sep 12 19:38:00 2023 +0800
+
+tunnelrender: CB1 fix tunnel flush and nodifyRenderTime crash issue [1/1]
+
+PD#TV-92680
+
+Problem:
+flush and nodifyRenderTime flush
+
+Solution:
+adjust invoke sequenece to prevent use after free
+
+Verify:
+T5M
+
+Change-Id: Ib4c96abb3d6b0cb1c66bfbc093ac0a29059c07e7
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit be9e77f226c3cda1de2eda1883d36b4e6eceb7bf
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Aug 30 14:50:08 2023 +0800
+
+videodec: CB2 dash clear stream can not play [1/1]
+
+PD#SWPL-137583
+PD#SWPL-136748
+
+Problem:
+dash clear stream can not play.
+
+Solution:
+fix es mode to write
+
+Verify:
+s5
+
+Change-Id: Ia3beef4b6c6a6ecc1432c5368e2d05d56ff37f7a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 02e16881196fd3e99d179380882ceff7cce2fb74
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Aug 30 21:09:51 2023 +0800
@@ -147,75 +208,9 @@ s5
 Change-Id: Idc9e1cc103810db1df4bd9374d026bd68c7ce863
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 1d5506de18fa60565a99576f11828abc37068542
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jul 26 20:32:11 2023 +0800
-
-tsplayer: CB2 av is not sync when use not 1.0 speed in es mode [1/2]
-
-PD#IPTV-22582
-
-Problem:
-av is not sync when use not 1.0 speed in es mode.
-
-Solution:
-use amaster when setting speed.
-
-Verify:
-s5
-
-Change-Id: I9136ef37f9d21bde29edae0db1afcf951270722d
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 712632b6ea9963e17aa327f1c7c09dbcb4b0aa14
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Thu Aug 17 10:35:13 2023 +0800
-
-Videodec: CB0 fix crash after add trace init [1/1]
-
-PD#SWPL-136644
-
-Problem:
-when test CtsMediaDecoderTestCases have crash "Scudo ERROR" in
-/vendor/lib/libmediahal_videodec.so
-(media::V4L2VideoDecodeAccelerator::InitializeTask()+478)
-or
-(media::V4L2VideoDecodeAccelerator::TraceInit()+716)
-TraceInit and InitializeTask will be call at same time, will
-have resource conflict.
-
-Solution:
-Do not add trace name in TraceInit
-
-Verify:
-ohm
-
-Change-Id: Ifc9c8e93f2674c23cf83f19675b1edfa024e6185
-Signed-off-by: Jian Wang <jian.wang@amlogic.com>
-
-commit cdaaf55c12f34dfe886b15bee0b068ee67972cbf
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Aug 4 21:45:59 2023 +0800
-
-videodec: CB2 Fixed PVR playback abnormality.  [1/1]
-
-PD#SWPL-134945
-
-Problem:
-V4lVideo Buffer management is not managed sequentially.
-
-Solution:
-tsplayer needs to adapt to buffer fd rotation out of order.
-
-Verify:
-SC2
-
-Change-Id: I45df9051f3078fdef6879b8da056b376ff470be4
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-09-04-19-53
+Release time: 2023-09-18-11-15
 
 ========================================
 
