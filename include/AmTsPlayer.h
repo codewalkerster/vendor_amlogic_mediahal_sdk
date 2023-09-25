@@ -218,7 +218,8 @@ typedef enum {
     AV_AUDIO_LEFT = 1,                     // Output left channel
     AV_AUDIO_RIGHT = 2,                    // Output right channel
     AV_AUDIO_SWAP = 3,                     // Swap left and right channels
-    AV_AUDIO_LRMIX = 4                     // Mix left and right channels
+    AV_AUDIO_LRMIX = 4,                     // Mix left and right channels
+    AV_AUDIO_JOINT_STEREO = 5,              // Joint stereo mode
 } am_tsplayer_audio_stereo_mode;
 
 /*Audio Output mode*/

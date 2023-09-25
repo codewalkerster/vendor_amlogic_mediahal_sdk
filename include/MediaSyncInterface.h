@@ -214,6 +214,7 @@ extern mediasync_result MediaSync_GetFirstQueueVideoInfo(void* handle, mediasync
 extern mediasync_result MediaSync_GetQueueVideoInfo(void* handle, mediasync_frameinfo *info);
 extern mediasync_result MediaSync_GetFirstQueueAudioInfo(void* handle, mediasync_frameinfo *info);
 extern mediasync_result MediaSync_GetQueueAudioInfo(void* handle, mediasync_frameinfo *info);
+extern mediasync_result MediaSync_setPcrAndDmxId(void* handle, int32_t DemuxId, int32_t PcrPid);
 extern mediasync_result MediaSync_reset(void* handle);
 extern void MediaSync_destroy(void* handle);
 

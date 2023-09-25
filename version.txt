@@ -1,10 +1,134 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.25-ge1d6098
+Version: V3.22.31-gb621716
 
 ========================================
 
 Git commit:
+commit b62171699d62283ddc9016f0a37bf1cb52db19f3
+Author: futian.shi <futian.shi@amlogic.com>
+Date:   Fri Jun 16 20:40:55 2023 +0800
+
+videodec: CF2 add vc1 support [2/2]
+
+PD#SWPL-127063
+
+Problem:
+add vc1 support
+
+Solution:
+1. add vc1 support;
+2. vc1 use stream mode;
+3. add vc1 header;
+
+Verify:
+ohm
+
+Change-Id: I8998e0921d1f4452b7c59a313559f1d7538f69de
+Signed-off-by: futian.shi <futian.shi@amlogic.com>
+
+commit c019c644ba34c7637242270473b7841e2c102970
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu Jul 6 08:30:51 2023 +0000
+
+tsplayer: CF1 single demux support mediasync [7/9]
+
+PD#SWPL-130171
+
+Problem:
+single demux not support mediasync
+
+Solution:
+single demux support mediasync
+
+Verify:
+T5D
+
+Change-Id: Ia1a8a429b7ae9f3a3ff2ee0ea5c09c2f2dff3f0d
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit d2ad2f086c4c03c52f859afe4f6a537441a6d01b
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Sep 6 16:11:02 2023 +0800
+
+tsplayer: CF2 add dvbAudio api to get audio output mode [1/1]
+
+PD#IPTV-23224
+
+Problem:
+add dvbAudio api to get audio output mode.
+
+Solution:
+support the dvbAudio api.
+
+Verify:
+s5
+
+Change-Id: Ie6147727a1ea5fb611506e9300dcad0a49e14507
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit d85072a9080ed95bb9719fd2eb732e2689c936dd
+Author: yongchen.li <yongchen.li@amlogic.com>
+Date:   Fri Aug 11 07:23:46 2023 +0000
+
+tunnelrenderer: CB2 fix video block when surface visibleRegion is 0 [1/1]
+
+PD#TV-88096
+
+Problem:
+when surface visibleRegion is 0, will can not set layer to hwc,
+so videotunnel consumer would not exist, video will block.
+
+Solution:
+1,when get -ENOTCONN, call cancel buffer one times,
+ensure buffer can recycle normally
+
+Verify:
+t5m
+
+Change-Id: Ie7ed69bdffa2f3db8953900f44650746e787ead1
+Signed-off-by: yongchen.li <yongchen.li@amlogic.com>
+
+commit 7242cec5854ae6f3ef210a49679e372befe748a6
+Author: Shuai Fan <shuai.fan@amlogic.com>
+Date:   Fri Sep 15 12:57:55 2023 +0000
+
+videopassthrough: CB2 fix AmCodecVDA crash [1/1]
+
+PD#SWPL-140206
+
+Problem:
+AmCodecDec.mDemuxType no value cause crash in videopassthrough
+
+Solution:
+set AmCodecDec.mDemuxType when videopassthrough
+
+Verify:
+AH212 Android U
+
+Change-Id: I2b398b12130a801da31a0f86185782728f436f56
+Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
+
+commit e30a2045735bda2c8189bda17975f70805ea6776
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Sep 14 16:17:25 2023 +0800
+
+tsplayer: CB2 video can not display but has audio after reboot [1/1]
+
+PD#IPTV-23917
+
+Problem:
+video can not display but has audio after reboot for first playing.
+
+Solution:
+a member of demuxWrapper should need to initialize.
+
+Verify:
+s5
+
+Change-Id: I34801aa77e10e6bdfac1ebc3008868df2c084234
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit e1d6098139980fb7a904c170ef7c42b67c7e2d53
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Sep 5 19:48:37 2023 +0800
@@ -86,131 +210,9 @@ SC2
 Change-Id: Ib9fb4318a6850b0a3a1dbb15d06c65af5b81ee7b
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit ba5c663ca3f38faa97fa644586eb4c2448152e17
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Aug 11 20:59:13 2023 +0800
-
-mediasync: CB2 fix video free_run when avdiff too large [1/2]
-
-PD#SWPL-127740
-
-Problem:
-it will play not smoothly when avdiff too large.
-
-Solution:
-fix video free_run when avdiff too large.
-
-Verify:
-t5m
-
-Change-Id: I3438687c3f64913fda3a3d1ecedc023d18450c07
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 8eb6576a1db8d0e8a833395b3a8af9cd7c3a8796
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Aug 18 11:12:36 2023 +0800
-
-tsplayer: CB2 increase es buffer size to fit dmx splice [1/1]
-
-PD#SWPL-137659
-
-Problem:
-dmx splice make es size more,increase it.
-
-Solution:
-increase es list size.
-
-Verify:
-ohm
-
-Change-Id: Icebbe4d660855a8c0177e115d8f43731420ab0f6
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit ece04dab920bbd8e8a6ecf9d7ddc0e04923cab64
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Aug 9 20:36:23 2023 +0800
-
-tsplayer: CF2 add param to set mediasync cache [1/1]
-
-PD#IPTV-22355
-
-Problem:
-add param to set mediasync cache
-
-Solution:
-add param to set mediasycn cache
-
-Verify:
-s5
-
-Change-Id: Ia02607b556b4e734e628779f29a3f5370f395e88
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 7306f098db274b1e1326e097bef4359644ccb1f4
-Author: hui.lin <hui.lin@amlogic.com>
-Date:   Thu Aug 10 13:25:11 2023 +0800
-
-videodec: CB1 report incomplete frame event to C2 [1/1]
-
-PD#SWPL-134870
-
-Problem:
-video play stuck when stream with data error
-
-Solution:
-report FIELD_FRAME_INCOMPLETE event to C2 when pipeline full.
-
-Verify:
-Android T Ohm
-
-Change-Id: Id71a3e9e3414f2e63e4c3ada26178158ae8b21f6
-Signed-off-by: hui.lin <hui.lin@amlogic.com>
-
-commit 406cf61393381e7935d6e7f7cc38cd3b3ebba112
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Jul 6 13:39:39 2023 +0800
-
-tsplayer: CB2 fix tsplayer crash code [1/1]
-
-PD#IPTV-22187
-
-Problem:
-the codes may casuse some crash
-
-Solution:
-fix the codes
-
-Verify:
-s5
-
-Change-Id: I44d8c8913f653fcd4ac51d1bd78058d2a9d5ed19
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 00af64b8e8525fb55a9ee50d0bc347a371824e32
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Aug 8 14:33:13 2023 +0800
-
-videodec: CB2 the video of avs2 case6.ts plays stuck [1/1]
-
-PD#IPTV-20892
-PD#IPTV-21472
-PD#IPTV-23057
-
-Problem:
-the video of avs2 case6.ts plays stuck for pts jump back.
-
-Solution:
-fix the pts to calculate
-
-Verify:
-s5
-
-Change-Id: Idc9e1cc103810db1df4bd9374d026bd68c7ce863
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-09-18-11-15
+Release time: 2023-09-25-14-48
 
 ========================================
 

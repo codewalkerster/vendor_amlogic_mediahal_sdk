@@ -32,6 +32,8 @@
 #include <AmTsPlayer.h>
 #include <termios.h>
 #include <pthread.h>
+#include <sys/utsname.h>
+#include <string.h>
 
 #ifdef SYSTEMLIB
 
@@ -60,7 +62,7 @@ typedef enum {
 
 am_tsplayer_handle session;
 const int kRwSize = 188*300;
-const int kRwTimeout = 30000;
+const int kRwTimeout = 500;
 
 #define DEBUG_FLAG 1
 #define TEST_FLOW 0
@@ -530,6 +532,15 @@ int main(int argc, char **argv)
     //am_tsplayer_handle session;
     am_tsplayer_init_params parm = {tsType, drmmode, 0, 0};
     AmTsPlayer_create(parm, &session);
+
+    struct utsname kernel_msg;
+    bool isTsyncNonTunelflag = false;
+    uname(&kernel_msg);
+    if (strstr(kernel_msg.release, "5.15") != NULL) {
+        printf("t5d nontunelmode need set VideoTunnelId\n");
+        isTsyncNonTunelflag = true;
+    }
+
     #ifdef SYSTEMLIB
     //system lib
     #if (ANDROID_PLATFORM_SDK_VERSION == 29)
@@ -556,7 +567,9 @@ int main(int argc, char **argv)
         printf("setprop vendor.dtv.audio.skipamadec true\n");
     #endif
 
-    if (access("/sys/class/stb/demux0_source",F_OK) != 0) {
+    if (access("/sys/class/stb/demux0_source",F_OK) != 0 ||
+        (access("/sys/class/stb/demux0_source",F_OK) == 0 &&
+        isTsyncNonTunelflag)) {
         //X4,Y4 need set VideoTunnelId
         printf("Android R system, platform demux:AmHwMultiDemux \n");
         printf("Set VideoTunnelId \n");

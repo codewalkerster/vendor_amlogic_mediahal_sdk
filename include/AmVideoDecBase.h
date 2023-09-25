@@ -15,11 +15,12 @@
 #include <stdint.h>
 #include "AmlMessageBase.h"
 
-#define AM_VIDEO_DEC_INIT_FLAG_DEFAULT        0
-#define AM_VIDEO_DEC_INIT_FLAG_CODEC2         1
-#define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE     (1ul << 1)
-#define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE (1ul << 2)
-#define AM_VIDEO_DEC_INIT_FLAG_TSPLAYER       (1ul << 3)
+#define AM_VIDEO_DEC_INIT_FLAG_DEFAULT              0
+#define AM_VIDEO_DEC_INIT_FLAG_CODEC2               1
+#define AM_VIDEO_DEC_INIT_FLAG_STREAMMODE           (1ul << 1)
+#define AM_VIDEO_DEC_INIT_FLAG_DMXDATA_SOURCE       (1ul << 2)
+#define AM_VIDEO_DEC_INIT_FLAG_TSPLAYER             (1ul << 3)
+#define AM_VIDEO_DEC_INIT_FLAG_VIDEO_PASSTHROUGH    (1ul << 4)
 
 #define AM_VIDEO_DEC_INIT_FLAG_USE_INPUT_BUFFER_POOL (1ul << 4)
 #define AM_VIDEO_DEC_INIT_FLAG_USE_DYNAMIC_CAPTURE_BUFFER (1ul << 5)
@@ -42,6 +43,7 @@ enum class InputCodec {
   AVS3,
   AVS2,
   AVS,
+  VC1,
   UNKNOWN = 0xff,
 };
 
@@ -74,6 +76,7 @@ typedef struct {
     uint32_t    nDecType;
     int32_t nVideoRecoveryValue;
     int32_t unStablePts;
+    int32_t sourceType;
 } init_param_t;
 
 typedef struct {
