@@ -40,6 +40,7 @@ public:
     virtual int Init(passthroughInitParams* params);
     virtual int RegCallBack(int cb_id, callbackFunc func, void* obj);
     virtual int GetSyncInstansNo(int *no);
+    virtual int SetInstanceNo(int32_t numb);
     virtual int Start();
     virtual int Stop();
     virtual int Flush();

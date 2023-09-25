@@ -1,10 +1,90 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.31-gb621716
+Version: V3.22.35-g433d87f
 
 ========================================
 
 Git commit:
+commit 433d87fa9f5bf9f4fd5ba7a684be50a026710950
+Author: shoukun.zhang <shoukun.zhang@amlogic.com>
+Date:   Mon Sep 25 14:10:44 2023 +0800
+
+videodec: CF2 add v4l2 event log info [1/1]
+
+PD#SWPL-139654
+
+Problem:
+1.We want to capture log information when decoding errors occur
+
+Solution:
+1.add v4l2 event log info
+
+Verify:
+TXHD2
+
+Change-Id: I0b0782728b17127ef4ca4785f149f799a1e46423
+Signed-off-by: shoukun.zhang <shoukun.zhang@amlogic.com>
+
+commit 36358cf227b4e416f4eadc7ccb4bd983a6e67a8b
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Sep 25 16:32:52 2023 +0800
+
+tsplayer: CB2 fix audioSoftWrapper to setprop [1/1]
+
+PD#IPTV-24012
+
+Problem:
+audio will decode failed using amplayer after tsplayer.
+
+Solution:
+fix audioSoftWrapper to setprop.
+
+Verify:
+s5
+
+Change-Id: Ia3bed8499503e4fb154a2ff421a96497d6cde6f6
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 2e16ef7ecf4026458ec6c23d88df51df543fe878
+Author: Shuai Fan <shuai.fan@amlogic.com>
+Date:   Mon Sep 25 11:03:02 2023 +0000
+
+tunnelrenderer: CB2 fix compile error [1/1]
+
+PD#SWPL-141140
+
+Problem:
+fix compile error
+
+Solution:
+fix compile error
+
+Verify:
+AH212 Android U
+
+Change-Id: I4410cccd96dcb389d3ba78c6aa5ec2aa5e4c8196
+Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
+
+commit 1079bcf023162bc02163c222e80765801aa86032
+Author: Shuai Fan <shuai.fan@amlogic.com>
+Date:   Thu Sep 14 08:11:52 2023 +0000
+
+videopassthrough: CF2 support setInstanceNo [1/2]
+
+PD#SWPL-140300
+
+Problem:
+support setInstanceNo
+
+Solution:
+support setInstanceNo
+
+Verify:
+AH212 Android U
+
+Change-Id: I74dceb9af221a95291c613b47ddb0870a2f0e1ec
+Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
+
 commit b62171699d62283ddc9016f0a37bf1cb52db19f3
 Author: futian.shi <futian.shi@amlogic.com>
 Date:   Fri Jun 16 20:40:55 2023 +0800
@@ -129,90 +209,9 @@ s5
 Change-Id: I34801aa77e10e6bdfac1ebc3008868df2c084234
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit e1d6098139980fb7a904c170ef7c42b67c7e2d53
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Sep 5 19:48:37 2023 +0800
-
-tsplayer: CB2 when playing clear stream, the audio plays stuckly [1/1]
-
-PD#SWPL-138675
-
-Problem:
-the audio plays stuckly in clear stream
-
-Solution:
-fix audio es cache mode
-
-Verify:
-ohm
-
-Change-Id: I3890a98efabaa19b50da98f07e33653c77b4e30a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 05b188718db7cec4998b272f9cd91306203546a0
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Sep 12 19:38:00 2023 +0800
-
-tunnelrender: CB1 fix tunnel flush and nodifyRenderTime crash issue [1/1]
-
-PD#TV-92680
-
-Problem:
-flush and nodifyRenderTime flush
-
-Solution:
-adjust invoke sequenece to prevent use after free
-
-Verify:
-T5M
-
-Change-Id: Ib4c96abb3d6b0cb1c66bfbc093ac0a29059c07e7
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit be9e77f226c3cda1de2eda1883d36b4e6eceb7bf
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Aug 30 14:50:08 2023 +0800
-
-videodec: CB2 dash clear stream can not play [1/1]
-
-PD#SWPL-137583
-PD#SWPL-136748
-
-Problem:
-dash clear stream can not play.
-
-Solution:
-fix es mode to write
-
-Verify:
-s5
-
-Change-Id: Ia3beef4b6c6a6ecc1432c5368e2d05d56ff37f7a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 02e16881196fd3e99d179380882ceff7cce2fb74
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Aug 30 21:09:51 2023 +0800
-
-mediasync: CB2 Fix pvr seek out of sync. [1/1]
-
-PD#SWPL-138280
-
-Problem:
-hasaudio status is abnormal.
-
-Solution:
-Audio MediaSync Reset does not reset the HASAudio state.
-
-Verify:
-SC2
-
-Change-Id: Ib9fb4318a6850b0a3a1dbb15d06c65af5b81ee7b
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-09-25-14-48
+Release time: 2023-09-25-21-37
 
 ========================================
 
