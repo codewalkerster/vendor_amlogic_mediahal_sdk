@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.35-g433d87f
+Version: V3.22.36-g7bd6de8
 
 ========================================
 
 Git commit:
+commit 7bd6de8aa1628cbe35fd1b06936c60ef6f85de15
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Sep 6 22:32:34 2023 +0800
+
+mediasync: CB2 Fixed pip switching sound abnormality.  [1/1]
+
+PD#SWPL-134549
+
+Problem:
+There is no instance of output sound,
+no buffering data according to PCR.
+
+Solution:
+There is no instance of output sound, according to PCR buffered data.
+
+Verify:
+SC2
+
+Change-Id: Icccf3721beab3491e3cabd3d52eae69533ec5ee2
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 433d87fa9f5bf9f4fd5ba7a684be50a026710950
 Author: shoukun.zhang <shoukun.zhang@amlogic.com>
 Date:   Mon Sep 25 14:10:44 2023 +0800
@@ -189,29 +210,9 @@ AH212 Android U
 Change-Id: I2b398b12130a801da31a0f86185782728f436f56
 Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
 
-commit e30a2045735bda2c8189bda17975f70805ea6776
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Sep 14 16:17:25 2023 +0800
-
-tsplayer: CB2 video can not display but has audio after reboot [1/1]
-
-PD#IPTV-23917
-
-Problem:
-video can not display but has audio after reboot for first playing.
-
-Solution:
-a member of demuxWrapper should need to initialize.
-
-Verify:
-s5
-
-Change-Id: I34801aa77e10e6bdfac1ebc3008868df2c084234
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-09-25-21-37
+Release time: 2023-09-26-15-31
 
 ========================================
 
