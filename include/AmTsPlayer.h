@@ -74,6 +74,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_UNSTABLE_PTS,
     AM_TSPLAYER_KEY_SET_VIDEO_LATENCY,
     AM_TSPLAYER_KEY_SET_MEDIASYNC_CACHE,
+    AM_TSPLAYER_KEY_SET_AUDIO_EXTRADATA,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -116,7 +117,12 @@ typedef struct {
     uint32_t width;
     uint32_t height;
     int32_t  reserved[2];
-}am_tsplayer_osd_info;
+} am_tsplayer_osd_info;
+
+typedef struct {
+    uint32_t extradata_size;
+    uint8_t  *extradata;
+} am_tsplayer_extradata;
 
 /*Callback event mask*/
 #define AM_TSPLAYER_EVENT_TYPE_PTS_MASK            (1 << AM_TSPLAYER_EVENT_TYPE_PTS)
@@ -271,6 +277,7 @@ typedef enum {
     AV_VIDEO_CODEC_DVES_AVC = 10,          // DVES_AVC
     AV_VIDEO_CODEC_DVES_HEVC = 11,         // DVES_HEVC
     AV_VIDEO_CODEC_AVS3 = 12,              // AVS3
+    AV_VIDEO_CODEC_AV1 = 13,              // AV1 (Only support on frame mode)
     AV_VIDEO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_video_codec;
 

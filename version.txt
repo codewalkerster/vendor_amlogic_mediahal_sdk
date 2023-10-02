@@ -1,10 +1,174 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.36-g7bd6de8
+Version: V3.22.44-gdea0ef4
 
 ========================================
 
 Git commit:
+commit dea0ef42319f2973b87ef0734635ef10c3a33afc
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Oct 2 14:15:21 2023 +0800
+
+tsplayer: CB2 fix compiling error [1/1]
+
+PD#IPTV-24141
+
+Problem:
+fix compiling error
+
+Solution:
+fix compiling error
+
+Verify:
+s5
+
+Change-Id: I12a3366ff5066cda46a84b9aff48b070ee6eacf4
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit a4d70b650d097fec023abd7ec66fc60bf32e9339
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Aug 16 20:01:48 2023 +0800
+
+mediasync: CB1 Adjust the method of getting DisplayVsync and Period. [1/1]
+
+PD#TV-93896
+
+Problem:
+Get DisplayVsync and Period from videotunnel instead.
+
+Solution:
+MediaSync adds a callback interface.
+videotunnel obtains DisplayVsync and Period letters to
+register for mediasync.
+
+Verify:
+SC2
+
+Change-Id: Id13e5036503ea7895a1144441f9011c9eea7dd48
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit b49016b42bcc716d34164cf06ee0bbc9bcb6412c
+Author: qiuping.zhou <qiuping.zhou@amlogic.com>
+Date:   Wed Sep 27 17:16:03 2023 +0800
+
+tsplayer: CB2 opus no sound [1/1]
+
+PD#IPTV-24096
+
+Problem:
+opus no sound due to not transfer extradata
+
+Solution:
+transfer extradata
+
+Verify:
+s5
+
+Change-Id: I5fcd6c56f416f1f26343d6c2b026f90bacb3a017
+Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
+
+commit 51b4f0f270080850387874e820c37466cdf99f0a
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Sep 29 14:08:48 2023 +0800
+
+tsplayer: CF2 support av1 format on framemode [1/1]
+
+PD#IPTV-24254
+
+Problem:
+support av1 format on framemode
+
+Solution:
+support av1 format on framemode
+
+Verify:
+s5
+
+Change-Id: Iaf5bdd03f6cffc19154c95be339d3fd802e91d5a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 720629b7a12135c9df3845848a6cb40ec6fbea27
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Sep 28 13:53:59 2023 +0800
+
+tsplayer: CB2 one video plays not smoothly in ES Mode [1/1]
+
+PD#IPTV-24141
+
+Problem:
+one video plays not smoothly in ES Mode
+
+Solution:
+adjust the wrong pts.
+
+Verify:
+s5
+
+Change-Id: Ia5e1d07fd8dd7e905bbac8e4d77a433d55442035
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit a2c9d5ded23496c254a2ab1e832c1e5cd9547827
+Author: lingrong.wu <lingrong.wu@amlogic.com>
+Date:   Fri Sep 8 18:59:47 2023 +0800
+
+tsplayer: CB2 BootVideo open wrong pcm node [1/1]
+
+PD#TV-90038
+PD#TV-92572
+
+Problem:
+BootVideo pcm_open index 0 device
+some scenes it will change
+
+Solution:
+get card index from /proc/asound/cards
+
+Verify:
+Android R
+
+Change-Id: Ic01d4da5018a05ed961333044957fd01ec5028d2
+Signed-off-by: lingrong.wu <lingrong.wu@amlogic.com>
+
+commit a49af6b3e0de08725eef4ac75307e1609cbb4bd5
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Sep 27 19:19:13 2023 +0800
+
+tsplayer: CB2 not set checkframe prop for audioSoft in FrameMode [1/1]
+
+PD#IPTV-24012
+
+Problem:
+audio will decode failed using amplayer after tsplayer.
+
+Solution:
+not set checkframe prop for audioSoft in FramMode.
+
+Verify:
+s5
+
+Change-Id: I34928d2f39a87877faaf8f81710a7e9ac8caa2d1
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 5c1a3513955d71a66a9c603a651f6ca2502bfc92
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Sep 26 17:31:18 2023 +0800
+
+tsplayer: CB2 Fix compile warnings.  [1/1]
+
+PD#SWPL-141254
+
+Problem:
+There are unused variables.
+
+Solution:
+Delete unused variables.
+
+Verify:
+SC2
+
+Change-Id: Ie3f554bc3ba180a5c992e0e56e2ecedb2d2945e7
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 7bd6de8aa1628cbe35fd1b06936c60ef6f85de15
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Sep 6 22:32:34 2023 +0800
@@ -46,173 +210,9 @@ TXHD2
 Change-Id: I0b0782728b17127ef4ca4785f149f799a1e46423
 Signed-off-by: shoukun.zhang <shoukun.zhang@amlogic.com>
 
-commit 36358cf227b4e416f4eadc7ccb4bd983a6e67a8b
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Sep 25 16:32:52 2023 +0800
-
-tsplayer: CB2 fix audioSoftWrapper to setprop [1/1]
-
-PD#IPTV-24012
-
-Problem:
-audio will decode failed using amplayer after tsplayer.
-
-Solution:
-fix audioSoftWrapper to setprop.
-
-Verify:
-s5
-
-Change-Id: Ia3bed8499503e4fb154a2ff421a96497d6cde6f6
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 2e16ef7ecf4026458ec6c23d88df51df543fe878
-Author: Shuai Fan <shuai.fan@amlogic.com>
-Date:   Mon Sep 25 11:03:02 2023 +0000
-
-tunnelrenderer: CB2 fix compile error [1/1]
-
-PD#SWPL-141140
-
-Problem:
-fix compile error
-
-Solution:
-fix compile error
-
-Verify:
-AH212 Android U
-
-Change-Id: I4410cccd96dcb389d3ba78c6aa5ec2aa5e4c8196
-Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
-
-commit 1079bcf023162bc02163c222e80765801aa86032
-Author: Shuai Fan <shuai.fan@amlogic.com>
-Date:   Thu Sep 14 08:11:52 2023 +0000
-
-videopassthrough: CF2 support setInstanceNo [1/2]
-
-PD#SWPL-140300
-
-Problem:
-support setInstanceNo
-
-Solution:
-support setInstanceNo
-
-Verify:
-AH212 Android U
-
-Change-Id: I74dceb9af221a95291c613b47ddb0870a2f0e1ec
-Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
-
-commit b62171699d62283ddc9016f0a37bf1cb52db19f3
-Author: futian.shi <futian.shi@amlogic.com>
-Date:   Fri Jun 16 20:40:55 2023 +0800
-
-videodec: CF2 add vc1 support [2/2]
-
-PD#SWPL-127063
-
-Problem:
-add vc1 support
-
-Solution:
-1. add vc1 support;
-2. vc1 use stream mode;
-3. add vc1 header;
-
-Verify:
-ohm
-
-Change-Id: I8998e0921d1f4452b7c59a313559f1d7538f69de
-Signed-off-by: futian.shi <futian.shi@amlogic.com>
-
-commit c019c644ba34c7637242270473b7841e2c102970
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu Jul 6 08:30:51 2023 +0000
-
-tsplayer: CF1 single demux support mediasync [7/9]
-
-PD#SWPL-130171
-
-Problem:
-single demux not support mediasync
-
-Solution:
-single demux support mediasync
-
-Verify:
-T5D
-
-Change-Id: Ia1a8a429b7ae9f3a3ff2ee0ea5c09c2f2dff3f0d
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit d2ad2f086c4c03c52f859afe4f6a537441a6d01b
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Sep 6 16:11:02 2023 +0800
-
-tsplayer: CF2 add dvbAudio api to get audio output mode [1/1]
-
-PD#IPTV-23224
-
-Problem:
-add dvbAudio api to get audio output mode.
-
-Solution:
-support the dvbAudio api.
-
-Verify:
-s5
-
-Change-Id: Ie6147727a1ea5fb611506e9300dcad0a49e14507
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit d85072a9080ed95bb9719fd2eb732e2689c936dd
-Author: yongchen.li <yongchen.li@amlogic.com>
-Date:   Fri Aug 11 07:23:46 2023 +0000
-
-tunnelrenderer: CB2 fix video block when surface visibleRegion is 0 [1/1]
-
-PD#TV-88096
-
-Problem:
-when surface visibleRegion is 0, will can not set layer to hwc,
-so videotunnel consumer would not exist, video will block.
-
-Solution:
-1,when get -ENOTCONN, call cancel buffer one times,
-ensure buffer can recycle normally
-
-Verify:
-t5m
-
-Change-Id: Ie7ed69bdffa2f3db8953900f44650746e787ead1
-Signed-off-by: yongchen.li <yongchen.li@amlogic.com>
-
-commit 7242cec5854ae6f3ef210a49679e372befe748a6
-Author: Shuai Fan <shuai.fan@amlogic.com>
-Date:   Fri Sep 15 12:57:55 2023 +0000
-
-videopassthrough: CB2 fix AmCodecVDA crash [1/1]
-
-PD#SWPL-140206
-
-Problem:
-AmCodecDec.mDemuxType no value cause crash in videopassthrough
-
-Solution:
-set AmCodecDec.mDemuxType when videopassthrough
-
-Verify:
-AH212 Android U
-
-Change-Id: I2b398b12130a801da31a0f86185782728f436f56
-Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
-
 ========================================
 
-Release time: 2023-09-26-15-31
+Release time: 2023-10-02-15-06
 
 ========================================
 
