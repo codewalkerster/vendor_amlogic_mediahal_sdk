@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.44-gdea0ef4
+Version: V3.22.45-g430bc11
 
 ========================================
 
 Git commit:
+commit 430bc11a48dcee55891237e914cfd6cd66d32527
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Aug 18 11:16:18 2023 +0800
+
+videodec: CB2 videodecoder post task to get accurate decoder id [1/1]
+
+PD#SWPL-132832
+
+Problem:
+videodecoder thread sometimes not get accurate decoder id
+
+Solution:
+post a task to get accurate decoder id
+
+Verify:
+ohm
+
+Change-Id: If3a3db62195f5d101ddfe28ee29e8816ffc32d29
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit dea0ef42319f2973b87ef0734635ef10c3a33afc
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Mon Oct 2 14:15:21 2023 +0800
@@ -190,29 +210,9 @@ SC2
 Change-Id: Icccf3721beab3491e3cabd3d52eae69533ec5ee2
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 433d87fa9f5bf9f4fd5ba7a684be50a026710950
-Author: shoukun.zhang <shoukun.zhang@amlogic.com>
-Date:   Mon Sep 25 14:10:44 2023 +0800
-
-videodec: CF2 add v4l2 event log info [1/1]
-
-PD#SWPL-139654
-
-Problem:
-1.We want to capture log information when decoding errors occur
-
-Solution:
-1.add v4l2 event log info
-
-Verify:
-TXHD2
-
-Change-Id: I0b0782728b17127ef4ca4785f149f799a1e46423
-Signed-off-by: shoukun.zhang <shoukun.zhang@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-02-15-06
+Release time: 2023-10-09-15-22
 
 ========================================
 
