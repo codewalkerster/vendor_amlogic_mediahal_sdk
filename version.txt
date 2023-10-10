@@ -1,10 +1,93 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.45-g430bc11
+Version: V3.22.49-g0939f13
 
 ========================================
 
 Git commit:
+commit 0939f137d2d22f94249253cb0e8166625d6e364a
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sun Oct 1 23:26:17 2023 +0800
+
+mediasync: CB1 Fix audio and video out of sync.  [1/1]
+
+PD#SWPL-137940
+
+Problem:
+The discontinue mechanism is abnormal.
+
+Solution:
+After discontinue,
+the pts of audio and video are updated after alignment.
+
+Verify:
+SC2
+
+Change-Id: I8b5674ac4af0157f052c76503a416fae58d97c8d
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 456658a62155fbd06e329600c13f31ac9574a944
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sun Oct 8 11:00:32 2023 +0800
+
+videodec: CB2 Fix FCC playback black screen. [1/1]
+
+PD#SWPL-141020
+
+Problem:
+ES data is not injected into the decoder.
+
+Solution:
+Convert cache mode to clear the input buffer done count.
+
+Verify:
+SC2
+
+Change-Id: Ibbf28e5d5fe95476de1ae83b2b8f413adabd3851
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit cfef74bec24013f562000a5841a2559ed76890a6
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Sun Oct 1 14:59:41 2023 +0800
+
+tsplayer: CF2 add cmd to set video size [1/1]
+
+PD#IPTV-23321
+PD#IPTV-23914
+
+Problem:
+it is too slow to start playing for 8k video
+
+Solution:
+add cmd to set video size, then video decoder can allocate buffer
+quickly.
+
+Verify:
+s5
+
+Change-Id: I44f4c37bf791f88a1bc91c8b40031aa1547c3a44
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 690ab0ec4c6a33e80a597de7f3a2b8b43b33967d
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Tue Sep 26 19:15:44 2023 +0800
+
+tsplayer: CB2 videoShow again when fail [1/1]
+
+PD#SWPL-131288
+
+Problem:
+send CMD fail with no consumer
+
+Solution:
+videoShow again when fail
+
+Verify:
+SC2
+
+Change-Id: I4806d988ba489d2354092de2e9ba9aa196ca13be
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit 430bc11a48dcee55891237e914cfd6cd66d32527
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri Aug 18 11:16:18 2023 +0800
@@ -127,92 +210,9 @@ s5
 Change-Id: Ia5e1d07fd8dd7e905bbac8e4d77a433d55442035
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit a2c9d5ded23496c254a2ab1e832c1e5cd9547827
-Author: lingrong.wu <lingrong.wu@amlogic.com>
-Date:   Fri Sep 8 18:59:47 2023 +0800
-
-tsplayer: CB2 BootVideo open wrong pcm node [1/1]
-
-PD#TV-90038
-PD#TV-92572
-
-Problem:
-BootVideo pcm_open index 0 device
-some scenes it will change
-
-Solution:
-get card index from /proc/asound/cards
-
-Verify:
-Android R
-
-Change-Id: Ic01d4da5018a05ed961333044957fd01ec5028d2
-Signed-off-by: lingrong.wu <lingrong.wu@amlogic.com>
-
-commit a49af6b3e0de08725eef4ac75307e1609cbb4bd5
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Sep 27 19:19:13 2023 +0800
-
-tsplayer: CB2 not set checkframe prop for audioSoft in FrameMode [1/1]
-
-PD#IPTV-24012
-
-Problem:
-audio will decode failed using amplayer after tsplayer.
-
-Solution:
-not set checkframe prop for audioSoft in FramMode.
-
-Verify:
-s5
-
-Change-Id: I34928d2f39a87877faaf8f81710a7e9ac8caa2d1
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 5c1a3513955d71a66a9c603a651f6ca2502bfc92
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Sep 26 17:31:18 2023 +0800
-
-tsplayer: CB2 Fix compile warnings.  [1/1]
-
-PD#SWPL-141254
-
-Problem:
-There are unused variables.
-
-Solution:
-Delete unused variables.
-
-Verify:
-SC2
-
-Change-Id: Ie3f554bc3ba180a5c992e0e56e2ecedb2d2945e7
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 7bd6de8aa1628cbe35fd1b06936c60ef6f85de15
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Sep 6 22:32:34 2023 +0800
-
-mediasync: CB2 Fixed pip switching sound abnormality.  [1/1]
-
-PD#SWPL-134549
-
-Problem:
-There is no instance of output sound,
-no buffering data according to PCR.
-
-Solution:
-There is no instance of output sound, according to PCR buffered data.
-
-Verify:
-SC2
-
-Change-Id: Icccf3721beab3491e3cabd3d52eae69533ec5ee2
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-09-15-22
+Release time: 2023-10-10-10-52
 
 ========================================
 

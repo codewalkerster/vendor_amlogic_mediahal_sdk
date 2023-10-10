@@ -75,6 +75,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_VIDEO_LATENCY,
     AM_TSPLAYER_KEY_SET_MEDIASYNC_CACHE,
     AM_TSPLAYER_KEY_SET_AUDIO_EXTRADATA,
+    AM_TSPLAYER_KEY_SET_VIDEO_DECODER_INFO, //iptv: set before startDecoding
 } am_tsplayer_parameter;
 
 typedef enum
@@ -118,6 +119,14 @@ typedef struct {
     uint32_t height;
     int32_t  reserved[2];
 } am_tsplayer_osd_info;
+
+typedef struct {
+    uint32_t width;
+    uint32_t height;
+    int double_write;
+    int margin;
+    int32_t  reserved[2];
+} am_tsplayer_video_decoder_info;
 
 typedef struct {
     uint32_t extradata_size;
