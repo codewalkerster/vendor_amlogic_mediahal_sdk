@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.49-g0939f13
+Version: V3.22.50-g58e83a5
 
 ========================================
 
 Git commit:
+commit 58e83a5660c2b398fdb9478d4b7c992dcd044155
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Mon Sep 25 17:42:56 2023 +0800
+
+videodec: CB1 video play error when play the specific mpeg4. [1/2]
+
+PD#SWPL-139082
+
+Problem:
+1 calculate pts error,not update 'mLastOutPts' value.
+
+Solution:
+1. We need update mLastOutPts value when we not found input pts
+and return.
+
+
+Verify:
+ohm
+
+Change-Id: If90fbf31133550297ab021d989c0a8d4101fd2af
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 0939f137d2d22f94249253cb0e8166625d6e364a
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Sun Oct 1 23:26:17 2023 +0800
@@ -190,29 +212,9 @@ s5
 Change-Id: Iaf5bdd03f6cffc19154c95be339d3fd802e91d5a
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 720629b7a12135c9df3845848a6cb40ec6fbea27
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Sep 28 13:53:59 2023 +0800
-
-tsplayer: CB2 one video plays not smoothly in ES Mode [1/1]
-
-PD#IPTV-24141
-
-Problem:
-one video plays not smoothly in ES Mode
-
-Solution:
-adjust the wrong pts.
-
-Verify:
-s5
-
-Change-Id: Ia5e1d07fd8dd7e905bbac8e4d77a433d55442035
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-10-10-52
+Release time: 2023-10-11-16-05
 
 ========================================
 
