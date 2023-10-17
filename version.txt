@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.50-g58e83a5
+Version: V3.22.53-g0b9817e
 
 ========================================
 
 Git commit:
+commit 0b9817e2cbb4984ecd52ac43a9e7fb1088b4cc11
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Oct 11 13:15:50 2023 +0800
+
+tunnelrenderer: CB1 tunnel not clear last frame with vt interface [1/1]
+
+PD#SWPL-140871
+
+Problem:
+error invoke clear last frame lead netflix playback not smooth
+
+Solution:
+not clear last frame with vt interface
+
+Verify:
+ohm
+
+Change-Id: I7d946bbac2ad834811c5f95ea02290f2f1c1e2dc
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 061ecb527ed08899310a4fae85e908411cd436e6
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Fri Sep 29 13:44:39 2023 +0800
+
+videodec: CB2 Reslove GTS Secure Playback performance Issue [1/1]
+
+PD#SWPL-141437
+
+Problem:
+Reslove GTS Secure Playback performance test weighted interframe time
+doesn't meet test case's requirement.
+
+Solution:
+Secure es dynamic alloc's flow control unused buffer miscalculation
+lead the yuv buffer is not report in time.
+
+Verify:
+Android U-oppen
+
+Change-Id: Iaeca7ad59418c2e024291b475ea499c7925983ff
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 087dd35fc38a13de16180577a81ddbfcebc9fbd3
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Oct 9 08:19:47 2023 +0000
+
+videodec: CB2 Fixed logging namespace.  [1/1]
+
+PD#TV-95214
+
+Problem:
+logging namespace conflict.
+
+Solution:
+Fixed logging namespace.
+
+Verify:
+T5M
+
+Change-Id: I661e8cc0f93379f58932615932da1402b84f5f78
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit 58e83a5660c2b398fdb9478d4b7c992dcd044155
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Mon Sep 25 17:42:56 2023 +0800
@@ -150,71 +212,9 @@ s5
 Change-Id: I12a3366ff5066cda46a84b9aff48b070ee6eacf4
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit a4d70b650d097fec023abd7ec66fc60bf32e9339
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Aug 16 20:01:48 2023 +0800
-
-mediasync: CB1 Adjust the method of getting DisplayVsync and Period. [1/1]
-
-PD#TV-93896
-
-Problem:
-Get DisplayVsync and Period from videotunnel instead.
-
-Solution:
-MediaSync adds a callback interface.
-videotunnel obtains DisplayVsync and Period letters to
-register for mediasync.
-
-Verify:
-SC2
-
-Change-Id: Id13e5036503ea7895a1144441f9011c9eea7dd48
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit b49016b42bcc716d34164cf06ee0bbc9bcb6412c
-Author: qiuping.zhou <qiuping.zhou@amlogic.com>
-Date:   Wed Sep 27 17:16:03 2023 +0800
-
-tsplayer: CB2 opus no sound [1/1]
-
-PD#IPTV-24096
-
-Problem:
-opus no sound due to not transfer extradata
-
-Solution:
-transfer extradata
-
-Verify:
-s5
-
-Change-Id: I5fcd6c56f416f1f26343d6c2b026f90bacb3a017
-Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
-
-commit 51b4f0f270080850387874e820c37466cdf99f0a
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Sep 29 14:08:48 2023 +0800
-
-tsplayer: CF2 support av1 format on framemode [1/1]
-
-PD#IPTV-24254
-
-Problem:
-support av1 format on framemode
-
-Solution:
-support av1 format on framemode
-
-Verify:
-s5
-
-Change-Id: Iaf5bdd03f6cffc19154c95be339d3fd802e91d5a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-11-16-05
+Release time: 2023-10-17-11-06
 
 ========================================
 
