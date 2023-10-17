@@ -1,10 +1,73 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.53-g0b9817e
+Version: V3.22.56-g65c3564
 
 ========================================
 
 Git commit:
+commit 65c3564fc84a2ab959f6fd11c4fc7718a5ea08eb
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Oct 10 21:16:50 2023 +0800
+
+mediasync: CB2 Fixed FCC av out of sync issue. [1/1]
+
+PD#SWPL-136571
+
+Problem:
+After AD is enabled,
+it is not synchronized after constantly switching channels.
+Cache mode, buffer audio data is more.
+
+Solution:
+Drop the extra audio cache when playback begins.
+
+Verify:
+SC2
+
+Change-Id: Ic8c1dbd0d76a16e3c1c93a98e35c51be6d75c365
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 2e8ff8216507427dae488af226d9a955a1287572
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Sep 27 15:00:58 2023 +0800
+
+tsplayer: CB2 Fixed the issue where FCC played only audio events. [1/1]
+
+PD#SWPL-140495
+
+Problem:
+In FCC mode, only audio is played without decoder first audio events.
+
+Solution:
+Cache Mode switches to Normal Mode,
+triggering the detection of the state of the first frame decoded by Audio.
+
+Verify:
+SC2
+
+Change-Id: I60705857d98402bdcd7139a88e92b43d70adcb21
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 463c74f61daf38d16193ca2d17b9f25bbc4685a0
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Mon Oct 9 17:04:16 2023 +0800
+
+tsplayer: CB2 update speed control of data injection [1/1]
+
+PD#SWPL-139415
+
+Problem:
+too fast stream data injection leads to pts server table overflow.
+
+Solution:
+update speed control of data injection
+
+Verify:
+SC2
+
+Change-Id: Ic9491b2a6f2042331314d0b4cb8cc9b86f42abde
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit 0b9817e2cbb4984ecd52ac43a9e7fb1088b4cc11
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Oct 11 13:15:50 2023 +0800
@@ -152,69 +215,9 @@ s5
 Change-Id: I44f4c37bf791f88a1bc91c8b40031aa1547c3a44
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 690ab0ec4c6a33e80a597de7f3a2b8b43b33967d
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Tue Sep 26 19:15:44 2023 +0800
-
-tsplayer: CB2 videoShow again when fail [1/1]
-
-PD#SWPL-131288
-
-Problem:
-send CMD fail with no consumer
-
-Solution:
-videoShow again when fail
-
-Verify:
-SC2
-
-Change-Id: I4806d988ba489d2354092de2e9ba9aa196ca13be
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 430bc11a48dcee55891237e914cfd6cd66d32527
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Aug 18 11:16:18 2023 +0800
-
-videodec: CB2 videodecoder post task to get accurate decoder id [1/1]
-
-PD#SWPL-132832
-
-Problem:
-videodecoder thread sometimes not get accurate decoder id
-
-Solution:
-post a task to get accurate decoder id
-
-Verify:
-ohm
-
-Change-Id: If3a3db62195f5d101ddfe28ee29e8816ffc32d29
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit dea0ef42319f2973b87ef0734635ef10c3a33afc
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Oct 2 14:15:21 2023 +0800
-
-tsplayer: CB2 fix compiling error [1/1]
-
-PD#IPTV-24141
-
-Problem:
-fix compiling error
-
-Solution:
-fix compiling error
-
-Verify:
-s5
-
-Change-Id: I12a3366ff5066cda46a84b9aff48b070ee6eacf4
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-17-11-06
+Release time: 2023-10-17-21-22
 
 ========================================
 
