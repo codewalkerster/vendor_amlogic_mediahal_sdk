@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.56-g65c3564
+Version: V3.22.58-g7d88b00
 
 ========================================
 
 Git commit:
+commit 7d88b0097d8c8b003c153e0c586b59575b013616
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Sun Oct 8 16:18:57 2023 +0800
+
+hwdumx: CB2 stream control not work in vts. [1/1]
+
+PD#TV-94362
+
+Problem:
+disable data control in vts case.
+
+Solution:
+disable data control in vts case.
+
+Verify:
+T5M
+
+Change-Id: I4ec8965f8cdd452cb3e08cd2fb1898045c59c06e
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+(cherry picked from commit 21d6f7f8cab28ee35a89bf1b7f76ec83e81a28e5)
+
+commit a9e399f0c23bcd59cbb609ee1f89c4d30f91c559
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Sep 20 17:27:59 2023 +0800
+
+hwdumx: CF1 Add the HwDemux module library. [1/1]
+
+PD#TV-93101
+
+Problem:
+TunnerFramework Inject data speed control.
+
+Solution:
+Add TS stream injection data speed control.
+
+Verify:
+T5M
+
+Change-Id: Ifcb62b7c5c0169bf8ed33c24888c88a99c4f441e
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+(cherry picked from commit 7352c299f2c11e5c839fa0a921cd3bd5a66d1bc5)
+
 commit 65c3564fc84a2ab959f6fd11c4fc7718a5ea08eb
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Oct 10 21:16:50 2023 +0800
@@ -173,51 +215,9 @@ SC2
 Change-Id: I8b5674ac4af0157f052c76503a416fae58d97c8d
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 456658a62155fbd06e329600c13f31ac9574a944
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sun Oct 8 11:00:32 2023 +0800
-
-videodec: CB2 Fix FCC playback black screen. [1/1]
-
-PD#SWPL-141020
-
-Problem:
-ES data is not injected into the decoder.
-
-Solution:
-Convert cache mode to clear the input buffer done count.
-
-Verify:
-SC2
-
-Change-Id: Ibbf28e5d5fe95476de1ae83b2b8f413adabd3851
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit cfef74bec24013f562000a5841a2559ed76890a6
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Sun Oct 1 14:59:41 2023 +0800
-
-tsplayer: CF2 add cmd to set video size [1/1]
-
-PD#IPTV-23321
-PD#IPTV-23914
-
-Problem:
-it is too slow to start playing for 8k video
-
-Solution:
-add cmd to set video size, then video decoder can allocate buffer
-quickly.
-
-Verify:
-s5
-
-Change-Id: I44f4c37bf791f88a1bc91c8b40031aa1547c3a44
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-17-21-22
+Release time: 2023-10-18-16-43
 
 ========================================
 

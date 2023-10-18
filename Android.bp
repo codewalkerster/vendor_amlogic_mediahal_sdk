@@ -438,3 +438,51 @@ cc_prebuilt_library_shared {
     export_include_dirs: ["include"],
     check_elf_files: false,
 }
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_hardware_demux",
+    //defaults: ["mediahal_sdk_go_defaults"],
+    vendor: true,
+    strip: {
+    none: true,
+    },
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediahal_hardware_demux.so"],
+        },
+        arm64: {
+            srcs: ["arm64/vendor/libmediahal_hardware_demux.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_hardware_demux.system",
+    defaults: ["mediahalvercheck_defaults"],
+    //defaults: ["mediahal_sdk_go_defaults","mediahalvercheck_defaults"],
+    strip: {
+        none: true,
+    },
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediahal_hardware_demux.system.so"],
+        },
+        arm64: {
+            srcs: ["arm64/system/libmediahal_hardware_demux.system.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
