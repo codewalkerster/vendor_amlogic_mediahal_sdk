@@ -1,10 +1,90 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.58-g7d88b00
+Version: V3.22.62-gd64a339
 
 ========================================
 
 Git commit:
+commit d64a339840b4ae3008ee0ab9cf9f2ccb8c4513fb
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Oct 12 14:12:51 2023 +0800
+
+videopassthrough: CB2 change passthrough sync mode to amaster [1/1]
+
+PD#SWPL-135279
+
+Problem:
+CBS will occure slow sync.
+
+Solution:
+default sync mode to amaster.
+
+Verify:
+SC2
+
+Change-Id: I7bb620b47f4c5bca8b1cecf1264420aa8fd34d02
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 9c081ed4c4fc1d1467fbfabf018c6224197faa12
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Oct 19 16:39:31 2023 +0800
+
+tsplayer: CB2 black screen in channel change [1/1]
+
+PD#SWPL-140484
+
+Problem:
+buffer covered in next loop
+
+Solution:
+add buffer read done interface
+
+Verify:
+T5M
+
+Change-Id: I05558363f38aa187451cf2419c407dcef8c98fde
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit fa3144eaef87b6f7503f533e6afd3324451898c6
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Oct 20 19:23:18 2023 +0800
+
+mediahal: CB1 fix android u compile failed issue [1/1]
+
+PD#SWPL-143300
+
+Problem:
+android u compile failed after hwc update include directory
+
+Solution:
+check path to add hwc include directory
+
+Verify:
+ohm
+
+Change-Id: I602aa355362468a27cc072e5f790be85cb28a3ef
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 36c786714746cb7a1d896e1b324a03338913ff64
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Oct 19 14:48:35 2023 +0800
+
+videopassthrough: CB2 high bitrate stream make stuck [1/1]
+
+PD#TV-93234
+
+Problem:
+disable decoder recover mode
+
+Solution:
+disable decoder revocer mode
+
+Verify:
+T5M
+
+Change-Id: I4ad76e8ac0f9b9e8bed8787023b550bcfebace9c
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 7d88b0097d8c8b003c153e0c586b59575b013616
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Sun Oct 8 16:18:57 2023 +0800
@@ -130,94 +210,9 @@ ohm
 Change-Id: I7d946bbac2ad834811c5f95ea02290f2f1c1e2dc
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 061ecb527ed08899310a4fae85e908411cd436e6
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Fri Sep 29 13:44:39 2023 +0800
-
-videodec: CB2 Reslove GTS Secure Playback performance Issue [1/1]
-
-PD#SWPL-141437
-
-Problem:
-Reslove GTS Secure Playback performance test weighted interframe time
-doesn't meet test case's requirement.
-
-Solution:
-Secure es dynamic alloc's flow control unused buffer miscalculation
-lead the yuv buffer is not report in time.
-
-Verify:
-Android U-oppen
-
-Change-Id: Iaeca7ad59418c2e024291b475ea499c7925983ff
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 087dd35fc38a13de16180577a81ddbfcebc9fbd3
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Oct 9 08:19:47 2023 +0000
-
-videodec: CB2 Fixed logging namespace.  [1/1]
-
-PD#TV-95214
-
-Problem:
-logging namespace conflict.
-
-Solution:
-Fixed logging namespace.
-
-Verify:
-T5M
-
-Change-Id: I661e8cc0f93379f58932615932da1402b84f5f78
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 58e83a5660c2b398fdb9478d4b7c992dcd044155
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Sep 25 17:42:56 2023 +0800
-
-videodec: CB1 video play error when play the specific mpeg4. [1/2]
-
-PD#SWPL-139082
-
-Problem:
-1 calculate pts error,not update 'mLastOutPts' value.
-
-Solution:
-1. We need update mLastOutPts value when we not found input pts
-and return.
-
-
-Verify:
-ohm
-
-Change-Id: If90fbf31133550297ab021d989c0a8d4101fd2af
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 0939f137d2d22f94249253cb0e8166625d6e364a
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sun Oct 1 23:26:17 2023 +0800
-
-mediasync: CB1 Fix audio and video out of sync.  [1/1]
-
-PD#SWPL-137940
-
-Problem:
-The discontinue mechanism is abnormal.
-
-Solution:
-After discontinue,
-the pts of audio and video are updated after alignment.
-
-Verify:
-SC2
-
-Change-Id: I8b5674ac4af0157f052c76503a416fae58d97c8d
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-18-16-43
+Release time: 2023-10-24-12-05
 
 ========================================
 
