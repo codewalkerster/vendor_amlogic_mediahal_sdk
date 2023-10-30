@@ -15,7 +15,7 @@ func systemlibDefaults(ctx android.LoadHookContext) {
     } else {
         //fmt.Println("sdkVersion:", sdkVersionInt)
     }
-    if sdkVersionInt == 30 {
+    if sdkVersionInt >= 30 {
         type props struct {
             Shared_libs []string
 			Include_dirs []string

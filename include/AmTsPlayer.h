@@ -52,6 +52,7 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_PREEMPTED,  // Instance was preempted, apk need release this instance
     AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_LOSS,    //Decoder data loss
     AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_RESUME,  //Decoder data resume
+    AM_TSPLAYER_EVENT_TYPE_DECODE_INIT_COMPLETED, // decode init completed
 } am_tsplayer_event_type;
 
 

@@ -1,10 +1,112 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.62-gd64a339
+Version: V3.22.67-g01d4d72
 
 ========================================
 
 Git commit:
+commit 01d4d722ea432dadf5f683c090f6e40328287411
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Oct 24 09:46:50 2023 +0800
+
+videodec: CB1 not set duration when set unstable pts. [2/2]
+
+PD#SWPL-141810
+
+Problem:
+1 Can not get duration from decoder.
+
+Solution:
+1. if we set duration to decoder,decoder will not parse
+framerate from bitstream,so we not set duration to decoder
+when set unstable pts and input format is h264 or h265.
+
+Verify:
+ohm
+
+Change-Id: I183434e925b7191d5a545d377735360b23bd7636
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit e57095323205e5de13d3acf3d75417ffabf8d438
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Fri Oct 20 18:34:45 2023 +0800
+
+tsplayer: CF2 vmx IPTV demo using AmTsPlayerExample [1/1]
+
+PD#TV-88821
+
+Problem:
+need demo for vmx IPTV
+
+Solution:
+add demo for vmx IPTV
+
+Verify:
+t5w
+
+Change-Id: Ie8748e9d737e84220edfffbe894753aa47d06b0f
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit f589c9c9a447b6066c1df947d673440f981f3ff1
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Oct 24 13:09:14 2023 +0000
+
+tsplayer: CB2 scramble stream cannot be played [1/1]
+
+PD#SWPL-143528
+
+Problem:
+DSC/DEMUX status information is cleared.
+
+Solution:
+Add an event type to determine AV status.
+
+Verify:
+T5D
+
+Change-Id: I44d16e721064afd4b3b66a7adc43e00a1ca338e8
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 2462e756e5811e444aa0791dfa5a2ec4937aef66
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Oct 18 07:54:26 2023 +0000
+
+videodec: CB2 video path is not set. [1/1]
+
+PD#SWPL-141967
+
+Problem:
+video path no set, cause ptsserv no create.
+
+Solution:
+set video path.
+
+Verify:
+txhd2
+
+Change-Id: I2cb8d786c1ccfa04a2b091f11843de3e65f39a0d
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit cbad8608eeae1142e8e0532a025040a86d9c3237
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Sep 12 05:18:26 2023 +0000
+
+tsplayer: CB2 stop decoder before release tsplayer [1/1]
+
+PD#OTT-44847
+
+Problem:
+mDisplay->dqbuf failed and buff exists unreleased
+
+Solution:
+stop decoder before release tsplayer
+
+Verify:
+905x4
+
+Change-Id: Ie13850eca7e06000a4facbfc146684ed3761e40b
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit d64a339840b4ae3008ee0ab9cf9f2ccb8c4513fb
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Thu Oct 12 14:12:51 2023 +0800
@@ -106,113 +208,9 @@ Change-Id: I4ec8965f8cdd452cb3e08cd2fb1898045c59c06e
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 (cherry picked from commit 21d6f7f8cab28ee35a89bf1b7f76ec83e81a28e5)
 
-commit a9e399f0c23bcd59cbb609ee1f89c4d30f91c559
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Sep 20 17:27:59 2023 +0800
-
-hwdumx: CF1 Add the HwDemux module library. [1/1]
-
-PD#TV-93101
-
-Problem:
-TunnerFramework Inject data speed control.
-
-Solution:
-Add TS stream injection data speed control.
-
-Verify:
-T5M
-
-Change-Id: Ifcb62b7c5c0169bf8ed33c24888c88a99c4f441e
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-(cherry picked from commit 7352c299f2c11e5c839fa0a921cd3bd5a66d1bc5)
-
-commit 65c3564fc84a2ab959f6fd11c4fc7718a5ea08eb
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Oct 10 21:16:50 2023 +0800
-
-mediasync: CB2 Fixed FCC av out of sync issue. [1/1]
-
-PD#SWPL-136571
-
-Problem:
-After AD is enabled,
-it is not synchronized after constantly switching channels.
-Cache mode, buffer audio data is more.
-
-Solution:
-Drop the extra audio cache when playback begins.
-
-Verify:
-SC2
-
-Change-Id: Ic8c1dbd0d76a16e3c1c93a98e35c51be6d75c365
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 2e8ff8216507427dae488af226d9a955a1287572
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Sep 27 15:00:58 2023 +0800
-
-tsplayer: CB2 Fixed the issue where FCC played only audio events. [1/1]
-
-PD#SWPL-140495
-
-Problem:
-In FCC mode, only audio is played without decoder first audio events.
-
-Solution:
-Cache Mode switches to Normal Mode,
-triggering the detection of the state of the first frame decoded by Audio.
-
-Verify:
-SC2
-
-Change-Id: I60705857d98402bdcd7139a88e92b43d70adcb21
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 463c74f61daf38d16193ca2d17b9f25bbc4685a0
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Mon Oct 9 17:04:16 2023 +0800
-
-tsplayer: CB2 update speed control of data injection [1/1]
-
-PD#SWPL-139415
-
-Problem:
-too fast stream data injection leads to pts server table overflow.
-
-Solution:
-update speed control of data injection
-
-Verify:
-SC2
-
-Change-Id: Ic9491b2a6f2042331314d0b4cb8cc9b86f42abde
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 0b9817e2cbb4984ecd52ac43a9e7fb1088b4cc11
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Oct 11 13:15:50 2023 +0800
-
-tunnelrenderer: CB1 tunnel not clear last frame with vt interface [1/1]
-
-PD#SWPL-140871
-
-Problem:
-error invoke clear last frame lead netflix playback not smooth
-
-Solution:
-not clear last frame with vt interface
-
-Verify:
-ohm
-
-Change-Id: I7d946bbac2ad834811c5f95ea02290f2f1c1e2dc
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-10-24-12-05
+Release time: 2023-10-30-15-48
 
 ========================================
 

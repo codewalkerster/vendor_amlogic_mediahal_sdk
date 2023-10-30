@@ -34,6 +34,7 @@
 #include <pthread.h>
 #include <sys/utsname.h>
 #include <string.h>
+#include <dlfcn.h>
 
 #ifdef SYSTEMLIB
 
@@ -77,6 +78,307 @@ ANDROID_PLATFORM_SDK_VERSION = 30 --> Android R
 ANDROID_PLATFORM_SDK_VERSION = 29 --> Android Q
 ANDROID_PLATFORM_SDK_VERSION = 28 --> Android P
 */
+#if ANDROID_PLATFORM_SDK_VERSION >= 30 || defined(__linux__)
+#define MKTAG(a,b,c,d) ((a) | ((b) << 8) | ((c) << 16) | ((unsigned)(d) << 24))
+#define DUMMY_LIB_NAME "libdummy_wrap.so"
+#define VMX_LIB_NAME_IPTV "libvmx_iptv_wrap.so"
+#define VMX_LIB_NAME_DVB "libvmx_dvb_wrap.so"
+
+typedef enum {
+    CAS_UNKNOWN = -1,
+    CAS_DUMMY = 0,
+    CAS_VMX_IPTV = 1,
+    CAS_VMX_DVB = 2,
+    CAS_OTHER = 3,
+    CAS_UNSUPPORT,
+    CAS_MAX
+} castype_t;
+uint32_t casType = CAS_DUMMY;
+#define TS_PACKET_SIZE 188
+uint8_t CASECM[TS_PACKET_SIZE];
+#define CAS_RETRY_NUM 10000
+#define FIND_FIRST_ECM    (1)
+uint32_t find_first_ecm = 0;
+
+typedef struct iptvseverinfo {
+     char * storepath;
+     char * serveraddr;
+     char * serverport;
+     int    enablelog;
+} iptvseverinfo_t;
+
+typedef size_t am_casiptv_wrapper_handle;
+typedef int32_t cas_create(am_casiptv_wrapper_handle *pHandle);
+static cas_create* amcas_create = NULL;
+typedef int cas_setprivatedata(am_casiptv_wrapper_handle pHandle ,void * date, int size);
+static cas_setprivatedata* amcas_setprivatedata = NULL;
+typedef int cas_setinstanceid(am_casiptv_wrapper_handle pHandle, unsigned int casid);
+static cas_setinstanceid* amcas_setinstanceid = NULL;
+typedef int cas_provision(am_casiptv_wrapper_handle pHandle);
+static cas_provision* amcas_provision = NULL;
+typedef int cas_setpids(am_casiptv_wrapper_handle pHandle, uint32_t vpid, uint32_t apid);
+static cas_setpids* amcas_setpids = NULL;
+typedef int cas_opensession(am_casiptv_wrapper_handle pHandle, uint8_t* sessionId);
+static cas_opensession* amcas_opensession = NULL;
+typedef int cas_processecm (am_casiptv_wrapper_handle pHandle, int isSection,int isvecm ,int vpid, int apid, unsigned char *pBuffer,int iBufferLength);
+static cas_processecm* amcas_processecm = NULL;
+typedef int cas_processemm (am_casiptv_wrapper_handle pHandle, int isSection,int pid,unsigned char *pBuffer,int iBufferLength);
+static cas_processemm* amcas_processemm = NULL;
+typedef int cas_selecttrack(am_casiptv_wrapper_handle pHandle, int trackType, int trackPid, int trackFormat);
+static cas_selecttrack* amcas_selecttrack = NULL;
+typedef int cas_closesession(am_casiptv_wrapper_handle pHandle, uint8_t* sessionId);
+static cas_closesession* amcas_closesession = NULL;
+am_casiptv_wrapper_handle casHandle = 0;
+
+int casplugin_register (char * casTypeStr)
+{
+   int ret = -1 ;
+   uint32_t type;
+   char * p = casTypeStr;
+   char * libPath = NULL;
+   void * libHandle = NULL;
+
+    if (p && strlen(p) < 4)
+        return false;
+    type = MKTAG(*p,*(p+1),*(p+2),*(p+3));
+    switch (type) {
+       case (MKTAG('d','u','m','m')):
+           casType = CAS_DUMMY;
+           libPath = strdup(DUMMY_LIB_NAME);
+           break;
+       case (MKTAG('v','m','x','i')):
+           casType = CAS_VMX_IPTV;
+           libPath = strdup(VMX_LIB_NAME_IPTV);
+           break;
+       case (MKTAG('v','m','x','d')):
+           casType = CAS_VMX_DVB;
+           libPath = strdup(VMX_LIB_NAME_DVB);
+           break;
+       case (MKTAG('o','t','h','r')):
+           casType = CAS_OTHER;
+           break;
+       default:
+           break;
+   }
+
+   if (libPath)
+   {
+       if (libHandle == NULL) {
+           libHandle = dlopen(libPath, RTLD_LAZY);
+           if (libHandle == NULL) {
+               printf("unable to dlopen %s : %s",libPath, dlerror());
+               return false;
+           }
+       }
+       if (libHandle)
+       {
+           amcas_create = (cas_create*)dlsym(libHandle, "AmCasIPTVCreate");
+           if (amcas_create == NULL)
+               printf("unable to dlopen %s : %s",libPath, dlerror());
+           amcas_setprivatedata = (cas_setprivatedata*)dlsym(libHandle, "AmCasIPTVSetPrivateData");
+           if (amcas_setprivatedata == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_provision = (cas_provision*)dlsym(libHandle, "AmCasIPTVProvision");
+           if (amcas_provision == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_setinstanceid = (cas_setinstanceid*)dlsym(libHandle, "AmCasIPTVSetInstanceId");
+           if (amcas_setinstanceid == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_processecm = (cas_processecm*)dlsym(libHandle, "AmCasIPTVProcessEcm");
+           if (amcas_processecm == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_processemm = (cas_processemm*)dlsym(libHandle, "AmCasIPTVProcessEmm");
+           if (amcas_processemm == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_setpids = (cas_setpids*)dlsym(libHandle, "AmCasIPTVSetPids");
+           if (amcas_setpids == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_opensession = (cas_opensession*)dlsym(libHandle, "AmCasIPTVOpenSession");
+           if (amcas_opensession == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_selecttrack = (cas_selecttrack*)dlsym(libHandle, "AmCasIPTVSelectTrack");
+           if (amcas_selecttrack == NULL)
+               printf("dlsym fail %s", dlerror());
+           amcas_closesession = (cas_closesession*)dlsym(libHandle, "AmCasIPTVCloseSession");
+           if (amcas_closesession == NULL)
+               printf("dlsym fail %s", dlerror());
+       }
+    }
+   return ret;
+}
+
+int casplugin_provision()
+{
+    int ret = -1 ;
+    iptvseverinfo_t sevinfo;
+
+    if (amcas_create && amcas_setprivatedata && amcas_provision) {
+        amcas_create(&casHandle);
+        sevinfo.serveraddr = strdup("client-test-3.verimatrix.com");
+        sevinfo.storepath = strdup("/data/mediadrm");
+        sevinfo.serverport = strdup("12686");
+        sevinfo.enablelog = 0;
+        amcas_setprivatedata(casHandle, (void *)&sevinfo, sizeof(iptvseverinfo_t));
+        ret = amcas_setinstanceid(casHandle, 0);
+        ret = amcas_provision(casHandle);
+    }
+    return ret;
+}
+
+int casplugin_opensession(uint8_t* sessionId, int vpid, int apid)
+{
+    int ret = -1 ;
+
+    if (amcas_setpids && amcas_opensession ) {
+        amcas_setpids(casHandle,vpid,apid);
+        ret = amcas_opensession(casHandle, sessionId);
+    }
+    return ret;
+}
+
+int casplugin_closesession(uint8_t* sessionId)
+{
+    int ret = -1 ;
+
+    if (amcas_closesession)
+        ret = amcas_closesession(casHandle, sessionId);
+    return ret;
+}
+
+static am_tsplayer_result  check_ecm_inject(am_tsplayer_handle session, am_tsplayer_input_buffer *buf, int32_t timeout_ms , uint32_t vecm_pid, uint32_t aecm_pid)
+{
+    am_tsplayer_result ret;
+    int pid = 0,send = 0;
+    int nSize = buf->buf_size;
+    unsigned int rem = nSize;
+    int retry_count = 0;
+    uint8_t * psync = (uint8_t *)buf->buf_data;
+    uint8_t * rembufferpos = (uint8_t *)buf->buf_data;
+    uint8_t * current = NULL;
+    am_tsplayer_input_buffer ibuf = {TS_INPUT_BUFFER_TYPE_NORMAL, NULL, 0};
+
+    while (rem >= TS_PACKET_SIZE)
+    {
+        if (*psync != 0x47)
+        {
+            ++psync;
+            --rem;
+            printf("check_ecm_inject ts not match rem%d\n",rem);
+            if (rem <= TS_PACKET_SIZE)
+                return AM_TSPLAYER_ERROR_RETRY;
+            else
+                continue;
+        }
+        if ((*(psync) == 0x47) && ((rem == TS_PACKET_SIZE) || (*(psync+TS_PACKET_SIZE) == 0x47)))
+        {
+            current = psync;
+            pid = (( current[1] << 8 | current[2]) & 0x1FFF);
+            if ((pid == vecm_pid || pid == aecm_pid ) && !find_first_ecm) {
+                memcpy(CASECM, psync, TS_PACKET_SIZE);
+                if (amcas_processecm && pid != 0x1fff)
+                {
+                    if (pid == vecm_pid)
+                        amcas_processecm(casHandle,0,1,vecm_pid,aecm_pid, CASECM, TS_PACKET_SIZE);
+                    else
+                        amcas_processecm(casHandle,0,0,vecm_pid,aecm_pid, CASECM, TS_PACKET_SIZE);
+                    find_first_ecm = 1;
+                }
+            }
+            if ((pid == vecm_pid || pid == aecm_pid ) && (memcmp(CASECM + 4,psync + 4,TS_PACKET_SIZE- 4)))
+            {
+                send = psync - rembufferpos;
+                if (send)
+                {
+                    ibuf.buf_data = rembufferpos;
+                    ibuf.buf_size = send;
+                    ret = AmTsPlayer_writeData(session,&ibuf,timeout_ms);
+                    retry_count = 0;
+                    while (ret == AM_TSPLAYER_ERROR_RETRY && retry_count < CAS_RETRY_NUM)
+                    {
+                        if (!enable_thread)
+                        {
+                            printf("%s, line %d quit\n",__FUNCTION__,__LINE__);
+                            break;
+                        }
+                        retry_count++;
+                        ibuf.buf_data = rembufferpos;
+                        ibuf.buf_size = send;
+                        if ((send % 188) != 0)
+                        {
+                        /*Remove PKCS7 padding at the end */
+                            printf("%s, line %d process padding inject_len %d\n",__FUNCTION__,__LINE__,send);
+                        }
+                        ret = AmTsPlayer_writeData(session,&ibuf,timeout_ms);
+                        if (ret == AM_TSPLAYER_ERROR_RETRY)
+                        {
+                            //DVBTRACE("[%d]%s at %d ret == AM_TSPLAYER_ERROR_RETRY retry_count %d\n",instanceID,__func__,__LINE__,retry_count);
+                            usleep(50*1000);
+                        }
+                    }
+                    if (ret)
+                        return AM_TSPLAYER_OK;
+                    if (send != (psync - rembufferpos))
+                        printf("send %d is not match \n", send);
+                    rembufferpos = psync;
+                    send = 0;
+                }
+                if (memcmp(CASECM + 4, psync + 4, TS_PACKET_SIZE - 4))
+                {
+                    memcpy(CASECM, psync, TS_PACKET_SIZE);
+                    if (amcas_processecm && pid != 0x1fff)
+                    {
+                        if (pid == vecm_pid)
+                            amcas_processecm(casHandle,0,1,vecm_pid,aecm_pid, CASECM, TS_PACKET_SIZE);
+                        else
+                            amcas_processecm(casHandle,0,0,vecm_pid,aecm_pid, CASECM, TS_PACKET_SIZE);
+                    }
+               }
+            }
+        }
+        psync += TS_PACKET_SIZE;
+        rem -= TS_PACKET_SIZE;
+    }
+    if (send == 0)
+    {
+        send =  (uint8_t *)buf->buf_data + nSize - rembufferpos;
+        //DVBTRACE("[%d]%s, line %d need send %d\n",instanceID, __FUNCTION__,__LINE__,send);
+        if (send)
+        {
+            ibuf.buf_data = rembufferpos;
+            ibuf.buf_size = send;
+            ret = AmTsPlayer_writeData(session,&ibuf,timeout_ms);
+        }
+        retry_count = 0;
+        while (ret == AM_TSPLAYER_ERROR_RETRY && retry_count < CAS_RETRY_NUM)
+        {
+            if (!enable_thread)
+            {
+                printf("%s, line %d quit\n",__FUNCTION__,__LINE__);
+                break;
+            }
+            retry_count++;
+            ibuf.buf_data = rembufferpos;
+            if ((send % 188) != 0)
+            {
+            /*Remove PKCS7 padding at the end */
+                printf("%s, line %d process padding inject_len %d\n", __FUNCTION__,__LINE__,send);
+            }
+            ibuf.buf_size = send;
+            ret = AmTsPlayer_writeData(session,&ibuf,timeout_ms);
+
+            if (ret == AM_TSPLAYER_ERROR_RETRY)
+            {
+                //DVBTRACE("[%d]%s at %d ret == AM_TSPLAYER_ERROR_RETRY retry_count %d\n",instanceID,__func__,__LINE__,retry_count);
+                usleep(50*1000);
+            }
+       }
+   }
+#ifdef  VMXM9D4
+   usleep(40*1000); /*we enable audio secure , aucpu has limit*/
+#endif
+   return ret;
+}
+#endif
 
 #ifdef SYSTEMLIB
 
@@ -401,16 +703,20 @@ static void usage(char **argv)
     printf("Usage: %s\n", argv[0]);
     printf("Version 0.1\n");
     printf("[options]:\n");
-    printf("-i | --in           Ts file path\n");
-    printf("-t | --tstype       demod:0, memory:1[default]\n");
-    printf("-y | --avsync       amaster:0[default], vmaster:1, pcrmaster:2, nosync:3\n");
-    printf("-c | --vtrick       none:0[default], pause:1, pause next:2, Ionly:3\n");
-    printf("-v | --vcodec       unknown:0, mpeg1:1, mpeg2:2, h264:3[default], h265:4, vp9:5 avs:6 mpeg4:7, avs2:8, avs3:12\n");
-    printf("-a | --acodec       unknown:0, mp2:1, mp3:2, ac3:3, eac3:4, dts:5, aac:6[default], latm:7, pcm:8\n");
-    printf("-V | --vpid         video pid,default:0x100\n");
-    printf("-A | --apid         audio pid,default:0x101\n");
-    printf("-p | --playback     disable:0[default], enable:1\n");
-    printf("-h | --help         print this usage\n");
+    printf("-i | --in              Ts file path\n");
+    printf("-t | --tstype          demod:0, memory:1[default]\n");
+    printf("-y | --avsync          amaster:0[default], vmaster:1, pcrmaster:2, nosync:3\n");
+    printf("-c | --vtrick          none:0[default], pause:1, pause next:2, Ionly:3\n");
+    printf("-v | --vcodec          unknown:0, mpeg1:1, mpeg2:2, h264:3[default], h265:4, vp9:5 avs:6 mpeg4:7, avs2:8, avs3:12\n");
+    printf("-a | --acodec          unknown:0, mp2:1, mp3:2, ac3:3, eac3:4, dts:5, aac:6[default], latm:7, pcm:8\n");
+    printf("-V | --vpid            video pid,default:0x100\n");
+    printf("-A | --apid            audio pid,default:0x101\n");
+    printf("-b | --buffertype      input buffer type ,default:0\n");
+    printf("-e | --encryption type encryption type string, vmxiptv:vmxi, vmxdvb:vmxd\n");
+    printf("-d | --vecmpid         video Ecm pid,default:0x1001\n");
+    printf("-D | --aecmpid         audio Ecm pid,default:0x1001\n");
+    printf("-p | --playback        disable:0[default], enable:1\n");
+    printf("-h | --help            print this usage\n");
 }
 
 int GetPid(char* pid) {
@@ -443,7 +749,12 @@ int main(int argc, char **argv)
 {
     int optionChar = 0;
     int optionIndex = 0;
-    const char *shortOptions = "i:t:b:y:c:v:a:V:A:p:h";
+    const char *shortOptions = "i:t:b:y:c:v:a:V:A:p:e:d:D:h";
+#if ANDROID_PLATFORM_SDK_VERSION >= 30 || defined(__linux__)
+    char * amcasTypeStr = NULL;
+    uint8_t sessionId [8]= {0};
+    int ret = 0;
+#endif
     struct option longOptions[] = {
         { "in",             required_argument,  NULL, 'i' },
         { "tstype",         required_argument,  NULL, 't' },
@@ -469,6 +780,8 @@ int main(int argc, char **argv)
     am_tsplayer_playback_type emPlaybackType = TS_PLAYBACK_DISABLE;
     int32_t vPid = 0x100;
     int32_t aPid = 0x101;
+    int32_t vEcmPid = 0x1001;
+    int32_t aEcmPid = 0x1001;
 
     while ((optionChar = getopt_long(argc, argv, shortOptions,
                                     longOptions, &optionIndex)) != -1) {
@@ -500,6 +813,22 @@ int main(int argc, char **argv)
             case 'p':
                 emPlaybackType = static_cast<am_tsplayer_playback_type>(atoi(optarg));
                 break;
+            case 'b':
+                drmmode = static_cast<am_tsplayer_input_buffer_type>(atoi(optarg));
+                printf("drmmode %d\n", drmmode);
+                break;
+            case 'e':
+                if (optarg && strlen(optarg))
+                    amcasTypeStr = strdup(optarg);
+                break;
+            case 'd':
+                vEcmPid = GetPid(optarg);
+                printf("vEcmPid 0x%x\n", vEcmPid);
+                break;
+            case 'D':
+                aEcmPid = GetPid(optarg);
+                printf("aEcmPid 0x%x\n", aEcmPid);
+                break;
             case 'h':
                 usage(argv);
                 exit(-1);
@@ -508,7 +837,20 @@ int main(int argc, char **argv)
         }
     }
 
+#if ANDROID_PLATFORM_SDK_VERSION >= 30 || defined(__linux__)
+    if (drmmode == TS_INPUT_BUFFER_TYPE_TVP && amcasTypeStr) {
+        casplugin_register(amcasTypeStr);
+        if (casplugin_provision( ))
+            printf("cas provesion fail\n");
+        ret = casplugin_opensession(sessionId, vPid, aPid);
+        if (ret)
+            printf("cas opensession fail\n");
+        find_first_ecm = 0;
+        memset(CASECM,0,TS_PACKET_SIZE);
+    }
+#endif
     signal(SIGINT, signHandler);
+    enable_thread = true;
 
     //Turn off the osd layer.
     set_osd_blank(1);
@@ -573,7 +915,7 @@ int main(int argc, char **argv)
         //X4,Y4 need set VideoTunnelId
         printf("Android R system, platform demux:AmHwMultiDemux \n");
         printf("Set VideoTunnelId \n");
-        int VideoTunnelId = 0;
+        static int VideoTunnelId = 0;
         if (CreateVideoTunnelId(&VideoTunnelId) == true) {
             AmTsPlayer_setSurface(session,(void*)&VideoTunnelId);
         } else {
@@ -608,6 +950,14 @@ int main(int argc, char **argv)
     AmTsPlayer_setWorkMode(session, TS_PLAYER_MODE_NORMAL);
     AmTsPlayer_registerCb(session, video_callback, NULL);
     AmTsPlayer_setSyncMode(session, avsyncMode);
+#if ANDROID_PLATFORM_SDK_VERSION >= 30 || defined(__linux__)
+    if (drmmode == TS_INPUT_BUFFER_TYPE_TVP && amcasTypeStr) {
+        int32_t video_seclevel = AM_TSPLAYER_DMX_FILTER_SEC_LEVEL2;
+        AmTsPlayer_setParams(session,AM_TSPLAYER_KEY_VIDEO_SECLEVEL,(void*)&video_seclevel);
+        int32_t audio_seclevel = AM_TSPLAYER_DMX_FILTER_SEC_LEVEL2;
+        AmTsPlayer_setParams(session,AM_TSPLAYER_KEY_AUDIO_SECLEVEL,(void*)&audio_seclevel);
+    }
+#endif
 
     am_tsplayer_video_params vparam;
     vparam.codectype = vCodec;
@@ -657,7 +1007,12 @@ int main(int argc, char **argv)
                 usleep(10000000);
                 pos = 0;
             }
-            res = AmTsPlayer_writeData(session, &ibuf, kRwTimeout);
+#if ANDROID_PLATFORM_SDK_VERSION >= 30 || defined(__linux__)
+            if (drmmode == TS_INPUT_BUFFER_TYPE_TVP && amcasTypeStr)
+                res = check_ecm_inject(session, &ibuf, kRwTimeout , vEcmPid, aEcmPid);
+            else
+#endif
+                res = AmTsPlayer_writeData(session, &ibuf, kRwTimeout);
             if (res == AM_TSPLAYER_ERROR_RETRY) {
                 usleep(50000);
             } else
@@ -726,6 +1081,14 @@ int main(int argc, char **argv)
     AmTsPlayer_stopAudioDecoding(session);
 
     AmTsPlayer_release(session);
+
+#if ANDROID_PLATFORM_SDK_VERSION >= 30 || defined(__linux__)
+    if (drmmode == TS_INPUT_BUFFER_TYPE_TVP && amcasTypeStr) {
+        ret = casplugin_closesession(sessionId);
+        if (ret)
+            printf("cas close session fail\n");
+    }
+#endif
     printf("exit\n");
     return 0;
 }
