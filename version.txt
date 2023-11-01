@@ -1,10 +1,191 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.67-g01d4d72
+Version: V3.22.76-g594131b
 
 ========================================
 
 Git commit:
+commit 594131b4464e4ca98066a2b400350978cc1e4d4e
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Oct 25 21:43:55 2023 +0800
+
+mediasync: CB2 Fix audio stuttering. [1/2]
+
+PD#SWPL-141509
+
+Problem:
+Audio's drop strategies take an unusually long time.
+
+Solution:
+MediaSync needs to pass the drop audio length to audiohal.
+
+Verify:
+SC2
+
+Change-Id: I87f9551c1c53d185749e7fc35a87c828eac7d80e
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit a41018e47fb9acffe05a8369fd0e635c393bda60
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Aug 16 14:50:28 2023 +0800
+
+tsplayer: CF2 add bugreport debug integrate [1/1]
+
+PD#SWPL-131788
+
+Problem:
+add bugreport debug integrate
+
+Solution:
+add bugreport debug integrate
+
+Verify:
+ohm
+
+Change-Id: I9b1129d7b99c9ef4bcea5cff664d591484789282
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 992161e8a57ec8f4ff84a5c5f12f54ebca1283c6
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Nov 1 02:22:35 2023 +0000
+
+tsplayer: CB2 fixed event type name [1/1]
+
+PD#SWPL-143528
+
+Problem:
+fixed event type name
+
+Solution:
+fixed event type name
+
+Verify:
+t5d
+
+Change-Id: Ib18148038d4be74902b4ee1a336960bad4fab0bd
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 43f1cd66276fdfab1276fe063bd5835ba47c6a73
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Oct 25 15:03:23 2023 +0800
+
+tsplayer: CB2 fix some videos playing not smoothly [1/1]
+
+PD#IPTV-24268
+
+Problem:
+some videos play not smoothly
+
+Solution:
+fix mediasync cache to set
+
+Verify:
+s5
+
+Change-Id: I2450c82ddbf3d00b5441e118a46cfb48dd48aa09
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 88cfd93371bdd594ba154350ad148f7264ba4279
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Oct 26 16:54:57 2023 +0800
+
+tsplayer: CB2 video plays not avsync after round back [1/1]
+
+PD#IPTV-24813
+
+Problem:
+video plays not avsync after round back
+
+Solution:
+fix the anchor to update
+
+Verify:
+s5
+
+Change-Id: I9048efb83721dc50cb194b5a82fa8a5f3b1605a7
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit d1b339e0b9891c6a732418bde281087608852154
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Oct 18 17:33:08 2023 +0800
+
+tsplayer: CF2 support audio pcm to decode in es mode [1/2]
+
+PD#IPTV-24468
+PD#IPTV-24619
+
+Problem:
+support audio pcm to decode in es mode
+
+Solution:
+support audio pcm to decode in es mode
+
+Verify:
+s5
+
+Change-Id: I0f49ffa025d81886b28453ee42d594a9674619d5
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit c694d79e4344bcb8d5eee997d35939f9540caae5
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Oct 25 11:13:58 2023 +0800
+
+mediasync: CB2 video will stuck for 2s with audio not working [1/2]
+
+PD#IPTV-24585
+
+Problem:
+video will stuck for 2s with audio not working
+
+Solution:
+get the audio working state
+
+Verify:
+s5
+
+Change-Id: I5fb0f97a986d21ddb54ff7ab5b32c064b8d61720
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 4b3debb42170e10de876d4d71a07f173d87a49e5
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Oct 27 07:43:08 2023 +0000
+
+tsplayer: CB2 av not sync during pvr [1/2]
+
+PD#SWPL-143513
+
+Problem:
+not set vpid, tsync no av sync.
+
+Solution:
+set vpid to audio.
+
+Verify:
+T5D
+
+Change-Id: If7791ed9bf8c04e82fe5eadd1497b230059ead9b
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 6e74d2a5f5549978c18f55d22369fdc3be03f87c
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Oct 30 15:15:53 2023 +0800
+
+videoTunnelRenderer: CB2 netflix not pause when key down. [1/1]
+
+PD#TV-98266
+
+Problem:
+nts set ts memory as default input
+
+Solution:
+nts set ts memory as default input
+
+Verify:
+TC8000
+
+Change-Id: I1a8dd3e64d4c48594b1fbf736dbf3704873c27ee
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 01d4d722ea432dadf5f683c090f6e40328287411
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Tue Oct 24 09:46:50 2023 +0800
@@ -27,190 +208,9 @@ ohm
 Change-Id: I183434e925b7191d5a545d377735360b23bd7636
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit e57095323205e5de13d3acf3d75417ffabf8d438
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Fri Oct 20 18:34:45 2023 +0800
-
-tsplayer: CF2 vmx IPTV demo using AmTsPlayerExample [1/1]
-
-PD#TV-88821
-
-Problem:
-need demo for vmx IPTV
-
-Solution:
-add demo for vmx IPTV
-
-Verify:
-t5w
-
-Change-Id: Ie8748e9d737e84220edfffbe894753aa47d06b0f
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit f589c9c9a447b6066c1df947d673440f981f3ff1
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Oct 24 13:09:14 2023 +0000
-
-tsplayer: CB2 scramble stream cannot be played [1/1]
-
-PD#SWPL-143528
-
-Problem:
-DSC/DEMUX status information is cleared.
-
-Solution:
-Add an event type to determine AV status.
-
-Verify:
-T5D
-
-Change-Id: I44d16e721064afd4b3b66a7adc43e00a1ca338e8
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 2462e756e5811e444aa0791dfa5a2ec4937aef66
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Oct 18 07:54:26 2023 +0000
-
-videodec: CB2 video path is not set. [1/1]
-
-PD#SWPL-141967
-
-Problem:
-video path no set, cause ptsserv no create.
-
-Solution:
-set video path.
-
-Verify:
-txhd2
-
-Change-Id: I2cb8d786c1ccfa04a2b091f11843de3e65f39a0d
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit cbad8608eeae1142e8e0532a025040a86d9c3237
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Sep 12 05:18:26 2023 +0000
-
-tsplayer: CB2 stop decoder before release tsplayer [1/1]
-
-PD#OTT-44847
-
-Problem:
-mDisplay->dqbuf failed and buff exists unreleased
-
-Solution:
-stop decoder before release tsplayer
-
-Verify:
-905x4
-
-Change-Id: Ie13850eca7e06000a4facbfc146684ed3761e40b
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit d64a339840b4ae3008ee0ab9cf9f2ccb8c4513fb
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Oct 12 14:12:51 2023 +0800
-
-videopassthrough: CB2 change passthrough sync mode to amaster [1/1]
-
-PD#SWPL-135279
-
-Problem:
-CBS will occure slow sync.
-
-Solution:
-default sync mode to amaster.
-
-Verify:
-SC2
-
-Change-Id: I7bb620b47f4c5bca8b1cecf1264420aa8fd34d02
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 9c081ed4c4fc1d1467fbfabf018c6224197faa12
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Oct 19 16:39:31 2023 +0800
-
-tsplayer: CB2 black screen in channel change [1/1]
-
-PD#SWPL-140484
-
-Problem:
-buffer covered in next loop
-
-Solution:
-add buffer read done interface
-
-Verify:
-T5M
-
-Change-Id: I05558363f38aa187451cf2419c407dcef8c98fde
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit fa3144eaef87b6f7503f533e6afd3324451898c6
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Oct 20 19:23:18 2023 +0800
-
-mediahal: CB1 fix android u compile failed issue [1/1]
-
-PD#SWPL-143300
-
-Problem:
-android u compile failed after hwc update include directory
-
-Solution:
-check path to add hwc include directory
-
-Verify:
-ohm
-
-Change-Id: I602aa355362468a27cc072e5f790be85cb28a3ef
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 36c786714746cb7a1d896e1b324a03338913ff64
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Oct 19 14:48:35 2023 +0800
-
-videopassthrough: CB2 high bitrate stream make stuck [1/1]
-
-PD#TV-93234
-
-Problem:
-disable decoder recover mode
-
-Solution:
-disable decoder revocer mode
-
-Verify:
-T5M
-
-Change-Id: I4ad76e8ac0f9b9e8bed8787023b550bcfebace9c
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 7d88b0097d8c8b003c153e0c586b59575b013616
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Sun Oct 8 16:18:57 2023 +0800
-
-hwdumx: CB2 stream control not work in vts. [1/1]
-
-PD#TV-94362
-
-Problem:
-disable data control in vts case.
-
-Solution:
-disable data control in vts case.
-
-Verify:
-T5M
-
-Change-Id: I4ec8965f8cdd452cb3e08cd2fb1898045c59c06e
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-(cherry picked from commit 21d6f7f8cab28ee35a89bf1b7f76ec83e81a28e5)
-
 ========================================
 
-Release time: 2023-10-30-15-48
+Release time: 2023-11-01-15-51
 
 ========================================
 

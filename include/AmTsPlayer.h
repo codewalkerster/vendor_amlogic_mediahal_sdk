@@ -52,7 +52,7 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_PREEMPTED,  // Instance was preempted, apk need release this instance
     AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_LOSS,    //Decoder data loss
     AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_RESUME,  //Decoder data resume
-    AM_TSPLAYER_EVENT_TYPE_DECODE_INIT_COMPLETED, // decode init completed
+    AM_TSPLAYER_EVENT_TYPE_DECODER_INIT_COMPLETED, //Decoder init completed
 } am_tsplayer_event_type;
 
 
@@ -77,6 +77,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_MEDIASYNC_CACHE,
     AM_TSPLAYER_KEY_SET_AUDIO_EXTRADATA,
     AM_TSPLAYER_KEY_SET_VIDEO_DECODER_INFO, //iptv: set before startDecoding
+    AM_TSPLAYER_KEY_SET_AUDIO_FORMAT,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -313,6 +314,10 @@ typedef enum {
     AV_AUDIO_CODEC_WMALOSSLESS = 17,       // WMAV loss less
     AV_AUDIO_CODEC_PCM_U8 = 18,            // PCM U8
     AV_AUDIO_CODEC_AV3A = 19,              // AVS3-P3 3D Audio/Audio Vivid Audio Codec ID
+    AV_AUDIO_CODEC_PCM_S16LE = 20,        // PCM S16LE
+    AV_AUDIO_CODEC_PCM_S16BE = 21,        // PCM S16BE
+    AV_AUDIO_CODEC_PCM_S24LE = 22,        // PCM S24LE
+    AV_AUDIO_CODEC_PCM_S24BE = 23,        // PCM S24BE
     AV_AUDIO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_audio_codec;
 

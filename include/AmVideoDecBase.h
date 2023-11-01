@@ -98,6 +98,7 @@ typedef struct {
     char resAppName[64];
     void (* resCallback)(void * resOpaque);
     void* resOpaque;
+    void (* resReport)(void * resOpaque);
 }video_dec_init_params;
 
 enum PictureFlag {
