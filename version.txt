@@ -1,10 +1,76 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.76-g594131b
+Version: V3.22.79-gfe01e8a
 
 ========================================
 
 Git commit:
+commit fe01e8a0eb771445ff4345992aa60aa52855ec63
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Sep 26 17:01:40 2023 +0800
+
+tsplayer: CB2 Fixed tunnel mode playback exception.  [1/1]
+
+PD#TV-91696
+
+Problem:
+The mutil demux platform tunnel mode
+enables the es Splice feature.
+
+Solution:
+The mutil demux platform tunnel mode turns
+off the es Splice feature by default.
+
+Verify:
+SC2
+
+Change-Id: I25b4738cd91c9a229066800c01298d5823f4f36f
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 38c55fd74ee75bcd6efdff1ec044fdd69863d162
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Nov 1 20:53:04 2023 +0800
+
+mediasync: CB2 Fix av stuck. [1/1]
+
+PD#SWPL-141509
+
+Problem:
+AudioHal drops data based on the difference
+in the first frame of AV,
+which affects the flow control.
+
+Solution:
+In the case of amaster,
+when the AV difference is greater than 100 ms,
+press 100 ms to drop the data.
+
+Verify:
+SC2
+
+Change-Id: I208224923bb363e9585ddd33a062501cc11cb8d0
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit a232457c8ce3029e1c36d872c21f1b3814620931
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Oct 31 14:09:24 2023 +0800
+
+mediahal: CB2 Fix android p compilation exception.  [1/1]
+
+PD#SWPL-144280
+
+Problem:
+Android p compilation exception.
+
+Solution:
+Fix android p compilation exception.
+
+Verify:
+SC2
+
+Change-Id: I490767a7897bc41d331637970433d9bf62f9f554
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 594131b4464e4ca98066a2b400350978cc1e4d4e
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Oct 25 21:43:55 2023 +0800
@@ -146,71 +212,9 @@ s5
 Change-Id: I5fb0f97a986d21ddb54ff7ab5b32c064b8d61720
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 4b3debb42170e10de876d4d71a07f173d87a49e5
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri Oct 27 07:43:08 2023 +0000
-
-tsplayer: CB2 av not sync during pvr [1/2]
-
-PD#SWPL-143513
-
-Problem:
-not set vpid, tsync no av sync.
-
-Solution:
-set vpid to audio.
-
-Verify:
-T5D
-
-Change-Id: If7791ed9bf8c04e82fe5eadd1497b230059ead9b
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 6e74d2a5f5549978c18f55d22369fdc3be03f87c
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Oct 30 15:15:53 2023 +0800
-
-videoTunnelRenderer: CB2 netflix not pause when key down. [1/1]
-
-PD#TV-98266
-
-Problem:
-nts set ts memory as default input
-
-Solution:
-nts set ts memory as default input
-
-Verify:
-TC8000
-
-Change-Id: I1a8dd3e64d4c48594b1fbf736dbf3704873c27ee
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 01d4d722ea432dadf5f683c090f6e40328287411
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Oct 24 09:46:50 2023 +0800
-
-videodec: CB1 not set duration when set unstable pts. [2/2]
-
-PD#SWPL-141810
-
-Problem:
-1 Can not get duration from decoder.
-
-Solution:
-1. if we set duration to decoder,decoder will not parse
-framerate from bitstream,so we not set duration to decoder
-when set unstable pts and input format is h264 or h265.
-
-Verify:
-ohm
-
-Change-Id: I183434e925b7191d5a545d377735360b23bd7636
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-01-15-51
+Release time: 2023-11-02-11-18
 
 ========================================
 

@@ -248,10 +248,10 @@ int casplugin_closesession(uint8_t* sessionId)
 static am_tsplayer_result  check_ecm_inject(am_tsplayer_handle session, am_tsplayer_input_buffer *buf, int32_t timeout_ms , uint32_t vecm_pid, uint32_t aecm_pid)
 {
     am_tsplayer_result ret;
-    int pid = 0,send = 0;
+    uint32_t pid = 0;
     int nSize = buf->buf_size;
     unsigned int rem = nSize;
-    int retry_count = 0;
+    int retry_count = 0, send = 0;
     uint8_t * psync = (uint8_t *)buf->buf_data;
     uint8_t * rembufferpos = (uint8_t *)buf->buf_data;
     uint8_t * current = NULL;
