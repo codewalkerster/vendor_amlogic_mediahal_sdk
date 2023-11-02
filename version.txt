@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.79-gfe01e8a
+Version: V3.22.80-gdd7b40f
 
 ========================================
 
 Git commit:
+commit dd7b40f08930fb2cc358a3ce17a562fea8b952c5
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Oct 31 20:45:16 2023 +0800
+
+mediahal: CF2 mediahal release V3.22 [1/1]
+
+PD#SWPL-142653
+
+Problem:
+mediahal release
+
+Solution:
+release V3.22
+
+Verify:
+SC2
+
+Change-Id: I7caf6b0a3bd06a44382b98a643088ab79c5d7ddc
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit fe01e8a0eb771445ff4345992aa60aa52855ec63
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Sep 26 17:01:40 2023 +0800
@@ -192,29 +212,9 @@ s5
 Change-Id: I0f49ffa025d81886b28453ee42d594a9674619d5
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit c694d79e4344bcb8d5eee997d35939f9540caae5
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Oct 25 11:13:58 2023 +0800
-
-mediasync: CB2 video will stuck for 2s with audio not working [1/2]
-
-PD#IPTV-24585
-
-Problem:
-video will stuck for 2s with audio not working
-
-Solution:
-get the audio working state
-
-Verify:
-s5
-
-Change-Id: I5fb0f97a986d21ddb54ff7ab5b32c064b8d61720
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-02-11-18
+Release time: 2023-11-02-19-20
 
 ========================================
 
