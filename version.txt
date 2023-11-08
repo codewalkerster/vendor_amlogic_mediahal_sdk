@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.22.80-gdd7b40f
+Version: V3.24.1-gf3c9179
 
 ========================================
 
 Git commit:
+commit f3c91795e5ce073c57140daa5d8bd0107b4e0314
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Oct 30 18:02:39 2023 +0800
+
+tsplayer: CB2 Fix VideodecNonTunnelWrapper crash.  [1/1]
+
+PD#SWPL-144059
+
+Problem:
+The VideoTunnelDisplay null pointer was operated.
+
+Solution:
+Release Dequeuehread first, and then release VideoTunnelDisplay.
+
+Verify:
+SC2
+
+Change-Id: I9281e420c7f1e10c3d2e1ba5c464fe7ffc5a52f2
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 822c18ff6411bee4f27afcaf12b9f7eedf5fdee2
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Nov 2 19:19:08 2023 +0800
+
+mediahal: CF2 mediahal update version [1/1]
+
+PD#SWPL-142653
+
+Problem:
+mediahal update version
+
+Solution:
+update V3.24
+
+Verify:
+SC2
+
+Change-Id: I2545125e071909637da06f35543a211f4fa2fefe
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit dd7b40f08930fb2cc358a3ce17a562fea8b952c5
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Oct 31 20:45:16 2023 +0800
@@ -171,50 +211,9 @@ s5
 Change-Id: I2450c82ddbf3d00b5441e118a46cfb48dd48aa09
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 88cfd93371bdd594ba154350ad148f7264ba4279
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Oct 26 16:54:57 2023 +0800
-
-tsplayer: CB2 video plays not avsync after round back [1/1]
-
-PD#IPTV-24813
-
-Problem:
-video plays not avsync after round back
-
-Solution:
-fix the anchor to update
-
-Verify:
-s5
-
-Change-Id: I9048efb83721dc50cb194b5a82fa8a5f3b1605a7
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit d1b339e0b9891c6a732418bde281087608852154
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Oct 18 17:33:08 2023 +0800
-
-tsplayer: CF2 support audio pcm to decode in es mode [1/2]
-
-PD#IPTV-24468
-PD#IPTV-24619
-
-Problem:
-support audio pcm to decode in es mode
-
-Solution:
-support audio pcm to decode in es mode
-
-Verify:
-s5
-
-Change-Id: I0f49ffa025d81886b28453ee42d594a9674619d5
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-02-19-20
+Release time: 2023-11-08-10-36
 
 ========================================
 
