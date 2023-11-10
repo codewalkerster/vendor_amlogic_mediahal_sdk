@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.1-gf3c9179
+Version: V3.24.4-g979f69f
 
 ========================================
 
 Git commit:
+commit 979f69f773809dd5d0b013dda3d39d9931f85867
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Nov 8 17:19:08 2023 +0800
+
+videodec: CB1 framerate set error. [2/2]
+
+PD#SWPL-145264
+
+Problem:
+1 framerate set error.
+
+Solution:
+1. add framerate value when send duration to media hal,we used framerate
+to get duration by 'duration = 96000/framerate' and set to decoder.
+
+Verify:
+ohm
+
+Change-Id: I886b748267ad7b627ad9776a4877d2b368d31e19
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit c7e2706b7eb830c4f42e6c65cd6fdb70ad862506
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu Nov 9 10:40:22 2023 +0800
+
+videodec: CB1 output pts calculate error at stream mode. [1/1]
+
+PD#SWPL-144406
+
+Problem:
+1 calculate pts error when input pts is 0 at stream mode.
+
+Solution:
+1. we used last output pts when input pts is 0 to calculate out pts.
+
+Verify:
+ohm
+
+Change-Id: I3e1abd9f9cb04fbca05cd68e248c55c51f6b6763
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 08606ac58a564eb3b7f5dd4a86460c61aab06b71
+Author: mingguang.liu <mingguang.liu@amlogic.com>
+Date:   Fri Oct 27 17:16:58 2023 +0800
+
+tunnelrenderer: CB1 npvr video freeze in tunnel mode [1/1]
+
+PD#OTT-49860
+
+Problem:
+npvr video freeze in tunnel mode
+
+Solution:
+early wake up condition variable when TrackMediaTime Updated
+
+Verify:
+S905X4
+
+Change-Id: I8e58b3cdd319492c0005080ab453b9466cfbf065
+Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
+
 commit f3c91795e5ce073c57140daa5d8bd0107b4e0314
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Oct 30 18:02:39 2023 +0800
@@ -151,69 +212,9 @@ SC2
 Change-Id: I87f9551c1c53d185749e7fc35a87c828eac7d80e
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit a41018e47fb9acffe05a8369fd0e635c393bda60
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Aug 16 14:50:28 2023 +0800
-
-tsplayer: CF2 add bugreport debug integrate [1/1]
-
-PD#SWPL-131788
-
-Problem:
-add bugreport debug integrate
-
-Solution:
-add bugreport debug integrate
-
-Verify:
-ohm
-
-Change-Id: I9b1129d7b99c9ef4bcea5cff664d591484789282
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 992161e8a57ec8f4ff84a5c5f12f54ebca1283c6
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Nov 1 02:22:35 2023 +0000
-
-tsplayer: CB2 fixed event type name [1/1]
-
-PD#SWPL-143528
-
-Problem:
-fixed event type name
-
-Solution:
-fixed event type name
-
-Verify:
-t5d
-
-Change-Id: Ib18148038d4be74902b4ee1a336960bad4fab0bd
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 43f1cd66276fdfab1276fe063bd5835ba47c6a73
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Oct 25 15:03:23 2023 +0800
-
-tsplayer: CB2 fix some videos playing not smoothly [1/1]
-
-PD#IPTV-24268
-
-Problem:
-some videos play not smoothly
-
-Solution:
-fix mediasync cache to set
-
-Verify:
-s5
-
-Change-Id: I2450c82ddbf3d00b5441e118a46cfb48dd48aa09
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-08-10-36
+Release time: 2023-11-10-11-27
 
 ========================================
 
