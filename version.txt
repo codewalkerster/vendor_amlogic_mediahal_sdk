@@ -1,10 +1,175 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.4-g979f69f
+Version: V3.24.12-g7c2defb
 
 ========================================
 
 Git commit:
+commit 7c2defba39465449b0fc809cfb3a41bdec42d2c5
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Nov 15 15:48:14 2023 +0800
+
+mediasync: CB2 Fix switching to pip audio silence. [1/1]
+
+PD#SWPL-145823
+
+Problem:
+Pip Audio's PTS and Video PTS are not aligned at the start of playback.
+
+Solution:
+Pip Audio's PTS is aligned with Video PTS and plays at the start.
+
+Verify:
+SC2
+
+Change-Id: I7d1f477d4623146275175ab7c36f06417ffb83fa
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 7bb76186ba64e7819f62c64fb320e3a277f460ae
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Nov 7 14:50:42 2023 +0800
+
+mediasync: CB2 Fixed PVR audio and video out of sync. [1/1]
+
+PD#SWPL-145342
+
+Problem:
+pause+seek+Switch audio
+causes the state machine to be abnormal.
+
+Solution:
+In the AV Arrived state,
+the Audio Reset needs to be switched to the Init state.
+
+Verify:
+SC2
+
+Change-Id: Ic6379c1958d0b73595bf7ee9077fc3dfff256d11
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 9ea4f580ebcf7e601d004a64b7d796b8e5142987
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Nov 15 13:56:02 2023 +0800
+
+videodec: CB2 8K VR video shows wrong using osd. [1/1]
+
+PD#IPTV-23929
+PD#IPTV-25299
+
+Problem:
+8k VR video shows wrong using osd.
+
+Solution:
+set dw=4 to decoder when playing 8k using osd.
+
+Verify:
+s5
+
+Change-Id: I04f4020b5c8cfc8d0e3a1d81c7b62de857967477
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 15d263fb823b5714264237136045ebb7f48b2237
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Oct 20 11:05:25 2023 +0800
+
+mediasync: CB2 it will play with no audio when switch window [1/1]
+
+PD#IPTV-24585
+
+Problem:
+it will play with no audio when switch window in 4 way
+
+Solution:
+adjust the pcr to align av
+
+Verify:
+s5
+
+Change-Id: I14680a7e3e5ca60e5aee506fdeb915020cf8690a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 91a6467b0f8d2d6ebbecb21aac80cfc536d57008
+Author: fa.zhou <fa.zhou@amlogic.com>
+Date:   Sat Nov 11 17:17:38 2023 +0800
+
+videodec: CB2 pass resolution to decoder  [1/1]
+
+PD#IPTV-24954
+
+Problem:
+play stuck after startplay for 8k stream
+
+Solution:
+pass resolution to decoder whil 8k
+
+Verify:
+S5
+
+Change-Id: Ia7e6eea79a45a09d22c7e0bbc4211f41ee0630b9
+Signed-off-by: fa.zhou <fa.zhou@amlogic.com>
+
+commit 345424cdf817ca4105568171bec5356b5f169bbf
+Author: qiuping.zhou <qiuping.zhou@amlogic.com>
+Date:   Fri Nov 10 11:00:13 2023 +0800
+
+tsplayer: CB2 fix audiotrack stop more then once sometimes [1/1]
+
+PD#IPTV-24440
+
+Problem:
+audiotrack stop more then once sometimes
+
+Solution:
+1.init samplerate and channelcount before start audiotrack
+2.when samplerate and channelcount not change, not restart audiotrack
+
+Verify:
+S5
+
+Change-Id: Ic0433c4cde7ed8d0a446a687e1d859ef05bd77c7
+Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
+
+commit 89f64e4de6653b993de260c9f2db64ff7fa22c35
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Nov 6 16:46:11 2023 +0800
+
+videodec: CB2 add vdec info report [1/1]
+
+PD#SWPL-145237
+
+Problem:
+not suppoet vdec info report in AFT
+
+Solution:
+report vdec info when decode first frame
+
+Verify:
+ah212
+
+Change-Id: I227d9ef81449da0f828afd63aa3199689e5dddd8
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 4044ba38780d18b577d57023e39102eeda375f73
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Nov 1 17:41:58 2023 +0800
+
+videodec: CF2 set fcc flag to decoder when switch normal to cache. [1/1]
+
+PD#SWPL-144473
+
+Problem:
+display release mem when normal to cache.
+
+Solution:
+set fcc flag to decoder when switch normal to cache before decoder
+released.
+
+Verify:
+258c
+
+Change-Id: Id87ff9fc19862c9eee553cc2092a07d2389a4378
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 979f69f773809dd5d0b013dda3d39d9931f85867
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Wed Nov 8 17:19:08 2023 +0800
@@ -46,175 +211,9 @@ ohm
 Change-Id: I3e1abd9f9cb04fbca05cd68e248c55c51f6b6763
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 08606ac58a564eb3b7f5dd4a86460c61aab06b71
-Author: mingguang.liu <mingguang.liu@amlogic.com>
-Date:   Fri Oct 27 17:16:58 2023 +0800
-
-tunnelrenderer: CB1 npvr video freeze in tunnel mode [1/1]
-
-PD#OTT-49860
-
-Problem:
-npvr video freeze in tunnel mode
-
-Solution:
-early wake up condition variable when TrackMediaTime Updated
-
-Verify:
-S905X4
-
-Change-Id: I8e58b3cdd319492c0005080ab453b9466cfbf065
-Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
-
-commit f3c91795e5ce073c57140daa5d8bd0107b4e0314
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Oct 30 18:02:39 2023 +0800
-
-tsplayer: CB2 Fix VideodecNonTunnelWrapper crash.  [1/1]
-
-PD#SWPL-144059
-
-Problem:
-The VideoTunnelDisplay null pointer was operated.
-
-Solution:
-Release Dequeuehread first, and then release VideoTunnelDisplay.
-
-Verify:
-SC2
-
-Change-Id: I9281e420c7f1e10c3d2e1ba5c464fe7ffc5a52f2
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 822c18ff6411bee4f27afcaf12b9f7eedf5fdee2
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Nov 2 19:19:08 2023 +0800
-
-mediahal: CF2 mediahal update version [1/1]
-
-PD#SWPL-142653
-
-Problem:
-mediahal update version
-
-Solution:
-update V3.24
-
-Verify:
-SC2
-
-Change-Id: I2545125e071909637da06f35543a211f4fa2fefe
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit dd7b40f08930fb2cc358a3ce17a562fea8b952c5
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Oct 31 20:45:16 2023 +0800
-
-mediahal: CF2 mediahal release V3.22 [1/1]
-
-PD#SWPL-142653
-
-Problem:
-mediahal release
-
-Solution:
-release V3.22
-
-Verify:
-SC2
-
-Change-Id: I7caf6b0a3bd06a44382b98a643088ab79c5d7ddc
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit fe01e8a0eb771445ff4345992aa60aa52855ec63
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Sep 26 17:01:40 2023 +0800
-
-tsplayer: CB2 Fixed tunnel mode playback exception.  [1/1]
-
-PD#TV-91696
-
-Problem:
-The mutil demux platform tunnel mode
-enables the es Splice feature.
-
-Solution:
-The mutil demux platform tunnel mode turns
-off the es Splice feature by default.
-
-Verify:
-SC2
-
-Change-Id: I25b4738cd91c9a229066800c01298d5823f4f36f
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 38c55fd74ee75bcd6efdff1ec044fdd69863d162
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Nov 1 20:53:04 2023 +0800
-
-mediasync: CB2 Fix av stuck. [1/1]
-
-PD#SWPL-141509
-
-Problem:
-AudioHal drops data based on the difference
-in the first frame of AV,
-which affects the flow control.
-
-Solution:
-In the case of amaster,
-when the AV difference is greater than 100 ms,
-press 100 ms to drop the data.
-
-Verify:
-SC2
-
-Change-Id: I208224923bb363e9585ddd33a062501cc11cb8d0
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit a232457c8ce3029e1c36d872c21f1b3814620931
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Oct 31 14:09:24 2023 +0800
-
-mediahal: CB2 Fix android p compilation exception.  [1/1]
-
-PD#SWPL-144280
-
-Problem:
-Android p compilation exception.
-
-Solution:
-Fix android p compilation exception.
-
-Verify:
-SC2
-
-Change-Id: I490767a7897bc41d331637970433d9bf62f9f554
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 594131b4464e4ca98066a2b400350978cc1e4d4e
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Oct 25 21:43:55 2023 +0800
-
-mediasync: CB2 Fix audio stuttering. [1/2]
-
-PD#SWPL-141509
-
-Problem:
-Audio's drop strategies take an unusually long time.
-
-Solution:
-MediaSync needs to pass the drop audio length to audiohal.
-
-Verify:
-SC2
-
-Change-Id: I87f9551c1c53d185749e7fc35a87c828eac7d80e
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-10-11-27
+Release time: 2023-11-16-20-52
 
 ========================================
 
