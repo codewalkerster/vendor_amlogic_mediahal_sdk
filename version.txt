@@ -1,10 +1,96 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.12-g7c2defb
+Version: V3.24.16-gb6436d2
 
 ========================================
 
 Git commit:
+commit b6436d214c2440287c21a1a218836c9be3d05359
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Nov 20 19:51:14 2023 +0800
+
+tsplayer: CB2 Fixed PVR playback special stream stuck. [1/1]
+
+PD#SWPL-146740
+
+Problem:
+The audio cur pts is an anomaly and is larger than the decoder apts.
+
+Solution:
+Considering the tunneing delay of audiohal,
+the cache calculation may be a negative case,
+which is considered to be that audio does not have a cache.
+
+Verify:
+SC2
+
+Change-Id: I4ecc3a48a0a276a27573c2daabe60e438f59d9e1
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit cc060ae1427515224437694144202d69275e09a9
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Nov 15 13:35:16 2023 +0800
+
+tsplayer: CB2 it will show green picture when switching channel [1/1]
+
+PD#IPTV-24770
+
+Problem:
+it will show green picture when switching channel,
+because dequeuebuffer to wait fence is timeout
+when disconnecting surface.
+
+Solution:
+wait fence for more times using a smaller tiemoutMs
+
+Verify:
+s5
+
+Change-Id: Ibf6255e396d326df367976eb77a6c8efdfbb8c6e
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 9f985fff52129c8b37cd40b9657ad7038897cb05
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Nov 21 10:11:19 2023 +0800
+
+tsplayer: CB2 it will be full buffer when playing 8k video for a long
+time [1/1]
+
+PD#IPTV-25166
+PD#IPTV-25049
+
+Problem:
+it will be full buffer when playing 8k video for a long time
+
+Solution:
+fix the speed to write data for controlling.
+
+Verify:
+s5
+
+Change-Id: I7f0b4b27873e4259e2221d77b41521717991a325
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit ae201d6b57cb3502b658fd37f46216022295ac2a
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Nov 16 18:48:22 2023 +0800
+
+mediasycn: CB2 video plays not smoothly when decoding slowly. [1/1]
+
+PD#IPTV-24858
+
+Problem:
+video plays not smoothly when decoding slowly.
+
+Solution:
+render the frame when lastVideoPolicy is dropping.
+
+Verify:
+s5
+
+Change-Id: I533b6d27928f8271e0b02c260c2a03bd531b6b9c
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 7c2defba39465449b0fc809cfb3a41bdec42d2c5
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Nov 15 15:48:14 2023 +0800
@@ -129,91 +215,9 @@ S5
 Change-Id: Ic0433c4cde7ed8d0a446a687e1d859ef05bd77c7
 Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
 
-commit 89f64e4de6653b993de260c9f2db64ff7fa22c35
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Nov 6 16:46:11 2023 +0800
-
-videodec: CB2 add vdec info report [1/1]
-
-PD#SWPL-145237
-
-Problem:
-not suppoet vdec info report in AFT
-
-Solution:
-report vdec info when decode first frame
-
-Verify:
-ah212
-
-Change-Id: I227d9ef81449da0f828afd63aa3199689e5dddd8
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 4044ba38780d18b577d57023e39102eeda375f73
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Nov 1 17:41:58 2023 +0800
-
-videodec: CF2 set fcc flag to decoder when switch normal to cache. [1/1]
-
-PD#SWPL-144473
-
-Problem:
-display release mem when normal to cache.
-
-Solution:
-set fcc flag to decoder when switch normal to cache before decoder
-released.
-
-Verify:
-258c
-
-Change-Id: Id87ff9fc19862c9eee553cc2092a07d2389a4378
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 979f69f773809dd5d0b013dda3d39d9931f85867
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Nov 8 17:19:08 2023 +0800
-
-videodec: CB1 framerate set error. [2/2]
-
-PD#SWPL-145264
-
-Problem:
-1 framerate set error.
-
-Solution:
-1. add framerate value when send duration to media hal,we used framerate
-to get duration by 'duration = 96000/framerate' and set to decoder.
-
-Verify:
-ohm
-
-Change-Id: I886b748267ad7b627ad9776a4877d2b368d31e19
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit c7e2706b7eb830c4f42e6c65cd6fdb70ad862506
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Nov 9 10:40:22 2023 +0800
-
-videodec: CB1 output pts calculate error at stream mode. [1/1]
-
-PD#SWPL-144406
-
-Problem:
-1 calculate pts error when input pts is 0 at stream mode.
-
-Solution:
-1. we used last output pts when input pts is 0 to calculate out pts.
-
-Verify:
-ohm
-
-Change-Id: I3e1abd9f9cb04fbca05cd68e248c55c51f6b6763
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-16-20-52
+Release time: 2023-11-23-11-50
 
 ========================================
 
