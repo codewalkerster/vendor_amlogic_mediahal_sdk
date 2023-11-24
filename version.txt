@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.16-gb6436d2
+Version: V3.24.18-g088c63c
 
 ========================================
 
 Git commit:
+commit 088c63ce6d821c1e158b249681924de055f377dc
+Author: peixing.mai <peixing.mai@amlogic.com>
+Date:   Wed Nov 22 13:09:57 2023 +0000
+
+tsplayer: CB2 Audio and video out of sync [1/1]
+
+PD#SWPL-141264
+
+Problem:
+audio freerun
+
+Solution:
+Adjust the timing and set has_video before open
+
+Verify:
+verify on T962X2
+
+Change-Id: I193b73984c50bbe70cd19b1145ed0bb54f4ac231
+Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
+
+commit 676a6a531fd59ef3008ab511ac0bde2a46a55b13
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Nov 21 20:38:51 2023 +0800
+
+tunnelrenderer: CB1 fix pattern check error [1/1]
+
+PD#SWPL-146896
+
+Problem:
+pattern check error after sync logic changed, same frame may check twice
+
+Solution:
+same frame only check pattern once
+
+Verify:
+ohm
+
+Change-Id: Ic24d139943ee044e0c648e05cc79fa93f3f7a89a
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit b6436d214c2440287c21a1a218836c9be3d05359
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Mon Nov 20 19:51:14 2023 +0800
@@ -174,50 +214,9 @@ s5
 Change-Id: I14680a7e3e5ca60e5aee506fdeb915020cf8690a
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 91a6467b0f8d2d6ebbecb21aac80cfc536d57008
-Author: fa.zhou <fa.zhou@amlogic.com>
-Date:   Sat Nov 11 17:17:38 2023 +0800
-
-videodec: CB2 pass resolution to decoder  [1/1]
-
-PD#IPTV-24954
-
-Problem:
-play stuck after startplay for 8k stream
-
-Solution:
-pass resolution to decoder whil 8k
-
-Verify:
-S5
-
-Change-Id: Ia7e6eea79a45a09d22c7e0bbc4211f41ee0630b9
-Signed-off-by: fa.zhou <fa.zhou@amlogic.com>
-
-commit 345424cdf817ca4105568171bec5356b5f169bbf
-Author: qiuping.zhou <qiuping.zhou@amlogic.com>
-Date:   Fri Nov 10 11:00:13 2023 +0800
-
-tsplayer: CB2 fix audiotrack stop more then once sometimes [1/1]
-
-PD#IPTV-24440
-
-Problem:
-audiotrack stop more then once sometimes
-
-Solution:
-1.init samplerate and channelcount before start audiotrack
-2.when samplerate and channelcount not change, not restart audiotrack
-
-Verify:
-S5
-
-Change-Id: Ic0433c4cde7ed8d0a446a687e1d859ef05bd77c7
-Signed-off-by: qiuping.zhou <qiuping.zhou@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-23-11-50
+Release time: 2023-11-24-18-28
 
 ========================================
 
