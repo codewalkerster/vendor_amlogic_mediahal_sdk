@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.18-g088c63c
+Version: V3.24.20-g04709eb
 
 ========================================
 
 Git commit:
+commit 04709eb4b6a53de2fd52474d7d4fc48a65f48915
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Nov 23 15:10:09 2023 +0800
+
+mediasync: CB2 Adjust the value of the MediaSync control_cmd [1/2]
+
+PD#SWPL-147136
+
+Problem:
+the value of MediaSync control_cmd is wrong
+
+Solution:
+adjust the value of the MediaSyn control_cmd.
+
+Verify:
+s5
+
+Change-Id: Ie172622e730b54e4ae1ce1b361d9e8d5825894be
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit b49b3a283bebbcb0ac501c3bb5f98b411f916bd8
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Nov 24 18:32:41 2023 +0800
+
+mediasync: CB2 video will be stuck after seek [1/1]
+
+PD#IPTV-25591
+
+Problem:
+video will be stuck after seek.
+
+Solution:
+fix clock type to set when the value of avAlignDiffLarge is true.
+
+Verify:
+s5
+
+Change-Id: Ib14ff7d3494a5fa561f2e31a847046978e3f2e8d
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 088c63ce6d821c1e158b249681924de055f377dc
 Author: peixing.mai <peixing.mai@amlogic.com>
 Date:   Wed Nov 22 13:09:57 2023 +0000
@@ -173,50 +213,9 @@ SC2
 Change-Id: Ic6379c1958d0b73595bf7ee9077fc3dfff256d11
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 9ea4f580ebcf7e601d004a64b7d796b8e5142987
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Nov 15 13:56:02 2023 +0800
-
-videodec: CB2 8K VR video shows wrong using osd. [1/1]
-
-PD#IPTV-23929
-PD#IPTV-25299
-
-Problem:
-8k VR video shows wrong using osd.
-
-Solution:
-set dw=4 to decoder when playing 8k using osd.
-
-Verify:
-s5
-
-Change-Id: I04f4020b5c8cfc8d0e3a1d81c7b62de857967477
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 15d263fb823b5714264237136045ebb7f48b2237
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Oct 20 11:05:25 2023 +0800
-
-mediasync: CB2 it will play with no audio when switch window [1/1]
-
-PD#IPTV-24585
-
-Problem:
-it will play with no audio when switch window in 4 way
-
-Solution:
-adjust the pcr to align av
-
-Verify:
-s5
-
-Change-Id: I14680a7e3e5ca60e5aee506fdeb915020cf8690a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-24-18-28
+Release time: 2023-11-26-12-38
 
 ========================================
 
