@@ -27,30 +27,23 @@ func MediahalVerCheckDefaults(ctx android.LoadHookContext) {
 }
 
 func MediahalVerCheckMediahalPassthroughDefaults(ctx android.LoadHookContext) {
+    type props struct {
+	Enabled  *bool
+    }
+    p := &props{}
+    // Enabled by default, when sdkVersion >= 30 or sdkVersion is not a valid number string
+    p.Enabled = proptools.BoolPtr(true)
     sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
     sdkVersionInt,err := strconv.Atoi(sdkVersion)
     if err != nil {
         //fmt.Printf("%v fail to convert", sdkVersionInt)
     } else {
         //fmt.Println("PassthroughDefaults sdkVersion:", sdkVersionInt)
+	if sdkVersionInt < 30 {
+	    p.Enabled = proptools.BoolPtr(false)
+	}
     }
-    if sdkVersionInt >= 30 {
-        type props struct {
-            Enabled  *bool
-        }
-        p := &props{}
-        p.Enabled = proptools.BoolPtr(true)
-        ctx.AppendProperties(p)
-    }
-
-    if sdkVersionInt < 30 {
-        type props struct {
-            Enabled  *bool
-        }
-        p := &props{}
-        p.Enabled = proptools.BoolPtr(false)
-        ctx.AppendProperties(p)
-    }
+    ctx.AppendProperties(p)
 }
 
 func init() {

@@ -78,6 +78,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_AUDIO_EXTRADATA,
     AM_TSPLAYER_KEY_SET_VIDEO_DECODER_INFO, //iptv: set before startDecoding
     AM_TSPLAYER_KEY_SET_AUDIO_FORMAT,
+    AM_TSPLAYER_KEY_GET_DMX_ES_OUTPUT_STATUS, //dmx es output status info
 } am_tsplayer_parameter;
 
 typedef enum
@@ -475,6 +476,11 @@ typedef struct {
     uint32_t audio_overflow_num;                        // Audio overflow num
     uint32_t audio_underflow_num;                       // Audio underflow num
 } av_flow_t;
+
+typedef struct {
+    int video_es_stat;   //0x2(pts is valid), 0x4(Descrambling failed), 0x8(no unscrambled)
+    int audio_es_stat;   //audio es status, as same video
+} dmx_es_output_stat;
 
 /*AmTsPlayer call back event*/
 typedef struct {

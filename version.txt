@@ -1,10 +1,135 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.20-g04709eb
+Version: V3.24.26-g03a4110
 
 ========================================
 
 Git commit:
+commit 03a4110dddc35bcaae1a4c35ef94fcdfafe111f5
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Oct 19 15:07:35 2022 +0800
+
+videodec: CF2 gets a feature list from the video decoder. [1/1]
+
+PD#SWPL-97584
+
+Problem:
+gets a feature list from the video decoder.
+
+Solution:
+gets a feature list from the video decoder.
+
+Verify:
+SC2
+
+Change-Id: I2ec6337cbbd89cb34fc6b5ea4e19149b022e43ad
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 1f8994e1543e11fb7b64f9471939d960a72e2553
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Nov 23 21:31:51 2023 +0800
+
+mediasycn: CB2 av diff too large stream sounds gap. [1/1]
+
+PD#SWPL-145284
+
+Problem:
+audio start too early when av diff too large.
+
+Solution:
+set drop pcm timeout as avdiff + 500ms.
+
+Verify:
+AH212
+
+Change-Id: I8b23621cb27644fd24da72308346a13c8fc6ce9f
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 844b8e87a013e40838f3f09c0c6e3f3d4068658c
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Nov 14 14:37:48 2023 +0800
+
+videodec: CB1 calculate duration when frame rate is 30fps. [1/1]
+
+PD#SWPL-145363
+
+Problem:
+1 we do not calculate duration by pts.
+
+Solution:
+1. we add calculate duration api, we only used this duration when
+framerate is 30fps,youtube do not set framerate to framework,so
+framework used default value (30fps) to set to codec2,so we only used
+calculated duration when framerate is 30fps.
+
+
+Verify:
+ohm
+
+Change-Id: I55cda4f932aeaef2df06b7144a28593b4338e96a
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit e61224b05fce06b3ca799b481d7e1254e63d3830
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Nov 10 02:17:44 2023 +0000
+
+tsplayer: CB2 no sound when switch audio track type [1/1]
+
+PD#TV-99074
+
+Problem:
+no callback decodec first audio event
+
+Solution:
+callback decodec first audio event
+
+Verify:
+t5w
+
+Change-Id: I8718e1212c03e599cc2d81c44cd2958346d9335b
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 24c7b7920c06f26d09a3125c01cabe393b41e28f
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Nov 8 02:22:16 2023 +0000
+
+tsplayer: CB2 add api to get audio/video scramble status [1/1]
+
+PD#TV-97475
+
+Problem:
+need to implement get audio/video
+scramble status from mediahal
+
+Solution:
+add api to get audio/video scramble status
+
+Verify:
+t5M
+
+Change-Id: Ib0971ce7108055296d59b0ce7658339ea6562b02
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 76fe985ac0018e98515966ce42f5c4271da76b23
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Nov 8 15:56:24 2023 +0800
+
+videopassthrough: CB2 no videopassthrough lib in google env [1/1]
+
+PD#SWPL-143104
+
+Problem:
+there is no sdk version in google env
+
+Solution:
+build videopassthrough lib by default if sdkversion is invalid
+
+Verify:
+S905X4
+
+Change-Id: I49d295c07494857cebb8d0ce480e72d9a08d3bbf
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 04709eb4b6a53de2fd52474d7d4fc48a65f48915
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Thu Nov 23 15:10:09 2023 +0800
@@ -85,137 +210,9 @@ ohm
 Change-Id: Ic24d139943ee044e0c648e05cc79fa93f3f7a89a
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit b6436d214c2440287c21a1a218836c9be3d05359
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Nov 20 19:51:14 2023 +0800
-
-tsplayer: CB2 Fixed PVR playback special stream stuck. [1/1]
-
-PD#SWPL-146740
-
-Problem:
-The audio cur pts is an anomaly and is larger than the decoder apts.
-
-Solution:
-Considering the tunneing delay of audiohal,
-the cache calculation may be a negative case,
-which is considered to be that audio does not have a cache.
-
-Verify:
-SC2
-
-Change-Id: I4ecc3a48a0a276a27573c2daabe60e438f59d9e1
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit cc060ae1427515224437694144202d69275e09a9
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Nov 15 13:35:16 2023 +0800
-
-tsplayer: CB2 it will show green picture when switching channel [1/1]
-
-PD#IPTV-24770
-
-Problem:
-it will show green picture when switching channel,
-because dequeuebuffer to wait fence is timeout
-when disconnecting surface.
-
-Solution:
-wait fence for more times using a smaller tiemoutMs
-
-Verify:
-s5
-
-Change-Id: Ibf6255e396d326df367976eb77a6c8efdfbb8c6e
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 9f985fff52129c8b37cd40b9657ad7038897cb05
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Nov 21 10:11:19 2023 +0800
-
-tsplayer: CB2 it will be full buffer when playing 8k video for a long
-time [1/1]
-
-PD#IPTV-25166
-PD#IPTV-25049
-
-Problem:
-it will be full buffer when playing 8k video for a long time
-
-Solution:
-fix the speed to write data for controlling.
-
-Verify:
-s5
-
-Change-Id: I7f0b4b27873e4259e2221d77b41521717991a325
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit ae201d6b57cb3502b658fd37f46216022295ac2a
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Nov 16 18:48:22 2023 +0800
-
-mediasycn: CB2 video plays not smoothly when decoding slowly. [1/1]
-
-PD#IPTV-24858
-
-Problem:
-video plays not smoothly when decoding slowly.
-
-Solution:
-render the frame when lastVideoPolicy is dropping.
-
-Verify:
-s5
-
-Change-Id: I533b6d27928f8271e0b02c260c2a03bd531b6b9c
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 7c2defba39465449b0fc809cfb3a41bdec42d2c5
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Nov 15 15:48:14 2023 +0800
-
-mediasync: CB2 Fix switching to pip audio silence. [1/1]
-
-PD#SWPL-145823
-
-Problem:
-Pip Audio's PTS and Video PTS are not aligned at the start of playback.
-
-Solution:
-Pip Audio's PTS is aligned with Video PTS and plays at the start.
-
-Verify:
-SC2
-
-Change-Id: I7d1f477d4623146275175ab7c36f06417ffb83fa
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 7bb76186ba64e7819f62c64fb320e3a277f460ae
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Nov 7 14:50:42 2023 +0800
-
-mediasync: CB2 Fixed PVR audio and video out of sync. [1/1]
-
-PD#SWPL-145342
-
-Problem:
-pause+seek+Switch audio
-causes the state machine to be abnormal.
-
-Solution:
-In the AV Arrived state,
-the Audio Reset needs to be switched to the Init state.
-
-Verify:
-SC2
-
-Change-Id: Ic6379c1958d0b73595bf7ee9077fc3dfff256d11
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-26-12-38
+Release time: 2023-11-30-10-26
 
 ========================================
 

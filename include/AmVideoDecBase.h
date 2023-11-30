@@ -47,6 +47,21 @@ enum class InputCodec {
   UNKNOWN = 0xff,
 };
 
+
+typedef enum {
+    GET_DECODER_FEATURE_LIST_SIZE = 0,
+    GET_DECODER_FEATURE_LIST = 1,
+    GET_DECODER_INFO_MAX = 255,
+} decoder_info_parameter;
+
+typedef struct {
+    uint8_t *data;
+    size_t data_len;
+    size_t actual_len;
+} decoder_feature_info;
+
+
+
 typedef struct {
     /* video */
     uint32_t    vpid;
@@ -216,5 +231,7 @@ extern "C" AmVideoDecBase* AmVideoDec_create(AmVideoDecCallback* callback);
 extern "C" uint32_t AmVideoDec_getVersion(uint32_t* versionM, uint32_t* versionL);
 extern "C" AmlMessageBase* AmVideoDec_getAmlMessage();
 extern "C" uint32_t AmVideoDec_getVersionString(char** data);
+extern "C" uint32_t  AmVideoDec_getVideoDecoderInfo(decoder_info_parameter type, void* arg);
+
 
 #endif  // AM_VIDEO_DEC_BASE_H
