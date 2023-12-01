@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.26-g03a4110
+Version: V3.24.29-g30c55be
 
 ========================================
 
 Git commit:
+commit 30c55be6985f2eb5a5ba5c8352a829cb557bc58b
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Thu Nov 23 20:01:28 2023 +0800
+
+resman: CB2 use codec mm total size rather than default size to judge [1/1]
+
+PD#SWPL-146628
+
+Problem:
+when use the default size to judge the 1080p may return fail
+
+Solution:
+use codec mm total size rather than default size to judge
+
+Verify:
+S805X2
+
+Change-Id: I5f7d9a0b9eef2b32b8298e326b0a6128adf14f8c
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
+commit 85f21f7e705dfd6cbcff87d9563685aba4d36465
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Mon Nov 20 13:17:58 2023 +0800
+
+videodec: CB2 SecureVdecPool random crash in secure playback [1/1]
+
+PD#SWPL-146256
+
+Problem:
+SecureVdecPool random crash acquire_free_slot_number
+
+Solution:
+add lock protect function call avoid null pointer access
+
+Verify:
+ohm/plack
+
+Change-Id: Ia32d7ebd281b2b9d0c0913fa2a43b78569e7ce55
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 51bb5962a6b358714ea4e6125a322f079ba35731
+Author: dong.liu <dong.liu@amlogic.com>
+Date:   Mon Nov 20 06:20:08 2023 +0000
+
+tsplayer: CB2 fix ad no output [1/1]
+
+PD#OTT-52174
+
+Problem:
+The reset of audiohal clears the ad status
+apk will only set mixlevel and advol once by default
+
+Solution:
+You need to save relevant ad parameters below
+
+Verify:
+X4
+
+Change-Id: Ic338061a444ac9bc18ab1fcbf3db0f47b5f7cb5a
+Signed-off-by: dong.liu <dong.liu@amlogic.com>
+
 commit 03a4110dddc35bcaae1a4c35ef94fcdfafe111f5
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Oct 19 15:07:35 2022 +0800
@@ -150,69 +211,9 @@ s5
 Change-Id: Ie172622e730b54e4ae1ce1b361d9e8d5825894be
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit b49b3a283bebbcb0ac501c3bb5f98b411f916bd8
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Nov 24 18:32:41 2023 +0800
-
-mediasync: CB2 video will be stuck after seek [1/1]
-
-PD#IPTV-25591
-
-Problem:
-video will be stuck after seek.
-
-Solution:
-fix clock type to set when the value of avAlignDiffLarge is true.
-
-Verify:
-s5
-
-Change-Id: Ib14ff7d3494a5fa561f2e31a847046978e3f2e8d
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 088c63ce6d821c1e158b249681924de055f377dc
-Author: peixing.mai <peixing.mai@amlogic.com>
-Date:   Wed Nov 22 13:09:57 2023 +0000
-
-tsplayer: CB2 Audio and video out of sync [1/1]
-
-PD#SWPL-141264
-
-Problem:
-audio freerun
-
-Solution:
-Adjust the timing and set has_video before open
-
-Verify:
-verify on T962X2
-
-Change-Id: I193b73984c50bbe70cd19b1145ed0bb54f4ac231
-Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
-
-commit 676a6a531fd59ef3008ab511ac0bde2a46a55b13
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Nov 21 20:38:51 2023 +0800
-
-tunnelrenderer: CB1 fix pattern check error [1/1]
-
-PD#SWPL-146896
-
-Problem:
-pattern check error after sync logic changed, same frame may check twice
-
-Solution:
-same frame only check pattern once
-
-Verify:
-ohm
-
-Change-Id: Ic24d139943ee044e0c648e05cc79fa93f3f7a89a
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-11-30-10-26
+Release time: 2023-12-01-15-19
 
 ========================================
 
