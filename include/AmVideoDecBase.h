@@ -51,7 +51,8 @@ enum class InputCodec {
 typedef enum {
     GET_DECODER_FEATURE_LIST_SIZE = 0,
     GET_DECODER_FEATURE_LIST = 1,
-    GET_DECODER_INFO_MAX = 255,
+    GET_DECODER_INFO_MAX = 0xff,
+    GET_DISPLAY_INFO_VIDEO_MAX_SIZE = 0x101,
 } decoder_info_parameter;
 
 typedef struct {

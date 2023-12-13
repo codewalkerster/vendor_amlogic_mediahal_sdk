@@ -1,10 +1,116 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.29-g30c55be
+Version: V3.24.34-g2d2cc1f
 
 ========================================
 
 Git commit:
+commit 2d2cc1fb1594f2864847193825070b0e931c0fdb
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Wed Dec 6 18:53:46 2023 +0800
+
+videodec: CF1 support get display max size [1/2]
+
+PD#SWPL-148485
+
+Problem:
+8k dw need get display max size
+
+Solution:
+support get display max size
+
+Verify:
+ohm
+
+Change-Id: Iddcef91fccd89665305853c8b82d787355ac48cf
+Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+
+commit 6e020f63349acbcc9dd36e45e26f56bf1f69e4e5
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Nov 29 15:47:00 2023 +0800
+
+videodec: CB1 calculate the add duration when strean is interlace. [1/1]
+
+PD#TV-100005
+
+Problem:
+1 calculate duration error when play some stream.the sliceCount is
+changed all the time.
+
+Solution:
+1. we change checkInterlaceStreamDuration function.we calculate the
+duration of between slices throw the input pts.if the stream id is the
+same as the last stream id, we push last input pts again,otherwise we
+push the found input pts.we need found the first and the end pts which
+the value is not eq 0 and prev pts. we get the slices duration by
+(pts[end_pos] - pts[start_pos])/(end_pos - start_pos)
+
+Verify:
+ohm
+
+Change-Id: I946891f035ea2d1bfdce7376aef5c9aba4a06462
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit e46491ab398e2cd7601e4a0a26a2e480945e8d59
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Nov 30 13:51:06 2023 +0800
+
+TsPlayer: CB2 video only pvr progress bar not move [1/1]
+
+PD#SWPL-145949
+
+Problem:
+stream control not work in low-bitrate video only stream
+
+Solution:
+check 5 times pts not update will allow inject steam
+
+Verify:
+ohm atf
+
+Change-Id: I60a25e2d867a007cbcf12675008f137c0e3fe2ca
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit c2cb4485c511e3fb765f121e184c9354bb568354
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Dec 5 15:47:52 2023 +0800
+
+mediasync: CB2 arc output stuck after plugin test [1/1]
+
+PD#SWPL-148615
+
+Problem:
+mAudioAdjustThreshold not update after output dev change.
+
+Solution:
+reset mAudioAdjustThreshold after audio dev change.
+
+Verify:
+TC8000
+
+Change-Id: Ia105090ad35b538a4903178be0a6d1817110ed55
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 53b4b4687d1efab231b50d1027eecde33cb949ad
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Dec 5 10:14:11 2023 +0800
+
+videodec: CB2 androoid p build error. [1/1]
+
+PD#SWPL-148572
+
+Problem:
+1 androoid p build error.
+
+Solution:
+1. fixed build error
+
+Verify:
+ohm
+
+Change-Id: I679e02c1415e37c174e3bc9d85665bd49110c162
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 30c55be6985f2eb5a5ba5c8352a829cb557bc58b
 Author: joy.rao <joy.rao@amlogic.com>
 Date:   Thu Nov 23 20:01:28 2023 +0800
@@ -106,114 +212,9 @@ AH212
 Change-Id: I8b23621cb27644fd24da72308346a13c8fc6ce9f
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 844b8e87a013e40838f3f09c0c6e3f3d4068658c
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Nov 14 14:37:48 2023 +0800
-
-videodec: CB1 calculate duration when frame rate is 30fps. [1/1]
-
-PD#SWPL-145363
-
-Problem:
-1 we do not calculate duration by pts.
-
-Solution:
-1. we add calculate duration api, we only used this duration when
-framerate is 30fps,youtube do not set framerate to framework,so
-framework used default value (30fps) to set to codec2,so we only used
-calculated duration when framerate is 30fps.
-
-
-Verify:
-ohm
-
-Change-Id: I55cda4f932aeaef2df06b7144a28593b4338e96a
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit e61224b05fce06b3ca799b481d7e1254e63d3830
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri Nov 10 02:17:44 2023 +0000
-
-tsplayer: CB2 no sound when switch audio track type [1/1]
-
-PD#TV-99074
-
-Problem:
-no callback decodec first audio event
-
-Solution:
-callback decodec first audio event
-
-Verify:
-t5w
-
-Change-Id: I8718e1212c03e599cc2d81c44cd2958346d9335b
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 24c7b7920c06f26d09a3125c01cabe393b41e28f
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Nov 8 02:22:16 2023 +0000
-
-tsplayer: CB2 add api to get audio/video scramble status [1/1]
-
-PD#TV-97475
-
-Problem:
-need to implement get audio/video
-scramble status from mediahal
-
-Solution:
-add api to get audio/video scramble status
-
-Verify:
-t5M
-
-Change-Id: Ib0971ce7108055296d59b0ce7658339ea6562b02
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 76fe985ac0018e98515966ce42f5c4271da76b23
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Nov 8 15:56:24 2023 +0800
-
-videopassthrough: CB2 no videopassthrough lib in google env [1/1]
-
-PD#SWPL-143104
-
-Problem:
-there is no sdk version in google env
-
-Solution:
-build videopassthrough lib by default if sdkversion is invalid
-
-Verify:
-S905X4
-
-Change-Id: I49d295c07494857cebb8d0ce480e72d9a08d3bbf
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 04709eb4b6a53de2fd52474d7d4fc48a65f48915
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Nov 23 15:10:09 2023 +0800
-
-mediasync: CB2 Adjust the value of the MediaSync control_cmd [1/2]
-
-PD#SWPL-147136
-
-Problem:
-the value of MediaSync control_cmd is wrong
-
-Solution:
-adjust the value of the MediaSyn control_cmd.
-
-Verify:
-s5
-
-Change-Id: Ie172622e730b54e4ae1ce1b361d9e8d5825894be
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2023-12-01-15-19
+Release time: 2023-12-13-11-03
 
 ========================================
 
