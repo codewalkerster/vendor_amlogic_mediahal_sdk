@@ -1,10 +1,34 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.34-g2d2cc1f
+Version: V3.24.35-g73729c9
 
 ========================================
 
 Git commit:
+commit 73729c93b2b7782ee6f6308be6d31776e3d4bf3c
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu Dec 14 09:44:26 2023 +0800
+
+videodec: CB1 cannot send event to client when notifyError is
+called. [1/1]
+
+PD#SWPL-148637
+
+Problem:
+1 'client_ptr_factory_' is destroy when notifyError is called,so we
+Can not send event 'NotifyResetDone' to client when
+'client_ptr_factory_' is null.
+
+Solution:
+1. Do not release 'client_ptr_factory_' obj when call 'notifyError';
+We release 'Destroy()' only at 'Destroy()' when vdec is released.
+
+Verify:
+ohm
+
+Change-Id: Ie7c18795adb0f0d130481168038a3d00338019bc
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 2d2cc1fb1594f2864847193825070b0e931c0fdb
 Author: Jian Wang <jian.wang@amlogic.com>
 Date:   Wed Dec 6 18:53:46 2023 +0800
@@ -192,29 +216,9 @@ SC2
 Change-Id: I2ec6337cbbd89cb34fc6b5ea4e19149b022e43ad
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 1f8994e1543e11fb7b64f9471939d960a72e2553
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Nov 23 21:31:51 2023 +0800
-
-mediasycn: CB2 av diff too large stream sounds gap. [1/1]
-
-PD#SWPL-145284
-
-Problem:
-audio start too early when av diff too large.
-
-Solution:
-set drop pcm timeout as avdiff + 500ms.
-
-Verify:
-AH212
-
-Change-Id: I8b23621cb27644fd24da72308346a13c8fc6ce9f
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2023-12-13-11-03
+Release time: 2023-12-18-13-45
 
 ========================================
 
