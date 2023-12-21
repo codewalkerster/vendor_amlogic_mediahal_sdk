@@ -1,10 +1,172 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.35-g73729c9
+Version: V3.24.43-g4e4d47b
 
 ========================================
 
 Git commit:
+commit 4e4d47b49ef274c54f293c6a9952b87100d60530
+Author: shihong.zheng <shihong.zheng@amlogic.com>
+Date:   Sat Aug 20 18:01:07 2022 +0800
+
+example: CF1 add av1 avs3 format support. [1/1]
+
+PD#SWPL-115846
+
+Problem:
+EsVideoDecPlayer support av1 avs3.
+
+Solution:
+add av1 avs3 format support.
+
+Verify:
+s928x
+
+Change-Id: I29669eea3f97459d1b7d013969a77aedb8c9ec5d
+Signed-off-by: shihong.zheng <shihong.zheng@amlogic.com>
+
+commit ba3983cdb859982792484cc6b2e44e75ec255e9b
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Dec 19 16:03:11 2023 +0800
+
+tsplayer: CB2 one video will play fastly in es mode [1/1]
+
+PD#IPTV-26078
+
+Problem:
+one video will play fastly in es mode,
+because getting wrong realTimeUs.
+
+Solution:
+fix to update anchor.
+
+Verify:
+s5
+
+Change-Id: If3facacf7e431a44e280b6feae1e94faf83b93aa
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit cd08cb855a7991a6c2a64d65a5303675efcec846
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Dec 13 15:33:01 2023 +0800
+
+mediasync: CB2 it will play stuckly for 5s [1/1]
+
+PD#IPTV-25861
+
+Problem:
+it will play stuckly for 5s as video holding for cache.
+
+Solution:
+fix the audio first frame pts.
+
+Verify:
+s5
+
+Change-Id: I9d916a062e87cd907b3fe064c5673dbf08cdeb8e
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 4c04fad9611eedf6bfabd0692d5e7637d53b1eb8
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Dec 1 07:49:34 2023 +0000
+
+tsplayer: CF2 add unsupport format status [1/1]
+
+PD#SWPL-149001
+
+Problem:
+for unsupport fmt, need display unspoort information.
+
+Solution:
+add tsplayer unsupport event.
+
+Verify:
+txhd2
+
+Change-Id: Iba5c62ad32609877fe85e27f6969af3af35d421c
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit c08ec93c118bac457f5d985b766b5c48c867566a
+Author: Zhao Yi <zhao.yi@amlogic.com>
+Date:   Fri Oct 20 14:24:16 2023 +0800
+
+videodec: CB2 disable afr for 50fps videos [2/3]
+
+PD#TV-96252
+
+Problem:
+Youtube 50fps videos played not smoothly.
+
+Solution:
+Disable AFR because Youtube cannot get real display refresh rate.
+
+Verify:
+TCL androidS T5M
+
+Change-Id: Ia4ede49ea728f42a6d294f4af141660d78999d7f
+Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
+(cherry picked from commit 8b76f34ce131c9b272c5c857041f0b81993cea74)
+
+commit 1fe6bc2fea2cf9c53e381f4148dff4166c59d191
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Thu Oct 19 17:35:44 2023 +0800
+
+reman: CF2 Add res_sys_debug node to report debug level [1/1]
+
+PD#SWPL-142663
+
+Problem:
+Add res_sys_debug node to report debug level
+
+Solution:
+Add res_sys_debug node to report debug level
+
+Verify:
+ohm
+
+Change-Id: I26090a8308b42cfe8c53c0419a39d61689bca668
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 307fb86ecafc1a8df46ba95b28fbca56852325e7
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Dec 11 06:15:35 2023 +0000
+
+tsplayer: CB2 callback data loss event long time [1/1]
+
+PD#SWPL-143339
+
+Problem:
+callback data loss event long time.
+
+Solution:
+reduce callback data loss event time.
+
+Verify:
+t5w
+
+Change-Id: I733ad0edd90c228d927b9171f4d802b1f2f996df
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit e95dbd95b075046feb82edc33c93ca49883668b0
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Dec 6 16:20:05 2023 +0800
+
+tsplayer: CB2 some videos play with black screen [1/1]
+
+PD#IPTV-24667
+
+Problem:
+some videos play with black screen.
+
+Solution:
+add extradata to set and add startcode.
+
+Verify:
+s5
+
+Change-Id: I1850822390a189114effd5d51e8619eab7967b30
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 73729c93b2b7782ee6f6308be6d31776e3d4bf3c
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Thu Dec 14 09:44:26 2023 +0800
@@ -49,176 +211,9 @@ ohm
 Change-Id: Iddcef91fccd89665305853c8b82d787355ac48cf
 Signed-off-by: Jian Wang <jian.wang@amlogic.com>
 
-commit 6e020f63349acbcc9dd36e45e26f56bf1f69e4e5
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Nov 29 15:47:00 2023 +0800
-
-videodec: CB1 calculate the add duration when strean is interlace. [1/1]
-
-PD#TV-100005
-
-Problem:
-1 calculate duration error when play some stream.the sliceCount is
-changed all the time.
-
-Solution:
-1. we change checkInterlaceStreamDuration function.we calculate the
-duration of between slices throw the input pts.if the stream id is the
-same as the last stream id, we push last input pts again,otherwise we
-push the found input pts.we need found the first and the end pts which
-the value is not eq 0 and prev pts. we get the slices duration by
-(pts[end_pos] - pts[start_pos])/(end_pos - start_pos)
-
-Verify:
-ohm
-
-Change-Id: I946891f035ea2d1bfdce7376aef5c9aba4a06462
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit e46491ab398e2cd7601e4a0a26a2e480945e8d59
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Nov 30 13:51:06 2023 +0800
-
-TsPlayer: CB2 video only pvr progress bar not move [1/1]
-
-PD#SWPL-145949
-
-Problem:
-stream control not work in low-bitrate video only stream
-
-Solution:
-check 5 times pts not update will allow inject steam
-
-Verify:
-ohm atf
-
-Change-Id: I60a25e2d867a007cbcf12675008f137c0e3fe2ca
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit c2cb4485c511e3fb765f121e184c9354bb568354
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Dec 5 15:47:52 2023 +0800
-
-mediasync: CB2 arc output stuck after plugin test [1/1]
-
-PD#SWPL-148615
-
-Problem:
-mAudioAdjustThreshold not update after output dev change.
-
-Solution:
-reset mAudioAdjustThreshold after audio dev change.
-
-Verify:
-TC8000
-
-Change-Id: Ia105090ad35b538a4903178be0a6d1817110ed55
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 53b4b4687d1efab231b50d1027eecde33cb949ad
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Dec 5 10:14:11 2023 +0800
-
-videodec: CB2 androoid p build error. [1/1]
-
-PD#SWPL-148572
-
-Problem:
-1 androoid p build error.
-
-Solution:
-1. fixed build error
-
-Verify:
-ohm
-
-Change-Id: I679e02c1415e37c174e3bc9d85665bd49110c162
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 30c55be6985f2eb5a5ba5c8352a829cb557bc58b
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Thu Nov 23 20:01:28 2023 +0800
-
-resman: CB2 use codec mm total size rather than default size to judge [1/1]
-
-PD#SWPL-146628
-
-Problem:
-when use the default size to judge the 1080p may return fail
-
-Solution:
-use codec mm total size rather than default size to judge
-
-Verify:
-S805X2
-
-Change-Id: I5f7d9a0b9eef2b32b8298e326b0a6128adf14f8c
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 85f21f7e705dfd6cbcff87d9563685aba4d36465
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Mon Nov 20 13:17:58 2023 +0800
-
-videodec: CB2 SecureVdecPool random crash in secure playback [1/1]
-
-PD#SWPL-146256
-
-Problem:
-SecureVdecPool random crash acquire_free_slot_number
-
-Solution:
-add lock protect function call avoid null pointer access
-
-Verify:
-ohm/plack
-
-Change-Id: Ia32d7ebd281b2b9d0c0913fa2a43b78569e7ce55
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 51bb5962a6b358714ea4e6125a322f079ba35731
-Author: dong.liu <dong.liu@amlogic.com>
-Date:   Mon Nov 20 06:20:08 2023 +0000
-
-tsplayer: CB2 fix ad no output [1/1]
-
-PD#OTT-52174
-
-Problem:
-The reset of audiohal clears the ad status
-apk will only set mixlevel and advol once by default
-
-Solution:
-You need to save relevant ad parameters below
-
-Verify:
-X4
-
-Change-Id: Ic338061a444ac9bc18ab1fcbf3db0f47b5f7cb5a
-Signed-off-by: dong.liu <dong.liu@amlogic.com>
-
-commit 03a4110dddc35bcaae1a4c35ef94fcdfafe111f5
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Oct 19 15:07:35 2022 +0800
-
-videodec: CF2 gets a feature list from the video decoder. [1/1]
-
-PD#SWPL-97584
-
-Problem:
-gets a feature list from the video decoder.
-
-Solution:
-gets a feature list from the video decoder.
-
-Verify:
-SC2
-
-Change-Id: I2ec6337cbbd89cb34fc6b5ea4e19149b022e43ad
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-12-18-13-45
+Release time: 2023-12-21-18-15
 
 ========================================
 

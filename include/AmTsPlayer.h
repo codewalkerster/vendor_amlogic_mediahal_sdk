@@ -79,6 +79,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_VIDEO_DECODER_INFO, //iptv: set before startDecoding
     AM_TSPLAYER_KEY_SET_AUDIO_FORMAT,
     AM_TSPLAYER_KEY_GET_DMX_ES_OUTPUT_STATUS, //dmx es output status info
+    AM_TSPLAYER_KEY_SET_VIDEO_EXTRADATA,
 } am_tsplayer_parameter;
 
 typedef enum

@@ -151,6 +151,10 @@ const char* vformat_to_mime(uint32_t vformat) {
             return "video/avs";
         case 15:
             return "video/avs2";
+        case 16:
+            return "video/av01";
+        case 17:
+            return "video/avs3";
         default:
             return "";
     }
@@ -179,6 +183,7 @@ public:
     void outputBuffer(const char* oName, int num);
     int inputBuffer(uint8_t* buf, uint32_t size, uint64_t timestamp = 0);
     void dumpData(char* buf, uint32_t width, uint32_t height, int32_t bitstreamId);
+    int av1_frame_mode_write_dat(FILE *fp, char *buffer);
 
     /* Implement callback */
     virtual void onOutputFormatChanged(uint32_t requestedNumOfBuffers,
@@ -233,6 +238,7 @@ public:
 
     playerCallback* mCallback;
     AmVideoDecBase* mAmVideoDec;
+    uint32_t mFormat;
 
     std::mutex mFlushedLock;
     std::condition_variable mFlushedCondition;
@@ -322,6 +328,7 @@ int VideoDecPlayerExample::init(uint32_t vFmt, uint32_t width, uint32_t height, 
         printf("init failed!, ret=%d\n", ret);
         return -2;
     }
+    mFormat = vFmt;
 
     return 0;
 }
@@ -353,16 +360,19 @@ int VideoDecPlayerExample::inputBuffer(uint8_t* buf, uint32_t size, uint64_t tim
 
 void VideoDecPlayerExample::dumpData(char* buf, uint32_t width, uint32_t height, int32_t bitstreamId) {
     std::lock_guard<std::mutex> lock(mDumpLock);
-    uint32_t y_size = (mBufferHeight* mBufferWidth);
+    uint32_t w_stride = ALIGN(width, 64);
+    uint32_t h_stride = ALIGN(height, 64);
+    uint32_t y_size = w_stride * h_stride;
     int i = 0;
+
 
     if (moFp) {
         /* save output yuv data */
         for (i = 0 ; i < (int)height; i++) {
-            fwrite(buf + i * mBufferWidth, width, 1, moFp);
+            fwrite(buf + i * w_stride, width, 1, moFp);
         }
         for (i = 0 ; i < (int)height / 2; i++) {
-            fwrite(buf + y_size + i * mBufferWidth, width, 1, moFp);
+            fwrite(buf + y_size + i * w_stride, width, 1, moFp);
         }
 
         fflush(moFp);
@@ -376,10 +386,10 @@ void VideoDecPlayerExample::dumpData(char* buf, uint32_t width, uint32_t height,
         int crc_y = 0,crc_uv = 0;
 
         for (i = 0 ; i < (int)height; i++) {
-            crc_y = crc32_gen(crc_y, (unsigned char const *)(buf + i * mBufferWidth), width);
+            crc_y = crc32_gen(crc_y, (unsigned char const *)(buf + i * w_stride), width);
         }
         for (i = 0 ; i < (int)height / 2; i++) {
-            crc_uv = crc32_gen(crc_uv, (unsigned char const *)(buf + y_size + i * mBufferWidth), width);
+            crc_uv = crc32_gen(crc_uv, (unsigned char const *)(buf + y_size + i * w_stride), width);
         }
 
         fprintf(mcFp, "%08d: %08x %08x\n", mDumpNum, crc_y, crc_uv);
@@ -515,6 +525,362 @@ VideoDecPlayerExample::~VideoDecPlayerExample() {
     }
 }
 
+/* */
+typedef enum ATTRIBUTE_PACKED {
+    OBU_SEQUENCE_HEADER = 1,
+    OBU_TEMPORAL_DELIMITER = 2,
+    OBU_FRAME_HEADER = 3,
+    OBU_TILE_GROUP = 4,
+    OBU_METADATA = 5,
+    OBU_FRAME = 6,
+    OBU_REDUNDANT_FRAME_HEADER = 7,
+    OBU_TILE_LIST = 8,
+    OBU_PADDING = 15,
+} OBU_TYPE;
+
+#define MAX_SIZE 0x200000
+#define BUFFER_SIZE (1024*1024*2)
+
+
+#if 1
+//AV1
+static int obu_frame_frame_head_come_after_tile = 0;
+//static int frame_decoded = 0;
+static int decoding_data_flag = 0;
+#endif
+
+unsigned char is_picture_start(int video_type, int nal_unit_type)
+{
+    unsigned char ret = 0;
+    if (video_type == VFORMAT_AVS) {
+        if (nal_unit_type == 0xB3 || //I_PICTURE_START_CODE
+                nal_unit_type == 0xB6  //PB_PICTURE_START_CODE
+           )
+            ret = 1;
+    } else if (video_type == VFORMAT_VP9) {
+        /*to do*/
+        goto check_av1;
+    } else if (video_type == VFORMAT_AV1) {
+check_av1:
+        if (nal_unit_type == OBU_FRAME_HEADER ||
+                nal_unit_type == OBU_FRAME) {
+            ret = 1;
+            obu_frame_frame_head_come_after_tile = 1;
+            if (nal_unit_type == OBU_FRAME) { /*have tile group in this OBU*/
+                obu_frame_frame_head_come_after_tile = 0;
+                decoding_data_flag = 1;
+            }
+
+        }
+    }
+    else
+        ret = 1;
+    return ret;
+}
+
+unsigned char is_picture_end(int video_type, int nal_unit_type)
+{
+    unsigned char ret = 0;
+    if (video_type == VFORMAT_AVS) {
+        if (nal_unit_type == 0xB3 || //I_PICTURE_START_CODE
+                nal_unit_type == 0xB6 || //PB_PICTURE_START_CODE
+                nal_unit_type == 0xB0 || //SEQUENCE_HEADER_CODE
+                nal_unit_type == 0xB1  //SEQUENCE_END_CODE
+           )
+            ret = 1;
+    } else if (video_type == VFORMAT_VP9) {
+        /*to do*/
+        goto check_av1;
+    } else if (video_type == VFORMAT_AV1) {
+check_av1:
+        if (nal_unit_type == OBU_TILE_GROUP) {
+            obu_frame_frame_head_come_after_tile = 0;
+            decoding_data_flag = 1;
+        }
+        else if (nal_unit_type == OBU_FRAME_HEADER ||
+                nal_unit_type == OBU_FRAME) {
+            if (decoding_data_flag)
+                ret = 1;
+            decoding_data_flag = 0;
+            obu_frame_frame_head_come_after_tile = 1;
+            if (nal_unit_type == OBU_FRAME) { /*have tile group in this OBU*/
+                obu_frame_frame_head_come_after_tile = 0;
+                decoding_data_flag = 1;
+            }
+        } else if (nal_unit_type == OBU_REDUNDANT_FRAME_HEADER &&
+                obu_frame_frame_head_come_after_tile == 0) {
+            decoding_data_flag = 0;
+            printf("Warning, OBU_REDUNDANT_FRAME_HEADER come without OBU_FRAME or OBU_FRAME_HEAD\n");
+        }
+    }
+
+    else
+        ret = 1;
+    return ret;
+}
+
+typedef struct
+{
+    int startcodeprefix_len;      //! 4 for parameter sets and first slice in picture, 3 for everything else (suggested)
+    unsigned len;                 //! Length of the NAL unit (Excluding the start code, which does not belong to the NALU)
+    unsigned max_size;            //! Nal Unit Buffer size
+    int forbidden_bit;            //! should be always FALSE
+    int nal_reference_idc;        //! NALU_PRIORITY_xxxx
+    int nal_unit_type;            //! NALU_TYPE_xxxx
+    unsigned char *buf;                    //! contains the first byte followed by the EBSP
+    unsigned short lost_packets;  //! true, if packet loss is detected
+} NALU_t;
+
+NALU_t *AllocNALU(int buffersize)
+{
+    NALU_t *n;
+
+    if ((n = (NALU_t*)calloc (1, sizeof (NALU_t))) == NULL)
+    {
+        printf("AllocNALU: n");
+        exit(0);
+    }
+
+    n->max_size=buffersize;
+
+    if ((n->buf = (unsigned char*)calloc (buffersize, sizeof (char))) == NULL)
+    {
+        free (n);
+        printf ("AllocNALU: n->buf");
+        exit(0);
+    }
+
+    return n;
+}
+
+void FreeNALU(NALU_t *n)
+{
+    if (n)
+    {
+        if (n->buf)
+        {
+            free(n->buf);
+            n->buf=NULL;
+        }
+        free (n);
+    }
+}
+
+static int FindStartCode2 (unsigned char *Buf)
+{
+    if ((Buf[0] != 0) || (Buf[1] != 0) || (Buf[2] != 1)) return 0; //0x000001
+    else return 1;
+}
+
+static int FindStartCode3 (unsigned char *Buf)
+{
+    if ((Buf[0] != 0) || (Buf[1] != 0) || (Buf[2] != 0) || (Buf[3] != 1)) return 0;//0x00000001
+    else return 1;
+}
+
+static int FindAmlStartCode(unsigned char *Buf)
+{
+    unsigned int len;
+    unsigned int len2;
+    len = (Buf[0] << 24) | (Buf[1] << 16) | (Buf[2] << 8) | (Buf[3] << 0);
+    len2 = (Buf[4] << 24) | (Buf[5] << 16) | (Buf[6] << 8) | (Buf[7] << 0);
+    if (((len + len2) == 0xffffffff) &&
+            (Buf[8] == 0 && Buf[9] == 0 && Buf[10] == 0 && Buf[11] == 1) &&
+            (Buf[12] == 0x41 && Buf[13] == 0x4d && Buf[14] == 0x4c && Buf[15] == 0x56)) {
+        return 1;
+    }
+    return 0;
+}
+
+int GetAnnexbNALU (FILE* fe, NALU_t *nalu, int format)
+{
+    int pos = 0;
+    int StartCodeFound, rewind;
+    unsigned char *Buf;
+    int info2 = 0, info3 = 0;
+    int i;
+    int prefix_len = 4;
+    if (format == VFORMAT_VP9 || format == VFORMAT_AV1)
+        prefix_len = 16;
+    if ((Buf = (unsigned char*)calloc (nalu->max_size , sizeof(char))) == NULL)
+        printf ("GetAnnexbNALU: Could not allocate Buf memory\n");
+
+    nalu->startcodeprefix_len=0;
+    while (!feof(fe)) {
+        if (nalu->startcodeprefix_len<prefix_len) {
+            Buf[nalu->startcodeprefix_len++] = fgetc(fe);
+        }
+        else{
+            if (prefix_len == 4) {
+                for (i = 0; i < 3; i++)
+                    Buf[i] = Buf[i+1];
+            }
+            else {
+                for (i = 0; i < prefix_len; i++)
+                    Buf[i] = Buf[i+1];
+            }
+            Buf[nalu->startcodeprefix_len - 1] = fgetc(fe);
+        }
+        if (prefix_len == 4) {
+            if (nalu->startcodeprefix_len >= 3) {
+                if (FindStartCode2(Buf)) {
+                    pos = nalu->startcodeprefix_len;
+                    nalu->startcodeprefix_len = 3;
+                    break;
+                }
+            }
+            if (nalu->startcodeprefix_len == 4) {
+                if (FindStartCode3(Buf)) {
+                    pos = nalu->startcodeprefix_len;
+                    break;
+                }
+            }
+        } else {
+            if (nalu->startcodeprefix_len == prefix_len) {
+                if (FindAmlStartCode(Buf)) {
+                    pos = nalu->startcodeprefix_len;
+                    break;
+                }
+            }
+        }
+    }
+    StartCodeFound = 0;
+    info2 = 0;
+    info3 = 0;
+
+    while (!StartCodeFound)
+    {
+        if (feof (fe))
+        {
+            rewind = -1;
+            goto fill_data;
+        }
+        Buf[pos++] = fgetc (fe);
+        if (prefix_len == 4) {
+            info3 = FindStartCode3(&Buf[pos - 4]);
+            if (info3 != 1)
+                info2 = FindStartCode2(&Buf[pos - 3]);
+            StartCodeFound = (info2 == 1 || info3 == 1);
+        } else {
+            StartCodeFound = FindAmlStartCode(&Buf[pos-prefix_len]);
+        }
+    }
+
+    // Here, we have found another start code (and read length of startcode bytes more than we should
+    // have.  Hence, go back in the file
+    if (prefix_len == 4)
+        rewind = (info3 == 1) ? -4 : -3;
+    else
+        rewind = -prefix_len;
+
+    if (0 != fseek (fe, rewind, SEEK_CUR))
+    {
+        free(Buf);
+        printf("GetAnnexbNALU: Cannot fseek in the bit stream file");
+    }
+
+    // Here the Start code, the complete NALU, and the next start code is in the Buf.
+    // The size of Buf is pos, pos+rewind are the number of bytes excluding the next
+    // start code, and (pos+rewind)-startcodeprefix_len is the size of the NALU excluding the start code
+fill_data:
+    nalu->len = (pos + rewind);
+    if (nalu->len > MAX_SIZE) {
+        printf("%d: Error: to many data to copy %d\n", __LINE__, nalu->len);
+        exit(0);
+    }
+    memcpy (nalu->buf, &Buf[0], nalu->len);//copy nalu, include 0x000001 or 0x00000001
+    if (format == VFORMAT_VP9 || format == VFORMAT_AV1) {
+        unsigned char* p = &nalu->buf[nalu->startcodeprefix_len];
+        while ((*p++)&0x80) {
+
+        }
+        nalu->nal_reference_idc = 0;
+        nalu->forbidden_bit = *p & 0x80;
+        nalu->nal_unit_type = (*p>>3)&0xf;
+    } else {
+        nalu->forbidden_bit = nalu->buf[nalu->startcodeprefix_len] & 0x80; //1 bit
+        nalu->nal_reference_idc = nalu->buf[nalu->startcodeprefix_len] & 0x60; // 2 bit
+        //nalu->nal_unit_type = (nalu->buf[0]) & 0x1f;// 5 bit
+        nalu->nal_unit_type = (nalu->buf[nalu->startcodeprefix_len]);
+    }
+    free(Buf);
+
+    return (pos + rewind);
+}
+
+static void dump(NALU_t *n)
+{
+    if (!n)return;
+    /*
+       printf("a new nal:");
+
+       printf(" len: %d  ", n->len);
+       printf("nal_unit_type: %x\n", n->nal_unit_type);
+       */
+
+}
+
+
+int VideoDecPlayerExample::av1_frame_mode_write_dat(FILE *fp, char *buffer)
+{
+    NALU_t *n = AllocNALU(MAX_SIZE);
+    int buf_pos = 0;
+    uint8_t *tmpbuf;
+
+
+    //unsigned char pic_head_found = 0;
+    while (!feof(fp))
+    {
+        GetAnnexbNALU(fp, n, VFORMAT_AV1);
+        dump(n);
+        if ((buf_pos + n->len) > BUFFER_SIZE) {
+            printf("%d: Error: to many data to copy %d\n", __LINE__, buf_pos + n->len);
+            exit(0);
+        }
+        memcpy(&buffer[buf_pos], n->buf, n->len);
+        buf_pos += n->len;
+        if (is_picture_start(VFORMAT_AV1, n->nal_unit_type)) {
+            break;
+        }
+    }
+
+    while (!feof(fp))
+    {
+        GetAnnexbNALU(fp, n, VFORMAT_AV1);
+        if (buf_pos > BUFFER_SIZE) {
+            printf("Error: bufpos 0x%x > BUFFSIZE 0x%x!\n", buf_pos, BUFFER_SIZE);
+            goto error_ret;
+        }
+        if (is_picture_end(VFORMAT_AV1, n->nal_unit_type)) {
+            //printf("Send Data Size =%d\n", buf_pos);
+#ifndef TEST_ON_PC
+            tmpbuf = (uint8_t *)malloc(buf_pos + 1024);
+            if (!tmpbuf) {
+                printf("Error: get av1 tmp send buffer failed!\n");
+                goto error_ret;
+            }
+            memcpy(tmpbuf, buffer, buf_pos);
+            if (inputBuffer(tmpbuf, buf_pos, 0)) {
+                printf("Error:input buffer is error!\n");
+                goto error_ret;
+            }
+#endif
+            buf_pos = 0;
+        }
+
+        if ((buf_pos + n->len) > BUFFER_SIZE) {
+            printf("%d: Error: to many data to copy %d\n", __LINE__, buf_pos + n->len);
+            goto error_ret;
+        }
+
+        memcpy(&buffer[buf_pos], n->buf, n->len);
+        buf_pos += n->len;
+        dump(n);
+    }
+error_ret:
+    free(n);
+    return 0;
+}
 
 void VideoDecPlayerExample::play(const char* iname, const char* sname, const char* oName, int num) {
     int end = 0;
@@ -524,16 +890,18 @@ void VideoDecPlayerExample::play(const char* iname, const char* sname, const cha
         printf("iname is null\n");
         return ;
     } else {
-    miFp = fopen(iname, "rb");
-    if (!miFp) {
-        printf("open input file error %s!\n",iname);
-        return;
-    }
+        miFp = fopen(iname, "rb");
+        if (!miFp) {
+            printf("open input file error %s!\n",iname);
+            return;
+        }
     }
 
     if (sname == NULL) {
-        printf("sname is null\n");
-        return ;
+        if (mFormat != VFORMAT_AV1) {
+            printf("sname is null mFormat %d\n", mFormat);
+            return ;
+        }
     } else {
         msFp = fopen(sname, "rb");
         if (!msFp) {
@@ -552,55 +920,66 @@ void VideoDecPlayerExample::play(const char* iname, const char* sname, const cha
         }
     });
 
-    while (1) {
-        char frame_size_str[32];
-        char *s_rt;
-        uint32_t frame_size;
-        uint8_t * newbuf;
-
-        if (mInputBuffer.size() > 50) {
-            printf("sleep 20000\n");
-            usleep(20000);
-        }
-
-        memset(frame_size_str, 0, sizeof(frame_size_str));
-        s_rt = fgets(frame_size_str, 32, msFp);
-
-        if (s_rt == NULL) {
-            break;
-        }
-        frame_size = atoi(frame_size_str);
-
-        if (frame_size <= InputBufferMaxSize) {
-            newbuf = (uint8_t *)malloc(frame_size);
-            if (newbuf == NULL) {
-                printf("malloc frame size %d fail\n", frame_size);
-            }
-            memset(newbuf, 0, frame_size);
-            ret = fread(newbuf, 1, frame_size, miFp);
-            printf("read size %d, %x %x %x %x %x %x %x %x ...\n", frame_size,
-            newbuf[0], newbuf[1], newbuf[2], newbuf[3], newbuf[4], newbuf[5], newbuf[6], newbuf[7]);
-
-            if (ret < (int)frame_size) {
-                printf("read back size %d, less than frame size %d\n", ret, frame_size);
-                return ;
-            }
-        } else {
-            printf("Error:input frame size(%d) is error!\n",frame_size);
+    if (!msFp && mFormat == VFORMAT_AV1) {
+        char *fixedbuff;
+        fixedbuff = (char *)malloc(BUFFER_SIZE);
+        if (!fixedbuff) {
+            printf("malloc fixed buffer failed %x\n", BUFFER_SIZE);
             return;
         }
+        av1_frame_mode_write_dat(miFp, fixedbuff);
 
-        ret = inputBuffer(newbuf, frame_size, 0);
-        if (ret) {
-            printf("Error:input buffer is error!\n");
-            return;
-        }
+    } else {
+        while (1) {
+            char frame_size_str[32];
+            char *s_rt;
+            uint32_t frame_size;
+            uint8_t * newbuf;
 
-        if (feof(miFp) || feof(msFp)) {
-            end = 1;
-        }
-        if (end) {
-            break;
+            if (mInputBuffer.size() > 50) {
+                printf("sleep 20000\n");
+                usleep(20000);
+            }
+
+            memset(frame_size_str, 0, sizeof(frame_size_str));
+            s_rt = fgets(frame_size_str, 32, msFp);
+
+            if (s_rt == NULL) {
+                break;
+            }
+            frame_size = atoi(frame_size_str);
+
+            if (frame_size <= InputBufferMaxSize) {
+                newbuf = (uint8_t *)malloc(frame_size);
+                if (newbuf == NULL) {
+                    printf("malloc frame size %d fail\n", frame_size);
+                }
+                memset(newbuf, 0, frame_size);
+                ret = fread(newbuf, 1, frame_size, miFp);
+                printf("read size %d, %x %x %x %x %x %x %x %x ...\n", frame_size,
+                newbuf[0], newbuf[1], newbuf[2], newbuf[3], newbuf[4], newbuf[5], newbuf[6], newbuf[7]);
+
+                if (ret < (int)frame_size) {
+                    printf("read back size %d, less than frame size %d\n", ret, frame_size);
+                    return ;
+                }
+            } else {
+                printf("Error:input frame size(%d) is error!\n",frame_size);
+                return;
+            }
+
+            ret = inputBuffer(newbuf, frame_size, 0);
+            if (ret) {
+                printf("Error:input buffer is error!\n");
+                return;
+            }
+
+            if (feof(miFp) || feof(msFp)) {
+                end = 1;
+            }
+            if (end) {
+                break;
+            }
         }
     }
 
@@ -729,15 +1108,15 @@ static void usage(void)
     printf("VideoDecPlayer\n");
     printf("Usage: VideoDecPlayerExample -i <file> -f <format> -s <frame size> [-n <number>] [-o <out yuv and crc>] [-h <help>]\n");
     printf("\n");
-    printf(" -i, --ifile		input es file\n");
-    printf(" -f, --format		video format\n");
+    printf(" -i, --ifile,  input es file\n");
+    printf(" -f, --format, video format\n");
     printf ("\t\t0:mpeg12\t1:mpeg4\t\t2:h264\t\t3:mjpeg\n\
 5:jpeg\t\t6:vcl\t\t7:avs\t\t11:hevc\n\
-14:vp9\t\t15:avs2\t\t16:av1\n");
-    printf(" -s, --size 	frame size file\n");
-    printf(" -n, --number	instance number\n");
-    printf(" -o, --output	output yuv and crc\n");
-    printf(" -h, --help	usage\n");
+14:vp9\t\t15:avs2\t\t16:av1\t\t17:avs3\n");
+    printf(" -s, --size,   frame size file\n");
+    printf(" -n, --number, instance number\n");
+    printf(" -o, --output, output yuv and crc\n");
+    printf(" -h, --help,   usage\n");
 }
 
 
@@ -750,7 +1129,7 @@ int main(int argc, char** argv) {
     char* oName = nullptr;
     int num = 1;
 
-    if (argc < 7) {
+    if (argc < 5) {
         usage();
         return -1;
     }
@@ -791,7 +1170,7 @@ int main(int argc, char** argv) {
         }
     }
 
-    if (iname == nullptr || vFmt == -1 || sname == nullptr) {
+    if (iname == nullptr || vFmt == -1 || (sname == nullptr && vFmt != VFORMAT_AV1)) {
         usage();
         exit(-1);
     }

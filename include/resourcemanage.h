@@ -19,13 +19,14 @@ extern "C" {
 
 #define    RESMAN_IOC_MAGIC  'R'
 
-#define    RESMAN_IOC_QUERY_RES          _IOR(RESMAN_IOC_MAGIC, 0x01, int)
-#define    RESMAN_IOC_ACQUIRE_RES        _IOW(RESMAN_IOC_MAGIC, 0x02, int)
-#define    RESMAN_IOC_RELEASE_RES        _IOR(RESMAN_IOC_MAGIC, 0x03, int)
-#define    RESMAN_IOC_SET_APPINFO        _IOW(RESMAN_IOC_MAGIC, 0x04, int)
-#define    RESMAN_IOC_SUPPORT_RES        _IOR(RESMAN_IOC_MAGIC, 0x05, int)
-#define    RESMAN_IOC_RELEASE_ALL        _IOR(RESMAN_IOC_MAGIC, 0x06, int)
-#define    RESMAN_IOC_LOAD_RES           _IOR(RESMAN_IOC_MAGIC, 0x07, int)
+#define    RESMAN_IOC_QUERY_RES              _IOR(RESMAN_IOC_MAGIC, 0x01, int)
+#define    RESMAN_IOC_ACQUIRE_RES            _IOW(RESMAN_IOC_MAGIC, 0x02, int)
+#define    RESMAN_IOC_RELEASE_RES            _IOR(RESMAN_IOC_MAGIC, 0x03, int)
+#define    RESMAN_IOC_SET_APPINFO            _IOW(RESMAN_IOC_MAGIC, 0x04, int)
+#define    RESMAN_IOC_SUPPORT_RES            _IOR(RESMAN_IOC_MAGIC, 0x05, int)
+#define    RESMAN_IOC_RELEASE_ALL            _IOR(RESMAN_IOC_MAGIC, 0x06, int)
+#define    RESMAN_IOC_LOAD_RES               _IOR(RESMAN_IOC_MAGIC, 0x07, int)
+#define    RESMAN_IOC_GET_SYS_DEBUG_LEVEL    _IOR(RESMAN_IOC_MAGIC, 0x08, int)
 
 #define    RESMAN_SUPPORT_PREEMPT        1
 #define    RESITEMSIZE             (32)
@@ -106,7 +107,8 @@ enum RESMAN_EVENT {
     RESMAN_EVENT_UNREGISTER		= 0x1001,
     RESMAN_EVENT_PREEMPT		= 0x1002,
     RESMAN_EVENT_STOP			= 0x1003,
-    RESMAN_EVENT_RESREPORT		= 0x1004
+    RESMAN_EVENT_RESREPORT		= 0x1004,
+    RESMAN_EVENT_DEBUGEVENT		= 0x1005
 };
 
 bool resman_support(void);
@@ -131,11 +133,13 @@ bool resman_resource_support(const char* resName);
 int resman_register(int fd, void (* handler)(void *), void *opaque);
 int resman_add_handler_and_resreports(int fd, void (* handler)(void *),
     void (* report)(void *), void *opaque);
+int resman_add_debug_callback(int fd,
+    void (* debug)(void *, const char *, int), void *opaque);
 void resman_unregister(int fd);
 void resman_stop_thread();
 int resman_estimate_size(int format, uint32_t width, uint32_t height);
 int resman_load_res(int handle, const char *name, __u32 type, const char *arg);
-
+const char *resman_get_debug_info(int handle);
 #ifdef  __cplusplus
 }
 #endif
