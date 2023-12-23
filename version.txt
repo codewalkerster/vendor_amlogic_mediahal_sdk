@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.24.43-g4e4d47b
+Version: V3.24.44-gaf53964
 
 ========================================
 
 Git commit:
+commit af53964eb65163426f181b2b719d744322d01db0
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Dec 23 19:41:26 2023 +0800
+
+mediahal: CF2 mediahal release V3.24 [1/1]
+
+PD#SWPL-151075
+
+Problem:
+mediahal release
+
+Solution:
+release V3.24
+
+Verify:
+SC2
+
+Change-Id: I5cd8918aaae77bf017b287a7ea45ad8fff3bb082
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 4e4d47b49ef274c54f293c6a9952b87100d60530
 Author: shihong.zheng <shihong.zheng@amlogic.com>
 Date:   Sat Aug 20 18:01:07 2022 +0800
@@ -191,29 +211,9 @@ ohm
 Change-Id: Ie7c18795adb0f0d130481168038a3d00338019bc
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 2d2cc1fb1594f2864847193825070b0e931c0fdb
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Wed Dec 6 18:53:46 2023 +0800
-
-videodec: CF1 support get display max size [1/2]
-
-PD#SWPL-148485
-
-Problem:
-8k dw need get display max size
-
-Solution:
-support get display max size
-
-Verify:
-ohm
-
-Change-Id: Iddcef91fccd89665305853c8b82d787355ac48cf
-Signed-off-by: Jian Wang <jian.wang@amlogic.com>
-
 ========================================
 
-Release time: 2023-12-21-18-15
+Release time: 2023-12-23-22-11
 
 ========================================
 
