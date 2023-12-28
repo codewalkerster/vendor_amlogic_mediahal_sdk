@@ -1,10 +1,75 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.1-gb9401a9
+Version: V3.26.4-g662d2ab
 
 ========================================
 
 Git commit:
+commit 662d2ab0744cb679e0562d44343790c43cabb781
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Fri Dec 8 15:34:50 2023 +0800
+
+videodec: CF1 Support dma-buf mode as ES buffer. [2/3]
+
+PD#TV-96891
+PD#SWPL-146298
+PD#SWPL-127384
+
+Problem:
+Fixed CTS regession for dma-buf mode as ES buffer.
+android.media.cts.DecoderTest#testCodecResetsH264WithSurface
+
+Solution:
+Erase the item from input_bufferpool_alloc_queue_ in StopInputStream()
+
+Verify:
+T5M
+
+Change-Id: Idb9da0e49d324ae9352d119684f5241327050053
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
+commit d92a96a8874b85fd293916858be71400d61ddeae
+Author: peter wang <peter.wang@amlogic.com>
+Date:   Tue Nov 14 16:29:57 2023 +0800
+
+videodec: CF1 add a interface to get decoder width align [1/1]
+
+PD#SWPL-145571
+PD#TV-99131
+
+Problem:
+some platform use 32 align size while most 64 align
+
+Solution:
+add a interface to get decoder width align
+
+Verify:
+test on txhd2
+
+Change-Id: I68ba5fe3756df85301819223ac1d264fac7ab1db
+Signed-off-by: peter wang <peter.wang@amlogic.com>
+
+commit ff580e426f2c53be538a233555b4a4d4480fe578
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Dec 19 18:43:29 2023 +0800
+
+mediasync: CB2 video will play stuckly in small window [1/1]
+
+PD#IPTV-25864
+
+Problem:
+video will play stuckly for a long time in small window.
+Because the only video or non-working audio should update pcr.
+
+Solution:
+adjust isAudioWorking.
+
+Verify:
+s5
+
+Change-Id: I8586998ec1039ec7a491521fcecfda960fa50a93
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit b9401a9045eb82f86663bfa6618ec9ac322350bf
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Fri Dec 22 14:14:56 2023 +0800
@@ -147,70 +212,9 @@ txhd2
 Change-Id: Iba5c62ad32609877fe85e27f6969af3af35d421c
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit c08ec93c118bac457f5d985b766b5c48c867566a
-Author: Zhao Yi <zhao.yi@amlogic.com>
-Date:   Fri Oct 20 14:24:16 2023 +0800
-
-videodec: CB2 disable afr for 50fps videos [2/3]
-
-PD#TV-96252
-
-Problem:
-Youtube 50fps videos played not smoothly.
-
-Solution:
-Disable AFR because Youtube cannot get real display refresh rate.
-
-Verify:
-TCL androidS T5M
-
-Change-Id: Ia4ede49ea728f42a6d294f4af141660d78999d7f
-Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
-(cherry picked from commit 8b76f34ce131c9b272c5c857041f0b81993cea74)
-
-commit 1fe6bc2fea2cf9c53e381f4148dff4166c59d191
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Thu Oct 19 17:35:44 2023 +0800
-
-reman: CF2 Add res_sys_debug node to report debug level [1/1]
-
-PD#SWPL-142663
-
-Problem:
-Add res_sys_debug node to report debug level
-
-Solution:
-Add res_sys_debug node to report debug level
-
-Verify:
-ohm
-
-Change-Id: I26090a8308b42cfe8c53c0419a39d61689bca668
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 307fb86ecafc1a8df46ba95b28fbca56852325e7
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Dec 11 06:15:35 2023 +0000
-
-tsplayer: CB2 callback data loss event long time [1/1]
-
-PD#SWPL-143339
-
-Problem:
-callback data loss event long time.
-
-Solution:
-reduce callback data loss event time.
-
-Verify:
-t5w
-
-Change-Id: I733ad0edd90c228d927b9171f4d802b1f2f996df
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2023-12-25-15-18
+Release time: 2023-12-28-16-56
 
 ========================================
 
