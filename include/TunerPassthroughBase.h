@@ -31,6 +31,24 @@ typedef enum {
     AV_VIDEO_TRICK_MODE_IONLY = 3          // Decode and out I frame only
 } video_trick_mode;
 
+typedef enum {
+        AM_PASSTHROUGH_PARAM_MUTE,
+        AM_PASSTHROUGH_PARAM_SCREEN_COLOR,
+        AM_PASSTHROUGH_PARAM_TRANSITION_MODE_BEFORE,
+        AM_PASSTHROUGH_PARAM_TRANSITION_MODE_AFTER,
+        AM_PASSTHROUGH_PARAM_TRANSITION_PREROLL_RATE,
+        AM_PASSTHROUGH_PARAM_TRANSITION_PREROLL_AV_TOLERANCE,
+        AM_PASSTHROUGH_PARAM_PLAYBACK_STATUS,
+    } passthroughParamsType;
+
+    typedef struct {
+        int64_t param1;
+        int64_t param2;
+        int64_t param3;
+        char reserved[64];
+
+    } passthroughParams;
+
 struct TunerPassthroughBase
 {
 public:
@@ -48,6 +66,7 @@ public:
     virtual int SetTrickSpeed(float speed);
     virtual int SetRenderCallBackEventFlag(int64_t eventflag);
     virtual int SetWorkMode(int mode);
+    virtual int SetPassthroughParams(int32_t type, passthroughParams* params);
 };
 
 extern "C" TunerPassthroughBase* TunerPassthroughBase_create();
