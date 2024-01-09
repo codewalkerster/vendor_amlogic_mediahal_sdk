@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.8-g0e14fad
+Version: V3.26.11-gf65808a
 
 ========================================
 
 Git commit:
+commit f65808a6ca20201a49c988001e1b36b6c40fe35f
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Nov 28 15:41:01 2023 +0800
+
+tsplayer: CB2 video can't play for a long time with audio playing. [1/2]
+
+PD#IPTV-25625
+PD#SWPL-150481
+
+Problem:
+video can't play for a long time with audio playing.
+because the head of steam is dropped.
+
+Solution:
+force to set pts_dts_flag 0x3 when pts is 0 in not mEsSpliceMode.
+
+Verify:
+s5
+
+Change-Id: I292e079d1c4666f6d1660bbd662a2e93bd3f4b81
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 4964df305e7e5b33774f5c64c845d1d6dd588546
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Jan 4 14:43:01 2024 +0800
+
+tsplayer: CB2 audio and video will play fastly in es mode [1/1]
+
+PD#IPTV-26139
+
+Problem:
+audio and video will play fastly in es mode.
+
+Solution:
+fix audio channel to 2.
+
+Verify:
+s5
+
+Change-Id: I285d23bed7c0cbaf6ffb4e7c98e291c69179751b
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit e36e5787792078f3e63bebe457903fd52b631270
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Jan 5 17:13:49 2024 +0800
+
+videopassthrough: CB2 android build failed [1/1]
+
+PD#SWPL-152741
+
+Problem:
+android s build error
+
+Solution:
+fix android S build error
+
+Verify:
+AH212
+
+Change-Id: I046201d8d2bac73c48c43bda1bb9728ba92998c3
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 0e14fada698c5a43e877e3bc84f3c1e089e7d1a4
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Mon Apr 24 10:53:36 2023 +0800
@@ -157,70 +219,9 @@ s5
 Change-Id: I8586998ec1039ec7a491521fcecfda960fa50a93
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit b9401a9045eb82f86663bfa6618ec9ac322350bf
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Fri Dec 22 14:14:56 2023 +0800
-
-videodec: CB0 Codec2 Secure Playback thread resource leak [1/1]
-
-PD#SWPL-149526
-
-Problem:
-Codec2 Secure Playback thread resource leak
-
-Solution:
-Codec2 playback create a async thread enable tvp but thread resource
-doesn't release, add join when secure pool release.
-
-Verify:
-ohm
-
-Change-Id: If3d762f5bc7b189ab81a09b0020618e72bd12555
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 598a76d5cf15148774d8b584c40c6910c6af9a99
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Dec 23 21:53:04 2023 +0800
-
-mediahal: CF2 mediahal update version [1/1]
-
-PD#SWPL-151075
-
-Problem:
-mediahal update version
-
-Solution:
-update V3.26
-
-Verify:
-SC2
-
-Change-Id: Ic8113a0593305ac805780807ba0656a75d62f366
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit af53964eb65163426f181b2b719d744322d01db0
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Dec 23 19:41:26 2023 +0800
-
-mediahal: CF2 mediahal release V3.24 [1/1]
-
-PD#SWPL-151075
-
-Problem:
-mediahal release
-
-Solution:
-release V3.24
-
-Verify:
-SC2
-
-Change-Id: I5cd8918aaae77bf017b287a7ea45ad8fff3bb082
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-01-05-16-02
+Release time: 2024-01-09-17-38
 
 ========================================
 
