@@ -1,10 +1,73 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.11-gf65808a
+Version: V3.26.14-gef27dbc
 
 ========================================
 
 Git commit:
+commit ef27dbc4c070e69bb2523847abf1a5cc5fdd42eb
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Jan 3 13:57:12 2024 +0800
+
+videodec: CB1 do not check input buf count when check resolution event. [1/1]
+
+PD#SWPL-151756
+
+Problem:
+1 decoder driver do not miss resolution event when app reset decoder.
+
+Solution:
+1. Do not check input buf count when resolution event occur.
+
+Verify:
+ohm
+
+Change-Id: I2222e0d5499f2c1152f9ba669e9f3d1dbcd3d2f3
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 70c5ba2017611da5e8b4bb2c796ad52652958b12
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Jan 9 16:50:41 2024 +0800
+
+videopassthrough: CF2 add dtv avs avs+ support. [2/2]
+
+PD#TV-107506
+
+Problem:
+dtv not support avs avs2.
+
+Solution:
+add dtv avs avs2 support
+
+Verify:
+T5M
+
+Change-Id: Id8a83c19089deb5f1d1ef3cc81719e0fae417299
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 4cc2c8483d7a0bfc25aee9bc3be76ebca0134e89
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Thu Dec 28 03:16:50 2023 +0000
+
+videodec: CB2  solve vc1 stream playback stuck. [1/1]
+
+PD#SWPL-151647
+
+Problem:
+there are too many frames in the vc1 stream
+with a length less than 5, and the decoder
+cannot decode and gets stuck.
+
+Solution:
+if the current frame length < 10,
+add 1k of 0xff data for error frame.
+
+Verify:
+ohm
+
+Change-Id: Ia4db6ebb880776a249e71f1eb0e4adb69434b0f2
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit f65808a6ca20201a49c988001e1b36b6c40fe35f
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Nov 28 15:41:01 2023 +0800
@@ -154,74 +217,9 @@ Verify:
 Change-Id: I1e30f2eaaa296891035735680f9413e3e2df4a06
 Signed-off-by: wenlong.yuan <wenlong.yuan@amlogic.com>
 
-commit 662d2ab0744cb679e0562d44343790c43cabb781
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Fri Dec 8 15:34:50 2023 +0800
-
-videodec: CF1 Support dma-buf mode as ES buffer. [2/3]
-
-PD#TV-96891
-PD#SWPL-146298
-PD#SWPL-127384
-
-Problem:
-Fixed CTS regession for dma-buf mode as ES buffer.
-android.media.cts.DecoderTest#testCodecResetsH264WithSurface
-
-Solution:
-Erase the item from input_bufferpool_alloc_queue_ in StopInputStream()
-
-Verify:
-T5M
-
-Change-Id: Idb9da0e49d324ae9352d119684f5241327050053
-Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
-commit d92a96a8874b85fd293916858be71400d61ddeae
-Author: peter wang <peter.wang@amlogic.com>
-Date:   Tue Nov 14 16:29:57 2023 +0800
-
-videodec: CF1 add a interface to get decoder width align [1/1]
-
-PD#SWPL-145571
-PD#TV-99131
-
-Problem:
-some platform use 32 align size while most 64 align
-
-Solution:
-add a interface to get decoder width align
-
-Verify:
-test on txhd2
-
-Change-Id: I68ba5fe3756df85301819223ac1d264fac7ab1db
-Signed-off-by: peter wang <peter.wang@amlogic.com>
-
-commit ff580e426f2c53be538a233555b4a4d4480fe578
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Dec 19 18:43:29 2023 +0800
-
-mediasync: CB2 video will play stuckly in small window [1/1]
-
-PD#IPTV-25864
-
-Problem:
-video will play stuckly for a long time in small window.
-Because the only video or non-working audio should update pcr.
-
-Solution:
-adjust isAudioWorking.
-
-Verify:
-s5
-
-Change-Id: I8586998ec1039ec7a491521fcecfda960fa50a93
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-01-09-17-38
+Release time: 2024-01-16-19-01
 
 ========================================
 
