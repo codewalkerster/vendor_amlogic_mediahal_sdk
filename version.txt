@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.14-gef27dbc
+Version: V3.26.16-gc3a09cf
 
 ========================================
 
 Git commit:
+commit c3a09cff3d8546a4a34741e7f80baf2315d28af7
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Thu Nov 23 11:44:01 2023 +0000
+
+videodec: CB2 report error frame bitstremd id on omx. [1/2]
+
+PD#TV-101796
+
+Problem:
+Green screen phenomenon found when playing wrong video source.
+
+Solution:
+report the error data buffer to omx. after receiving the buffer,
+omx queue it to the decoder.
+
+Verify:
+T5M
+
+Change-Id: Ifeeb48427f44a0f90c71e9711e035b958d012601
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit b827399ed2916155e22bdc652f90d1fb8c415596
+Author: mingguang.liu <mingguang.liu@amlogic.com>
+Date:   Fri Nov 10 13:16:09 2023 +0800
+
+tunnelrederer: CB1 shadow PC freeze in tunnel mode [1/1]
+
+PD#OTT-50975
+
+Problem:
+shadow PC freeze in tunnel mode
+
+Solution:
+showFrame directly when there is no audio
+
+Verify:
+none
+
+Change-Id: I2fc3ec2f00086922ccdf3897c650b0c8d0220a91
+Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
+
 commit ef27dbc4c070e69bb2523847abf1a5cc5fdd42eb
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Wed Jan 3 13:57:12 2024 +0800
@@ -176,50 +217,9 @@ T7C
 Change-Id: Ib54e4b28bdada815999e261fc991c0ba75b66efd
 Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
 
-commit fbc1ccfecd795302a04a12431168ce0a1776112d
-Author: shuaishuai.zhang <shuaishuai.zhang@amlogic.com>
-Date:   Thu Dec 21 08:44:36 2023 +0000
-
-videodec: CB2 Special 8k stream playback failed [2/2]
-
-PD#IPTV-24332
-
-Problem:
-This es buffer frame size more than kInputBufferMaxSizeFor8K (9M)
-Causing return of notify error that it is over-size.
-
-Solution:
-Set InputBufferMaxSizeFor8K through properties for 8k chip
-
-Verify:
-Android R for IPTV
-
-Change-Id: Ifb2dd5bebc3e67b2d3c7c9984cece9001000d227
-Signed-off-by: shuaishuai.zhang <shuaishuai.zhang@amlogic.com>
-
-commit ab3fad73c447b5ed574da6e4247fee1c1dfe877c
-Author: wenlong.yuan <wenlong.yuan@amlogic.com>
-Date:   Wed Oct 25 12:24:33 2023 +0000
-
-tsplayer: CB2 setSurface interface need locked to protect [1/1]
-
-PD#SWPL-143780
-
-Problem:
-setSurface need locked to protect.
-
-Solution:
-add thread lock to protect setSurface.
-
-Verify:
-905x4-ohm
-
-Change-Id: I1e30f2eaaa296891035735680f9413e3e2df4a06
-Signed-off-by: wenlong.yuan <wenlong.yuan@amlogic.com>
-
 ========================================
 
-Release time: 2024-01-16-19-01
+Release time: 2024-01-18-14-17
 
 ========================================
 
