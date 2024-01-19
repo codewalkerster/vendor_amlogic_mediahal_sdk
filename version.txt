@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.16-gc3a09cf
+Version: V3.26.17-g60d6230
 
 ========================================
 
 Git commit:
+commit 60d6230768f91a442ca70a1b90c295503de10b12
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 4 19:22:48 2024 +0800
+
+tsplayer: CF2 Fixed the FCC silent issue. [1/1]
+
+PD#SWPL-150544
+
+Problem:
+FFC mode, probability no AV alignment at the start of playback.
+
+Solution:
+FFC mode requires AV alignment at the start of playback.
+
+Verify:
+SC2
+
+Change-Id: Id4d557aa188a110e762da0b005739fa137f4d94d
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit c3a09cff3d8546a4a34741e7f80baf2315d28af7
 Author: yang.liu1 <yang.liu1@amlogic.com>
 Date:   Thu Nov 23 11:44:01 2023 +0000
@@ -197,29 +217,9 @@ AH212
 Change-Id: I48435fd6d53c1210a8b2067f21953f6a5455d1de
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit aaf63723a341ec1cb771f6c0dd8a5da319555f56
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Wed Dec 27 14:10:56 2023 +0800
-
-videodec: CB2 interlace duration error after seek [1/1]
-
-PD#SWPL-150767
-
-Problem:
-interlace duration error after seek
-
-Solution:
-calculate average duration right after seek
-
-Verify:
-T7C
-
-Change-Id: Ib54e4b28bdada815999e261fc991c0ba75b66efd
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
-
 ========================================
 
-Release time: 2024-01-18-14-17
+Release time: 2024-01-19-16-39
 
 ========================================
 
