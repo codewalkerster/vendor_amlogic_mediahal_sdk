@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.17-g60d6230
+Version: V3.26.18-g488a73f
 
 ========================================
 
 Git commit:
+commit 488a73f21c27b959b3542d8b032a0b2baaf21bfa
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jan 10 14:39:42 2024 +0800
+
+tsplayer: CB2 dash streams play not smoothly. [1/1]
+
+PD#SWPL-146759
+
+Problem:
+dash streams play not smoothly.
+
+Solution:
+fix audiotrack to initialize.
+
+Verify:
+AH212
+
+Change-Id: I3abf04ea4d1cf9495144f454cc486da95cb174d9
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 60d6230768f91a442ca70a1b90c295503de10b12
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Thu Jan 4 19:22:48 2024 +0800
@@ -191,35 +211,9 @@ AH212
 Change-Id: I046201d8d2bac73c48c43bda1bb9728ba92998c3
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 0e14fada698c5a43e877e3bc84f3c1e089e7d1a4
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Apr 24 10:53:36 2023 +0800
-
-videopassthrough: CB2 add CBS params control interface [1/2]
-
-PD#SWPL-144421
-
-Problem:
-add CBS params control interface
-
-Solution:
-1.mute
-2.screen-color
-3.transition-mode-before
-4.transition-mode-after
-5.transition-preroll-rate
-6.transition-preroll-av-tolerance
-7.playback-status
-
-Verify:
-AH212
-
-Change-Id: I48435fd6d53c1210a8b2067f21953f6a5455d1de
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-01-19-16-39
+Release time: 2024-01-22-20-16
 
 ========================================
 
