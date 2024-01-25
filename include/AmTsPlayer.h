@@ -80,6 +80,11 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_AUDIO_FORMAT,
     AM_TSPLAYER_KEY_GET_DMX_ES_OUTPUT_STATUS, //dmx es output status info
     AM_TSPLAYER_KEY_SET_VIDEO_EXTRADATA,
+    AM_TSPLAYER_KEY_SET_MULTI_STREAM_MODE,    //video stream and audio stream are separated using multi-instance mode
+    AM_TSPLAYER_KEY_SET_MULTI_STREAM_SYNC_ID, //mediasync id for multi-instance mode
+    AM_TSPLAYER_KEY_SET_MULTI_STREAM_PARTNERDMXHANDLE, //for multi-instance mode
+    AM_TSPLAYER_KEY_GET_MULTI_STREAM_PARTNERDMXHANDLE, //for multi-instance mode
+    AM_TSPLAYER_KEY_SET_MEDIASYNC_START_STRATEGY, //iptv
 } am_tsplayer_parameter;
 
 typedef enum

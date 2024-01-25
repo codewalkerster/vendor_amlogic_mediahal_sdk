@@ -35,6 +35,14 @@ typedef enum {
 }sync_status;
 
 typedef enum {
+    STRATEGY_AV_ALIGN = 0,
+    STRATEGY_AUDIO_PLAY_VIDEO_HOLD,
+    STRATEGY_AV_ALIGN_SLOW_SYNC,
+    STRATEGY_AUDIO_DROP_TO_AV_ALIGN,
+    STRATEGY_MAX = 255,
+} start_strategy;
+
+typedef enum {
     AM_MEDIASYNC_OK  = 0,                      // OK
     AM_MEDIASYNC_ERROR_INVALID_PARAMS = -1,    // Parameters invalid
     AM_MEDIASYNC_ERROR_INVALID_OPERATION = -2, // Operation invalid
@@ -74,6 +82,7 @@ typedef enum {
     MEDIASYNC_KEY_SLOWSYNC_ENABLE,
     MEDIASYNC_KEY_SLOWSYNC_PREROLL_RATE,
     MEDIASYNC_KEY_SLOWSYNC_AV_TOLERANCE,
+    MEDIASYNC_KEY_START_STRATEGY,
     MEDIASYNC_KEY_MAX = 255,
 } mediasync_parameter;
 

@@ -1,10 +1,55 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.18-g488a73f
+Version: V3.26.20-g226f11a
 
 ========================================
 
 Git commit:
+commit 226f11ae0960040ebc6fe66312c13b884b396f2b
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Nov 28 10:52:04 2023 +0800
+
+mediasync: CB2 buffer will overflow after burn-in for 8k video [1/2]
+
+PD#IPTV-25544
+
+Problem:
+buffer will overflow after burn-in for 8k video,
+because the avdiff is too large when starting to play,
+then video will be holded, cache will enlarge,
+the data can't write anymore.
+
+Solution:
+drop the audio to reduce the avdiff.
+
+Verify:
+s5
+
+Change-Id: I9c954150c453a0e7d80bf140e71b5ac8fa66ede0
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 6c8847487811b2d93b87a4d7b55c8b0074fa348a
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Jan 23 17:51:17 2024 +0800
+
+tunnelrenderer: CB1 fix wait showtime error exit early issue [1/1]
+
+PD#OTT-54788
+PD#SWPL-153850
+
+Problem:
+video will fast rendered when do seek operation
+
+Solution:
+fix wait showtime error exit early issue. when
+anchortime changed, exit wait
+
+Verify:
+ohm
+
+Change-Id: I6ef3315aaab23dafb6192fe4064a9f22b9ad791d
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 488a73f21c27b959b3542d8b032a0b2baaf21bfa
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Wed Jan 10 14:39:42 2024 +0800
@@ -171,49 +216,9 @@ s5
 Change-Id: I292e079d1c4666f6d1660bbd662a2e93bd3f4b81
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 4964df305e7e5b33774f5c64c845d1d6dd588546
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Jan 4 14:43:01 2024 +0800
-
-tsplayer: CB2 audio and video will play fastly in es mode [1/1]
-
-PD#IPTV-26139
-
-Problem:
-audio and video will play fastly in es mode.
-
-Solution:
-fix audio channel to 2.
-
-Verify:
-s5
-
-Change-Id: I285d23bed7c0cbaf6ffb4e7c98e291c69179751b
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit e36e5787792078f3e63bebe457903fd52b631270
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Jan 5 17:13:49 2024 +0800
-
-videopassthrough: CB2 android build failed [1/1]
-
-PD#SWPL-152741
-
-Problem:
-android s build error
-
-Solution:
-fix android S build error
-
-Verify:
-AH212
-
-Change-Id: I046201d8d2bac73c48c43bda1bb9728ba92998c3
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-01-22-20-16
+Release time: 2024-01-25-16-58
 
 ========================================
 
