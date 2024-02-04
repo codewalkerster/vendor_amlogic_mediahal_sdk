@@ -321,10 +321,17 @@ typedef enum {
     AV_AUDIO_CODEC_WMALOSSLESS = 17,       // WMAV loss less
     AV_AUDIO_CODEC_PCM_U8 = 18,            // PCM U8
     AV_AUDIO_CODEC_AV3A = 19,              // AVS3-P3 3D Audio/Audio Vivid Audio Codec ID
-    AV_AUDIO_CODEC_PCM_S16LE = 20,        // PCM S16LE
-    AV_AUDIO_CODEC_PCM_S16BE = 21,        // PCM S16BE
-    AV_AUDIO_CODEC_PCM_S24LE = 22,        // PCM S24LE
-    AV_AUDIO_CODEC_PCM_S24BE = 23,        // PCM S24BE
+    AV_AUDIO_CODEC_PCM_ADPCM_IMA_WAV = 20, //ADPCM IMA WAV
+    AV_AUDIO_CODEC_PCM_S16LE = 21,        // PCM S16LE
+    AV_AUDIO_CODEC_PCM_S16BE = 22,        // PCM S16BE
+    AV_AUDIO_CODEC_PCM_S24LE = 23,        // PCM S24LE
+    AV_AUDIO_CODEC_PCM_S24BE = 24,        // PCM S24BE
+    AV_AUDIO_CODEC_TRUEHD = 25,            // TRUEHD
+    AV_AUDIO_CODEC_ALAC  = 26,             // ALAC
+    AV_AUDIO_CODEC_AMR   = 27,             // AMR
+    AV_AUDIO_CODEC_ADPCM_MS = 28,          // ADPCM MS
+    AV_AUDIO_CODEC_PCMALAW = 29,           // PCM ALAW
+    AV_AUDIO_CODEC_PCMMULAW = 30,          // PCM MULAW
     AV_AUDIO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_audio_codec;
 

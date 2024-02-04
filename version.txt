@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.20-g226f11a
+Version: V3.26.22-g9194928
 
 ========================================
 
 Git commit:
+commit 91949289057756dd372f6e4e665ad1b2a78e87d7
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jan 31 14:43:42 2024 +0800
+
+tsplayer: CB2 fix tsplayer crash [1/1]
+
+PD#SWPL-155216
+PD#SWPL-154570
+PD#SWPL-155645
+
+Problem:
+tsplayer will be crash when switch channels on DTMB
+
+Solution:
+fix tsplayer crash
+
+Verify:
+t5m
+
+Change-Id: Iece1ec8b957d9aad41fdd89b8424c8aa5a2c6bcd
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 4b0d5a2fecfda8aa14b31d7fe36f6021826e98d2
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Jan 11 11:22:47 2024 +0800
+
+tsplayer: CF2 support some audio formats in es mode [1/1]
+
+PD#IPTV-26404
+
+Problem:
+support some audio formats in es mode
+
+Solution:
+support some audio formats in es mode
+
+Verify:
+s5
+
+Change-Id: I7c817a34d960297f2f0cd19ecfd6cb8da3030a7b
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 226f11ae0960040ebc6fe66312c13b884b396f2b
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Nov 28 10:52:04 2023 +0800
@@ -171,54 +213,9 @@ T5M
 Change-Id: Id8a83c19089deb5f1d1ef3cc81719e0fae417299
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 4cc2c8483d7a0bfc25aee9bc3be76ebca0134e89
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Thu Dec 28 03:16:50 2023 +0000
-
-videodec: CB2  solve vc1 stream playback stuck. [1/1]
-
-PD#SWPL-151647
-
-Problem:
-there are too many frames in the vc1 stream
-with a length less than 5, and the decoder
-cannot decode and gets stuck.
-
-Solution:
-if the current frame length < 10,
-add 1k of 0xff data for error frame.
-
-Verify:
-ohm
-
-Change-Id: Ia4db6ebb880776a249e71f1eb0e4adb69434b0f2
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit f65808a6ca20201a49c988001e1b36b6c40fe35f
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Nov 28 15:41:01 2023 +0800
-
-tsplayer: CB2 video can't play for a long time with audio playing. [1/2]
-
-PD#IPTV-25625
-PD#SWPL-150481
-
-Problem:
-video can't play for a long time with audio playing.
-because the head of steam is dropped.
-
-Solution:
-force to set pts_dts_flag 0x3 when pts is 0 in not mEsSpliceMode.
-
-Verify:
-s5
-
-Change-Id: I292e079d1c4666f6d1660bbd662a2e93bd3f4b81
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-01-25-16-58
+Release time: 2024-02-04-07-07
 
 ========================================
 
