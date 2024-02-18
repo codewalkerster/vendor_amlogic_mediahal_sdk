@@ -1,10 +1,38 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.22-g9194928
+Version: V3.26.23-g142907c
 
 ========================================
 
 Git commit:
+commit 142907c6cc42568b08b875c0620d536bc42e82e7
+Author: futian.shi <futian.shi@amlogic.com>
+Date:   Fri Nov 3 21:14:44 2023 +0800
+
+videodec: CF2 get userdata from decoder and send to mediaproxy driver [1/1]
+
+PD#SWPL-140221
+
+Problem:
+get userdata from decoder and send to mediaproxy driver;
+
+Solution:
+1. get userdata from decoder and send to mediaproxy driver;
+2. implement the mediaproxy producer and consumer lib;
+3. consumer get userdata form mediaproxy driver;
+
+Verify:
+ohm
+
+Commits:
+https://scgit.amlogic.com/#/c/371451/(current)
+https://scgit.amlogic.com/#/c/373215/
+https://scgit.amlogic.com/#/c/378822/
+https://scgit.amlogic.com/#/c/371507/
+
+Change-Id: I546c732174f8d83691deabf97ef189ee5fff3b7f
+Signed-off-by: futian.shi <futian.shi@amlogic.com>
+
 commit 91949289057756dd372f6e4e665ad1b2a78e87d7
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Wed Jan 31 14:43:42 2024 +0800
@@ -193,29 +221,9 @@ ohm
 Change-Id: I2222e0d5499f2c1152f9ba669e9f3d1dbcd3d2f3
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 70c5ba2017611da5e8b4bb2c796ad52652958b12
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Jan 9 16:50:41 2024 +0800
-
-videopassthrough: CF2 add dtv avs avs+ support. [2/2]
-
-PD#TV-107506
-
-Problem:
-dtv not support avs avs2.
-
-Solution:
-add dtv avs avs2 support
-
-Verify:
-T5M
-
-Change-Id: Id8a83c19089deb5f1d1ef3cc81719e0fae417299
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-02-04-07-07
+Release time: 2024-02-18-08-01
 
 ========================================
 

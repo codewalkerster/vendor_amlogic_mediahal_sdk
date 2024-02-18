@@ -393,6 +393,27 @@ cc_prebuilt_binary {
     check_elf_files: false,
 }
 
+cc_prebuilt_binary {
+    name: "mediaproxytest",
+    defaults: ["mediahal_sdk_go_defaults"],
+    vendor: true,
+    arch: {
+        arm: {
+            srcs: ["bin/mediaproxytest"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
 cc_prebuilt_library_shared {
     name: "libmediahal_dmabufmanage",
     vendor: true,
@@ -476,6 +497,102 @@ cc_prebuilt_library_shared {
         },
         arm64: {
             srcs: ["arm64/system/libmediahal_hardware_demux.system.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediaproxy_producer",
+    vendor: true,
+    strip: {
+    none: true,
+    },
+    compile_multilib: "both",
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediaproxy_producer.so"],
+        },
+        arm64: {
+            srcs: ["arm64/vendor/libmediaproxy_producer.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediaproxy_producer.system",
+    defaults: ["mediahalvercheck_defaults"],
+    strip: {
+        none: true,
+    },
+    compile_multilib: "both",
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediaproxy_producer.system.so"],
+        },
+        arm64: {
+            srcs: ["arm64/system/libmediaproxy_producer.system.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediaproxy_consumer",
+    vendor: true,
+    strip: {
+        none: true,
+    },
+    compile_multilib: "both",
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediaproxy_consumer.so"],
+        },
+        arm64: {
+            srcs: ["arm64/vendor/libmediaproxy_consumer.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediaproxy_consumer.system",
+    defaults: ["mediahalvercheck_defaults"],
+    strip: {
+        none: true,
+    },
+    compile_multilib: "both",
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediaproxy_consumer.system.so"],
+        },
+        arm64: {
+            srcs: ["arm64/system/libmediaproxy_consumer.system.so"],
         },
         x86: {
             enabled: false,
