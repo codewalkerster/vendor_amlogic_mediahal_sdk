@@ -1,10 +1,110 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.27-gdb4db8a
+Version: V3.26.32-g10fb5c1
 
 ========================================
 
 Git commit:
+commit 10fb5c192a62bf5e1277910e8b416ae15cffab75
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Feb 24 02:34:30 2024 +0800
+
+tsplayer: CF2 memory optimization [1/1]
+
+PD#SWPL-158138
+
+Problem:
+Optimize the size of mmap.
+
+Solution:
+do not link to tinyalsa libraries.
+
+Verify:
+txhd2
+
+Change-Id: Ie8a3c72c5599233bdd2223c7f94ba88783c8c87b
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit e90ed29c6d6cac3b9e75a20f25cd5af6e648f3cb
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Feb 23 17:16:18 2024 +0800
+
+tsplayer: CF2 memory optimization [1/1]
+
+PD#SWPL-158138
+
+Problem:
+Optimize the size of mmap.
+
+Solution:
+do not link to graphics libraries.
+
+Verify:
+txhd2
+
+Change-Id: I6f80e3de38eca5bbf6ca2ebdffc83c4e4df22489
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 23ac538cb0d13d5752ff95a3efbd8c8572794aa9
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Feb 28 06:37:13 2024 +0000
+
+tsplayer: CB2 copy old vdec info is incorrect. [1/1]
+
+PD#SWPL-120094
+
+Problem:
+copy old vdec info is incorrect.
+
+Solution:
+fix the size of the copied info.
+
+Verify:
+S905X2
+
+Change-Id: I5bafae400510e9dc573fd943efef1074b84ea43f
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit d451127ae3fc86b7ff8dfdf2fcfb16cb2977b3f2
+Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
+Date:   Tue Feb 20 19:54:52 2024 +0800
+
+videodec: CB2 set afr duration [1/2]
+
+PD#SWPL-153134
+
+Problem:
+set afr duration
+
+Solution:
+set afr duration
+
+Verify:
+T5M
+
+Change-Id: Ib06756adf8436fce6aaa99119ccc9e2e69e5b6dc
+Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
+
+commit c12da03900f257ad61fa44e55cf2f9afe5c25028
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Jan 2 05:54:04 2024 +0000
+
+tsplayer: CB2 Stearm control is abnormal. [1/1]
+
+PD#SWPL-120094
+
+Problem:
+Stearm control is abnormal.
+
+Solution:
+fixed audio stream control.
+
+Verify:
+S905X2
+
+Change-Id: Id1a5daf7d874b24d411ea3f1d0da83f807456af5
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit db4db8ac77aef92dc4317b256e9bf992887eebba
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Mon Jan 29 14:04:21 2024 +0800
@@ -121,116 +221,9 @@ https://scgit.amlogic.com/#/c/371507/
 Change-Id: I546c732174f8d83691deabf97ef189ee5fff3b7f
 Signed-off-by: futian.shi <futian.shi@amlogic.com>
 
-commit 91949289057756dd372f6e4e665ad1b2a78e87d7
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jan 31 14:43:42 2024 +0800
-
-tsplayer: CB2 fix tsplayer crash [1/1]
-
-PD#SWPL-155216
-PD#SWPL-154570
-PD#SWPL-155645
-
-Problem:
-tsplayer will be crash when switch channels on DTMB
-
-Solution:
-fix tsplayer crash
-
-Verify:
-t5m
-
-Change-Id: Iece1ec8b957d9aad41fdd89b8424c8aa5a2c6bcd
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 4b0d5a2fecfda8aa14b31d7fe36f6021826e98d2
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Jan 11 11:22:47 2024 +0800
-
-tsplayer: CF2 support some audio formats in es mode [1/1]
-
-PD#IPTV-26404
-
-Problem:
-support some audio formats in es mode
-
-Solution:
-support some audio formats in es mode
-
-Verify:
-s5
-
-Change-Id: I7c817a34d960297f2f0cd19ecfd6cb8da3030a7b
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 226f11ae0960040ebc6fe66312c13b884b396f2b
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Nov 28 10:52:04 2023 +0800
-
-mediasync: CB2 buffer will overflow after burn-in for 8k video [1/2]
-
-PD#IPTV-25544
-
-Problem:
-buffer will overflow after burn-in for 8k video,
-because the avdiff is too large when starting to play,
-then video will be holded, cache will enlarge,
-the data can't write anymore.
-
-Solution:
-drop the audio to reduce the avdiff.
-
-Verify:
-s5
-
-Change-Id: I9c954150c453a0e7d80bf140e71b5ac8fa66ede0
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 6c8847487811b2d93b87a4d7b55c8b0074fa348a
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Jan 23 17:51:17 2024 +0800
-
-tunnelrenderer: CB1 fix wait showtime error exit early issue [1/1]
-
-PD#OTT-54788
-PD#SWPL-153850
-
-Problem:
-video will fast rendered when do seek operation
-
-Solution:
-fix wait showtime error exit early issue. when
-anchortime changed, exit wait
-
-Verify:
-ohm
-
-Change-Id: I6ef3315aaab23dafb6192fe4064a9f22b9ad791d
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 488a73f21c27b959b3542d8b032a0b2baaf21bfa
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jan 10 14:39:42 2024 +0800
-
-tsplayer: CB2 dash streams play not smoothly. [1/1]
-
-PD#SWPL-146759
-
-Problem:
-dash streams play not smoothly.
-
-Solution:
-fix audiotrack to initialize.
-
-Verify:
-AH212
-
-Change-Id: I3abf04ea4d1cf9495144f454cc486da95cb174d9
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-02-27-12-41
+Release time: 2024-03-04-10-55
 
 ========================================
 
