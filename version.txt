@@ -1,10 +1,73 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.32-g10fb5c1
+Version: V3.26.35-g1d9bb34
 
 ========================================
 
 Git commit:
+commit 1d9bb34f99f992f3e85007d233de11867cc834e3
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Feb 28 16:37:27 2024 +0800
+
+videopassthrough: CB2 special stream not smooth. [1/2]
+
+PD#SWPL-158373
+
+Problem:
+1.porting pcr master in passthrough mode.
+2.need porting static bind mediasync to avoid vts test.
+
+Solution:
+1.porting pcr master.
+2.enable static bind interface in mediasync.
+
+Verify:
+t5m
+
+Change-Id: Ice78f62f2e5fb7c8c662e84ca8202d9d4bb059e9
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit c6dbacba5dcf940e360d3d23eafecc21567bcd00
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Feb 27 09:38:59 2024 +0800
+
+mediasync: CF2 export force updateanchor interface [1/1]
+
+PD#SWPL-158250
+
+Problem:
+need export force updateanchor interface
+
+Solution:
+export force updatgeanchor interface
+
+Verify:
+ohm
+
+Change-Id: If9eccd5c1579c679e4243264f30ec22890ea1991
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 44b714252aa940f3d151378f07f8d84a7aba4b63
+Author: futian.shi <futian.shi@amlogic.com>
+Date:   Tue Feb 27 20:27:57 2024 +0800
+
+videodec: CB2 modify path of mediaproxytest in release_tool.sh [1/1]
+
+PD#SWPL-158796
+
+Problem:
+can't produce mediaproxytest file by use release_tool.sh
+
+Solution:
+1. modify path of mediaproxytest in release_tool.sh;
+2. don't send userdata default;
+
+Verify:
+ohm
+
+Change-Id: I6c397549d7068bea0154d6b4b98878b16577ec76
+Signed-off-by: futian.shi <futian.shi@amlogic.com>
+
 commit 10fb5c192a62bf5e1277910e8b416ae15cffab75
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Sat Feb 24 02:34:30 2024 +0800
@@ -153,77 +216,9 @@ ohm
 Change-Id: If4235a0e0bddb5e11f45d7113d445ca144c50660
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit b0ec3d4f70b9c33843dd8cb6c37dd0c0af9c1e32
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Thu Feb 22 18:12:56 2024 +0800
-
-resman: CB2 fix a dead lock when add debug callback [1/1]
-
-PD#SWPL-157900
-
-Problem:
-Codec2 service whill be block random
-
-Solution:
-fix a dead lock when add debug callback
-
-Verify:
-sc2
-
-Change-Id: I2b0648f13be527342ae47ced21dde12641b62ec4
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit d73acf044b97207d52f48e90caf29addbbb81217
-Author: Shuai Fan <shuai.fan@amlogic.com>
-Date:   Thu Jan 25 08:29:58 2024 +0000
-
-videopassthrough: CF1 add amdolby vision support [1/2]
-
-PD#SWPL-155722
-
-Problem:
-support amdolby vision stream playback
-
-Solution:
-support amdolby vision
-
-Verify:
-AH212 Android U
-
-Change-Id: Iab37f0651bd794025570fd24b29bb0e02329bcf5
-Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
-
-commit 142907c6cc42568b08b875c0620d536bc42e82e7
-Author: futian.shi <futian.shi@amlogic.com>
-Date:   Fri Nov 3 21:14:44 2023 +0800
-
-videodec: CF2 get userdata from decoder and send to mediaproxy driver [1/1]
-
-PD#SWPL-140221
-
-Problem:
-get userdata from decoder and send to mediaproxy driver;
-
-Solution:
-1. get userdata from decoder and send to mediaproxy driver;
-2. implement the mediaproxy producer and consumer lib;
-3. consumer get userdata form mediaproxy driver;
-
-Verify:
-ohm
-
-Commits:
-https://scgit.amlogic.com/#/c/371451/(current)
-https://scgit.amlogic.com/#/c/373215/
-https://scgit.amlogic.com/#/c/378822/
-https://scgit.amlogic.com/#/c/371507/
-
-Change-Id: I546c732174f8d83691deabf97ef189ee5fff3b7f
-Signed-off-by: futian.shi <futian.shi@amlogic.com>
-
 ========================================
 
-Release time: 2024-03-04-10-55
+Release time: 2024-03-05-14-34
 
 ========================================
 
