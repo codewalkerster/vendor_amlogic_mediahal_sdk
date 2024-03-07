@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.35-g1d9bb34
+Version: V3.26.37-gc60b65c
 
 ========================================
 
 Git commit:
+commit c60b65c4a09195292ed9a064de56f2bc49bfe2d8
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Mar 6 19:48:49 2024 +0800
+
+videopassthrough: CB2 audio only stream start too late. [1/1]
+
+PD#SWPL-151002
+
+Problem:
+audio only stream still bind mediasync,so audio wait video
+start timeout..
+
+Solution:
+give video invalid sync id from AsPlayer..
+
+Verify:
+t5m
+
+Change-Id: I68fc191171bd7d6fc5df7506af0335722cb870dc
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 9421876bb925866a620a00f23dcc7d830f3d3579
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Mar 6 15:34:07 2024 +0800
+
+videopassthrough: CF2 add I only trickmode. [1/2]
+
+PD#SWPL-158561
+
+Problem:
+porting I only trick mode to faster trickmode.
+
+Solution:
+add I only trickmode, only inject I frame, no need to
+inject P/B frame,and no need to call flush interface.
+
+Verify:
+t5m
+
+Change-Id: I12b286e8265af7ae35b243c95eb3f835b7ab0cb7
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 1d9bb34f99f992f3e85007d233de11867cc834e3
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Wed Feb 28 16:37:27 2024 +0800
@@ -168,57 +210,9 @@ S905X2
 Change-Id: Id1a5daf7d874b24d411ea3f1d0da83f807456af5
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit db4db8ac77aef92dc4317b256e9bf992887eebba
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Jan 29 14:04:21 2024 +0800
-
-videodec: CB1 omx2 can not got resolution change event. [1/1]
-
-PD#SWPL-154890
-
-Problem:
-1 V2 flush case test fail.
-
-
-Solution:
-1. Dequeue resolution event when reset vdec.
-
-Verify:
-dalton
-
-
-Change-Id: Ic5ec85df57ab80a8838c7e56a64f870a806a21d6
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit ff59c405e781234995841e03597fbee3f2586386
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Jan 4 14:51:32 2024 +0800
-
-videodec: CB1 framerate calculate error when framerate is '59.94'. [1/1]
-
-PD#SWPL-151482
-
-Problem:
-1 framerate calculate error when framerate is '59.94'.decoder used
-1601 to notify other modules the playing stream is '59.94', but the real
-value is '1601.6016',decoder used round down value.
-2 play 07.04.02.Scroll_text_320frame_720P60.mp4 unsmooth.
-
-Solution:
-1. We need round up the duration when the value of
-the part after the decimal point is greater than '0.8',this can skip
-'5994  1601 1601.6016'.
-2. add control pts log prop.
-
-Verify:
-ohm
-
-Change-Id: If4235a0e0bddb5e11f45d7113d445ca144c50660
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-03-05-14-34
+Release time: 2024-03-07-13-52
 
 ========================================
 
