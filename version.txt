@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.37-gc60b65c
+Version: V3.26.38-g4c5179a
 
 ========================================
 
 Git commit:
+commit 4c5179a37f62aff04d7e7fa85b6188fd0417a79c
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Mon Feb 26 16:53:42 2024 +0800
+
+videodec: CB1 video will be unsmooth after seek. [1/2]
+
+PD#SWPL-157188
+
+Problem:
+1 Duration update error value to mediahal,this occur
+calculate outpts error.
+
+Solution:
+1. We get frame duration from decoder with new api.
+
+Verify:
+s7
+
+Change-Id: Ibd4a74b276ae554979ca08eaab95689e2fc79b19
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit c60b65c4a09195292ed9a064de56f2bc49bfe2d8
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Wed Mar 6 19:48:49 2024 +0800
@@ -190,29 +211,9 @@ T5M
 Change-Id: Ib06756adf8436fce6aaa99119ccc9e2e69e5b6dc
 Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
 
-commit c12da03900f257ad61fa44e55cf2f9afe5c25028
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Jan 2 05:54:04 2024 +0000
-
-tsplayer: CB2 Stearm control is abnormal. [1/1]
-
-PD#SWPL-120094
-
-Problem:
-Stearm control is abnormal.
-
-Solution:
-fixed audio stream control.
-
-Verify:
-S905X2
-
-Change-Id: Id1a5daf7d874b24d411ea3f1d0da83f807456af5
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-03-07-13-52
+Release time: 2024-03-08-19-00
 
 ========================================
 
