@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.38-g4c5179a
+Version: V3.26.39-g5d9aa2c
 
 ========================================
 
 Git commit:
+commit 5d9aa2c9dd8f3effb4d41630ee56a04648a30027
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Sun Feb 18 09:30:39 2024 +0000
+
+videodec: CB2 solve the problem of slow playback of interlace streams. [1/1]
+
+PD#SWPL-156674
+
+Problem:
+the input timestamps of the current interlaced stream
+are all 0 and slow playback occurs.
+
+Solution:
+if the input timestamps of the current interlaced stream are all 0,
+use half the original duration.
+
+Verify:
+T968D4
+
+Change-Id: Ib4058fbad91057bed2e42a899096802c77571e9d
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit 4c5179a37f62aff04d7e7fa85b6188fd0417a79c
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Mon Feb 26 16:53:42 2024 +0800
@@ -191,29 +213,9 @@ S905X2
 Change-Id: I5bafae400510e9dc573fd943efef1074b84ea43f
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit d451127ae3fc86b7ff8dfdf2fcfb16cb2977b3f2
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Tue Feb 20 19:54:52 2024 +0800
-
-videodec: CB2 set afr duration [1/2]
-
-PD#SWPL-153134
-
-Problem:
-set afr duration
-
-Solution:
-set afr duration
-
-Verify:
-T5M
-
-Change-Id: Ib06756adf8436fce6aaa99119ccc9e2e69e5b6dc
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
-
 ========================================
 
-Release time: 2024-03-11-10-09
+Release time: 2024-03-14-15-45
 
 ========================================
 
