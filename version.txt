@@ -1,10 +1,119 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.39-g5d9aa2c
+Version: V3.26.44-gb205c2e
 
 ========================================
 
 Git commit:
+commit b205c2e9e21dc1219b0864f20a30b0e82f961c12
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Mar 14 13:41:00 2024 +0800
+
+videopassthrough: CF2 mediacodec support cache mode. [1/1]
+
+PD#SWPL-158900
+
+Problem:
+support tunerframework fcc support.
+not release mediahal plugin when call stop interface.
+
+Solution:
+support setworkmode interface.
+
+Verify:
+T5M
+
+Change-Id: I8c2d2df8c59208cb7b31c2150d4c9de500febdec
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit bedc05f0e716e1e234c9ae9ca04be429272013d4
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Mar 14 10:58:00 2024 +0800
+
+videoTunnelRenderer: CB2 pip switch channel crash. [1/1]
+
+PD#SWPL-158900
+
+Problem:
+audio only channel start mediacodec but has no mediasync,
+cause null pointer crash.
+
+Solution:
+protect mediasync pointer.
+
+Verify:
+T5M
+
+Change-Id: I8fdff11cedff51fc72c7246b9dd876db984e2b38
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 15b0392b84f3092026f6c45bc71de0cff90e483c
+Author: Shuai Fan <shuai.fan@amlogic.com>
+Date:   Mon Jan 29 06:34:20 2024 +0000
+
+hwdumx: CF2 add flush api [1/1]
+
+PD#SWPL-155414
+PD#SWPL-155624
+
+Problem:
+add flush api
+
+Solution:
+add flush api
+
+Verify:
+T5M Android U ATF
+
+Change-Id: Iae1d8a157fa3deab05984f948db6708fd9f72e81
+Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
+
+commit a798a4f80bc28be77a813292e5ac2f1f5c7ac5e2
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Jan 5 11:12:47 2024 +0800
+
+hwdumx: CB2 fix 4k only video inject too slow. [1/1]
+
+PD#SWPL-155414
+PD#SWPL-155624
+PD#TV-106052
+
+Problem:
+when video not play,data not reach 1.5s,and no sps pps info.
+
+Solution:
+if not play and need data,inject data fast than normal play.
+
+Verify:
+TC8000
+
+Change-Id: Ie61b291a39dd7fe02e381ba72c93d3a1890439ba
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 077c9e3a9993bbaa3845a31d2e28b140898accf2
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Jan 19 14:56:24 2024 +0800
+
+videopassthrough: CF2 fix video only playback not smooth. [1/1]
+
+PD#SWPL-155414
+PD#SWPL-155624
+PD#TV-108743
+
+Problem:
+1.stream control not allow data flow when video not play.
+2.video only stream playback start cache need larger.
+
+Solution:
+1.when video not show first frame,need inject data more.
+2.larger data flow.
+
+Verify:
+TC8000
+
+Change-Id: I3e23860e95cc8228e5c5608bfecd9deafe23edca
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 5d9aa2c9dd8f3effb4d41630ee56a04648a30027
 Author: yang.liu1 <yang.liu1@amlogic.com>
 Date:   Sun Feb 18 09:30:39 2024 +0000
@@ -112,110 +221,9 @@ t5m
 Change-Id: Ice78f62f2e5fb7c8c662e84ca8202d9d4bb059e9
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit c6dbacba5dcf940e360d3d23eafecc21567bcd00
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Feb 27 09:38:59 2024 +0800
-
-mediasync: CF2 export force updateanchor interface [1/1]
-
-PD#SWPL-158250
-
-Problem:
-need export force updateanchor interface
-
-Solution:
-export force updatgeanchor interface
-
-Verify:
-ohm
-
-Change-Id: If9eccd5c1579c679e4243264f30ec22890ea1991
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 44b714252aa940f3d151378f07f8d84a7aba4b63
-Author: futian.shi <futian.shi@amlogic.com>
-Date:   Tue Feb 27 20:27:57 2024 +0800
-
-videodec: CB2 modify path of mediaproxytest in release_tool.sh [1/1]
-
-PD#SWPL-158796
-
-Problem:
-can't produce mediaproxytest file by use release_tool.sh
-
-Solution:
-1. modify path of mediaproxytest in release_tool.sh;
-2. don't send userdata default;
-
-Verify:
-ohm
-
-Change-Id: I6c397549d7068bea0154d6b4b98878b16577ec76
-Signed-off-by: futian.shi <futian.shi@amlogic.com>
-
-commit 10fb5c192a62bf5e1277910e8b416ae15cffab75
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Feb 24 02:34:30 2024 +0800
-
-tsplayer: CF2 memory optimization [1/1]
-
-PD#SWPL-158138
-
-Problem:
-Optimize the size of mmap.
-
-Solution:
-do not link to tinyalsa libraries.
-
-Verify:
-txhd2
-
-Change-Id: Ie8a3c72c5599233bdd2223c7f94ba88783c8c87b
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit e90ed29c6d6cac3b9e75a20f25cd5af6e648f3cb
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Feb 23 17:16:18 2024 +0800
-
-tsplayer: CF2 memory optimization [1/1]
-
-PD#SWPL-158138
-
-Problem:
-Optimize the size of mmap.
-
-Solution:
-do not link to graphics libraries.
-
-Verify:
-txhd2
-
-Change-Id: I6f80e3de38eca5bbf6ca2ebdffc83c4e4df22489
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 23ac538cb0d13d5752ff95a3efbd8c8572794aa9
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Feb 28 06:37:13 2024 +0000
-
-tsplayer: CB2 copy old vdec info is incorrect. [1/1]
-
-PD#SWPL-120094
-
-Problem:
-copy old vdec info is incorrect.
-
-Solution:
-fix the size of the copied info.
-
-Verify:
-S905X2
-
-Change-Id: I5bafae400510e9dc573fd943efef1074b84ea43f
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-03-14-15-45
+Release time: 2024-03-15-16-49
 
 ========================================
 

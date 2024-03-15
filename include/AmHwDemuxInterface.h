@@ -44,6 +44,7 @@ struct AmDemuxControlInfo{
 extern void* AmHwDemux_Create(int mode,void* arg);
 extern void AmHwDemux_Destroy(void* handle);
 extern int AmHwDemux_Init(void* handle,int mode,void* arg);
+extern int AmHwDemux_Flush(void *handle);
 extern int AmHwDemux_ResetStatus(void* handle);
 extern int AmHwDemux_SetParams(void* handle,int type, void* arg);
 extern int AmHwDemux_GetParams(void* handle,int type, void* arg);
