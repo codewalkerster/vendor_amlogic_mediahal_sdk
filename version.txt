@@ -1,10 +1,94 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.44-gb205c2e
+Version: V3.26.48-ge994d6a
 
 ========================================
 
 Git commit:
+commit e994d6ad9aabc6b4d5ec756e035f0863adf28661
+Author: shanshan.li <shanshan.li@amlogic.com>
+Date:   Tue Mar 26 16:16:51 2024 +0800
+
+videodec: CB0 solve stuck caused by incorrect duration. [1/1]
+
+PD#SWPL-161999
+
+Problem:
+reset the error duration, cause the stuck when playback.
+
+Solution:
+if the current duration change large, so don't  reset it.
+
+Verify:
+T3X
+
+Change-Id: I619dc7bb91a6ca392f469d3cf1b589c94357fa6b
+Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
+
+commit ffef03a081ec6687f865e02e0955a429f7310eaf
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Tue Mar 26 10:00:29 2024 +0800
+
+videodec: CB1 Vts changeStateLoadedtoIdle timeout. [1/1]
+
+PD#SWPL-159873
+
+Problem:
+1 Vts changeStateLoadedtoIdle timeout.
+
+
+Solution:
+1. vdec init very time consuming and we move some function to
+init task to save time.
+
+Verify:
+dalton
+
+Change-Id: I3d9b7d4c4e0c557f3e6253479b312aac9b26e87f
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit aeaac9227d49a3100dea2d2d17f23e142ad440fa
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Mar 15 11:30:59 2024 +0000
+
+tsplayer: CB2 add timeout format status [1/1]
+
+PD#TV-114525
+
+Problem:
+Under weak signals, the buffer is full,
+causing decoding abnormalities.
+
+Solution:
+add decoder timeout status,
+reset the entire playback pipeline.
+
+Verify:
+T963D4
+
+Change-Id: I13ab669d2cc881e91c6f90e8a4e1b33bd015a826
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 0b056b1fbb09510d7e1e433545ce7aee5952c0fa
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Jan 25 18:52:43 2024 +0800
+
+videodec: CF2 add debug level [1/1]
+
+PD#SWPL-152963
+
+Problem:
+add debug level
+
+Solution:
+add debug level.
+
+Verify:
+ohm
+
+Change-Id: I6bae3fc5c7a8c69af871f21280e32e5bc7e7ad2c
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit b205c2e9e21dc1219b0864f20a30b0e82f961c12
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Thu Mar 14 13:41:00 2024 +0800
@@ -136,94 +220,9 @@ T968D4
 Change-Id: Ib4058fbad91057bed2e42a899096802c77571e9d
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit 4c5179a37f62aff04d7e7fa85b6188fd0417a79c
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Feb 26 16:53:42 2024 +0800
-
-videodec: CB1 video will be unsmooth after seek. [1/2]
-
-PD#SWPL-157188
-
-Problem:
-1 Duration update error value to mediahal,this occur
-calculate outpts error.
-
-Solution:
-1. We get frame duration from decoder with new api.
-
-Verify:
-s7
-
-Change-Id: Ibd4a74b276ae554979ca08eaab95689e2fc79b19
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit c60b65c4a09195292ed9a064de56f2bc49bfe2d8
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Mar 6 19:48:49 2024 +0800
-
-videopassthrough: CB2 audio only stream start too late. [1/1]
-
-PD#SWPL-151002
-
-Problem:
-audio only stream still bind mediasync,so audio wait video
-start timeout..
-
-Solution:
-give video invalid sync id from AsPlayer..
-
-Verify:
-t5m
-
-Change-Id: I68fc191171bd7d6fc5df7506af0335722cb870dc
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 9421876bb925866a620a00f23dcc7d830f3d3579
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Mar 6 15:34:07 2024 +0800
-
-videopassthrough: CF2 add I only trickmode. [1/2]
-
-PD#SWPL-158561
-
-Problem:
-porting I only trick mode to faster trickmode.
-
-Solution:
-add I only trickmode, only inject I frame, no need to
-inject P/B frame,and no need to call flush interface.
-
-Verify:
-t5m
-
-Change-Id: I12b286e8265af7ae35b243c95eb3f835b7ab0cb7
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 1d9bb34f99f992f3e85007d233de11867cc834e3
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Feb 28 16:37:27 2024 +0800
-
-videopassthrough: CB2 special stream not smooth. [1/2]
-
-PD#SWPL-158373
-
-Problem:
-1.porting pcr master in passthrough mode.
-2.need porting static bind mediasync to avoid vts test.
-
-Solution:
-1.porting pcr master.
-2.enable static bind interface in mediasync.
-
-Verify:
-t5m
-
-Change-Id: Ice78f62f2e5fb7c8c662e84ca8202d9d4bb059e9
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-03-15-16-49
+Release time: 2024-03-29-09-25
 
 ========================================
 
