@@ -1,10 +1,92 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.48-ge994d6a
+Version: V3.26.52-g0d4dfcf
 
 ========================================
 
 Git commit:
+commit 0d4dfcf8a2c318c0a2f52e3a583519726f1f6f01
+Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
+Date:   Thu Mar 14 13:30:22 2024 +0800
+
+tsplayer: CB2 fix can't find libfaad_sys.so in 64bit system [5/5]
+
+PD#SWPL-159811
+
+Problem:
+can't find libfaad_sys.so in 64bit system
+
+Solution:
+can't find libfaad_sys.so in 64bit system
+
+Verify:
+T3X
+
+Change-Id: I32b87a5647a221931710c496ad81758747f0ff4c
+Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
+
+commit eb9f10bcb6e7e0876ab5a9c0346ae97ae67cd852
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Dec 11 16:00:15 2023 +0800
+
+mediasync: CB2 special stream video will stuck too long [1/1]
+
+PD#TV-103923
+
+Problem:
+when stream apts and vpts diff large,and when stream loop
+vpts loop back but apts not.stream will not in free run mode.
+
+Solution:
+in loop back case,check apts and checkin vpts.if large, in
+free run mode.
+
+Verify:
+TC8000
+
+Change-Id: Ibbcb178786d1ce6e50e81a7f4ba487a3409f618f
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 0a9529f079c6a03387e6f946a86b2487919924dd
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Mar 25 17:54:03 2024 +0800
+
+videopassthrough: CF2 I/P type not update everytime. [1/1]
+
+PD#SWPL-156220
+
+Problem:
+update I/P type only once for now.
+
+Solution:
+check decoder info every 2s.
+
+Verify:
+T5M
+
+Change-Id: Ie5f7ae19b769bd5d97af0f3cb7ff91fa0651cb93
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit ab025c19e65d12a31e6a9b1dfcb725e016ff40bf
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Jan 9 10:51:19 2024 +0800
+
+tsplayer: CB1 demux ringbuffer cause mem crash  [1/1]
+
+PD#TV-107435
+
+Problem:
+decoder not reset before demux mem released.
+
+Solution:
+close decoder before demux filter closed.
+
+Verify:
+tc8000
+
+Change-Id: I8dfa1f67e21cfde01a39ad758da7e752fb5bc6e9
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit e994d6ad9aabc6b4d5ec756e035f0863adf28661
 Author: shanshan.li <shanshan.li@amlogic.com>
 Date:   Tue Mar 26 16:16:51 2024 +0800
@@ -131,98 +213,9 @@ T5M
 Change-Id: I8fdff11cedff51fc72c7246b9dd876db984e2b38
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 15b0392b84f3092026f6c45bc71de0cff90e483c
-Author: Shuai Fan <shuai.fan@amlogic.com>
-Date:   Mon Jan 29 06:34:20 2024 +0000
-
-hwdumx: CF2 add flush api [1/1]
-
-PD#SWPL-155414
-PD#SWPL-155624
-
-Problem:
-add flush api
-
-Solution:
-add flush api
-
-Verify:
-T5M Android U ATF
-
-Change-Id: Iae1d8a157fa3deab05984f948db6708fd9f72e81
-Signed-off-by: Shuai Fan <shuai.fan@amlogic.com>
-
-commit a798a4f80bc28be77a813292e5ac2f1f5c7ac5e2
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Jan 5 11:12:47 2024 +0800
-
-hwdumx: CB2 fix 4k only video inject too slow. [1/1]
-
-PD#SWPL-155414
-PD#SWPL-155624
-PD#TV-106052
-
-Problem:
-when video not play,data not reach 1.5s,and no sps pps info.
-
-Solution:
-if not play and need data,inject data fast than normal play.
-
-Verify:
-TC8000
-
-Change-Id: Ie61b291a39dd7fe02e381ba72c93d3a1890439ba
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 077c9e3a9993bbaa3845a31d2e28b140898accf2
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Jan 19 14:56:24 2024 +0800
-
-videopassthrough: CF2 fix video only playback not smooth. [1/1]
-
-PD#SWPL-155414
-PD#SWPL-155624
-PD#TV-108743
-
-Problem:
-1.stream control not allow data flow when video not play.
-2.video only stream playback start cache need larger.
-
-Solution:
-1.when video not show first frame,need inject data more.
-2.larger data flow.
-
-Verify:
-TC8000
-
-Change-Id: I3e23860e95cc8228e5c5608bfecd9deafe23edca
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 5d9aa2c9dd8f3effb4d41630ee56a04648a30027
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Sun Feb 18 09:30:39 2024 +0000
-
-videodec: CB2 solve the problem of slow playback of interlace streams. [1/1]
-
-PD#SWPL-156674
-
-Problem:
-the input timestamps of the current interlaced stream
-are all 0 and slow playback occurs.
-
-Solution:
-if the input timestamps of the current interlaced stream are all 0,
-use half the original duration.
-
-Verify:
-T968D4
-
-Change-Id: Ib4058fbad91057bed2e42a899096802c77571e9d
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2024-03-29-09-25
+Release time: 2024-04-01-11-36
 
 ========================================
 
