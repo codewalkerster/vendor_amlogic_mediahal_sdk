@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.52-g0d4dfcf
+Version: V3.26.53-g474b83c
 
 ========================================
 
 Git commit:
+commit 474b83c691344b4cd97ffc11f0df578e41067f43
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Mar 28 21:19:35 2024 +0800
+
+tsplayer: CB1 Fixed no video on live TV. [1/1]
+
+PD#SWPL-161408
+
+Problem:
+Same demux id, demux local mode sets hw source,
+demod mode does not set hw souece.
+
+Solution:
+tsplayer does not set hwSource,
+and hands it over to dtvkit to manage hw source.
+
+Verify:
+T3X
+
+Change-Id: Id883f842c57b07dba3ecd82a4db66e49cf5c287b
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 0d4dfcf8a2c318c0a2f52e3a583519726f1f6f01
 Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
 Date:   Thu Mar 14 13:30:22 2024 +0800
@@ -192,30 +214,9 @@ T5M
 Change-Id: I8c2d2df8c59208cb7b31c2150d4c9de500febdec
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit bedc05f0e716e1e234c9ae9ca04be429272013d4
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Mar 14 10:58:00 2024 +0800
-
-videoTunnelRenderer: CB2 pip switch channel crash. [1/1]
-
-PD#SWPL-158900
-
-Problem:
-audio only channel start mediacodec but has no mediasync,
-cause null pointer crash.
-
-Solution:
-protect mediasync pointer.
-
-Verify:
-T5M
-
-Change-Id: I8fdff11cedff51fc72c7246b9dd876db984e2b38
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-01-11-36
+Release time: 2024-04-03-11-20
 
 ========================================
 

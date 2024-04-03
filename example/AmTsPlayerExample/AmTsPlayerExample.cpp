@@ -677,10 +677,20 @@ static int amsysfs_set_sysfs_str(const char *path, const char *val) {
     return -1;
 }
 
-static int set_dmx_source()
+static int set_dmx_source(int demux_id)
 {
-    amsysfs_set_sysfs_str("/sys/class/stb/source", "dmx0");
-    amsysfs_set_sysfs_str("/sys/class/stb/demux0_source", "hiu");
+    if (access("/sys/class/stb/demux0_source",F_OK) == 0) {
+        amsysfs_set_sysfs_str("/sys/class/stb/source", "dmx0");
+        amsysfs_set_sysfs_str("/sys/class/stb/demux0_source", "hiu");
+    } else {
+        //mutil hw demux
+        char cmd[30];
+        sprintf(cmd,"%d local dma_%d",demux_id,demux_id);
+        printf("set_dmx_source cmd:%s \n",cmd);
+        amsysfs_set_sysfs_str("/sys/class/dmx/dmx_source", cmd);
+
+    }
+
     return 0;
 }
 
@@ -782,7 +792,7 @@ int main(int argc, char **argv)
     int32_t aPid = 0x101;
     int32_t vEcmPid = 0x1001;
     int32_t aEcmPid = 0x1001;
-
+    int demux_id = 0;
     while ((optionChar = getopt_long(argc, argv, shortOptions,
                                     longOptions, &optionIndex)) != -1) {
         switch (optionChar) {
@@ -854,12 +864,11 @@ int main(int argc, char **argv)
 
     //Turn off the osd layer.
     set_osd_blank(1);
-
     char* buf = new char[kRwSize];
     uint64_t fsize = 0;
     ifstream file(inputTsName.c_str(), ifstream::binary);
     if (tsType) {
-       set_dmx_source();
+       set_dmx_source(demux_id);
        file.seekg(0, file.end);
        fsize = file.tellg();
        if (fsize <= 0) {
@@ -872,7 +881,7 @@ int main(int argc, char **argv)
                 inputTsName.c_str(), file.is_open(),(long long) fsize, tsType);
 
     //am_tsplayer_handle session;
-    am_tsplayer_init_params parm = {tsType, drmmode, 0, 0};
+    am_tsplayer_init_params parm = {tsType, drmmode, demux_id, 0};
     AmTsPlayer_create(parm, &session);
 
     struct utsname kernel_msg;
