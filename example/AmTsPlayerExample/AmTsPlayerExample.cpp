@@ -884,13 +884,17 @@ int main(int argc, char **argv)
     am_tsplayer_init_params parm = {tsType, drmmode, demux_id, 0};
     AmTsPlayer_create(parm, &session);
 
+#if ANDROID_PLATFORM_SDK_VERSION >= 30
     struct utsname kernel_msg;
     bool isTsyncNonTunelflag = false;
+    float min_version = 5.15;
     uname(&kernel_msg);
-    if (strstr(kernel_msg.release, "5.15") != NULL) {
-        printf("t5d nontunelmode need set VideoTunnelId\n");
+    float kernel_version = stof(kernel_msg.release);
+    if (kernel_version >= min_version) {
+        printf("kernel_version:%f, single demux nontunelmode need set VideoTunnelId\n", kernel_version);
         isTsyncNonTunelflag = true;
     }
+#endif
 
     #ifdef SYSTEMLIB
     //system lib

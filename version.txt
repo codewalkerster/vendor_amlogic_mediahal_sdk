@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.53-g474b83c
+Version: V3.26.55-gb3f37d0
 
 ========================================
 
 Git commit:
+commit b3f37d0340a2713cd3e1bdf9cd1d371c30845b01
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Mar 29 15:17:36 2024 +0800
+
+tsplayer: CB2 fix AwHwDemux to control writing. [1/1]
+
+PD#SWPL-161794
+PD#SWPL-159770
+PD#SWPL-163592
+PD#SWPL-163589
+
+Problem:
+AwHwDemux will calculate error cache.
+
+Solution:
+fix AwHwDemux to control writing.
+
+Verify:
+u215
+
+Change-Id: Ia07e6a05b44c394c9b7914ee7360ae1bf30ed071
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 4f4f608b5b897e9e601bfc08470e3ca51e58679f
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Mar 18 06:31:41 2024 +0000
+
+tsplayer: CB2 unsupport nontunnel mode for t5d kernel 5.4 [1/2]
+
+PD#SWPL-160246
+
+Problem:
+unsupport nontunnel mode for t5d kernel 5.4
+
+Solution:
+support nontunnel mode for t5d kernel 5.4
+
+Verify:
+T5D
+
+Change-Id: I94c6a2df8f46fa8f6d88fa36fe287a8df999c5a3
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit 474b83c691344b4cd97ffc11f0df578e41067f43
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Thu Mar 28 21:19:35 2024 +0800
@@ -173,50 +216,9 @@ T963D4
 Change-Id: I13ab669d2cc881e91c6f90e8a4e1b33bd015a826
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 0b056b1fbb09510d7e1e433545ce7aee5952c0fa
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Jan 25 18:52:43 2024 +0800
-
-videodec: CF2 add debug level [1/1]
-
-PD#SWPL-152963
-
-Problem:
-add debug level
-
-Solution:
-add debug level.
-
-Verify:
-ohm
-
-Change-Id: I6bae3fc5c7a8c69af871f21280e32e5bc7e7ad2c
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit b205c2e9e21dc1219b0864f20a30b0e82f961c12
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Mar 14 13:41:00 2024 +0800
-
-videopassthrough: CF2 mediacodec support cache mode. [1/1]
-
-PD#SWPL-158900
-
-Problem:
-support tunerframework fcc support.
-not release mediahal plugin when call stop interface.
-
-Solution:
-support setworkmode interface.
-
-Verify:
-T5M
-
-Change-Id: I8c2d2df8c59208cb7b31c2150d4c9de500febdec
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-03-11-20
+Release time: 2024-04-08-14-41
 
 ========================================
 
