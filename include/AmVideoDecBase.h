@@ -91,7 +91,7 @@ typedef struct {
     unsigned int  stbuf_start;
     unsigned int  stbuf_size;
     uint32_t    nDecType;
-    int32_t nVideoRecoveryValue;
+    int32_t nVideoRecoveryValue; //0:display error frame; 1:no display error frame;
     int32_t unStablePts;
     int32_t sourceType;
 } init_param_t;

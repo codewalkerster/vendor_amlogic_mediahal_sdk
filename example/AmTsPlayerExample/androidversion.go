@@ -20,7 +20,7 @@ func androidversionDefaults(ctx android.LoadHookContext) {
 func setversion(ctx android.BaseContext) ([]string) {
 	var cppflags []string
 
-    sdkVersion := ctx.Config().PlatformSdkVersion().String()
+    sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
 
     ver10 := "-DANDROID_PLATFORM_SDK_VERSION=" + sdkVersion
     //fmt.Println(string(ver10))

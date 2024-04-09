@@ -1,10 +1,54 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.55-gb3f37d0
+Version: V3.26.57-gf73b277
 
 ========================================
 
 Git commit:
+commit f73b277956eae214b320be513f1e584cb1a86f2b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Mar 12 16:47:31 2024 +0800
+
+tsplayer: CB2 Fixed the inaccuracy of the video cache calculation. [1/1]
+
+PD#SWPL-159419
+
+Problem:
+When calculating the video cache,
+the video cache in demux is not counted together.
+
+Solution:
+When calculating the video cache,
+the video cache in demux is counted together.
+
+Verify:
+SC2
+
+Change-Id: I6394fbd7007227c84e878c767cdcaf9151992223
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit cbcfa8b3b889c03b3c698451e99db75a550dfa06
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Mar 19 16:50:02 2024 +0800
+
+videodec: CF2 add margin to set decoder [1/1]
+
+PD#SWPL-159687
+PD#SWPL-162546
+
+Problem:
+add margin to set decoder
+
+Solution:
+
+add margin to set decoder
+
+Verify:
+ohm
+
+Change-Id: I0d038380ec7e84123d9ce6b9d9813aa83cc478e8
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit b3f37d0340a2713cd3e1bdf9cd1d371c30845b01
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Fri Mar 29 15:17:36 2024 +0800
@@ -172,53 +216,9 @@ T3X
 Change-Id: I619dc7bb91a6ca392f469d3cf1b589c94357fa6b
 Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
 
-commit ffef03a081ec6687f865e02e0955a429f7310eaf
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Mar 26 10:00:29 2024 +0800
-
-videodec: CB1 Vts changeStateLoadedtoIdle timeout. [1/1]
-
-PD#SWPL-159873
-
-Problem:
-1 Vts changeStateLoadedtoIdle timeout.
-
-
-Solution:
-1. vdec init very time consuming and we move some function to
-init task to save time.
-
-Verify:
-dalton
-
-Change-Id: I3d9b7d4c4e0c557f3e6253479b312aac9b26e87f
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit aeaac9227d49a3100dea2d2d17f23e142ad440fa
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri Mar 15 11:30:59 2024 +0000
-
-tsplayer: CB2 add timeout format status [1/1]
-
-PD#TV-114525
-
-Problem:
-Under weak signals, the buffer is full,
-causing decoding abnormalities.
-
-Solution:
-add decoder timeout status,
-reset the entire playback pipeline.
-
-Verify:
-T963D4
-
-Change-Id: I13ab669d2cc881e91c6f90e8a4e1b33bd015a826
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-08-14-41
+Release time: 2024-04-09-19-48
 
 ========================================
 

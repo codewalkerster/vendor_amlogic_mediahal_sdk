@@ -13,6 +13,28 @@ package {
 }
 
 bootstrap_go_package {
+    name: "systemlib",
+    pkgPath: "android/soong/systemlib",
+    deps: [
+        "blueprint",
+        "soong",
+        "soong-android",
+        "soong-cc",
+        "soong-genrule",
+        "blueprint-bootstrap",
+        "soong-cc-config"
+    ],
+    srcs: [
+        "systemlib.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+systemlib_defaults {
+    name: "systemlib_defaults",
+}
+
+bootstrap_go_package {
     name: "androidversion",
     pkgPath: "android/soong/androidversion",
     deps: [
@@ -53,7 +75,7 @@ cc_test {
 
 cc_test {
     name: "AmTsPlayerExampleSystem",
-    defaults: ["androidversion_defaults"],
+    defaults: ["androidversion_defaults","systemlib_defaults"],
     enabled: false,
     srcs: [
         "AmTsPlayerExample.cpp",
