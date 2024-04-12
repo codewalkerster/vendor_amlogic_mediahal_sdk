@@ -1,10 +1,91 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.57-gf73b277
+Version: V3.26.61-g6123f44
 
 ========================================
 
 Git commit:
+commit 6123f44d29f74f50a0c6d41c58cda9a9f6ba0a9e
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Mar 5 09:25:48 2024 +0000
+
+tsplayer: CF1 single dmx support bootplayer [1/1]
+
+PD#TV-110577
+
+Problem:
+single dmx unsupport bootplayer
+
+Solution:
+single dmx support bootplayer
+
+Verify:
+T5D
+
+Change-Id: Id6e572c828271ae3431efda1cbdfb23436840755
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 15ebda7c07e252254572a75f09ddf8abafc203dd
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Mar 4 03:15:04 2024 +0000
+
+tsplayer: CB2 get audio scramble status [1/1]
+
+PD#SWPL-158726
+
+Problem:
+cat not obtain scramble status
+for only audio stream
+
+Solution:
+get audio pts_dts_flag from audiohal
+
+Verify:
+s7
+
+Change-Id: I06341bd010af399841564db0b0e78e46afda09b4
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit bdc2a85b597aff98ce5d7c2803a35c48a7af83c5
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Thu Jan 4 19:04:38 2024 +0800
+
+mediasync: CF2 Fix the video stuttering issue. [1/1]
+
+PD#SWPL-152735
+
+Problem:
+VsyncPeriod exception obtained from videotunnel.
+
+Solution:
+Get the VsyncPeriod of the exception without handling.
+
+Verify:
+SC2
+
+Change-Id: Ice0c7af97ae523ec56dd9ed82747f09cb5982c79
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit ed267cdc2c7f03cf4590b07b7b49a0c0624ef0c8
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Mar 26 10:37:36 2024 +0800
+
+mediasync: CB2 one video plays not smoothly with a large avdiff [1/1]
+
+PD#SWPL-132068
+
+Problem:
+one video plays not smoothly with a large avdiff
+
+Solution:
+use video clock type to set refclockinit when avdiff is tool large.
+
+Verify:
+ohm
+
+Change-Id: Ic4952a174ae87b770fd61369e9a1282ce0378097
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit f73b277956eae214b320be513f1e584cb1a86f2b
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Mar 12 16:47:31 2024 +0800
@@ -134,91 +215,9 @@ T3X
 Change-Id: I32b87a5647a221931710c496ad81758747f0ff4c
 Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
 
-commit eb9f10bcb6e7e0876ab5a9c0346ae97ae67cd852
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Dec 11 16:00:15 2023 +0800
-
-mediasync: CB2 special stream video will stuck too long [1/1]
-
-PD#TV-103923
-
-Problem:
-when stream apts and vpts diff large,and when stream loop
-vpts loop back but apts not.stream will not in free run mode.
-
-Solution:
-in loop back case,check apts and checkin vpts.if large, in
-free run mode.
-
-Verify:
-TC8000
-
-Change-Id: Ibbcb178786d1ce6e50e81a7f4ba487a3409f618f
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 0a9529f079c6a03387e6f946a86b2487919924dd
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Mar 25 17:54:03 2024 +0800
-
-videopassthrough: CF2 I/P type not update everytime. [1/1]
-
-PD#SWPL-156220
-
-Problem:
-update I/P type only once for now.
-
-Solution:
-check decoder info every 2s.
-
-Verify:
-T5M
-
-Change-Id: Ie5f7ae19b769bd5d97af0f3cb7ff91fa0651cb93
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit ab025c19e65d12a31e6a9b1dfcb725e016ff40bf
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Jan 9 10:51:19 2024 +0800
-
-tsplayer: CB1 demux ringbuffer cause mem crash  [1/1]
-
-PD#TV-107435
-
-Problem:
-decoder not reset before demux mem released.
-
-Solution:
-close decoder before demux filter closed.
-
-Verify:
-tc8000
-
-Change-Id: I8dfa1f67e21cfde01a39ad758da7e752fb5bc6e9
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit e994d6ad9aabc6b4d5ec756e035f0863adf28661
-Author: shanshan.li <shanshan.li@amlogic.com>
-Date:   Tue Mar 26 16:16:51 2024 +0800
-
-videodec: CB0 solve stuck caused by incorrect duration. [1/1]
-
-PD#SWPL-161999
-
-Problem:
-reset the error duration, cause the stuck when playback.
-
-Solution:
-if the current duration change large, so don't  reset it.
-
-Verify:
-T3X
-
-Change-Id: I619dc7bb91a6ca392f469d3cf1b589c94357fa6b
-Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-09-19-48
+Release time: 2024-04-12-14-54
 
 ========================================
 
