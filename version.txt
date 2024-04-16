@@ -1,10 +1,92 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.61-g6123f44
+Version: V3.26.65-g9bdc0b7
 
 ========================================
 
 Git commit:
+commit 9bdc0b7980c7821cbe3bcecafc692b83a1220c15
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Apr 15 10:59:02 2024 +0800
+
+tsplayer: CB2 only audio can't play in timeshift. [1/1]
+
+PD#SWPL-165359
+
+Problem:
+only audio can't play in timeshift and crash.
+
+Solution:
+fix crash for mRender == NULL, if vpid==0x1fff, no pause
+nontunnel.
+
+Verify:
+t5d
+
+Change-Id: Ia62094b49c7d8da9f3bbb9be548bda910e09e71d
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 12700b844eae9bd254ef245952098900811c6aad
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Apr 11 16:03:05 2024 +0800
+
+tsplayer: CB2 timeshift is playing without audio. [1/1]
+
+PD#SWPL-163592
+
+Problem:
+timeshift is playing without audio.
+
+Solution:
+use delaytime to init VideoStarting in timeshift.
+
+Verify:
+t5d
+
+Change-Id: I7a2a76a24207d16a606da0776d7e74a6aaa97bb5
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 75317e31d086e86aa81c364414be350a0ead2f93
+Author: shanshan.li <shanshan.li@amlogic.com>
+Date:   Mon Apr 1 13:50:58 2024 +0800
+
+videodec: CF1 notify err when receive UNSUPPORT event. [1/1]
+
+PD#SWPL-161945
+
+Problem:
+Black screen appeared when playing special streams
+
+Solution:
+notify err when receive event V4L2_EVENT_PRIVATE_EXT_REPORT_UNSUPPORT
+
+Verify:
+T3X
+
+Change-Id: I20302656d74bc3e9e078599531ecc3b2873d1ff5
+Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
+
+commit 9024e824013c6007cb140a7658d16f2cca8e17f5
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Sun Apr 7 13:18:10 2024 +0800
+
+tsplayer: CB2 long time to output after switching audio track. [1/1]
+
+PD#SWPL-162599
+
+Problem:
+it will take 9 seconds to output audio after switching audio track,
+because video cache is large to stop writing ts but audio cache is 0.
+
+Solution:
+fix the value of isAudioNeedRetry for unnormal audio es.
+
+Verify:
+ohm
+
+Change-Id: I91f8694dfff3b0d64d78ef88cfe54c9c29abc5c1
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 6123f44d29f74f50a0c6d41c58cda9a9f6ba0a9e
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Tue Mar 5 09:25:48 2024 +0000
@@ -130,94 +212,9 @@ ohm
 Change-Id: I0d038380ec7e84123d9ce6b9d9813aa83cc478e8
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit b3f37d0340a2713cd3e1bdf9cd1d371c30845b01
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Mar 29 15:17:36 2024 +0800
-
-tsplayer: CB2 fix AwHwDemux to control writing. [1/1]
-
-PD#SWPL-161794
-PD#SWPL-159770
-PD#SWPL-163592
-PD#SWPL-163589
-
-Problem:
-AwHwDemux will calculate error cache.
-
-Solution:
-fix AwHwDemux to control writing.
-
-Verify:
-u215
-
-Change-Id: Ia07e6a05b44c394c9b7914ee7360ae1bf30ed071
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 4f4f608b5b897e9e601bfc08470e3ca51e58679f
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Mar 18 06:31:41 2024 +0000
-
-tsplayer: CB2 unsupport nontunnel mode for t5d kernel 5.4 [1/2]
-
-PD#SWPL-160246
-
-Problem:
-unsupport nontunnel mode for t5d kernel 5.4
-
-Solution:
-support nontunnel mode for t5d kernel 5.4
-
-Verify:
-T5D
-
-Change-Id: I94c6a2df8f46fa8f6d88fa36fe287a8df999c5a3
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 474b83c691344b4cd97ffc11f0df578e41067f43
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Mar 28 21:19:35 2024 +0800
-
-tsplayer: CB1 Fixed no video on live TV. [1/1]
-
-PD#SWPL-161408
-
-Problem:
-Same demux id, demux local mode sets hw source,
-demod mode does not set hw souece.
-
-Solution:
-tsplayer does not set hwSource,
-and hands it over to dtvkit to manage hw source.
-
-Verify:
-T3X
-
-Change-Id: Id883f842c57b07dba3ecd82a4db66e49cf5c287b
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 0d4dfcf8a2c318c0a2f52e3a583519726f1f6f01
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Thu Mar 14 13:30:22 2024 +0800
-
-tsplayer: CB2 fix can't find libfaad_sys.so in 64bit system [5/5]
-
-PD#SWPL-159811
-
-Problem:
-can't find libfaad_sys.so in 64bit system
-
-Solution:
-can't find libfaad_sys.so in 64bit system
-
-Verify:
-T3X
-
-Change-Id: I32b87a5647a221931710c496ad81758747f0ff4c
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-12-14-54
+Release time: 2024-04-16-14-08
 
 ========================================
 
