@@ -1,10 +1,73 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.65-g9bdc0b7
+Version: V3.26.68-g815d26c
 
 ========================================
 
 Git commit:
+commit 815d26ce28c2a2914f3b064dd202f68bcd40b996
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Apr 17 16:29:43 2024 +0800
+
+tsplayer: CB2 can't pop up "Scramble" for scramble service [1/1]
+
+PD#SWPL-165664
+
+Problem:
+it can't pop up "Scramble" for scramble service in T5D.
+
+Solution:
+it should post kWhatUpdateStatus to get Scrambling event in T5D
+with nontunnelMode.
+
+Verify:
+T5D
+
+Change-Id: I6902af903dd9fff6696b2d4ec9168611adac2202
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 39cbb69d723521778c5d23438d27481e2aded9f4
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Apr 2 14:46:52 2024 +0800
+
+tsplayer: CB2 fix video min delayTime for 8k video [1/1]
+
+PD#IPTV-27597
+
+Problem:
+it will be not smoothly to play 8k video for a long time.
+
+Solution:
+fix video min delayTime for 8k video.
+
+Verify:
+s5
+
+Change-Id: I0cda5e78bac928f5171fb95816a32171027c485f
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 2ccf93bce081596b3e5c6d2b09d340daf5c3742a
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Fri Mar 29 19:46:02 2024 +0800
+
+videodec: CF1 Optimized native heap for low ram devices. [1/1]
+
+PD#SWPL-160258
+
+Problem:
+Native heap for low ram devices has a fixed 2MB heap to keep ES
+data for vdec headers.
+
+Solution:
+Changes to 512K by default, and adaptively changed. Normally for
+a vp9 1080p@60fps playback, it's below 512K.
+
+Verify:
+TXHD2
+
+Change-Id: Ibb8aa2e43c7afe0e43cd8cec264b13a58832354c
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
 commit 9bdc0b7980c7821cbe3bcecafc692b83a1220c15
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Mon Apr 15 10:59:02 2024 +0800
@@ -148,73 +211,9 @@ SC2
 Change-Id: Ice0c7af97ae523ec56dd9ed82747f09cb5982c79
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit ed267cdc2c7f03cf4590b07b7b49a0c0624ef0c8
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Mar 26 10:37:36 2024 +0800
-
-mediasync: CB2 one video plays not smoothly with a large avdiff [1/1]
-
-PD#SWPL-132068
-
-Problem:
-one video plays not smoothly with a large avdiff
-
-Solution:
-use video clock type to set refclockinit when avdiff is tool large.
-
-Verify:
-ohm
-
-Change-Id: Ic4952a174ae87b770fd61369e9a1282ce0378097
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit f73b277956eae214b320be513f1e584cb1a86f2b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Mar 12 16:47:31 2024 +0800
-
-tsplayer: CB2 Fixed the inaccuracy of the video cache calculation. [1/1]
-
-PD#SWPL-159419
-
-Problem:
-When calculating the video cache,
-the video cache in demux is not counted together.
-
-Solution:
-When calculating the video cache,
-the video cache in demux is counted together.
-
-Verify:
-SC2
-
-Change-Id: I6394fbd7007227c84e878c767cdcaf9151992223
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit cbcfa8b3b889c03b3c698451e99db75a550dfa06
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Mar 19 16:50:02 2024 +0800
-
-videodec: CF2 add margin to set decoder [1/1]
-
-PD#SWPL-159687
-PD#SWPL-162546
-
-Problem:
-add margin to set decoder
-
-Solution:
-
-add margin to set decoder
-
-Verify:
-ohm
-
-Change-Id: I0d038380ec7e84123d9ce6b9d9813aa83cc478e8
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-16-14-08
+Release time: 2024-04-18-14-10
 
 ========================================
 
