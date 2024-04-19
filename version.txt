@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.68-g815d26c
+Version: V3.26.69-g561d72a
 
 ========================================
 
 Git commit:
+commit 561d72a4248fef9959eca08e0695c743f4bacd4a
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu Apr 11 10:11:31 2024 +0800
+
+videodec: CB1 decoder width align error. [1/1]
+
+PD#SWPL-156888
+
+Problem:
+1 decoder width align error, used default 64bit.
+
+Solution:
+1. We need used align value get from decoder when alloc buf.
+
+Verify:
+Franklin
+
+Change-Id: I4ef73168c8e31c1024a33de185fe01fb6ae33601
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 815d26ce28c2a2914f3b064dd202f68bcd40b996
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Wed Apr 17 16:29:43 2024 +0800
@@ -191,29 +211,9 @@ s7
 Change-Id: I06341bd010af399841564db0b0e78e46afda09b4
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit bdc2a85b597aff98ce5d7c2803a35c48a7af83c5
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Thu Jan 4 19:04:38 2024 +0800
-
-mediasync: CF2 Fix the video stuttering issue. [1/1]
-
-PD#SWPL-152735
-
-Problem:
-VsyncPeriod exception obtained from videotunnel.
-
-Solution:
-Get the VsyncPeriod of the exception without handling.
-
-Verify:
-SC2
-
-Change-Id: Ice0c7af97ae523ec56dd9ed82747f09cb5982c79
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-18-14-10
+Release time: 2024-04-19-10-50
 
 ========================================
 
