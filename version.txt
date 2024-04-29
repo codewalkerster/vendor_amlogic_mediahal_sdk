@@ -1,10 +1,59 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.69-g561d72a
+Version: V3.26.71-g0d27132
 
 ========================================
 
 Git commit:
+commit 0d271327408168bef1e1d4299511b60a73f3ec55
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Apr 24 14:18:21 2024 +0800
+
+videodec: CB1 pts calculate error. [1/1]
+
+PD#SWPL-166063
+
+Problem:
+1 Not used duration got from decoder when play specific stream at
+unstable mode.
+2 app set duration value is 16683(app_duration) and decoder parsed
+duration value is 33364(decoder_duration), the value of
+abs(app_duration-decoder_duration) < app_duration >> 1;
+
+Solution:
+1. we need compared abs(app_duration-decoder_duration) with
+max(app_duration,decoder_duration)>>1 value, if the
+abs(app_duration-decoder_duration) value. is less the value
+max(app_duration,decoder_duration)>>1, we used the duratuion from
+decoder.
+
+Verify:
+ohm
+
+Change-Id: I58e00f7c308ed373a76ede7d07a16aa14f95bba2
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit e20876a93fbaf6925cfdf9a295878ab3ee23992e
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Apr 17 21:39:40 2024 +0800
+
+hwdumx: CB2 Switch audiotrack too long. [1/1]
+
+PD#SWPL-158801
+
+Problem:
+StreamCoutrol Lib not deal with audiotrack change case.
+
+Solution:
+If audiotrack switch, not inject too much data,inject
+as videoonly case.
+
+Verify:
+T5M
+
+Change-Id: Icf63d3400c7054be26fac5a1682f258ce758212b
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 561d72a4248fef9959eca08e0695c743f4bacd4a
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Thu Apr 11 10:11:31 2024 +0800
@@ -170,50 +219,9 @@ ohm
 Change-Id: I91f8694dfff3b0d64d78ef88cfe54c9c29abc5c1
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 6123f44d29f74f50a0c6d41c58cda9a9f6ba0a9e
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Mar 5 09:25:48 2024 +0000
-
-tsplayer: CF1 single dmx support bootplayer [1/1]
-
-PD#TV-110577
-
-Problem:
-single dmx unsupport bootplayer
-
-Solution:
-single dmx support bootplayer
-
-Verify:
-T5D
-
-Change-Id: Id6e572c828271ae3431efda1cbdfb23436840755
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 15ebda7c07e252254572a75f09ddf8abafc203dd
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Mar 4 03:15:04 2024 +0000
-
-tsplayer: CB2 get audio scramble status [1/1]
-
-PD#SWPL-158726
-
-Problem:
-cat not obtain scramble status
-for only audio stream
-
-Solution:
-get audio pts_dts_flag from audiohal
-
-Verify:
-s7
-
-Change-Id: I06341bd010af399841564db0b0e78e46afda09b4
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-19-10-50
+Release time: 2024-04-29-14-10
 
 ========================================
 
