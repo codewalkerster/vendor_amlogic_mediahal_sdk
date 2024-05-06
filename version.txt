@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.71-g0d27132
+Version: V3.26.72-g0067261
 
 ========================================
 
 Git commit:
+commit 006726188d90eb5072c6d725867826530957b24b
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Sun Apr 28 13:35:14 2024 +0800
+
+videodec: CB2 it can't show log after setting log property [1/1]
+
+PD#SWPL-167493
+
+Problem:
+it can't show log after setting log property.
+
+Solution:
+fix debugconfig to add property.
+
+Verify:
+ohm
+
+Change-Id: I14c39cf3d894dcc307c1e1987f074f1fa15dd2e7
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 0d271327408168bef1e1d4299511b60a73f3ec55
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Wed Apr 24 14:18:21 2024 +0800
@@ -198,30 +218,9 @@ T3X
 Change-Id: I20302656d74bc3e9e078599531ecc3b2873d1ff5
 Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
 
-commit 9024e824013c6007cb140a7658d16f2cca8e17f5
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Sun Apr 7 13:18:10 2024 +0800
-
-tsplayer: CB2 long time to output after switching audio track. [1/1]
-
-PD#SWPL-162599
-
-Problem:
-it will take 9 seconds to output audio after switching audio track,
-because video cache is large to stop writing ts but audio cache is 0.
-
-Solution:
-fix the value of isAudioNeedRetry for unnormal audio es.
-
-Verify:
-ohm
-
-Change-Id: I91f8694dfff3b0d64d78ef88cfe54c9c29abc5c1
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-04-29-14-10
+Release time: 2024-05-06-20-19
 
 ========================================
 
