@@ -40,6 +40,24 @@ struct tunnelEventParam
     uint32_t paramSize;
 };
 
+typedef enum {
+        AM_VT_PARAM_MUTE,
+        AM_VT_PARAM_SCREEN_COLOR,
+        AM_VT_PARAM_TRANSITION_MODE_BEFORE,
+        AM_VT_PARAM_TRANSITION_MODE_AFTER,
+        AM_VT_PARAM_TRANSITION_PREROLL_RATE,
+        AM_VT_PARAM_TRANSITION_PREROLL_AV_TOLERANCE,
+        AM_VT_PARAM_PAUSE_RESUME,
+    } renderParamsType;
+
+struct renderParams
+{
+    int64_t param1;
+    int64_t param2;
+    int64_t param3;
+    char reserved[64];
+};
+
 class VideoTunnelRendererBase
 {
 
@@ -68,6 +86,10 @@ public:
     virtual void onVideoSyncQueueVideoFrame(int64_t timestampUs, uint32_t size);
     virtual void setTrickMode(uint32_t trickmode);
     virtual void startFast(float scale);
+    virtual bool getDisplayFrameFlag(int frame);
+    virtual void setDisplayFrameFlag(int frame, bool value);
+    virtual void setRenderParams(int32_t type, renderParams* params);
+    virtual void setWorkMode(uint32_t workmode);
 };
 
 extern "C" VideoTunnelRendererBase* VideoTunnelRenderer_create();

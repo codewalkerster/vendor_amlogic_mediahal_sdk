@@ -1,10 +1,53 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.72-g0067261
+Version: V3.26.74-g32c04fa
 
 ========================================
 
 Git commit:
+commit 32c04fafe801938125c0821667dc8239f7485007
+Author: shipeng.sun <shipeng.sun@amlogic.com>
+Date:   Mon May 6 09:24:39 2024 +0800
+
+videodec: CB1 End ResetTask operation when vda in error state [1/1]
+
+PD#SWPL-167397
+
+Problem:
+Codec2 component reset call block when vda in error state lead
+component resource doesn't release
+
+Solution:
+End ResetTask operation when vda in error state prevent vda component
+resource doesn't release
+
+Verify:
+soddy
+
+Change-Id: I2b978243109c8c4fbfe1040afe91ba06fa84a52e
+Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
+
+commit 79c5cd7590d6892a81faabfd5ea68d4e07855d15
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Apr 8 15:52:38 2024 +0800
+
+videopassthrough: CB2 fcc change mode cause to black screen [1/1]
+
+PD#SWPL-163196
+
+Problem:
+when normal mode change to cache mode, player not reset all
+flag to init.
+
+Solution:
+reset all flag to init state.
+
+Verify:
+258c
+
+Change-Id: I162fbfee22618d68818c157ddb45b0c084584de3
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 006726188d90eb5072c6d725867826530957b24b
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Sun Apr 28 13:35:14 2024 +0800
@@ -178,49 +221,9 @@ t5d
 Change-Id: Ia62094b49c7d8da9f3bbb9be548bda910e09e71d
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 12700b844eae9bd254ef245952098900811c6aad
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Apr 11 16:03:05 2024 +0800
-
-tsplayer: CB2 timeshift is playing without audio. [1/1]
-
-PD#SWPL-163592
-
-Problem:
-timeshift is playing without audio.
-
-Solution:
-use delaytime to init VideoStarting in timeshift.
-
-Verify:
-t5d
-
-Change-Id: I7a2a76a24207d16a606da0776d7e74a6aaa97bb5
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 75317e31d086e86aa81c364414be350a0ead2f93
-Author: shanshan.li <shanshan.li@amlogic.com>
-Date:   Mon Apr 1 13:50:58 2024 +0800
-
-videodec: CF1 notify err when receive UNSUPPORT event. [1/1]
-
-PD#SWPL-161945
-
-Problem:
-Black screen appeared when playing special streams
-
-Solution:
-notify err when receive event V4L2_EVENT_PRIVATE_EXT_REPORT_UNSUPPORT
-
-Verify:
-T3X
-
-Change-Id: I20302656d74bc3e9e078599531ecc3b2873d1ff5
-Signed-off-by: shanshan.li <shanshan.li@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-06-20-19
+Release time: 2024-05-08-14-03
 
 ========================================
 
