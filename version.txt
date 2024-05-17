@@ -1,10 +1,74 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.75-g75d8b21
+Version: V3.26.78-gb6ef3b8
 
 ========================================
 
 Git commit:
+commit b6ef3b800f3c320cb250eb1858d4a1da1db217fd
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue May 7 17:33:47 2024 +0800
+
+tsplayer: CB2 Fixed the playback combination control abnormal [1/2]
+
+PD#SWPL-165114
+
+Problem:
+pause-->switch audio track-->resume,
+audiohal probability cannot accept resume command.
+
+Solution:
+Playback control and start AV, change to serial operation.
+
+Verify:
+t3x
+
+Change-Id: I1cb032ce68a7e2af5c7284faa40e83a15fc70123
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 4b3016d1234dcdac4afb51b7b518a9e10776379a
+Author: yanfei.liu <yanfei.liu@amlogic.com>
+Date:   Sun Apr 7 14:28:03 2024 +0800
+
+tsplayer: CB2 Fix Videotunnel fd leak under FCC case [1/1]
+
+PD#OTT-51769
+
+Problem:
+fd leak caused by did not close fd after
+connect surface failed.
+
+Solution:
+Close the fd when connect surface failed.
+
+Verify:
+S905X4
+
+Change-Id: I64ee2c311146fd9610eac1d1dd4bc59f48c7403c
+Signed-off-by: yanfei.liu <yanfei.liu@amlogic.com>
+
+commit 1461b9916e5afdfdfbf198509104b5c1d62d5fab
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Apr 23 02:40:13 2024 +0000
+
+tsplayer: CB2 fixed stop video decoding level [1/1]
+
+PD#TV-115833
+PD#TV-120781
+
+Problem:
+stop video decoding level error,cause stream flow
+abnormal
+
+Solution:
+fixed stop video decoding level
+
+Verify:
+t5d
+
+Change-Id: Iad6ce20b357e27f4a5bf0d5485362182ea93ead6
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit 75d8b21f6d1477e54c451810fac588e047ceaba1
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Thu May 9 11:17:57 2024 +0800
@@ -158,72 +222,9 @@ Franklin
 Change-Id: I4ef73168c8e31c1024a33de185fe01fb6ae33601
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 815d26ce28c2a2914f3b064dd202f68bcd40b996
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Apr 17 16:29:43 2024 +0800
-
-tsplayer: CB2 can't pop up "Scramble" for scramble service [1/1]
-
-PD#SWPL-165664
-
-Problem:
-it can't pop up "Scramble" for scramble service in T5D.
-
-Solution:
-it should post kWhatUpdateStatus to get Scrambling event in T5D
-with nontunnelMode.
-
-Verify:
-T5D
-
-Change-Id: I6902af903dd9fff6696b2d4ec9168611adac2202
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 39cbb69d723521778c5d23438d27481e2aded9f4
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Apr 2 14:46:52 2024 +0800
-
-tsplayer: CB2 fix video min delayTime for 8k video [1/1]
-
-PD#IPTV-27597
-
-Problem:
-it will be not smoothly to play 8k video for a long time.
-
-Solution:
-fix video min delayTime for 8k video.
-
-Verify:
-s5
-
-Change-Id: I0cda5e78bac928f5171fb95816a32171027c485f
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 2ccf93bce081596b3e5c6d2b09d340daf5c3742a
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Fri Mar 29 19:46:02 2024 +0800
-
-videodec: CF1 Optimized native heap for low ram devices. [1/1]
-
-PD#SWPL-160258
-
-Problem:
-Native heap for low ram devices has a fixed 2MB heap to keep ES
-data for vdec headers.
-
-Solution:
-Changes to 512K by default, and adaptively changed. Normally for
-a vp9 1080p@60fps playback, it's below 512K.
-
-Verify:
-TXHD2
-
-Change-Id: Ibb8aa2e43c7afe0e43cd8cec264b13a58832354c
-Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-17-10-53
+Release time: 2024-05-17-21-39
 
 ========================================
 
