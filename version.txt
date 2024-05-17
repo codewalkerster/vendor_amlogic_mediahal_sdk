@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.74-g32c04fa
+Version: V3.26.75-g75d8b21
 
 ========================================
 
 Git commit:
+commit 75d8b21f6d1477e54c451810fac588e047ceaba1
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu May 9 11:17:57 2024 +0800
+
+tsplayer: CB2 only audio + scramble service can't display scramble [1/1]
+
+PD#SWPL-167548
+PD#SWPL-168785
+
+Problem:
+only audio + scramble service can't display scramble flag.
+
+Solution:
+fix Scrambling message to callback for only audio.
+
+Verify:
+T5D
+
+Change-Id: I822fc6f4626553b44347eaa964409719a08499a3
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 32c04fafe801938125c0821667dc8239f7485007
 Author: shipeng.sun <shipeng.sun@amlogic.com>
 Date:   Mon May 6 09:24:39 2024 +0800
@@ -200,30 +221,9 @@ TXHD2
 Change-Id: Ibb8aa2e43c7afe0e43cd8cec264b13a58832354c
 Signed-off-by: peng.wu <peng.wu@amlogic.com>
 
-commit 9bdc0b7980c7821cbe3bcecafc692b83a1220c15
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Apr 15 10:59:02 2024 +0800
-
-tsplayer: CB2 only audio can't play in timeshift. [1/1]
-
-PD#SWPL-165359
-
-Problem:
-only audio can't play in timeshift and crash.
-
-Solution:
-fix crash for mRender == NULL, if vpid==0x1fff, no pause
-nontunnel.
-
-Verify:
-t5d
-
-Change-Id: Ia62094b49c7d8da9f3bbb9be548bda910e09e71d
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-08-14-03
+Release time: 2024-05-17-10-53
 
 ========================================
 
