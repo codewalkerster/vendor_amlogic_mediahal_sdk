@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.78-gb6ef3b8
+Version: V3.26.79-g763dbb7
 
 ========================================
 
 Git commit:
+commit 763dbb7eda8b0ae6f7bff7da79ff5dbb00a09c33
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Mar 26 16:01:32 2024 +0800
+
+mediahal: CF2 mediahal release V3.26 [1/1]
+
+PD#SWPL-161648
+
+Problem:
+mediahal release
+
+Solution:
+release V3.26
+
+Verify:
+SC2
+
+Change-Id: I399e71a02f9ada1725f8beb84bd9d47406db8fd1
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit b6ef3b800f3c320cb250eb1858d4a1da1db217fd
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue May 7 17:33:47 2024 +0800
@@ -202,29 +222,9 @@ T5M
 Change-Id: Icf63d3400c7054be26fac5a1682f258ce758212b
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 561d72a4248fef9959eca08e0695c743f4bacd4a
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Apr 11 10:11:31 2024 +0800
-
-videodec: CB1 decoder width align error. [1/1]
-
-PD#SWPL-156888
-
-Problem:
-1 decoder width align error, used default 64bit.
-
-Solution:
-1. We need used align value get from decoder when alloc buf.
-
-Verify:
-Franklin
-
-Change-Id: I4ef73168c8e31c1024a33de185fe01fb6ae33601
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-17-21-39
+Release time: 2024-05-20-18-01
 
 ========================================
 
