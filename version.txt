@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.26.79-g763dbb7
+Version: V3.28.1-ge64a7dc
 
 ========================================
 
 Git commit:
+commit e64a7dcf3aa061dcd37ca16ad19dcb3752ec8fe6
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Apr 25 17:09:39 2024 +0800
+
+tsplayer: CB2 it still outputs ad after switching to normal track [1/1]
+
+PD#SWPL-166070
+
+Problem:
+it still outputs ad after switching to normal track
+from ad track.
+
+Solution:
+reset the audio value on the stopAudioDecoding function.
+
+Verify:
+T5D
+
+Change-Id: I3ff466e3e9c8344ff2b5c114553b588785d65523
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 2f47818d8d5730e6f26005bcffeea9dff56d2e89
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon May 20 17:39:13 2024 +0800
+
+mediahal: CF2 mediahal update version [1/1]
+
+PD#SWPL-161648
+
+Problem:
+mediahal update version
+
+Solution:
+update V3.28
+
+Verify:
+SC2
+
+Change-Id: If8a0208fa28d11919546725d0766bd3e2b9c2374
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 763dbb7eda8b0ae6f7bff7da79ff5dbb00a09c33
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Tue Mar 26 16:01:32 2024 +0800
@@ -173,58 +214,9 @@ ohm
 Change-Id: I14c39cf3d894dcc307c1e1987f074f1fa15dd2e7
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 0d271327408168bef1e1d4299511b60a73f3ec55
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Apr 24 14:18:21 2024 +0800
-
-videodec: CB1 pts calculate error. [1/1]
-
-PD#SWPL-166063
-
-Problem:
-1 Not used duration got from decoder when play specific stream at
-unstable mode.
-2 app set duration value is 16683(app_duration) and decoder parsed
-duration value is 33364(decoder_duration), the value of
-abs(app_duration-decoder_duration) < app_duration >> 1;
-
-Solution:
-1. we need compared abs(app_duration-decoder_duration) with
-max(app_duration,decoder_duration)>>1 value, if the
-abs(app_duration-decoder_duration) value. is less the value
-max(app_duration,decoder_duration)>>1, we used the duratuion from
-decoder.
-
-Verify:
-ohm
-
-Change-Id: I58e00f7c308ed373a76ede7d07a16aa14f95bba2
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit e20876a93fbaf6925cfdf9a295878ab3ee23992e
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Apr 17 21:39:40 2024 +0800
-
-hwdumx: CB2 Switch audiotrack too long. [1/1]
-
-PD#SWPL-158801
-
-Problem:
-StreamCoutrol Lib not deal with audiotrack change case.
-
-Solution:
-If audiotrack switch, not inject too much data,inject
-as videoonly case.
-
-Verify:
-T5M
-
-Change-Id: Icf63d3400c7054be26fac5a1682f258ce758212b
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-20-18-01
+Release time: 2024-05-22-17-45
 
 ========================================
 
