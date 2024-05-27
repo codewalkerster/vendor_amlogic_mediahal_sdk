@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.1-ge64a7dc
+Version: V3.28.2-g26b7442
 
 ========================================
 
 Git commit:
+commit 26b7442f9eab68cf8d545fb63251279bb0c22201
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Apr 29 12:52:12 2024 +0800
+
+tunnelrender: CF1 tunnelrenderer add concurrent playback debug support [1/2]
+
+PD#SWPL-167412
+
+Problem:
+tunnelrenderer add concurrent playback debug support
+
+Solution:
+tunnelrenderer add concurrent playback debug support
+
+Verify:
+OHM
+
+Change-Id: Ia38051d29a981af2f604a790566c32422a49314b
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit e64a7dcf3aa061dcd37ca16ad19dcb3752ec8fe6
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Thu Apr 25 17:09:39 2024 +0800
@@ -194,29 +214,9 @@ Verify:
 Change-Id: I162fbfee22618d68818c157ddb45b0c084584de3
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 006726188d90eb5072c6d725867826530957b24b
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Sun Apr 28 13:35:14 2024 +0800
-
-videodec: CB2 it can't show log after setting log property [1/1]
-
-PD#SWPL-167493
-
-Problem:
-it can't show log after setting log property.
-
-Solution:
-fix debugconfig to add property.
-
-Verify:
-ohm
-
-Change-Id: I14c39cf3d894dcc307c1e1987f074f1fa15dd2e7
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-22-17-45
+Release time: 2024-05-27-15-44
 
 ========================================
 

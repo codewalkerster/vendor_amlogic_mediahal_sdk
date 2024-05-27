@@ -10,6 +10,7 @@
 #define VideoTunnelRenderer_BASE_H_
 
 #include <stdint.h>
+#include "AmlMessageBase.h"
 
 typedef int (*callbackFunc)(void*obj, void* args);
 
@@ -58,6 +59,11 @@ struct renderParams
     char reserved[64];
 };
 
+struct playerInfo {
+    int32_t instID;
+    int32_t decoderID;
+};
+
 class VideoTunnelRendererBase
 {
 
@@ -90,8 +96,10 @@ public:
     virtual void setDisplayFrameFlag(int frame, bool value);
     virtual void setRenderParams(int32_t type, renderParams* params);
     virtual void setWorkMode(uint32_t workmode);
+    virtual bool postAndReplyMsg(AmlMessageBase *msg);
 };
 
 extern "C" VideoTunnelRendererBase* VideoTunnelRenderer_create();
+extern "C" AmlMessageBase* VideoTunnelRenderer_getAmlMessage();
 
 #endif
