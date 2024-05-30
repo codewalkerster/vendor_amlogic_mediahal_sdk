@@ -1,10 +1,114 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.2-g26b7442
+Version: V3.28.7-g6828e69
 
 ========================================
 
 Git commit:
+commit 6828e69456d002ef9ec3984818aeefe7d8c7d0ad
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri May 24 11:18:46 2024 +0800
+
+videodec: CB2 cannot dump es issue [1/1]
+
+PD#SWPL-170857
+
+Problem:
+cannot dump es data
+
+Solution:
+dump es file error removed, recovery
+
+Verify:
+OHM
+
+Change-Id: I57514392ab8d804be1f54a1102c40034fd712ef7
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 3fd0f7db6f5651307d0e9b4f28616c9a021ccd89
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri May 17 03:55:23 2024 +0000
+
+tsplayer: CB2 play not smoothly on bootplayer mode. [1/1]
+
+PD#TV-121555
+
+Problem:
+1.video cache calculate error.
+2.curapts calculate error.
+
+Solution:
+1.fixed video cache calculate.
+2.calculate curapts based on sampling rate.
+
+Verify:
+t5d
+
+Change-Id: I12333ee2f8747ba39036b2697a10ddd236a2cf17
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 4b281ec1c755d0a9bc3ca95854159049a7e934f4
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed May 29 19:23:27 2024 +0800
+
+tunnelrender: CB0 fix non-video stream crash [1/1]
+
+PD#SWPL-171409
+
+Problem:
+not check mediasync pointer NULL
+
+Solution:
+add mediasync pointer null protect
+
+Verify:
+OHM
+
+Change-Id: Icd7efa49a23ca546cd20b27a960c5171d26e5c7d
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 9beb95952607fe592698bda100863e13d1664f29
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu May 16 16:41:01 2024 +0800
+
+mediasync: CB2 video will display flickering picture in 2x speed [1/1]
+
+PD#IPTV-28296
+
+Problem:
+video will display flickering picture in 2x speed.
+
+Solution:
+fix mediasync to calculate realtimePts.
+
+Verify:
+s5
+
+Change-Id: Iee5015b705963280162c3e3a061eaaa55c964376
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit d73dc7f2ff0dd35f70e23c96486424584af72610
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Thu May 23 14:26:46 2024 +0800
+
+mediaproxy: CF1 Report VendorExt error. [1/1]
+
+PD#SWPL-166505
+
+Problem:
+Xiaomi AOSP requires errorcode report.
+
+Solution:
+VDEC ---> MediaProxy ---> MediaHAL ---> OMX2 ---> AOSP
+DI   --->|
+MEME --->|
+
+Verify:
+T963D4
+
+Change-Id: I4e7ac7f765f0c1e8db0bccd301446aa3b7eb51fb
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
 commit 26b7442f9eab68cf8d545fb63251279bb0c22201
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Mon Apr 29 12:52:12 2024 +0800
@@ -107,116 +211,9 @@ t3x
 Change-Id: I1cb032ce68a7e2af5c7284faa40e83a15fc70123
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 4b3016d1234dcdac4afb51b7b518a9e10776379a
-Author: yanfei.liu <yanfei.liu@amlogic.com>
-Date:   Sun Apr 7 14:28:03 2024 +0800
-
-tsplayer: CB2 Fix Videotunnel fd leak under FCC case [1/1]
-
-PD#OTT-51769
-
-Problem:
-fd leak caused by did not close fd after
-connect surface failed.
-
-Solution:
-Close the fd when connect surface failed.
-
-Verify:
-S905X4
-
-Change-Id: I64ee2c311146fd9610eac1d1dd4bc59f48c7403c
-Signed-off-by: yanfei.liu <yanfei.liu@amlogic.com>
-
-commit 1461b9916e5afdfdfbf198509104b5c1d62d5fab
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Apr 23 02:40:13 2024 +0000
-
-tsplayer: CB2 fixed stop video decoding level [1/1]
-
-PD#TV-115833
-PD#TV-120781
-
-Problem:
-stop video decoding level error,cause stream flow
-abnormal
-
-Solution:
-fixed stop video decoding level
-
-Verify:
-t5d
-
-Change-Id: Iad6ce20b357e27f4a5bf0d5485362182ea93ead6
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 75d8b21f6d1477e54c451810fac588e047ceaba1
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu May 9 11:17:57 2024 +0800
-
-tsplayer: CB2 only audio + scramble service can't display scramble [1/1]
-
-PD#SWPL-167548
-PD#SWPL-168785
-
-Problem:
-only audio + scramble service can't display scramble flag.
-
-Solution:
-fix Scrambling message to callback for only audio.
-
-Verify:
-T5D
-
-Change-Id: I822fc6f4626553b44347eaa964409719a08499a3
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 32c04fafe801938125c0821667dc8239f7485007
-Author: shipeng.sun <shipeng.sun@amlogic.com>
-Date:   Mon May 6 09:24:39 2024 +0800
-
-videodec: CB1 End ResetTask operation when vda in error state [1/1]
-
-PD#SWPL-167397
-
-Problem:
-Codec2 component reset call block when vda in error state lead
-component resource doesn't release
-
-Solution:
-End ResetTask operation when vda in error state prevent vda component
-resource doesn't release
-
-Verify:
-soddy
-
-Change-Id: I2b978243109c8c4fbfe1040afe91ba06fa84a52e
-Signed-off-by: shipeng.sun <shipeng.sun@amlogic.com>
-
-commit 79c5cd7590d6892a81faabfd5ea68d4e07855d15
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Apr 8 15:52:38 2024 +0800
-
-videopassthrough: CB2 fcc change mode cause to black screen [1/1]
-
-PD#SWPL-163196
-
-Problem:
-when normal mode change to cache mode, player not reset all
-flag to init.
-
-Solution:
-reset all flag to init state.
-
-Verify:
-258c
-
-Change-Id: I162fbfee22618d68818c157ddb45b0c084584de3
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-27-15-44
+Release time: 2024-05-30-14-55
 
 ========================================
 
