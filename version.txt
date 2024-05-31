@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.7-g6828e69
+Version: V3.28.8-ga5362f9
 
 ========================================
 
 Git commit:
+commit a5362f9408217a9fffa7b6f81f4e76809188a6f6
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu May 30 18:21:00 2024 +0800
+
+videodec: CB1 Video config info not set to decoder at kernel6.6. [1/1]
+
+PD#SWPL-171183
+
+Problem:
+1 Video config info not set to decoder at kernel6.6,mediahal used
+use_ext_config to config decoder when kernel version is 5.15
+
+Solution:
+1.Used  use_ext_config to config decoder when kernel major version > 5
+
+Verify:
+ohm
+
+Change-Id: Ib0b542a2414217040e52cb0288b6ce9138874739
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 6828e69456d002ef9ec3984818aeefe7d8c7d0ad
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri May 24 11:18:46 2024 +0800
@@ -190,30 +211,9 @@ SC2
 Change-Id: I399e71a02f9ada1725f8beb84bd9d47406db8fd1
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit b6ef3b800f3c320cb250eb1858d4a1da1db217fd
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue May 7 17:33:47 2024 +0800
-
-tsplayer: CB2 Fixed the playback combination control abnormal [1/2]
-
-PD#SWPL-165114
-
-Problem:
-pause-->switch audio track-->resume,
-audiohal probability cannot accept resume command.
-
-Solution:
-Playback control and start AV, change to serial operation.
-
-Verify:
-t3x
-
-Change-Id: I1cb032ce68a7e2af5c7284faa40e83a15fc70123
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-30-14-55
+Release time: 2024-05-31-09-36
 
 ========================================
 
