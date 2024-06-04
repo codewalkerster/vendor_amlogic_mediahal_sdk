@@ -8,7 +8,7 @@ import (
 )
 
 func systemlibDefaults(ctx android.LoadHookContext) {
-    sdkVersion := ctx.DeviceConfig().PlatformVndkVersion()
+    sdkVersion := ctx.Config().PlatformSdkVersion().String()
     sdkVersionInt,err := strconv.Atoi(sdkVersion)
     if err != nil {
         //fmt.Printf("---------------------------->%v fail to convert", sdkVersionInt)
@@ -18,7 +18,7 @@ func systemlibDefaults(ctx android.LoadHookContext) {
     if sdkVersionInt >= 30 {
         type props struct {
             Shared_libs []string
-			Include_dirs []string
+            Include_dirs []string
         }
         p := &props{}
 
@@ -27,15 +27,15 @@ func systemlibDefaults(ctx android.LoadHookContext) {
         p.Shared_libs = sharedlib
 
         var includePath []string
-		includePath = append(includePath,"vendor/amlogic/common/frameworks/services/systemcontrol","vendor/amlogic/common/frameworks/services/systemcontrol/PQ/include","hardware/amlogic/gralloc")
-		p.Include_dirs = includePath
+        includePath = append(includePath,"vendor/amlogic/common/frameworks/services/systemcontrol","vendor/amlogic/common/frameworks/services/systemcontrol/PQ/include","hardware/amlogic/gralloc")
+        p.Include_dirs = includePath
 
         ctx.AppendProperties(p)
     }
     if sdkVersionInt == 28 {
         type props struct {
             Shared_libs []string
-			Include_dirs []string
+            Include_dirs []string
         }
         p := &props{}
 

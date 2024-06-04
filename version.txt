@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.8-ga5362f9
+Version: V3.28.9-g2f3588d
 
 ========================================
 
 Git commit:
+commit 2f3588da8a1c0931ebde3a59fd5185530601919c
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Jun 3 17:26:55 2024 +0800
+
+mediahal: CF2 using PlatformSdkVersion to compile code [1/1]
+
+PD#SWPL-166855
+
+Problem:
+using PlatformSdkVersion to compile code instead of
+PlatformVndkVersion
+
+Solution:
+fix the .go file using PlatformSdkVersion.
+
+Verify:
+ohm
+
+Change-Id: I6cb8354bbc7c38fd1b64d2126377f8eef0b69170
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit a5362f9408217a9fffa7b6f81f4e76809188a6f6
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Thu May 30 18:21:00 2024 +0800
@@ -191,29 +212,9 @@ SC2
 Change-Id: If8a0208fa28d11919546725d0766bd3e2b9c2374
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 763dbb7eda8b0ae6f7bff7da79ff5dbb00a09c33
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Mar 26 16:01:32 2024 +0800
-
-mediahal: CF2 mediahal release V3.26 [1/1]
-
-PD#SWPL-161648
-
-Problem:
-mediahal release
-
-Solution:
-release V3.26
-
-Verify:
-SC2
-
-Change-Id: I399e71a02f9ada1725f8beb84bd9d47406db8fd1
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-05-31-09-36
+Release time: 2024-06-04-16-19
 
 ========================================
 
