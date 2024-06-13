@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.9-g2f3588d
+Version: V3.28.11-gcc0e5d8
 
 ========================================
 
 Git commit:
+commit cc0e5d838eb2a32e6ed4263f939cd5adbac65e86
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jun 5 16:29:16 2024 +0800
+
+mediahal: CB2 no use sdkversion in mediahalvercheck_u.go.in [1/1]
+
+PD#SWPL-172161
+
+Problem:
+no use sdkversion in mediahalvercheck_u.go.in for androidU
+
+Solution:
+remove the code of sdkversion in mediahalvercheck_u.go.in
+
+Verify:
+ohm
+
+Change-Id: I7b4457514cc7b3b9eeeb5a09bfe5b5876dfceb2a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 6f0b04194ab82af8c239a98101251fb83e1b8ec3
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Thu May 23 14:27:31 2024 +0800
+
+resman: CB2 define _attribute_((destructor) for resman_stop_thread [1/1]
+
+PD#SWPL-165732
+
+Problem:
+multi resman_start_thread create when multi dlopen libmediahal_resman
+
+Solution:
+define _attribute__((destructor) for resman_stop_thread
+then resman_stop_thread automatically called when exit
+
+Verify:
+ohm
+
+Change-Id: Ib9e144e3cf87a9bb5301c3a37cb55729d7bfbb0e
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit 2f3588da8a1c0931ebde3a59fd5185530601919c
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Mon Jun 3 17:26:55 2024 +0800
@@ -171,50 +212,9 @@ OHM
 Change-Id: Ia38051d29a981af2f604a790566c32422a49314b
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit e64a7dcf3aa061dcd37ca16ad19dcb3752ec8fe6
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Apr 25 17:09:39 2024 +0800
-
-tsplayer: CB2 it still outputs ad after switching to normal track [1/1]
-
-PD#SWPL-166070
-
-Problem:
-it still outputs ad after switching to normal track
-from ad track.
-
-Solution:
-reset the audio value on the stopAudioDecoding function.
-
-Verify:
-T5D
-
-Change-Id: I3ff466e3e9c8344ff2b5c114553b588785d65523
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 2f47818d8d5730e6f26005bcffeea9dff56d2e89
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon May 20 17:39:13 2024 +0800
-
-mediahal: CF2 mediahal update version [1/1]
-
-PD#SWPL-161648
-
-Problem:
-mediahal update version
-
-Solution:
-update V3.28
-
-Verify:
-SC2
-
-Change-Id: If8a0208fa28d11919546725d0766bd3e2b9c2374
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-06-04-16-19
+Release time: 2024-06-13-14-01
 
 ========================================
 
