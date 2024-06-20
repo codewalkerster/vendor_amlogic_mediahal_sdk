@@ -1,10 +1,56 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.11-gcc0e5d8
+Version: V3.28.13-g9839621
 
 ========================================
 
 Git commit:
+commit 9839621c613b08a5854b2b7e6a3e152c6f7d10a3
+Author: liang.hou <liang.hou@amlogic.com>
+Date:   Fri Jun 7 14:44:34 2024 +0800
+
+videodec: CB2 avi file played stuck [2/2]
+
+PD#OTT-59741
+
+Problem:
+The PTS of AVI files does not increase continuously and uniformly. We
+cannot simply use the FLAG of UNSTABLE_PTS to incrementally calculate
+the PTS.
+Because most videos in AVI contain DiscardFlag, this will cause some
+frames to need to display multiple FrameDurations.
+
+Solution:
+Set the new Flag to codec2 and use the new logic to calculate the PTS of
+the AVI video.
+
+Verify:
+Android U
+
+Change-Id: If4c67a6474854f86ca0aacbe24a0ba7d804d0a20
+Signed-off-by: liang.hou <liang.hou@amlogic.com>
+
+commit 62d2482e1fdc738a9e72d71d51fc9bb4e1c3dec6
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Tue Jun 18 18:53:52 2024 +0800
+
+videodec: CB1 fixed input buffer error [1/1]
+
+PD#SH-20099
+PD#SWPL-174426
+
+Problem:
+Input buffer pending when seek many times
+
+Solution:
+Clear input pending flag when stop input
+
+Verify:
+ohm
+
+Change-Id: I607d4eeaaff33b5075b291e2c9fe7ba71991f030
+Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+
 commit cc0e5d838eb2a32e6ed4263f939cd5adbac65e86
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Wed Jun 5 16:29:16 2024 +0800
@@ -170,51 +216,9 @@ s5
 Change-Id: Iee5015b705963280162c3e3a061eaaa55c964376
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit d73dc7f2ff0dd35f70e23c96486424584af72610
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Thu May 23 14:26:46 2024 +0800
-
-mediaproxy: CF1 Report VendorExt error. [1/1]
-
-PD#SWPL-166505
-
-Problem:
-Xiaomi AOSP requires errorcode report.
-
-Solution:
-VDEC ---> MediaProxy ---> MediaHAL ---> OMX2 ---> AOSP
-DI   --->|
-MEME --->|
-
-Verify:
-T963D4
-
-Change-Id: I4e7ac7f765f0c1e8db0bccd301446aa3b7eb51fb
-Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
-commit 26b7442f9eab68cf8d545fb63251279bb0c22201
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Apr 29 12:52:12 2024 +0800
-
-tunnelrender: CF1 tunnelrenderer add concurrent playback debug support [1/2]
-
-PD#SWPL-167412
-
-Problem:
-tunnelrenderer add concurrent playback debug support
-
-Solution:
-tunnelrenderer add concurrent playback debug support
-
-Verify:
-OHM
-
-Change-Id: Ia38051d29a981af2f604a790566c32422a49314b
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2024-06-13-14-01
+Release time: 2024-06-20-14-33
 
 ========================================
 
