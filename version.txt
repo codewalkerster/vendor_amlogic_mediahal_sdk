@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.13-g9839621
+Version: V3.28.14-gc9518c0
 
 ========================================
 
 Git commit:
+commit c9518c025bfbe2bfa157e3e29ee6408a2b848490
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Mon Apr 8 05:32:12 2024 +0000
+
+videodec: CF2 codec2 support h266 decoder. [3/3]
+
+PD#SWPL-163981
+
+Problem:
+codec2 support h266 decoder.
+
+Solution:
+1. add support h266 profile.
+
+Verify:
+raman
+
+Change-Id: I747991c3938e7ff2875c3e9f260cd4631dec3bce
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit 9839621c613b08a5854b2b7e6a3e152c6f7d10a3
 Author: liang.hou <liang.hou@amlogic.com>
 Date:   Fri Jun 7 14:44:34 2024 +0800
@@ -196,29 +216,9 @@ OHM
 Change-Id: Icd7efa49a23ca546cd20b27a960c5171d26e5c7d
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 9beb95952607fe592698bda100863e13d1664f29
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu May 16 16:41:01 2024 +0800
-
-mediasync: CB2 video will display flickering picture in 2x speed [1/1]
-
-PD#IPTV-28296
-
-Problem:
-video will display flickering picture in 2x speed.
-
-Solution:
-fix mediasync to calculate realtimePts.
-
-Verify:
-s5
-
-Change-Id: Iee5015b705963280162c3e3a061eaaa55c964376
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-06-20-14-33
+Release time: 2024-06-21-10-06
 
 ========================================
 

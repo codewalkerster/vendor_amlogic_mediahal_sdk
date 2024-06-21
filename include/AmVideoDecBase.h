@@ -45,6 +45,7 @@ enum class InputCodec {
   AVS2,
   AVS,
   VC1,
+  H266,
   UNKNOWN = 0xff,
 };
 
