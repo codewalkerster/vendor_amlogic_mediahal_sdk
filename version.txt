@@ -1,10 +1,85 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.14-gc9518c0
+Version: V3.28.17-g33fbc67
 
 ========================================
 
 Git commit:
+commit 33fbc677ceafc9ea048ce3207c2cd75acf16520d
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Jun 24 16:10:18 2024 +0800
+
+tsplayer: CB2 fix saving ts file in T5D [1/1]
+
+PD#SWPL-174840
+
+Problem:
+T5D can't save ts file in ts_memory mode.
+
+Solution:
+fix saving ts file in ts_memory mode
+
+Verify:
+T5d
+
+Change-Id: Ib29b42d70511fa14290ee56f8773da4848f038b9
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 6069afc489bdee9ece72fea155c8f182a2876ddd
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Jun 12 16:46:30 2024 +0800
+
+videodec: CF1 add report framerate to app api. [2/2]
+
+PD#TV-123409
+
+Problem:
+1 Not support report the framerate of got from decoder to app.
+
+Solution:
+1. add notify framerate to codec2.
+
+
+Verify:
+ohm
+
+Change-Id: I943a091f88fcbc9c717f8bdeb3b66b2e3421686e
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 8030d66daa13c0f226633a1ace7b914e74308962
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Thu Jun 20 15:27:18 2024 +0800
+
+videodec: CB1 codec mm check error at low mem devices. [1/1]
+
+PD#SWPL-173794
+
+Problem:
+1 Low mem device only support play one stream, so codec mm will
+check error when play tow stream at same time.
+
+cts test case:
+android.mediastress.cts.HEVCR1080pAacRepeatedPlayerTest#testPlay00
+this case used the same surface and play the same stream 20 times,
+the surface is not destroy, so codec mm not release before start
+next play,so the codec mm will check fail when we start next play,
+the codec mm will repeat used when next play.
+
+android.media.misc.cts.ResourceManagerTest#
+testReclaimResourceSecureVsNonsecureHighResolution
+this case not to send es to codec,only test creat codec2 and can start,
+this case not fatch outbuf.
+
+Solution:
+1.if device is low mem and the width of stream is 1920, we used small
+mem size to check.
+
+Verify:
+redi
+
+Change-Id: I3a5a04955902f63ab1f04d3d6128ade080b1963d
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit c9518c025bfbe2bfa157e3e29ee6408a2b848490
 Author: yang.liu1 <yang.liu1@amlogic.com>
 Date:   Mon Apr 8 05:32:12 2024 +0000
@@ -154,71 +229,9 @@ ohm
 Change-Id: Ib0b542a2414217040e52cb0288b6ce9138874739
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 6828e69456d002ef9ec3984818aeefe7d8c7d0ad
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri May 24 11:18:46 2024 +0800
-
-videodec: CB2 cannot dump es issue [1/1]
-
-PD#SWPL-170857
-
-Problem:
-cannot dump es data
-
-Solution:
-dump es file error removed, recovery
-
-Verify:
-OHM
-
-Change-Id: I57514392ab8d804be1f54a1102c40034fd712ef7
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 3fd0f7db6f5651307d0e9b4f28616c9a021ccd89
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri May 17 03:55:23 2024 +0000
-
-tsplayer: CB2 play not smoothly on bootplayer mode. [1/1]
-
-PD#TV-121555
-
-Problem:
-1.video cache calculate error.
-2.curapts calculate error.
-
-Solution:
-1.fixed video cache calculate.
-2.calculate curapts based on sampling rate.
-
-Verify:
-t5d
-
-Change-Id: I12333ee2f8747ba39036b2697a10ddd236a2cf17
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 4b281ec1c755d0a9bc3ca95854159049a7e934f4
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed May 29 19:23:27 2024 +0800
-
-tunnelrender: CB0 fix non-video stream crash [1/1]
-
-PD#SWPL-171409
-
-Problem:
-not check mediasync pointer NULL
-
-Solution:
-add mediasync pointer null protect
-
-Verify:
-OHM
-
-Change-Id: Icd7efa49a23ca546cd20b27a960c5171d26e5c7d
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-06-21-10-06
+Release time: 2024-06-24-20-11
 
 ========================================
 
