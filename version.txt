@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.17-g33fbc67
+Version: V3.28.19-gbac3dae
 
 ========================================
 
 Git commit:
+commit bac3daef3707abb1261b7038fc204b97018db73c
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Jun 13 19:57:58 2024 +0800
+
+mediasync: CB2 no sound after switching audio channel [1/1]
+
+PD#SWPL-171289
+
+Problem:
+no sound after switching audio channel.
+The audio data is dropped, but cache size is wrong.
+
+Solution:
+update the cur_apts to driver for calculating cache size.
+
+Verify:
+t5d
+
+Change-Id: I98f95b27bc5417772ccd2dcc9fb85da40359f9e8
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 7a22fa4d33f8ae94c158eb85537dfcf9dd5c45f6
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Wed Jun 19 22:12:27 2024 +0800
+
+videotunnel: CF1 Support tunnel freerun mode for FF/FR of airplay. [3/4]
+
+PD#SWPL-174383
+
+Problem:
+No way to enable VMASTER mode for mm tunnel playback.
+
+Solution:
+Added setFreeRun to enable VMASTER mode.
+
+Verify:
+ohm
+
+Change-Id: I0cb16104da289ec926e8515516d3a5f9d0a43dee
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
 commit 33fbc677ceafc9ea048ce3207c2cd75acf16520d
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Mon Jun 24 16:10:18 2024 +0800
@@ -187,51 +228,9 @@ ohm
 Change-Id: Ib9e144e3cf87a9bb5301c3a37cb55729d7bfbb0e
 Signed-off-by: joy.rao <joy.rao@amlogic.com>
 
-commit 2f3588da8a1c0931ebde3a59fd5185530601919c
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Jun 3 17:26:55 2024 +0800
-
-mediahal: CF2 using PlatformSdkVersion to compile code [1/1]
-
-PD#SWPL-166855
-
-Problem:
-using PlatformSdkVersion to compile code instead of
-PlatformVndkVersion
-
-Solution:
-fix the .go file using PlatformSdkVersion.
-
-Verify:
-ohm
-
-Change-Id: I6cb8354bbc7c38fd1b64d2126377f8eef0b69170
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit a5362f9408217a9fffa7b6f81f4e76809188a6f6
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu May 30 18:21:00 2024 +0800
-
-videodec: CB1 Video config info not set to decoder at kernel6.6. [1/1]
-
-PD#SWPL-171183
-
-Problem:
-1 Video config info not set to decoder at kernel6.6,mediahal used
-use_ext_config to config decoder when kernel version is 5.15
-
-Solution:
-1.Used  use_ext_config to config decoder when kernel major version > 5
-
-Verify:
-ohm
-
-Change-Id: Ib0b542a2414217040e52cb0288b6ce9138874739
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-06-24-20-11
+Release time: 2024-06-28-20-31
 
 ========================================
 
