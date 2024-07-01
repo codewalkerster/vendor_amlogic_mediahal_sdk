@@ -137,7 +137,7 @@ bool CreateVideoTunnelId(int* id) {
             //printf("mSurface == NULL in line 79");
             return false;
         }
-#if (ANDROID_PLATFORM_SDK_VERSION > 30)
+#if (ANDROID_PLATFORM_SDK_VERSION >= 30)
         mProducerListener = new StubProducerListener;
 #else
         mProducerListener = new DummyProducerListener;
@@ -204,7 +204,7 @@ void video_callback(void *user_data, am_tsplayer_event *event)
     switch (event->type) {
         case AM_TSPLAYER_EVENT_TYPE_VIDEO_CHANGED:
         {
-            ALOGD("[evt] AM_TSPLAYER_EVENT_TYPE_VIDEO_CHANGED: %d x %d @%d [%d]\n",
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_VIDEO_CHANGED: %d x %d @%d [%d]\n",
                 event->event.video_format.frame_width,
                 event->event.video_format.frame_height,
                 event->event.video_format.frame_rate,
@@ -213,7 +213,7 @@ void video_callback(void *user_data, am_tsplayer_event *event)
         }
         case AM_TSPLAYER_EVENT_TYPE_AUDIO_CHANGED:
         {
-            ALOGD("[evt] AM_TSPLAYER_EVENT_TYPE_AUDIO_CHANGED: ch=%u ch_mask=%u samplerate=%u\n",
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_AUDIO_CHANGED: ch=%u ch_mask=%u samplerate=%u\n",
                 event->event.audio_format.channels ,
                 event->event.audio_format.channel_mask,
                 event->event.audio_format.sample_rate);
@@ -221,7 +221,7 @@ void video_callback(void *user_data, am_tsplayer_event *event)
         }
         case AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD:
         {
-            ALOGD("[evt] AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD\n");
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_USERDATA_AFD\n");
             break;
         }
         case AM_TSPLAYER_EVENT_TYPE_USERDATA_CC:
@@ -237,17 +237,17 @@ void video_callback(void *user_data, am_tsplayer_event *event)
         }
         case AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME:
         {
-            ALOGD("[evt] AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME\n");
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_FIRST_FRAME\n");
             break;
         }
         case AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_VIDEO:
         {
-            ALOGD("[evt] AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_VIDEO\n");
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_VIDEO\n");
             break;
         }
         case AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO:
         {
-            ALOGD("[evt] AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO\n");
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_DECODE_FIRST_FRAME_AUDIO\n");
             break;
         }
         case AM_TSPLAYER_EVENT_TYPE_AV_SYNC_DONE:
@@ -306,7 +306,7 @@ void video_callback(void *user_data, am_tsplayer_event *event)
        }
         case AM_TSPLAYER_EVENT_TYPE_DATA_LOSS:
         {
-            ALOGD("[evt] AM_TSPLAYER_EVENT_TYPE_DATA_LOSS\n");
+            printf("[evt] AM_TSPLAYER_EVENT_TYPE_DATA_LOSS\n");
             break;
         }
         default:
@@ -643,19 +643,19 @@ int main(int argc, char **argv)
     {
         if (file.eof()) {
             if (emPlaybackType == TS_PLAYBACK_ENABLE) {
-                ALOGI("file read eof will playback soon \n");
+                printf("file read eof will playback soon \n");
                 file.clear();
                 file.seekg(0, file.beg);
             } else {
-                ALOGI("file read eof will stop playing soon \n");
+                printf("file read eof will stop playing soon \n");
                 break;
             }
         }
         if (!(readSize = file.read(buf, (int)kRwSize).gcount())) {
-            ALOGI("read fail:%zu continue\n",readSize);
+            printf("read fail:%zu continue\n",readSize);
             continue;
         }
-        ALOGI("read success:%zu \n",readSize);
+        printf("read success:%zu \n",readSize);
         ibuf.buf_size = (int)readSize;
         pos += (int)readSize;
 

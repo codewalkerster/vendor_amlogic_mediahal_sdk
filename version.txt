@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.19-gbac3dae
+Version: V3.28.21-g243eced
 
 ========================================
 
 Git commit:
+commit 243ecedd1577f6bafeb876cebf82277efd5d54fb
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Thu Jun 13 03:29:22 2024 +0000
+
+example: CB2 example add bootvideo demo. [1/1]
+
+PD#SWPL-165429
+
+Problem:
+example not have bootvideo demo.
+
+Solution:
+example add bootvideo demo.
+
+Verify:
+SC2
+
+Change-Id: Iadbe3a9fda63d53c16eb258cee6f65363187682a
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 1c0252636b53bead9131c44756a6a23226317ea9
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Jul 1 09:27:01 2024 +0800
+
+mediasync: CF1 tunnel support speed playback [1/1]
+
+PD#SWPL-169004
+
+Problem:
+tunnel need suport speed playback
+
+Solution:
+add tunnel speed playback
+
+Verify:
+OHM
+
+Change-Id: I2f945329128302090239286bbafa02bcb0448f39
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit bac3daef3707abb1261b7038fc204b97018db73c
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Thu Jun 13 19:57:58 2024 +0800
@@ -187,50 +227,9 @@ ohm
 Change-Id: I607d4eeaaff33b5075b291e2c9fe7ba71991f030
 Signed-off-by: Jian Wang <jian.wang@amlogic.com>
 
-commit cc0e5d838eb2a32e6ed4263f939cd5adbac65e86
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jun 5 16:29:16 2024 +0800
-
-mediahal: CB2 no use sdkversion in mediahalvercheck_u.go.in [1/1]
-
-PD#SWPL-172161
-
-Problem:
-no use sdkversion in mediahalvercheck_u.go.in for androidU
-
-Solution:
-remove the code of sdkversion in mediahalvercheck_u.go.in
-
-Verify:
-ohm
-
-Change-Id: I7b4457514cc7b3b9eeeb5a09bfe5b5876dfceb2a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 6f0b04194ab82af8c239a98101251fb83e1b8ec3
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Thu May 23 14:27:31 2024 +0800
-
-resman: CB2 define _attribute_((destructor) for resman_stop_thread [1/1]
-
-PD#SWPL-165732
-
-Problem:
-multi resman_start_thread create when multi dlopen libmediahal_resman
-
-Solution:
-define _attribute__((destructor) for resman_stop_thread
-then resman_stop_thread automatically called when exit
-
-Verify:
-ohm
-
-Change-Id: Ib9e144e3cf87a9bb5301c3a37cb55729d7bfbb0e
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
 ========================================
 
-Release time: 2024-06-28-20-31
+Release time: 2024-07-01-16-56
 
 ========================================
 
