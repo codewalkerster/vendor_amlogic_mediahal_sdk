@@ -1,0 +1,81 @@
+// *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+//     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+//     DEPENDING ON IT IN YOUR PROJECT. ***
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "vendor_amlogic_common_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    //   legacy_by_exception_only (by exception only)
+    default_applicable_licenses: ["vendor_amlogic_common_license"],
+}
+
+bootstrap_go_package {
+    name: "bootlib",
+    pkgPath: "android/soong/bootlib",
+    deps: [
+        "blueprint",
+        "soong",
+        "soong-android",
+        "soong-cc",
+        "soong-genrule",
+        "blueprint-bootstrap",
+        "soong-cc-config"
+    ],
+    srcs: [
+        "bootlib.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+bootlib_defaults {
+    name: "bootlib_defaults",
+}
+
+bootstrap_go_package {
+    name: "bootpversion",
+    pkgPath: "android/soong/bootpversion",
+    deps: [
+        "blueprint",
+        "soong",
+        "soong-android",
+        "soong-cc",
+        "soong-genrule",
+        "blueprint-bootstrap",
+        "soong-cc-config"
+    ],
+    srcs: [
+        "bootpversion.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+bootpversion_defaults {
+    name: "bootpversion_defaults",
+}
+
+cc_test {
+    name: "BootTsPlayerExampleSystem",
+    defaults: ["bootpversion_defaults","bootlib_defaults"],
+    enabled: false,
+    srcs: [
+        "BootTsPlayerExample.cpp",
+    ],
+    shared_libs: [
+        "libmediahal_tsplayer.system",
+        "libutils",
+        "libbase",
+        "libbinder",
+        "libcutils",
+        "libui",
+        "libgui"
+    ],
+    include_dirs: [
+        "vendor/amlogic/common/mediahal_sdk/include",
+    ],
+    cflags: [
+        "-DSYSTEMLIB",
+    ],
+}

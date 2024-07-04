@@ -1,10 +1,58 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.23-g53fb529
+Version: V3.28.25-ga8ed68e
 
 ========================================
 
 Git commit:
+commit a8ed68ec4416198437030b3dd15feee8e66ccb53
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Jul 1 10:59:47 2024 +0000
+
+example: CB2 bp file need default licenses. [1/1]
+
+PD#SWPL-165429
+
+Problem:
+bp file not default licenses.
+
+Solution:
+bp file add default licenses.
+
+Verify:
+SC2
+
+Change-Id: Iadbfcd05730e231efd21545ef410a7a014950f8f
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 4b4f6a7ed264857c6cff80ab2a927d176ddbf895
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Fri Jun 28 16:12:58 2024 +0800
+
+videodec: CB1 codec mm check error at low mem devices. [1/1]
+
+PD#SWPL-174328
+
+Problem:
+1 Low mem device only support play one stream, so codec mm will
+check error when use tow surface to play.
+
+com.google.android.wvts.WidevineSimultaneousPlaybackTests#
+testL3With1080P30fpsOnTwoSurfaces
+this case use tow surface to play stream, surface will be disconnect.
+when play end,but surface do not destroy, so codec mm not release
+before start next stream.
+
+Solution:
+1.if device is low mem and the width of stream is 1920, we used small
+mem size to check.
+
+Verify:
+redi
+
+Change-Id: I88f64d85a05460db09370a5ed4d233b89b5acc6b
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 53fb529b83def8ac067d59ae58048c1694874eb6
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Fri Jun 14 17:37:58 2024 +0800
@@ -167,63 +215,9 @@ ohm
 Change-Id: I943a091f88fcbc9c717f8bdeb3b66b2e3421686e
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 8030d66daa13c0f226633a1ace7b914e74308962
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Thu Jun 20 15:27:18 2024 +0800
-
-videodec: CB1 codec mm check error at low mem devices. [1/1]
-
-PD#SWPL-173794
-
-Problem:
-1 Low mem device only support play one stream, so codec mm will
-check error when play tow stream at same time.
-
-cts test case:
-android.mediastress.cts.HEVCR1080pAacRepeatedPlayerTest#testPlay00
-this case used the same surface and play the same stream 20 times,
-the surface is not destroy, so codec mm not release before start
-next play,so the codec mm will check fail when we start next play,
-the codec mm will repeat used when next play.
-
-android.media.misc.cts.ResourceManagerTest#
-testReclaimResourceSecureVsNonsecureHighResolution
-this case not to send es to codec,only test creat codec2 and can start,
-this case not fatch outbuf.
-
-Solution:
-1.if device is low mem and the width of stream is 1920, we used small
-mem size to check.
-
-Verify:
-redi
-
-Change-Id: I3a5a04955902f63ab1f04d3d6128ade080b1963d
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit c9518c025bfbe2bfa157e3e29ee6408a2b848490
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Mon Apr 8 05:32:12 2024 +0000
-
-videodec: CF2 codec2 support h266 decoder. [3/3]
-
-PD#SWPL-163981
-
-Problem:
-codec2 support h266 decoder.
-
-Solution:
-1. add support h266 profile.
-
-Verify:
-raman
-
-Change-Id: I747991c3938e7ff2875c3e9f260cd4631dec3bce
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-03-13-56
+Release time: 2024-07-04-14-50
 
 ========================================
 
