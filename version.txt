@@ -1,10 +1,56 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.25-ga8ed68e
+Version: V3.28.27-g9396254
 
 ========================================
 
 Git commit:
+commit 9396254d1793d4f5bdd4c8f89d153f5cb33ee811
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Mon Jun 24 13:17:11 2024 +0800
+
+videodec: CB1 Used Decoder report duration to adjust pts. [2/2]
+
+PD#SWPL-171885
+
+Problem:
+1 Used Decoder report duration to adjust pts.
+
+Solution:
+1. if app set duration, we used app set value to adjust pts.
+2. if app not set and get duration from decoder,we used decoder report value.
+3. if we no get duration, we used default duration(30fps) to adjust pts.
+4. if we no get duration, we will calculate duration by inpts and
+change default duration.
+
+Verify:
+ohm
+
+
+Change-Id: I7fe9934a54ea40ce24e7e3cb4e69ae5a596a5b3c
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit f40cac5802ddaf7b0e8002a8af1b6ca786040ccc
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Jul 2 15:59:33 2024 +0800
+
+videopassthrough: CB2 CC subtitle not right [1/1]
+
+PD#SWPL-152021
+
+Problem:
+CC server and videopassthrough plugin both need open userdata
+device.userdata device only support single instance.
+
+Solution:
+disable afd info support.
+
+Verify:
+T5M
+
+Change-Id: I711ba5957541ec49d613f414eed464cfc845b318
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit a8ed68ec4416198437030b3dd15feee8e66ccb53
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Mon Jul 1 10:59:47 2024 +0000
@@ -174,50 +220,9 @@ ohm
 Change-Id: I0cb16104da289ec926e8515516d3a5f9d0a43dee
 Signed-off-by: peng.wu <peng.wu@amlogic.com>
 
-commit 33fbc677ceafc9ea048ce3207c2cd75acf16520d
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Jun 24 16:10:18 2024 +0800
-
-tsplayer: CB2 fix saving ts file in T5D [1/1]
-
-PD#SWPL-174840
-
-Problem:
-T5D can't save ts file in ts_memory mode.
-
-Solution:
-fix saving ts file in ts_memory mode
-
-Verify:
-T5d
-
-Change-Id: Ib29b42d70511fa14290ee56f8773da4848f038b9
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 6069afc489bdee9ece72fea155c8f182a2876ddd
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Jun 12 16:46:30 2024 +0800
-
-videodec: CF1 add report framerate to app api. [2/2]
-
-PD#TV-123409
-
-Problem:
-1 Not support report the framerate of got from decoder to app.
-
-Solution:
-1. add notify framerate to codec2.
-
-
-Verify:
-ohm
-
-Change-Id: I943a091f88fcbc9c717f8bdeb3b66b2e3421686e
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-04-14-50
+Release time: 2024-07-11-15-26
 
 ========================================
 
