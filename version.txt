@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.27-g9396254
+Version: V3.28.28-g0c7e4eb
 
 ========================================
 
 Git commit:
+commit 0c7e4eb768dd7d601ac35de6ad8f3d14b66d8d46
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jul 3 13:15:10 2024 +0800
+
+videodec: CB2 switch channel every 5s, unmapped DMA-BUF leak. [1/1]
+
+PD#SWPL-174135
+
+Problem:
+switch channel every 5s, unmapped DMA-BUF leak.
+
+Solution:
+not creat buffer for only audio
+
+Verify:
+T5D
+
+Change-Id: If83f59630ee9695b05949c12bc8ec1f7622cfc9f
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 9396254d1793d4f5bdd4c8f89d153f5cb33ee811
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Mon Jun 24 13:17:11 2024 +0800
@@ -200,29 +220,9 @@ t5d
 Change-Id: I98f95b27bc5417772ccd2dcc9fb85da40359f9e8
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 7a22fa4d33f8ae94c158eb85537dfcf9dd5c45f6
-Author: peng.wu <peng.wu@amlogic.com>
-Date:   Wed Jun 19 22:12:27 2024 +0800
-
-videotunnel: CF1 Support tunnel freerun mode for FF/FR of airplay. [3/4]
-
-PD#SWPL-174383
-
-Problem:
-No way to enable VMASTER mode for mm tunnel playback.
-
-Solution:
-Added setFreeRun to enable VMASTER mode.
-
-Verify:
-ohm
-
-Change-Id: I0cb16104da289ec926e8515516d3a5f9d0a43dee
-Signed-off-by: peng.wu <peng.wu@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-11-15-26
+Release time: 2024-07-15-13-24
 
 ========================================
 
