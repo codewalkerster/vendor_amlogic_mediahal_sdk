@@ -717,7 +717,7 @@ static void usage(char **argv)
     printf("-t | --tstype          demod:0, memory:1[default]\n");
     printf("-y | --avsync          amaster:0[default], vmaster:1, pcrmaster:2, nosync:3\n");
     printf("-c | --vtrick          none:0[default], pause:1, pause next:2, Ionly:3\n");
-    printf("-v | --vcodec          unknown:0, mpeg1:1, mpeg2:2, h264:3[default], h265:4, vp9:5 avs:6 mpeg4:7, avs2:8, avs3:12\n");
+    printf("-v | --vcodec          unknown:0, mpeg1:1, mpeg2:2, h264:3[default], h265:4, vp9:5 avs:6 mpeg4:7, avs2:8, avs3:12, h266:14\n");
     printf("-a | --acodec          unknown:0, mp2:1, mp3:2, ac3:3, eac3:4, dts:5, aac:6[default], latm:7, pcm:8\n");
     printf("-V | --vpid            video pid,default:0x100\n");
     printf("-A | --apid            audio pid,default:0x101\n");

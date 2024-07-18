@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.32-gadc9c81
+Version: V3.28.33-g3344631
 
 ========================================
 
 Git commit:
+commit 33446312f87e216b19a3a443b8d995ad337d837e
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Jul 1 17:21:29 2024 +0800
+
+tsplayer: CF1 support h266 decoder [1/1]
+
+PD#SWPL-175670
+
+Problem:
+tsplayer supports h266 decoder
+
+Solution:
+tsplayer supports h266 decoder
+
+Verify:
+raman
+
+Change-Id: Iffd9efd56256deded47a2f9ccd01b17f8c86957a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit adc9c81f8891ed9c0645ec8fe781c7f347ea6168
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Jul 17 13:04:02 2024 +0800
@@ -208,29 +228,9 @@ redi
 Change-Id: I88f64d85a05460db09370a5ed4d233b89b5acc6b
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 53fb529b83def8ac067d59ae58048c1694874eb6
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Jun 14 17:37:58 2024 +0800
-
-videodec: CB2 Fixed PTS exceptions [1/1]
-
-PD#SWPL-156746
-
-Problem:
-The output of v4lvideo is abnormally offset.
-
-Solution:
-ptsserver finds that it is an exception offset and does not use it.
-
-Verify:
-T5M
-
-Change-Id: I8cce8dba7fef42764566cd9e0cb55f55cb79a0dd
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-18-10-02
+Release time: 2024-07-18-17-50
 
 ========================================
 
