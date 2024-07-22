@@ -1,10 +1,131 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.33-g3344631
+Version: V3.28.39-g25ca07d
 
 ========================================
 
 Git commit:
+commit 25ca07d715c800ad913c911166fd1923b2fe18fb
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Jul 19 17:37:28 2024 +0800
+
+mediasync: CB1 fix tunnel 1x drop issue [1/1]
+
+PD#SWPL-178360
+
+Problem:
+vsp code calculate realtime with float operation lead pts not accurate
+
+Solution:
+1x not do float operation when calculate realtime
+
+Verify:
+OHM
+
+Change-Id: I903021d31b6c7b0e4e22999f194a6b4f60017e7c
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 6ea139ad3c0a68b51d9e63d9640c16d46bc13ca5
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jul 10 14:16:03 2024 +0800
+
+videodec: CF2 add margininterlace to set decoder [1/1]
+
+PD#SWPL-171472
+
+Problem:
+add margininterlace to set decoder.
+
+Solution:
+add margininterlace to set decoder.
+
+Verify:
+ohm
+
+Change-Id: Ie26a2d1d841556bb2e04bfc37046491f0575bb1d
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 7376b25e86bb5bd8cb5fa04f8209431dcac85229
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Jul 4 20:26:44 2024 +0800
+
+TsPlayer: CF2 update tsplayer doc [1/1]
+
+PD#SWPL-175667
+
+Problem:
+update tsplayer doc in mediahal.
+
+Solution:
+update tsplayer doc in mediahal.
+
+Verify:
+T5M
+
+Change-Id: Ie2cb966ab5e89f1cb34568c68392becbed95bbfc
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit cf74ea68f5a5f6d01e5cf564c821be9c30547503
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Jun 27 14:01:50 2024 +0800
+
+hwdemux: CB2 special stream pvr blackscreen. [1/1]
+
+PD#TV-127263
+
+Problem:
+stream control block inject cause pts jump forward 2s.
+
+Solution:
+use mediasync to calculate cache.
+
+Verify:
+TC8000
+
+Change-Id: Ib73116bf30ed927386dddb89e5f8fc67c3970d4b
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+(cherry picked from commit b5d763f45724d196100b90ccef0f956005e5c7e0)
+
+commit 9fcab0121b378d18a1d21d960605c83dffea4714
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Jul 15 20:29:49 2024 +0800
+
+hwdemux: CB2 pvr blackscreen after pause too long time. [1/1]
+
+PD#TV-127263
+
+Problem:
+not pause stream control when pause playback.
+
+Solution:
+pause stream control after pause.
+
+Verify:
+TC8000
+
+Change-Id: I5ee8b0d675d432ca9de660853ce2402f3876e574
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 8cc284ed977d1f4ab5a022a33f649494504e6391
+Author: mingguang.liu <mingguang.liu@amlogic.com>
+Date:   Wed Jul 3 20:04:27 2024 +0800
+
+tunnelrenderer: CF1 Support tunnel lowlatency mode. [2/2]
+
+PD#SWPL-175933
+
+Problem:
+No way to Support tunnel lowlatency mode.
+
+Solution:
+Direct render in lowlatency mode.
+
+Verify:
+ohm
+
+Change-Id: I959c4a7be8389244f9c420dfa68739616c1d2e66
+Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
+
 commit 33446312f87e216b19a3a443b8d995ad337d837e
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Mon Jul 1 17:21:29 2024 +0800
@@ -94,143 +215,9 @@ ohm
 Change-Id: Iaa92a45205ec4cfb156ffc16a0b54bb872e4e75c
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit 0ee1430a30a93e0579ba35619cf1b1cdc20c5ce0
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Jul 9 15:25:39 2024 +0800
-
-tsplayer: CB2 it is crashed when playing avivid in es mode [1/1]
-
-PD#IPTV-29611
-
-Problem:
-it is crashed when playing avivid in es mode
-
-Solution:
-support avivid format in es mode
-
-Verify:
-s5
-
-Change-Id: I002cd4ea62aa527f84ab9146b18d237ae2530599
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 0c7e4eb768dd7d601ac35de6ad8f3d14b66d8d46
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jul 3 13:15:10 2024 +0800
-
-videodec: CB2 switch channel every 5s, unmapped DMA-BUF leak. [1/1]
-
-PD#SWPL-174135
-
-Problem:
-switch channel every 5s, unmapped DMA-BUF leak.
-
-Solution:
-not creat buffer for only audio
-
-Verify:
-T5D
-
-Change-Id: If83f59630ee9695b05949c12bc8ec1f7622cfc9f
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 9396254d1793d4f5bdd4c8f89d153f5cb33ee811
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Jun 24 13:17:11 2024 +0800
-
-videodec: CB1 Used Decoder report duration to adjust pts. [2/2]
-
-PD#SWPL-171885
-
-Problem:
-1 Used Decoder report duration to adjust pts.
-
-Solution:
-1. if app set duration, we used app set value to adjust pts.
-2. if app not set and get duration from decoder,we used decoder report value.
-3. if we no get duration, we used default duration(30fps) to adjust pts.
-4. if we no get duration, we will calculate duration by inpts and
-change default duration.
-
-Verify:
-ohm
-
-
-Change-Id: I7fe9934a54ea40ce24e7e3cb4e69ae5a596a5b3c
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit f40cac5802ddaf7b0e8002a8af1b6ca786040ccc
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Jul 2 15:59:33 2024 +0800
-
-videopassthrough: CB2 CC subtitle not right [1/1]
-
-PD#SWPL-152021
-
-Problem:
-CC server and videopassthrough plugin both need open userdata
-device.userdata device only support single instance.
-
-Solution:
-disable afd info support.
-
-Verify:
-T5M
-
-Change-Id: I711ba5957541ec49d613f414eed464cfc845b318
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit a8ed68ec4416198437030b3dd15feee8e66ccb53
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon Jul 1 10:59:47 2024 +0000
-
-example: CB2 bp file need default licenses. [1/1]
-
-PD#SWPL-165429
-
-Problem:
-bp file not default licenses.
-
-Solution:
-bp file add default licenses.
-
-Verify:
-SC2
-
-Change-Id: Iadbfcd05730e231efd21545ef410a7a014950f8f
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 4b4f6a7ed264857c6cff80ab2a927d176ddbf895
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Fri Jun 28 16:12:58 2024 +0800
-
-videodec: CB1 codec mm check error at low mem devices. [1/1]
-
-PD#SWPL-174328
-
-Problem:
-1 Low mem device only support play one stream, so codec mm will
-check error when use tow surface to play.
-
-com.google.android.wvts.WidevineSimultaneousPlaybackTests#
-testL3With1080P30fpsOnTwoSurfaces
-this case use tow surface to play stream, surface will be disconnect.
-when play end,but surface do not destroy, so codec mm not release
-before start next stream.
-
-Solution:
-1.if device is low mem and the width of stream is 1920, we used small
-mem size to check.
-
-Verify:
-redi
-
-Change-Id: I88f64d85a05460db09370a5ed4d233b89b5acc6b
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-18-17-50
+Release time: 2024-07-22-20-41
 
 ========================================
 

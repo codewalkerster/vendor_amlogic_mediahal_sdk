@@ -1036,6 +1036,20 @@ am_tsplayer_result  AmTsPlayer_getADStat(am_tsplayer_handle Handle, am_tsplayer_
 am_tsplayer_result  AmTsPlayer_setSubPid(am_tsplayer_handle Handle, uint32_t pid);
 
 /**
+ *@brief:        Start subtitle for specified AmTsPlayer instance .
+ *@param:        Handle    AmTsPlayer handle.
+ *@return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_startSub(am_tsplayer_handle Handle);
+
+/**
+ *@brief:        Stop subtitle for specified AmTsPlayer instance .
+ *@param:        Handle    AmTsPlayer handle.
+ *@return:       The AmTsPlayer result.
+ */
+am_tsplayer_result  AmTsPlayer_stopSub(am_tsplayer_handle Handle);
+
+/**
  *@brief:        get Params for specified AmTsPlayer instance .
  *@param:        Handle    AmTsPlayer handle.
  *@param:        type      AmTsPlayer parameter type.
@@ -1058,20 +1072,6 @@ am_tsplayer_result  AmTsPlayer_setParams(am_tsplayer_handle Handle, am_tsplayer_
  *@return:       The AmTsPlayer result.
  */
 am_tsplayer_result AmTsPlayer_getState(am_tsplayer_handle Handle,am_tsplayer_state_t* state);
-
-/**
- *@brief:        Start subtitle for specified AmTsPlayer instance .
- *@param:        Handle    AmTsPlayer handle.
- *@return:       The AmTsPlayer result.
- */
-am_tsplayer_result  AmTsPlayer_startSub(am_tsplayer_handle Handle);
-
-/**
- *@brief:        Stop subtitle for specified AmTsPlayer instance .
- *@param:        Handle    AmTsPlayer handle.
- *@return:       The AmTsPlayer result.
- */
-am_tsplayer_result  AmTsPlayer_stopSub(am_tsplayer_handle Handle);
 
 /**
  *@brief:        Get the first pts of specified AmTsPlayer instance.
