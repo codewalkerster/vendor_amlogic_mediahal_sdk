@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.39-g25ca07d
+Version: V3.28.41-g134bbce
 
 ========================================
 
 Git commit:
+commit 134bbce7444e4893ed106a63baf1e1779da99209
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Fri Jul 19 17:40:54 2024 +0800
+
+videodec: CB1 LowLatency case test error. [1/2]
+
+PD#SWPL-177994
+
+Problem:
+1 Not send csd and es data  at same time.
+
+Solution:
+1. add 'add_csd_' flag,codec2 set
+'AM_VIDEO_DEC_INIT_FLAG_ADD_CSD' and send csd es data
+at same time.
+
+Verify:
+s6
+
+Change-Id: Id93f3ed6be637057938e5a7f1f0f533bed800bff
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
+commit 9388a0b8107a121a43e4c21021ab809b3c69b9fe
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Jul 19 19:59:06 2024 +0800
+
+tsplayer: CF2 add property to control vcc supporting [1/2]
+
+PD#SWPL-178350
+
+Problem:
+add property to control vcc supporting.
+
+Solution:
+add property to control vcc supporting.
+
+Verify:
+raman
+
+Change-Id: I389adc370d607c6b646be12ac04c41ea1e346d09
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 25ca07d715c800ad913c911166fd1923b2fe18fb
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri Jul 19 17:37:28 2024 +0800
@@ -166,58 +208,9 @@ OHM
 Change-Id: Ia6cf14d855997e9dbb9ef25b52053f4ffe20c9bc
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 48749925f732648be14ecdd0e105ce1a79044254
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Tue Jul 16 11:14:50 2024 +0800
-
-videodec: CB1 CB1 Calculate pts error. [2/2]
-
-PD#SWPL-177680
-
-Problem:
-1 Calculate pts error when run v2 case.
-android.mediav2.cts.CodecDecoderSurfaceTest#
-testFlushNative[36_c2.amlogic.mpeg2.decoder_video/mpeg2]
-android.mediav2.cts.CodecDecoderValidationTest#
-testDecodeAndValidate[232_c2.amlogic.mpeg2.decoder_video/mpeg2]
-
-Solution:
-1. not clear duration info when flush done.
-2. if the duration get from decoder is 29.97 and codec2 set frame rate
-is 30fps, we used the duration from decoder to calculate pts,codec2
-used 'int' to store frame rate info,so if codec2 will set frame rate
-30fps when get the frame rate value 29.97.
-
-Verify:
-ohm
-
-Change-Id: I16ab0fa7340a187949ca80db3d95f20feee62169
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit f66b1c96fea355fd54be830a83d6eec5c6888b71
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Fri Jul 12 11:40:12 2024 +0800
-
-videodec: CB1 set afr when play stream at tunnel mode. [2/2]
-
-PD#SWPL-177126
-
-Problem:
-1 Not set afr when play stream at tunnel mode.
-
-Solution:
-1. set afr when play stream at tunnel mode.
-
-
-Verify:
-ohm
-
-Change-Id: Iaa92a45205ec4cfb156ffc16a0b54bb872e4e75c
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-22-20-41
+Release time: 2024-07-24-16-24
 
 ========================================
 

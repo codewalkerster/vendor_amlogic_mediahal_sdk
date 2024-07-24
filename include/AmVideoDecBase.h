@@ -29,6 +29,7 @@
 #define AM_VIDEO_DEC_INIT_FLAG_USE_SECURE_VDEC_HAL   (1ul << 12)
 #define AM_VIDEO_DEC_INIT_FLAG_USE_HI_PRIO           (1ul << 13)
 #define AM_VIDEO_DEC_INIT_FLAG_USE_LOW_LATENCY_MODE  (1ul << 14)
+#define AM_VIDEO_DEC_INIT_FLAG_ADD_CSD               (1ul << 15)
 
 enum class InputCodec {
   H264,
