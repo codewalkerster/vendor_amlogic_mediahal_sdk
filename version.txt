@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.41-g134bbce
+Version: V3.28.42-g51a2230
 
 ========================================
 
 Git commit:
+commit 51a2230218646a7b7b93405f66c97ab3b34a0877
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Jul 24 14:09:23 2024 +0800
+
+tsplayer: CB2 fix vvc property name [1/2]
+
+PD#SWPL-178350
+
+Problem:
+fix vvc property name
+
+Solution:
+fix vvc property name
+
+Verify:
+raman
+
+Change-Id: I2a18394c394bed162e18accda7d07532e4572336
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 134bbce7444e4893ed106a63baf1e1779da99209
 Author: hualing chen <hualing.chen@amlogic.com>
 Date:   Fri Jul 19 17:40:54 2024 +0800
@@ -188,29 +208,9 @@ raman
 Change-Id: Iffd9efd56256deded47a2f9ccd01b17f8c86957a
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit adc9c81f8891ed9c0645ec8fe781c7f347ea6168
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Jul 17 13:04:02 2024 +0800
-
-tunnelrender: CB1 remove hwc direct dependency [1/1]
-
-PD#SWPL-177863
-
-Problem:
-fix mediahal compile failed
-
-Solution:
-hwc update include path
-
-Verify:
-OHM
-
-Change-Id: Ia6cf14d855997e9dbb9ef25b52053f4ffe20c9bc
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-24-16-24
+Release time: 2024-07-25-10-39
 
 ========================================
 
