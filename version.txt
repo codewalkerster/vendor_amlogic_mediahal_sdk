@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.28.44-g110e0f6
+Version: V3.28.45-g9343473
 
 ========================================
 
 Git commit:
+commit 93434737a2d9f0c83d911e39112881390ceb8a46
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Aug 10 10:44:02 2024 +0800
+
+mediahal: CF2 mediahal release V3.28 [1/1]
+
+PD#SWPL-180595
+
+Problem:
+mediahal release
+
+Solution:
+release V3.28
+
+Verify:
+SC2
+
+Change-Id: Ifd378c2579c57129e215d106fdbaed778cbf577a
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 110e0f6c3b90588bac507864ca2eee05ea349943
 Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
 Date:   Wed Jul 17 17:10:25 2024 +0800
@@ -189,29 +209,9 @@ Change-Id: Ib73116bf30ed927386dddb89e5f8fc67c3970d4b
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 (cherry picked from commit b5d763f45724d196100b90ccef0f956005e5c7e0)
 
-commit 9fcab0121b378d18a1d21d960605c83dffea4714
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Jul 15 20:29:49 2024 +0800
-
-hwdemux: CB2 pvr blackscreen after pause too long time. [1/1]
-
-PD#TV-127263
-
-Problem:
-not pause stream control when pause playback.
-
-Solution:
-pause stream control after pause.
-
-Verify:
-TC8000
-
-Change-Id: I5ee8b0d675d432ca9de660853ce2402f3876e574
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-07-29-15-27
+Release time: 2024-08-10-11-38
 
 ========================================
 
