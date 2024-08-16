@@ -26,12 +26,13 @@ struct fillVideoFrame2
    bool rendered;
 };
 
-struct videoframe
+struct renderframe
 {
     int fd;
     int64_t timestampUs;
-    int frameNum;
     bool renderAtonce;
+    int64_t bitstreamId;
+    int64_t reserved[4];
 };
 
 struct tunnelEventParam

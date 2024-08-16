@@ -1,10 +1,34 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.7-g829bebc
+Version: V3.30.8-ga0ef44b
 
 ========================================
 
 Git commit:
+commit a0ef44b2ebde1641d1541c5ca4f875afad685f70
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Aug 2 09:15:41 2024 +0800
+
+mediametrics: CF1 add media metrics info based on mediaproxy [3/3]
+
+PD#SWPL-175421
+PD#TV-125965
+
+Problem:
+1.tunnel report rendered frame
+2.report drop/rendered/error frame count
+
+Solution:
+1.add media metrics info
+2.tunnel report rendered frame info
+3.get error frame num and tunnel drop num
+
+Verify:
+OHM
+
+Change-Id: I08b72b0ec419aaa8f8bc4e5c8f59ff3d18ba09c6
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 829bebc2a16c10506595519b9f39b7e9f86f0a24
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Wed Jul 24 17:17:18 2024 +0800
@@ -190,30 +214,9 @@ SC2
 Change-Id: Ifd378c2579c57129e215d106fdbaed778cbf577a
 Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
 
-commit 110e0f6c3b90588bac507864ca2eee05ea349943
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Wed Jul 17 17:10:25 2024 +0800
-
-tsplayer: CF2 tsplayer derict write to audiohal in bootplaymode [1/1]
-
-PD#SWPL-172374
-
-Problem:
-the sound of bootvideo is abnormal
-audiohal config drc when bootvideo playing
-
-Solution:
-tsplayer bootplaymode derict write to audiohal in bootplaymode
-
-Verify:
-TXHD2
-
-Change-Id: I57fbee94477ee06cb70775482ac41e68065fb2cf
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
-
 ========================================
 
-Release time: 2024-08-16-11-20
+Release time: 2024-08-16-17-40
 
 ========================================
 

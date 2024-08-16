@@ -603,3 +603,50 @@ cc_prebuilt_library_shared {
     },
     check_elf_files: false,
 }
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_mediametrics",
+    vendor: true,
+    strip: {
+    none: true,
+    },
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libmediahal_mediametrics.so"],
+        },
+        arm64: {
+            srcs: ["arm64/vendor/libmediahal_mediametrics.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "libmediahal_mediametrics.system",
+    defaults: ["mediahalvercheck_defaults"],
+    strip: {
+        none: true,
+    },
+    compile_multilib: "both",
+    arch: {
+        arm: {
+            srcs: ["lib/system/libmediahal_mediametrics.system.so"],
+        },
+        arm64: {
+            srcs: ["arm64/system/libmediahal_mediametrics.system.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: false,
+}
