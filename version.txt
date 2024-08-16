@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.5-g0741de1
+Version: V3.30.7-g829bebc
 
 ========================================
 
 Git commit:
+commit 829bebc2a16c10506595519b9f39b7e9f86f0a24
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Jul 24 17:17:18 2024 +0800
+
+hwdemux: CB2 ad not play smooth [1/1]
+
+PD#SWPL-173576
+
+Problem:
+ad filter not has new pts,stream control not work.
+
+Solution:
+find main audio track to get new pts.
+
+Verify:
+OHM
+
+Change-Id: I2935864dee06a3bba4229eda6feef9cedd5b17be
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 0908d79637ececccb3a41e52da8b6f75f1f8ae4f
+Author: mingguang.liu <mingguang.liu@amlogic.com>
+Date:   Wed Aug 14 16:33:33 2024 +0800
+
+tunnelrenderer: CB1 Quick display when setting tunnel mode to freerun. [1/1]
+
+PD#SWPL-181928
+
+Problem:
+Airplay can not fast-forward playback.
+
+Solution:
+Quick display when setting tunnel mode to freerun.
+
+Verify:
+ohm
+
+Change-Id: I46fbcb32ee2a8f3374749dcf225f2f83e7ecd7d7
+Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
+
 commit 0741de18f59e4cfe93fb26d8f808da4fb79663ff
 Author: shipeng sun <shipeng.sun@amlogic.com>
 Date:   Thu Aug 15 17:05:19 2024 +0800
@@ -171,49 +211,9 @@ TXHD2
 Change-Id: I57fbee94477ee06cb70775482ac41e68065fb2cf
 Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
 
-commit 7d602107fbb785c58d4558fed43f87a55020c245
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Jul 25 10:21:45 2024 +0800
-
-mediasync: CB2 fix Android.bp to compile .so into system_ext. [1/1]
-
-PD#SWPL-178982
-
-Problem:
-mediasync.so can't compile into system_ext lib.
-
-Solution:
-fix Android.bp to compile .so into system_ext lib.
-
-Verify:
-ohm
-
-Change-Id: I7cd2cca91a7af49755de1dab36b6d0d5ee142526
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 51a2230218646a7b7b93405f66c97ab3b34a0877
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Jul 24 14:09:23 2024 +0800
-
-tsplayer: CB2 fix vvc property name [1/2]
-
-PD#SWPL-178350
-
-Problem:
-fix vvc property name
-
-Solution:
-fix vvc property name
-
-Verify:
-raman
-
-Change-Id: I2a18394c394bed162e18accda7d07532e4572336
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-08-15-17-51
+Release time: 2024-08-16-11-20
 
 ========================================
 

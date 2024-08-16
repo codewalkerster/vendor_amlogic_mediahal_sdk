@@ -10,7 +10,6 @@
 #ifndef AMHWDEMUX_INTERFACE_H
 #define AMHWDEMUX_INTERFACE_H
 
-
 /*Player working mode*/
 typedef enum {
    STREAM_CONTROL = 0,
@@ -41,6 +40,21 @@ struct AmDemuxControlInfo{
     //int vPid;
 };
 
+typedef struct {
+    int videoPid;
+    int numAudioPids;
+    int audioPids[4];
+} StreamPidInfo;
+
+typedef struct {
+    void* arg;
+    uint64_t writeTsSize;
+    StreamPidInfo *pidInfo;
+    size_t pidInfoSize;
+    bool bypassStreamControl;
+    int timeout;
+} StreamControlArgs;
+
 extern void* AmHwDemux_Create(int mode,void* arg);
 extern void AmHwDemux_Destroy(void* handle);
 extern int AmHwDemux_Init(void* handle,int mode,void* arg);
@@ -49,6 +63,7 @@ extern int AmHwDemux_ResetStatus(void* handle);
 extern int AmHwDemux_SetParams(void* handle,int type, void* arg);
 extern int AmHwDemux_GetParams(void* handle,int type, void* arg);
 extern am_demux_result AmHwDemux_GetStreamControlStatus(void* handle,void* arg,uint64_t WriteTsSize,int vPid,int aPid);
+extern am_demux_result AmHwDemux_GetMultiStreamControlStatus(void* handle, const StreamControlArgs& args);
 
 #endif
 
