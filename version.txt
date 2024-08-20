@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.8-ga0ef44b
+Version: V3.30.11-g3d23347
 
 ========================================
 
 Git commit:
+commit 3d23347cf5f54751a89f7cb19634a15587dd21cf
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Tue Aug 20 16:17:48 2024 +0800
+
+videodec: CB1 fix 64 bit playback stuck issue [1/1]
+
+PD#SWPL-182636
+
+Problem:
+after dmabuffermanger update address from 32 to 64,
+input bufferpool not do complete adaption
+
+Solution:
+do 64bit adaption
+
+Verify:
+S6
+
+Change-Id: Icdbff7af2e3f547fced687fbf97244f319f08cde
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit af14f56bcf54b3cd8d03247e16c37a926d60d28a
+Author: mingguang.liu <mingguang.liu@amlogic.com>
+Date:   Mon Aug 19 14:01:04 2024 +0800
+
+tunnelrenderer: CF1 Support tunnel pushBlackBuffersOnShutdown. [2/2]
+
+PD#SWPL-182335
+
+Problem:
+No way to Support tunnel pushBlackBuffersOnShutdown.
+
+Solution:
+Add setPushBlankBuffersOnShutdown to control.
+
+Verify:
+ohm
+
+Change-Id: I7239400717e433ffc552627a8973a3a3f5960325
+Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
+
+commit be15b5ee32f1a360b846db1563dfbb47f9446d6e
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Aug 19 12:38:10 2024 +0800
+
+mediametrics: CB2 fix Android S build code error issue [1/1]
+
+PD#SWPL-175421
+
+Problem:
+fix Android S build code error issue
+
+Solution:
+fix Android S build code error issue
+
+Verify:
+OHM
+
+Change-Id: I7dce7486f535851063ca034583e6e2f99e320b64
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit a0ef44b2ebde1641d1541c5ca4f875afad685f70
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri Aug 2 09:15:41 2024 +0800
@@ -152,71 +213,9 @@ t5m
 Change-Id: Icd14f698ef81c9b81347ec8c544376efeeddc926
 Signed-off-by: hualing chen <hualing.chen@amlogic.com>
 
-commit f65a2bd1d66311534b3d611cddbf0b3e23dd1a28
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Fri Aug 9 14:10:51 2024 +0800
-
-mediasync: CB2 Delete unuse system control [1/1]
-
-PD#SWPL-181082
-
-Problem:
-System control use aidl for v, mediasync do not
-use system control, buf include old system control.
-Dlopen mediasync fail on android V.
-
-Solution:
-Delete unuse system control
-
-Verify:
-ohm
-
-Change-Id: I1bb7ff5d204e3c93fc2a66cb0e47e70602cf6384
-Signed-off-by: Jian Wang <jian.wang@amlogic.com>
-
-commit 96e9ccafd97636503ba6b73a6412a582c4e04730
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Aug 10 11:19:24 2024 +0800
-
-mediahal: CF2 mediahal update version [1/1]
-
-PD#SWPL-180595
-
-Problem:
-mediahal update version
-
-Solution:
-update V3.30
-
-Verify:
-SC2
-
-Change-Id: I5bdf2e402b31f7dea07481341b2a9656d94eca0f
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 93434737a2d9f0c83d911e39112881390ceb8a46
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Aug 10 10:44:02 2024 +0800
-
-mediahal: CF2 mediahal release V3.28 [1/1]
-
-PD#SWPL-180595
-
-Problem:
-mediahal release
-
-Solution:
-release V3.28
-
-Verify:
-SC2
-
-Change-Id: Ifd378c2579c57129e215d106fdbaed778cbf577a
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-08-16-17-40
+Release time: 2024-08-20-20-30
 
 ========================================
 
