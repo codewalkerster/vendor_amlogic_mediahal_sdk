@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.11-g3d23347
+Version: V3.30.12-gad52d3e
 
 ========================================
 
 Git commit:
+commit ad52d3ea064d12cff006eca1530917ba80c6a950
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Aug 21 12:56:01 2024 +0800
+
+videodec: CB1 fix bufferpool alloc buffer skip issue [1/1]
+
+PD#SWPL-182879
+
+Problem:
+input bufferpool alloc buffer occurs skip issue
+
+Solution:
+bitmap data use 32bit
+
+Verify:
+OHM
+
+Change-Id: I75703f048a97ac1ee25a98f4fc8cc473081e686e
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 3d23347cf5f54751a89f7cb19634a15587dd21cf
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Tue Aug 20 16:17:48 2024 +0800
@@ -191,31 +211,9 @@ None
 Change-Id: I8e250fc6a7be7f34c234d4b0488a4f27e61eaf6f
 Signed-off-by: shipeng sun <shipeng.sun@amlogic.com>
 
-commit 5e5bee4ddd6b28307e30376be456ddbd23c29580
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Jun 12 19:03:18 2024 +0800
-
-mediaproxy: CB2 move proxy to kernel common. [1/1]
-
-PD#SWPL-177051
-
-Problem:
-1 Di module can not call proxy api.
-2 build error when proxy code move to common,
-need change params name.
-
-Solution:
-1 change aml_video_user_data params name.
-
-Verify:
-t5m
-
-Change-Id: Icd14f698ef81c9b81347ec8c544376efeeddc926
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-08-20-20-30
+Release time: 2024-08-23-15-22
 
 ========================================
 
