@@ -1,10 +1,96 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.12-gad52d3e
+Version: V3.30.16-gfe6ffa0
 
 ========================================
 
 Git commit:
+commit fe6ffa02435a8509b4112ac8e3d58d49d96b1347
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Sep 2 15:15:16 2024 +0800
+
+mediametrics: CB1 remove some unnecessary dependency [1/1]
+
+PD#SWPL-184212
+
+Problem:
+remove some unnecessary dependency
+
+Solution:
+remove some unnecessary dependency
+
+Verify:
+OHM
+
+Change-Id: I321dd9f072c30a27f6d17d5ad5e132043f46e850
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 69c8532433479c3fe2d5ae2fcc2fb6ffbdbfbd1e
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Aug 30 15:44:50 2024 +0800
+
+tunnelrenderer: CB2 dtv playback not smooth. [1/1]
+
+PD#SWPL-183158
+
+Problem:
+vidoeprocess call vpts not right.
+
+Solution:
+need write vf pts right in videoprocess interface.
+
+Verify:
+ohm
+
+Change-Id: Icf8d0757d5a340a7052f22447b21393a0dfc048d
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 3d01e891d222ddc115a6920ea72ec5d6bcf4bd81
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Thu Aug 29 20:51:14 2024 +0800
+
+tunnelrenderer: CB1 fix noaudio can no play [1/1]
+
+PD#TV-132001
+
+Problem:
+1.HwsyncID is 0, when tunnel mode when noaudio,
+but ID 0 do not goto nuaudio mode.
+2.Update videotime every frame, video can not
+play smooth
+
+Solution:
+1.Add tunnel mode Hwsync ID 0 can in noaudio mode.
+2.Delete update video time
+
+Verify:
+ohm
+
+Change-Id: I78e2981980dd5d2efc2def513442cccd72c71075
+Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+
+commit 901f0eac57e5b39e68e01956484c58b6c2ffeab3
+Author: peng.wu <peng.wu@amlogic.com>
+Date:   Fri May 31 20:45:57 2024 +0800
+
+mediaproxy: CF1 Report error to media proxy. [1/1]
+
+PD#SWPL-166505
+
+Problem:
+Xiaomi AOSP requires errorcode report.
+
+Solution:
+VDEC ---> MediaProxy ---> MediaHAL ---> OMX2 ---> AOSP
+DI   --->|
+MEME --->|
+
+Verify:
+T963D4
+
+Change-Id: Ife10b0bc1ad25850d225d2c1a673b7ace862e415
+Signed-off-by: peng.wu <peng.wu@amlogic.com>
+
 commit ad52d3ea064d12cff006eca1530917ba80c6a950
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Aug 21 12:56:01 2024 +0800
@@ -130,90 +216,9 @@ OHM
 Change-Id: I2935864dee06a3bba4229eda6feef9cedd5b17be
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 0908d79637ececccb3a41e52da8b6f75f1f8ae4f
-Author: mingguang.liu <mingguang.liu@amlogic.com>
-Date:   Wed Aug 14 16:33:33 2024 +0800
-
-tunnelrenderer: CB1 Quick display when setting tunnel mode to freerun. [1/1]
-
-PD#SWPL-181928
-
-Problem:
-Airplay can not fast-forward playback.
-
-Solution:
-Quick display when setting tunnel mode to freerun.
-
-Verify:
-ohm
-
-Change-Id: I46fbcb32ee2a8f3374749dcf225f2f83e7ecd7d7
-Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
-
-commit 0741de18f59e4cfe93fb26d8f808da4fb79663ff
-Author: shipeng sun <shipeng.sun@amlogic.com>
-Date:   Thu Aug 15 17:05:19 2024 +0800
-
-videodec: CB1 BufferPool compatible 64bit start address [1/1]
-
-PD#SWPL-176639
-
-Problem:
-BufferPool start address high bit maybe exists random data
-
-Solution:
-Make sure pool start address init correct
-
-Verify:
-redi
-
-Change-Id: Id0e04abad16f0b7d532e5a90c43edbdb9fe2b125
-Signed-off-by: shipeng sun <shipeng.sun@amlogic.com>
-
-commit 9c1c4a225bb4eb27e45704462fe87f98b46984f0
-Author: yafeng.zhao <yafeng.zhao@amlogic.com>
-Date:   Mon Jul 29 15:04:07 2024 +0800
-
-videodec: CF1 Support set screen mode to decoder. [2/2]
-
-PD#TV-127092
-
-Problem:
-In airplay cast, the screen mode should be normal rather than
-the android default value: full-stretch.
-
-Solution:
-Add parameter (vendor.video.screen-mode) to control.
-
-Verify:
-ohm
-
-Change-Id: Ie118875d5a9c2a0b7e99d891e858f407f8d9c88b
-Signed-off-by: yafeng.zhao <yafeng.zhao@amlogic.com>
-
-commit e57824af80f4d784e2c1ed4a29e349b461cf74e0
-Author: shipeng sun <shipeng.sun@amlogic.com>
-Date:   Tue Jul 9 18:27:55 2024 +0800
-
-videodec: CF2 support secmemv3 and 64bit addr [1/1]
-
-PD#SWPL-176639
-
-Problem:
-MediaHal videodec support secmemv3 and 64bit addr
-
-Solution:
-MediaHal videodec support secmemv3 and 64bit addr
-
-Verify:
-None
-
-Change-Id: I8e250fc6a7be7f34c234d4b0488a4f27e61eaf6f
-Signed-off-by: shipeng sun <shipeng.sun@amlogic.com>
-
 ========================================
 
-Release time: 2024-08-23-15-22
+Release time: 2024-09-03-10-39
 
 ========================================
 
