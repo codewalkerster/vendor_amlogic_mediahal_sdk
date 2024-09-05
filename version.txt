@@ -1,10 +1,73 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.16-gfe6ffa0
+Version: V3.30.19-gc4db944
 
 ========================================
 
 Git commit:
+commit c4db94478d3a4b52c7adea7d4a18d2868ee9c39f
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Fri Aug 9 11:32:39 2024 +0800
+
+mediasync: CB1 Optimize the playback effect. [1/1]
+
+PD#SWPL-171401
+
+Problem:
+video fixation during playback is slower than the comparison platform.
+
+Solution:
+1.Optimized slow sync
+2.Optimized discontinue mechanisms
+
+Verify:
+SC2
+
+Change-Id: I683f7ba5b3d9343954e4e2b0523c711b6527d036
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit ab69202e0ce7a3e8904fee81ff3022bcb0db4567
+Author: Jian Wang <jian.wang@amlogic.com>
+Date:   Wed Aug 28 10:47:17 2024 +0800
+
+videodec: CF1 Add report stream level [1/1]
+
+PD#TV-130176
+
+Problem:
+Need report error when profile level is bigger
+
+Solution:
+1. Add report stream level
+2. Add prop vendor.media.mediahal.videodec.supported_report_level
+to enable report stream level
+
+Verify:
+t5m
+
+Change-Id: I77d781fadd363bc5fa12ec3a9aa24387da0cf2e1
+Signed-off-by: Jian Wang <jian.wang@amlogic.com>
+
+commit 5466e43b14bf850616668579823e49863d04a02b
+Author: mingguang.liu <mingguang.liu@amlogic.com>
+Date:   Wed Aug 28 16:46:28 2024 +0800
+
+medaisync: CB2 Optimize AmMediaSync loglevel. [1/1]
+
+PD#SWPL-183678
+
+Problem:
+In medaisync, some logs are set to be printed continuously by default.
+
+Solution:
+Optimize logleve to 0x02.
+
+Verify:
+ohm
+
+Change-Id: Ia277ed5fefab7572876cf29ff429ed2de8956cca
+Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
+
 commit fe6ffa02435a8509b4112ac8e3d58d49d96b1347
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Mon Sep 2 15:15:16 2024 +0800
@@ -152,73 +215,9 @@ ohm
 Change-Id: I7239400717e433ffc552627a8973a3a3f5960325
 Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
 
-commit be15b5ee32f1a360b846db1563dfbb47f9446d6e
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Aug 19 12:38:10 2024 +0800
-
-mediametrics: CB2 fix Android S build code error issue [1/1]
-
-PD#SWPL-175421
-
-Problem:
-fix Android S build code error issue
-
-Solution:
-fix Android S build code error issue
-
-Verify:
-OHM
-
-Change-Id: I7dce7486f535851063ca034583e6e2f99e320b64
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit a0ef44b2ebde1641d1541c5ca4f875afad685f70
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Aug 2 09:15:41 2024 +0800
-
-mediametrics: CF1 add media metrics info based on mediaproxy [3/3]
-
-PD#SWPL-175421
-PD#TV-125965
-
-Problem:
-1.tunnel report rendered frame
-2.report drop/rendered/error frame count
-
-Solution:
-1.add media metrics info
-2.tunnel report rendered frame info
-3.get error frame num and tunnel drop num
-
-Verify:
-OHM
-
-Change-Id: I08b72b0ec419aaa8f8bc4e5c8f59ff3d18ba09c6
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 829bebc2a16c10506595519b9f39b7e9f86f0a24
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Jul 24 17:17:18 2024 +0800
-
-hwdemux: CB2 ad not play smooth [1/1]
-
-PD#SWPL-173576
-
-Problem:
-ad filter not has new pts,stream control not work.
-
-Solution:
-find main audio track to get new pts.
-
-Verify:
-OHM
-
-Change-Id: I2935864dee06a3bba4229eda6feef9cedd5b17be
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-09-03-10-39
+Release time: 2024-09-05-16-23
 
 ========================================
 
