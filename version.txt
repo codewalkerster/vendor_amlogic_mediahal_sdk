@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.19-gc4db944
+Version: V3.30.22-g73c05a1
 
 ========================================
 
 Git commit:
+commit 73c05a15cf60316b7db4a7437302a3170e844fd9
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Sep 9 15:05:01 2024 +0800
+
+videodec: CB1 disable nv12 set after request buffers [2/2]
+
+PD#SWPL-184854
+
+Problem:
+ImportBufferForPicture(): Unsupported import format: 6
+
+Solution:
+disable nv12 set after request buffers
+
+Verify:
+T3X
+
+Change-Id: If07d5788da36efcfac66c05d853f63a2d35cfe6c
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit e9fcf54111f1b24debb98478b314ad5c6ef71b6f
+Author: wang.ren <wang.ren@amlogic.com>
+Date:   Thu Aug 29 10:57:45 2024 +0000
+
+videodec: CB2 special avi file played stuck [1/1]
+
+PD#SWPL-174992
+
+Problem:
+There is a problem with the calculation of pts by the special avi source
+mediahal, resulting in out pts bounce and synchronous frame loss
+
+Solution:
+Adjust Mediahal's calculation logic for avi stream pts
+
+Verify:
+Android U
+
+Change-Id: I0d2f0398b0f28ee640e605693f6f00ec5bc0a533
+Signed-off-by: wang.ren <wang.ren@amlogic.com>
+
+commit 95408d57d8f20be49af521b4554c882631119b4e
+Author: chen.chen1 <chen.chen1@amlogic.com>
+Date:   Tue Mar 12 17:24:36 2024 +0800
+
+mediasync: CB2 add logs for aut check [1/1]
+
+PD#SWPL-184509
+
+Problem:
+need logs for aut check
+
+Solution:
+add logs for aut check
+
+Verify:
+OHM
+
+Change-Id: I5bcd0cabbc824ee1089b27907dadcd423d99e145
+Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
+
 commit c4db94478d3a4b52c7adea7d4a18d2868ee9c39f
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Fri Aug 9 11:32:39 2024 +0800
@@ -154,70 +215,9 @@ T963D4
 Change-Id: Ife10b0bc1ad25850d225d2c1a673b7ace862e415
 Signed-off-by: peng.wu <peng.wu@amlogic.com>
 
-commit ad52d3ea064d12cff006eca1530917ba80c6a950
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Wed Aug 21 12:56:01 2024 +0800
-
-videodec: CB1 fix bufferpool alloc buffer skip issue [1/1]
-
-PD#SWPL-182879
-
-Problem:
-input bufferpool alloc buffer occurs skip issue
-
-Solution:
-bitmap data use 32bit
-
-Verify:
-OHM
-
-Change-Id: I75703f048a97ac1ee25a98f4fc8cc473081e686e
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 3d23347cf5f54751a89f7cb19634a15587dd21cf
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Tue Aug 20 16:17:48 2024 +0800
-
-videodec: CB1 fix 64 bit playback stuck issue [1/1]
-
-PD#SWPL-182636
-
-Problem:
-after dmabuffermanger update address from 32 to 64,
-input bufferpool not do complete adaption
-
-Solution:
-do 64bit adaption
-
-Verify:
-S6
-
-Change-Id: Icdbff7af2e3f547fced687fbf97244f319f08cde
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit af14f56bcf54b3cd8d03247e16c37a926d60d28a
-Author: mingguang.liu <mingguang.liu@amlogic.com>
-Date:   Mon Aug 19 14:01:04 2024 +0800
-
-tunnelrenderer: CF1 Support tunnel pushBlackBuffersOnShutdown. [2/2]
-
-PD#SWPL-182335
-
-Problem:
-No way to Support tunnel pushBlackBuffersOnShutdown.
-
-Solution:
-Add setPushBlankBuffersOnShutdown to control.
-
-Verify:
-ohm
-
-Change-Id: I7239400717e433ffc552627a8973a3a3f5960325
-Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
-
 ========================================
 
-Release time: 2024-09-05-16-23
+Release time: 2024-09-10-16-09
 
 ========================================
 
