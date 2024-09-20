@@ -1,10 +1,51 @@
 =========RELEALSE NOTE=================
 
-Version: V3.30.24-g028abf7
+Version: V3.32.1-gf06a48e
 
 ========================================
 
 Git commit:
+commit f06a48e4686577e8622f74f18d26569e8ec7edb5
+Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
+Date:   Thu Sep 19 12:09:20 2024 +0800
+
+tsplayer: CB2 sync struct audio_info with libfaad [1/1]
+
+PD#SWPL-185629
+
+Problem:
+bootvideo crash
+
+Solution:
+sync struct audio_info with libfaad
+check gDeviceHal not null
+
+Verify:
+T5M
+
+Change-Id: I4d3116e936be5303d1d629cb6db7e19240e2f4f5
+Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
+
+commit 4852d863acc63bda7e1ebee09a362c1b1496071b
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Sat Sep 14 13:31:59 2024 +0800
+
+mediahal: CF2 mediahal update version [1/1]
+
+PD#SWPL-185660
+
+Problem:
+mediahal update version
+
+Solution:
+update V3.32
+
+Verify:
+SC2
+
+Change-Id: I34190dc560849f943fb7bb361c2407bbf8cc89e3
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit 028abf79d596f0ca3371d8ed35c6ce05838ad1eb
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Fri Sep 13 17:39:07 2024 +0800
@@ -170,49 +211,9 @@ ohm
 Change-Id: Ia277ed5fefab7572876cf29ff429ed2de8956cca
 Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
 
-commit fe6ffa02435a8509b4112ac8e3d58d49d96b1347
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Sep 2 15:15:16 2024 +0800
-
-mediametrics: CB1 remove some unnecessary dependency [1/1]
-
-PD#SWPL-184212
-
-Problem:
-remove some unnecessary dependency
-
-Solution:
-remove some unnecessary dependency
-
-Verify:
-OHM
-
-Change-Id: I321dd9f072c30a27f6d17d5ad5e132043f46e850
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 69c8532433479c3fe2d5ae2fcc2fb6ffbdbfbd1e
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Aug 30 15:44:50 2024 +0800
-
-tunnelrenderer: CB2 dtv playback not smooth. [1/1]
-
-PD#SWPL-183158
-
-Problem:
-vidoeprocess call vpts not right.
-
-Solution:
-need write vf pts right in videoprocess interface.
-
-Verify:
-ohm
-
-Change-Id: Icf8d0757d5a340a7052f22447b21393a0dfc048d
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-09-14-13-52
+Release time: 2024-09-20-15-54
 
 ========================================
 
