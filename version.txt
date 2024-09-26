@@ -1,10 +1,71 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.1-gf06a48e
+Version: V3.32.4-g79e140a
 
 ========================================
 
 Git commit:
+commit 79e140a7ccc084aab265f581530e5fe7d60d29b6
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Sep 19 16:03:49 2024 +0800
+
+videodec: CB1 fix csd mixed in first frame issue [1/1]
+
+PD#OTT-66211
+
+Problem:
+fix mpeg4 csd mixed in first frame issue
+
+Solution:
+too large csd frame data send to videodec directly
+
+Verify:
+905Y4
+
+Change-Id: Iee07ecef42dae2b89fad99b39232595e002e1cd4
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 15a47596ec774e4a7fc1ea9880265cc0c0119f4a
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Aug 30 16:18:08 2024 +0800
+
+hwdemux: CB2 iptv playback not smooth [1/1]
+
+PD#SWPL-183975
+
+Problem:
+iptv inject buf too large, ringbuffer overflow.
+
+Solution:
+not inject when decoder rp change,and buffer level too large.
+
+Verify:
+OHM
+
+Change-Id: Icba536317b1517896a0ba3e132084212f7de5d87
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 7d5fa009c87edba24eb4e70f441895135d10d96f
+Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
+Date:   Fri Aug 9 10:13:50 2024 +0800
+
+videodec: CB2 optimation latency for cloudgame [2/2]
+
+PD#SWPL-179633
+
+Problem:
+cloudgame decoder test max latency over 8ms
+
+Solution:
+use_pts_id_ instead of use_pts_calculator_,
+don't PostTask DevicePollTask twice
+
+Verify:
+T5M
+
+Change-Id: I279f28dc8978f023ef56a61a2487c8dfa48d9f2c
+Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
+
 commit f06a48e4686577e8622f74f18d26569e8ec7edb5
 Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
 Date:   Thu Sep 19 12:09:20 2024 +0800
@@ -148,72 +209,9 @@ OHM
 Change-Id: I5bcd0cabbc824ee1089b27907dadcd423d99e145
 Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
 
-commit c4db94478d3a4b52c7adea7d4a18d2868ee9c39f
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Aug 9 11:32:39 2024 +0800
-
-mediasync: CB1 Optimize the playback effect. [1/1]
-
-PD#SWPL-171401
-
-Problem:
-video fixation during playback is slower than the comparison platform.
-
-Solution:
-1.Optimized slow sync
-2.Optimized discontinue mechanisms
-
-Verify:
-SC2
-
-Change-Id: I683f7ba5b3d9343954e4e2b0523c711b6527d036
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit ab69202e0ce7a3e8904fee81ff3022bcb0db4567
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Wed Aug 28 10:47:17 2024 +0800
-
-videodec: CF1 Add report stream level [1/1]
-
-PD#TV-130176
-
-Problem:
-Need report error when profile level is bigger
-
-Solution:
-1. Add report stream level
-2. Add prop vendor.media.mediahal.videodec.supported_report_level
-to enable report stream level
-
-Verify:
-t5m
-
-Change-Id: I77d781fadd363bc5fa12ec3a9aa24387da0cf2e1
-Signed-off-by: Jian Wang <jian.wang@amlogic.com>
-
-commit 5466e43b14bf850616668579823e49863d04a02b
-Author: mingguang.liu <mingguang.liu@amlogic.com>
-Date:   Wed Aug 28 16:46:28 2024 +0800
-
-medaisync: CB2 Optimize AmMediaSync loglevel. [1/1]
-
-PD#SWPL-183678
-
-Problem:
-In medaisync, some logs are set to be printed continuously by default.
-
-Solution:
-Optimize logleve to 0x02.
-
-Verify:
-ohm
-
-Change-Id: Ia277ed5fefab7572876cf29ff429ed2de8956cca
-Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
-
 ========================================
 
-Release time: 2024-09-20-15-54
+Release time: 2024-09-26-11-03
 
 ========================================
 
