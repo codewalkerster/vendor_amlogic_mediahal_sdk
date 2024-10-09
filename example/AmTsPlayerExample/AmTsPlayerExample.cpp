@@ -472,11 +472,16 @@ bool CreateVideoTunnelId(int* id) {
             printf("mSurface == NULL");
             return false;
         }
-
+        #if (ANDROID_PLATFORM_SDK_VERSION < 35)
         mSurface->connect(NATIVE_WINDOW_API_CPU, mProducerListener);
+        #endif
 
         if (mSurface) {
             mProducer = mSurface->getIGraphicBufferProducer();
+            #if (ANDROID_PLATFORM_SDK_VERSION >= 35)
+            IGraphicBufferProducer::QueueBufferOutput output;
+            mProducer->connect(mProducerListener, NATIVE_WINDOW_API_CPU, false, &output);
+            #endif
             if (mNative_handle == NULL) {
                 mNative_handle = am_gralloc_create_sideband_handle(AM_FIXED_TUNNEL, tunnelId);
                 // printf("mNative_handle:%p\n",mNative_handle);
@@ -726,6 +731,7 @@ static void usage(char **argv)
     printf("-d | --vecmpid         video Ecm pid,default:0x1001\n");
     printf("-D | --aecmpid         audio Ecm pid,default:0x1001\n");
     printf("-p | --playback        disable:0[default], enable:1\n");
+    printf("-r | --resumeplayptsresume play Millisecond unit\n");
     printf("-h | --help            print this usage\n");
 }
 
@@ -759,7 +765,7 @@ int main(int argc, char **argv)
 {
     int optionChar = 0;
     int optionIndex = 0;
-    const char *shortOptions = "i:t:b:y:c:v:a:V:A:p:e:d:D:h";
+    const char *shortOptions = "i:t:b:y:c:v:a:V:A:p:e:d:D:r:h";
 #if ANDROID_PLATFORM_SDK_VERSION >= 30 || defined(__linux__)
     char * amcasTypeStr = NULL;
     uint8_t sessionId [8]= {0};
@@ -776,6 +782,7 @@ int main(int argc, char **argv)
         { "vpid",           required_argument,  NULL, 'V' },
         { "apid",           required_argument,  NULL, 'A' },
         { "playback",       required_argument,  NULL, 'p' },
+        { "resumeplaypts",  required_argument,  NULL, 'r' },
         { "help",           no_argument,        NULL, 'h' },
         { NULL,             0,                  NULL,  0  },
     };
@@ -793,6 +800,7 @@ int main(int argc, char **argv)
     int32_t vEcmPid = 0x1001;
     int32_t aEcmPid = 0x1001;
     int demux_id = 0;
+    int64_t resumepts = 0;
     while ((optionChar = getopt_long(argc, argv, shortOptions,
                                     longOptions, &optionIndex)) != -1) {
         switch (optionChar) {
@@ -838,6 +846,10 @@ int main(int argc, char **argv)
             case 'D':
                 aEcmPid = GetPid(optarg);
                 printf("aEcmPid 0x%x\n", aEcmPid);
+                break;
+            case 'r':
+                resumepts = atoi(optarg)*90;
+                printf("resume play pts %lld pts\n", (long long)resumepts);
                 break;
             case 'h':
                 usage(argv);
@@ -990,7 +1002,7 @@ int main(int argc, char **argv)
 
     AmTsPlayer_showVideo(session);
     AmTsPlayer_setTrickMode(session, vTrickMode);
-
+    AmTsPlayer_setParams(session, AM_TSPLAYER_KEY_SET_RESUME_PLAYING_MODE , &resumepts);
     am_tsplayer_input_buffer ibuf = {TS_INPUT_BUFFER_TYPE_NORMAL, (char*)buf, 0};
     long pos = 0;
     int ch = 0;
@@ -1007,8 +1019,14 @@ int main(int argc, char **argv)
             }
         }
         file.read(buf, (int)kRwSize);
-        ibuf.buf_size = kRwSize;
-        pos += kRwSize;
+        if (!file) {
+            ibuf.buf_size = file.gcount();
+            pos += file.gcount();
+            printf("file.gcount() %td\n",file.gcount());
+        } else {
+            ibuf.buf_size = kRwSize;
+            pos += kRwSize;
+        }
 
         int retry = 100;
         am_tsplayer_result res;
@@ -1029,6 +1047,8 @@ int main(int argc, char **argv)
             } else
                 break;
         } while(res || retry-- > 0);
+        if (retry == 0)
+            printf("AmTsPlayer_writeData retry timeout!\n");
         if (keyboardHit()) {
             ch = getchar();
             printf("----key input : %d quit:q\n",ch);

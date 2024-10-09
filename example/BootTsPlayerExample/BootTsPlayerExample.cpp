@@ -168,11 +168,16 @@ bool CreateVideoTunnelId(int* id) {
             printf("mSurface == NULL");
             return false;
         }
-
+        #if (ANDROID_PLATFORM_SDK_VERSION < 35)
         mSurface->connect(NATIVE_WINDOW_API_CPU, mProducerListener);
+        #endif
 
         if (mSurface) {
             mProducer = mSurface->getIGraphicBufferProducer();
+            #if (ANDROID_PLATFORM_SDK_VERSION >= 35)
+            IGraphicBufferProducer::QueueBufferOutput output;
+            mProducer->connect(mProducerListener, NATIVE_WINDOW_API_CPU, false, &output);
+            #endif
             if (mNative_handle == NULL) {
                 mNative_handle = am_gralloc_create_sideband_handle(AM_FIXED_TUNNEL, tunnelId);
                 // printf("mNative_handle:%p\n",mNative_handle);

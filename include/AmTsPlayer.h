@@ -85,6 +85,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_MULTI_STREAM_PARTNERDMXHANDLE, //for multi-instance mode
     AM_TSPLAYER_KEY_GET_MULTI_STREAM_PARTNERDMXHANDLE, //for multi-instance mode
     AM_TSPLAYER_KEY_SET_MEDIASYNC_START_STRATEGY, //iptv
+    AM_TSPLAYER_KEY_SET_RESUME_PLAYING_MODE, //milliseconds*90
 } am_tsplayer_parameter;
 
 typedef enum

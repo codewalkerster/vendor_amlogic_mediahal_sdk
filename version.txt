@@ -1,10 +1,157 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.4-g79e140a
+Version: V3.32.11-gaef4dc8
 
 ========================================
 
 Git commit:
+commit aef4dc8341acb1b5299b67eee79be3758e480255
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Jul 18 11:32:03 2024 +0800
+
+tsplayer: CB2 use vdecunderrun to control writing speed [3/3]
+
+PD#SWPL-176817
+PD#SWPL-179486
+
+Problem:
+use vdecunderrun to control writing speed.
+
+Solution:
+use vdecunderrun to control writing speed.
+
+Verify:
+s7
+
+Change-Id: I3704db87feda36b65973ef2f0b4a34bd1baeb5d1
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 96c140b9a7c502170d276f993d04b7d67fbce1d3
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Sep 26 11:15:12 2024 +0800
+
+tsplayer: CB2 video will stuck once after switching audio track [1/1]
+
+PD#SWPL-186198
+
+Problem:
+video will stuck once after switching audio track.
+
+Solution:
+fix speedwriting to get more audio cache
+
+Verify:
+t3x
+
+Change-Id: I403de2aa70e64f67551d9ad6368240a0351c021d
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 4aa2e2212b3c4149e7480273ecbba9e2fc8f3e92
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Sep 11 05:09:11 2024 +0000
+
+tsplayer: CB2 Fixed the inaccuracy of the video cache calculation. [1/1]
+
+PD#TV-132110
+
+Problem:
+When calculating the video cache,
+the demux inside discontinues.
+
+Solution:
+When demux inside discontinues,
+use demuxwrapper pts to calculate video cache.
+
+Verify:
+t5w
+
+Change-Id: Ida91b698fc5b1e1ce4f7701c2ab4047f4465dd08
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit df8531c619705e6820c1a1023c8c087714f5af79
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Sep 25 16:02:02 2024 +0800
+
+videodec: CB2 errinfo report should be under property control [1/1]
+
+PD#TV-125965
+
+Problem:
+errinfo report should be under property control [1/1]
+
+Solution:
+errinfo report should be under property control [1/1]
+
+Verify:
+T5M
+
+Change-Id: I91fac8fb5c56fea7ebe7767c51a8d8ec365adc55
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit b852930929a5573cab0f1c565cd80caa0f330efe
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Sep 20 16:23:29 2024 +0800
+
+mediahal: CB1 adapte the code to every Android platform [1/1]
+
+PD#SWPL-185466
+PD#SWPL-186176
+
+Problem:
+adapte the code to every Android platform
+
+Solution:
+adapte the code to every Android platform
+
+Verify:
+ohm
+
+Change-Id: I3a1d29912018334df3352313c89c49a518833515
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 3486accaf9ef012a0f5d4c08c09760b6a976b71f
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Tue Sep 10 22:20:50 2024 +0800
+
+mediahal: CB1 Compatible with Android V compilation  [1/1]
+
+PD#SWPL-185466
+
+Problem:
+ctx.DeviceConfig().PlatformVndkVersion() is not available
+in android v.
+
+Solution:
+Compatible with ctx.Config().PlatformSdkVersion().String() and
+ctx. DeviceConfig(). PlatformVndkVersion() sets of interfaces.
+
+Verify:
+SC2
+
+Change-Id: Id6f7d4001ac684e27074e564c0d2d6de59b0c036
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 446e47a786851ce015ad331f6dcc1c87e864e2cd
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Wed Sep 11 17:06:12 2024 +0800
+
+tsplayer: CF2 drop video&audio frame those pts less than resume pts [1/2]
+
+PD#SWPL-183433
+
+Problem:
+need drop frame those pts less than resume pts
+
+Solution:
+drop frame those pts less than resume pts
+merge from linux project OTT-55447
+
+Verify:
+AH212
+
+Change-Id: Ie9a427fec9ae55a4700a9255de1ff55c2f2a7cf5
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit 79e140a7ccc084aab265f581530e5fe7d60d29b6
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Thu Sep 19 16:03:49 2024 +0800
@@ -66,152 +213,9 @@ T5M
 Change-Id: I279f28dc8978f023ef56a61a2487c8dfa48d9f2c
 Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
 
-commit f06a48e4686577e8622f74f18d26569e8ec7edb5
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Thu Sep 19 12:09:20 2024 +0800
-
-tsplayer: CB2 sync struct audio_info with libfaad [1/1]
-
-PD#SWPL-185629
-
-Problem:
-bootvideo crash
-
-Solution:
-sync struct audio_info with libfaad
-check gDeviceHal not null
-
-Verify:
-T5M
-
-Change-Id: I4d3116e936be5303d1d629cb6db7e19240e2f4f5
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
-
-commit 4852d863acc63bda7e1ebee09a362c1b1496071b
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Sat Sep 14 13:31:59 2024 +0800
-
-mediahal: CF2 mediahal update version [1/1]
-
-PD#SWPL-185660
-
-Problem:
-mediahal update version
-
-Solution:
-update V3.32
-
-Verify:
-SC2
-
-Change-Id: I34190dc560849f943fb7bb361c2407bbf8cc89e3
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 028abf79d596f0ca3371d8ed35c6ce05838ad1eb
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Fri Sep 13 17:39:07 2024 +0800
-
-mediahal: CF2 mediahal release V3.30 [1/1]
-
-PD#SWPL-185660
-
-Problem:
-mediahal release
-
-Solution:
-release V3.30
-
-Verify:
-SC2
-
-Change-Id: I78e6fe2b0146fe7e965408ac10a402d5ae6edacd
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit e54d1f3874b856ffc1309acb4ee15be6e7021378
-Author: Jian Wang <jian.wang@amlogic.com>
-Date:   Mon Sep 9 14:31:24 2024 +0800
-
-videodec: CB1 fixed dlopen libmediahal_tunnelrenderer error [1/1]
-
-PD#TV-134062
-
-Problem:
-If do not have libmediaproxy_consumer, will dlopen libmediahal_tunnelrenderer
-error
-
-Solution:
-Remove libmediaproxy_consumer in tunnelrenderer and mediametrics android bp
-
-Verify:
-ohm
-
-Change-Id: Ie9cfa46eca59b33706073f05f49fc1829fa40dfc
-Signed-off-by: Jian Wang <jian.wang@amlogic.com>
-
-commit 73c05a15cf60316b7db4a7437302a3170e844fd9
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Sep 9 15:05:01 2024 +0800
-
-videodec: CB1 disable nv12 set after request buffers [2/2]
-
-PD#SWPL-184854
-
-Problem:
-ImportBufferForPicture(): Unsupported import format: 6
-
-Solution:
-disable nv12 set after request buffers
-
-Verify:
-T3X
-
-Change-Id: If07d5788da36efcfac66c05d853f63a2d35cfe6c
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit e9fcf54111f1b24debb98478b314ad5c6ef71b6f
-Author: wang.ren <wang.ren@amlogic.com>
-Date:   Thu Aug 29 10:57:45 2024 +0000
-
-videodec: CB2 special avi file played stuck [1/1]
-
-PD#SWPL-174992
-
-Problem:
-There is a problem with the calculation of pts by the special avi source
-mediahal, resulting in out pts bounce and synchronous frame loss
-
-Solution:
-Adjust Mediahal's calculation logic for avi stream pts
-
-Verify:
-Android U
-
-Change-Id: I0d2f0398b0f28ee640e605693f6f00ec5bc0a533
-Signed-off-by: wang.ren <wang.ren@amlogic.com>
-
-commit 95408d57d8f20be49af521b4554c882631119b4e
-Author: chen.chen1 <chen.chen1@amlogic.com>
-Date:   Tue Mar 12 17:24:36 2024 +0800
-
-mediasync: CB2 add logs for aut check [1/1]
-
-PD#SWPL-184509
-
-Problem:
-need logs for aut check
-
-Solution:
-add logs for aut check
-
-Verify:
-OHM
-
-Change-Id: I5bcd0cabbc824ee1089b27907dadcd423d99e145
-Signed-off-by: chen.chen1 <chen.chen1@amlogic.com>
-
 ========================================
 
-Release time: 2024-09-26-11-03
+Release time: 2024-10-09-15-49
 
 ========================================
 
