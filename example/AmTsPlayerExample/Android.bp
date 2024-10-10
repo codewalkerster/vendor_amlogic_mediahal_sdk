@@ -49,6 +49,7 @@ androidversion_defaults {
 cc_test {
     name: "AmTsPlayerExample",
     defaults: ["androidversion_defaults"],
+    enabled: false,
     vendor: true,
     srcs: [
         "AmTsPlayerExample.cpp",
@@ -65,6 +66,7 @@ cc_test {
 cc_test {
     name: "AmTsPlayerExampleSystem",
     defaults: ["androidversion_defaults","systemlib_defaults"],
+    enabled: false,
     srcs: [
         "AmTsPlayerExample.cpp",
     ],
