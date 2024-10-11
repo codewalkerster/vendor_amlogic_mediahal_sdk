@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.11-gaef4dc8
+Version: V3.32.12-g4daa467
 
 ========================================
 
 Git commit:
+commit 4daa4675a22aabc9efd3bb9885d869a85d221412
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Sep 23 17:16:18 2024 +0800
+
+mediasync: CB2 Black screen displayed on scrambled stream [1/1]
+
+PD#SWPL-180564
+
+Problem:
+need add I only trickmode bypass mediasync mode.
+
+Solution:
+need add I only trickmode bypass mediasync mode.
+
+Verify:
+T5M
+
+Change-Id: I0ea92489ec571d27cdb87c4610a9912da287fa71
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit aef4dc8341acb1b5299b67eee79be3758e480255
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Thu Jul 18 11:32:03 2024 +0800
@@ -192,30 +212,9 @@ OHM
 Change-Id: Icba536317b1517896a0ba3e132084212f7de5d87
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 7d5fa009c87edba24eb4e70f441895135d10d96f
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Fri Aug 9 10:13:50 2024 +0800
-
-videodec: CB2 optimation latency for cloudgame [2/2]
-
-PD#SWPL-179633
-
-Problem:
-cloudgame decoder test max latency over 8ms
-
-Solution:
-use_pts_id_ instead of use_pts_calculator_,
-don't PostTask DevicePollTask twice
-
-Verify:
-T5M
-
-Change-Id: I279f28dc8978f023ef56a61a2487c8dfa48d9f2c
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
-
 ========================================
 
-Release time: 2024-10-09-15-49
+Release time: 2024-10-11-17-10
 
 ========================================
 
