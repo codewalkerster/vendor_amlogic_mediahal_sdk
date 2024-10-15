@@ -1,10 +1,90 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.12-g4daa467
+Version: V3.32.16-g25c1941
 
 ========================================
 
 Git commit:
+commit 25c194126aefa8903dc7bc61a697d04a1ac6227d
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Mon Oct 14 20:14:35 2024 +0800
+
+videopassthrough: CB2 need add syncmode in ATF [1/2]
+
+PD#SWPL-183035
+
+Problem:
+enable a master in pvr/timeshift mode
+
+Solution:
+need add syncmode in ATF
+
+Verify:
+T5M
+
+Change-Id: I00efe81e4cccf5fa997b00968dcf355e2ed78d6f
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 44da183a2ef1b1e482a22ba09eb391a01989e9f2
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Thu Oct 10 13:21:45 2024 +0800
+
+hwdemux: CB2 fix audio not play after pause [1/1]
+
+PD#SWPL-187598
+
+Problem:
+audio only stream not update mediasync cache correctly.
+
+Solution:
+add timeout in audio only stream control.
+
+Verify:
+T5M
+
+Change-Id: Ic68adcd924f569f59c7cdcff8c2e56d61688bf6f
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit eda8b90a30336d7d89fcc707109f22c11995ee1c
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Oct 8 16:32:42 2024 +0800
+
+tsplayer: CB2 video can't play with data_loss message [1/1]
+
+PD#SWPL-186547
+
+Problem:
+video can't play with data_loss message
+
+Solution:
+fix data_loss message to send
+
+Verify:
+T6D
+
+Change-Id: I1d7b29326f298e42d6feb8e10e3e2641e8e1b470
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit bbb9802a73780b53f0db37f91667665176077dc6
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Oct 10 15:32:53 2024 +0800
+
+example: CB2 fix compiling error for androidU [1/1]
+
+PD#SWPL-188293
+
+Problem:
+compiling error for androidU DRM_Patchbuild
+
+Solution:
+fix compiling error for androidU
+
+Verify:
+ohm
+
+Change-Id: I4cf2f98b1c9f6fe265de072e408a576d5e8ec97b
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 4daa4675a22aabc9efd3bb9885d869a85d221412
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Mon Sep 23 17:16:18 2024 +0800
@@ -129,92 +209,9 @@ ohm
 Change-Id: I3a1d29912018334df3352313c89c49a518833515
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 3486accaf9ef012a0f5d4c08c09760b6a976b71f
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Tue Sep 10 22:20:50 2024 +0800
-
-mediahal: CB1 Compatible with Android V compilation  [1/1]
-
-PD#SWPL-185466
-
-Problem:
-ctx.DeviceConfig().PlatformVndkVersion() is not available
-in android v.
-
-Solution:
-Compatible with ctx.Config().PlatformSdkVersion().String() and
-ctx. DeviceConfig(). PlatformVndkVersion() sets of interfaces.
-
-Verify:
-SC2
-
-Change-Id: Id6f7d4001ac684e27074e564c0d2d6de59b0c036
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 446e47a786851ce015ad331f6dcc1c87e864e2cd
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Wed Sep 11 17:06:12 2024 +0800
-
-tsplayer: CF2 drop video&audio frame those pts less than resume pts [1/2]
-
-PD#SWPL-183433
-
-Problem:
-need drop frame those pts less than resume pts
-
-Solution:
-drop frame those pts less than resume pts
-merge from linux project OTT-55447
-
-Verify:
-AH212
-
-Change-Id: Ie9a427fec9ae55a4700a9255de1ff55c2f2a7cf5
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 79e140a7ccc084aab265f581530e5fe7d60d29b6
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Sep 19 16:03:49 2024 +0800
-
-videodec: CB1 fix csd mixed in first frame issue [1/1]
-
-PD#OTT-66211
-
-Problem:
-fix mpeg4 csd mixed in first frame issue
-
-Solution:
-too large csd frame data send to videodec directly
-
-Verify:
-905Y4
-
-Change-Id: Iee07ecef42dae2b89fad99b39232595e002e1cd4
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
-commit 15a47596ec774e4a7fc1ea9880265cc0c0119f4a
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Aug 30 16:18:08 2024 +0800
-
-hwdemux: CB2 iptv playback not smooth [1/1]
-
-PD#SWPL-183975
-
-Problem:
-iptv inject buf too large, ringbuffer overflow.
-
-Solution:
-not inject when decoder rp change,and buffer level too large.
-
-Verify:
-OHM
-
-Change-Id: Icba536317b1517896a0ba3e132084212f7de5d87
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-10-11-17-10
+Release time: 2024-10-15-14-14
 
 ========================================
 
