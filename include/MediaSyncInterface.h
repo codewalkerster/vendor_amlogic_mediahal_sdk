@@ -84,6 +84,7 @@ typedef enum {
     MEDIASYNC_KEY_SLOWSYNC_AV_TOLERANCE,
     MEDIASYNC_KEY_START_STRATEGY,
     MEDIASYNC_KEY_RESUME_PLAYING_PTS,
+    MEDIASYNC_KEY_SHOWFRAME_BEFORE_AVSYNC_STAGE,//set output first frame before av sync stage.
     MEDIASYNC_KEY_MAX = 255,
 } mediasync_parameter;
 

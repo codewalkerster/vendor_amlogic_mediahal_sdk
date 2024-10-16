@@ -1,10 +1,31 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.16-g25c1941
+Version: V3.32.17-g65a191a
 
 ========================================
 
 Git commit:
+commit 65a191a890ad4dea91b373c74bbb306c54c3c7c7
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Jan 31 15:18:04 2024 +0800
+
+tsplayer: CF2 add fast show first frame interface. [1/1]
+
+PD#TV-109483
+PD#TV-135615
+
+Problem:
+add setparams to control mediasync fast show first frame.
+
+Solution:
+add setparams to control mediasync fast show first frame.
+
+Verify:
+AH212
+
+Change-Id: Id93e48c07a467937be43ad0c62231f1e1f789469
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit 25c194126aefa8903dc7bc61a697d04a1ac6227d
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Mon Oct 14 20:14:35 2024 +0800
@@ -188,30 +209,9 @@ T5M
 Change-Id: I91fac8fb5c56fea7ebe7767c51a8d8ec365adc55
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit b852930929a5573cab0f1c565cd80caa0f330efe
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Sep 20 16:23:29 2024 +0800
-
-mediahal: CB1 adapte the code to every Android platform [1/1]
-
-PD#SWPL-185466
-PD#SWPL-186176
-
-Problem:
-adapte the code to every Android platform
-
-Solution:
-adapte the code to every Android platform
-
-Verify:
-ohm
-
-Change-Id: I3a1d29912018334df3352313c89c49a518833515
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-10-15-14-14
+Release time: 2024-10-16-11-47
 
 ========================================
 
