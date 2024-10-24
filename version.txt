@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.21-gfc27cca
+Version: V3.32.22-g6c66744
 
 ========================================
 
 Git commit:
+commit 6c66744fe43408a5d563628648319a099798957a
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Oct 23 18:25:58 2024 +0800
+
+tsplayer: CB2 unsupported video can't get resolution size [1/1]
+
+PD#TV-137836
+
+Problem:
+unsupported video can't get resolution size
+
+Solution:
+remove the restrictiion condition when using getvideoinfo
+
+Verify:
+BE30AE-T905S
+
+Change-Id: Idd8bd1d053d2181d0d5806810cf13f916d3684ab
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit fc27ccafaac8c1ea29187b9ab2b3599d49ce21d5
 Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
 Date:   Sat Oct 12 15:13:17 2024 +0800
@@ -187,29 +207,9 @@ ohm
 Change-Id: I4cf2f98b1c9f6fe265de072e408a576d5e8ec97b
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 4daa4675a22aabc9efd3bb9885d869a85d221412
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Sep 23 17:16:18 2024 +0800
-
-mediasync: CB2 Black screen displayed on scrambled stream [1/1]
-
-PD#SWPL-180564
-
-Problem:
-need add I only trickmode bypass mediasync mode.
-
-Solution:
-need add I only trickmode bypass mediasync mode.
-
-Verify:
-T5M
-
-Change-Id: I0ea92489ec571d27cdb87c4610a9912da287fa71
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-10-22-19-25
+Release time: 2024-10-24-15-17
 
 ========================================
 
