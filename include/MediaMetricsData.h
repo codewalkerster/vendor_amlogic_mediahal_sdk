@@ -17,6 +17,12 @@ typedef struct _media_metrics_info {
     uint64_t outframe_cnt;
 } media_metrics_info;
 
+typedef enum _metrics_cmd {
+    METRICS_CMD_INVALID = 0,
+    METRICS_CLEAN_INFO,
+    METRICS_PAUSE,
+} eMETRICS_CMD;
+
 typedef struct _metrics_frame_info {
     int32_t decoder_instid;
     int32_t vd_instid;

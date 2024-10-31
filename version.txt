@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.22-g6c66744
+Version: V3.32.24-gf33fbdc
 
 ========================================
 
 Git commit:
+commit f33fbdc13efc26f336c771458d866d989d82576c
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Wed Oct 30 17:00:31 2024 +0800
+
+videopassthrough: CB2 add pause next trickmode [1/2]
+
+PD#SWPL-189178
+
+Problem:
+add pause next trickmode in passthrough mode
+
+Solution:
+add pause next trickmode in passthrough mode
+
+Verify:
+T5M
+
+Change-Id: I6ebd8a0c596d2720ba1958de3a0070d2d640b3f7
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 8ce9017dac9c24b43fe017067a88de4d1eaa7193
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Sep 30 15:17:08 2024 +0800
+
+mediametrcs: CB1 add reset metrics interface [2/2]
+
+PD#TV-136481
+
+Problem:
+add reset metrics interface
+
+Solution:
+add reset metrics interface
+
+Verify:
+T5M
+
+Change-Id: Ie963b81548fa4712c2c2a6fb5b241399b781efbd
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 6c66744fe43408a5d563628648319a099798957a
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Wed Oct 23 18:25:58 2024 +0800
@@ -167,49 +207,9 @@ T5M
 Change-Id: Ic68adcd924f569f59c7cdcff8c2e56d61688bf6f
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit eda8b90a30336d7d89fcc707109f22c11995ee1c
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Oct 8 16:32:42 2024 +0800
-
-tsplayer: CB2 video can't play with data_loss message [1/1]
-
-PD#SWPL-186547
-
-Problem:
-video can't play with data_loss message
-
-Solution:
-fix data_loss message to send
-
-Verify:
-T6D
-
-Change-Id: I1d7b29326f298e42d6feb8e10e3e2641e8e1b470
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit bbb9802a73780b53f0db37f91667665176077dc6
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Oct 10 15:32:53 2024 +0800
-
-example: CB2 fix compiling error for androidU [1/1]
-
-PD#SWPL-188293
-
-Problem:
-compiling error for androidU DRM_Patchbuild
-
-Solution:
-fix compiling error for androidU
-
-Verify:
-ohm
-
-Change-Id: I4cf2f98b1c9f6fe265de072e408a576d5e8ec97b
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-10-24-15-17
+Release time: 2024-10-31-11-29
 
 ========================================
 
