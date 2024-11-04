@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.24-gf33fbdc
+Version: V3.32.25-g1d4dadc
 
 ========================================
 
 Git commit:
+commit 1d4dadca9b7312ce2dcaf81eee5a765877bb58e0
+Author: shipeng sun <shipeng.sun@amlogic.com>
+Date:   Fri Nov 1 10:47:42 2024 +0800
+
+videodec: CB2 Force use of Secmem V2 when VDEC range is below 4G [1/1]
+
+PD#SWPL-191287
+
+Problem:
+Force use of Secmem V2 when VDEC range is below 4G
+
+Solution:
+Force use of Secmem V2 when VDEC range is below 4G
+
+Verify:
+S905D5
+
+Change-Id: If6154e97f19aeef8ff29e69e5ad81a38f1b7d144
+Signed-off-by: shipeng sun <shipeng.sun@amlogic.com>
+
 commit f33fbdc13efc26f336c771458d866d989d82576c
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Wed Oct 30 17:00:31 2024 +0800
@@ -187,29 +207,9 @@ T5M
 Change-Id: I00efe81e4cccf5fa997b00968dcf355e2ed78d6f
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 44da183a2ef1b1e482a22ba09eb391a01989e9f2
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Thu Oct 10 13:21:45 2024 +0800
-
-hwdemux: CB2 fix audio not play after pause [1/1]
-
-PD#SWPL-187598
-
-Problem:
-audio only stream not update mediasync cache correctly.
-
-Solution:
-add timeout in audio only stream control.
-
-Verify:
-T5M
-
-Change-Id: Ic68adcd924f569f59c7cdcff8c2e56d61688bf6f
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-10-31-11-29
+Release time: 2024-11-04-11-15
 
 ========================================
 
