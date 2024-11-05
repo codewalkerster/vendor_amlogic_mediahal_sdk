@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.25-g1d4dadc
+Version: V3.32.26-gb1ebd1d
 
 ========================================
 
 Git commit:
+commit b1ebd1dea23e2ec00e7f978e0b87a8be1abbf427
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Oct 29 15:13:37 2024 +0800
+
+tsplayer: CB2 audio will output slowly after switching track [1/1]
+
+PD#SWPL-189726
+
+Problem:
+audio wil output slowly after switchin audio track in pvr
+
+Solution:
+fix speedwriting to write ts data.
+
+Verify:
+T6D
+
+Change-Id: Ic194e82414b5d0874e1c22d8538fc930169e4e87
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 1d4dadca9b7312ce2dcaf81eee5a765877bb58e0
 Author: shipeng sun <shipeng.sun@amlogic.com>
 Date:   Fri Nov 1 10:47:42 2024 +0800
@@ -187,29 +207,9 @@ AH212
 Change-Id: Id93e48c07a467937be43ad0c62231f1e1f789469
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
 
-commit 25c194126aefa8903dc7bc61a697d04a1ac6227d
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Mon Oct 14 20:14:35 2024 +0800
-
-videopassthrough: CB2 need add syncmode in ATF [1/2]
-
-PD#SWPL-183035
-
-Problem:
-enable a master in pvr/timeshift mode
-
-Solution:
-need add syncmode in ATF
-
-Verify:
-T5M
-
-Change-Id: I00efe81e4cccf5fa997b00968dcf355e2ed78d6f
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-04-11-15
+Release time: 2024-11-05-17-29
 
 ========================================
 
