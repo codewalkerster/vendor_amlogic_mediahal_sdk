@@ -1,10 +1,72 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.26-gb1ebd1d
+Version: V3.32.29-gb72704a
 
 ========================================
 
 Git commit:
+commit b72704a8861fee9cc07dae1b04ed9f57a8508a31
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Nov 4 16:28:46 2024 +0800
+
+tsplayer: CB2 audio comes slowly after switching track with hwDemux [1/1]
+
+PD#TV-139047
+
+Problem:
+audio will output too late after switching channel
+in HwDemux + NonTunnelMode
+
+Solution:
+one audio track has no data,
+it should be controlled by video cache.
+
+Verify:
+T5D
+
+Change-Id: Ieeac1f8a7bd914600deb894b8e02a5eee28f8ae3
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit f0fe5a2d7dfb6b13c0488eb82c90c25d753cbb2c
+Author: zhewen.luo <zhewen.luo@amlogic.com>
+Date:   Mon Jan 22 10:15:21 2024 +0800
+
+resman: CF2 Add notif error node. [1/1]
+
+PD#SWPL-149860
+
+Problem:
+Add notif error node.
+
+Solution:
+Add notif error node.
+
+Verify:
+ohm
+
+Change-Id: I9de6c73720a3a7fb8e0cec32ef6d9e6ba333719e
+Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
+
+commit 8398d4d314d0bbd09ff3b6d6e535db757fa98eac
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Oct 25 05:46:38 2024 +0000
+
+tsplayer: CB2 fixed send scramble event. [1/1]
+
+PD#SWPL-189582
+
+Problem:
+can't send decoder data loss event.
+
+Solution:
+fixed decoder data loss judgment logic.
+
+Verify:
+s7
+
+Change-Id: I5edad66c46ef8058abaf82cf2af9cf5f8d928b52
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit b1ebd1dea23e2ec00e7f978e0b87a8be1abbf427
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Oct 29 15:13:37 2024 +0800
@@ -146,70 +208,9 @@ T5M
 Change-Id: I7e4bdded223c3bb3e75d69c6e9c5c4b5b0ed63ba
 Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
 
-commit 524319faa4d2aefd3558570e6c235c850e983acc
-Author: mingguang.liu <mingguang.liu@amlogic.com>
-Date:   Thu Oct 10 18:02:53 2024 +0800
-
-tunnelrenderer: CF1 Support set solid black color [2/2]
-
-PD#TV-136151
-
-Problem:
-No way to support set soild black color.
-
-Solution:
-Add parameter vendor.tunnel.set_solid_black_color to control.
-
-Verify:
-T5M
-
-Change-Id: I7b01007f37b78cd5e6a719cf6d92fdf19c897f45
-Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
-
-commit bb50476e54f6e456ed370d32b1946194a5153d55
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Oct 15 16:02:25 2024 +0800
-
-mediasync: CB2 timeshift block after 3s pause [1/1]
-
-PD#SWPL-185300
-
-Problem:
-not update pcr after pause status.
-
-Solution:
-update pcr after resume.
-
-Verify:
-T5M
-
-Change-Id: Ib9c8060f9331e838af9b4e2d8ad180560baf7223
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 65a191a890ad4dea91b373c74bbb306c54c3c7c7
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Jan 31 15:18:04 2024 +0800
-
-tsplayer: CF2 add fast show first frame interface. [1/1]
-
-PD#TV-109483
-PD#TV-135615
-
-Problem:
-add setparams to control mediasync fast show first frame.
-
-Solution:
-add setparams to control mediasync fast show first frame.
-
-Verify:
-AH212
-
-Change-Id: Id93e48c07a467937be43ad0c62231f1e1f789469
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-05-17-29
+Release time: 2024-11-06-16-32
 
 ========================================
 

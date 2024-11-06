@@ -27,6 +27,8 @@ extern "C" {
 #define    RESMAN_IOC_RELEASE_ALL            _IOR(RESMAN_IOC_MAGIC, 0x06, int)
 #define    RESMAN_IOC_LOAD_RES               _IOR(RESMAN_IOC_MAGIC, 0x07, int)
 #define    RESMAN_IOC_GET_SYS_DEBUG_LEVEL    _IOR(RESMAN_IOC_MAGIC, 0x08, int)
+#define    RESMAN_IOC_SET_SYS_DEBUG_LEVEL    _IOR(RESMAN_IOC_MAGIC, 0x09, int)
+#define    RESMAN_IOC_GET_ERROR_INFO         _IOR(RESMAN_IOC_MAGIC, 0x0A, int)
 
 #define    RESMAN_SUPPORT_PREEMPT        1
 #define    RESITEMSIZE             (32)
@@ -63,6 +65,12 @@ struct res_item {
     __u32 type;
     char arg[32];
 };
+
+struct debug_level {
+	char debug_info[PAGE_SIZE];
+	__u32 len;
+};
+
 
 enum RESMAN_ID {
     RESMAN_ID_VFM_DEFAULT,
@@ -109,7 +117,8 @@ enum RESMAN_EVENT {
     RESMAN_EVENT_STOP					= 0x1003,
     RESMAN_EVENT_RESREPORT				= 0x1004,
     RESMAN_EVENT_DEBUGEVENT				= 0x1005,
-    RESMAN_EVENT_REGISTER_CALLBACK		= 0x1006
+    RESMAN_EVENT_REGISTER_CALLBACK		= 0x1006,
+    RESMAN_EVENT_ERRORINFO		        = 0x1007,
 };
 
 bool resman_support(void);
@@ -136,11 +145,15 @@ int resman_add_handler_and_resreports(int fd, void (* handler)(void *),
     void (* report)(void *), void *opaque);
 int resman_add_debug_callback(int fd,
     void (* debug)(void *, const char *, int), void *opaque);
+int resman_add_error_info_callback(int fd,
+    void (*notify_error_info)(void *, const char *, int), void *opaque);
 void resman_unregister(int fd);
 void resman_stop_thread();
 int resman_estimate_size(int format, uint32_t width, uint32_t height);
 int resman_load_res(int handle, const char *name, __u32 type, const char *arg);
 const char *resman_get_debug_info(int handle);
+bool resman_set_debug_info(int handle,const char *info);
+const char *resman_get_error_info(int handle);
 #ifdef  __cplusplus
 }
 #endif
