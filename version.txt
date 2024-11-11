@@ -1,10 +1,73 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.29-gb72704a
+Version: V3.32.32-g4873671
 
 ========================================
 
 Git commit:
+commit 48736714c41746de809d2a172c7546f8259a1446
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Nov 5 15:53:48 2024 +0800
+
+tsplayer: CB2 dvb_server memory leaks when stress testing [1/1]
+
+PD#SWPL-185867
+
+Problem:
+dvb_server memory leaks when stress testing,
+for tsplayer message(kWhateReadVideo) runs too much
+after stopvideodecoding holding.
+
+Solution:
+stopVideoDeconding should set stopGetViideoEsData true.
+
+Verify:
+T3X
+
+Change-Id: I5d6b8346793a0181e70189413a73650c74055262
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit c4ccc616a61a634f67d3a98a286afb85d9e3cfc3
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Nov 7 11:08:59 2024 +0800
+
+videodec: CB1 fix compiled issue in Android P [1/1]
+
+PD#GH-4930
+
+Problem:
+Android P compile failed
+
+Solution:
+fix compiled issue in Android P
+
+Verify:
+OHM
+
+Change-Id: I28741569ff80680c79588196d219dd5906a5a568
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
+commit 2bbb1048f43e8b39a41801b81bd0ed0745806ab1
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Aug 26 17:59:57 2024 +0800
+
+videodec: CB1 fix av1 get frame num crash issue [1/1]
+
+PD#GH-4930
+
+Problem:
+abnoral obu size lead av1 getframenum lead c2 crash
+
+Solution:
+av1 buffer access add size precheck, in case abnormal
+obu size
+
+Verify:
+805X2
+
+Change-Id: I2b7570078a1be2c9469f6dbf378eb505ccae41e1
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit b72704a8861fee9cc07dae1b04ed9f57a8508a31
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Mon Nov 4 16:28:46 2024 +0800
@@ -147,70 +210,9 @@ T5M
 Change-Id: Ie963b81548fa4712c2c2a6fb5b241399b781efbd
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 6c66744fe43408a5d563628648319a099798957a
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Oct 23 18:25:58 2024 +0800
-
-tsplayer: CB2 unsupported video can't get resolution size [1/1]
-
-PD#TV-137836
-
-Problem:
-unsupported video can't get resolution size
-
-Solution:
-remove the restrictiion condition when using getvideoinfo
-
-Verify:
-BE30AE-T905S
-
-Change-Id: Idd8bd1d053d2181d0d5806810cf13f916d3684ab
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit fc27ccafaac8c1ea29187b9ab2b3599d49ce21d5
-Author: wenbiao zhang <wenbiao.zhang@amlogic.com>
-Date:   Sat Oct 12 15:13:17 2024 +0800
-
-amtsplayer: CB2 change to direct stream for bootvideo [1/1]
-
-PD#SWPL-186243
-
-Problem:
-device with ms12 play error
-bootvideo use primary stream and format is different
-
-Solution:
-change to direct stream for bootvideo
-
-Verify:
-T3X
-
-Change-Id: Ibb3e264464afd8e127c5c472b38588a284d5278e
-Signed-off-by: wenbiao zhang <wenbiao.zhang@amlogic.com>
-
-commit 59126e4961b62eec144fc4b7ecaebc07f5720a16
-Author: mingguang.liu <mingguang.liu@amlogic.com>
-Date:   Thu Oct 17 14:07:52 2024 +0800
-
-tunnelrenderer: CB1 render in same vsync report incremental rendered time [1/1]
-
-PD#TV-133254
-
-Problem:
-sometimes render in same vsync report different time
-
-Solution:
-render in same vsync report incremental rendered time
-
-Verify:
-T5M
-
-Change-Id: I7e4bdded223c3bb3e75d69c6e9c5c4b5b0ed63ba
-Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-06-16-32
+Release time: 2024-11-11-10-37
 
 ========================================
 
