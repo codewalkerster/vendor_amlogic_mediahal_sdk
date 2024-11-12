@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.32-g4873671
+Version: V3.32.34-g8c917ad
 
 ========================================
 
 Git commit:
+commit 8c917adeae720f4701146432f655028ad81a0272
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Nov 6 16:50:11 2024 +0800
+
+tsplayer: CB2 one video will play stuckly in pvr mode [1/1]
+
+PD#SWPL-190870
+PD#SWPL-191663
+PD#SWPL-189354
+
+Problem:
+one video will play stuckly in pvr mode.
+
+Solution:
+fix vdecRunderrun to judge writing.
+
+Verify:
+s7
+
+Change-Id: Ia0f3cfb9150021220d6d424023d4bdc2629d7847
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 8427478272450babbe6ededb6c63b1e2e0c7f25e
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Oct 29 08:31:21 2024 +0000
+
+mediasync: CB2 av no sync when play special stream [1/1]
+
+PD#SWPL-190161
+
+Problem:
+I frame GOP large,wait first video frame arrive timeout.
+
+Solution:
+add video and audio wait time threshold property.
+
+Verify:
+t6d
+
+Change-Id: I0642811053870a8d721625c8893f8f4b198d00b1
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit 48736714c41746de809d2a172c7546f8259a1446
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Nov 5 15:53:48 2024 +0800
@@ -170,49 +212,9 @@ S905D5
 Change-Id: If6154e97f19aeef8ff29e69e5ad81a38f1b7d144
 Signed-off-by: shipeng sun <shipeng.sun@amlogic.com>
 
-commit f33fbdc13efc26f336c771458d866d989d82576c
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Wed Oct 30 17:00:31 2024 +0800
-
-videopassthrough: CB2 add pause next trickmode [1/2]
-
-PD#SWPL-189178
-
-Problem:
-add pause next trickmode in passthrough mode
-
-Solution:
-add pause next trickmode in passthrough mode
-
-Verify:
-T5M
-
-Change-Id: I6ebd8a0c596d2720ba1958de3a0070d2d640b3f7
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 8ce9017dac9c24b43fe017067a88de4d1eaa7193
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Sep 30 15:17:08 2024 +0800
-
-mediametrcs: CB1 add reset metrics interface [2/2]
-
-PD#TV-136481
-
-Problem:
-add reset metrics interface
-
-Solution:
-add reset metrics interface
-
-Verify:
-T5M
-
-Change-Id: Ie963b81548fa4712c2c2a6fb5b241399b781efbd
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-11-10-37
+Release time: 2024-11-12-13-36
 
 ========================================
 
