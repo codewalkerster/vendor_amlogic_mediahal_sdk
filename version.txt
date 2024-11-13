@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.34-g8c917ad
+Version: V3.32.35-g4c801ab
 
 ========================================
 
 Git commit:
+commit 4c801ab2b44bb8b8ad4012333b104cad4ef8ed69
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Thu Aug 15 14:34:15 2024 +0800
+
+videodec: CF1 add lcevc support [1/1]
+
+PD#SWPL-166465
+
+Problem:
+add lcevc support
+
+Solution:
+add lcevc support
+
+Verify:
+AndroidU S7D
+
+Change-Id: I8100b3c1e790fc351100fa348cad8aa59d745d2d
+Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
+
 commit 8c917adeae720f4701146432f655028ad81a0272
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Wed Nov 6 16:50:11 2024 +0800
@@ -192,29 +212,9 @@ T6D
 Change-Id: Ic194e82414b5d0874e1c22d8538fc930169e4e87
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 1d4dadca9b7312ce2dcaf81eee5a765877bb58e0
-Author: shipeng sun <shipeng.sun@amlogic.com>
-Date:   Fri Nov 1 10:47:42 2024 +0800
-
-videodec: CB2 Force use of Secmem V2 when VDEC range is below 4G [1/1]
-
-PD#SWPL-191287
-
-Problem:
-Force use of Secmem V2 when VDEC range is below 4G
-
-Solution:
-Force use of Secmem V2 when VDEC range is below 4G
-
-Verify:
-S905D5
-
-Change-Id: If6154e97f19aeef8ff29e69e5ad81a38f1b7d144
-Signed-off-by: shipeng sun <shipeng.sun@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-12-13-36
+Release time: 2024-11-13-15-28
 
 ========================================
 
