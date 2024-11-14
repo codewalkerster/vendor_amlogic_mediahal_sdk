@@ -1,10 +1,93 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.35-g4c801ab
+Version: V3.32.39-g1de1572
 
 ========================================
 
 Git commit:
+commit 1de1572e07a4b3c51ea2b121758823d897ee4d9f
+Author: Zhao Yi <zhao.yi@amlogic.com>
+Date:   Fri Nov 8 09:54:24 2024 +0800
+
+hwdemux: CB2 loop playback blocked [1/1]
+
+PD#SWPL-191004
+
+Problem:
+audioCache from mediasync is smaller than 1000ms.
+But audioThresholdMinCacheMs is 1000ms.
+
+Solution:
+set audioThresholdMinCacheMs' value to 800ms.
+
+Verify:
+AndroidU OHM media3
+
+Change-Id: Ic3b10f6be0b0b81237d8e46a50112d20a2747455
+Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
+
+commit f0f926fb247f9b95782f5fd4723b8b1d40e3cf5b
+Author: liang.hou <liang.hou@amlogic.com>
+Date:   Thu Nov 14 02:41:10 2024 +0000
+
+videodec: CB2 AV is not sync for UDP playback [1/1]
+
+PD#OTT-68489
+
+Problem:
+PTS has jumps, and the accumulation of PTS leads to
+a large difference in actual AV
+
+Solution:
+When PTS jumps, use the original PTS
+
+Verify:
+Android U
+
+Change-Id: Ibe6141b46940682317bb0d5390fa17bd70eee5bc
+Signed-off-by: liang.hou <liang.hou@amlogic.com>
+
+commit 9fcca5c203ddab00cb0d77fcd3f197d71fbae4b0
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Mon Nov 11 13:49:12 2024 +0800
+
+videodec: CB1 destroy VideoDecodeAccelerator by synchronous. [1/1]
+
+PD#TV-140091
+
+Problem:
+The thread task has not been completed,
+and the thread stops, causing a crash
+
+Solution:
+destroy VideoDecodeAccelerator by synchronous.
+
+Verify:
+AY30A2-T963D4
+
+Change-Id: Idac394d0b8983df901f56b0b67a44b1789a21290
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
+commit 5be9556d63b02e0341c2000132bc3600668077c3
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Wed Nov 13 13:29:43 2024 +0800
+
+videodec: CB1 pts jump when play MEMC_60HZ.VOB. [1/1]
+
+PD#SWPL-192747
+
+Problem:
+1 play MEMC_60HZ.VOB video error,pts jumped.
+
+Solution:
+1 if pts is decreased, we used input pts value for out pts.
+
+Verify:
+ohm
+
+Change-Id: Icb143447cd322844857ba2786168abe597377d1c
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit 4c801ab2b44bb8b8ad4012333b104cad4ef8ed69
 Author: Qiang Guo <qiang.guo@amlogic.com>
 Date:   Thu Aug 15 14:34:15 2024 +0800
@@ -130,91 +213,9 @@ Verify:
 Change-Id: I2b7570078a1be2c9469f6dbf378eb505ccae41e1
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit b72704a8861fee9cc07dae1b04ed9f57a8508a31
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Nov 4 16:28:46 2024 +0800
-
-tsplayer: CB2 audio comes slowly after switching track with hwDemux [1/1]
-
-PD#TV-139047
-
-Problem:
-audio will output too late after switching channel
-in HwDemux + NonTunnelMode
-
-Solution:
-one audio track has no data,
-it should be controlled by video cache.
-
-Verify:
-T5D
-
-Change-Id: Ieeac1f8a7bd914600deb894b8e02a5eee28f8ae3
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit f0fe5a2d7dfb6b13c0488eb82c90c25d753cbb2c
-Author: zhewen.luo <zhewen.luo@amlogic.com>
-Date:   Mon Jan 22 10:15:21 2024 +0800
-
-resman: CF2 Add notif error node. [1/1]
-
-PD#SWPL-149860
-
-Problem:
-Add notif error node.
-
-Solution:
-Add notif error node.
-
-Verify:
-ohm
-
-Change-Id: I9de6c73720a3a7fb8e0cec32ef6d9e6ba333719e
-Signed-off-by: zhewen.luo <zhewen.luo@amlogic.com>
-
-commit 8398d4d314d0bbd09ff3b6d6e535db757fa98eac
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri Oct 25 05:46:38 2024 +0000
-
-tsplayer: CB2 fixed send scramble event. [1/1]
-
-PD#SWPL-189582
-
-Problem:
-can't send decoder data loss event.
-
-Solution:
-fixed decoder data loss judgment logic.
-
-Verify:
-s7
-
-Change-Id: I5edad66c46ef8058abaf82cf2af9cf5f8d928b52
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit b1ebd1dea23e2ec00e7f978e0b87a8be1abbf427
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Oct 29 15:13:37 2024 +0800
-
-tsplayer: CB2 audio will output slowly after switching track [1/1]
-
-PD#SWPL-189726
-
-Problem:
-audio wil output slowly after switchin audio track in pvr
-
-Solution:
-fix speedwriting to write ts data.
-
-Verify:
-T6D
-
-Change-Id: Ic194e82414b5d0874e1c22d8538fc930169e4e87
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-13-15-28
+Release time: 2024-11-14-19-09
 
 ========================================
 
