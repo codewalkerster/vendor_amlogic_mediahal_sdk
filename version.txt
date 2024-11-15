@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.39-g1de1572
+Version: V3.32.40-g15854b9
 
 ========================================
 
 Git commit:
+commit 15854b9340156dcfeb6d7f4cc8bbcaf2ea0dd32c
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Wed Nov 13 18:34:31 2024 +0800
+
+videodec: CB1 fix error size check when av1 add header precheck [1/1]
+
+PD#SWPL-192804
+
+Problem:
+error av1 size check, lead get error data
+
+Solution:
+fix error size check when av add header precheck
+
+Verify:
+OHM
+
+Change-Id: Ibfad815fb5fbb43f4e298eba7a9effb78da8db00
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+
 commit 1de1572e07a4b3c51ea2b121758823d897ee4d9f
 Author: Zhao Yi <zhao.yi@amlogic.com>
 Date:   Fri Nov 8 09:54:24 2024 +0800
@@ -192,30 +212,9 @@ OHM
 Change-Id: I28741569ff80680c79588196d219dd5906a5a568
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 2bbb1048f43e8b39a41801b81bd0ed0745806ab1
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Aug 26 17:59:57 2024 +0800
-
-videodec: CB1 fix av1 get frame num crash issue [1/1]
-
-PD#GH-4930
-
-Problem:
-abnoral obu size lead av1 getframenum lead c2 crash
-
-Solution:
-av1 buffer access add size precheck, in case abnormal
-obu size
-
-Verify:
-805X2
-
-Change-Id: I2b7570078a1be2c9469f6dbf378eb505ccae41e1
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-14-19-09
+Release time: 2024-11-15-14-21
 
 ========================================
 
