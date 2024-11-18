@@ -1,10 +1,35 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.40-g15854b9
+Version: V3.32.41-gecf53c6
 
 ========================================
 
 Git commit:
+commit ecf53c6167fc95b0d4c01087b815ec77abeae531
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Nov 13 16:41:13 2024 +0800
+
+tsplayer: CB2 timeshift/PVR play freezing as plugging signal [1/1]
+
+PD#SWPL-191427
+PD#SWPL-190283
+PD#SWPL-191292
+PD#SWPL-190970
+PD#SWPL-192725
+
+Problem:
+timeshift and PVR play freezing as plugging signal,
+as no writing data to decoder
+
+Solution:
+fix to jugde right values of startCacheEnough and vdecCacheEnough
+
+Verify:
+S7
+
+Change-Id: Ia41de2b2abd072a786327708b396ca1bf31675d6
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 15854b9340156dcfeb6d7f4cc8bbcaf2ea0dd32c
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Wed Nov 13 18:34:31 2024 +0800
@@ -192,29 +217,9 @@ T3X
 Change-Id: I5d6b8346793a0181e70189413a73650c74055262
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit c4ccc616a61a634f67d3a98a286afb85d9e3cfc3
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Nov 7 11:08:59 2024 +0800
-
-videodec: CB1 fix compiled issue in Android P [1/1]
-
-PD#GH-4930
-
-Problem:
-Android P compile failed
-
-Solution:
-fix compiled issue in Android P
-
-Verify:
-OHM
-
-Change-Id: I28741569ff80680c79588196d219dd5906a5a568
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-15-14-21
+Release time: 2024-11-18-10-28
 
 ========================================
 
