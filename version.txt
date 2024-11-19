@@ -1,10 +1,58 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.41-gecf53c6
+Version: V3.32.43-g8c29b85
 
 ========================================
 
 Git commit:
+commit 8c29b853c1025e7772dbea285e3b8e8ae2544d23
+Author: yafeng.zhao <yafeng.zhao@amlogic.com>
+Date:   Fri Nov 15 18:32:42 2024 +0800
+
+videodec: CB1 Support set screen freeze mode on Codec2. [2/2]
+
+PD#SWPL-193026
+
+Problem:
+Need support set screen freeze mode.
+
+Solution:
+Support set screen freeze mode.
+
+Verify:
+S6 AndroidU
+
+Change-Id: I101bdb47cc05f4b409f01473fe8f7cea8c0fd8cc
+Signed-off-by: yafeng.zhao <yafeng.zhao@amlogic.com>
+
+commit 667050b464e67a036ca945ce80e078accb9f9e5e
+Author: hualing chen <hualing.chen@amlogic.com>
+Date:   Mon Nov 18 10:46:33 2024 +0800
+
+videodec: CB1 pts not strictly increasing when play interlace stream. [1/1]
+
+PD#SWPL-156205
+
+Problem:
+android.mediav2.cts.CodecDecoderSurfaceTest
+android.mediav2.cts.CodecDecoderSurfaceTest
+android.mediav2.cts.CodecDecoderSurfaceTest
+Output timestamps are not strictly increasing
+'mLastOutPts' is uint_64 and mLastOutPts is less than 20* duration;
+so the value of 'mLastOutPts - 20 * duration' is a very large value,
+this occur used input pts to report to app, this is a incorrect
+check mode.
+
+Solution:
+1 we use whether the value of 'inputpts + 20 * duration' is less than
+'mLastOutPts' to check if inputpts is diminished.
+
+Verify:
+ohm
+
+Change-Id: Ib617b6197d4682ef2695ee1e515f40c01edf3407
+Signed-off-by: hualing chen <hualing.chen@amlogic.com>
+
 commit ecf53c6167fc95b0d4c01087b815ec77abeae531
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Wed Nov 13 16:41:13 2024 +0800
@@ -175,51 +223,9 @@ s7
 Change-Id: Ia0f3cfb9150021220d6d424023d4bdc2629d7847
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 8427478272450babbe6ededb6c63b1e2e0c7f25e
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Oct 29 08:31:21 2024 +0000
-
-mediasync: CB2 av no sync when play special stream [1/1]
-
-PD#SWPL-190161
-
-Problem:
-I frame GOP large,wait first video frame arrive timeout.
-
-Solution:
-add video and audio wait time threshold property.
-
-Verify:
-t6d
-
-Change-Id: I0642811053870a8d721625c8893f8f4b198d00b1
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit 48736714c41746de809d2a172c7546f8259a1446
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Nov 5 15:53:48 2024 +0800
-
-tsplayer: CB2 dvb_server memory leaks when stress testing [1/1]
-
-PD#SWPL-185867
-
-Problem:
-dvb_server memory leaks when stress testing,
-for tsplayer message(kWhateReadVideo) runs too much
-after stopvideodecoding holding.
-
-Solution:
-stopVideoDeconding should set stopGetViideoEsData true.
-
-Verify:
-T3X
-
-Change-Id: I5d6b8346793a0181e70189413a73650c74055262
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-18-10-28
+Release time: 2024-11-19-16-07
 
 ========================================
 
