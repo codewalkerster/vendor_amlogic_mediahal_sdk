@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.43-g8c29b85
+Version: V3.32.44-ga70dcff
 
 ========================================
 
 Git commit:
+commit a70dcff2921a1edf3f2c5375e61b5893f76bf9d7
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Thu Nov 14 17:10:11 2024 +0800
+
+tsplayer: CB2 the progress bar jumps back after draging it [1/1]
+
+PD#SWPL-190330
+PD#SWPL-193141
+
+Problem:
+the progress bar jumps back after draging it in timeshift mode,
+as the videocache becomes large.
+
+Solution:
+fix to calculate the videocache.
+
+Verify:
+S7
+
+Change-Id: I7659b3f51fe6a19e3a4f441d081e4604eb5c2fb3
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 8c29b853c1025e7772dbea285e3b8e8ae2544d23
 Author: yafeng.zhao <yafeng.zhao@amlogic.com>
 Date:   Fri Nov 15 18:32:42 2024 +0800
@@ -201,31 +223,9 @@ AndroidU S7D
 Change-Id: I8100b3c1e790fc351100fa348cad8aa59d745d2d
 Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
 
-commit 8c917adeae720f4701146432f655028ad81a0272
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Nov 6 16:50:11 2024 +0800
-
-tsplayer: CB2 one video will play stuckly in pvr mode [1/1]
-
-PD#SWPL-190870
-PD#SWPL-191663
-PD#SWPL-189354
-
-Problem:
-one video will play stuckly in pvr mode.
-
-Solution:
-fix vdecRunderrun to judge writing.
-
-Verify:
-s7
-
-Change-Id: Ia0f3cfb9150021220d6d424023d4bdc2629d7847
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-19-16-07
+Release time: 2024-11-20-16-56
 
 ========================================
 
