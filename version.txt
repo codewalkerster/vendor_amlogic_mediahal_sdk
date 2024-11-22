@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.44-ga70dcff
+Version: V3.32.46-g2c03989
 
 ========================================
 
 Git commit:
+commit 2c03989994bd48a5038ffce0fe038c38c196ac43
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri Nov 22 02:44:53 2024 +0000
+
+videodec: CB2 clear EsData error [1/1]
+
+PD#SWPL-193957
+
+Problem:
+no use free interface to release EsData.
+
+Solution:
+use free interface to release EsData.
+
+Verify:
+ohm
+
+Change-Id: I37e0e9f877d5c5060d81ce776a8f4e0f44ff4c4f
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 87a83a550ec1e4f7aac3c2165a09be9f29396769
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Fri Nov 22 11:13:44 2024 +0800
+
+videopassthrough: CB2 not close decoder before demux release [1/1]
+
+PD#SWPL-193972
+
+Problem:
+close demux before decoder will cause crash.
+
+Solution:
+close demux before decoder release.
+
+Verify:
+T5M
+
+Change-Id: If5d4b5b7d04bdfc056381a485d17d8def093addc
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit a70dcff2921a1edf3f2c5375e61b5893f76bf9d7
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Thu Nov 14 17:10:11 2024 +0800
@@ -183,49 +223,9 @@ AY30A2-T963D4
 Change-Id: Idac394d0b8983df901f56b0b67a44b1789a21290
 Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
 
-commit 5be9556d63b02e0341c2000132bc3600668077c3
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Wed Nov 13 13:29:43 2024 +0800
-
-videodec: CB1 pts jump when play MEMC_60HZ.VOB. [1/1]
-
-PD#SWPL-192747
-
-Problem:
-1 play MEMC_60HZ.VOB video error,pts jumped.
-
-Solution:
-1 if pts is decreased, we used input pts value for out pts.
-
-Verify:
-ohm
-
-Change-Id: Icb143447cd322844857ba2786168abe597377d1c
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit 4c801ab2b44bb8b8ad4012333b104cad4ef8ed69
-Author: Qiang Guo <qiang.guo@amlogic.com>
-Date:   Thu Aug 15 14:34:15 2024 +0800
-
-videodec: CF1 add lcevc support [1/1]
-
-PD#SWPL-166465
-
-Problem:
-add lcevc support
-
-Solution:
-add lcevc support
-
-Verify:
-AndroidU S7D
-
-Change-Id: I8100b3c1e790fc351100fa348cad8aa59d745d2d
-Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-20-16-56
+Release time: 2024-11-22-15-04
 
 ========================================
 
