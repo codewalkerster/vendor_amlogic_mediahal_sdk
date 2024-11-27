@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.46-g2c03989
+Version: V3.32.48-g47693fe
 
 ========================================
 
 Git commit:
+commit 47693fe001cacf339e9a0014bc2adce346c22727
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Nov 27 05:50:59 2024 +0000
+
+tsplayer: CB2 videotunel crash when switch channel. [1/1]
+
+PD#SWPL-192736
+
+Problem:
+call media pointer after delete media pointer.
+
+Solution:
+if the media pointer is empty, is not executed.
+
+Verify:
+sc2
+
+Change-Id: I036c201f954e8b4a5758034939d63bc08ee44171
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit 0258233787b5fb580e91834827b241da53b80e14
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Fri Nov 22 13:48:28 2024 +0800
+
+videodec: CB2 fix android v build failed [1/1]
+
+PD#SWPL-194021
+
+Problem:
+build failed on android v.
+
+Solution:
+fix build error.
+
+Verify:
+Android V
+
+Change-Id: If78988d4d7c99580a4bde5d721938b604ef27e2d
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
 commit 2c03989994bd48a5038ffce0fe038c38c196ac43
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Fri Nov 22 02:44:53 2024 +0000
@@ -181,51 +221,9 @@ AndroidU OHM media3
 Change-Id: Ic3b10f6be0b0b81237d8e46a50112d20a2747455
 Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
 
-commit f0f926fb247f9b95782f5fd4723b8b1d40e3cf5b
-Author: liang.hou <liang.hou@amlogic.com>
-Date:   Thu Nov 14 02:41:10 2024 +0000
-
-videodec: CB2 AV is not sync for UDP playback [1/1]
-
-PD#OTT-68489
-
-Problem:
-PTS has jumps, and the accumulation of PTS leads to
-a large difference in actual AV
-
-Solution:
-When PTS jumps, use the original PTS
-
-Verify:
-Android U
-
-Change-Id: Ibe6141b46940682317bb0d5390fa17bd70eee5bc
-Signed-off-by: liang.hou <liang.hou@amlogic.com>
-
-commit 9fcca5c203ddab00cb0d77fcd3f197d71fbae4b0
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Mon Nov 11 13:49:12 2024 +0800
-
-videodec: CB1 destroy VideoDecodeAccelerator by synchronous. [1/1]
-
-PD#TV-140091
-
-Problem:
-The thread task has not been completed,
-and the thread stops, causing a crash
-
-Solution:
-destroy VideoDecodeAccelerator by synchronous.
-
-Verify:
-AY30A2-T963D4
-
-Change-Id: Idac394d0b8983df901f56b0b67a44b1789a21290
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-22-15-04
+Release time: 2024-11-27-19-03
 
 ========================================
 
