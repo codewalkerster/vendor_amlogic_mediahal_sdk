@@ -53,6 +53,8 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_LOSS,    //Decoder data loss
     AM_TSPLAYER_EVENT_TYPE_DECODER_DATA_RESUME,  //Decoder data resume
     AM_TSPLAYER_EVENT_TYPE_DECODER_INIT_COMPLETED, //Decoder init completed
+    AM_TSPLAYER_EVENT_TYPE_DEMUX_FIRST_PTS, //demux first pts
+    AM_TSPLAYER_EVENT_TYPE_AUDIO_FORMAT_CHANGED, // Audio format changed
 } am_tsplayer_event_type;
 
 
@@ -87,6 +89,8 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_MEDIASYNC_START_STRATEGY, //iptv
     AM_TSPLAYER_KEY_SET_RESUME_PLAYING_MODE, //milliseconds*90
     AM_TSPLAYER_KEY_SET_SHOWFRAME_BEFORE_AVSYNC_STAGE, //set output first frame before av sync stage. must close first frame no sync effect using this mode
+    AM_TSPLAYER_KEY_SET_AUDIO_AC4_PAT,
+    AM_TSPLAYER_KEY_SET_START_PLAY_THRESHOLD, //for mediasync start play threshold ms
 } am_tsplayer_parameter;
 
 typedef enum
@@ -298,7 +302,8 @@ typedef enum {
     AV_VIDEO_CODEC_DVES_HEVC = 11,         // DVES_HEVC
     AV_VIDEO_CODEC_AVS3 = 12,              // AVS3
     AV_VIDEO_CODEC_AV1 = 13,              // AV1 (Only support on frame mode)
-    AV_VIDEO_CODEC_H266 = 14,               // H266
+    AV_VIDEO_CODEC_VC1 = 14,              // VC1 (Only support on frame mode)
+    AV_VIDEO_CODEC_H266 = 15,               // H266
     AV_VIDEO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_video_codec;
 
@@ -335,6 +340,8 @@ typedef enum {
     AV_AUDIO_CODEC_ADPCM_MS = 28,          // ADPCM MS
     AV_AUDIO_CODEC_PCMALAW = 29,           // PCM ALAW
     AV_AUDIO_CODEC_PCMMULAW = 30,          // PCM MULAW
+    AV_AUDIO_CODEC_HE_AAC_V1 = 31,         // HE AAC_V1
+    AV_AUDIO_CODEC_HE_AAC_V2 = 32,         // HE AAC_V2
     AV_AUDIO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_audio_codec;
 
@@ -466,6 +473,18 @@ typedef struct {
 } am_tsplayer_audio_format_t;
 
 typedef struct {
+    uint32_t format;
+    uint32_t sample_rate;
+    uint32_t channels;
+    uint32_t channel_mask;
+} am_tsplayer_audio_decinfo_t;
+
+typedef struct {
+    uint32_t size;
+    void* data;
+} am_tsplayer_event_data;
+
+typedef struct {
     int32_t first_lang;
     int32_t second_lang;
 } am_tsplayer_audio_lang;
@@ -504,7 +523,7 @@ typedef struct {
     union {
         /*If type is VIDEO_CHANGED send new video basic info*/
         am_tsplayer_video_format_t video_format;
-        /*If type is AUDIO_CHANGED send new video basic info*/
+        /*If type is AUDIO_CHANGED send new audio basic info*/
         am_tsplayer_audio_format_t audio_format;
         /*Audio/Video/Subtitle pts after pes parser*/
         am_tsplayer_pts_t pts;
@@ -516,6 +535,8 @@ typedef struct {
         void* bufptr;
         /*If Audio/Video overflow/underflow count the num*/
         av_flow_t av_flow_cnt;
+        /*event data*/
+        am_tsplayer_event_data data;
     } event;
 }am_tsplayer_event;
 

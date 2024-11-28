@@ -1,10 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.48-g47693fe
+Version: V3.32.49-g29eb2f8
 
 ========================================
 
 Git commit:
+commit 29eb2f8fe0f98680d00778b0aaaf0508a178fb06
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Mon Nov 25 14:52:34 2024 +0800
+
+tsplayer: CF2 update audio format for HE-AAC in info bar [1/1]
+
+PD#SWPL-192816
+PD#TV-140812
+
+Problem:
+the media contains He-aac showing aac format in
+info bar, it should show He-aac.
+
+Solution:
+use dv_audio_get_param api to get audio format.
+
+Verify:
+T6D
+
+Change-Id: Ib97332c50bfccad50db9108c528cf98d1882f6e7
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 47693fe001cacf339e9a0014bc2adce346c22727
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Wed Nov 27 05:50:59 2024 +0000
@@ -200,30 +222,9 @@ OHM
 Change-Id: Ibfad815fb5fbb43f4e298eba7a9effb78da8db00
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 
-commit 1de1572e07a4b3c51ea2b121758823d897ee4d9f
-Author: Zhao Yi <zhao.yi@amlogic.com>
-Date:   Fri Nov 8 09:54:24 2024 +0800
-
-hwdemux: CB2 loop playback blocked [1/1]
-
-PD#SWPL-191004
-
-Problem:
-audioCache from mediasync is smaller than 1000ms.
-But audioThresholdMinCacheMs is 1000ms.
-
-Solution:
-set audioThresholdMinCacheMs' value to 800ms.
-
-Verify:
-AndroidU OHM media3
-
-Change-Id: Ic3b10f6be0b0b81237d8e46a50112d20a2747455
-Signed-off-by: Zhao Yi <zhao.yi@amlogic.com>
-
 ========================================
 
-Release time: 2024-11-27-19-03
+Release time: 2024-11-28-19-11
 
 ========================================
 
