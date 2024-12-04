@@ -1,10 +1,55 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.50-g6c8fad76
+Version: V3.32.52-g40b9667b
 
 ========================================
 
 Git commit:
+commit 40b9667b19d244beb905ec4a38b7a491864a1dde
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Nov 29 10:38:06 2024 +0800
+
+tsplayer: CB2 Fix the count of display_buffer [1/1]
+
+PD#SWPL-194598
+PD#SWPL-191536
+PD#SWPL-190988
+PD#SWPL-189658
+
+Problem:
+video will stuck but audio playing for dtv in long time
+
+Solution:
+Fix the count of display_buffer and
+add debuginfo to show outputbuffer status.
+
+Verify:
+T6D
+
+Change-Id: I43811c7cdf2188f3daaff65c682d42d5c4955a50
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 906942d060e8bb0fdb267038100ca61ad29eb917
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Dec 3 14:17:25 2024 +0800
+
+tsplayer: CB2 it will play with no audio after switching channels [1/1]
+
+PD#SWPL-195185
+
+Problem:
+it will play with no audio after switching channels
+and channels can not change.
+
+Solution:
+remove the lock to get audio format
+
+Verify:
+T6D
+
+Change-Id: Ie8da0bd871131677d98fe5941034ade814a6d98e
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 6c8fad76bcd54ac89d060ad75514cd2584ca6684
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Thu Nov 14 03:14:09 2024 +0000
@@ -173,62 +218,9 @@ S6 AndroidU
 Change-Id: I101bdb47cc05f4b409f01473fe8f7cea8c0fd8cc
 Signed-off-by: yafeng.zhao <yafeng.zhao@amlogic.com>
 
-commit 667050b464e67a036ca945ce80e078accb9f9e5e
-Author: hualing chen <hualing.chen@amlogic.com>
-Date:   Mon Nov 18 10:46:33 2024 +0800
-
-videodec: CB1 pts not strictly increasing when play interlace stream. [1/1]
-
-PD#SWPL-156205
-
-Problem:
-android.mediav2.cts.CodecDecoderSurfaceTest
-android.mediav2.cts.CodecDecoderSurfaceTest
-android.mediav2.cts.CodecDecoderSurfaceTest
-Output timestamps are not strictly increasing
-'mLastOutPts' is uint_64 and mLastOutPts is less than 20* duration;
-so the value of 'mLastOutPts - 20 * duration' is a very large value,
-this occur used input pts to report to app, this is a incorrect
-check mode.
-
-Solution:
-1 we use whether the value of 'inputpts + 20 * duration' is less than
-'mLastOutPts' to check if inputpts is diminished.
-
-Verify:
-ohm
-
-Change-Id: Ib617b6197d4682ef2695ee1e515f40c01edf3407
-Signed-off-by: hualing chen <hualing.chen@amlogic.com>
-
-commit ecf53c6167fc95b0d4c01087b815ec77abeae531
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Nov 13 16:41:13 2024 +0800
-
-tsplayer: CB2 timeshift/PVR play freezing as plugging signal [1/1]
-
-PD#SWPL-191427
-PD#SWPL-190283
-PD#SWPL-191292
-PD#SWPL-190970
-PD#SWPL-192725
-
-Problem:
-timeshift and PVR play freezing as plugging signal,
-as no writing data to decoder
-
-Solution:
-fix to jugde right values of startCacheEnough and vdecCacheEnough
-
-Verify:
-S7
-
-Change-Id: Ia41de2b2abd072a786327708b396ca1bf31675d6
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-12-03-19-18
+Release time: 2024-12-04-16-06
 
 ========================================
 
