@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.55-gb8da6bb
+Version: V3.32.57-gfc15d53
 
 ========================================
 
 Git commit:
+commit fc15d532df10a0d87f076212ec7327b197b0f476
+Author: peixing.mai <peixing.mai@amlogic.com>
+Date:   Mon Dec 9 06:01:52 2024 +0000
+
+tsplayer: CB2 Insufficient audio cache leads to abnormal output. [1/1]
+
+PD#TV-144272
+
+Problem:
+Flow control exception causes data to be unable to be written
+
+Solution:
+Adjust retry conditions
+
+Verify:
+T950S
+
+Change-Id: I4ea5f67dd1c0bafd1176625ec06aab592ca5c049
+Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
+
+commit 1f6973c6300eec7b1d19d68f1b965efbe313ab77
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Dec 6 16:06:23 2024 +0800
+
+tsplayer: CB2 Adjust the SSI/SQI, dtv plays with black screen [1/1]
+
+PD#SWPL-194377
+
+Problem:
+Adjust the SSI/SQI, dtv dispay black screen with sound.
+
+Solution:
+fix to reume playing,
+If decoder show unsupported message,
+it will not send message to resume playing after data_loss.
+
+Verify:
+s7
+
+Change-Id: I3b93ad39c7dc4147bb88e198792031892d62acb5
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit b8da6bbe933964b8d8faa84f205498225c91aae1
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Tue Dec 10 07:01:19 2024 +0000
@@ -176,49 +218,9 @@ sc2
 Change-Id: I036c201f954e8b4a5758034939d63bc08ee44171
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 0258233787b5fb580e91834827b241da53b80e14
-Author: Qiang Guo <qiang.guo@amlogic.com>
-Date:   Fri Nov 22 13:48:28 2024 +0800
-
-videodec: CB2 fix android v build failed [1/1]
-
-PD#SWPL-194021
-
-Problem:
-build failed on android v.
-
-Solution:
-fix build error.
-
-Verify:
-Android V
-
-Change-Id: If78988d4d7c99580a4bde5d721938b604ef27e2d
-Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
-
-commit 2c03989994bd48a5038ffce0fe038c38c196ac43
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Fri Nov 22 02:44:53 2024 +0000
-
-videodec: CB2 clear EsData error [1/1]
-
-PD#SWPL-193957
-
-Problem:
-no use free interface to release EsData.
-
-Solution:
-use free interface to release EsData.
-
-Verify:
-ohm
-
-Change-Id: I37e0e9f877d5c5060d81ce776a8f4e0f44ff4c4f
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-12-11-13-28
+Release time: 2024-12-11-19-17
 
 ========================================
 
