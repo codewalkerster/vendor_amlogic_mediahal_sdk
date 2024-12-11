@@ -1,10 +1,70 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.52-g40b9667b
+Version: V3.32.55-gb8da6bb
 
 ========================================
 
 Git commit:
+commit b8da6bbe933964b8d8faa84f205498225c91aae1
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Dec 10 07:01:19 2024 +0000
+
+tsplayer: CB2 display black screen when unplug/plug HDMI. [1/1]
+
+PD#SWPL-195870
+
+Problem:
+display black screen when unplug/plug HDMI.
+
+Solution:
+queue buffer to videotunnel if reconnect videotunnel.
+
+Verify:
+ohm
+
+Change-Id: Ieaa1da4ff8ebf17701dbced29013067924972b61
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit f5fa627fab7c9c0481b1ccb39fbf9f9e33f403d8
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Sep 4 17:38:49 2024 +0800
+
+tsplayer: CB1 set the work mode status to audiohal  [1/1]
+
+PD#SWPL-184539
+
+Problem:
+set the work mode status to audiohal
+
+Solution:
+set the work mode status to audiohal
+
+Verify:
+SC2
+
+Change-Id: I532ffc8d651a5f647c7a6ddf9b2df5851aa565fb
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 80d938d81c98fd0a9a556b3d2115f47e846608b0
+Author: joy.rao <joy.rao@amlogic.com>
+Date:   Fri Nov 3 14:52:16 2023 +0800
+
+resman: CB2 need check resman handle avoid creating resman session twice [1/1]
+
+PD#SWPL-190083
+
+Problem:
+there may be two messages that cause creating resman session twice
+
+Solution:
+need check resman handle avoid creating resman session twice
+
+Verify:
+T5D
+
+Change-Id: I3bbe09444524c3dd417c32dd7e6c831f2aebf5b9
+Signed-off-by: joy.rao <joy.rao@amlogic.com>
+
 commit 40b9667b19d244beb905ec4a38b7a491864a1dde
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Fri Nov 29 10:38:06 2024 +0800
@@ -156,71 +216,9 @@ ohm
 Change-Id: I37e0e9f877d5c5060d81ce776a8f4e0f44ff4c4f
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 87a83a550ec1e4f7aac3c2165a09be9f29396769
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Fri Nov 22 11:13:44 2024 +0800
-
-videopassthrough: CB2 not close decoder before demux release [1/1]
-
-PD#SWPL-193972
-
-Problem:
-close demux before decoder will cause crash.
-
-Solution:
-close demux before decoder release.
-
-Verify:
-T5M
-
-Change-Id: If5d4b5b7d04bdfc056381a485d17d8def093addc
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit a70dcff2921a1edf3f2c5375e61b5893f76bf9d7
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Thu Nov 14 17:10:11 2024 +0800
-
-tsplayer: CB2 the progress bar jumps back after draging it [1/1]
-
-PD#SWPL-190330
-PD#SWPL-193141
-
-Problem:
-the progress bar jumps back after draging it in timeshift mode,
-as the videocache becomes large.
-
-Solution:
-fix to calculate the videocache.
-
-Verify:
-S7
-
-Change-Id: I7659b3f51fe6a19e3a4f441d081e4604eb5c2fb3
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 8c29b853c1025e7772dbea285e3b8e8ae2544d23
-Author: yafeng.zhao <yafeng.zhao@amlogic.com>
-Date:   Fri Nov 15 18:32:42 2024 +0800
-
-videodec: CB1 Support set screen freeze mode on Codec2. [2/2]
-
-PD#SWPL-193026
-
-Problem:
-Need support set screen freeze mode.
-
-Solution:
-Support set screen freeze mode.
-
-Verify:
-S6 AndroidU
-
-Change-Id: I101bdb47cc05f4b409f01473fe8f7cea8c0fd8cc
-Signed-off-by: yafeng.zhao <yafeng.zhao@amlogic.com>
-
 ========================================
 
-Release time: 2024-12-04-16-06
+Release time: 2024-12-11-13-28
 
 ========================================
 
