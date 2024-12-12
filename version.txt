@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.58-gcf0f5e41
+Version: V3.32.59-ga42a381
 
 ========================================
 
 Git commit:
+commit a42a3817e4b5a6908fa2daf8b0f8c2021b2fe969
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Tue Dec 3 11:29:35 2024 +0000
+
+tsplayer: CF2 get drop frame count for video pipeline [1/1]
+
+PD#OTT-70607
+
+Problem:
+cat not get drop frame count for video pipeline.
+
+Solution:
+get drop frame count for video pipeline.
+
+Verify:
+ohm
+
+Change-Id: Ib98157d05146de9e841820f74f3b8d6e5c6d92b9
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
 commit cf0f5e414d86ae8a1b66274ac39f6ccfe4f4e61a
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Mon Dec 9 14:27:45 2024 +0800
@@ -197,31 +217,9 @@ sc2
 Change-Id: Ibe9dcf249d4f7858fa4273842670b093dda9f959
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit 29eb2f8fe0f98680d00778b0aaaf0508a178fb06
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Nov 25 14:52:34 2024 +0800
-
-tsplayer: CF2 update audio format for HE-AAC in info bar [1/1]
-
-PD#SWPL-192816
-PD#TV-140812
-
-Problem:
-the media contains He-aac showing aac format in
-info bar, it should show He-aac.
-
-Solution:
-use dv_audio_get_param api to get audio format.
-
-Verify:
-T6D
-
-Change-Id: Ib97332c50bfccad50db9108c528cf98d1882f6e7
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-12-12-14-55
+Release time: 2024-12-12-19-35
 
 ========================================
 

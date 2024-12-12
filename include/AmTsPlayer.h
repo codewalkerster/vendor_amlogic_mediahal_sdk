@@ -91,6 +91,7 @@ typedef enum {
     AM_TSPLAYER_KEY_SET_SHOWFRAME_BEFORE_AVSYNC_STAGE, //set output first frame before av sync stage. must close first frame no sync effect using this mode
     AM_TSPLAYER_KEY_SET_AUDIO_AC4_PAT,
     AM_TSPLAYER_KEY_SET_START_PLAY_THRESHOLD, //for mediasync start play threshold ms
+    AM_TSPLAYER_KEY_GET_VIDEO_DROP_FRAME_INFO,
 } am_tsplayer_parameter;
 
 typedef enum
@@ -142,6 +143,11 @@ typedef struct {
     int margin;
     int32_t  reserved[2];
 } am_tsplayer_video_decoder_info;
+
+typedef struct {
+    uint32_t theory_drop_frame_cnt;  //theoretical drop frame number of the video pipeline
+    uint32_t reserved[5];
+} am_tsplayer_drop_frame_info;
 
 typedef struct {
     uint32_t extradata_size;
