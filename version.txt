@@ -1,10 +1,50 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.59-ga42a381
+Version: V3.32.61-g16c2887e
 
 ========================================
 
 Git commit:
+commit 16c2887e7b3a32896ad7f2b1ff77051d01a8add2
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Wed Dec 18 17:27:24 2024 +0800
+
+mediahal: CF2 mediahal release V3.32 [1/1]
+
+PD#SWPL-195919
+
+Problem:
+mediahal release
+
+Solution:
+release V3.32
+
+Verify:
+SC2
+
+Change-Id: Ie26c8e5fade35d383d1185a9f012a1e69897d397
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 815f9c012b64f3d1b1128bdf7fd4a206c64cd6d5
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Dec 16 16:32:40 2024 +0800
+
+videodec: CB2 Fixed Android P compilation error [1/1]
+
+PD#SWPL-195919
+
+Problem:
+Fixed Android P compilation error
+
+Solution:
+Fixed Android P compilation error
+
+Verify:
+SC2
+
+Change-Id: I3eb57351e3edc9e08b04cb7a7e5c0813aff1f9d6
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
 commit a42a3817e4b5a6908fa2daf8b0f8c2021b2fe969
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Tue Dec 3 11:29:35 2024 +0000
@@ -172,54 +212,9 @@ T6D
 Change-Id: I43811c7cdf2188f3daaff65c682d42d5c4955a50
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 906942d060e8bb0fdb267038100ca61ad29eb917
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Dec 3 14:17:25 2024 +0800
-
-tsplayer: CB2 it will play with no audio after switching channels [1/1]
-
-PD#SWPL-195185
-
-Problem:
-it will play with no audio after switching channels
-and channels can not change.
-
-Solution:
-remove the lock to get audio format
-
-Verify:
-T6D
-
-Change-Id: Ie8da0bd871131677d98fe5941034ade814a6d98e
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 6c8fad76bcd54ac89d060ad75514cd2584ca6684
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Thu Nov 14 03:14:09 2024 +0000
-
-mediasync: CB1 it will play with no audio when switch pip. [1/1]
-
-PD#SWPL-192413
-PD#SWPL-193259
-
-Problem:
-1.demux output audio es data slow.
-2.start pts inaccuracy,cause drop audio data too much.
-
-Solution:
-1.according to the queue apts
-adjust the startpts in discontinue.
-2.output audio if audio work change time too long.
-
-Verify:
-sc2
-
-Change-Id: Ibe9dcf249d4f7858fa4273842670b093dda9f959
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2024-12-12-19-35
+Release time: 2024-12-19-11-09
 
 ========================================
 
