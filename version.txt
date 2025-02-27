@@ -1,10 +1,95 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.61-g16c2887e
+Version: V3.32.65-gc45e8908
 
 ========================================
 
 Git commit:
+commit c45e890891a03c6b54c03bdec04c5245ebc8790d
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Dec 23 16:47:17 2024 +0800
+
+mediasync: CF1 add update speed mediatime [2/2]
+
+PD#SWPL-193266
+
+Problem:
+add update speed mediatime
+
+Solution:
+add update speed mediatime
+
+Verify:
+ROSS
+
+Change-Id: I8baf293298a9664e28feb901969b91099e122c53
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+(cherry picked from commit 23dbbd20e124b39da99a5a32a239e6d74177723c)
+
+commit 749bbc275dcbe39d2bc0c5078118dc97451ce8cf
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Thu Nov 21 17:57:22 2024 +0800
+
+videotunnelrenderer: CB1 optimization tunnel vsp case freeze/drop issue [2/2]
+
+PD#SWPL-193266
+
+Problem:
+tunnel vsp case freeze/drop
+
+Solution:
+1.adjust first frame offset with vsync
+2.adjust first frame after playback rate change
+
+Verify:
+ROSS
+
+Change-Id: I2ec27e8244596266b4cde9a91b4a85888bc81a63
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+(cherry picked from commit e93f1fcf8c639f7390dab23cfb02a1d2aee6962f)
+
+commit 991f217b4af7ad70211f05e94097c847b97f48dd
+Author: yunmin.chen <yunmin.chen@amlogic.com>
+Date:   Mon Feb 17 10:50:26 2025 +0800
+
+tsplayer: CB2 Fixed renderer buffer management exception. [1/1]
+
+PD#TV-150551
+
+Problem:
+The timing of start video is slow, causing the startup to fail.
+
+Solution:
+After the start video is complete,
+apply the UVM buffer at the beginning.
+
+Verify:
+TXHD2
+
+Change-Id: Ib702c20354ce793bc7503cf464c29127c48c6ad6
+Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
+
+commit 7a1086230d5fc9c85ba5f4fe67f5287dd821dfde
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Feb 11 15:02:19 2025 +0800
+
+tsplayer: CB2 it will wait for a long time to stopvideodecoding [1/1]
+
+PD#TV-149917
+
+Problem:
+it will wait for a long time to stopvideodecoding,
+as checking resource until timeout.
+
+Solution:
+set command to stop checking resource.
+
+Verify:
+T950D5
+
+Change-Id: Ic9936c4ef8d508be3316d8d8b870cb317595543a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 16c2887e7b3a32896ad7f2b1ff77051d01a8add2
 Author: yunmin.chen <yunmin.chen@amlogic.com>
 Date:   Wed Dec 18 17:27:24 2024 +0800
@@ -128,93 +213,9 @@ s7
 Change-Id: I3b93ad39c7dc4147bb88e198792031892d62acb5
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit b8da6bbe933964b8d8faa84f205498225c91aae1
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Dec 10 07:01:19 2024 +0000
-
-tsplayer: CB2 display black screen when unplug/plug HDMI. [1/1]
-
-PD#SWPL-195870
-
-Problem:
-display black screen when unplug/plug HDMI.
-
-Solution:
-queue buffer to videotunnel if reconnect videotunnel.
-
-Verify:
-ohm
-
-Change-Id: Ieaa1da4ff8ebf17701dbced29013067924972b61
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit f5fa627fab7c9c0481b1ccb39fbf9f9e33f403d8
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Sep 4 17:38:49 2024 +0800
-
-tsplayer: CB1 set the work mode status to audiohal  [1/1]
-
-PD#SWPL-184539
-
-Problem:
-set the work mode status to audiohal
-
-Solution:
-set the work mode status to audiohal
-
-Verify:
-SC2
-
-Change-Id: I532ffc8d651a5f647c7a6ddf9b2df5851aa565fb
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 80d938d81c98fd0a9a556b3d2115f47e846608b0
-Author: joy.rao <joy.rao@amlogic.com>
-Date:   Fri Nov 3 14:52:16 2023 +0800
-
-resman: CB2 need check resman handle avoid creating resman session twice [1/1]
-
-PD#SWPL-190083
-
-Problem:
-there may be two messages that cause creating resman session twice
-
-Solution:
-need check resman handle avoid creating resman session twice
-
-Verify:
-T5D
-
-Change-Id: I3bbe09444524c3dd417c32dd7e6c831f2aebf5b9
-Signed-off-by: joy.rao <joy.rao@amlogic.com>
-
-commit 40b9667b19d244beb905ec4a38b7a491864a1dde
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Nov 29 10:38:06 2024 +0800
-
-tsplayer: CB2 Fix the count of display_buffer [1/1]
-
-PD#SWPL-194598
-PD#SWPL-191536
-PD#SWPL-190988
-PD#SWPL-189658
-
-Problem:
-video will stuck but audio playing for dtv in long time
-
-Solution:
-Fix the count of display_buffer and
-add debuginfo to show outputbuffer status.
-
-Verify:
-T6D
-
-Change-Id: I43811c7cdf2188f3daaff65c682d42d5c4955a50
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2024-12-19-11-09
+Release time: 2025-02-27-14-52
 
 ========================================
 
