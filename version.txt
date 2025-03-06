@@ -1,10 +1,33 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.65-gc45e8908
+Version: V3.32.66-g13ab8c2e
 
 ========================================
 
 Git commit:
+commit 13ab8c2e1c9662364fde340308b82defcc3bc8ad
+Author: yang.liu1 <yang.liu1@amlogic.com>
+Date:   Fri Jan 3 11:08:38 2025 +0800
+
+videodec: CB2 solve vc1 stream playback stuck. [1/1]
+
+PD#SWPL-197220
+
+Problem:
+there are too many frames in the vc1 stream
+with a length less than 40, and the decoder
+cannot decode and gets stuck.
+
+Solution:
+add property to control the minimum
+decoding length size of vc1 format.
+
+Verify:
+ohm
+
+Change-Id: I3a5d86c9f2f4cc2193901ee6acab18669e8d2b0d
+Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
+
 commit c45e890891a03c6b54c03bdec04c5245ebc8790d
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Mon Dec 23 16:47:17 2024 +0800
@@ -191,31 +214,9 @@ T950S
 Change-Id: I4ea5f67dd1c0bafd1176625ec06aab592ca5c049
 Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
 
-commit 1f6973c6300eec7b1d19d68f1b965efbe313ab77
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Dec 6 16:06:23 2024 +0800
-
-tsplayer: CB2 Adjust the SSI/SQI, dtv plays with black screen [1/1]
-
-PD#SWPL-194377
-
-Problem:
-Adjust the SSI/SQI, dtv dispay black screen with sound.
-
-Solution:
-fix to reume playing,
-If decoder show unsupported message,
-it will not send message to resume playing after data_loss.
-
-Verify:
-s7
-
-Change-Id: I3b93ad39c7dc4147bb88e198792031892d62acb5
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2025-02-27-14-52
+Release time: 2025-03-06-13-43
 
 ========================================
 
