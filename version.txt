@@ -1,10 +1,101 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.66-g13ab8c2e
+Version: V3.32.70-g0c5889c8
 
 ========================================
 
 Git commit:
+commit 0c5889c83b962953c72822d24ce623662b95ee62
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Fri Mar 21 15:52:48 2025 +0800
+
+videotunnelrenderer: CB1 fix freeze/drop when rate change [1/1]
+
+PD#SWPL-206229
+
+Problem:
+drop 1 when rate Change
+
+Solution:
+slight adjust to incase freeze/drop
+
+Verify:
+T6D
+
+Change-Id: I567b12781bc0e651e8076f64220c6026df62a117
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+(cherry picked from commit f225ab7c675094cc1c247ebb28d112a3077af196)
+
+commit e06716f956e872f1da546f751a96ad2714814ec6
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Mar 21 16:44:51 2025 +0800
+
+videodec: CB2 it can't stop after playing [1/1]
+
+PD#TV-156354
+
+Problem:
+it can't stop after playing,
+as driver is not existing.
+
+Solution:
+use other drivers(hevc/avc) to decode.
+
+Verify:
+t6d
+
+Change-Id: Ia3f20e116b62aa49ad10a9e2a9266953092605f6
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 56dbeb9606dc37ebfedb0fe8c1e74b6af27183bc
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Fri Mar 7 18:36:59 2025 +0800
+
+videodec: CB2 it will crash when initializing and stopping [1/1]
+
+PD#TV-153970
+PD#TV-153623
+
+Problem:
+it will crash when initalizing and stopping.
+
+Solution:
+fix initalizing to set state.
+
+Verify:
+T6D
+
+Change-Id: I95f86e365738c57c2dc29682ccd7f45681e3072a
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
+commit 3c4fba6d1e5abbd99ebaa15daa2d2241eac46aaf
+Merge: 13ab8c2e 7c815db7
+Author: Zhi Zhou <zhi.zhou@amlogic.com>
+Date:   Thu Mar 6 22:05:44 2025 -0800
+
+Merge "videodec: CB2 it will crash when setting trickmode and flushing [1/1]" into v3.32-for-android-openlinux
+
+commit 7c815db74d76664d73e21a89921757f46a9cb773
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Wed Mar 5 20:02:56 2025 +0800
+
+videodec: CB2 it will crash when setting trickmode and flushing [1/1]
+
+PD#TV-153970
+PD#TV-153623
+
+Problem:
+it will crash when setting trickmode and flushing.
+
+Solution:
+add mutex to lock ptserver setting.
+
+Verify:
+T5D
+
+Change-Id: Id62b85781a90641128a1654b97c3f4e8d1f5a4b2
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+
 commit 13ab8c2e1c9662364fde340308b82defcc3bc8ad
 Author: yang.liu1 <yang.liu1@amlogic.com>
 Date:   Fri Jan 3 11:08:38 2025 +0800
@@ -113,110 +204,9 @@ T950D5
 Change-Id: Ic9936c4ef8d508be3316d8d8b870cb317595543a
 Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
 
-commit 16c2887e7b3a32896ad7f2b1ff77051d01a8add2
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Wed Dec 18 17:27:24 2024 +0800
-
-mediahal: CF2 mediahal release V3.32 [1/1]
-
-PD#SWPL-195919
-
-Problem:
-mediahal release
-
-Solution:
-release V3.32
-
-Verify:
-SC2
-
-Change-Id: Ie26c8e5fade35d383d1185a9f012a1e69897d397
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 815f9c012b64f3d1b1128bdf7fd4a206c64cd6d5
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Dec 16 16:32:40 2024 +0800
-
-videodec: CB2 Fixed Android P compilation error [1/1]
-
-PD#SWPL-195919
-
-Problem:
-Fixed Android P compilation error
-
-Solution:
-Fixed Android P compilation error
-
-Verify:
-SC2
-
-Change-Id: I3eb57351e3edc9e08b04cb7a7e5c0813aff1f9d6
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit a42a3817e4b5a6908fa2daf8b0f8c2021b2fe969
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Tue Dec 3 11:29:35 2024 +0000
-
-tsplayer: CF2 get drop frame count for video pipeline [1/1]
-
-PD#OTT-70607
-
-Problem:
-cat not get drop frame count for video pipeline.
-
-Solution:
-get drop frame count for video pipeline.
-
-Verify:
-ohm
-
-Change-Id: Ib98157d05146de9e841820f74f3b8d6e5c6d92b9
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit cf0f5e414d86ae8a1b66274ac39f6ccfe4f4e61a
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Mon Dec 9 14:27:45 2024 +0800
-
-tsplayer: CB2 Update aac when format changed from decoder [1/1]
-
-PD#SWPL-195693
-
-Problem:
-when app set aac-latm to tsplayer,but decoder change the format to
-AAC, it should event AAC format to show Info bar instead of HE-AAC.
-
-Solution:
-Update aac when format changed from decoder.
-
-Verify:
-T6D
-
-Change-Id: I51da4eaff605f3eabd1778e53fcdac0278e7a766
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit fc15d532df10a0d87f076212ec7327b197b0f476
-Author: peixing.mai <peixing.mai@amlogic.com>
-Date:   Mon Dec 9 06:01:52 2024 +0000
-
-tsplayer: CB2 Insufficient audio cache leads to abnormal output. [1/1]
-
-PD#TV-144272
-
-Problem:
-Flow control exception causes data to be unable to be written
-
-Solution:
-Adjust retry conditions
-
-Verify:
-T950S
-
-Change-Id: I4ea5f67dd1c0bafd1176625ec06aab592ca5c049
-Signed-off-by: peixing.mai <peixing.mai@amlogic.com>
-
 ========================================
 
-Release time: 2025-03-06-13-43
+Release time: 2025-03-28-15-29
 
 ========================================
 
