@@ -1,10 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.70-g0c5889c8
+Version: V3.32.72-gf47f57ff
 
 ========================================
 
 Git commit:
+commit f47f57ff8512fd749f769bd72188bdc9962d1b15
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Wed Dec 18 06:59:33 2024 +0000
+
+tsplayer: CF2 add I only trickmode bypass mediasync mode [1/1]
+
+PD#OTT-68714
+PD#SWPL-185127
+
+Problem:
+need add I only trickmode bypass mediasync mode.
+
+Solution:
+need add I only trickmode bypass mediasync mode.
+
+Verify:
+ohm
+
+Change-Id: I2883d62aa11bc72f721b9363604b1c85a92e25bd
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+
+commit c20199ca51e4734df01b6acb592b8554e33801ea
+Author: mingguang.liu <mingguang.liu@amlogic.com>
+Date:   Mon Apr 7 11:33:52 2025 +0800
+
+tunnelrenderer: CB1 Update curSyncFrame when offset is adjusted. [1/1]
+
+PD#SWPL-208547
+
+Problem:
+The first frame after playbackrate change did not update SyncFrame,
+causing false freeze/drop reports in the log.
+
+Solution:
+Update curSyncFrame when HwcVsyncAlignOffset is adjusted.
+
+Verify:
+T6D
+
+Change-Id: Ife4e577090ce6da59fe1c6cdf2d8607be9a1cac4
+Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
+
 commit 0c5889c83b962953c72822d24ce623662b95ee62
 Author: shuanglong.wang <shuanglong.wang@amlogic.com>
 Date:   Fri Mar 21 15:52:48 2025 +0800
@@ -162,51 +204,9 @@ Change-Id: I2ec27e8244596266b4cde9a91b4a85888bc81a63
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 (cherry picked from commit e93f1fcf8c639f7390dab23cfb02a1d2aee6962f)
 
-commit 991f217b4af7ad70211f05e94097c847b97f48dd
-Author: yunmin.chen <yunmin.chen@amlogic.com>
-Date:   Mon Feb 17 10:50:26 2025 +0800
-
-tsplayer: CB2 Fixed renderer buffer management exception. [1/1]
-
-PD#TV-150551
-
-Problem:
-The timing of start video is slow, causing the startup to fail.
-
-Solution:
-After the start video is complete,
-apply the UVM buffer at the beginning.
-
-Verify:
-TXHD2
-
-Change-Id: Ib702c20354ce793bc7503cf464c29127c48c6ad6
-Signed-off-by: yunmin.chen <yunmin.chen@amlogic.com>
-
-commit 7a1086230d5fc9c85ba5f4fe67f5287dd821dfde
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Tue Feb 11 15:02:19 2025 +0800
-
-tsplayer: CB2 it will wait for a long time to stopvideodecoding [1/1]
-
-PD#TV-149917
-
-Problem:
-it will wait for a long time to stopvideodecoding,
-as checking resource until timeout.
-
-Solution:
-set command to stop checking resource.
-
-Verify:
-T950D5
-
-Change-Id: Ic9936c4ef8d508be3316d8d8b870cb317595543a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
 ========================================
 
-Release time: 2025-03-28-15-29
+Release time: 2025-04-27-10-27
 
 ========================================
 

@@ -55,6 +55,7 @@ typedef enum {
     AM_TSPLAYER_EVENT_TYPE_DECODER_INIT_COMPLETED, //Decoder init completed
     AM_TSPLAYER_EVENT_TYPE_DEMUX_FIRST_PTS, //demux first pts
     AM_TSPLAYER_EVENT_TYPE_AUDIO_FORMAT_CHANGED, // Audio format changed
+    AM_TSPLAYER_EVENT_TYPE_FFFB_VIDEO_TIMESTAMP, //FF/FB Current video timestamp
 } am_tsplayer_event_type;
 
 
@@ -270,7 +271,8 @@ typedef enum {
     AV_VIDEO_TRICK_MODE_NONE = 0,          // Disable trick mode
     AV_VIDEO_TRICK_MODE_PAUSE = 1,         // Pause the video decoder
     AV_VIDEO_TRICK_MODE_PAUSE_NEXT = 2,    // Pause the video decoder when a new frame displayed
-    AV_VIDEO_TRICK_MODE_IONLY = 3          // Decode and out I frame only
+    AV_VIDEO_TRICK_MODE_IONLY = 3,         // Decode and out I frame only
+    AV_VIDEO_TRICK_MODE_IONLY_AVSYNC_BYPASS = 4  // Decoding and Out I frame only, bypass mediasync to playback
 } am_tsplayer_video_trick_mode;
 
 /*Video display match mode*/
