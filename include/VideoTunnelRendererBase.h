@@ -51,6 +51,8 @@ typedef enum {
         AM_VT_PARAM_TRANSITION_PREROLL_AV_TOLERANCE,
         AM_VT_PARAM_PAUSE_RESUME,
         AM_VT_PARAM_SYNC_MODE,
+        AM_VT_PARAM_RESET_VIDEO_PATH,
+        AM_VT_PARAM_DROP_PTS,
     } renderParamsType;
 
 struct renderParams

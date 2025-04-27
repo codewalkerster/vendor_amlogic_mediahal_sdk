@@ -1,10 +1,33 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.72-gf47f57ff
+Version: V3.32.73-g7c521104
 
 ========================================
 
 Git commit:
+commit 7c521104c584dfad001201e95173b4a2b80d871a
+Author: jiabin.zhu <jiabin.zhu@amlogic.com>
+Date:   Tue Sep 10 15:24:34 2024 +0800
+
+videopassthrough: CF2 Support eos and drop pts in passthrough mode [2/2]
+
+PD#SWPL-184385
+PD#SWPL-184624
+
+Problem:
+1.support eos.
+2.support drop pts in iptv.
+
+Solution:
+1.support eos.
+2.support drop pts in iptv
+
+Verify:
+t5m
+
+Change-Id: I8e8b52cd0c870169fca9961e6d0f92101b57915c
+Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
 commit f47f57ff8512fd749f769bd72188bdc9962d1b15
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Wed Dec 18 06:59:33 2024 +0000
@@ -182,31 +205,9 @@ Change-Id: I8baf293298a9664e28feb901969b91099e122c53
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 (cherry picked from commit 23dbbd20e124b39da99a5a32a239e6d74177723c)
 
-commit 749bbc275dcbe39d2bc0c5078118dc97451ce8cf
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Thu Nov 21 17:57:22 2024 +0800
-
-videotunnelrenderer: CB1 optimization tunnel vsp case freeze/drop issue [2/2]
-
-PD#SWPL-193266
-
-Problem:
-tunnel vsp case freeze/drop
-
-Solution:
-1.adjust first frame offset with vsync
-2.adjust first frame after playback rate change
-
-Verify:
-ROSS
-
-Change-Id: I2ec27e8244596266b4cde9a91b4a85888bc81a63
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-(cherry picked from commit e93f1fcf8c639f7390dab23cfb02a1d2aee6962f)
-
 ========================================
 
-Release time: 2025-04-27-10-27
+Release time: 2025-04-27-20-03
 
 ========================================
 
