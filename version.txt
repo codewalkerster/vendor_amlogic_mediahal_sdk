@@ -1,11 +1,32 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.73-g7c521104
+Version: V3.32.76-g2930e0ae
 
 ========================================
 
 Git commit:
-commit 7c521104c584dfad001201e95173b4a2b80d871a
+commit 2930e0ae4685efaeb0ef688f4c1a49f9e054543c
+Author: duhaodong <haodong.du@amlogic.com>
+Date:   Fri Jun 20 19:23:39 2025 +0800
+
+videodec: CB2 fix tunnel report work before inputdone in llp mode  [1/1]
+
+PD#SWPL-219143
+
+Problem:
+report to work check before inputdone in llp mode,  no inputdone
+lead work not report successfully, finally no input work available
+
+Solution:
+fence mode don't support secure mode
+
+Verify:
+X5M
+
+Change-Id: I39bb8616f9a12976c2290286164cd68ad7f64ffc
+Signed-off-by: duhaodong <haodong.du@amlogic.com>
+
+commit 542bc9db3be73c56da8343802161c661af867c8d
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Tue Sep 10 15:24:34 2024 +0800
 
@@ -27,6 +48,54 @@ t5m
 
 Change-Id: I8e8b52cd0c870169fca9961e6d0f92101b57915c
 Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
+
+commit 6a7379b2b353b027e8468d4d3583827686013106
+Author: shuanglong.wang <shuanglong.wang@amlogic.com>
+Date:   Mon Apr 28 20:05:06 2025 +0800
+
+tunnelrenderer: CB1 reset mode to vmaster when flush [1/1]
+
+PD#OTT-78524
+PD#SWPL-212671
+
+Problem:
+1.video drop/freeze a moment after seek
+2.After seek video will be paused wait audio restart,
+but audio release mediasync will reset pause to 0.
+And then video will unpause and drop frame.When audio
+started video will wait sync with audio for long time.
+
+Solution:
+1.reset mode to vmaster when flush
+2.Add ref count, when audio or video new media sync will +1,
+media sync will do not reset when only audio or video released
+
+Verify:
+X5M
+
+Change-Id: If6536b503dbd6674e80c385e07da887f1b464f48
+Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
+(cherry picked from commit 31014a405841d1079e0e0f8b8a18f336a51079f0)
+
+commit a79e332cc42ac8b195a1117fc866d1f1c0429673
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon May 12 02:17:56 2025 +0000
+
+tsplayer: CB2 fixed dequeue surface buffer crash. [1/1]
+
+PD#TV-158736
+
+Problem:
+dequeue surface buffer crash.
+
+Solution:
+fixed dequeue surface buffer crash.
+
+Verify:
+t6d
+
+Change-Id: I49f5737e15d7a10d6e665285ba30d4e9b753274a
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
 commit f47f57ff8512fd749f769bd72188bdc9962d1b15
 Author: dehong.chen <dehong.chen@amlogic.com>
@@ -140,74 +209,9 @@ Date:   Thu Mar 6 22:05:44 2025 -0800
 
 Merge "videodec: CB2 it will crash when setting trickmode and flushing [1/1]" into v3.32-for-android-openlinux
 
-commit 7c815db74d76664d73e21a89921757f46a9cb773
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Wed Mar 5 20:02:56 2025 +0800
-
-videodec: CB2 it will crash when setting trickmode and flushing [1/1]
-
-PD#TV-153970
-PD#TV-153623
-
-Problem:
-it will crash when setting trickmode and flushing.
-
-Solution:
-add mutex to lock ptserver setting.
-
-Verify:
-T5D
-
-Change-Id: Id62b85781a90641128a1654b97c3f4e8d1f5a4b2
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 13ab8c2e1c9662364fde340308b82defcc3bc8ad
-Author: yang.liu1 <yang.liu1@amlogic.com>
-Date:   Fri Jan 3 11:08:38 2025 +0800
-
-videodec: CB2 solve vc1 stream playback stuck. [1/1]
-
-PD#SWPL-197220
-
-Problem:
-there are too many frames in the vc1 stream
-with a length less than 40, and the decoder
-cannot decode and gets stuck.
-
-Solution:
-add property to control the minimum
-decoding length size of vc1 format.
-
-Verify:
-ohm
-
-Change-Id: I3a5d86c9f2f4cc2193901ee6acab18669e8d2b0d
-Signed-off-by: yang.liu1 <yang.liu1@amlogic.com>
-
-commit c45e890891a03c6b54c03bdec04c5245ebc8790d
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Dec 23 16:47:17 2024 +0800
-
-mediasync: CF1 add update speed mediatime [2/2]
-
-PD#SWPL-193266
-
-Problem:
-add update speed mediatime
-
-Solution:
-add update speed mediatime
-
-Verify:
-ROSS
-
-Change-Id: I8baf293298a9664e28feb901969b91099e122c53
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-(cherry picked from commit 23dbbd20e124b39da99a5a32a239e6d74177723c)
-
 ========================================
 
-Release time: 2025-04-27-20-03
+Release time: 2025-07-10-13-51
 
 ========================================
 
