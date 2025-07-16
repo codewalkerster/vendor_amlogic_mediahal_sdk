@@ -1,11 +1,137 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.76-g2930e0ae
+Version: V3.32.82-gb3b67cc7
 
 ========================================
 
 Git commit:
-commit 2930e0ae4685efaeb0ef688f4c1a49f9e054543c
+commit b3b67cc709c5718b6806c78f08c20b15e63a47bc
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Tue Jun 17 15:05:56 2025 +0800
+
+videodec: CB0 fix occasional crash issue when playing lcevc [1/1]
+
+PD#SWPL-211099
+
+Problem:
+1. occasional crash issue when playing lcevc stream,
+ready_lcevc_bitstreamids_ member maybe changed before
+attach residual picture, so ready_lcevc_bitstreamids_ iterator is
+invalid and cause crash.
+2. y10bit residual allocate buffer size is incorrect, need 10M but
+allocated 20M.
+
+Solution:
+1. get new iterator before attach residual picture.
+2. fix y10bit allocate buffer size error.
+
+Verify:
+Android U S6
+
+Change-Id: Ie9e2e8e1531bbca7065b9f316225e4bfd8da68cf
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
+commit ce106a196b4f07dfe2c6eb5c193347353deb14fb
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Wed Mar 26 17:05:57 2025 +0800
+
+videodec: CF2 adapt to lcevc v2.1.2 [1/1]
+
+PD#SWPL-207669
+
+Problem:
+adapt to lcevc v2.1.2.
+
+Solution:
+adapt to lcevc v2.1.2.
+
+Verify:
+Android U S6
+
+Change-Id: Ic823f3ee481f84286356acde00c7106647d87524
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
+commit daa7417ec965b006bf4c296c91c4d737138cf4a3
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Thu Mar 20 10:28:47 2025 +0800
+
+videodec: CB2 fix lcevc flush crash [1/1]
+
+PD#IPTV-33432
+
+Problem:
+null object cause lcevc flush crash.
+
+Solution:
+check null object before operate.
+
+Verify:
+Android R S5
+
+Change-Id: I854ec0e501468a525e511021883b6d55c5220f82
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
+commit c5e5d0a6b1145cff458442a47e0a8a8192c612f0
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Thu Mar 13 20:35:13 2025 +0800
+
+videodec: CF2 lcevc support y10bit packet residual [1/1]
+
+PD#SWPL-205711
+
+Problem:
+lcevc support y10bit packet residual.
+
+Solution:
+lcevc support y10bit packet residual.
+
+Verify:
+Android R GXLX4
+
+Change-Id: I72ed783b945f36b0b2fa6c2ee0ee521526acaeac
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
+commit 70b9d1b8d683b2ed72757024cabe55cb01b10d94
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Mon Mar 3 17:20:48 2025 +0800
+
+videodec: CF2 lcevc support load from the system partition [1/1]
+
+PD#SWPL-204348
+
+Problem:
+lcevc does not support loading from the system partition.
+
+Solution:
+lcevc support load from the system partition.
+
+Verify:
+Android U S7D
+
+Change-Id: I408f0bc8c7e2c62644550f75c3471f5764739d0b
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
+commit 627ca4032fb70a3dbb1b1d05ebfed3257c8edd08
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Wed Jul 16 11:18:47 2025 +0800
+
+videodec: CF2 update lcevc api 2.1.0 [1/1]
+
+PD#SWPL-201559
+
+Problem:
+update lcevc api 2.1.0.
+
+Solution:
+update lcevc api 2.1.0.
+
+Verify:
+Android R GXLX4
+
+Change-Id: I0382b3f509efc9ef5bc06a8e7fe1dc6c1cc67ce3
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
+commit f9328a23259b7c3d304176f8dddc916b85ab1f0e
 Author: duhaodong <haodong.du@amlogic.com>
 Date:   Fri Jun 20 19:23:39 2025 +0800
 
@@ -26,7 +152,7 @@ X5M
 Change-Id: I39bb8616f9a12976c2290286164cd68ad7f64ffc
 Signed-off-by: duhaodong <haodong.du@amlogic.com>
 
-commit 542bc9db3be73c56da8343802161c661af867c8d
+commit f57d58174ef7656ad6a48c572f98c8e09d123168
 Author: jiabin.zhu <jiabin.zhu@amlogic.com>
 Date:   Tue Sep 10 15:24:34 2024 +0800
 
@@ -97,121 +223,9 @@ t6d
 Change-Id: I49f5737e15d7a10d6e665285ba30d4e9b753274a
 Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
 
-commit f47f57ff8512fd749f769bd72188bdc9962d1b15
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Wed Dec 18 06:59:33 2024 +0000
-
-tsplayer: CF2 add I only trickmode bypass mediasync mode [1/1]
-
-PD#OTT-68714
-PD#SWPL-185127
-
-Problem:
-need add I only trickmode bypass mediasync mode.
-
-Solution:
-need add I only trickmode bypass mediasync mode.
-
-Verify:
-ohm
-
-Change-Id: I2883d62aa11bc72f721b9363604b1c85a92e25bd
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
-commit c20199ca51e4734df01b6acb592b8554e33801ea
-Author: mingguang.liu <mingguang.liu@amlogic.com>
-Date:   Mon Apr 7 11:33:52 2025 +0800
-
-tunnelrenderer: CB1 Update curSyncFrame when offset is adjusted. [1/1]
-
-PD#SWPL-208547
-
-Problem:
-The first frame after playbackrate change did not update SyncFrame,
-causing false freeze/drop reports in the log.
-
-Solution:
-Update curSyncFrame when HwcVsyncAlignOffset is adjusted.
-
-Verify:
-T6D
-
-Change-Id: Ife4e577090ce6da59fe1c6cdf2d8607be9a1cac4
-Signed-off-by: mingguang.liu <mingguang.liu@amlogic.com>
-
-commit 0c5889c83b962953c72822d24ce623662b95ee62
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Fri Mar 21 15:52:48 2025 +0800
-
-videotunnelrenderer: CB1 fix freeze/drop when rate change [1/1]
-
-PD#SWPL-206229
-
-Problem:
-drop 1 when rate Change
-
-Solution:
-slight adjust to incase freeze/drop
-
-Verify:
-T6D
-
-Change-Id: I567b12781bc0e651e8076f64220c6026df62a117
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-(cherry picked from commit f225ab7c675094cc1c247ebb28d112a3077af196)
-
-commit e06716f956e872f1da546f751a96ad2714814ec6
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Mar 21 16:44:51 2025 +0800
-
-videodec: CB2 it can't stop after playing [1/1]
-
-PD#TV-156354
-
-Problem:
-it can't stop after playing,
-as driver is not existing.
-
-Solution:
-use other drivers(hevc/avc) to decode.
-
-Verify:
-t6d
-
-Change-Id: Ia3f20e116b62aa49ad10a9e2a9266953092605f6
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 56dbeb9606dc37ebfedb0fe8c1e74b6af27183bc
-Author: qiuye.gan <qiuye.gan@amlogic.com>
-Date:   Fri Mar 7 18:36:59 2025 +0800
-
-videodec: CB2 it will crash when initializing and stopping [1/1]
-
-PD#TV-153970
-PD#TV-153623
-
-Problem:
-it will crash when initalizing and stopping.
-
-Solution:
-fix initalizing to set state.
-
-Verify:
-T6D
-
-Change-Id: I95f86e365738c57c2dc29682ccd7f45681e3072a
-Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
-
-commit 3c4fba6d1e5abbd99ebaa15daa2d2241eac46aaf
-Merge: 13ab8c2e 7c815db7
-Author: Zhi Zhou <zhi.zhou@amlogic.com>
-Date:   Thu Mar 6 22:05:44 2025 -0800
-
-Merge "videodec: CB2 it will crash when setting trickmode and flushing [1/1]" into v3.32-for-android-openlinux
-
 ========================================
 
-Release time: 2025-07-10-13-51
+Release time: 2025-07-16-20-01
 
 ========================================
 
