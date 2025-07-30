@@ -36,6 +36,10 @@ mediahal_sdk_go_defaults {
     name: "mediahal_sdk_go_defaults",
 }
 
+dhp_sdk_go_defaults {
+    name: "dhp_sdk_go_defaults",
+}
+
 bootstrap_go_package {
     name: "mediahalvercheck",
     pkgPath: "android/soong/mediahalvercheck",
@@ -649,4 +653,54 @@ cc_prebuilt_library_shared {
         },
     },
     check_elf_files: false,
+}
+
+cc_prebuilt_binary {
+    name: "dhp_daemon",
+    defaults: ["dhp_sdk_go_defaults"],
+    vendor: true,
+    compile_multilib: "both",
+    shared_libs: ["libavbc_soft_decoder", "libc++"],
+    strip: {
+        none: true,
+    },
+    arch: {
+        arm: {
+            srcs: ["bin/dhp_daemon"],
+        },
+        arm64: {
+            enabled: false,
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    init_rc: ["init.dhp_daemon.rc"],
+    check_elf_files: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libavbc_soft_decoder",
+    defaults: ["dhp_sdk_go_defaults"],
+    vendor: true,
+    installable: true,
+    compile_multilib: "both",
+    arch: {
+        arm: {
+            srcs: ["lib/vendor/libavbc_soft_decoder.so"],
+        },
+        arm64: {
+            srcs: ["arm64/vendor/libavbc_soft_decoder.so"],
+        },
+        x86: {
+            enabled: false,
+        },
+        x86_64: {
+            enabled: false,
+        },
+    },
+    check_elf_files: true,
 }

@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.82-gb3b67cc7
+Version: V3.32.83-gab236c66
 
 ========================================
 
 Git commit:
+commit ab236c66de75992facdac5afc6e229f721567670
+Author: miaohong chen <miaohong.chen@amlogic.com>
+Date:   Thu Jul 3 18:19:12 2025 +0800
+
+dhp: CF1 DHP_DAEMON directory migration. [1/3]
+
+PD#SWPL-220659
+
+Problem:
+Userspace code is not suitable for the driver directory.
+
+Solution:
+Migrate userspace code to a suitable location.
+
+Verify:
+Ross
+
+Change-Id: I76b4c40465b1e0c0e9b37ca380ab74fcdbf8828a
+Signed-off-by: miaohong chen <miaohong.chen@amlogic.com>
+
 commit b3b67cc709c5718b6806c78f08c20b15e63a47bc
 Author: Qiang Guo <qiang.guo@amlogic.com>
 Date:   Tue Jun 17 15:05:56 2025 +0800
@@ -203,29 +223,9 @@ Change-Id: If6536b503dbd6674e80c385e07da887f1b464f48
 Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
 (cherry picked from commit 31014a405841d1079e0e0f8b8a18f336a51079f0)
 
-commit a79e332cc42ac8b195a1117fc866d1f1c0429673
-Author: dehong.chen <dehong.chen@amlogic.com>
-Date:   Mon May 12 02:17:56 2025 +0000
-
-tsplayer: CB2 fixed dequeue surface buffer crash. [1/1]
-
-PD#TV-158736
-
-Problem:
-dequeue surface buffer crash.
-
-Solution:
-fixed dequeue surface buffer crash.
-
-Verify:
-t6d
-
-Change-Id: I49f5737e15d7a10d6e665285ba30d4e9b753274a
-Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
-
 ========================================
 
-Release time: 2025-07-16-20-01
+Release time: 2025-07-30-16-42
 
 ========================================
 
