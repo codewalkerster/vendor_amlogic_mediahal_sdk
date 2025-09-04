@@ -1,11 +1,52 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.83-gab236c66
+Version: V3.32.85-g88761b3a
 
 ========================================
 
 Git commit:
-commit ab236c66de75992facdac5afc6e229f721567670
+commit 88761b3a7edf73b268de058394a30714ee16bcd9
+Author: qiuye.gan <qiuye.gan@amlogic.com>
+Date:   Tue Dec 17 17:33:06 2024 +0800
+
+tsplayer: CB2 heaac can't update quickly [1/1]
+
+PD#SWPL-229878
+
+Problem:
+ui audio track not updating in relea time.
+
+Solution:
+fix to exit thread until getting the audio format.
+
+Verify:
+T6D
+
+Change-Id: Ifcae5f26e265b8eb97fef8eab70340a235de4246
+Signed-off-by: qiuye.gan <qiuye.gan@amlogic.com>
+(cherry picked from commit aa10dc7c6b2f12798bdd86aa3809d0eff88caeeb)
+
+commit 5f45c95df63f106f9c6f462d84bf821f752a8978
+Author: Qiang Guo <qiang.guo@amlogic.com>
+Date:   Wed Aug 13 19:50:12 2025 +0800
+
+videodec: CF1 adapt to lcevc dvp v2.1.4 [1/1]
+
+PD#SWPL-226985
+
+Problem:
+adapt to lcevc dvp v2.1.4.
+
+Solution:
+adapt to lcevc dvp v2.1.4.
+
+Verify:
+Android U S7D
+
+Change-Id: Iffbfeb5a4c90601fd38329df7aaab1bc2266510d
+Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
+
+commit 78392910e93820e7122d78ebe429ccab912d4693
 Author: miaohong chen <miaohong.chen@amlogic.com>
 Date:   Thu Jul 3 18:19:12 2025 +0800
 
@@ -172,60 +213,9 @@ X5M
 Change-Id: I39bb8616f9a12976c2290286164cd68ad7f64ffc
 Signed-off-by: duhaodong <haodong.du@amlogic.com>
 
-commit f57d58174ef7656ad6a48c572f98c8e09d123168
-Author: jiabin.zhu <jiabin.zhu@amlogic.com>
-Date:   Tue Sep 10 15:24:34 2024 +0800
-
-videopassthrough: CF2 Support eos and drop pts in passthrough mode [2/2]
-
-PD#SWPL-184385
-PD#SWPL-184624
-
-Problem:
-1.support eos.
-2.support drop pts in iptv.
-
-Solution:
-1.support eos.
-2.support drop pts in iptv
-
-Verify:
-t5m
-
-Change-Id: I8e8b52cd0c870169fca9961e6d0f92101b57915c
-Signed-off-by: jiabin.zhu <jiabin.zhu@amlogic.com>
-
-commit 6a7379b2b353b027e8468d4d3583827686013106
-Author: shuanglong.wang <shuanglong.wang@amlogic.com>
-Date:   Mon Apr 28 20:05:06 2025 +0800
-
-tunnelrenderer: CB1 reset mode to vmaster when flush [1/1]
-
-PD#OTT-78524
-PD#SWPL-212671
-
-Problem:
-1.video drop/freeze a moment after seek
-2.After seek video will be paused wait audio restart,
-but audio release mediasync will reset pause to 0.
-And then video will unpause and drop frame.When audio
-started video will wait sync with audio for long time.
-
-Solution:
-1.reset mode to vmaster when flush
-2.Add ref count, when audio or video new media sync will +1,
-media sync will do not reset when only audio or video released
-
-Verify:
-X5M
-
-Change-Id: If6536b503dbd6674e80c385e07da887f1b464f48
-Signed-off-by: shuanglong.wang <shuanglong.wang@amlogic.com>
-(cherry picked from commit 31014a405841d1079e0e0f8b8a18f336a51079f0)
-
 ========================================
 
-Release time: 2025-07-30-16-42
+Release time: 2025-09-04-15-15
 
 ========================================
 
