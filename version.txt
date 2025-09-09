@@ -1,10 +1,34 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.85-g88761b3a
+Version: V3.32.86-gc2f96458
 
 ========================================
 
 Git commit:
+commit c2f96458f8da3b3644b298eabe1a3acb3c4f2bdf
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Mon Jun 16 07:42:50 2025 +0000
+
+tsplayer: CB2 fixed set has video flag. [1/1]
+
+PD#SWPL-217193
+PD#SWPL-227481
+PD#SWPL-229231
+
+Problem:
+set has video flag in only audio,
+cause mediasync state incorrect.
+
+Solution:
+if only audio, don't set has video flag.
+
+Verify:
+x5m
+
+Change-Id: I882e109879d0e54aeeec9fd309ca1e1bb602e038
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+(cherry picked from commit b216831e1e85d8740f2fa9bd87edec9691660608)
+
 commit 88761b3a7edf73b268de058394a30714ee16bcd9
 Author: qiuye.gan <qiuye.gan@amlogic.com>
 Date:   Tue Dec 17 17:33:06 2024 +0800
@@ -192,30 +216,9 @@ Android R GXLX4
 Change-Id: I0382b3f509efc9ef5bc06a8e7fe1dc6c1cc67ce3
 Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
 
-commit f9328a23259b7c3d304176f8dddc916b85ab1f0e
-Author: duhaodong <haodong.du@amlogic.com>
-Date:   Fri Jun 20 19:23:39 2025 +0800
-
-videodec: CB2 fix tunnel report work before inputdone in llp mode  [1/1]
-
-PD#SWPL-219143
-
-Problem:
-report to work check before inputdone in llp mode,  no inputdone
-lead work not report successfully, finally no input work available
-
-Solution:
-fence mode don't support secure mode
-
-Verify:
-X5M
-
-Change-Id: I39bb8616f9a12976c2290286164cd68ad7f64ffc
-Signed-off-by: duhaodong <haodong.du@amlogic.com>
-
 ========================================
 
-Release time: 2025-09-04-15-15
+Release time: 2025-09-09-15-47
 
 ========================================
 
