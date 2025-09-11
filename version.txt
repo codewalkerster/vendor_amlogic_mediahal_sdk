@@ -1,10 +1,30 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.86-gc2f96458
+Version: V3.32.87-g552e4c87
 
 ========================================
 
 Git commit:
+commit 552e4c87ee5ffe1dba1a0a0b44f3be83ce0b9bf2
+Author: xiang.gao <xiang.gao@amlogic.com>
+Date:   Wed Sep 10 15:42:32 2025 +0800
+
+tsplayer: CB2 Am_AudioHalWrapper_SetWorkMode add lock [1/1]
+
+PD#SWPL-231475
+
+Problem:
+FCC switching sometimes no sound
+
+Solution:
+Am_AudioHalWrapper_SetWorkMode add lock.
+
+Verify:
+raman
+
+Change-Id: Iea1f4fb59a1d7a1bf780acd8edb3e43adaa85e6c
+Signed-off-by: xiang.gao <xiang.gao@amlogic.com>
+
 commit c2f96458f8da3b3644b298eabe1a3acb3c4f2bdf
 Author: dehong.chen <dehong.chen@amlogic.com>
 Date:   Mon Jun 16 07:42:50 2025 +0000
@@ -196,29 +216,9 @@ Android U S7D
 Change-Id: I408f0bc8c7e2c62644550f75c3471f5764739d0b
 Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
 
-commit 627ca4032fb70a3dbb1b1d05ebfed3257c8edd08
-Author: Qiang Guo <qiang.guo@amlogic.com>
-Date:   Wed Jul 16 11:18:47 2025 +0800
-
-videodec: CF2 update lcevc api 2.1.0 [1/1]
-
-PD#SWPL-201559
-
-Problem:
-update lcevc api 2.1.0.
-
-Solution:
-update lcevc api 2.1.0.
-
-Verify:
-Android R GXLX4
-
-Change-Id: I0382b3f509efc9ef5bc06a8e7fe1dc6c1cc67ce3
-Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
-
 ========================================
 
-Release time: 2025-09-09-15-47
+Release time: 2025-09-11-16-03
 
 ========================================
 
