@@ -1,10 +1,55 @@
 =========RELEALSE NOTE=================
 
-Version: V3.32.87-g552e4c87
+Version: V3.32.89-g439f2255
 
 ========================================
 
 Git commit:
+commit 439f22552e99bb071795b89e63d7ea3a132dba6c
+Author: dehong.chen <dehong.chen@amlogic.com>
+Date:   Fri May 23 03:28:04 2025 +0000
+
+tsplayer: CF2 support mpegh audio format. [1/1]
+
+PD#SWPL-214997
+
+Problem:
+not support mpegh audio format
+
+Solution:
+support mpegh audio format
+
+Verify:
+AH212
+
+Change-Id: I8df680b654ec03bb0a5e5eb2bf944368dc9786e1
+Signed-off-by: dehong.chen <dehong.chen@amlogic.com>
+(cherry picked from commit 56aa8e00ebb659a407194ee3ff20ef58a4e7aae3)
+
+commit 81cae05b2a856fb7e0365a19b244f059eb17412f
+Author: futian.shi <futian.shi@amlogic.com>
+Date:   Wed Apr 16 17:50:19 2025 +0800
+
+videodec: CB1 after reconfig di-pre to decoder get the capture buff again [1/2]
+
+PD#OTT-76663
+PD#SWPL-213750
+PD#OTT-85286
+
+Problem:
+in interlaced with surfacetexture and di-post scenario, when reconfig
+di-pre to decoder, the capture buff exceed the max value for di-pre
+
+Solution:
+after reconfig di-pre to decoder get the capture buff again
+
+Verify:
+ohm
+
+Change-Id: Ib96144198e861e478cbd72abca0afe3e2f3fb1f4
+Signed-off-by: futian.shi <futian.shi@amlogic.com>
+(cherry picked from commit 90c71b5a01dcc72dc67f4678a1fb4b5018795e20)
+
 commit 552e4c87ee5ffe1dba1a0a0b44f3be83ce0b9bf2
 Author: xiang.gao <xiang.gao@amlogic.com>
 Date:   Wed Sep 10 15:42:32 2025 +0800
@@ -176,49 +221,9 @@ Android R S5
 Change-Id: I854ec0e501468a525e511021883b6d55c5220f82
 Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
 
-commit c5e5d0a6b1145cff458442a47e0a8a8192c612f0
-Author: Qiang Guo <qiang.guo@amlogic.com>
-Date:   Thu Mar 13 20:35:13 2025 +0800
-
-videodec: CF2 lcevc support y10bit packet residual [1/1]
-
-PD#SWPL-205711
-
-Problem:
-lcevc support y10bit packet residual.
-
-Solution:
-lcevc support y10bit packet residual.
-
-Verify:
-Android R GXLX4
-
-Change-Id: I72ed783b945f36b0b2fa6c2ee0ee521526acaeac
-Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
-
-commit 70b9d1b8d683b2ed72757024cabe55cb01b10d94
-Author: Qiang Guo <qiang.guo@amlogic.com>
-Date:   Mon Mar 3 17:20:48 2025 +0800
-
-videodec: CF2 lcevc support load from the system partition [1/1]
-
-PD#SWPL-204348
-
-Problem:
-lcevc does not support loading from the system partition.
-
-Solution:
-lcevc support load from the system partition.
-
-Verify:
-Android U S7D
-
-Change-Id: I408f0bc8c7e2c62644550f75c3471f5764739d0b
-Signed-off-by: Qiang Guo <qiang.guo@amlogic.com>
-
 ========================================
 
-Release time: 2025-09-11-16-03
+Release time: 2025-09-23-14-27
 
 ========================================
 

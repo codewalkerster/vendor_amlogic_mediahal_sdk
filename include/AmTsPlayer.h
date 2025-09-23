@@ -350,6 +350,7 @@ typedef enum {
     AV_AUDIO_CODEC_PCMMULAW = 30,          // PCM MULAW
     AV_AUDIO_CODEC_HE_AAC_V1 = 31,         // HE AAC_V1
     AV_AUDIO_CODEC_HE_AAC_V2 = 32,         // HE AAC_V2
+    AV_AUDIO_CODEC_MPEGH = 33,             // MPEGH
     AV_AUDIO_CODEC_MAX = 1000,             // Out of range type (Unsupport)
 } am_tsplayer_audio_codec;
 
